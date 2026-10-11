@@ -1,0 +1,39 @@
+{
+  "name": "settlement-generator",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "tauri": "tauri",
+    "release:check": "node scripts/release-check.mjs",
+    "release:manifest": "node scripts/latest-json.mjs",
+    "release:build": "node scripts/build-release.mjs",
+    "version:bump": "node scripts/bump-version.mjs"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "~2.11.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@tauri-apps/api": "~2.11.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

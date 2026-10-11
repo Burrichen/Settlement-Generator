@@ -1,0 +1,131 @@
+/* Saved settlements: list (~25%) and snapshot (~75%). */
+
+.screen-wide .screen-header-inner,
+.screen-wide .screen-body {
+  max-width: 1280px;
+}
+
+.view-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 25%) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.saved-list-pane {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  scroll-behavior: smooth;
+}
+
+.saved-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.saved-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 14px;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition:
+    background 100ms ease,
+    color 100ms ease;
+}
+
+.saved-item:hover {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.saved-item.is-selected {
+  background: var(--surface-raised);
+  border-left-color: var(--accent);
+  color: var(--text);
+}
+
+.saved-item:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.saved-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.star {
+  color: var(--favourite);
+  flex: none;
+}
+
+.saved-item.is-favourite .saved-name,
+.saved-title.is-favourite {
+  color: var(--favourite);
+}
+
+.saved-detail-header {
+  margin-bottom: 22px;
+}
+
+.saved-title {
+  font-size: 28px;
+  margin: 0 0 4px;
+}
+
+.saved-meta {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.saved-detail .settlement-sheet {
+  max-width: 720px;
+}
+
+.edit-pane .text-input {
+  display: block;
+  margin: 6px 0 16px;
+  max-width: 420px;
+}
+
+.edit-pane .stage-table-grid {
+  margin-top: 8px;
+}
+
+.edit-actions {
+  align-items: center;
+  margin-top: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saved-list-pane {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .view-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .saved-list-pane {
+    position: static;
+    max-height: 240px;
+  }
+}
+
+/* Locked while a settlement is being edited. */
+.saved-list-pane[inert] {
+  opacity: 0.55;
+}

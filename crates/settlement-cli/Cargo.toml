@@ -1,0 +1,20 @@
+[package]
+name = "settlement-cli"
+description = "Keyboard-driven terminal interface for Settlement Generator"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+# Installed beside the GUI as settlement-generator-cli.exe (see docs/RELEASING.md).
+[[bin]]
+name = "settlement-generator-cli"
+path = "src/main.rs"
+
+[dependencies]
+settlement-core.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+ratatui.workspace = true
+serde_json.workspace = true

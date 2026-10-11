@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.purpose",
+      "name": "Purpose",
+      "description": "Standard layout. Known modifiers from Environment, Connections, Size and Origin are recorded as planned intents on their tags; exact dice changes have not been approved.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "agriculture",
+          "name": "Agriculture",
+          "range": [1, 4],
+          "tags": ["purpose.agriculture"]
+        },
+        { "id": "trade", "name": "Trade", "range": [5, 7], "tags": ["purpose.trade"] },
+        {
+          "id": "resourceExtraction",
+          "name": "Resource Extraction",
+          "range": [8, 10],
+          "tags": ["purpose.resourceExtraction"]
+        },
+        {
+          "id": "craftIndustry",
+          "name": "Craft / Industry",
+          "range": [11, 12],
+          "tags": ["purpose.craftIndustry"]
+        },
+        { "id": "fishing", "name": "Fishing", "range": [13, 14], "tags": ["purpose.fishing"] },
+        { "id": "forestry", "name": "Forestry", "range": 15, "tags": ["purpose.forestry"] },
+        { "id": "religious", "name": "Religious", "range": 16, "tags": ["purpose.religious"] },
+        {
+          "id": "administrative",
+          "name": "Administrative",
+          "range": 17,
+          "tags": ["purpose.administrative"]
+        },
+        {
+          "id": "transportWaystation",
+          "name": "Transport / Waystation",
+          "range": 18,
+          "tags": ["purpose.transportWaystation"]
+        },
+        { "id": "military", "name": "Military", "range": 19, "tags": ["purpose.military"] },
+        { "id": "scholarly", "name": "Scholarly", "range": 20, "tags": ["purpose.scholarly"] }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "purpose.agriculture", "name": "Agriculture" },
+    { "id": "purpose.trade", "name": "Trade" },
+    { "id": "purpose.resourceExtraction", "name": "Resource Extraction" },
+    { "id": "purpose.craftIndustry", "name": "Craft / Industry" },
+    { "id": "purpose.fishing", "name": "Fishing" },
+    { "id": "purpose.forestry", "name": "Forestry" },
+    { "id": "purpose.religious", "name": "Religious" },
+    { "id": "purpose.administrative", "name": "Administrative" },
+    { "id": "purpose.transportWaystation", "name": "Transport / Waystation" },
+    { "id": "purpose.military", "name": "Military" },
+    { "id": "purpose.scholarly", "name": "Scholarly" }
+  ]
+}

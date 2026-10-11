@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.settingProfile",
+      "name": "Setting Profile",
+      "description": "The campaign setting the settlement belongs to (formerly called Fantasy Profile). Chosen, not rolled: no dice have been defined for it. Content development currently concentrates on Kurovia.",
+      "selection": "choose",
+      "results": [
+        { "id": "kurovia", "name": "Kurovia", "tags": ["world.kurovia"] },
+        { "id": "lowFantasy", "name": "Low Fantasy", "tags": ["world.lowFantasy"] },
+        { "id": "mediumFantasy", "name": "Medium Fantasy", "tags": ["world.mediumFantasy"] },
+        { "id": "highFantasy", "name": "High Fantasy", "tags": ["world.highFantasy"] },
+        { "id": "forgottenRealms", "name": "Forgotten Realms", "tags": ["world.forgottenRealms"] },
+        { "id": "horror", "name": "Horror", "tags": ["world.horror"] }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "world.kurovia",
+      "name": "Kurovia",
+      "description": "Region-routing tag: Kurovia uses its own Region table.",
+      "effects": [
+        { "kind": "redirect_table", "table": "table.genericRegion", "to": "table.kuroviaRegion" }
+      ]
+    },
+    {
+      "id": "world.lowFantasy",
+      "name": "Low Fantasy",
+      "description": "No profile-specific content yet; uses the generic tables."
+    },
+    {
+      "id": "world.mediumFantasy",
+      "name": "Medium Fantasy",
+      "description": "No profile-specific content yet; uses the generic tables."
+    },
+    {
+      "id": "world.highFantasy",
+      "name": "High Fantasy",
+      "description": "No profile-specific content yet; uses the generic tables."
+    },
+    {
+      "id": "world.forgottenRealms",
+      "name": "Forgotten Realms",
+      "description": "No profile-specific content yet; uses the generic tables."
+    },
+    {
+      "id": "world.horror",
+      "name": "Horror",
+      "description": "Intended to have a Horror-specific Region table later. Until it is designed, Horror uses Generic Region.",
+      "effects": [
+        {
+          "kind": "redirect_table",
+          "table": "table.genericRegion",
+          "to": "table.horrorRegion",
+          "status": "planned",
+          "note": "Horror Region table is not designed yet. Activate once table.horrorRegion exists."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "sequence": [
+    { "table": "table.settingProfile", "name": "Setting Profile" },
+    { "table": "table.genericRegion", "name": "Region" },
+    { "table": "table.environment", "name": "Environment" },
+    { "table": "table.connections", "name": "Connections" },
+    { "table": "table.size", "name": "Size" },
+    { "table": "table.origin", "name": "Origin" },
+    { "table": "table.purpose", "name": "Purpose" },
+    { "table": "table.age", "name": "Age" }
+  ]
+}

@@ -1,0 +1,499 @@
+/* Tag and table editors. Tokens come from tokens.css. */
+
+.editor-list-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-filter {
+  margin: 8px;
+  width: auto;
+  max-width: none;
+}
+
+.editor-item {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.editor-item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editor-item-sub {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editor-item.is-muted .editor-item-name {
+  color: var(--text-faint);
+}
+
+.problem-mark {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.editor-empty {
+  padding: 8px 14px;
+}
+
+.list-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.editor {
+  max-width: 900px;
+}
+
+.editor-header {
+  margin-bottom: 8px;
+}
+
+.editor-header code,
+.saved-meta code,
+.cell-sub code,
+legend code {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.editor-section {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+
+.editor-section > .label {
+  display: block;
+  margin: 0 0 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field-help {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 18px;
+}
+
+.text-area {
+  min-height: 64px;
+  max-width: none;
+  resize: vertical;
+}
+
+.dice-input {
+  font-variant-numeric: tabular-nums;
+  max-width: 180px;
+}
+
+.select-inline {
+  width: auto;
+  max-width: 100%;
+}
+
+.num-input {
+  width: 64px;
+  padding: 5px 6px;
+  background: var(--surface-sunken);
+  color: var(--text);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.range-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-faint);
+}
+
+.icon-button {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-faint);
+  font-size: 16px;
+  line-height: 1;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  color: var(--danger);
+  border-color: var(--border-strong);
+}
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  color: var(--accent);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Results grid. */
+/* Wide result tables scroll sideways inside the pane at small sizes. */
+.edit-grid-scroll {
+  overflow-x: auto;
+  /* Contains the visually-hidden header labels too. */
+  position: relative;
+}
+
+.edit-grid {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.edit-grid th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.edit-grid td {
+  padding: 8px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.edit-grid .text-input {
+  max-width: 240px;
+}
+
+.cell-sub {
+  display: block;
+  margin-top: 3px;
+}
+
+.chance {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+  padding-top: 13px !important;
+}
+
+.sub-row td {
+  background: var(--surface);
+}
+
+/* Multi-select of tags: plain text list, not pills. */
+.multi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.multi-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+.multi-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-bottom: 1px dotted var(--border);
+}
+
+/* Conditions. */
+.condition-empty,
+.condition-root {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 4px 0 10px;
+}
+
+.condition {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.condition-children {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: 14px;
+  padding-left: 12px;
+  border-left: 1px solid var(--border-strong);
+}
+
+.condition-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Variants and follow-ups. */
+.sub-editor {
+  margin: 0 0 14px;
+  padding: 12px 16px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.sub-editor legend {
+  padding: 0 6px;
+  font-weight: 600;
+}
+
+.range-list {
+  list-style: none;
+  margin: 6px 0 10px;
+  padding: 0;
+}
+
+.range-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.range-name {
+  min-width: 180px;
+  font-size: 13.5px;
+}
+
+.check-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 4px 0 10px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+}
+
+.variant-ranges {
+  margin: 8px 0;
+}
+
+/* Effects. */
+.effect {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.effect-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.effect-head .icon-button {
+  margin-left: auto;
+}
+
+.effect-description {
+  margin: 6px 0 8px;
+}
+
+.effect-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 16px;
+}
+
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.usage-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+/* Coverage strip: every face of the dice. */
+.coverage {
+  margin: 0 0 14px;
+}
+
+.coverage-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.coverage-dice {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.coverage-ok {
+  color: var(--success);
+}
+
+.coverage-problem {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.face {
+  min-width: 26px;
+  padding: 3px 0;
+  text-align: center;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--border-strong);
+  border-radius: 1px;
+  color: var(--text-muted);
+  background: var(--surface-raised);
+}
+
+.face-uncovered {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 3px,
+    color-mix(in srgb, var(--danger) 22%, transparent) 3px 6px
+  );
+  font-weight: 700;
+}
+
+.face-overlap {
+  color: var(--accent-text);
+  border-color: var(--accent);
+  background: var(--accent);
+  font-weight: 700;
+}
+
+/* Validation. */
+.issues {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.issue {
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface);
+  font-size: 13.5px;
+}
+
+.issue-error {
+  border-left-color: var(--danger);
+}
+
+.issue-warning {
+  border-left-color: var(--accent);
+}
+
+.issue-level {
+  font-weight: 700;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+}
+
+.issue-error .issue-level {
+  color: var(--danger);
+}
+
+.issues-ok {
+  color: var(--success);
+  font-size: 13.5px;
+  margin: 0;
+}
+
+.editor-actions {
+  position: sticky;
+  bottom: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-strong);
+  background: var(--bg);
+}
+
+/* Results grid column balance: the name gets room; tag pickers stay narrow. */
+.edit-grid .text-input {
+  width: 100%;
+  min-width: 170px;
+  max-width: 260px;
+}
+
+.edit-grid .multi,
+.edit-grid .multi .select-inline {
+  max-width: 220px;
+}
+
+.edit-grid .link-button {
+  display: block;
+  margin: 2px 0 0;
+}

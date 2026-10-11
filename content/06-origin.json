@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.origin",
+      "name": "Origin",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "purposeBuilt",
+          "name": "Purpose-Built",
+          "description": "The settlement's origin is the same as its subsequently generated current Purpose.",
+          "range": [1, 7],
+          "tags": ["origin.purposeBuilt"]
+        },
+        {
+          "id": "strategicPosition",
+          "name": "Strategic Position",
+          "range": [8, 10],
+          "tags": ["origin.strategicPosition"]
+        },
+        {
+          "id": "tradeStop",
+          "name": "Trade Stop",
+          "range": [11, 12],
+          "tags": ["origin.tradeStop"]
+        },
+        {
+          "id": "resourceDiscovery",
+          "name": "Resource Discovery",
+          "range": [13, 14],
+          "tags": ["origin.resourceDiscovery"]
+        },
+        {
+          "id": "refugeResettlement",
+          "name": "Refuge / Resettlement",
+          "range": [15, 16],
+          "tags": ["origin.refugeResettlement"]
+        },
+        {
+          "id": "religiousFoundation",
+          "name": "Religious Foundation",
+          "range": 17,
+          "tags": ["origin.religiousFoundation"]
+        },
+        {
+          "id": "militaryOutpost",
+          "name": "Military Outpost",
+          "range": 18,
+          "tags": ["origin.militaryOutpost"]
+        },
+        { "id": "estateSeat", "name": "Estate / Seat", "range": 19, "tags": ["origin.estateSeat"] },
+        {
+          "id": "organicGrowth",
+          "name": "Organic Growth",
+          "range": 20,
+          "tags": ["origin.organicGrowth"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "origin.purposeBuilt",
+      "name": "Purpose-Built",
+      "description": "The settlement's origin is the same as its subsequently generated current Purpose."
+    },
+    {
+      "id": "origin.strategicPosition",
+      "name": "Strategic Position",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "security-related rolls",
+          "change": "increase",
+          "status": "planned",
+          "note": "Strategic Position: security-related rolls increase. Destination table not yet present."
+        }
+      ]
+    },
+    {
+      "id": "origin.tradeStop",
+      "name": "Trade Stop",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "shops / commercial buildings",
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade Stop: shops/commercial buildings increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["trade", "transportWaystation"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade Stop origin increases Trade/Transport. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "origin.resourceDiscovery",
+      "name": "Resource Discovery",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "unique resource",
+          "change": "guarantee",
+          "status": "planned",
+          "note": "Resource Discovery: guarantee a unique resource. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["resourceExtraction"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Resource Discovery origin increases Resource Extraction. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "origin.refugeResettlement",
+      "name": "Refuge / Resettlement",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "population-related rolls",
+          "change": "increase",
+          "status": "planned",
+          "note": "Refuge / Resettlement: population-related rolls increase. Destination table not yet present."
+        }
+      ]
+    },
+    {
+      "id": "origin.religiousFoundation",
+      "name": "Religious Foundation",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "religious buildings / temples",
+          "change": "increase",
+          "status": "planned",
+          "note": "Religious Foundation: religious buildings/temples increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["religious"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Religious Foundation origin increases Religious. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "origin.militaryOutpost",
+      "name": "Military Outpost",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "security-related rolls",
+          "change": "increase",
+          "status": "planned",
+          "note": "Military Outpost: security-related rolls increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Military Outpost origin increases Military. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "origin.estateSeat",
+      "name": "Estate / Seat",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "noble",
+          "change": "guarantee",
+          "status": "planned",
+          "note": "Estate / Seat: guarantee at least one noble. Destination table not yet present."
+        }
+      ]
+    },
+    { "id": "origin.organicGrowth", "name": "Organic Growth" }
+  ]
+}

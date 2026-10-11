@@ -1,0 +1,12 @@
+/target
+/node_modules
+/dist
+/src-tauri/gen/schemas
+*.log
+
+# Updater signing keys must never be committed (see docs/RELEASING.md).
+*.key
+.tauri/
+
+# Release packaging: the CLI copied in as a Tauri sidecar by scripts/build-release.mjs.
+/src-tauri/binaries

@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.connections",
+      "name": "Connections",
+      "description": "Standard layout unless a region variant applies. No Track result exists. Bratislor uses Standard. Halingo and Skgurr use Standard until otherwise specified.",
+      "dice": "1d20",
+      "results": [
+        { "id": "isolated", "name": "Isolated", "range": [1, 5], "tags": ["connection.isolated"] },
+        {
+          "id": "localRoad",
+          "name": "Local Road",
+          "range": [6, 10],
+          "tags": ["connection.localRoad"]
+        },
+        {
+          "id": "regionalRoad",
+          "name": "Regional Road",
+          "range": [11, 15],
+          "tags": ["connection.regionalRoad"]
+        },
+        {
+          "id": "majorRoute",
+          "name": "Major Route",
+          "range": [16, 20],
+          "tags": ["connection.majorRoute"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "ordon",
+          "name": "Ordon",
+          "when": { "has_tag": "region.ordon" },
+          "ranges": [
+            { "result": "isolated", "range": [1, 6] },
+            { "result": "localRoad", "range": [7, 9] },
+            { "result": "regionalRoad", "range": [10, 15] },
+            { "result": "majorRoute", "range": [16, 20] }
+          ]
+        },
+        {
+          "id": "hjartheland",
+          "name": "Hjartheland",
+          "when": { "has_tag": "region.hjartheland" },
+          "ranges": [
+            { "result": "isolated", "range": [1, 6] },
+            { "result": "localRoad", "range": [7, 12] },
+            { "result": "regionalRoad", "range": [13, 17] },
+            { "result": "majorRoute", "range": [18, 20] }
+          ]
+        },
+        {
+          "id": "nareth",
+          "name": "Nareth",
+          "when": { "has_tag": "region.nareth" },
+          "ranges": [
+            { "result": "isolated", "range": [1, 7] },
+            { "result": "localRoad", "range": [8, 10] },
+            { "result": "regionalRoad", "range": [11, 13] },
+            { "result": "majorRoute", "range": [14, 20] }
+          ]
+        },
+        {
+          "id": "targoth",
+          "name": "Targoth",
+          "description": "Major Route is impossible.",
+          "when": { "has_tag": "region.targoth" },
+          "ranges": [
+            { "result": "isolated", "range": [1, 8] },
+            { "result": "localRoad", "range": [9, 16] },
+            { "result": "regionalRoad", "range": [17, 20] }
+          ]
+        },
+        {
+          "id": "shinkira",
+          "name": "Shinkira",
+          "description": "Major Route is impossible on this table. With Coast, the coastal upgrade follow-up roll can still reach Major Route.",
+          "when": { "has_tag": "region.shinkira" },
+          "ranges": [
+            { "result": "isolated", "range": [1, 5] },
+            { "result": "localRoad", "range": [6, 13] },
+            { "result": "regionalRoad", "range": [14, 20] }
+          ]
+        }
+      ],
+      "follow_ups": [
+        {
+          "id": "shinkiraCoastUpgrade",
+          "name": "Shinkira coastal upgrade",
+          "description": "Shinkira + Coast: after rolling the Shinkira table, on Local Road or Regional Road roll 1d4. 1-3 retain the original result; 4 upgrades to Major Route.",
+          "when": { "all": [{ "has_tag": "region.shinkira" }, { "has_tag": "env.coast" }] },
+          "on_results": ["localRoad", "regionalRoad"],
+          "dice": "1d4",
+          "outcomes": [{ "range": [1, 3] }, { "range": 4, "becomes": "majorRoute" }]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "connection.isolated",
+      "name": "Isolated",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["trade", "transportWaystation"],
+          "change": "decrease",
+          "status": "planned",
+          "note": "Isolated decreases Trade and Transport. Exact dice change not yet approved."
+        }
+      ]
+    },
+    { "id": "connection.localRoad", "name": "Local Road" },
+    { "id": "connection.regionalRoad", "name": "Regional Road" },
+    {
+      "id": "connection.majorRoute",
+      "name": "Major Route",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["trade", "transportWaystation"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Major Route increases Trade and Transport. Exact dice change not yet approved."
+        }
+      ]
+    }
+  ]
+}

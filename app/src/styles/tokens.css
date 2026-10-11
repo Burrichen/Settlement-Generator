@@ -1,0 +1,76 @@
+/*
+ * Theme tokens. Every colour, font and ornament the UI uses comes from these
+ * variables; a new theme is a new `[data-theme="…"]` block.
+ */
+
+:root,
+:root[data-theme="modern-dark"] {
+  color-scheme: dark;
+
+  --font-body: "Inter Variable", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Inter Variable", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --display-weight: 640;
+  --display-tracking: -0.015em;
+  --label-tracking: 0.12em;
+  --display-style: normal;
+
+  --bg: #0e0f11;
+  --surface: #15171a;
+  --surface-raised: #1b1e22;
+  --surface-sunken: #0a0b0c;
+  --border: #25282d;
+  --border-strong: #363a41;
+  /* Edges of text fields and selects: at least 3:1 against surfaces. */
+  --border-control: #666b74;
+
+  --text: #e6e8eb;
+  --text-muted: #9ca2aa;
+  --text-faint: #80868f;
+
+  --accent: #cf5a43;
+  --accent-strong: #e2735c;
+  --accent-text: #140d0b;
+  --focus: #e8a33d;
+  --ornament: #444951;
+  --favourite: #d8b25e;
+
+  --danger: #e2735c;
+  --success: #86b783;
+
+  --radius: 3px;
+  --page-texture: none;
+}
+
+:root[data-theme="old-timey-dark"] {
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --display-weight: 600;
+  --display-tracking: 0.005em;
+  --label-tracking: 0.16em;
+  --display-style: normal;
+
+  --bg: #110d0a;
+  --surface: #19130f;
+  --surface-raised: #211913;
+  --surface-sunken: #0c0907;
+  --border: #35291e;
+  --border-strong: #52402d;
+  --border-control: #806a4d;
+
+  --text: #ece1c8;
+  --text-muted: #b8a688;
+  --text-faint: #937f64;
+
+  --accent: #c7a259;
+  --accent-strong: #ddbb72;
+  --accent-text: #19130f;
+  --focus: #e9c87e;
+  --ornament: #6f5636;
+  --favourite: #e2c071;
+
+  --danger: #d98a6a;
+  --success: #a6b77a;
+
+  --radius: 2px;
+  /* A barely-there vignette, like the edge of an old page. */
+  --page-texture: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+}

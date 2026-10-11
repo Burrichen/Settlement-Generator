@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.age",
+      "name": "Age",
+      "dice": "1d8",
+      "results": [
+        { "id": "new", "name": "New", "range": 1, "tags": ["age.new"] },
+        {
+          "id": "established",
+          "name": "Established",
+          "range": [2, 4],
+          "tags": ["age.established"]
+        },
+        { "id": "old", "name": "Old", "range": [5, 7], "tags": ["age.old"] },
+        { "id": "ancient", "name": "Ancient", "range": 8, "tags": ["age.ancient"] }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "age.new",
+      "name": "New",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.size",
+          "change": "decrease",
+          "status": "planned",
+          "note": "New: Size decreases. Size distribution and exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "population",
+          "change": "decrease",
+          "status": "planned",
+          "note": "New: Population decreases. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "increase",
+          "status": "planned",
+          "note": "New: Opportunities increase. Destination table not yet present."
+        }
+      ]
+    },
+    { "id": "age.established", "name": "Established" },
+    {
+      "id": "age.old",
+      "name": "Old",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.size",
+          "change": "increase",
+          "status": "planned",
+          "note": "Old: Size increases. Size distribution and exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "population",
+          "change": "increase",
+          "status": "planned",
+          "note": "Old: Population increases. Destination table not yet present."
+        }
+      ]
+    },
+    {
+      "id": "age.ancient",
+      "name": "Ancient",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.size",
+          "change": "increase",
+          "status": "planned",
+          "note": "Ancient: Size increases. Size distribution and exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "population",
+          "change": "increase",
+          "status": "planned",
+          "note": "Ancient: Population increases. Destination table not yet present."
+        }
+      ]
+    }
+  ]
+}

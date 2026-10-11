@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.size",
+      "name": "Size",
+      "description": "Approved result vocabulary. Fortress is deliberately deferred to future DLC/content.",
+      "status": "incomplete",
+      "status_note": "The dice distribution for Size has not been finalised.",
+      "results": [
+        { "id": "tradingPost", "name": "Trading Post", "tags": ["size.tradingPost"] },
+        { "id": "village", "name": "Village", "tags": ["size.village"] },
+        { "id": "town", "name": "Town", "tags": ["size.town"] },
+        { "id": "city", "name": "City", "tags": ["size.city"] },
+        { "id": "capital", "name": "Capital", "tags": ["size.capital"] }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "size.tradingPost",
+      "name": "Trading Post",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["trade"],
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Trading Post strongly increases Trade. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["transportWaystation"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trading Post increases Transport. Exact dice change not yet approved."
+        }
+      ]
+    },
+    { "id": "size.village", "name": "Village" },
+    { "id": "size.town", "name": "Town" },
+    { "id": "size.city", "name": "City" },
+    {
+      "id": "size.capital",
+      "name": "Capital",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["administrative"],
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Capital strongly increases Administrative. Exact dice change not yet approved."
+        }
+      ]
+    }
+  ]
+}
