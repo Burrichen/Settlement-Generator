@@ -215,7 +215,9 @@ npx tauri signer generate -w "$env:USERPROFILE\.tauri\settlement-generator.key"
 This writes two files:
 
 - `settlement-generator.key` is the **private key**, encrypted with the password
-  you choose.
+  you choose. The project's current key was created **without a password**,
+  so the file alone can sign updates. Keep it outside the repository and
+  backed up.
 - `settlement-generator.key.pub` is the public key.
 
 Then configure `src-tauri/tauri.conf.json` under `plugins.updater`:
@@ -257,6 +259,9 @@ Load the key into the **current shell only**, just before building:
 $env:TAURI_SIGNING_PRIVATE_KEY = Get-Content -Raw "$env:USERPROFILE\.tauri\settlement-generator.key"
 $env:TAURI_SIGNING_PRIVATE_KEY_PASSWORD = Read-Host -MaskInput "Key password"
 ```
+
+For the current passwordless key, set `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`
+to an empty string instead.
 
 `npm run release:build` signs the installer. Then clear the key:
 

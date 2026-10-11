@@ -38,9 +38,9 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "REPLACE_WITH_UPDATER_PUBLIC_KEY",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDNkM5MjUwM0U5NzQwNTYKUldSV1FKYytVSkpzTEJVbFpEQ3hlZW1TenpJb0tNVTRZdlRTUENxWmNyUzJJMFBzZjdmWU04T1IK",
       "endpoints": [
-        "https://github.com/REPLACE_WITH_GITHUB_OWNER/settlement-generator/releases/latest/download/latest.json"
+        "https://github.com/Burrichen/Settlement-Generator/releases/latest/download/latest.json"
       ],
       "requireSignedVersion": true,
       "windows": {
