@@ -535,3 +535,83 @@
 .result-row.no-faces {
   grid-template-columns: minmax(0, 1fr) auto;
 }
+
+/* ----- name stage ------------------------------------------------------ */
+
+.name-current {
+  margin: 4px 0 16px;
+}
+
+.name-value {
+  margin: 0 0 4px;
+  font-size: 30px;
+  overflow-wrap: anywhere;
+}
+
+.name-current .small {
+  margin: 0;
+}
+
+.name-row .name-current {
+  margin: 0 0 8px;
+}
+
+.name-row .name-value {
+  font-size: 19px;
+}
+
+.name-row .select {
+  margin-bottom: 8px;
+}
+
+.custom-name {
+  margin-top: 18px;
+}
+
+.custom-name.is-compact {
+  margin-top: 0;
+}
+
+.custom-name-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: 420px;
+}
+
+.custom-name-row .text-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.naming-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 14px;
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.naming-details .naming-part {
+  display: contents;
+}
+
+.naming-details dt {
+  color: var(--text-faint);
+}
+
+.naming-details dd {
+  margin: 0;
+}
+
+/* In the narrow grid cell, each label sits above its value. */
+.name-row .naming-details {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.name-row .naming-details dd {
+  margin-bottom: 6px;
+}

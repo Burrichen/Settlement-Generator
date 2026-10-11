@@ -227,6 +227,10 @@ pub struct GenerationOptions {
 pub enum SkipReason {
     Inactive,
     NotEligible,
+    /// Naming stage: no naming scheme applies (a name can still be typed).
+    NoNamingScheme,
+    /// Naming stage of a settlement saved before naming existed.
+    NotRecorded,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -277,6 +281,14 @@ impl GenerationLog {
 pub enum GenerationError {
     #[error("the content defines no generation stages")]
     EmptySequence,
+    #[error("no naming scheme applies to this settlement yet; enter a name instead")]
+    NoNamingScheme,
+    #[error("no name was generated: table `{table}` could not be rolled")]
+    NamingIncomplete { table: TableId },
+    #[error("stage {} is not the name stage", stage + 1)]
+    NotNamingStage { stage: usize },
+    #[error("{0}")]
+    InvalidName(String),
     #[error("content is invalid:\n{0}")]
     InvalidContent(ValidationReport),
     #[error("table `{0}` does not exist")]
@@ -406,6 +418,10 @@ impl State {
 
     pub(crate) fn take_events(&mut self) -> Vec<GenerationEvent> {
         std::mem::take(&mut self.events)
+    }
+
+    pub(crate) fn events_so_far(&self) -> &[GenerationEvent] {
+        &self.events
     }
 
     fn has(&self, tag: &TagId) -> bool {

@@ -1,5 +1,6 @@
 import type { StageView } from "../api";
 import { OutcomeLine, TagList } from "./generation";
+import { NameGridRow } from "./NameStage";
 
 /** Every stage in one table: choose a legal result or roll each stage. */
 export function StageGrid({
@@ -7,11 +8,14 @@ export function StageGrid({
   busy,
   onRoll,
   onChoose,
+  onCustomName,
 }: {
   stages: StageView[];
   busy: boolean;
   onRoll: (stage: number) => void;
   onChoose: (stage: number, result: string) => void;
+  /** Types a name on the name stage. */
+  onCustomName: (stage: number, name: string) => void;
 }) {
   return (
     <table className="stage-table-grid">
@@ -23,15 +27,26 @@ export function StageGrid({
         </tr>
       </thead>
       <tbody>
-        {stages.map((stage) => (
-          <StageGridRow
-            key={stage.index}
-            stage={stage}
-            busy={busy}
-            onRoll={() => onRoll(stage.index)}
-            onChoose={(r) => onChoose(stage.index, r)}
-          />
-        ))}
+        {stages.map((stage) =>
+          stage.naming ? (
+            <NameGridRow
+              key={stage.index}
+              stage={stage}
+              busy={busy}
+              onRoll={() => onRoll(stage.index)}
+              onChoose={(r) => onChoose(stage.index, r)}
+              onCustom={(name) => onCustomName(stage.index, name)}
+            />
+          ) : (
+            <StageGridRow
+              key={stage.index}
+              stage={stage}
+              busy={busy}
+              onRoll={() => onRoll(stage.index)}
+              onChoose={(r) => onChoose(stage.index, r)}
+            />
+          ),
+        )}
       </tbody>
     </table>
   );

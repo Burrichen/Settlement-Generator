@@ -18,12 +18,23 @@ stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 | --- | --------------- | -------------------------------------------------------- |
 | 1   | Setting Profile | `table.settingProfile` (chosen)                          |
 | 2   | Region          | `table.genericRegion`, redirected by region-routing tags |
-| 3   | Environment     | `table.environment`, redirected by Kurovia region tags   |
-| 4   | Connections     | `table.connections`                                      |
-| 5   | Size            | `table.size` (**incomplete**)                            |
-| 6   | Origin          | `table.origin`                                           |
-| 7   | Purpose         | `table.purpose`                                          |
-| 8   | Age             | `table.age`                                              |
+| 3   | Name            | Naming stage: the naming scheme for the region, if any   |
+| 4   | Environment     | `table.environment`, redirected by Kurovia region tags   |
+| 5   | Connections     | `table.connections`                                      |
+| 6   | Size            | `table.size` (**incomplete**)                            |
+| 7   | Origin          | `table.origin`                                           |
+| 8   | Purpose         | `table.purpose`                                          |
+| 9   | Age             | `table.age`                                              |
+
+Naming content (v0.1.1) is described in [NAMING_SYSTEM.md](NAMING_SYSTEM.md):
+
+- Naming data so far, in `content/kurovia/naming/`:
+  - **Ordon**, the approved content;
+  - **Halingo**, **Skgurr**, **Shinkira**, **Bratislor**, **Hjartheland**,
+    **Nareth** and **Targoth**, provisional samples that are not official
+    lore.
+- All eight Kurovian regions are named. Other Setting Profiles skip the Name
+  stage, because there is no generic scheme yet. A name can be typed instead.
 
 ## Setting Profile
 

@@ -359,6 +359,9 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         sequence: bundled.sequence.clone(),
         tables: Vec::new(),
         tags: Vec::new(),
+        // Naming schemes are content-file data; user overrides apply to
+        // their method and component tables.
+        naming_schemes: bundled.naming_schemes.clone(),
     };
     if overrides.format_version != OVERRIDES_FORMAT_VERSION {
         issues.push(ValidationIssue::new(

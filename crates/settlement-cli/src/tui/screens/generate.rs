@@ -7,8 +7,9 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent};
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::text::{Line, Span};
 use ratatui::widgets::{Paragraph, Wrap};
-use settlement_core::engine::{GenerationError, Selections};
+use settlement_core::engine::{GenerationError, Selections, SkipReason};
 use settlement_core::ids::ResultId;
+use settlement_core::naming::NameSource;
 use settlement_core::service::ActiveGeneration;
 use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageView};
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
@@ -19,11 +20,66 @@ use crate::tui::{Ctx, Nav, Screen};
 
 enum Pending {
     /// Choosing a result for a stage (One-table picker); the IDs map picker
-    /// indices to results.
+    /// indices to results. On the name stage the results are methods.
     Choose(usize, Vec<ResultId>),
+    /// Typing a name on the name stage.
+    CustomName(usize),
+    /// Naming the settlement to save it.
     Name,
     ConfirmLeave,
     ConfirmDelete,
+}
+
+/// How the name stage's name came about, and anything that explains it:
+/// no naming data, routing and every roll (the last two only with Tag
+/// View, which is when the core includes them).
+fn naming_lines(stage: &StageView, ctx: &Ctx) -> Vec<Line<'static>> {
+    let Some(naming) = &stage.naming else {
+        return Vec::new();
+    };
+    let s = &ctx.styles;
+    let mut lines = Vec::new();
+    match (naming.source, &naming.method) {
+        (Some(NameSource::Custom), _) => lines.push(Line::styled("Typed name", s.dim())),
+        (Some(NameSource::Generated), Some(method)) => {
+            let scheme = naming.scheme.as_ref().map_or("", |s| s.name.as_str());
+            lines.push(Line::styled(
+                format!("{scheme} naming · {}", method.name),
+                s.dim(),
+            ));
+        }
+        _ => {}
+    }
+    match stage.skipped {
+        Some(SkipReason::NoNamingScheme) => lines.push(Line::styled(
+            "No naming data for this region yet: press t to type a name, or name it when saving.",
+            s.dim(),
+        )),
+        Some(SkipReason::NotRecorded) => lines.push(Line::styled(
+            "Saved before settlement naming existed.",
+            s.dim(),
+        )),
+        _ => {}
+    }
+    if !naming.routing.is_empty() {
+        let tags: Vec<&str> = naming.routing.iter().map(|t| t.name.as_str()).collect();
+        let scheme = naming.scheme.as_ref().map_or("", |s| s.name.as_str());
+        lines.push(Line::styled(
+            format!("Scheme: {scheme} — chosen by {}", tags.join(" + ")),
+            s.dim(),
+        ));
+    }
+    for part in &naming.parts {
+        let roll = match (&part.roll, &part.dice) {
+            (Some(roll), Some(dice)) => format!(" — rolled {roll} on {dice}"),
+            _ => " — chosen".into(),
+        };
+        lines.push(Line::styled(
+            format!("{}: {}{roll}", part.table.name, part.result.name),
+            s.dim(),
+        ));
+    }
+    lines
 }
 
 #[derive(PartialEq, Eq)]
@@ -132,6 +188,21 @@ impl GenerateScreen {
         }
     }
 
+    /// The stage the keys act on now, outside the completed view.
+    fn focused_stage(&self) -> Option<&StageView> {
+        if self.phase == Phase::Completed {
+            return None;
+        }
+        let index = if self.edit.is_some() || self.view.mode == GenerationMode::OneTable {
+            self.rows.selected
+        } else if self.view.mode == GenerationMode::Automatic {
+            self.view.next_pending?
+        } else {
+            self.view.cursor
+        };
+        self.view.stages.get(index)
+    }
+
     fn anything_resolved(&self) -> bool {
         self.view
             .stages
@@ -172,7 +243,11 @@ impl GenerateScreen {
             .map(|stage| {
                 let result = stage.result.as_ref().map_or_else(
                     || {
-                        if stage.skipped.is_some() {
+                        if stage.skipped == Some(SkipReason::NoNamingScheme) {
+                            "no naming data".into()
+                        } else if stage.skipped == Some(SkipReason::NotRecorded) {
+                            "not recorded".into()
+                        } else if stage.skipped.is_some() {
                             "skipped".into()
                         } else if stage.previous.is_some() {
                             "redo".into()
@@ -233,12 +308,13 @@ impl GenerateScreen {
                 ratatui::style::Style::new().fg(s.accent),
             ));
         }
-        if stage.skipped.is_some() {
+        if stage.skipped.is_some() && stage.naming.is_none() {
             lines.push(Line::styled(
                 "This stage does not apply and is skipped.",
                 s.dim(),
             ));
         }
+        lines.extend(naming_lines(stage, ctx));
         lines
     }
 
@@ -325,17 +401,25 @@ impl GenerateScreen {
             ),
             Line::styled(heading, s.title()),
         ];
+        if let Some(naming) = &stage.naming {
+            top.push(match &naming.name {
+                Some(name) => Line::styled(name.clone(), s.heading()),
+                None => Line::styled("Not named yet", s.dim()),
+            });
+        }
         top.extend(Self::stage_notes(&stage, ctx));
         if let Some(e) = &self.error {
             top.push(Line::styled(e.clone(), s.error()));
         }
         top.extend(outcome_lines(stage.outcome.as_ref(), s));
+        let naming = stage.naming.is_some();
         if stage.can_roll {
             top.push(Line::from(vec![
                 Span::styled("r", s.key()),
                 Span::styled(
                     format!(
-                        " roll{}",
+                        " {}{}",
+                        if naming { "roll name" } else { "roll" },
                         stage
                             .dice
                             .as_ref()
@@ -345,6 +429,12 @@ impl GenerateScreen {
                 ),
             ]));
         }
+        if naming {
+            top.push(Line::from(vec![
+                Span::styled("t", s.key()),
+                Span::styled(" type a name", s.dim()),
+            ]));
+        }
         if let Some(tags) = &stage.tags {
             if !tags.is_empty() {
                 top.push(tag_line(tags, s, 0));
@@ -352,10 +442,10 @@ impl GenerateScreen {
         }
         top.push(Line::default());
         top.push(Line::styled(
-            if stage.can_roll {
-                "OR CHOOSE A RESULT"
-            } else {
-                "CHOOSE A RESULT"
+            match (naming, stage.can_roll) {
+                (true, _) => "OR CHOOSE A NAMING METHOD",
+                (false, true) => "OR CHOOSE A RESULT",
+                (false, false) => "CHOOSE A RESULT",
             },
             s.dim(),
         ));
@@ -365,10 +455,12 @@ impl GenerateScreen {
         f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), head);
         let rows = Self::result_rows(&stage, ctx);
         if rows.is_empty() {
-            f.render_widget(
-                Paragraph::new(Line::styled("No result can be chosen here.", s.dim())),
-                list,
-            );
+            let empty = if naming {
+                "No naming method applies here."
+            } else {
+                "No result can be chosen here."
+            };
+            f.render_widget(Paragraph::new(Line::styled(empty, s.dim())), list);
         } else {
             self.rows.render(f, list, &rows, s, true);
         }
@@ -431,6 +523,19 @@ impl GenerateScreen {
                 self.modal = None;
                 self.act(ctx, |a, dice| a.session.choose(stage, id, dice));
             }
+            (ModalResult::Text(name), Pending::CustomName(stage)) => {
+                match self.active.session.set_custom_name(*stage, &name) {
+                    Ok(_) => {
+                        if let Ok(view) = self.active.view() {
+                            self.view = view;
+                        }
+                        self.error = None;
+                        self.modal = None;
+                    }
+                    // Keep the dialog open with the reason (empty, too long).
+                    Err(e) => modal.set_error(e.to_string()),
+                }
+            }
             (ModalResult::Text(name), Pending::Name) => {
                 let name = name.trim().to_owned();
                 let saved = match &self.edit {
@@ -464,12 +569,30 @@ impl GenerateScreen {
         Some(Nav::Stay)
     }
 
-    fn ask_name(&mut self) {
-        let current = self
-            .edit
+    /// Asks for a typed name on the name stage `index`.
+    fn ask_custom_name(&mut self, index: usize) {
+        let current = self.view.stages[index]
+            .naming
             .as_ref()
-            .map_or("", |(_, n)| n.as_str())
-            .to_owned();
+            .and_then(|n| n.name.clone())
+            .unwrap_or_default();
+        self.modal = Some((
+            Modal::text(
+                "Settlement name",
+                &format!("Type a name, up to {MAX_NAME_LENGTH} characters."),
+                &current,
+            ),
+            Pending::CustomName(index),
+        ));
+    }
+
+    fn ask_name(&mut self) {
+        // An edit keeps its saved name; a new settlement is offered the name
+        // the name stage generated (or that was typed there).
+        let current = match &self.edit {
+            Some((_, name)) => name.clone(),
+            None => self.view.suggested_name.clone().unwrap_or_default(),
+        };
         self.modal = Some((
             Modal::text(
                 "Settlement name",
@@ -568,7 +691,7 @@ impl Screen for GenerateScreen {
         } else if self.edit.is_some() || self.view.mode == GenerationMode::OneTable {
             let (_, main, tags) = self.columns(body);
             let [table, notes] =
-                Layout::vertical([Constraint::Fill(1), Constraint::Length(6)]).areas(main);
+                Layout::vertical([Constraint::Fill(1), Constraint::Length(8)]).areas(main);
             let rows = self.stage_rows(ctx);
             self.rows.render(f, table, &rows, &s, true);
             let mut lines = Vec::new();
@@ -637,6 +760,9 @@ impl Screen for GenerateScreen {
             match key.code {
                 KeyCode::Char('r') => {
                     self.act(ctx, |a, dice| a.session.roll(stage, dice));
+                }
+                KeyCode::Char('t') if self.view.stages[stage].naming.is_some() => {
+                    self.ask_custom_name(stage);
                 }
                 // As in the GUI: roll the rest only when generating, not editing.
                 KeyCode::Char('a') if self.edit.is_none() => {
@@ -708,6 +834,9 @@ impl Screen for GenerateScreen {
             KeyCode::Char('r') if !automatic && stage.can_roll => {
                 self.act(ctx, |a, dice| a.session.roll(index, dice));
             }
+            KeyCode::Char('t') if !automatic && stage.naming.is_some() => {
+                self.ask_custom_name(index);
+            }
             KeyCode::Char('n') | KeyCode::Right if !automatic => {
                 let last = index + 1 == self.view.stages.len();
                 if self.act(ctx, |a, _| a.session.advance()) {
@@ -741,35 +870,48 @@ impl Screen for GenerateScreen {
                 ("Esc", "leave"),
             ];
         }
-        if self.edit.is_some() {
-            return vec![
+        // On the name stage, Enter chooses a method, r rolls a name and t
+        // types one.
+        let on_name = self.focused_stage().is_some_and(|s| s.naming.is_some());
+        let (choose, roll) = if on_name {
+            ("method", "roll name")
+        } else {
+            ("choose", "roll")
+        };
+        let mut hints = if self.edit.is_some() {
+            vec![
                 ("↑↓", "stage"),
-                ("Enter", "choose"),
-                ("r", "roll"),
+                ("Enter", choose),
+                ("r", roll),
                 ("s", "save"),
                 ("Esc", "cancel"),
-            ];
-        }
-        match self.view.mode {
-            GenerationMode::Automatic => {
-                vec![("↑↓", "move"), ("Enter", "choose"), ("Esc", "leave")]
+            ]
+        } else {
+            match self.view.mode {
+                GenerationMode::Automatic => {
+                    vec![("↑↓", "move"), ("Enter", "choose"), ("Esc", "leave")]
+                }
+                GenerationMode::Incremental => vec![
+                    ("↑↓", "result"),
+                    ("Enter", choose),
+                    ("r", roll),
+                    ("→/n", "next"),
+                    ("←/p", "previous"),
+                    ("Esc", "leave"),
+                ],
+                GenerationMode::OneTable => vec![
+                    ("↑↓", "stage"),
+                    ("Enter", choose),
+                    ("r", roll),
+                    ("a", "roll rest"),
+                    ("f", "finish"),
+                    ("Esc", "leave"),
+                ],
             }
-            GenerationMode::Incremental => vec![
-                ("↑↓", "result"),
-                ("Enter", "choose"),
-                ("r", "roll"),
-                ("→/n", "next"),
-                ("←/p", "previous"),
-                ("Esc", "leave"),
-            ],
-            GenerationMode::OneTable => vec![
-                ("↑↓", "stage"),
-                ("Enter", "choose"),
-                ("r", "roll"),
-                ("a", "roll rest"),
-                ("f", "finish"),
-                ("Esc", "leave"),
-            ],
+        };
+        if on_name && (self.edit.is_some() || self.view.mode != GenerationMode::Automatic) {
+            hints.insert(3, ("t", "type name"));
         }
+        hints
     }
 }

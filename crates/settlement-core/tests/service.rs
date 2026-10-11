@@ -39,7 +39,7 @@ fn generation_round_trip_through_the_service() {
     assert!(edit.session.is_complete());
     let revised = s.save_edit(&edit, "Riverside II").unwrap();
     assert_eq!(revised.summary.name, "Riverside II");
-    assert_eq!(revised.stages.len(), 8);
+    assert_eq!(revised.stages.len(), 9, "eight table stages and Name");
 }
 
 #[test]
@@ -96,4 +96,44 @@ fn settings_go_through_the_core_rules() {
     settings.generation_method = GenerationMethod::Manual;
     let stored = s.save_settings(&settings).unwrap();
     assert_eq!(stored.generation_method, GenerationMethod::Manual);
+}
+
+#[test]
+fn both_interfaces_name_settlements_through_the_same_service() {
+    use settlement_core::dice::ScriptedFaces;
+    use settlement_core::naming::{NAME_STAGE_ID, NameSource};
+    // The GUI's commands and the terminal interface both drive the
+    // ActiveGeneration the service starts; there is no other name generator.
+    let mut s = service();
+    let mut active = s.start_generation().unwrap();
+    active
+        .session
+        .choose(0, ResultId::new("kurovia"), &mut RandomFaces::seeded(1))
+        .unwrap();
+    let mut faces = ScriptedFaces::new([1]); // Ordon
+    active.session.roll(1, &mut faces).unwrap();
+    active
+        .session
+        .roll(2, &mut ScriptedFaces::new([8, 74, 6]))
+        .unwrap();
+    let view = active.view().unwrap();
+    assert_eq!(view.suggested_name.as_deref(), Some("Godwinsbury"));
+    let mut sizes = Selections::new();
+    sizes.insert("table.size".into(), "town".into());
+    active
+        .session
+        .run_automatic(&sizes, &mut RandomFaces::seeded(2))
+        .unwrap();
+    let saved = s.save_new(&active, "Godwinsbury").unwrap();
+
+    let shown = s.saved_get(&saved.id).unwrap();
+    let name_stage = shown
+        .stages
+        .iter()
+        .find(|st| st.stage_table.as_str() == NAME_STAGE_ID)
+        .unwrap();
+    assert_eq!(name_stage.result.as_ref().unwrap().name, "Godwinsbury");
+    let record = name_stage.name.as_ref().unwrap();
+    assert_eq!(record.source, NameSource::Generated);
+    assert_eq!(record.rolls.len(), 3, "method roll plus two parts");
 }

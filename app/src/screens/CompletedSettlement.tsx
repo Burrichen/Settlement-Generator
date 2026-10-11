@@ -70,6 +70,7 @@ export function CompletedSettlement({
         <NameForm
           busy={saving}
           serverError={saveError}
+          initialName={view.suggested_name}
           onSave={save}
           onCancel={() => setNaming(false)}
         />

@@ -14,6 +14,7 @@ pub mod engine;
 pub mod ids;
 pub mod layers;
 mod layout;
+pub mod naming;
 pub mod roadmap;
 pub mod service;
 pub mod session;

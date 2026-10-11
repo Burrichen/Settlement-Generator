@@ -11,6 +11,7 @@ import {
 } from "../components/generation";
 import { KeyHints } from "../components/ScreenFrame";
 import { StageGrid } from "../components/StageGrid";
+import { NameControls } from "../components/NameStage";
 import { CompletedSettlement } from "./CompletedSettlement";
 
 /**
@@ -109,6 +110,7 @@ export function StartScreen() {
         busy={busy}
         onRoll={(i) => run(generation.roll(i))}
         onChoose={(i, r) => run(generation.choose(i, r))}
+        onCustomName={(i, name) => run(generation.customName(i, name))}
         onBack={() => run(generation.back())}
         onNext={async () => {
           const next = await run(generation.advance());
@@ -124,6 +126,7 @@ export function StartScreen() {
         busy={busy}
         onRoll={(i) => run(generation.roll(i))}
         onChoose={(i, r) => run(generation.choose(i, r))}
+        onCustomName={(i, name) => run(generation.customName(i, name))}
         onRollRemaining={() => run(generation.rollRemaining())}
         onFinish={() => setFinished(true)}
       />
@@ -266,16 +269,17 @@ function StagePanel({
   busy,
   onRoll,
   onChoose,
+  onCustomName,
 }: {
   stage: StageView;
   total: number;
   busy: boolean;
   onRoll: () => void;
   onChoose: (result: string) => void;
+  onCustomName: (name: string) => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => heading.current?.focus(), [stage.index]);
-  const redirected = stage.table.name !== stage.stage.name;
   return (
     <section className="gen-main" aria-labelledby={`stage-${stage.index}-title`}>
       <span className="label">
@@ -289,6 +293,35 @@ function StagePanel({
       >
         {stage.stage.name}
       </h2>
+      {stage.naming ? (
+        <NameControls
+          stage={stage}
+          busy={busy}
+          onRoll={onRoll}
+          onChoose={onChoose}
+          onCustom={onCustomName}
+        />
+      ) : (
+        <TableStageControls stage={stage} busy={busy} onRoll={onRoll} onChoose={onChoose} />
+      )}
+    </section>
+  );
+}
+
+function TableStageControls({
+  stage,
+  busy,
+  onRoll,
+  onChoose,
+}: {
+  stage: StageView;
+  busy: boolean;
+  onRoll: () => void;
+  onChoose: (result: string) => void;
+}) {
+  const redirected = stage.table.name !== stage.stage.name;
+  return (
+    <>
       {redirected && <p className="muted stage-table">{stage.table.name}</p>}
       {stage.previous && stage.status === "pending" && (
         <p className="note">
@@ -315,7 +348,7 @@ function StagePanel({
       </span>
       <ResultList stage={stage} disabled={busy} onChoose={onChoose} />
       <TagList tags={stage.tags} label="Emits" />
-    </section>
+    </>
   );
 }
 
@@ -325,6 +358,7 @@ function IncrementalFlow({
   busy,
   onRoll,
   onChoose,
+  onCustomName,
   onBack,
   onNext,
 }: {
@@ -333,6 +367,7 @@ function IncrementalFlow({
   busy: boolean;
   onRoll: (stage: number) => void;
   onChoose: (stage: number, result: string) => void;
+  onCustomName: (stage: number, name: string) => void;
   onBack: () => void;
   onNext: () => void;
 }) {
@@ -349,6 +384,7 @@ function IncrementalFlow({
           busy={busy}
           onRoll={() => onRoll(index)}
           onChoose={(r) => onChoose(index, r)}
+          onCustomName={(name) => onCustomName(index, name)}
         />
         <ErrorNote error={error} />
         <nav className="step-nav" aria-label="Stage navigation">
@@ -378,6 +414,7 @@ function OneTableFlow({
   busy,
   onRoll,
   onChoose,
+  onCustomName,
   onRollRemaining,
   onFinish,
 }: {
@@ -386,6 +423,7 @@ function OneTableFlow({
   busy: boolean;
   onRoll: (stage: number) => void;
   onChoose: (stage: number, result: string) => void;
+  onCustomName: (stage: number, name: string) => void;
   onRollRemaining: () => void;
   onFinish: () => void;
 }) {
@@ -411,7 +449,13 @@ function OneTableFlow({
           </button>
         </div>
         <ErrorNote error={error} />
-        <StageGrid stages={view.stages} busy={busy} onRoll={onRoll} onChoose={onChoose} />
+        <StageGrid
+          stages={view.stages}
+          busy={busy}
+          onRoll={onRoll}
+          onChoose={onChoose}
+          onCustomName={onCustomName}
+        />
       </div>
       <ActiveTags tags={view.active_tags} />
     </div>

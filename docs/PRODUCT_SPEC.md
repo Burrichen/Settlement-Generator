@@ -78,7 +78,8 @@ Requirements common to both:
 | Version    | Scope                                          |
 | ---------- | ---------------------------------------------- |
 | v0.1.0     | First release (scope defined by later prompts) |
-| Next MINOR | Name generation                                |
+| v0.1.1     | Settlement name generation                     |
+| Next MINOR | Improved name generation                       |
 | Next MAJOR | New tables                                     |
 
 ## 7. Customisation requirements
@@ -168,9 +169,28 @@ Settings are persistent and shared by both interfaces:
 
 ## 10. Generation
 
-The pipeline is: Setting Profile → Region → Environment → Connections → Size
-→ Origin → Purpose → Age. No other stages are inserted. The content and the
-rules behind each stage are described in [CONTENT.md](CONTENT.md).
+The pipeline is: Setting Profile → Region → Name → Environment →
+Connections → Size → Origin → Purpose → Age. No other stages are inserted.
+
+### Name (v0.1.1)
+
+- **Data-driven.** Settlement names come from naming content (see
+  [NAMING_SYSTEM.md](NAMING_SYSTEM.md)): Setting Profile → Region → naming
+  scheme → naming method.
+- **When and how.** The Name stage comes straight after Region, in every
+  mode:
+  - roll a name;
+  - choose a naming method;
+  - reroll the name alone;
+  - or type a name, which is always possible.
+- **Fallback.** Without naming data for the region, the stage is skipped and
+  nothing is invented.
+- **Tag View** shows the scheme routing and every roll.
+- **God Mode** lifts method tag conditions without changing the settlement's
+  tags.
+- **Saving.** The save dialog offers the Name stage's name. The snapshot keeps
+  the full name record, which is never regenerated. The content and the
+  rules behind each stage are described in [CONTENT.md](CONTENT.md).
 
 ### Automatic
 
@@ -268,6 +288,13 @@ Still to be specified and built:
   - upgrades are transactional (see RELEASING.md).
   - The signing key and the GitHub owner still have to be configured before
     the first public release.
+- Settlement naming, released in v0.1.1:
+  - the data-driven naming engine and the Name stage in every mode, in both
+    interfaces;
+  - Ordon naming content;
+  - provisional sample packs for the other seven Kurovian regions: Halingo,
+    Skgurr, Shinkira, Bratislor, Hjartheland, Nareth and Targoth.
+  - Still to come: a generic scheme for other Setting Profiles.
 - Windows release packaging: one per-user NSIS installer with the GUI
   (`settlement-generator.exe`) and the CLI (`settlement-generator-cli.exe`),
   built by `npm run release:build` (see RELEASING.md).

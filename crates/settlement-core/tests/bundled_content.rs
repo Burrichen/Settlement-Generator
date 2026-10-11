@@ -656,6 +656,7 @@ fn every_stage_has_its_pipeline_name() {
         [
             "Setting Profile",
             "Region",
+            "Name",
             "Environment",
             "Connections",
             "Size",

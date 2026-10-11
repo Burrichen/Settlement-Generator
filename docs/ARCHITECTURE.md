@@ -80,6 +80,7 @@ This crate owns, or will own:
 | `session`     | Stage-by-stage generation: Automatic, Incremental, One-table; dependency re-checks                                             | Implemented |
 | `editor`      | Editor support: dice coverage maps, tag usages, effect schema, relevant issues                                                 | Implemented |
 | `service`     | `AppService`: the application service both interfaces call (settings, content editing, generation sessions, saved settlements) | Implemented |
+| `naming`      | Naming schemes and methods as data; deterministic name joining (compound, possessive, exceptions)                              | Implemented |
 | `layers`      | Merge bundled defaults with user overrides; edit, delete and reset operations                                                  | Implemented |
 | `bundled`     | Bundled default content (`content/*.json`, embedded by `build.rs`)                                                             | Implemented |
 | `settings`    | Settings model: generation method/presentation, God Mode, Tag View, theme                                                      | Implemented |

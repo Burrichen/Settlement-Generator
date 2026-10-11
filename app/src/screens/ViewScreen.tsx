@@ -440,6 +440,7 @@ function EditPane({
           busy={busy}
           onRoll={(i) => run(generation.roll(i))}
           onChoose={(i, r) => run(generation.choose(i, r))}
+          onCustomName={(i, name) => run(generation.customName(i, name))}
         />
       )}
       <div className="action-bar edit-actions">

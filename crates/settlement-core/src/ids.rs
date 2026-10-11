@@ -79,6 +79,10 @@ define_id!(
     /// Identifies a table variant. Unique within its table.
     VariantId
 );
+define_id!(
+    /// Identifies a naming scheme. Unique across all naming schemes.
+    NamingSchemeId
+);
 
 #[cfg(test)]
 mod tests {

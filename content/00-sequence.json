@@ -3,6 +3,7 @@
   "sequence": [
     { "table": "table.settingProfile", "name": "Setting Profile" },
     { "table": "table.genericRegion", "name": "Region" },
+    { "naming": true, "name": "Name" },
     { "table": "table.environment", "name": "Environment" },
     { "table": "table.connections", "name": "Connections" },
     { "table": "table.size", "name": "Size" },

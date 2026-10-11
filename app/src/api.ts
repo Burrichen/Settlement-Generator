@@ -139,10 +139,42 @@ export interface StageView {
   options: ResultOption[];
   result?: Named;
   previous?: Named;
-  skipped?: "inactive" | "not_eligible";
+  /**
+   * Why the stage was skipped. On the name stage: no naming scheme applies
+   * yet (`no_naming_scheme`), or the settlement was saved before naming
+   * existed (`not_recorded`).
+   */
+  skipped?: "inactive" | "not_eligible" | "no_naming_scheme" | "not_recorded";
   outcome?: StageOutcome;
   /** Emitted tags (only with Tag View). */
   tags?: Named[];
+  /**
+   * Only on the name stage. There `options` are the naming methods
+   * (choosing one generates a name with it), `result` is the name, and
+   * rolling generates a name.
+   */
+  naming?: NamingView;
+}
+
+export type NameSource = "generated" | "custom";
+
+export interface NamingView {
+  /** The scheme of the current name, or the one that applies now. */
+  scheme?: Named;
+  name?: string;
+  source?: NameSource;
+  method?: Named;
+  /** Each rolled part (only with Tag View). */
+  parts?: NamePartView[];
+  /** Active tags that selected the scheme (only with Tag View). */
+  routing?: Named[];
+}
+
+export interface NamePartView {
+  table: Named;
+  result: Named;
+  dice?: string;
+  roll?: string;
 }
 
 export interface SessionView {
@@ -154,6 +186,8 @@ export interface SessionView {
   stages: StageView[];
   /** Active tags (only with Tag View). */
   active_tags?: Named[];
+  /** The name stage's name, offered when saving. */
+  suggested_name?: string;
 }
 
 export interface GenerationResponse {
@@ -176,6 +210,9 @@ export const generation = {
   roll: (stage: number) => invoke<GenerationResponse>("generation_roll", { stage }),
   choose: (stage: number, result: string) =>
     invoke<GenerationResponse>("generation_choose", { stage, result }),
+  /** Names the settlement with a typed name (the name stage). */
+  customName: (stage: number, name: string) =>
+    invoke<GenerationResponse>("generation_custom_name", { stage, name }),
   advance: () => invoke<GenerationResponse>("generation_advance"),
   back: () => invoke<GenerationResponse>("generation_back"),
   rollRemaining: () => invoke<GenerationResponse>("generation_roll_remaining"),
@@ -201,6 +238,18 @@ export interface SnapshotStage {
   result?: Named;
   tags?: Named[];
   skipped?: boolean;
+  /** The name stage's record (only on the name stage). */
+  name?: NameRecord;
+}
+
+/** A saved settlement name and how it was made. */
+export interface NameRecord {
+  name: string;
+  source: NameSource;
+  scheme?: Named;
+  method?: Named;
+  /** Version that produced the name. */
+  app_version: string;
 }
 
 export interface SavedSettlementView extends SettlementSummary {

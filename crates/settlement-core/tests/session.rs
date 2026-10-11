@@ -7,22 +7,35 @@ use settlement_core::bundled::bundled_content;
 use settlement_core::content::ContentSet;
 use settlement_core::dice::{RandomFaces, ScriptedFaces};
 use settlement_core::engine::{
-    AttemptOutcome, GenerationError, GenerationEvent, GenerationOptions, Selections,
+    AttemptOutcome, GenerationError, GenerationEvent, GenerationOptions, Selections, SkipReason,
 };
 use settlement_core::session::{
     GenerationMode, GenerationSession, StageStatus, StageView, ViewOptions,
 };
 use settlement_core::settings::{GenerationMethod, GenerationPresentation, Settings};
 
+/// Kurovian regions with naming data: all eight.
+const NAMED_REGIONS: [&str; 8] = [
+    "Ordon",
+    "Halingo",
+    "Skgurr",
+    "Shinkira",
+    "Bratislor",
+    "Hjartheland",
+    "Nareth",
+    "Targoth",
+];
+
 // Stage indices of the approved pipeline.
 const PROFILE: usize = 0;
 const REGION: usize = 1;
-const ENVIRONMENT: usize = 2;
-const CONNECTIONS: usize = 3;
-const SIZE: usize = 4;
-const ORIGIN: usize = 5;
-const PURPOSE: usize = 6;
-const AGE: usize = 7;
+const NAME: usize = 2;
+const ENVIRONMENT: usize = 3;
+const CONNECTIONS: usize = 4;
+const SIZE: usize = 5;
+const ORIGIN: usize = 6;
+const PURPOSE: usize = 7;
+const AGE: usize = 8;
 
 fn content() -> ContentSet {
     bundled_content().unwrap()
@@ -96,6 +109,7 @@ fn automatic_resolves_every_stage_with_real_dice() {
         [
             "Setting Profile",
             "Region",
+            "Name",
             "Environment",
             "Connections",
             "Size",
@@ -104,7 +118,16 @@ fn automatic_resolves_every_stage_with_real_dice() {
             "Age"
         ]
     );
-    assert!(views.iter().all(|v| v.status == StageStatus::Resolved));
+    // Every stage is resolved, except Name, which is skipped unless the
+    // region has a naming scheme (only Ordon so far).
+    let ordon = NAMED_REGIONS.contains(&views[REGION].result.as_ref().unwrap().name.as_str());
+    for v in &views {
+        if v.index == NAME && !ordon {
+            assert_eq!(v.skipped, Some(SkipReason::NoNamingScheme));
+        } else {
+            assert_eq!(v.status, StageStatus::Resolved, "{}", v.stage.name);
+        }
+    }
     // Every rolled stage recorded its dice.
     let log = s.log();
     let rolled: Vec<_> = log.table_rolls().filter(|r| !r.selected).collect();
@@ -195,6 +218,10 @@ fn incremental_presents_one_stage_at_a_time() {
     s.roll(REGION, &mut dice(&[4])).unwrap(); // Shinkira
     assert_eq!(result(&s, REGION).as_deref(), Some("Shinkira"));
     s.advance().unwrap();
+    // Shinkira has a naming scheme: Kiri + sawa.
+    s.roll(NAME, &mut dice(&[1, 7, 4])).unwrap();
+    assert_eq!(result(&s, NAME).as_deref(), Some("Kirisawa"));
+    s.advance().unwrap();
 
     assert_eq!(
         view(&s, ENVIRONMENT).table.name,
@@ -227,6 +254,8 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
     s.advance().unwrap();
     s.roll(REGION, &mut dice(&[4])).unwrap(); // Shinkira
     s.advance().unwrap();
+    s.roll(NAME, &mut dice(&[1, 7, 4])).unwrap(); // Kirisawa
+    s.advance().unwrap();
     s.roll(ENVIRONMENT, &mut dice(&[15])).unwrap(); // Coast
     s.advance().unwrap();
     s.roll(CONNECTIONS, &mut dice(&[6, 4])).unwrap(); // → Major Route
@@ -257,10 +286,15 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
     assert_eq!(result(&s, AGE).as_deref(), Some("New"));
     assert!(!s.is_complete());
 
-    // Changing the Region changes which Environment table applies.
+    // Changing the Region changes which Environment table applies, and
+    // which naming scheme names the settlement: the Shinkira name is
+    // invalidated (and shown as "was Kirisawa").
+    s.back();
     s.back();
     let change = s.roll(REGION, &mut dice(&[1])).unwrap(); // Ordon
-    assert_eq!(change.invalidated, [ENVIRONMENT]);
+    assert_eq!(change.invalidated, [NAME, ENVIRONMENT]);
+    assert_eq!(view(&s, NAME).status, StageStatus::Pending);
+    assert_eq!(view(&s, NAME).previous.unwrap().name, "Kirisawa");
     assert_eq!(
         view(&s, ENVIRONMENT).table.name,
         "Kurovia Environment: Ordon"
@@ -291,7 +325,7 @@ fn one_table_allows_any_stage_and_rechecks_dependants() {
     let c = content();
     let mut s = session(&c, GenerationMode::OneTable, false);
     let views = s.views(ViewOptions::default()).unwrap();
-    assert_eq!(views.len(), 8);
+    assert_eq!(views.len(), 9);
     assert!(views.iter().all(|v| v.actionable));
 
     // Connections rolled before a Region exists: Standard layout.
@@ -522,7 +556,7 @@ fn session_snapshot_includes_active_tags_only_with_tag_view() {
         })
         .unwrap();
     assert_eq!(tagged.active_tags.unwrap()[0].id.as_str(), "world.kurovia");
-    assert_eq!(tagged.stages.len(), 8);
+    assert_eq!(tagged.stages.len(), 9);
 }
 
 #[test]
@@ -586,6 +620,7 @@ fn snapshots_record_every_stage_for_display() {
         [
             "Setting Profile",
             "Region",
+            "Name",
             "Environment",
             "Connections",
             "Size",
@@ -595,7 +630,13 @@ fn snapshots_record_every_stage_for_display() {
         ]
     );
     assert_eq!(stages[1].table.as_ref().unwrap().name, "Kurovia Region");
-    assert!(stages.iter().all(|s| s.result.is_some()));
+    let ordon = NAMED_REGIONS.contains(&stages[REGION].result.as_ref().unwrap().name.as_str());
+    assert!(
+        stages
+            .iter()
+            .enumerate()
+            .all(|(i, s)| s.result.is_some() || (i == NAME && !ordon && s.skipped))
+    );
     assert_eq!(stages[0].tags[0].id.as_str(), "world.kurovia");
 }
 

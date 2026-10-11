@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.skgurr.method",
+      "name": "Skgurr Naming Method",
+      "description": "Which naming method a Skgurr settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Weathered coastal and highland style.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element as one word, e.g. Dunwick, Greyhaven.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "Founder's name + 's + a settlement feature, e.g. Fergus's Point, Morven's Cove.",
+          "range": [8, 10]
+        }
+      ]
+    },
+    {
+      "id": "table.naming.skgurr.firstElement",
+      "name": "Skgurr Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": 1
+        },
+        {
+          "id": "glen",
+          "name": "Glen",
+          "range": 2
+        },
+        {
+          "id": "brae",
+          "name": "Brae",
+          "range": 3
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "range": 4
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": 5
+        },
+        {
+          "id": "keld",
+          "name": "Keld",
+          "range": 6
+        },
+        {
+          "id": "mor",
+          "name": "Mor",
+          "range": 7
+        },
+        {
+          "id": "skel",
+          "name": "Skel",
+          "range": 8
+        },
+        {
+          "id": "strath",
+          "name": "Strath",
+          "range": 9
+        },
+        {
+          "id": "cairn",
+          "name": "Cairn",
+          "range": 10
+        },
+        {
+          "id": "rook",
+          "name": "Rook",
+          "range": 11
+        },
+        {
+          "id": "thorn",
+          "name": "Thorn",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.skgurr.secondElement",
+      "name": "Skgurr Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "haven",
+          "name": "haven",
+          "range": 1
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": 2
+        },
+        {
+          "id": "ness",
+          "name": "ness",
+          "range": 3
+        },
+        {
+          "id": "firth",
+          "name": "firth",
+          "range": 4
+        },
+        {
+          "id": "holm",
+          "name": "holm",
+          "range": 5
+        },
+        {
+          "id": "head",
+          "name": "head",
+          "range": 6
+        },
+        {
+          "id": "port",
+          "name": "port",
+          "range": 7
+        },
+        {
+          "id": "muir",
+          "name": "muir",
+          "range": 8
+        },
+        {
+          "id": "crag",
+          "name": "crag",
+          "range": 9
+        },
+        {
+          "id": "shore",
+          "name": "shore",
+          "range": 10
+        },
+        {
+          "id": "point",
+          "name": "point",
+          "range": 11
+        },
+        {
+          "id": "bay",
+          "name": "bay",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.skgurr.founder",
+      "name": "Skgurr Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ewan",
+          "name": "Ewan",
+          "range": 1
+        },
+        {
+          "id": "mairi",
+          "name": "Mairi",
+          "range": 2
+        },
+        {
+          "id": "duncan",
+          "name": "Duncan",
+          "range": 3
+        },
+        {
+          "id": "sorley",
+          "name": "Sorley",
+          "range": 4
+        },
+        {
+          "id": "fergus",
+          "name": "Fergus",
+          "range": 5
+        },
+        {
+          "id": "iona",
+          "name": "Iona",
+          "range": 6
+        },
+        {
+          "id": "torin",
+          "name": "Torin",
+          "range": 7
+        },
+        {
+          "id": "morven",
+          "name": "Morven",
+          "range": 8
+        },
+        {
+          "id": "rona",
+          "name": "Rona",
+          "range": 9
+        },
+        {
+          "id": "ivor",
+          "name": "Ivor",
+          "range": 10
+        },
+        {
+          "id": "eilidh",
+          "name": "Eilidh",
+          "range": 11
+        },
+        {
+          "id": "alasdair",
+          "name": "Alasdair",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.skgurr.founderEnding",
+      "name": "Skgurr Name: Founder Feature",
+      "description": "Founder Feature added after the founder's name. Equal starter weights.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "point",
+          "name": "Point",
+          "range": 1
+        },
+        {
+          "id": "cove",
+          "name": "Cove",
+          "range": 2
+        },
+        {
+          "id": "head",
+          "name": "Head",
+          "range": 3
+        },
+        {
+          "id": "haven",
+          "name": "Haven",
+          "range": 4
+        },
+        {
+          "id": "watch",
+          "name": "Watch",
+          "range": 5
+        },
+        {
+          "id": "bay",
+          "name": "Bay",
+          "range": 6
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.skgurr",
+      "name": "Skgurr",
+      "description": "Names for settlements in the Kurovian region of Skgurr. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.skgurr"
+          }
+        ]
+      },
+      "method_table": "table.naming.skgurr.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.skgurr.firstElement", "table.naming.skgurr.secondElement"],
+          "join": {
+            "style": "compound"
+          }
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.skgurr.founder", "table.naming.skgurr.founderEnding"],
+          "join": {
+            "style": "possessive",
+            "suffix": "'s",
+            "separator": " ",
+            "case": "words"
+          }
+        }
+      ]
+    }
+  ]
+}

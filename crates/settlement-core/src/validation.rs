@@ -13,8 +13,9 @@ use crate::content::{
     Table,
 };
 use crate::dice::{DiceExpr, DiceParseError};
-use crate::ids::{ResultId, TableId, TagId, VariantId, is_valid_id};
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId, is_valid_id};
 use crate::layout::Layout;
+use crate::naming::JoinStyle;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -44,9 +45,18 @@ pub struct Location {
     /// Index into the content's generation `sequence`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sequence_step: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub naming_scheme: Option<NamingSchemeId>,
 }
 
 impl Location {
+    pub fn naming_scheme(id: &NamingSchemeId) -> Self {
+        Location {
+            naming_scheme: Some(id.clone()),
+            ..Default::default()
+        }
+    }
+
     pub fn table(id: &TableId) -> Self {
         Location {
             table: Some(id.clone()),
@@ -85,6 +95,9 @@ impl Location {
 impl fmt::Display for Location {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut parts = Vec::new();
+        if let Some(n) = &self.naming_scheme {
+            parts.push(format!("naming scheme `{n}`"));
+        }
         if let Some(t) = &self.table {
             parts.push(format!("table `{t}`"));
         }
@@ -124,6 +137,8 @@ pub enum IdScope {
     /// A result assigned more than once in one variant's ranges.
     VariantRange,
     FollowUp,
+    NamingScheme,
+    NamingMethod,
 }
 
 impl fmt::Display for IdScope {
@@ -135,6 +150,8 @@ impl fmt::Display for IdScope {
             IdScope::Variant => "variant",
             IdScope::VariantRange => "variant range for result",
             IdScope::FollowUp => "follow-up roll",
+            IdScope::NamingScheme => "naming scheme",
+            IdScope::NamingMethod => "naming method for result",
         })
     }
 }
@@ -219,6 +236,19 @@ pub enum IssueKind {
     RedirectCycle {
         tables: Vec<TableId>,
     },
+    /// A result of a naming scheme's method table with no method defined,
+    /// so rolling it could not produce a name.
+    NamingMethodMissing,
+    /// A naming method with no component tables.
+    NamingMethodEmpty,
+    /// A spelling exception that lists a different number of results than
+    /// the method has components.
+    NamingExceptionLength {
+        components: usize,
+        results: usize,
+    },
+    /// A join replacement with nothing to replace.
+    NamingReplacementEmpty,
 }
 
 impl fmt::Display for IssueKind {
@@ -301,6 +331,20 @@ impl fmt::Display for IssueKind {
             }
             IssueKind::IntentNotPlanned => f.write_str(
                 "intent effects record direction without approved numbers and must stay planned",
+            ),
+            IssueKind::NamingMethodMissing => f.write_str(
+                "result of the naming method table has no naming method, so it could not produce a name",
+            ),
+            IssueKind::NamingMethodEmpty => f.write_str("naming method has no component tables"),
+            IssueKind::NamingReplacementEmpty => {
+                f.write_str("naming replacement has an empty \"from\" text")
+            }
+            IssueKind::NamingExceptionLength {
+                components,
+                results,
+            } => write!(
+                f,
+                "spelling exception lists {results} result(s) but the method has {components} component(s)"
             ),
             IssueKind::RedirectCycle { tables } => {
                 let path: Vec<&str> = tables.iter().map(TableId::as_str).collect();
@@ -449,7 +493,13 @@ impl<'a> Validator<'a> {
         for tag in &content.tags {
             self.check_tag_effects(tag);
         }
-        for (step, id) in content.sequence.iter().map(|s| &s.table).enumerate() {
+        self.check_naming_schemes();
+        for (step, id) in content
+            .sequence
+            .iter()
+            .enumerate()
+            .filter_map(|(i, s)| s.table().map(|t| (i, t)))
+        {
             if !self.tables.contains_key(id) {
                 self.error(
                     Location {
@@ -493,6 +543,142 @@ impl<'a> Validator<'a> {
                 Location::table(&tables[0]),
                 IssueKind::RedirectCycle { tables },
             );
+        }
+    }
+
+    /// Naming schemes: unique IDs, existing tables, a method for every
+    /// method-table result (and only for those), components for every
+    /// method, and exceptions and possessive endings that name real results.
+    fn check_naming_schemes(&mut self) {
+        let content = self.content;
+        let mut seen = HashSet::new();
+        for scheme in &content.naming_schemes {
+            let at = Location::naming_scheme(&scheme.id);
+            self.check_id(scheme.id.as_str(), at.clone());
+            if !seen.insert(&scheme.id) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateId {
+                        scope: IdScope::NamingScheme,
+                        id: scheme.id.to_string(),
+                    },
+                );
+            }
+            self.check_condition(Some(&scheme.when), &at);
+            let Some(method_table) = self.tables.get(&scheme.method_table).copied() else {
+                self.error(
+                    at.clone(),
+                    IssueKind::MissingTable {
+                        table: scheme.method_table.clone(),
+                    },
+                );
+                continue;
+            };
+            for result in &method_table.results {
+                if scheme.method(&result.id).is_none() {
+                    self.error(
+                        Location {
+                            table: Some(method_table.id.clone()),
+                            result: Some(result.id.clone()),
+                            ..at.clone()
+                        },
+                        IssueKind::NamingMethodMissing,
+                    );
+                }
+            }
+            let mut methods = HashSet::new();
+            for method in &scheme.methods {
+                let m_at = Location {
+                    result: Some(method.result.clone()),
+                    ..at.clone()
+                };
+                if !methods.insert(&method.result) {
+                    self.error(
+                        m_at.clone(),
+                        IssueKind::DuplicateId {
+                            scope: IdScope::NamingMethod,
+                            id: method.result.to_string(),
+                        },
+                    );
+                }
+                if method_table.result(&method.result).is_none() {
+                    self.error(
+                        m_at.clone(),
+                        IssueKind::BrokenResultReference {
+                            table: method_table.id.clone(),
+                            result: method.result.clone(),
+                        },
+                    );
+                }
+                if method.components.is_empty() {
+                    self.error(m_at.clone(), IssueKind::NamingMethodEmpty);
+                }
+                if method.join.replacements.iter().any(|r| r.from.is_empty()) {
+                    self.error(m_at.clone(), IssueKind::NamingReplacementEmpty);
+                }
+                let components: Vec<Option<&Table>> = method
+                    .components
+                    .iter()
+                    .map(|id| self.tables.get(id).copied())
+                    .collect();
+                for (id, table) in method.components.iter().zip(&components) {
+                    if table.is_none() {
+                        self.error(m_at.clone(), IssueKind::MissingTable { table: id.clone() });
+                    }
+                }
+                for exception in &method.exceptions {
+                    if exception.results.len() != components.len() {
+                        self.error(
+                            m_at.clone(),
+                            IssueKind::NamingExceptionLength {
+                                components: components.len(),
+                                results: exception.results.len(),
+                            },
+                        );
+                        continue;
+                    }
+                    for (result, table) in exception.results.iter().zip(&components) {
+                        if let Some(table) = table
+                            && table.result(result).is_none()
+                        {
+                            self.error(
+                                m_at.clone(),
+                                IssueKind::BrokenResultReference {
+                                    table: table.id.clone(),
+                                    result: result.clone(),
+                                },
+                            );
+                        }
+                    }
+                }
+                if let JoinStyle::Possessive {
+                    before: Some(before),
+                    ..
+                } = &method.join.style
+                {
+                    for result in before {
+                        let known = components
+                            .iter()
+                            .skip(1)
+                            .flatten()
+                            .any(|t| t.result(result).is_some());
+                        if !known {
+                            let table = method
+                                .components
+                                .last()
+                                .cloned()
+                                .unwrap_or_else(|| scheme.method_table.clone());
+                            self.error(
+                                m_at.clone(),
+                                IssueKind::BrokenResultReference {
+                                    table,
+                                    result: result.clone(),
+                                },
+                            );
+                        }
+                    }
+                }
+            }
         }
     }
 

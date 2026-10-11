@@ -14,15 +14,17 @@ use serde::{Deserialize, Serialize};
 
 use std::sync::Arc;
 
-use crate::content::{ContentSet, ContentStatus, SelectionMode};
+use crate::VERSION;
+use crate::content::{ContentSet, ContentStatus, SelectionMode, StepTarget};
 use crate::dice::FaceSource;
 use crate::engine::{
     GenerationError, GenerationEvent, GenerationLog, GenerationOptions, Generator, Named, Request,
-    ResultOption, Selections, SkipReason, StageContext, State,
+    ResultOption, Selections, SkipReason, StageContext, State, TableRollRecord,
 };
-use crate::ids::{ResultId, TableId, TagId};
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
+use crate::naming::{NAME_STAGE_ID, NamePart, NameRecord, NameSource, scheme_for};
 use crate::settings::{GenerationMethod, GenerationPresentation, Settings};
-use crate::settlements::{SettlementSnapshot, SnapshotStage};
+use crate::settlements::{MAX_NAME_LENGTH, SettlementSnapshot, SnapshotStage};
 
 /// How the user drives generation.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -119,6 +121,43 @@ pub struct StageView {
     /// Full reproducibility record (only with `debug`).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub details: Option<StageDetails>,
+    /// Present on the name stage only. There, `options` are the naming
+    /// methods (choosing one generates a name with it), `result` holds the
+    /// name, and rolling generates a name.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub naming: Option<NamingView>,
+}
+
+/// The name stage as an interface should present it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct NamingView {
+    /// The naming scheme of the current name, or the one that applies now.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scheme: Option<Named<NamingSchemeId>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source: Option<NameSource>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub method: Option<Named<ResultId>>,
+    /// Each rolled part (only with `show_tags`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub parts: Vec<NamePartView>,
+    /// The active tags that selected the scheme, e.g. Kurovia and Ordon
+    /// (only with `show_tags`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub routing: Vec<Named<TagId>>,
+}
+
+/// One rolled part of a generated name.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct NamePartView {
+    pub table: Named<TableId>,
+    pub result: Named<ResultId>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dice: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roll: Option<String>,
 }
 
 /// A short account of how a stage was resolved.
@@ -194,6 +233,9 @@ pub struct SessionView {
     /// Tags active so far (only with `show_tags`).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub active_tags: Option<Vec<Named<TagId>>>,
+    /// The name stage's name, generated or typed, to offer when saving.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub suggested_name: Option<String>,
 }
 
 /// What a change did to the pipeline.
@@ -226,24 +268,83 @@ struct Resolution {
     /// The saved stage this resolution was restored from, kept verbatim
     /// until the stage is changed.
     original: Option<SnapshotStage>,
+    /// The name, on the name stage.
+    name: Option<NameInfo>,
 }
+
+/// A resolved name; its rolls are the resolution's events.
+#[derive(Debug, Clone)]
+struct NameInfo {
+    text: String,
+    source: NameSource,
+    scheme: Option<Named<NamingSchemeId>>,
+    method: Option<Named<ResultId>>,
+    app_version: String,
+}
+
+/// Result ID shown for a typed name, which has no method.
+const CUSTOM_NAME_ID: &str = "custom";
 
 impl Resolution {
     fn main_result(&self) -> Option<Named<ResultId>> {
+        if let Some(name) = &self.name {
+            let id = name
+                .method
+                .as_ref()
+                .map_or_else(|| ResultId::new(CUSTOM_NAME_ID), |m| m.id.clone());
+            return Some(Named {
+                id,
+                name: name.text.clone(),
+            });
+        }
         self.events.iter().find_map(|e| match e {
             GenerationEvent::TableRolled(r) => Some(r.result.clone()),
+            _ => None,
+        })
+    }
+
+    fn records(&self) -> impl Iterator<Item = &TableRollRecord> {
+        self.events.iter().filter_map(|e| match e {
+            GenerationEvent::TableRolled(r) => Some(&**r),
             _ => None,
         })
     }
 }
 
 #[derive(Debug, Clone)]
+enum StageKind {
+    Table(TableId),
+    Naming,
+}
+
+#[derive(Debug, Clone)]
 struct Stage {
-    requested: TableId,
+    kind: StageKind,
     /// Display name of the pipeline stage (e.g. "Region").
     label: String,
     state: StageState,
     previous: Option<Named<ResultId>>,
+}
+
+impl Stage {
+    /// The stage's table, for table stages.
+    fn table(&self) -> Option<&TableId> {
+        match &self.kind {
+            StageKind::Table(t) => Some(t),
+            StageKind::Naming => None,
+        }
+    }
+
+    fn is_naming(&self) -> bool {
+        matches!(self.kind, StageKind::Naming)
+    }
+
+    /// The stage table recorded in snapshots.
+    fn snapshot_table(&self) -> TableId {
+        self.table()
+            .cloned()
+            .unwrap_or_else(|| TableId::new(NAME_STAGE_ID))
+    }
 }
 
 /// A settlement being generated, stage by stage.
@@ -271,15 +372,22 @@ impl GenerationSession {
         let stages = content
             .sequence
             .iter()
-            .map(|step| Stage {
-                requested: step.table.clone(),
-                label: step
-                    .name
-                    .clone()
-                    .or_else(|| content.table(&step.table).map(|t| t.name.clone()))
-                    .unwrap_or_else(|| step.table.to_string()),
-                state: StageState::Pending,
-                previous: None,
+            .map(|step| {
+                let (kind, fallback) = match &step.target {
+                    StepTarget::Table(t) => (
+                        StageKind::Table(t.clone()),
+                        content
+                            .table(t)
+                            .map_or_else(|| t.to_string(), |t| t.name.clone()),
+                    ),
+                    StepTarget::Naming => (StageKind::Naming, "Name".to_owned()),
+                };
+                Stage {
+                    kind,
+                    label: step.name.clone().unwrap_or(fallback),
+                    state: StageState::Pending,
+                    previous: None,
+                }
             })
             .collect();
         Ok(GenerationSession {
@@ -346,7 +454,12 @@ impl GenerationSession {
             }
         }
         for stage in &mut self.stages {
-            stage.state = StageState::Pending;
+            // A typed name is the user's choice, not a roll: it is kept.
+            let custom = matches!(&stage.state, StageState::Resolved(res)
+                if res.name.as_ref().is_some_and(|n| n.source == NameSource::Custom));
+            if !custom {
+                stage.state = StageState::Pending;
+            }
             stage.previous = None;
         }
         self.cursor = 0;
@@ -375,6 +488,15 @@ impl GenerationSession {
             next_pending: self.next_pending(),
             stages: self.views(view)?,
             active_tags: view.show_tags.then(|| self.active_tags()),
+            suggested_name: self.name(),
+        })
+    }
+
+    /// The settlement's name from the name stage, if it has one.
+    pub fn name(&self) -> Option<String> {
+        self.stages.iter().find_map(|s| match &s.state {
+            StageState::Resolved(res) => res.name.as_ref().map(|n| n.text.clone()),
+            _ => None,
         })
     }
 
@@ -405,18 +527,16 @@ impl GenerationSession {
 
     pub fn view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
         let stage = self.stage(index)?;
+        let requested = match &stage.kind {
+            StageKind::Table(t) => t,
+            StageKind::Naming => return self.naming_view(index, view),
+        };
         let before = self.tags_before(index);
         let state = State::with_tags(&before);
-        let (table, options) = self.generator().options_for(&stage.requested, &state)?;
-        let dice = self
-            .generator()
-            .context(&stage.requested, &state, None)?
-            .dice;
+        let (table, options) = self.generator().options_for(requested, &state)?;
+        let dice = self.generator().context(requested, &state, None)?.dice;
         let table_def = self.content.table(&table.id).expect("options_for found it");
-        let stage_def = self
-            .content
-            .table(&stage.requested)
-            .expect("sequence validated");
+        let stage_def = self.content.table(requested).expect("sequence validated");
         let mut options = options;
         if !view.show_tags {
             options.iter_mut().for_each(|o| o.tags.clear());
@@ -462,6 +582,119 @@ impl GenerationSession {
                 input_tags: self.recorded_names(&res.input_tags),
                 events: res.events.clone(),
             }),
+            naming: None,
+        })
+    }
+
+    /// The name stage: its options are the methods of the naming scheme
+    /// that applies now; its result is the name.
+    fn naming_view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
+        let stage = self.stage(index)?;
+        let before = self.tags_before(index);
+        let state = State::with_tags(&before);
+        let scheme = scheme_for(&self.content, &before);
+        let (table, mut options, dice, can_roll, incomplete) = match scheme {
+            Some(scheme) => {
+                let generator = self.generator();
+                let (table, options) = generator.options_for(&scheme.method_table, &state)?;
+                let dice = generator.context(&scheme.method_table, &state, None)?.dice;
+                let def = self.content.table(&table.id).expect("options_for found it");
+                let incomplete = (def.status == ContentStatus::Incomplete).then(|| {
+                    if def.status_note.is_empty() {
+                        format!("{} is incomplete", def.name)
+                    } else {
+                        def.status_note.clone()
+                    }
+                });
+                let can_roll = def.selection == SelectionMode::Roll
+                    && def.dice.is_some()
+                    && incomplete.is_none();
+                (table, options, dice, can_roll, incomplete)
+            }
+            None => (
+                Named {
+                    id: TableId::new(NAME_STAGE_ID),
+                    name: stage.label.clone(),
+                },
+                Vec::new(),
+                None,
+                false,
+                None,
+            ),
+        };
+        if !view.show_tags {
+            options.iter_mut().for_each(|o| o.tags.clear());
+        }
+        let (status, skipped, resolution) = match &stage.state {
+            StageState::Pending => (StageStatus::Pending, None, None),
+            StageState::Skipped(reason) => (StageStatus::Skipped, Some(*reason), None),
+            StageState::Resolved(res) => (StageStatus::Resolved, None, Some(res)),
+        };
+        let name = resolution.and_then(|res| res.name.as_ref());
+        let current_scheme = scheme.map(|s| Named {
+            id: s.id.clone(),
+            name: s.name.clone(),
+        });
+        let naming = NamingView {
+            scheme: name.and_then(|n| n.scheme.clone()).or(current_scheme),
+            name: name.map(|n| n.text.clone()),
+            source: name.map(|n| n.source),
+            method: name.and_then(|n| n.method.clone()),
+            parts: match resolution {
+                Some(res) if view.show_tags => res
+                    .records()
+                    .skip(1)
+                    .filter(|r| r.routed_by.is_none())
+                    .map(|r| NamePartView {
+                        table: r.table.clone(),
+                        result: r.result.clone(),
+                        dice: r.dice.clone(),
+                        roll: r.accepted().map(|a| a.roll.to_string()),
+                    })
+                    .collect(),
+                _ => Vec::new(),
+            },
+            routing: match scheme {
+                Some(scheme) if view.show_tags => {
+                    let used: Vec<TagId> = scheme
+                        .when
+                        .tags()
+                        .into_iter()
+                        .filter(|t| before.contains(t))
+                        .cloned()
+                        .collect();
+                    self.recorded_names(&used)
+                }
+                _ => Vec::new(),
+            },
+        };
+        let generated = name.is_some_and(|n| n.source == NameSource::Generated);
+        Ok(StageView {
+            index,
+            stage: Named {
+                id: TableId::new(NAME_STAGE_ID),
+                name: stage.label.clone(),
+            },
+            table,
+            status,
+            current: self.mode == GenerationMode::Incremental && index == self.cursor,
+            actionable: self.check_access(index).is_ok(),
+            can_roll,
+            dice,
+            incomplete,
+            options,
+            result: resolution.and_then(|res| res.main_result()),
+            previous: stage.previous.clone(),
+            skipped,
+            outcome: resolution
+                .filter(|_| generated)
+                .and_then(|res| outcome_of(res)),
+            tags: None,
+            details: resolution.filter(|_| view.debug).map(|res| StageDetails {
+                input_tags: self.recorded_names(&res.input_tags),
+                events: res.events.clone(),
+            }),
+            naming: Some(naming),
         })
     }
 
@@ -510,6 +743,54 @@ impl GenerationSession {
         })
     }
 
+    /// Names the settlement with a typed name on the name stage. Always
+    /// possible, with or without a naming scheme. A typed name is never
+    /// invalidated by changes to earlier stages, and Re-roll keeps it.
+    pub fn set_custom_name(
+        &mut self,
+        index: usize,
+        name: &str,
+    ) -> Result<StageChange, GenerationError> {
+        self.check_access(index)?;
+        if !self.stage(index)?.is_naming() {
+            return Err(GenerationError::NotNamingStage { stage: index });
+        }
+        let text = name.trim();
+        if text.is_empty() {
+            return Err(GenerationError::InvalidName(
+                "Enter a name for the settlement.".into(),
+            ));
+        }
+        if text.chars().count() > MAX_NAME_LENGTH {
+            return Err(GenerationError::InvalidName(format!(
+                "Keep the name to {MAX_NAME_LENGTH} characters or fewer."
+            )));
+        }
+        let before = self.tags_before(index);
+        let stage = &mut self.stages[index];
+        stage.state = StageState::Resolved(Box::new(Resolution {
+            input_tags: before,
+            events: Vec::new(),
+            activated: Vec::new(),
+            contexts: Some(Vec::new()),
+            original: None,
+            name: Some(NameInfo {
+                text: text.to_owned(),
+                source: NameSource::Custom,
+                scheme: None,
+                method: None,
+                app_version: crate::VERSION.to_owned(),
+            }),
+        }));
+        stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
     /// Rolls every pending stage in order (choose-only stages must already
     /// be chosen). Used by One-table's "roll the rest".
     pub fn roll_remaining(
@@ -546,17 +827,21 @@ impl GenerationSession {
     /// The settlement so far, in pipeline order, ready to save as a snapshot.
     pub fn log(&self) -> GenerationLog {
         let mut events = Vec::new();
+        // The name stage's rolls are kept with its name record, not here.
         for stage in &self.stages {
+            let Some(requested) = stage.table() else {
+                continue;
+            };
             match &stage.state {
                 StageState::Resolved(res) => events.extend(res.events.iter().cloned()),
                 StageState::Skipped(reason) => {
                     let name = self
                         .content
-                        .table(&stage.requested)
+                        .table(requested)
                         .map_or_else(String::new, |t| t.name.clone());
                     events.push(GenerationEvent::TableSkipped {
                         table: Named {
-                            id: stage.requested.clone(),
+                            id: requested.clone(),
                             name,
                         },
                         reason: *reason,
@@ -579,29 +864,37 @@ impl GenerationSession {
         let stages = self
             .stages
             .iter()
-            .map(|stage| match &stage.state {
-                StageState::Resolved(res) => res.original.clone().unwrap_or_else(|| {
-                    let main = res.events.iter().find_map(|e| match e {
-                        GenerationEvent::TableRolled(r) => Some(r),
-                        _ => None,
-                    });
+            .filter_map(|stage| match &stage.state {
+                // Saved before naming existed: nothing to record.
+                StageState::Skipped(SkipReason::NotRecorded) => None,
+                StageState::Resolved(res) => Some(res.original.clone().unwrap_or_else(|| {
+                    let main = res.records().next();
                     SnapshotStage {
                         label: stage.label.clone(),
-                        stage_table: stage.requested.clone(),
+                        stage_table: stage.snapshot_table(),
                         table: main.map(|r| r.table.clone()),
-                        result: main.map(|r| r.result.clone()),
+                        result: res.main_result(),
                         tags: self.recorded_names(&res.activated),
                         skipped: false,
+                        name: res.name.as_ref().map(|n| NameRecord {
+                            name: n.text.clone(),
+                            source: n.source,
+                            scheme: n.scheme.clone(),
+                            method: n.method.clone(),
+                            rolls: res.records().cloned().collect(),
+                            app_version: n.app_version.clone(),
+                        }),
                     }
-                }),
-                StageState::Skipped(_) | StageState::Pending => SnapshotStage {
+                })),
+                StageState::Skipped(_) | StageState::Pending => Some(SnapshotStage {
                     label: stage.label.clone(),
-                    stage_table: stage.requested.clone(),
+                    stage_table: stage.snapshot_table(),
                     table: None,
                     result: None,
                     tags: Vec::new(),
                     skipped: matches!(stage.state, StageState::Skipped(_)),
-                },
+                    name: None,
+                }),
             })
             .collect();
         SettlementSnapshot {
@@ -622,14 +915,27 @@ impl GenerationSession {
     ) -> Result<Self, GenerationError> {
         let mut session = Self::new(content, options, mode)?;
         let groups = group_by_stage(&snapshot.log.events, &session.stages);
+        // Saved stages are matched by their stage table, in order, so a
+        // snapshot from before a stage was added (such as Name) still lines
+        // up.
+        let mut next_saved = 0;
         for (index, events) in groups.into_iter().enumerate() {
-            let original = snapshot
-                .stages
-                .get(index)
-                .filter(|s| s.stage_table == session.stages[index].requested)
-                .cloned();
+            let wanted = session.stages[index].snapshot_table();
+            let found = snapshot.stages[next_saved.min(snapshot.stages.len())..]
+                .iter()
+                .position(|s| s.stage_table == wanted)
+                .map(|offset| next_saved + offset);
+            let original = found.map(|i| snapshot.stages[i].clone());
+            if let Some(i) = found {
+                next_saved = i + 1;
+            }
             if let Some(original) = &original {
                 session.stages[index].label = original.label.clone();
+            }
+            if session.stages[index].is_naming() {
+                let state = session.restored_name(index, original);
+                session.stages[index].state = state;
+                continue;
             }
             let Some(events) = events else { continue };
             let state = match events.first() {
@@ -656,6 +962,7 @@ impl GenerationSession {
                         events,
                         activated,
                         original,
+                        name: None,
                     }))
                 }
             };
@@ -666,6 +973,149 @@ impl GenerationSession {
     }
 
     // ----- internals --------------------------------------------------------
+
+    /// The name stage as saved: its record restored exactly (rolls and all),
+    /// skipped if no scheme applied, or "not recorded" for settlements
+    /// saved before naming existed. Names are never regenerated here.
+    fn restored_name(&self, index: usize, saved: Option<SnapshotStage>) -> StageState {
+        let Some(saved) = saved else {
+            return StageState::Skipped(SkipReason::NotRecorded);
+        };
+        let Some(record) = saved.name.clone() else {
+            return if saved.skipped {
+                StageState::Skipped(SkipReason::NoNamingScheme)
+            } else {
+                StageState::Pending
+            };
+        };
+        let before = self.tags_before(index);
+        let events: Vec<GenerationEvent> = record
+            .rolls
+            .iter()
+            .map(|r| GenerationEvent::TableRolled(Box::new(r.clone())))
+            .collect();
+        let contexts = match record.source {
+            NameSource::Custom => Some(Vec::new()),
+            NameSource::Generated => self.contexts(&before, &events).ok(),
+        };
+        StageState::Resolved(Box::new(Resolution {
+            input_tags: before,
+            contexts,
+            events,
+            activated: Vec::new(),
+            original: Some(saved),
+            name: Some(NameInfo {
+                text: record.name,
+                source: record.source,
+                scheme: record.scheme,
+                method: record.method,
+                app_version: record.app_version,
+            }),
+        }))
+    }
+
+    /// Generates a name on the name stage: rolls (or uses the chosen) method
+    /// of the scheme that applies, rolls each of its component tables with
+    /// physical dice, and joins the parts by the method's rules. Without a
+    /// scheme the stage is skipped (a typed name remains possible).
+    fn resolve_name(
+        &mut self,
+        index: usize,
+        method: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        let before = self.tags_before(index);
+        let Some(scheme) = scheme_for(&self.content, &before).cloned() else {
+            if method.is_some() {
+                return Err(GenerationError::NoNamingScheme);
+            }
+            let stage = &mut self.stages[index];
+            stage.state = StageState::Skipped(SkipReason::NoNamingScheme);
+            stage.previous = None;
+            let (invalidated, reopened) = self.refresh(index + 1)?;
+            return Ok(StageChange {
+                stage: index,
+                invalidated,
+                reopened,
+            });
+        };
+        let generator = self.generator();
+        let mut state = State::with_tags(&before);
+        let unavailable = |table: &TableId| GenerationError::NamingIncomplete {
+            table: table.clone(),
+        };
+        generator.process(
+            &mut state,
+            [Request::new(scheme.method_table.clone()).with_choice(method)].into(),
+            &Selections::new(),
+            faces,
+        )?;
+        let method_record = match state.events_so_far().first() {
+            Some(GenerationEvent::TableRolled(r)) => r.clone(),
+            _ => return Err(unavailable(&scheme.method_table)),
+        };
+        let method = scheme
+            .method(&method_record.result.id)
+            .ok_or_else(|| unavailable(&scheme.method_table))?;
+        let mut parts: Vec<(ResultId, String)> = Vec::new();
+        for component in &method.components {
+            let start = state.events_so_far().len();
+            generator.process(
+                &mut state,
+                [Request::new(component.clone())].into(),
+                &Selections::new(),
+                faces,
+            )?;
+            let record = state.events_so_far()[start..]
+                .iter()
+                .find_map(|e| match e {
+                    GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(r),
+                    _ => None,
+                })
+                .ok_or_else(|| unavailable(component))?;
+            parts.push((record.result.id.clone(), record.result.name.clone()));
+        }
+        let text = method.compose(
+            &parts
+                .iter()
+                .map(|(result, text)| NamePart { result, text })
+                .collect::<Vec<_>>(),
+        );
+        let events = state.take_events();
+        let resolution = Resolution {
+            contexts: Some(self.contexts(&before, &events)?),
+            input_tags: before,
+            events,
+            activated: Vec::new(),
+            original: None,
+            name: Some(NameInfo {
+                text,
+                source: NameSource::Generated,
+                scheme: Some(Named {
+                    id: scheme.id.clone(),
+                    name: scheme.name.clone(),
+                }),
+                method: Some(method_record.result.clone()),
+                app_version: VERSION.to_owned(),
+            }),
+        };
+        let stage = &mut self.stages[index];
+        stage.state = StageState::Resolved(Box::new(resolution));
+        stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// Whether every stage before `index` is settled (resolved or skipped).
+    fn settled_before(&self, index: usize) -> bool {
+        self.stages[..index]
+            .iter()
+            .all(|s| !matches!(s.state, StageState::Pending))
+    }
 
     /// A generator over the session's content (validated in `new`).
     fn generator(&self) -> Generator<'_> {
@@ -745,7 +1195,10 @@ impl GenerationSession {
         selections: &Selections,
         faces: &mut dyn FaceSource,
     ) -> Result<StageChange, GenerationError> {
-        let requested = self.stage(index)?.requested.clone();
+        let requested = match &self.stage(index)?.kind {
+            StageKind::Table(t) => t.clone(),
+            StageKind::Naming => return self.resolve_name(index, choice, faces),
+        };
         let before = self.tags_before(index);
         let mut state = State::with_tags(&before);
         let request = Request::new(requested.clone()).with_choice(choice);
@@ -765,6 +1218,7 @@ impl GenerationSession {
                 events,
                 activated,
                 original: None,
+                name: None,
             })),
         };
         let stage = &mut self.stages[index];
@@ -819,6 +1273,14 @@ impl GenerationSession {
         for index in from..self.stages.len() {
             let before = self.tags_before(index);
             let state = State::with_tags(&before);
+            if self.stages[index].is_naming() {
+                match self.refresh_name(index, &before) {
+                    Some(true) => invalidated.push(index),
+                    Some(false) => reopened.push(index),
+                    None => {}
+                }
+                continue;
+            }
             match &self.stages[index].state {
                 StageState::Resolved(res) => {
                     // A restored stage that cannot be checked against the
@@ -842,7 +1304,7 @@ impl GenerationSession {
                     }
                 }
                 StageState::Skipped(reason) => {
-                    let requested = self.stages[index].requested.clone();
+                    let requested = self.stages[index].table().cloned().expect("table stage");
                     let context = self.generator().context(&requested, &state, None).ok();
                     if context.is_some_and(|c| c.skipped != Some(*reason)) {
                         self.stages[index].state = StageState::Pending;
@@ -853,6 +1315,54 @@ impl GenerationSession {
             }
         }
         Ok((invalidated, reopened))
+    }
+
+    /// Re-checks the name stage. A typed name always stands. A generated
+    /// name is invalidated (and kept as `previous`) when the scheme that
+    /// applies, or any roll's rules, changed. Without a scheme, a pending or
+    /// invalidated name stage is skipped once the stages before it are
+    /// settled; a skipped one reopens when a scheme starts to apply.
+    /// Returns `Some(true)` if invalidated, `Some(false)` if reopened.
+    fn refresh_name(&mut self, index: usize, before: &[TagId]) -> Option<bool> {
+        let scheme = scheme_for(&self.content, before).map(|s| s.id.clone());
+        let settled = self.settled_before(index);
+        let mut outcome = None;
+        match &self.stages[index].state {
+            StageState::Resolved(res) => {
+                let Some(name) = &res.name else { return None };
+                if name.source == NameSource::Custom {
+                    return None;
+                }
+                let now = self.contexts(before, &res.events).ok();
+                let rules_changed = match (&now, &res.contexts) {
+                    (Some(now), Some(then)) => now != then,
+                    _ => false,
+                };
+                let scheme_changed = name.scheme.as_ref().map(|s| &s.id) != scheme.as_ref();
+                if rules_changed || scheme_changed {
+                    let previous = res.main_result();
+                    let stage = &mut self.stages[index];
+                    stage.previous = previous;
+                    stage.state = StageState::Pending;
+                    outcome = Some(true);
+                } else if let StageState::Resolved(res) = &mut self.stages[index].state {
+                    res.input_tags = before.to_vec();
+                    if res.contexts.is_none() {
+                        res.contexts = now;
+                    }
+                    return None;
+                }
+            }
+            StageState::Skipped(SkipReason::NoNamingScheme) if scheme.is_some() => {
+                self.stages[index].state = StageState::Pending;
+                return Some(false);
+            }
+            _ => {}
+        }
+        if scheme.is_none() && settled && matches!(self.stages[index].state, StageState::Pending) {
+            self.stages[index].state = StageState::Skipped(SkipReason::NoNamingScheme);
+        }
+        outcome
     }
 }
 
@@ -878,7 +1388,7 @@ fn group_by_stage(
             .iter()
             .enumerate()
             .skip(current.map_or(0, |c| c + 1))
-            .find(|(_, s)| starts(event, &s.requested))
+            .find(|(_, s)| s.table().is_some_and(|t| starts(event, t)))
             .map(|(i, _)| i);
         match next {
             Some(index) => {

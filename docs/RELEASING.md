@@ -11,7 +11,8 @@ This document covers:
 
 The first release is **v0.1.0**. The roadmap is unchanged:
 
-- next minor update: Name generation;
+- next minor update: Improved name generation (settlement naming itself
+  shipped in v0.1.1);
 - next major update: New tables.
 
 ## What the installer installs

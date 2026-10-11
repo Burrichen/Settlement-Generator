@@ -72,13 +72,22 @@ Rolling:
 
 ## 3. Content (`content.rs`)
 
-A `ContentSet` is `{ schema_version, sequence, tables: [Table], tags: [Tag] }`.
+A `ContentSet` is
+`{ schema_version, sequence, tables: [Table], tags: [Tag], naming_schemes }`.
+`naming_schemes` is optional; see [NAMING_SYSTEM.md](NAMING_SYSTEM.md).
 It is stored as JSON. `CONTENT_SCHEMA_VERSION` is currently `1`.
 
 `sequence` is the generation pipeline (see §10). It is an ordered list of
-steps, each either a bare table ID or `{ "table": id, "name": "Region" }`. A
-`name` labels the stage, and the label stays the same even when tags redirect
-the stage to another table.
+steps. Each step is one of:
+
+- a bare table ID;
+- `{ "table": id, "name": "Region" }`;
+- `{ "naming": true, "name": "Name" }` for the name stage.
+
+A `name` labels the stage, and the label stays the same even when tags
+redirect the stage to another table. The name stage has no table of its own.
+It uses the naming scheme that applies (see
+[NAMING_SYSTEM.md](NAMING_SYSTEM.md)).
 
 Fields marked † are optional, and their defaults are omitted when serialised.
 
@@ -272,6 +281,18 @@ interfaces show the message as it is.
 | `incomplete_content`         | warning  | A table marked `incomplete`, shown with its `status_note`. It must be resolved before release |
 | `intent_not_planned`         | error    | An `intent` effect marked active                                                              |
 | `redirect_cycle`             | error    | Tables that redirect into each other                                                          |
+| `naming_method_missing`      | error    | A naming scheme's method-table result with no method, so rolling it could not produce a name  |
+| `naming_method_empty`        | error    | A naming method without component tables                                                      |
+| `naming_exception_length`    | error    | A spelling exception listing a different number of results than the method has components     |
+| `naming_replacement_empty`   | error    | A naming join replacement with an empty `from`                                                |
+
+Naming schemes are also checked for:
+
+- unique IDs;
+- valid conditions;
+- method and component tables that exist;
+- exception and possessive-ending result IDs that exist (`missing_table` and
+  `broken_result_reference`).
 
 Range checks run on:
 
@@ -372,15 +393,16 @@ gives a clear error.
 
 A saved settlement is a self-contained **snapshot**:
 
-| Field                      | Meaning                                                                                                                                   |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                       | Stable random ID (`stl-` + 32 hex digits)                                                                                                 |
-| `name`                     | Entered by the user. It is trimmed and cannot be empty                                                                                    |
-| `created_at`, `updated_at` | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                               |
-| `app_version`              | Application version that generated the current snapshot                                                                                   |
-| `favourite`                | Boolean                                                                                                                                   |
-| `snapshot.log`             | The full `GenerationLog` (§4)                                                                                                             |
-| `snapshot.stages`          | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped |
+| Field                      | Meaning                                                                                                                                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                       | Stable random ID (`stl-` + 32 hex digits)                                                                                                                                                |
+| `name`                     | Entered by the user. It is trimmed and cannot be empty                                                                                                                                   |
+| `created_at`, `updated_at` | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                                                                              |
+| `app_version`              | Application version that generated the current snapshot                                                                                                                                  |
+| `favourite`                | Boolean                                                                                                                                                                                  |
+| `snapshot.log`             | The full `GenerationLog` (§4)                                                                                                                                                            |
+| `snapshot.stages`          | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                |
+| `snapshot.stages[].name`   | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log` |
 
 The generation log holds the table results, the labels visible at generation
 time, the tags (with names at that time), the recorded dice, routing, applied

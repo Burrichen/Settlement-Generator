@@ -1,0 +1,898 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.method",
+      "name": "Ordon Naming Method",
+      "description": "Which naming method an Ordon settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%).",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element, in restrained Old English / medieval British style, e.g. Alderwick.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "A founder's name + a settlement ending, possessive where English place names are, e.g. Godwinsbury.",
+          "range": [8, 10]
+        }
+      ]
+    },
+    {
+      "id": "table.naming.ordon.firstElement",
+      "name": "Ordon Name: First Element",
+      "description": "First part of a Geographic Compound name. Provisional editorial weights.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "alder",
+          "name": "Alder",
+          "range": [1, 4]
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": [5, 8]
+        },
+        {
+          "id": "burn",
+          "name": "Burn",
+          "range": [9, 11]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [12, 14]
+        },
+        {
+          "id": "bram",
+          "name": "Bram",
+          "range": [15, 17]
+        },
+        {
+          "id": "bracken",
+          "name": "Bracken",
+          "range": [18, 21]
+        },
+        {
+          "id": "crow",
+          "name": "Crow",
+          "range": [22, 24]
+        },
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": [25, 27]
+        },
+        {
+          "id": "elm",
+          "name": "Elm",
+          "range": [28, 31]
+        },
+        {
+          "id": "farn",
+          "name": "Farn",
+          "range": [32, 34]
+        },
+        {
+          "id": "green",
+          "name": "Green",
+          "range": [35, 37]
+        },
+        {
+          "id": "hart",
+          "name": "Hart",
+          "range": [38, 41]
+        },
+        {
+          "id": "hazel",
+          "name": "Hazel",
+          "range": [42, 45]
+        },
+        {
+          "id": "hol",
+          "name": "Hol",
+          "range": [46, 48]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [49, 51]
+        },
+        {
+          "id": "oak",
+          "name": "Oak",
+          "range": [52, 55]
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": [56, 58]
+        },
+        {
+          "id": "stan",
+          "name": "Stan",
+          "range": [59, 61]
+        },
+        {
+          "id": "thorn",
+          "name": "Thorn",
+          "range": [62, 65]
+        },
+        {
+          "id": "wren",
+          "name": "Wren",
+          "range": [66, 68]
+        },
+        {
+          "id": "beck",
+          "name": "Beck",
+          "range": [69, 72]
+        },
+        {
+          "id": "birch",
+          "name": "Birch",
+          "range": [73, 76]
+        },
+        {
+          "id": "broad",
+          "name": "Broad",
+          "range": [77, 79]
+        },
+        {
+          "id": "clay",
+          "name": "Clay",
+          "range": [80, 82]
+        },
+        {
+          "id": "east",
+          "name": "East",
+          "range": [83, 85]
+        },
+        {
+          "id": "fen",
+          "name": "Fen",
+          "range": [86, 88]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [89, 91]
+        },
+        {
+          "id": "mere",
+          "name": "Mere",
+          "range": [92, 94]
+        },
+        {
+          "id": "north",
+          "name": "North",
+          "range": [95, 97]
+        },
+        {
+          "id": "west",
+          "name": "West",
+          "range": [98, 100]
+        }
+      ]
+    },
+    {
+      "id": "table.naming.ordon.secondElement",
+      "name": "Ordon Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Provisional editorial weights.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "ton",
+          "name": "ton",
+          "range": [1, 14]
+        },
+        {
+          "id": "ham",
+          "name": "ham",
+          "range": [15, 27]
+        },
+        {
+          "id": "ley",
+          "name": "ley",
+          "range": [28, 40]
+        },
+        {
+          "id": "ford",
+          "name": "ford",
+          "range": [41, 48]
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": [49, 56]
+        },
+        {
+          "id": "bury",
+          "name": "bury",
+          "range": [57, 59]
+        },
+        {
+          "id": "field",
+          "name": "field",
+          "range": [60, 62]
+        },
+        {
+          "id": "den",
+          "name": "den",
+          "range": [63, 65]
+        },
+        {
+          "id": "combe",
+          "name": "combe",
+          "range": [66, 68]
+        },
+        {
+          "id": "hurst",
+          "name": "hurst",
+          "range": [69, 71]
+        },
+        {
+          "id": "well",
+          "name": "well",
+          "range": [72, 74]
+        },
+        {
+          "id": "worth",
+          "name": "worth",
+          "range": [75, 77]
+        },
+        {
+          "id": "brook",
+          "name": "brook",
+          "range": [78, 80]
+        },
+        {
+          "id": "bridge",
+          "name": "bridge",
+          "range": [81, 83]
+        },
+        {
+          "id": "dale",
+          "name": "dale",
+          "range": [84, 86]
+        },
+        {
+          "id": "cliff",
+          "name": "cliff",
+          "range": [87, 88]
+        },
+        {
+          "id": "croft",
+          "name": "croft",
+          "range": [89, 90]
+        },
+        {
+          "id": "gate",
+          "name": "gate",
+          "range": [91, 92]
+        },
+        {
+          "id": "holt",
+          "name": "holt",
+          "range": [93, 94]
+        },
+        {
+          "id": "moor",
+          "name": "moor",
+          "range": [95, 96]
+        },
+        {
+          "id": "stead",
+          "name": "stead",
+          "range": [97, 98]
+        },
+        {
+          "id": "wood",
+          "name": "wood",
+          "range": [99, 100]
+        }
+      ]
+    },
+    {
+      "id": "table.naming.ordon.founder",
+      "name": "Ordon Name: Founder",
+      "description": "The founder a Historical Founder name is taken from: one face each.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "aldric",
+          "name": "Aldric",
+          "range": 1
+        },
+        {
+          "id": "alden",
+          "name": "Alden",
+          "range": 2
+        },
+        {
+          "id": "alaric",
+          "name": "Alaric",
+          "range": 3
+        },
+        {
+          "id": "aelfric",
+          "name": "Aelfric",
+          "range": 4
+        },
+        {
+          "id": "aethelred",
+          "name": "Aethelred",
+          "range": 5
+        },
+        {
+          "id": "athelstan",
+          "name": "Athelstan",
+          "range": 6
+        },
+        {
+          "id": "athelwyn",
+          "name": "Athelwyn",
+          "range": 7
+        },
+        {
+          "id": "alwyn",
+          "name": "Alwyn",
+          "range": 8
+        },
+        {
+          "id": "alfrith",
+          "name": "Alfrith",
+          "range": 9
+        },
+        {
+          "id": "ardel",
+          "name": "Ardel",
+          "range": 10
+        },
+        {
+          "id": "beorn",
+          "name": "Beorn",
+          "range": 11
+        },
+        {
+          "id": "beorht",
+          "name": "Beorht",
+          "range": 12
+        },
+        {
+          "id": "beric",
+          "name": "Beric",
+          "range": 13
+        },
+        {
+          "id": "berengar",
+          "name": "Berengar",
+          "range": 14
+        },
+        {
+          "id": "brandel",
+          "name": "Brandel",
+          "range": 15
+        },
+        {
+          "id": "cenric",
+          "name": "Cenric",
+          "range": 16
+        },
+        {
+          "id": "ceolric",
+          "name": "Ceolric",
+          "range": 17
+        },
+        {
+          "id": "cuthred",
+          "name": "Cuthred",
+          "range": 18
+        },
+        {
+          "id": "cuthbert",
+          "name": "Cuthbert",
+          "range": 19
+        },
+        {
+          "id": "dunstan",
+          "name": "Dunstan",
+          "range": 20
+        },
+        {
+          "id": "eadric",
+          "name": "Eadric",
+          "range": 21
+        },
+        {
+          "id": "eadwyn",
+          "name": "Eadwyn",
+          "range": 22
+        },
+        {
+          "id": "eadgar",
+          "name": "Eadgar",
+          "range": 23
+        },
+        {
+          "id": "ealdred",
+          "name": "Ealdred",
+          "range": 24
+        },
+        {
+          "id": "edran",
+          "name": "Edran",
+          "range": 25
+        },
+        {
+          "id": "osric",
+          "name": "Osric",
+          "range": 26
+        },
+        {
+          "id": "oswin",
+          "name": "Oswin",
+          "range": 27
+        },
+        {
+          "id": "oswald",
+          "name": "Oswald",
+          "range": 28
+        },
+        {
+          "id": "osgar",
+          "name": "Osgar",
+          "range": 29
+        },
+        {
+          "id": "odran",
+          "name": "Odran",
+          "range": 30
+        },
+        {
+          "id": "roderic",
+          "name": "Roderic",
+          "range": 31
+        },
+        {
+          "id": "rannulf",
+          "name": "Rannulf",
+          "range": 32
+        },
+        {
+          "id": "ranald",
+          "name": "Ranald",
+          "range": 33
+        },
+        {
+          "id": "radulf",
+          "name": "Radulf",
+          "range": 34
+        },
+        {
+          "id": "redwald",
+          "name": "Redwald",
+          "range": 35
+        },
+        {
+          "id": "reynard",
+          "name": "Reynard",
+          "range": 36
+        },
+        {
+          "id": "roderan",
+          "name": "Roderan",
+          "range": 37
+        },
+        {
+          "id": "rowena",
+          "name": "Rowena",
+          "range": 38
+        },
+        {
+          "id": "rhoswen",
+          "name": "Rhoswen",
+          "range": 39
+        },
+        {
+          "id": "sigebert",
+          "name": "Sigebert",
+          "range": 40
+        },
+        {
+          "id": "sigeward",
+          "name": "Sigeward",
+          "range": 41
+        },
+        {
+          "id": "sigmund",
+          "name": "Sigmund",
+          "range": 42
+        },
+        {
+          "id": "swithun",
+          "name": "Swithun",
+          "range": 43
+        },
+        {
+          "id": "saewyn",
+          "name": "Saewyn",
+          "range": 44
+        },
+        {
+          "id": "thored",
+          "name": "Thored",
+          "range": 45
+        },
+        {
+          "id": "thurgar",
+          "name": "Thurgar",
+          "range": 46
+        },
+        {
+          "id": "thurstan",
+          "name": "Thurstan",
+          "range": 47
+        },
+        {
+          "id": "tostig",
+          "name": "Tostig",
+          "range": 48
+        },
+        {
+          "id": "ulric",
+          "name": "Ulric",
+          "range": 49
+        },
+        {
+          "id": "ulfred",
+          "name": "Ulfred",
+          "range": 50
+        },
+        {
+          "id": "valric",
+          "name": "Valric",
+          "range": 51
+        },
+        {
+          "id": "veyran",
+          "name": "Veyran",
+          "range": 52
+        },
+        {
+          "id": "veyla",
+          "name": "Veyla",
+          "range": 53
+        },
+        {
+          "id": "verren",
+          "name": "Verren",
+          "range": 54
+        },
+        {
+          "id": "varnold",
+          "name": "Varnold",
+          "range": 55
+        },
+        {
+          "id": "wulfric",
+          "name": "Wulfric",
+          "range": 56
+        },
+        {
+          "id": "wulfstan",
+          "name": "Wulfstan",
+          "range": 57
+        },
+        {
+          "id": "wulfram",
+          "name": "Wulfram",
+          "range": 58
+        },
+        {
+          "id": "wulfgard",
+          "name": "Wulfgard",
+          "range": 59
+        },
+        {
+          "id": "wulwyn",
+          "name": "Wulwyn",
+          "range": 60
+        },
+        {
+          "id": "wynric",
+          "name": "Wynric",
+          "range": 61
+        },
+        {
+          "id": "wynstan",
+          "name": "Wynstan",
+          "range": 62
+        },
+        {
+          "id": "wymond",
+          "name": "Wymond",
+          "range": 63
+        },
+        {
+          "id": "wulda",
+          "name": "Wulda",
+          "range": 64
+        },
+        {
+          "id": "ysold",
+          "name": "Ysold",
+          "range": 65
+        },
+        {
+          "id": "ydran",
+          "name": "Ydran",
+          "range": 66
+        },
+        {
+          "id": "yven",
+          "name": "Yven",
+          "range": 67
+        },
+        {
+          "id": "ysmar",
+          "name": "Ysmar",
+          "range": 68
+        },
+        {
+          "id": "erland",
+          "name": "Erland",
+          "range": 69
+        },
+        {
+          "id": "erdwyn",
+          "name": "Erdwyn",
+          "range": 70
+        },
+        {
+          "id": "elric",
+          "name": "Elric",
+          "range": 71
+        },
+        {
+          "id": "elswyth",
+          "name": "Elswyth",
+          "range": 72
+        },
+        {
+          "id": "eormund",
+          "name": "Eormund",
+          "range": 73
+        },
+        {
+          "id": "godwin",
+          "name": "Godwin",
+          "range": 74
+        },
+        {
+          "id": "godfrey",
+          "name": "Godfrey",
+          "range": 75
+        },
+        {
+          "id": "helmar",
+          "name": "Helmar",
+          "range": 76
+        },
+        {
+          "id": "hildren",
+          "name": "Hildren",
+          "range": 77
+        },
+        {
+          "id": "hadran",
+          "name": "Hadran",
+          "range": 78
+        },
+        {
+          "id": "hester",
+          "name": "Hester",
+          "range": 79
+        },
+        {
+          "id": "isolde",
+          "name": "Isolde",
+          "range": 80
+        },
+        {
+          "id": "ismere",
+          "name": "Ismere",
+          "range": 81
+        },
+        {
+          "id": "ildren",
+          "name": "Ildren",
+          "range": 82
+        },
+        {
+          "id": "iveric",
+          "name": "Iveric",
+          "range": 83
+        },
+        {
+          "id": "jorren",
+          "name": "Jorren",
+          "range": 84
+        },
+        {
+          "id": "judric",
+          "name": "Judric",
+          "range": 85
+        },
+        {
+          "id": "leofric",
+          "name": "Leofric",
+          "range": 86
+        },
+        {
+          "id": "leofwyn",
+          "name": "Leofwyn",
+          "range": 87
+        },
+        {
+          "id": "lothren",
+          "name": "Lothren",
+          "range": 88
+        },
+        {
+          "id": "lucan",
+          "name": "Lucan",
+          "range": 89
+        },
+        {
+          "id": "maeric",
+          "name": "Maeric",
+          "range": 90
+        },
+        {
+          "id": "maerwyn",
+          "name": "Maerwyn",
+          "range": 91
+        },
+        {
+          "id": "maud",
+          "name": "Maud",
+          "range": 92
+        },
+        {
+          "id": "morwen",
+          "name": "Morwen",
+          "range": 93
+        },
+        {
+          "id": "moryn",
+          "name": "Moryn",
+          "range": 94
+        },
+        {
+          "id": "nerys",
+          "name": "Nerys",
+          "range": 95
+        },
+        {
+          "id": "norric",
+          "name": "Norric",
+          "range": 96
+        },
+        {
+          "id": "othmar",
+          "name": "Othmar",
+          "range": 97
+        },
+        {
+          "id": "orwen",
+          "name": "Orwen",
+          "range": 98
+        },
+        {
+          "id": "godric",
+          "name": "Godric",
+          "range": 99
+        },
+        {
+          "id": "hereward",
+          "name": "Hereward",
+          "range": 100
+        }
+      ]
+    },
+    {
+      "id": "table.naming.ordon.founderEnding",
+      "name": "Ordon Name: Founder Ending",
+      "description": "Settlement ending added to a founder's name.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ton",
+          "name": "ton",
+          "range": [1, 3]
+        },
+        {
+          "id": "ham",
+          "name": "ham",
+          "range": [4, 5]
+        },
+        {
+          "id": "bury",
+          "name": "bury",
+          "range": [6, 7]
+        },
+        {
+          "id": "stead",
+          "name": "stead",
+          "range": [8, 9]
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": 10
+        },
+        {
+          "id": "worth",
+          "name": "worth",
+          "range": 11
+        },
+        {
+          "id": "ley",
+          "name": "ley",
+          "range": 12
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.ordon",
+      "name": "Ordon",
+      "description": "Names for settlements in the Kurovian region of Ordon.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.ordon"
+          }
+        ]
+      },
+      "method_table": "table.naming.ordon.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.ordon.firstElement", "table.naming.ordon.secondElement"],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": [
+            {
+              "results": ["ash", "ham"],
+              "name": "Asham"
+            },
+            {
+              "results": ["ash", "hurst"],
+              "name": "Ashurst"
+            }
+          ]
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.ordon.founder", "table.naming.ordon.founderEnding"],
+          "join": {
+            "style": "possessive",
+            "suffix": "s",
+            "before": ["bury", "stead", "worth"]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -104,7 +104,7 @@ fn main_menu_lists_destinations_with_dlc_disabled() {
     ] {
         assert!(screen.contains(item), "missing {item}");
     }
-    assert!(screen.contains("v0.1.0"));
+    assert!(screen.contains(&format!("v{}", settlement_core::VERSION)));
     // DLC Content is struck through and dimmed.
     let terminal = render(&mut app, 120, 40);
     let buffer = terminal.backend().buffer();
@@ -185,7 +185,7 @@ fn settings_save_immediately_and_lock_presentation_while_automatic() {
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]);
     let screen = text(&mut app);
     assert!(screen.contains("(Manual only)"));
-    assert!(screen.contains("v0.1.0"));
+    assert!(screen.contains(&format!("v{}", settlement_core::VERSION)));
     // Method → Manual, saved through the core.
     key(&mut app, KeyCode::Right);
     assert_eq!(
@@ -247,8 +247,12 @@ fn automatic_generation_end_to_end() {
     assert!(screen.contains("Kurovia"));
     assert!(screen.contains("Not saved yet"));
 
-    // Save: an empty name is refused, then a real one is accepted.
+    // Save: an empty name is refused, then a real one is accepted. (Clear
+    // any name the Name stage offered first.)
     key(&mut app, KeyCode::Char('s'));
+    for _ in 0..40 {
+        key(&mut app, KeyCode::Backspace);
+    }
     key(&mut app, KeyCode::Enter);
     assert!(text(&mut app).contains("cannot be empty"));
     type_text(&mut app, "Riverside");
@@ -278,16 +282,22 @@ fn incremental_generation_one_stage_at_a_time() {
     set_manual(&mut app, GenerationPresentation::Incremental);
     key(&mut app, KeyCode::Enter);
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 1 OF 8"), "{screen}");
+    assert!(screen.contains("STAGE 1 OF 9"), "{screen}");
     assert!(screen.contains("Manual · Incremental"));
     // Next is refused until the stage is resolved.
     key(&mut app, KeyCode::Char('n'));
     assert!(text(&mut app).contains("must be rolled or chosen"));
     key(&mut app, KeyCode::Enter); // Kurovia
     key(&mut app, KeyCode::Char('n'));
-    assert!(text(&mut app).contains("STAGE 2 OF 8"));
-    for stage in 2..=8 {
-        if stage == 5 {
+    assert!(text(&mut app).contains("STAGE 2 OF 9"));
+    for stage in 2..=9 {
+        if stage == 3 {
+            // Name: typed, so the test does not depend on the region rolled.
+            key(&mut app, KeyCode::Char('t'));
+            type_text(&mut app, "Riverside");
+            key(&mut app, KeyCode::Enter);
+            assert!(text(&mut app).contains("Typed name"), "stage {stage}");
+        } else if stage == 6 {
             key(&mut app, KeyCode::Enter); // Size must be chosen
         } else {
             key(&mut app, KeyCode::Char('r'));
@@ -309,7 +319,13 @@ fn one_table_generation_with_choices_and_rolls() {
     assert!(text(&mut app).contains("Size cannot be generated yet"));
     keys(
         &mut app,
-        &[KeyCode::Down, KeyCode::Down, KeyCode::Down, KeyCode::Down],
+        &[
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Down,
+        ],
     );
     keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // choose a size
     key(&mut app, KeyCode::Char('a'));
@@ -358,7 +374,7 @@ fn view_lists_settlements_with_favourite_stars_and_actions() {
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
     let screen = text(&mut app);
     assert!(screen.contains("★ Ashford"), "{screen}");
-    assert!(screen.contains("Generated with v0.1.0"));
+    assert!(screen.contains(&format!("Generated with v{}", settlement_core::VERSION)));
 
     // Select the favourite: no Delete offered.
     keys(&mut app, &[KeyCode::End]);
@@ -454,8 +470,9 @@ fn table_editor_shows_uncovered_faces_and_refuses_to_save() {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tables
-    key(&mut app, KeyCode::End); // Age is last
-    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Char('/')); // filter by ID
+    type_text(&mut app, "table.age");
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
     assert!(text(&mut app).contains("ID table.age"));
     // Name, Description, Dice.
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
@@ -537,8 +554,12 @@ fn god_mode_offers_otherwise_ineligible_results_during_generation() {
         app.ctx.dice = Box::new(ScriptedFaces::new([8])); // Region: Targoth
         keys(&mut app, &[KeyCode::Down, KeyCode::Char('r')]);
         assert!(text(&mut app).contains("Targoth"));
-        // Connections: Targoth rules out a Major Route unless in God Mode.
-        keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+        // Connections (after Name): Targoth rules out a Major Route unless
+        // in God Mode.
+        keys(
+            &mut app,
+            &[KeyCode::Down, KeyCode::Down, KeyCode::Down, KeyCode::Enter],
+        );
         let picker = text(&mut app);
         assert!(picker.contains("Choose Connections"), "{picker}");
         assert_eq!(picker.contains("Major Route"), god_mode, "{picker}");
@@ -581,4 +602,116 @@ fn edit_names_are_checked_and_unchanged_edits_are_not_saved() {
     assert!(app.screen_title().starts_with("Edit"));
     assert_eq!(app.ctx.service.saved_list().unwrap()[0].name, "Ashford");
     assert!(text(&mut app).contains("80"));
+}
+
+// ----- settlement names --------------------------------------------------------------
+
+/// One-table at Kurovia › Ordon, with Tag View on, cursor on the Name row.
+fn one_table_at_ordon_name() -> App {
+    use settlement_core::dice::ScriptedFaces;
+    let mut app = app_with_tag_view();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter); // Start
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // Kurovia
+    app.ctx.dice = Box::new(ScriptedFaces::new([1])); // Region: Ordon
+    keys(
+        &mut app,
+        &[KeyCode::Down, KeyCode::Char('r'), KeyCode::Down],
+    );
+    app.ctx.dice = Box::new(RandomFaces::seeded(3));
+    app
+}
+
+#[test]
+fn names_are_rolled_chosen_rerolled_and_inspected_from_the_keyboard() {
+    use settlement_core::dice::ScriptedFaces;
+    let mut app = one_table_at_ordon_name();
+    let screen = text(&mut app);
+    assert!(screen.contains("Ordon Naming Method"), "{screen}");
+    assert!(screen.contains("type name"), "hint for typing a name");
+
+    // r: roll a name (method, then each part, with real dice).
+    app.ctx.dice = Box::new(ScriptedFaces::new([1, 1, 49]));
+    key(&mut app, KeyCode::Char('r'));
+    let screen = text_at(&mut app, 140, 50);
+    assert!(screen.contains("Alderwick"), "{screen}");
+    assert!(
+        screen.contains("Ordon naming · Geographic Compound"),
+        "{screen}"
+    );
+    // Tag View: routing and every roll.
+    assert!(screen.contains("chosen by Kurovia + Ordon"), "{screen}");
+    assert!(
+        screen.contains("Ordon Name: First Element: Alder — rolled 1 on 1d100"),
+        "{screen}"
+    );
+
+    // Enter: choose a method; its parts are rolled.
+    key(&mut app, KeyCode::Enter);
+    let picker = text(&mut app);
+    assert!(picker.contains("Historical Founder"), "{picker}");
+    app.ctx.dice = Box::new(ScriptedFaces::new([74, 6]));
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]);
+    assert!(text(&mut app).contains("Godwinsbury"));
+    // The region is untouched by naming.
+    assert!(text(&mut app).contains("Ordon"));
+}
+
+#[test]
+fn a_typed_name_is_always_possible_and_offered_when_saving() {
+    let mut app = one_table_at_ordon_name();
+    key(&mut app, KeyCode::Char('t'));
+    type_text(&mut app, "Riverside");
+    key(&mut app, KeyCode::Enter);
+    let screen = text(&mut app);
+    assert!(
+        screen.contains("Riverside") && screen.contains("Typed name"),
+        "{screen}"
+    );
+
+    // Finish the rest (Size must be chosen), then save: the name is offered.
+    key(&mut app, KeyCode::Char('a'));
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Down]);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // Size
+    key(&mut app, KeyCode::Char('a'));
+    key(&mut app, KeyCode::Char('f'));
+    key(&mut app, KeyCode::Char('s'));
+    assert!(text(&mut app).contains("Riverside"));
+    key(&mut app, KeyCode::Enter); // accept the offered name
+    let saved = app.ctx.service.saved_list().unwrap();
+    assert_eq!(saved[0].name, "Riverside");
+    // The snapshot records the name and that it was typed.
+    let settlement = app.ctx.service.saved_get(&saved[0].id).unwrap();
+    let name = settlement
+        .stages
+        .iter()
+        .find_map(|s| s.name.as_ref())
+        .unwrap();
+    assert_eq!(name.source, settlement_core::naming::NameSource::Custom);
+}
+
+#[test]
+fn regions_without_naming_data_say_so_and_accept_a_typed_name() {
+    use settlement_core::dice::ScriptedFaces;
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    // A Setting Profile other than Kurovia: no naming data yet.
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Down, KeyCode::Enter]);
+    assert!(!text(&mut app).contains("Kurovia"));
+    app.ctx.dice = Box::new(ScriptedFaces::new([5]));
+    keys(
+        &mut app,
+        &[KeyCode::Down, KeyCode::Char('r'), KeyCode::Down],
+    );
+    let screen = text(&mut app);
+    assert!(screen.contains("no naming data"), "{screen}");
+    assert!(
+        screen.contains("No naming data for this region yet"),
+        "{screen}"
+    );
+    key(&mut app, KeyCode::Char('t'));
+    type_text(&mut app, "Saltmarsh");
+    key(&mut app, KeyCode::Enter);
+    assert!(text(&mut app).contains("Saltmarsh"));
 }

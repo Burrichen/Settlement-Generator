@@ -12,6 +12,7 @@ use time::OffsetDateTime;
 
 use crate::engine::{GenerationEvent, GenerationLog, Named};
 use crate::ids::{ResultId, TableId, TagId};
+use crate::naming::NameRecord;
 
 /// Longest settlement name accepted (after trimming).
 pub const MAX_NAME_LENGTH: usize = 80;
@@ -75,6 +76,9 @@ pub struct SnapshotStage {
     pub tags: Vec<Named<TagId>>,
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub skipped: bool,
+    /// The name stage's record (only on the name stage).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<NameRecord>,
 }
 
 impl From<GenerationLog> for SettlementSnapshot {
@@ -106,6 +110,7 @@ impl SettlementSnapshot {
                         result: Some(r.result.clone()),
                         tags: r.tags.clone(),
                         skipped: false,
+                        name: None,
                     })
                 }
                 _ => None,

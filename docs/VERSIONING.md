@@ -16,7 +16,7 @@ The raw version string has no prefix.
 
 ### Roadmap
 
-- **Next MINOR:** Name generation
+- **Next MINOR:** Improved name generation
 - **Next MAJOR:** New tables
 
 ## Single source of truth

@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.method",
+      "name": "Halingo Naming Method",
+      "description": "Which naming method a Halingo settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Arid frontier style: dry, understated and slightly harsh.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element as two words, e.g. Khar Well, Cinder Ridge.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "Founder's name + a settlement feature, e.g. Varesh's Well. A founder ending in s takes an apostrophe only.",
+          "range": [8, 10]
+        }
+      ]
+    },
+    {
+      "id": "table.naming.halingo.firstElement",
+      "name": "Halingo Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "khar",
+          "name": "Khar",
+          "range": 1
+        },
+        {
+          "id": "sere",
+          "name": "Sere",
+          "range": 2
+        },
+        {
+          "id": "varr",
+          "name": "Varr",
+          "range": 3
+        },
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": 4
+        },
+        {
+          "id": "tal",
+          "name": "Tal",
+          "range": 5
+        },
+        {
+          "id": "brine",
+          "name": "Brine",
+          "range": 6
+        },
+        {
+          "id": "cinder",
+          "name": "Cinder",
+          "range": 7
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": 8
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": 9
+        },
+        {
+          "id": "mara",
+          "name": "Mara",
+          "range": 10
+        },
+        {
+          "id": "silt",
+          "name": "Silt",
+          "range": 11
+        },
+        {
+          "id": "vek",
+          "name": "Vek",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.halingo.secondElement",
+      "name": "Halingo Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "well",
+          "name": "Well",
+          "range": 1
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "range": 2
+        },
+        {
+          "id": "pass",
+          "name": "Pass",
+          "range": 3
+        },
+        {
+          "id": "hold",
+          "name": "Hold",
+          "range": 4
+        },
+        {
+          "id": "wash",
+          "name": "Wash",
+          "range": 5
+        },
+        {
+          "id": "reach",
+          "name": "Reach",
+          "range": 6
+        },
+        {
+          "id": "ridge",
+          "name": "Ridge",
+          "range": 7
+        },
+        {
+          "id": "ford",
+          "name": "Ford",
+          "range": 8
+        },
+        {
+          "id": "crossing",
+          "name": "Crossing",
+          "range": 9
+        },
+        {
+          "id": "gate",
+          "name": "Gate",
+          "range": 10
+        },
+        {
+          "id": "station",
+          "name": "Station",
+          "range": 11
+        },
+        {
+          "id": "haven",
+          "name": "Haven",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.halingo.founder",
+      "name": "Halingo Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "varesh",
+          "name": "Varesh",
+          "range": 1
+        },
+        {
+          "id": "tamar",
+          "name": "Tamar",
+          "range": 2
+        },
+        {
+          "id": "karven",
+          "name": "Karven",
+          "range": 3
+        },
+        {
+          "id": "delan",
+          "name": "Delan",
+          "range": 4
+        },
+        {
+          "id": "sevrin",
+          "name": "Sevrin",
+          "range": 5
+        },
+        {
+          "id": "harad",
+          "name": "Harad",
+          "range": 6
+        },
+        {
+          "id": "marella",
+          "name": "Marella",
+          "range": 7
+        },
+        {
+          "id": "orvek",
+          "name": "Orvek",
+          "range": 8
+        },
+        {
+          "id": "saren",
+          "name": "Saren",
+          "range": 9
+        },
+        {
+          "id": "jorek",
+          "name": "Jorek",
+          "range": 10
+        },
+        {
+          "id": "varin",
+          "name": "Varin",
+          "range": 11
+        },
+        {
+          "id": "ilyra",
+          "name": "Ilyra",
+          "range": 12
+        }
+      ]
+    },
+    {
+      "id": "table.naming.halingo.founderEnding",
+      "name": "Halingo Name: Founder Feature",
+      "description": "Founder Feature added after the founder's name. Equal starter weights.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "well",
+          "name": "Well",
+          "range": 1
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "range": 2
+        },
+        {
+          "id": "crossing",
+          "name": "Crossing",
+          "range": 3
+        },
+        {
+          "id": "station",
+          "name": "Station",
+          "range": 4
+        },
+        {
+          "id": "hold",
+          "name": "Hold",
+          "range": 5
+        },
+        {
+          "id": "pass",
+          "name": "Pass",
+          "range": 6
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.halingo",
+      "name": "Halingo",
+      "description": "Names for settlements in the Kurovian region of Halingo. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.halingo"
+          }
+        ]
+      },
+      "method_table": "table.naming.halingo.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.halingo.firstElement", "table.naming.halingo.secondElement"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "words"
+          }
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.halingo.founder", "table.naming.halingo.founderEnding"],
+          "join": {
+            "style": "possessive",
+            "suffix": "'s",
+            "after_s": "'",
+            "separator": " ",
+            "case": "words"
+          }
+        }
+      ]
+    }
+  ]
+}

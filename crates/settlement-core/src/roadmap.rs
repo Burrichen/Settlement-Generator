@@ -15,7 +15,7 @@ pub struct RoadmapEntry {
     pub horizon: RoadmapHorizon,
     /// e.g. "Next minor update".
     pub label: String,
-    /// e.g. "Name generation".
+    /// e.g. "Improved name generation".
     pub summary: String,
 }
 
@@ -24,7 +24,7 @@ pub fn roadmap() -> Vec<RoadmapEntry> {
         RoadmapEntry {
             horizon: RoadmapHorizon::NextMinor,
             label: "Next minor update".into(),
-            summary: "Name generation".into(),
+            summary: "Improved name generation".into(),
         },
         RoadmapEntry {
             horizon: RoadmapHorizon::NextMajor,
@@ -42,7 +42,7 @@ mod tests {
     fn roadmap_matches_versioning_policy() {
         let entries = roadmap();
         assert_eq!(entries.len(), 2);
-        assert_eq!(entries[0].summary, "Name generation");
+        assert_eq!(entries[0].summary, "Improved name generation");
         assert_eq!(entries[1].summary, "New tables");
         let json = serde_json::to_value(&entries[0]).unwrap();
         assert_eq!(json["horizon"], "next_minor");

@@ -112,6 +112,16 @@ fn generation_choose(
     })
 }
 
+/// Names the settlement with a typed name (the name stage).
+#[tauri::command]
+fn generation_custom_name(
+    state: State<'_, AppState>,
+    stage: usize,
+    name: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| a.session.set_custom_name(stage, &name))
+}
+
 #[tauri::command]
 fn generation_advance(state: State<'_, AppState>) -> ServiceResult<GenerationResponse> {
     state.act(|a| a.session.advance())
@@ -311,6 +321,7 @@ pub fn run() {
             generation_start,
             generation_roll,
             generation_choose,
+            generation_custom_name,
             generation_advance,
             generation_back,
             generation_roll_remaining,

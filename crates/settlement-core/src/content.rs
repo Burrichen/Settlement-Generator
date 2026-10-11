@@ -8,7 +8,8 @@ use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
-use crate::ids::{ResultId, TableId, TagId, VariantId};
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId};
+use crate::naming::NamingScheme;
 
 /// Version of the content file format understood by this build.
 pub const CONTENT_SCHEMA_VERSION: u32 = 1;
@@ -38,6 +39,9 @@ pub struct ContentSet {
     pub tables: Vec<Table>,
     #[serde(default)]
     pub tags: Vec<Tag>,
+    /// Ways of naming settlements, chosen by tags (see `naming.rs`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub naming_schemes: Vec<NamingScheme>,
 }
 
 impl Default for ContentSet {
@@ -47,18 +51,39 @@ impl Default for ContentSet {
             sequence: Vec::new(),
             tables: Vec::new(),
             tags: Vec::new(),
+            naming_schemes: Vec::new(),
         }
     }
 }
 
-/// One stage of the generation pipeline. Written as a bare table ID, or as
+/// One stage of the generation pipeline. Written as a bare table ID, as
 /// `{ "table": id, "name": "Region" }` to give the stage its own label
-/// (shown even when tags redirect the stage to another table).
+/// (shown even when tags redirect the stage to another table), or as
+/// `{ "naming": true, "name": "Name" }` for the settlement-name stage.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(from = "SequenceStepRepr", into = "SequenceStepRepr")]
 pub struct SequenceStep {
-    pub table: TableId,
+    pub target: StepTarget,
     pub name: Option<String>,
+}
+
+/// What a pipeline stage resolves.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum StepTarget {
+    /// Roll or choose a result of this table.
+    Table(TableId),
+    /// Name the settlement with the naming scheme that applies, if any.
+    Naming,
+}
+
+impl SequenceStep {
+    /// The stage's table, for table stages.
+    pub fn table(&self) -> Option<&TableId> {
+        match &self.target {
+            StepTarget::Table(t) => Some(t),
+            StepTarget::Naming => None,
+        }
+    }
 }
 
 #[derive(Clone, Serialize, Deserialize)]
@@ -70,23 +95,61 @@ enum SequenceStepRepr {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         name: Option<String>,
     },
+    Naming {
+        naming: NamingMarker,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        name: Option<String>,
+    },
+}
+
+/// The literal `true` in `{ "naming": true }`.
+#[derive(Clone, Copy, Serialize, Deserialize)]
+#[serde(try_from = "bool", into = "bool")]
+struct NamingMarker;
+
+impl TryFrom<bool> for NamingMarker {
+    type Error = &'static str;
+    fn try_from(value: bool) -> Result<Self, Self::Error> {
+        if value {
+            Ok(NamingMarker)
+        } else {
+            Err("`naming` must be true")
+        }
+    }
+}
+
+impl From<NamingMarker> for bool {
+    fn from(_: NamingMarker) -> bool {
+        true
+    }
 }
 
 impl From<SequenceStepRepr> for SequenceStep {
     fn from(repr: SequenceStepRepr) -> Self {
         match repr {
-            SequenceStepRepr::Table(table) => SequenceStep { table, name: None },
-            SequenceStepRepr::Step { table, name } => SequenceStep { table, name },
+            SequenceStepRepr::Table(table) => SequenceStep {
+                target: StepTarget::Table(table),
+                name: None,
+            },
+            SequenceStepRepr::Step { table, name } => SequenceStep {
+                target: StepTarget::Table(table),
+                name,
+            },
+            SequenceStepRepr::Naming { name, .. } => SequenceStep {
+                target: StepTarget::Naming,
+                name,
+            },
         }
     }
 }
 
 impl From<SequenceStep> for SequenceStepRepr {
     fn from(step: SequenceStep) -> Self {
-        match step.name {
-            None => SequenceStepRepr::Table(step.table),
-            name => SequenceStepRepr::Step {
-                table: step.table,
+        match (step.target, step.name) {
+            (StepTarget::Table(table), None) => SequenceStepRepr::Table(table),
+            (StepTarget::Table(table), name) => SequenceStepRepr::Step { table, name },
+            (StepTarget::Naming, name) => SequenceStepRepr::Naming {
+                naming: NamingMarker,
                 name,
             },
         }
@@ -94,9 +157,17 @@ impl From<SequenceStep> for SequenceStepRepr {
 }
 
 impl ContentSet {
-    /// The tables of the generation pipeline, in order.
+    /// The tables of the generation pipeline, in order. Naming stages have
+    /// no table of their own and are left out.
     pub fn sequence_tables(&self) -> Vec<TableId> {
-        self.sequence.iter().map(|s| s.table.clone()).collect()
+        self.sequence
+            .iter()
+            .filter_map(|s| s.table().cloned())
+            .collect()
+    }
+
+    pub fn naming_scheme(&self, id: &NamingSchemeId) -> Option<&NamingScheme> {
+        self.naming_schemes.iter().find(|s| &s.id == id)
     }
 }
 

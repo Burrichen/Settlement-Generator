@@ -29,7 +29,7 @@ vi.mock("./api", async (importOriginal) => {
     // An unusual version proves the UI shows real metadata, not a constant.
     getAppInfo: vi.fn(async () => ({ name: "Settlement Generator", version: "9.8.7" })),
     getRoadmap: vi.fn(async () => [
-      { horizon: "next_minor", label: "Next minor update", summary: "Name generation" },
+      { horizon: "next_minor", label: "Next minor update", summary: "Improved name generation" },
       { horizon: "next_major", label: "Next major update", summary: "New tables" },
     ]),
     getSettings: vi.fn(async () => stored.settings),
@@ -197,7 +197,7 @@ describe("roadmap and credits", () => {
   it("shows the roadmap from the core without dates", async () => {
     const user = await renderApp();
     await user.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}{Enter}");
-    expect(await screen.findByText("Name generation")).toBeTruthy();
+    expect(await screen.findByText("Improved name generation")).toBeTruthy();
     expect(screen.getByText("New tables")).toBeTruthy();
     expect(screen.getByText("Next minor update")).toBeTruthy();
     expect(screen.getByText("Next major update")).toBeTruthy();

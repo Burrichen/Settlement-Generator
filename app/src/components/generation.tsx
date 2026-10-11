@@ -184,15 +184,18 @@ export function nameProblem(name: string): string | null {
 export function NameForm({
   busy,
   serverError,
+  initialName = "",
   onSave,
   onCancel,
 }: {
   busy: boolean;
   serverError: string | null;
+  /** Pre-filled, e.g. with the name the name stage generated. */
+  initialName?: string;
   onSave: (name: string) => void;
   onCancel: () => void;
 }) {
-  const [name, setName] = useState("");
+  const [name, setName] = useState(initialName);
   const [problem, setProblem] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => input.current?.focus(), []);
