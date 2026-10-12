@@ -306,8 +306,30 @@ pub(crate) struct GeneratedName {
     pub rolls: Vec<TableRollRecord>,
 }
 
+/// The method a scheme always uses when its method table has no dice and
+/// exactly one result can be taken: no roll is needed to pick it.
+pub(crate) fn sole_method(
+    generator: &Generator<'_>,
+    scheme: &NamingScheme,
+    state: &State,
+) -> Result<Option<ResultId>, GenerationError> {
+    if generator
+        .context(&scheme.method_table, state, None)?
+        .dice
+        .is_some()
+    {
+        return Ok(None);
+    }
+    let (_, options) = generator.options_for(&scheme.method_table, state)?;
+    let mut legal = options.into_iter().filter(|o| o.legal);
+    Ok(match (legal.next(), legal.next()) {
+        (Some(only), None) => Some(only.result.id),
+        _ => None,
+    })
+}
+
 /// Generates a name with `scheme` under the tags in `state`: rolls (or uses
-/// the chosen) method, rolls each component in order with physical dice,
+/// the chosen or sole) method, rolls each component in order with physical dice,
 /// and joins the parts. Every roll is recorded in `state`.
 pub(crate) fn generate_name(
     generator: &Generator<'_>,
@@ -318,6 +340,10 @@ pub(crate) fn generate_name(
 ) -> Result<GeneratedName, GenerationError> {
     let unavailable = |table: &TableId| GenerationError::NamingIncomplete {
         table: table.clone(),
+    };
+    let method = match method {
+        Some(method) => Some(method),
+        None => sole_method(generator, scheme, state)?,
     };
     let start = state.events_so_far().len();
     generator.process(

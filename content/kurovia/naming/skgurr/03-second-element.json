@@ -4,68 +4,158 @@
     {
       "id": "table.naming.skgurr.secondElement",
       "name": "Skgurr Name: Second Element",
-      "description": "Second part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "description": "Second part of a Geographic Compound name. Scottish Gaelic, Scots and Norse-influenced elements; 4 faces each for the first ten, 3 faces each for the other twenty.",
+      "dice": "1d100",
       "results": [
-        {
-          "id": "haven",
-          "name": "haven",
-          "range": 1
-        },
         {
           "id": "wick",
           "name": "wick",
-          "range": 2
+          "range": [1, 4]
         },
         {
           "id": "ness",
           "name": "ness",
-          "range": 3
+          "range": [5, 8]
+        },
+        {
+          "id": "nish",
+          "name": "nish",
+          "range": [9, 12]
         },
         {
           "id": "firth",
           "name": "firth",
-          "range": 4
+          "range": [13, 16]
         },
         {
           "id": "holm",
           "name": "holm",
-          "range": 5
-        },
-        {
-          "id": "head",
-          "name": "head",
-          "range": 6
-        },
-        {
-          "id": "port",
-          "name": "port",
-          "range": 7
+          "range": [17, 20]
         },
         {
           "id": "muir",
           "name": "muir",
-          "range": 8
+          "range": [21, 24]
         },
         {
           "id": "crag",
           "name": "crag",
-          "range": 9
+          "range": [25, 28]
+        },
+        {
+          "id": "haven",
+          "name": "haven",
+          "range": [29, 32]
+        },
+        {
+          "id": "port",
+          "name": "port",
+          "range": [33, 36]
         },
         {
           "id": "shore",
           "name": "shore",
-          "range": 10
+          "range": [37, 40]
         },
         {
-          "id": "point",
-          "name": "point",
-          "range": 11
+          "id": "head",
+          "name": "head",
+          "range": [41, 43]
         },
         {
           "id": "bay",
           "name": "bay",
-          "range": 12
+          "range": [44, 46]
+        },
+        {
+          "id": "point",
+          "name": "point",
+          "range": [47, 49]
+        },
+        {
+          "id": "glen",
+          "name": "glen",
+          "range": [50, 52]
+        },
+        {
+          "id": "brae",
+          "name": "brae",
+          "range": [53, 55]
+        },
+        {
+          "id": "burn",
+          "name": "burn",
+          "range": [56, 58]
+        },
+        {
+          "id": "dale",
+          "name": "dale",
+          "range": [59, 61]
+        },
+        {
+          "id": "ford",
+          "name": "ford",
+          "range": [62, 64]
+        },
+        {
+          "id": "kirk",
+          "name": "kirk",
+          "range": [65, 67]
+        },
+        {
+          "id": "well",
+          "name": "well",
+          "range": [68, 70]
+        },
+        {
+          "id": "skerry",
+          "name": "skerry",
+          "range": [71, 73]
+        },
+        {
+          "id": "geo",
+          "name": "geo",
+          "range": [74, 76]
+        },
+        {
+          "id": "voe",
+          "name": "voe",
+          "range": [77, 79]
+        },
+        {
+          "id": "bost",
+          "name": "bost",
+          "range": [80, 82]
+        },
+        {
+          "id": "ster",
+          "name": "ster",
+          "range": [83, 85]
+        },
+        {
+          "id": "isle",
+          "name": "isle",
+          "range": [86, 88]
+        },
+        {
+          "id": "rock",
+          "name": "rock",
+          "range": [89, 91]
+        },
+        {
+          "id": "watch",
+          "name": "watch",
+          "range": [92, 94]
+        },
+        {
+          "id": "croft",
+          "name": "croft",
+          "range": [95, 97]
+        },
+        {
+          "id": "sound",
+          "name": "sound",
+          "range": [98, 100]
         }
       ]
     }

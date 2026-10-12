@@ -1,7 +1,8 @@
-//! Regional naming packs: Halingo, Skgurr and Shinkira (provisional sample
-//! data). Each region tag selects its own scheme; every table covers its dice
+//! Regional naming packs: Halingo, Skgurr and Shinkira, and the later packs.
+//! Each region tag selects its own scheme; every table covers its dice
 //! exactly; the approved examples come out of real dice rolls; and each
-//! region's joining rule is its own.
+//! region's joining rule is its own. Skgurr has its own d100 element tables
+//! and only the Geographic Compound method.
 
 use std::sync::Arc;
 
@@ -158,10 +159,16 @@ fn every_scheme_routes_on_kurovia_and_its_own_region_tag() {
 
 // ----- dice coverage -------------------------------------------------------------------
 
+/// Regions with the starter layout (d12/d6 parts, 70/30 method). Skgurr has
+/// its own approved layout.
+fn starter_regions() -> impl Iterator<Item = &'static Region> {
+    REGIONS.iter().filter(|r| r.key != "skgurr")
+}
+
 #[test]
 fn every_d12_and_d6_table_covers_its_dice_exactly() {
     let c = content();
-    for region in &REGIONS {
+    for region in starter_regions() {
         for (suffix, dice, sides) in [
             ("firstElement", "1d12", 12),
             ("secondElement", "1d12", 12),
@@ -189,9 +196,63 @@ fn every_d12_and_d6_table_covers_its_dice_exactly() {
 }
 
 #[test]
+fn skgurr_element_tables_cover_a_d100_exactly() {
+    let c = content();
+    for suffix in ["firstElement", "secondElement"] {
+        let t = table(&c, "skgurr", suffix);
+        assert_eq!(t.dice.as_deref(), Some("1d100"), "{}", t.id);
+        assert_eq!(t.results.len(), 30, "{}", t.id);
+        for face in 1..=100 {
+            let owners = t
+                .results
+                .iter()
+                .filter(|r| r.range.is_some_and(|range| range.contains(face)))
+                .count();
+            assert_eq!(owners, 1, "{} face {face}", t.id);
+        }
+        // 4 faces each for the first ten entries, 3 for the other twenty.
+        let widths: Vec<i32> = t
+            .results
+            .iter()
+            .map(|r| {
+                let range = r.range.unwrap();
+                range.max - range.min + 1
+            })
+            .collect();
+        assert_eq!(widths[..10], [4; 10], "{}", t.id);
+        assert_eq!(widths[10..], [3; 20], "{}", t.id);
+    }
+}
+
+#[test]
+fn skgurr_always_uses_geographic_compound() {
+    let c = content();
+    // One method and no dice: nothing is rolled to pick it.
+    let method = table(&c, "skgurr", "method");
+    assert_eq!(method.dice, None);
+    assert_eq!(method.results.len(), 1);
+    let only = &method.results[0];
+    assert_eq!(
+        (only.id.as_str(), only.name.as_str()),
+        ("geographic", "Geographic Compound")
+    );
+    let scheme = c
+        .naming_schemes
+        .iter()
+        .find(|s| s.id.as_str() == "naming.kurovia.skgurr")
+        .unwrap();
+    assert_eq!(scheme.methods.len(), 1);
+    // No founder tables ship for Skgurr.
+    for suffix in ["founder", "founderEnding"] {
+        let id = TableId::new(format!("table.naming.skgurr.{suffix}"));
+        assert!(c.table(&id).is_none(), "{id}");
+    }
+}
+
+#[test]
 fn methods_are_weighted_70_30_on_a_d10() {
     let c = content();
-    for region in &REGIONS {
+    for region in starter_regions() {
         let method = table(&c, region.key, "method");
         assert_eq!(method.dice.as_deref(), Some("1d10"));
         let layout: Vec<(&str, &str, i32, i32)> = method
@@ -244,22 +305,12 @@ fn the_approved_entries_are_present_in_order() {
     expect(
         "skgurr",
         "firstElement",
-        "Dun, Glen, Brae, Grey, Black, Keld, Mor, Skel, Strath, Cairn, Rook, Thorn",
+        "Dun, Glen, Strath, Brae, Inver, Ard, Auchen, Bal, Ben, Craig, Drum, Cairn, Corrie, Kin, Loch, Keld, Mor, Skel, Rook, Grey, Black, Thorn, Sgeir, Rubha, Tobar, Cnoc, Eilean, Sron, Skerry, Muckle",
     );
     expect(
         "skgurr",
         "secondElement",
-        "haven, wick, ness, firth, holm, head, port, muir, crag, shore, point, bay",
-    );
-    expect(
-        "skgurr",
-        "founder",
-        "Ewan, Mairi, Duncan, Sorley, Fergus, Iona, Torin, Morven, Rona, Ivor, Eilidh, Alasdair",
-    );
-    expect(
-        "skgurr",
-        "founderEnding",
-        "Point, Cove, Head, Haven, Watch, Bay",
+        "wick, ness, nish, firth, holm, muir, crag, haven, port, shore, head, bay, point, glen, brae, burn, dale, ford, kirk, well, skerry, geo, voe, bost, ster, isle, rock, watch, croft, sound",
     );
     expect(
         "shinkira",
@@ -310,20 +361,34 @@ fn halingo_names() {
     );
 }
 
+/// Skgurr rolls no method die: `[first part face, second part face]`.
 #[test]
 fn skgurr_names() {
-    check(
-        3,
-        &[
-            ([1, 1, 2], "Dunwick"),
-            ([1, 4, 1], "Greyhaven"),
-            ([1, 9, 8], "Strathmuir"),
-            ([1, 8, 7], "Skelport"),
-            ([8, 5, 1], "Fergus's Point"),
-            ([8, 8, 2], "Morven's Cove"),
-            ([8, 1, 5], "Ewan's Watch"),
-        ],
-    );
+    let c = content();
+    for (faces, expected) in [
+        ([1, 1], "Dunwick"),
+        ([17, 5], "Inverness"),
+        ([68, 29], "Greyhaven"),
+        ([9, 21], "Strathmuir"),
+        ([64, 36], "Skelport"),
+        ([92, 77], "Sronvoe"),
+        ([100, 71], "Muckleskerry"),
+        ([5, 100], "Glensound"),
+    ] {
+        assert_eq!(name(&c, 3, &faces), expected, "dice {faces:?}");
+    }
+    // The method is recorded as selected, not rolled.
+    let mut s = at_region(&c, 3);
+    s.roll(NAME, &mut dice(&[1, 1])).unwrap();
+    let record = s
+        .to_snapshot()
+        .stages
+        .iter()
+        .find_map(|st| st.name.clone())
+        .unwrap();
+    assert_eq!(record.rolls[0].result.id, ResultId::new("geographic"));
+    assert!(record.rolls[0].selected);
+    assert_eq!(record.rolls[0].dice, None);
 }
 
 #[test]
@@ -344,20 +409,17 @@ fn shinkira_names() {
 
 #[test]
 fn founders_ending_in_s_follow_each_regions_own_rule() {
-    // No approved Halingo or Skgurr founder ends in "s", so add one (as a
-    // user could) and check the documented rules.
+    // No approved Halingo founder ends in "s", so add one (as a user could)
+    // and check the documented rule.
     let mut c = content();
-    for key in ["halingo", "skgurr"] {
-        let founders = c
-            .tables
-            .iter_mut()
-            .find(|t| t.id.as_str() == format!("table.naming.{key}.founder"))
-            .unwrap();
-        founders.results[0].name = "Tamas".into();
-    }
-    // Halingo: an apostrophe only. Skgurr: always 's (as in Fergus's).
+    let founders = c
+        .tables
+        .iter_mut()
+        .find(|t| t.id.as_str() == "table.naming.halingo.founder")
+        .unwrap();
+    founders.results[0].name = "Tamas".into();
+    // Halingo: an apostrophe only.
     assert_eq!(name(&c, 2, &[8, 1, 1]), "Tamas' Well");
-    assert_eq!(name(&c, 3, &[8, 1, 1]), "Tamas's Point");
     // Shinkira never adds a possessive, and Ordon keeps its own rule.
     assert_eq!(name(&c, 4, &[8, 11, 1]), "Takedamura");
     assert_eq!(name(&c, 1, &[8, 95, 6]), "Nerysbury");

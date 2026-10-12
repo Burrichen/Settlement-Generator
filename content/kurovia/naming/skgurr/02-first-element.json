@@ -4,68 +4,158 @@
     {
       "id": "table.naming.skgurr.firstElement",
       "name": "Skgurr Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "description": "First part of a Geographic Compound name. Scottish Gaelic, Scots and Norse-influenced elements; 4 faces each for the first ten, 3 faces each for the other twenty.",
+      "dice": "1d100",
       "results": [
         {
           "id": "dun",
           "name": "Dun",
-          "range": 1
+          "range": [1, 4]
         },
         {
           "id": "glen",
           "name": "Glen",
-          "range": 2
-        },
-        {
-          "id": "brae",
-          "name": "Brae",
-          "range": 3
-        },
-        {
-          "id": "grey",
-          "name": "Grey",
-          "range": 4
-        },
-        {
-          "id": "black",
-          "name": "Black",
-          "range": 5
-        },
-        {
-          "id": "keld",
-          "name": "Keld",
-          "range": 6
-        },
-        {
-          "id": "mor",
-          "name": "Mor",
-          "range": 7
-        },
-        {
-          "id": "skel",
-          "name": "Skel",
-          "range": 8
+          "range": [5, 8]
         },
         {
           "id": "strath",
           "name": "Strath",
-          "range": 9
+          "range": [9, 12]
+        },
+        {
+          "id": "brae",
+          "name": "Brae",
+          "range": [13, 16]
+        },
+        {
+          "id": "inver",
+          "name": "Inver",
+          "range": [17, 20]
+        },
+        {
+          "id": "ard",
+          "name": "Ard",
+          "range": [21, 24]
+        },
+        {
+          "id": "auchen",
+          "name": "Auchen",
+          "range": [25, 28]
+        },
+        {
+          "id": "bal",
+          "name": "Bal",
+          "range": [29, 32]
+        },
+        {
+          "id": "ben",
+          "name": "Ben",
+          "range": [33, 36]
+        },
+        {
+          "id": "craig",
+          "name": "Craig",
+          "range": [37, 40]
+        },
+        {
+          "id": "drum",
+          "name": "Drum",
+          "range": [41, 43]
         },
         {
           "id": "cairn",
           "name": "Cairn",
-          "range": 10
+          "range": [44, 46]
+        },
+        {
+          "id": "corrie",
+          "name": "Corrie",
+          "range": [47, 49]
+        },
+        {
+          "id": "kin",
+          "name": "Kin",
+          "range": [50, 52]
+        },
+        {
+          "id": "loch",
+          "name": "Loch",
+          "range": [53, 55]
+        },
+        {
+          "id": "keld",
+          "name": "Keld",
+          "range": [56, 58]
+        },
+        {
+          "id": "mor",
+          "name": "Mor",
+          "range": [59, 61]
+        },
+        {
+          "id": "skel",
+          "name": "Skel",
+          "range": [62, 64]
         },
         {
           "id": "rook",
           "name": "Rook",
-          "range": 11
+          "range": [65, 67]
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "range": [68, 70]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [71, 73]
         },
         {
           "id": "thorn",
           "name": "Thorn",
-          "range": 12
+          "range": [74, 76]
+        },
+        {
+          "id": "sgeir",
+          "name": "Sgeir",
+          "range": [77, 79]
+        },
+        {
+          "id": "rubha",
+          "name": "Rubha",
+          "range": [80, 82]
+        },
+        {
+          "id": "tobar",
+          "name": "Tobar",
+          "range": [83, 85]
+        },
+        {
+          "id": "cnoc",
+          "name": "Cnoc",
+          "range": [86, 88]
+        },
+        {
+          "id": "eilean",
+          "name": "Eilean",
+          "range": [89, 91]
+        },
+        {
+          "id": "sron",
+          "name": "Sron",
+          "range": [92, 94]
+        },
+        {
+          "id": "skerry",
+          "name": "Skerry",
+          "range": [95, 97]
+        },
+        {
+          "id": "muckle",
+          "name": "Muckle",
+          "range": [98, 100]
         }
       ]
     }

@@ -59,10 +59,10 @@ Changes made on another stage do the following:
 
 Every table has its own file. Each region's naming data is a folder:
 
-| Path                               | Contains                                                                               |
-| ---------------------------------- | -------------------------------------------------------------------------------------- |
-| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                            |
-| `content/kurovia/naming/<region>/` | `01-method.json` … `05-founder-ending.json` (one table each) and `naming-schemes.json` |
+| Path                               | Contains                                                                                                            |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                                                         |
+| `content/kurovia/naming/<region>/` | `01-method.json` … `05-founder-ending.json` (one table each) and `naming-schemes.json`. Skgurr has no founder files |
 
 The regions are Ordon (approved), and Halingo, Skgurr, Shinkira, Bratislor,
 Hjartheland and Targoth (provisional samples), and Nareth (placeholder
@@ -254,8 +254,7 @@ chooses its own:
 | Ordon Founder          | `{ "style": "possessive", "suffix": "s", "before": ["bury", "stead", "worth"] }`               | Godwinsbury, Bericwick, Nerysbury                 |
 | Halingo Geographic     | `{ "style": "compound", "separator": " ", "case": "words" }`                                   | Khar Well, Cinder Ridge                           |
 | Halingo Founder        | `{ "style": "possessive", "suffix": "'s", "after_s": "'", "separator": " ", "case": "words" }` | Varesh's Well; a founder ending in s: Tamas' Well |
-| Skgurr Geographic      | `{ "style": "compound" }`                                                                      | Dunwick, Greyhaven                                |
-| Skgurr Founder         | `{ "style": "possessive", "suffix": "'s", "separator": " ", "case": "words" }`                 | Fergus's Point, Morven's Cove                     |
+| Skgurr Geographic      | `{ "style": "compound" }` (Skgurr's only method)                                               | Dunwick, Inverness, Muckleskerry                  |
 | Shinkira Geographic    | `{ "style": "compound" }`                                                                      | Kirisawa, Kuroyama                                |
 | Shinkira Founder       | `{ "style": "compound" }`: no apostrophe, no English possessive                                | Takedamura, Mizunosato                            |
 | Bratislor Geographic   | `{ "style": "compound" }`                                                                      | Drevgrad, Morava, Vranova                         |
@@ -305,8 +304,9 @@ The Ordon starter weights are provisional editorial values:
 ## Regional packs: Halingo, Skgurr, Shinkira
 
 These three packs are **provisional sample data**, written as illustrative
-starting points. They are **not** additions to official Kurovian lore. All three
-use the same starter layout, and every result within a table is equally likely:
+starting points. They are **not** additions to official Kurovian lore. Halingo
+and Shinkira use the starter layout below, and every result within a table is
+equally likely. Skgurr has its own layout (see below):
 
 | Table          | Dice | Layout                                                       |
 | -------------- | ---- | ------------------------------------------------------------ |
@@ -339,11 +339,21 @@ trade. The names are dry, understated and slightly harsh.
 Old Scottish and coastal naming: wind-beaten ports, highlands, sea caves and
 isolated shorelines. The names are grounded and weathered.
 
-- **Geographic Compound:** one word, e.g. Dunwick, Greyhaven, Strathmuir,
-  Skelport.
-- **Historical Founder:** founder + 's + space + feature, e.g. Fergus's Point,
-  Morven's Cove, Ewan's Watch. A founder ending in "s" still takes 's, because
-  Skgurr has no `after_s`.
+Scottish Gaelic, Scots and Norse-influenced geographical compounds. Skgurr
+has **no founder, survival or misfortune naming methods**.
+
+| Table          | Dice  | Layout                                                    |
+| -------------- | ----- | --------------------------------------------------------- |
+| Naming Method  | none  | Geographic Compound only: no die is rolled                |
+| First Element  | 1d100 | 30 entries: 4 faces each for the first 10, 3 for the rest |
+| Second Element | 1d100 | 30 entries: 4 faces each for the first 10, 3 for the rest |
+
+A method table with no dice (`"selection": "choose"`) and only one result
+that can be taken needs no roll: that method is always used, and the name
+rolls only its component tables. Skgurr's method table works this way.
+
+- **Geographic Compound:** one word, no separator, no spelling exceptions,
+  e.g. Dunwick, Inverness, Greyhaven, Strathmuir, Sronvoe, Muckleskerry.
 
 ### Shinkira (`shinkira.json`, routed by `region.shinkira`)
 
@@ -464,9 +474,6 @@ They live only in the content files.
      ```json
      "join": { "style": "compound" }
      ```
-
-     To make Skgurr founders ending in "s" take only an apostrophe, add
-     `"after_s": "'"` to Skgurr's founder `join`.
 3. Run `cargo test`. Validation reports any of the following, naming the file
    location:
    - gaps or overlaps in ranges;

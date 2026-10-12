@@ -4,20 +4,13 @@
     {
       "id": "table.naming.skgurr.method",
       "name": "Skgurr Naming Method",
-      "description": "Which naming method a Skgurr settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Weathered coastal and highland style.",
-      "dice": "1d10",
+      "description": "Which naming method a Skgurr settlement name uses. Skgurr always uses Geographic Compound, so no die is rolled: it has no founder, survival or misfortune naming methods.",
+      "selection": "choose",
       "results": [
         {
           "id": "geographic",
           "name": "Geographic Compound",
-          "description": "First element + second element as one word, e.g. Dunwick, Greyhaven.",
-          "range": [1, 7]
-        },
-        {
-          "id": "founder",
-          "name": "Historical Founder",
-          "description": "Founder's name + 's + a settlement feature, e.g. Fergus's Point, Morven's Cove.",
-          "range": [8, 10]
+          "description": "First element + second element as one word, e.g. Dunwick, Inverness, Muckleskerry."
         }
       ]
     }

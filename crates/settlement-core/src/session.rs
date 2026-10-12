@@ -29,7 +29,7 @@ use crate::figures::{
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
 use crate::locations::{LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, NotableLocations};
 use crate::naming::{
-    GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for,
+    GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for, sole_method,
 };
 use crate::roles::{ROLES_STAGE_ID, RoleAllocation, RoleAllocator, RoleSlotOptions};
 use crate::settings::{GenerationMethod, GenerationPresentation, Settings};
@@ -761,8 +761,10 @@ impl GenerationSession {
                         def.status_note.clone()
                     }
                 });
-                let can_roll = def.selection == SelectionMode::Roll
-                    && def.dice.is_some()
+                // A dice-less method table with one method needs no roll.
+                let sole = sole_method(&generator, scheme, &state)?.is_some();
+                let can_roll = (sole
+                    || (def.selection == SelectionMode::Roll && def.dice.is_some()))
                     && incomplete.is_none();
                 (table, options, dice, can_roll, incomplete)
             }

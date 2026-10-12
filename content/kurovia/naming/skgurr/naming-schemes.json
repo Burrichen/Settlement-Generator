@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.skgurr",
       "name": "Skgurr",
-      "description": "Names for settlements in the Kurovian region of Skgurr. Provisional sample data, not official Kurovian lore.",
+      "description": "Names for settlements in the Kurovian region of Skgurr: Scottish Gaelic, Scots and Norse-influenced geographical compounds. No founder, survival or misfortune naming methods.",
       "when": {
         "all": [
           {
@@ -22,16 +22,6 @@
           "components": ["table.naming.skgurr.firstElement", "table.naming.skgurr.secondElement"],
           "join": {
             "style": "compound"
-          }
-        },
-        {
-          "result": "founder",
-          "components": ["table.naming.skgurr.founder", "table.naming.skgurr.founderEnding"],
-          "join": {
-            "style": "possessive",
-            "suffix": "'s",
-            "separator": " ",
-            "case": "words"
           }
         }
       ]
