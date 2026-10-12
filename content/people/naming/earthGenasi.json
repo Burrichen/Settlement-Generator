@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.earthGenasi.method",
+      "name": "Earth Genasi Naming Method",
+      "description": "How a Earth Genasi Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + byname",
+          "range": [1, 4]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.earthGenasi.given",
+      "name": "Earth Genasi Given Names",
+      "description": "Used for every gender.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "agrum",
+          "name": "Agrum",
+          "range": [1, 2]
+        },
+        {
+          "id": "bedrov",
+          "name": "Bedrov",
+          "range": [3, 4]
+        },
+        {
+          "id": "brask",
+          "name": "Brask",
+          "range": [5, 6]
+        },
+        {
+          "id": "cairn",
+          "name": "Cairn",
+          "range": [7, 8]
+        },
+        {
+          "id": "dolm",
+          "name": "Dolm",
+          "range": [9, 10]
+        },
+        {
+          "id": "durm",
+          "name": "Durm",
+          "range": [11, 12]
+        },
+        {
+          "id": "ferrok",
+          "name": "Ferrok",
+          "range": [13, 14]
+        },
+        {
+          "id": "galt",
+          "name": "Galt",
+          "range": [15, 16]
+        },
+        {
+          "id": "gromm",
+          "name": "Gromm",
+          "range": [17, 18]
+        },
+        {
+          "id": "halk",
+          "name": "Halk",
+          "range": [19, 20]
+        },
+        {
+          "id": "jasp",
+          "name": "Jasp",
+          "range": [21, 22]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [23, 24]
+        },
+        {
+          "id": "korrun",
+          "name": "Korrun",
+          "range": [25, 26]
+        },
+        {
+          "id": "lith",
+          "name": "Lith",
+          "range": [27, 28]
+        },
+        {
+          "id": "magn",
+          "name": "Magn",
+          "range": [29, 30]
+        },
+        {
+          "id": "morrow",
+          "name": "Morrow",
+          "range": [31, 32]
+        },
+        {
+          "id": "norrun",
+          "name": "Norrun",
+          "range": [33, 34]
+        },
+        {
+          "id": "obsin",
+          "name": "Obsin",
+          "range": [35, 36]
+        },
+        {
+          "id": "orr",
+          "name": "Orr",
+          "range": [37, 38]
+        },
+        {
+          "id": "quarn",
+          "name": "Quarn",
+          "range": [39, 40]
+        },
+        {
+          "id": "rokk",
+          "name": "Rokk",
+          "range": [41, 42]
+        },
+        {
+          "id": "ruddo",
+          "name": "Ruddo",
+          "range": [43, 44]
+        },
+        {
+          "id": "scorr",
+          "name": "Scorr",
+          "range": [45, 46]
+        },
+        {
+          "id": "shale",
+          "name": "Shale",
+          "range": [47, 48]
+        },
+        {
+          "id": "slatt",
+          "name": "Slatt",
+          "range": [49, 50]
+        },
+        {
+          "id": "stoval",
+          "name": "Stoval",
+          "range": [51, 52]
+        },
+        {
+          "id": "torrun",
+          "name": "Torrun",
+          "range": [53, 54]
+        },
+        {
+          "id": "umbr",
+          "name": "Umbr",
+          "range": [55, 56]
+        },
+        {
+          "id": "vell",
+          "name": "Vell",
+          "range": [57, 58]
+        },
+        {
+          "id": "wedd",
+          "name": "Wedd",
+          "range": [59, 60]
+        },
+        {
+          "id": "zirk",
+          "name": "Zirk",
+          "range": [61, 62]
+        },
+        {
+          "id": "adda",
+          "name": "Adda",
+          "range": [63, 64]
+        },
+        {
+          "id": "berra",
+          "name": "Berra",
+          "range": [65, 66]
+        },
+        {
+          "id": "clay",
+          "name": "Clay",
+          "range": [67, 68]
+        },
+        {
+          "id": "dorra",
+          "name": "Dorra",
+          "range": [69, 70]
+        },
+        {
+          "id": "gemma",
+          "name": "Gemma",
+          "range": [71, 72]
+        },
+        {
+          "id": "harra",
+          "name": "Harra",
+          "range": [73, 74]
+        },
+        {
+          "id": "jett",
+          "name": "Jett",
+          "range": [75, 76]
+        },
+        {
+          "id": "korra",
+          "name": "Korra",
+          "range": [77, 78]
+        },
+        {
+          "id": "loam",
+          "name": "Loam",
+          "range": [79, 80]
+        },
+        {
+          "id": "marla",
+          "name": "Marla",
+          "range": [81, 82]
+        },
+        {
+          "id": "nodda",
+          "name": "Nodda",
+          "range": [83, 84]
+        },
+        {
+          "id": "ochra",
+          "name": "Ochra",
+          "range": [85, 86]
+        },
+        {
+          "id": "petrova",
+          "name": "Petrova",
+          "range": [87, 88]
+        },
+        {
+          "id": "qira",
+          "name": "Qira",
+          "range": [89, 90]
+        },
+        {
+          "id": "rhenna",
+          "name": "Rhenna",
+          "range": [91, 92]
+        },
+        {
+          "id": "sanda",
+          "name": "Sanda",
+          "range": [93, 94]
+        },
+        {
+          "id": "terra",
+          "name": "Terra",
+          "range": [95, 96]
+        },
+        {
+          "id": "vada",
+          "name": "Vada",
+          "range": [97, 98]
+        },
+        {
+          "id": "zinna",
+          "name": "Zinna",
+          "range": [99, 100]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.earthGenasi.byname",
+      "name": "Earth Genasi Bynames",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "deepvein",
+          "name": "Deepvein",
+          "range": 1
+        },
+        {
+          "id": "stonevoice",
+          "name": "Stonevoice",
+          "range": 2
+        },
+        {
+          "id": "graniteheart",
+          "name": "Graniteheart",
+          "range": 3
+        },
+        {
+          "id": "ironroot",
+          "name": "Ironroot",
+          "range": 4
+        },
+        {
+          "id": "slowmountain",
+          "name": "Slowmountain",
+          "range": 5
+        },
+        {
+          "id": "bouldersong",
+          "name": "Bouldersong",
+          "range": 6
+        },
+        {
+          "id": "cragborn",
+          "name": "Cragborn",
+          "range": 7
+        },
+        {
+          "id": "dustwalker",
+          "name": "Dustwalker",
+          "range": 8
+        },
+        {
+          "id": "faultstride",
+          "name": "Faultstride",
+          "range": 9
+        },
+        {
+          "id": "geodeheart",
+          "name": "Geodeheart",
+          "range": 10
+        },
+        {
+          "id": "heavystep",
+          "name": "Heavystep",
+          "range": 11
+        },
+        {
+          "id": "hollowstone",
+          "name": "Hollowstone",
+          "range": 12
+        },
+        {
+          "id": "mountainbreath",
+          "name": "Mountainbreath",
+          "range": 13
+        },
+        {
+          "id": "orecall",
+          "name": "Orecall",
+          "range": 14
+        },
+        {
+          "id": "quarrysong",
+          "name": "Quarrysong",
+          "range": 15
+        },
+        {
+          "id": "rootdeep",
+          "name": "Rootdeep",
+          "range": 16
+        },
+        {
+          "id": "shalewhisper",
+          "name": "Shalewhisper",
+          "range": 17
+        },
+        {
+          "id": "silthand",
+          "name": "Silthand",
+          "range": 18
+        },
+        {
+          "id": "stillstone",
+          "name": "Stillstone",
+          "range": 19
+        },
+        {
+          "id": "veinseeker",
+          "name": "Veinseeker",
+          "range": 20
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.person.earthGenasi",
+      "name": "Earth Genasi names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.earthGenasi"
+      },
+      "method_table": "table.personName.earthGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.earthGenasi.given",
+            "table.personName.earthGenasi.byname"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "byname",
+              "label": "Byname"
+            }
+          ]
+        }
+      ],
+      "description": "Earth genasi pair a given name with a byname drawn from stone and the deep earth."
+    }
+  ]
+}

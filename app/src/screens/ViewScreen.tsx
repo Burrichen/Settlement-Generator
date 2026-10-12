@@ -318,6 +318,7 @@ function DetailPane({
             tags: tagView ? stage.tags : undefined,
             subStage: stage.sub_stage,
             skipped: stage.skipped,
+            figures: stage.figures,
           })),
         )}
         meta={`Snapshot saved with v${detail.app_version}. Later changes to tables do not alter it.`}
@@ -445,6 +446,7 @@ function EditPane({
           onRoll={(i) => run(generation.roll(i))}
           onChoose={(i, r) => run(generation.choose(i, r))}
           onCustomName={(i, name) => run(generation.customName(i, name))}
+          onAct={run}
         />
       )}
       <div className="action-bar edit-actions">

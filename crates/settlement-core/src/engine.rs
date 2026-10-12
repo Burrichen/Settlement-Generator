@@ -291,6 +291,28 @@ pub enum GenerationError {
     NamingIncomplete { table: TableId },
     #[error("stage {} is not the name stage", stage + 1)]
     NotNamingStage { stage: usize },
+    #[error("stage {} is not the Authority Figures stage", stage + 1)]
+    NotFiguresStage { stage: usize },
+    #[error(
+        "Authority Figures need the Authority, its Representation and its Authority Size first"
+    )]
+    FiguresNeedAuthority,
+    #[error("no Authority Figures have been generated yet")]
+    FiguresNotGenerated,
+    #[error("there is no Authority Figure {}", index + 1)]
+    NoSuchFigure { index: usize },
+    #[error("there is no relationship {}", index + 1)]
+    NoSuchRelationship { index: usize },
+    #[error("no name table is configured for this figure's species; enter a name instead")]
+    NoFigureNamingScheme,
+    #[error("this figure's name was not generated from a name table")]
+    FigureNameNotGenerated,
+    #[error("the name has no part {}", index + 1)]
+    NoSuchNamePart { index: usize },
+    #[error("Authority Figures have no field `{0}`")]
+    NoSuchFigureField(String),
+    #[error("table `{table}` does not apply, so it cannot give an Authority Figure's details")]
+    FigureTableSkipped { table: TableId },
     #[error("{0}")]
     InvalidName(String),
     #[error("content is invalid:\n{0}")]

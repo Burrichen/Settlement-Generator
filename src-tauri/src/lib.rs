@@ -122,6 +122,129 @@ fn generation_custom_name(
     state.act(|a| a.session.set_custom_name(stage, &name))
 }
 
+/// Rolls one field of one Authority Figure again.
+#[tauri::command]
+fn generation_roll_figure_field(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+    field: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_figure_field(stage, figure, &field, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one field of one Authority Figure.
+#[tauri::command]
+fn generation_choose_figure_field(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+    field: String,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_figure_field(
+            stage,
+            figure,
+            &field,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Generates one Authority Figure's name again.
+#[tauri::command]
+fn generation_roll_figure_name(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_figure_name(stage, figure, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one part of an Authority Figure's generated name.
+#[tauri::command]
+fn generation_choose_figure_name_part(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+    part: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_figure_name_part(
+            stage,
+            figure,
+            part,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Rolls one part of an Authority Figure's generated name again.
+#[tauri::command]
+fn generation_roll_figure_name_part(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+    part: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_figure_name_part(stage, figure, part, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Names one Authority Figure with a typed name.
+#[tauri::command]
+fn generation_figure_name(
+    state: State<'_, AppState>,
+    stage: usize,
+    figure: usize,
+    name: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| a.session.set_figure_name(stage, figure, &name))
+}
+
+/// Rolls one relationship between Authority Figures again.
+#[tauri::command]
+fn generation_roll_relationship(
+    state: State<'_, AppState>,
+    stage: usize,
+    relationship: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_relationship(stage, relationship, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one relationship between Authority Figures.
+#[tauri::command]
+fn generation_choose_relationship(
+    state: State<'_, AppState>,
+    stage: usize,
+    relationship: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_relationship(
+            stage,
+            relationship,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
 #[tauri::command]
 fn generation_advance(state: State<'_, AppState>) -> ServiceResult<GenerationResponse> {
     state.act(|a| a.session.advance())
@@ -322,6 +445,14 @@ pub fn run() {
             generation_roll,
             generation_choose,
             generation_custom_name,
+            generation_roll_figure_field,
+            generation_choose_figure_field,
+            generation_roll_figure_name,
+            generation_figure_name,
+            generation_choose_figure_name_part,
+            generation_roll_figure_name_part,
+            generation_roll_relationship,
+            generation_choose_relationship,
             generation_advance,
             generation_back,
             generation_roll_remaining,

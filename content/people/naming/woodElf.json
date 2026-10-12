@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.woodElf.method",
+      "name": "Wood Elf Naming Method",
+      "description": "How a Wood Elf Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + kin name",
+          "range": [1, 4]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.woodElf.given.masculine",
+      "name": "Wood Elf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ardo",
+          "name": "Ardo",
+          "range": 1
+        },
+        {
+          "id": "bresk",
+          "name": "Bresk",
+          "range": 2
+        },
+        {
+          "id": "corran",
+          "name": "Corran",
+          "range": 3
+        },
+        {
+          "id": "dathen",
+          "name": "Dathen",
+          "range": 4
+        },
+        {
+          "id": "fennick",
+          "name": "Fennick",
+          "range": 5
+        },
+        {
+          "id": "garro",
+          "name": "Garro",
+          "range": 6
+        },
+        {
+          "id": "hask",
+          "name": "Hask",
+          "range": 7
+        },
+        {
+          "id": "ilver",
+          "name": "Ilver",
+          "range": 8
+        },
+        {
+          "id": "jarrow",
+          "name": "Jarrow",
+          "range": 9
+        },
+        {
+          "id": "kellan",
+          "name": "Kellan",
+          "range": 10
+        },
+        {
+          "id": "lorne",
+          "name": "Lorne",
+          "range": 11
+        },
+        {
+          "id": "merrin",
+          "name": "Merrin",
+          "range": 12
+        },
+        {
+          "id": "nesk",
+          "name": "Nesk",
+          "range": 13
+        },
+        {
+          "id": "orrick",
+          "name": "Orrick",
+          "range": 14
+        },
+        {
+          "id": "perran",
+          "name": "Perran",
+          "range": 15
+        },
+        {
+          "id": "rusk",
+          "name": "Rusk",
+          "range": 16
+        },
+        {
+          "id": "senn",
+          "name": "Senn",
+          "range": 17
+        },
+        {
+          "id": "tamrin",
+          "name": "Tamrin",
+          "range": 18
+        },
+        {
+          "id": "varro",
+          "name": "Varro",
+          "range": 19
+        },
+        {
+          "id": "wode",
+          "name": "Wode",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.woodElf.given.feminine",
+      "name": "Wood Elf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aspa",
+          "name": "Aspa",
+          "range": 1
+        },
+        {
+          "id": "bryony",
+          "name": "Bryony",
+          "range": 2
+        },
+        {
+          "id": "cerra",
+          "name": "Cerra",
+          "range": 3
+        },
+        {
+          "id": "dessa",
+          "name": "Dessa",
+          "range": 4
+        },
+        {
+          "id": "elka",
+          "name": "Elka",
+          "range": 5
+        },
+        {
+          "id": "fenwyn",
+          "name": "Fenwyn",
+          "range": 6
+        },
+        {
+          "id": "gilla",
+          "name": "Gilla",
+          "range": 7
+        },
+        {
+          "id": "hesta",
+          "name": "Hesta",
+          "range": 8
+        },
+        {
+          "id": "iska",
+          "name": "Iska",
+          "range": 9
+        },
+        {
+          "id": "juna",
+          "name": "Juna",
+          "range": 10
+        },
+        {
+          "id": "kesra",
+          "name": "Kesra",
+          "range": 11
+        },
+        {
+          "id": "liska",
+          "name": "Liska",
+          "range": 12
+        },
+        {
+          "id": "mora",
+          "name": "Mora",
+          "range": 13
+        },
+        {
+          "id": "nerra",
+          "name": "Nerra",
+          "range": 14
+        },
+        {
+          "id": "orla",
+          "name": "Orla",
+          "range": 15
+        },
+        {
+          "id": "peshka",
+          "name": "Peshka",
+          "range": 16
+        },
+        {
+          "id": "rhosa",
+          "name": "Rhosa",
+          "range": 17
+        },
+        {
+          "id": "sella",
+          "name": "Sella",
+          "range": 18
+        },
+        {
+          "id": "tansy",
+          "name": "Tansy",
+          "range": 19
+        },
+        {
+          "id": "willa",
+          "name": "Willa",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.woodElf.given.neutral",
+      "name": "Wood Elf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "alder",
+          "name": "Alder",
+          "range": 1
+        },
+        {
+          "id": "bramble",
+          "name": "Bramble",
+          "range": 2
+        },
+        {
+          "id": "cress",
+          "name": "Cress",
+          "range": 3
+        },
+        {
+          "id": "dusk",
+          "name": "Dusk",
+          "range": 4
+        },
+        {
+          "id": "fallow",
+          "name": "Fallow",
+          "range": 5
+        },
+        {
+          "id": "fern",
+          "name": "Fern",
+          "range": 6
+        },
+        {
+          "id": "hollin",
+          "name": "Hollin",
+          "range": 7
+        },
+        {
+          "id": "juniper",
+          "name": "Juniper",
+          "range": 8
+        },
+        {
+          "id": "kestrel",
+          "name": "Kestrel",
+          "range": 9
+        },
+        {
+          "id": "larch",
+          "name": "Larch",
+          "range": 10
+        },
+        {
+          "id": "linden",
+          "name": "Linden",
+          "range": 11
+        },
+        {
+          "id": "moss",
+          "name": "Moss",
+          "range": 12
+        },
+        {
+          "id": "nettle",
+          "name": "Nettle",
+          "range": 13
+        },
+        {
+          "id": "osier",
+          "name": "Osier",
+          "range": 14
+        },
+        {
+          "id": "quince",
+          "name": "Quince",
+          "range": 15
+        },
+        {
+          "id": "reed",
+          "name": "Reed",
+          "range": 16
+        },
+        {
+          "id": "sorrel",
+          "name": "Sorrel",
+          "range": 17
+        },
+        {
+          "id": "thistle",
+          "name": "Thistle",
+          "range": 18
+        },
+        {
+          "id": "wren",
+          "name": "Wren",
+          "range": 19
+        },
+        {
+          "id": "yarrow",
+          "name": "Yarrow",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.woodElf.kin",
+      "name": "Wood Elf Kin names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ashenbough",
+          "name": "Ashenbough",
+          "range": 1
+        },
+        {
+          "id": "barkmantle",
+          "name": "Barkmantle",
+          "range": 2
+        },
+        {
+          "id": "brackenrun",
+          "name": "Brackenrun",
+          "range": 3
+        },
+        {
+          "id": "deepfern",
+          "name": "Deepfern",
+          "range": 4
+        },
+        {
+          "id": "elmshade",
+          "name": "Elmshade",
+          "range": 5
+        },
+        {
+          "id": "fallowmere",
+          "name": "Fallowmere",
+          "range": 6
+        },
+        {
+          "id": "foxglade",
+          "name": "Foxglade",
+          "range": 7
+        },
+        {
+          "id": "greenhollow",
+          "name": "Greenhollow",
+          "range": 8
+        },
+        {
+          "id": "hartwhistle",
+          "name": "Hartwhistle",
+          "range": 9
+        },
+        {
+          "id": "hazelrun",
+          "name": "Hazelrun",
+          "range": 10
+        },
+        {
+          "id": "lichenstep",
+          "name": "Lichenstep",
+          "range": 11
+        },
+        {
+          "id": "mossbrook",
+          "name": "Mossbrook",
+          "range": 12
+        },
+        {
+          "id": "nightbirch",
+          "name": "Nightbirch",
+          "range": 13
+        },
+        {
+          "id": "oakhallow",
+          "name": "Oakhallow",
+          "range": 14
+        },
+        {
+          "id": "quillbrook",
+          "name": "Quillbrook",
+          "range": 15
+        },
+        {
+          "id": "rowanmere",
+          "name": "Rowanmere",
+          "range": 16
+        },
+        {
+          "id": "sedgewalk",
+          "name": "Sedgewalk",
+          "range": 17
+        },
+        {
+          "id": "thornvale",
+          "name": "Thornvale",
+          "range": 18
+        },
+        {
+          "id": "willowstep",
+          "name": "Willowstep",
+          "range": 19
+        },
+        {
+          "id": "yewmantle",
+          "name": "Yewmantle",
+          "range": 20
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.person.woodElf.masculine",
+      "name": "Wood Elf names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.woodElf"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.woodElf.given.masculine",
+            "table.personName.woodElf.kin"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.woodElf.feminine",
+      "name": "Wood Elf names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.woodElf"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.woodElf.given.feminine", "table.personName.woodElf.kin"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.woodElf.neutral",
+      "name": "Wood Elf names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.woodElf"
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.woodElf.given.neutral", "table.personName.woodElf.kin"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

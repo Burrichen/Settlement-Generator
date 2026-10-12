@@ -294,19 +294,19 @@ fn incremental_generation_one_stage_at_a_time() {
     set_manual(&mut app, GenerationPresentation::Incremental);
     key(&mut app, KeyCode::Enter);
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 1 OF 13"), "{screen}");
+    assert!(screen.contains("STAGE 1 OF 14"), "{screen}");
     assert!(screen.contains("Manual · Incremental"));
     // Next is refused until the stage is resolved.
     key(&mut app, KeyCode::Char('n'));
     assert!(text(&mut app).contains("must be rolled or chosen"));
     key(&mut app, KeyCode::Enter); // Kurovia
     key(&mut app, KeyCode::Char('n'));
-    assert!(text(&mut app).contains("STAGE 2 OF 13"));
+    assert!(text(&mut app).contains("STAGE 2 OF 14"));
     for stage in 2..=10 {
         if stage == 10 {
             // Economy follows Age.
             let screen = text(&mut app);
-            assert!(screen.contains("STAGE 10 OF 13"), "{screen}");
+            assert!(screen.contains("STAGE 10 OF 14"), "{screen}");
             assert!(screen.contains("Economy"), "{screen}");
         }
         if stage == 3 {
@@ -325,20 +325,34 @@ fn incremental_generation_one_stage_at_a_time() {
     // always a group, so Representation is passed over and Authority Size
     // comes next.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 11 OF 13"), "{screen}");
+    assert!(screen.contains("STAGE 11 OF 14"), "{screen}");
     assert!(screen.contains("Popular Assembly"), "{screen}");
     key(&mut app, KeyCode::Enter);
     key(&mut app, KeyCode::Char('n'));
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 13 OF 13"), "{screen}");
+    assert!(screen.contains("STAGE 13 OF 14"), "{screen}");
     assert!(screen.contains("Authority Size"), "{screen}");
     assert!(!screen.contains("Representation"), "skipped: {screen}");
     key(&mut app, KeyCode::Char('r'));
     assert!(text(&mut app).contains("Rolled"));
     key(&mut app, KeyCode::Char('n'));
+    // Authority Figures: generate them all.
+    let screen = text(&mut app);
+    assert!(screen.contains("STAGE 14 OF 14"), "{screen}");
+    assert!(screen.contains("generate figures"), "{screen}");
+    key(&mut app, KeyCode::Char('r'));
+    let screen = text_at(&mut app, 140, 80);
+    // Every Kurovia species has a name table: no unnamed figures.
+    assert!(!screen.contains("Figure 1"), "{screen}");
+    assert!(!screen.contains("No name table"), "{screen}");
+    assert!(screen.contains(" ↔ "), "{screen}");
+    assert!(screen.contains("Disposition: "), "{screen}");
+    assert!(screen.contains("RELATIONSHIPS"), "{screen}");
+    key(&mut app, KeyCode::Char('n'));
     let screen = text(&mut app);
     assert!(screen.contains("Local Council"), "{screen}");
     assert!(screen.contains("Representatives"), "{screen}");
+    assert!(screen.contains("Not saved yet"), "{screen}");
     assert!(text(&mut app).contains("Not saved yet"));
 }
 
@@ -424,6 +438,94 @@ fn view_folds_authority_size_into_authority() {
     assert!(!screen.contains("REPRESENTATION"), "{screen}");
     assert!(!screen.contains("AUTHORITY SIZE"), "{screen}");
     assert!(!screen.contains("Not applicable"), "{screen}");
+}
+
+#[test]
+fn one_table_edits_authority_figures_through_the_picker() {
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a')); // roll everything, figures included
+    key(&mut app, KeyCode::End); // Authority Figures is the last row
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Authority Figure"), "{screen}");
+
+    // Type a name for the first figure.
+    key(&mut app, KeyCode::Enter);
+    assert!(text_at(&mut app, 140, 60).contains("Change an Authority Figure"));
+    key(&mut app, KeyCode::Enter); // "Figure 1 · Type a name"
+    type_text(&mut app, "Mila Varen");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Mila Varen"), "{screen}");
+
+    // Choose her species: the picker lists only the Kurovia species.
+    key(&mut app, KeyCode::Enter);
+    // Items: type name, roll name (she has a name now), then the fields.
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Choose Species"), "{screen}");
+    assert!(
+        screen.contains("Firbolg") && screen.contains("Yuan-Ti"),
+        "{screen}"
+    );
+    keys(&mut app, &[KeyCode::Home, KeyCode::Enter]); // Human
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Human •"), "{screen}");
+    // A typed name stands when the species changes.
+    assert!(screen.contains("Mila Varen"), "{screen}");
+}
+
+#[test]
+fn a_figures_given_name_is_chosen_from_its_species_pool() {
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a'));
+    key(&mut app, KeyCode::End); // Authority Figures
+    key(&mut app, KeyCode::Enter);
+    // Type a name, Roll a name, then the parts of the generated name.
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("· Given name"), "{screen}");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Choose Given name"), "{screen}");
+    keys(&mut app, &[KeyCode::Home, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(!screen.contains("Choose Given name"), "{screen}");
+    assert!(!screen.contains("error"), "{screen}");
+}
+
+#[test]
+fn a_long_completed_settlement_scrolls_and_keeps_its_actions() {
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a'));
+    // The largest group: six figures and fifteen relationships.
+    key(&mut app, KeyCode::Home);
+    for _ in 0..10 {
+        key(&mut app, KeyCode::Down);
+    }
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Home, KeyCode::Enter]); // Local Council
+    key(&mut app, KeyCode::Down); // Authority Size
+    keys(&mut app, &[KeyCode::Enter, KeyCode::End, KeyCode::Enter]); // 6
+    key(&mut app, KeyCode::Down); // Authority Figures (invalidated)
+    key(&mut app, KeyCode::Char('r'));
+    key(&mut app, KeyCode::Char('f'));
+    let screen = text_at(&mut app, 100, 40);
+    assert!(screen.contains("Not saved yet"), "{screen}");
+    assert!(screen.contains("Re-roll"), "{screen}");
+    assert!(screen.contains("scroll the settlement"), "{screen}");
+    assert!(!screen.contains("RELATIONSHIPS"), "{screen}");
+    key(&mut app, KeyCode::End);
+    let screen = text_at(&mut app, 100, 40);
+    assert!(screen.contains("RELATIONSHIPS"), "{screen}");
+    assert!(screen.contains("Re-roll"), "actions stay in view: {screen}");
 }
 
 #[test]

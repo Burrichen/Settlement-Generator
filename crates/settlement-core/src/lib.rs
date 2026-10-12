@@ -12,6 +12,7 @@ pub mod db;
 pub mod dice;
 pub mod editor;
 pub mod engine;
+pub mod figures;
 pub mod ids;
 pub mod layers;
 mod layout;

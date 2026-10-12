@@ -40,6 +40,8 @@ pub struct SavedScreen {
     detail: Option<SavedSettlementView>,
     /// Focus is on the actions (Right) rather than the list.
     in_actions: bool,
+    /// How far the selected settlement's details are scrolled.
+    detail_scroll: u16,
     action: usize,
     error: Option<String>,
     modal: Option<Modal>,
@@ -52,6 +54,7 @@ impl SavedScreen {
             state: RowsState::default(),
             detail: None,
             in_actions: false,
+            detail_scroll: 0,
             action: 0,
             error: None,
             modal: None,
@@ -157,7 +160,7 @@ impl SavedScreen {
         Nav::Stay
     }
 
-    fn render_detail(&self, f: &mut Frame, area: Rect, ctx: &Ctx) {
+    fn render_detail(&mut self, f: &mut Frame, area: Rect, ctx: &Ctx) {
         let s = &ctx.styles;
         let Some(d) = &self.detail else {
             f.render_widget(
@@ -235,6 +238,7 @@ impl SavedScreen {
                 tags: ctx.settings.tag_view.then(|| st.tags.clone()),
                 sub_stage: st.sub_stage,
                 skipped: st.skipped,
+                figures: st.figures.clone(),
             })
             .collect();
         lines.extend(sheet_lines(&rows, s));
@@ -243,7 +247,16 @@ impl SavedScreen {
             "A saved snapshot: later changes to tables do not alter it.",
             s.dim(),
         ));
-        f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), area);
+        // Long settlements (e.g. many Authority Figures) scroll with ↑↓ once
+        // the actions are focused.
+        let overflow = (lines.len() as u16).saturating_sub(area.height);
+        self.detail_scroll = self.detail_scroll.min(overflow);
+        f.render_widget(
+            Paragraph::new(lines)
+                .wrap(Wrap { trim: false })
+                .scroll((self.detail_scroll, 0)),
+            area,
+        );
     }
 }
 
@@ -331,6 +344,8 @@ impl Screen for SavedScreen {
                 }
                 KeyCode::Left if self.action > 0 => self.action -= 1,
                 KeyCode::Left | KeyCode::Esc | KeyCode::Backspace => self.in_actions = false,
+                KeyCode::Up => self.detail_scroll = self.detail_scroll.saturating_sub(1),
+                KeyCode::Down => self.detail_scroll = self.detail_scroll.saturating_add(1),
                 KeyCode::Enter | KeyCode::Char(' ') => {
                     if let Some(&a) = actions.get(self.action) {
                         return self.run(a, ctx);
@@ -344,6 +359,7 @@ impl Screen for SavedScreen {
         let rows = self.rows(ctx);
         if self.state.handle_nav(&rows, key) {
             self.error = None;
+            self.detail_scroll = 0;
             self.load_detail(ctx);
             return Nav::Stay;
         }
@@ -360,7 +376,12 @@ impl Screen for SavedScreen {
 
     fn hints(&self) -> Vec<(&'static str, &'static str)> {
         if self.in_actions {
-            vec![("←→", "action"), ("Enter", "do"), ("Esc", "back to list")]
+            vec![
+                ("←→", "action"),
+                ("↑↓", "scroll"),
+                ("Enter", "do"),
+                ("Esc", "back to list"),
+            ]
         } else {
             vec![("↑↓", "settlement"), ("→", "actions"), ("Esc", "back")]
         }

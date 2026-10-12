@@ -39,8 +39,8 @@ fn generation_round_trip_through_the_service() {
     assert_eq!(revised.summary.name, "Riverside II");
     assert_eq!(
         revised.stages.len(),
-        13,
-        "ten table stages, Name and the two Authority sub-stages"
+        14,
+        "ten table stages, Name, the two Authority sub-stages and Authority Figures"
     );
 }
 

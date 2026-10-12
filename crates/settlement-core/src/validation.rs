@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::content::{
     CONTENT_SCHEMA_VERSION, Condition, ContentSet, ContentStatus, Effect, FaceRange, SelectionMode,
-    Table,
+    StepTarget, Table,
 };
 use crate::dice::{DiceExpr, DiceParseError};
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId, is_valid_id};
@@ -261,6 +261,12 @@ pub enum IssueKind {
     },
     /// A join replacement with nothing to replace.
     NamingReplacementEmpty,
+    /// A naming method whose `parts` list a different number of parts than
+    /// it has components.
+    NamingPartsLength {
+        components: usize,
+        parts: usize,
+    },
 }
 
 impl fmt::Display for IssueKind {
@@ -363,6 +369,10 @@ impl fmt::Display for IssueKind {
             IssueKind::NamingReplacementEmpty => {
                 f.write_str("naming replacement has an empty \"from\" text")
             }
+            IssueKind::NamingPartsLength { components, parts } => write!(
+                f,
+                "naming method describes {parts} part(s) but has {components} component(s)"
+            ),
             IssueKind::NamingExceptionLength {
                 components,
                 results,
@@ -543,6 +553,26 @@ impl<'a> Validator<'a> {
                 );
             }
         }
+        // The Authority Figures stage rolls its fields and relationships
+        // on fixed tables; each must exist.
+        for (step, _) in content
+            .sequence
+            .iter()
+            .enumerate()
+            .filter(|(_, s)| s.target == StepTarget::AuthorityFigures)
+        {
+            for table in crate::figures::required_tables() {
+                if !self.tables.contains_key(&table) {
+                    self.error(
+                        Location {
+                            sequence_step: Some(step),
+                            ..Default::default()
+                        },
+                        IssueKind::MissingTable { table },
+                    );
+                }
+            }
+        }
         self.check_routing_cycles();
         self.check_redirect_cycles();
     }
@@ -658,6 +688,15 @@ impl<'a> Validator<'a> {
                     if table.is_none() {
                         self.error(m_at.clone(), IssueKind::MissingTable { table: id.clone() });
                     }
+                }
+                if !method.parts.is_empty() && method.parts.len() != components.len() {
+                    self.error(
+                        m_at.clone(),
+                        IssueKind::NamingPartsLength {
+                            components: components.len(),
+                            parts: method.parts.len(),
+                        },
+                    );
                 }
                 for exception in &method.exceptions {
                     if exception.results.len() != components.len() {

@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.darkElf.method",
+      "name": "Dark Elf Naming Method",
+      "description": "How a Dark Elf Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + house name",
+          "range": [1, 4]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.darkElf.given.masculine",
+      "name": "Dark Elf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "azrevic",
+          "name": "Azrevic",
+          "range": 1
+        },
+        {
+          "id": "calvrith",
+          "name": "Calvrith",
+          "range": 2
+        },
+        {
+          "id": "daelzar",
+          "name": "Daelzar",
+          "range": 3
+        },
+        {
+          "id": "druvain",
+          "name": "Druvain",
+          "range": 4
+        },
+        {
+          "id": "esrith",
+          "name": "Esrith",
+          "range": 5
+        },
+        {
+          "id": "ghauntor",
+          "name": "Ghauntor",
+          "range": 6
+        },
+        {
+          "id": "ilvraz",
+          "name": "Ilvraz",
+          "range": 7
+        },
+        {
+          "id": "jhaedris",
+          "name": "Jhaedris",
+          "range": 8
+        },
+        {
+          "id": "kolvarr",
+          "name": "Kolvarr",
+          "range": 9
+        },
+        {
+          "id": "lhazrin",
+          "name": "Lhazrin",
+          "range": 10
+        },
+        {
+          "id": "mazrel",
+          "name": "Mazrel",
+          "range": 11
+        },
+        {
+          "id": "nhaerin",
+          "name": "Nhaerin",
+          "range": 12
+        },
+        {
+          "id": "orvexis",
+          "name": "Orvexis",
+          "range": 13
+        },
+        {
+          "id": "phaedril",
+          "name": "Phaedril",
+          "range": 14
+        },
+        {
+          "id": "rizzhar",
+          "name": "Rizzhar",
+          "range": 15
+        },
+        {
+          "id": "sezrak",
+          "name": "Sezrak",
+          "range": 16
+        },
+        {
+          "id": "tavrin",
+          "name": "Tavrin",
+          "range": 17
+        },
+        {
+          "id": "ulvaris",
+          "name": "Ulvaris",
+          "range": 18
+        },
+        {
+          "id": "vhaelon",
+          "name": "Vhaelon",
+          "range": 19
+        },
+        {
+          "id": "zhaldrin",
+          "name": "Zhaldrin",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.darkElf.given.feminine",
+      "name": "Dark Elf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aszhira",
+          "name": "Aszhira",
+          "range": 1
+        },
+        {
+          "id": "charvessa",
+          "name": "Charvessa",
+          "range": 2
+        },
+        {
+          "id": "dhessira",
+          "name": "Dhessira",
+          "range": 3
+        },
+        {
+          "id": "elzhara",
+          "name": "Elzhara",
+          "range": 4
+        },
+        {
+          "id": "ghylvia",
+          "name": "Ghylvia",
+          "range": 5
+        },
+        {
+          "id": "ilyrrae",
+          "name": "Ilyrrae",
+          "range": 6
+        },
+        {
+          "id": "jhezra",
+          "name": "Jhezra",
+          "range": 7
+        },
+        {
+          "id": "khavira",
+          "name": "Khavira",
+          "range": 8
+        },
+        {
+          "id": "lirzhae",
+          "name": "Lirzhae",
+          "range": 9
+        },
+        {
+          "id": "mhaelva",
+          "name": "Mhaelva",
+          "range": 10
+        },
+        {
+          "id": "nhezzra",
+          "name": "Nhezzra",
+          "range": 11
+        },
+        {
+          "id": "olvirra",
+          "name": "Olvirra",
+          "range": 12
+        },
+        {
+          "id": "phyrelle",
+          "name": "Phyrelle",
+          "range": 13
+        },
+        {
+          "id": "quavessa",
+          "name": "Quavessa",
+          "range": 14
+        },
+        {
+          "id": "rhezzia",
+          "name": "Rhezzia",
+          "range": 15
+        },
+        {
+          "id": "shyvra",
+          "name": "Shyvra",
+          "range": 16
+        },
+        {
+          "id": "tryzzae",
+          "name": "Tryzzae",
+          "range": 17
+        },
+        {
+          "id": "uzhrae",
+          "name": "Uzhrae",
+          "range": 18
+        },
+        {
+          "id": "vhessana",
+          "name": "Vhessana",
+          "range": 19
+        },
+        {
+          "id": "zessyra",
+          "name": "Zessyra",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.darkElf.given.neutral",
+      "name": "Dark Elf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "azrel",
+          "name": "Azrel",
+          "range": 1
+        },
+        {
+          "id": "caelzir",
+          "name": "Caelzir",
+          "range": 2
+        },
+        {
+          "id": "dhyrr",
+          "name": "Dhyrr",
+          "range": 3
+        },
+        {
+          "id": "ezrin",
+          "name": "Ezrin",
+          "range": 4
+        },
+        {
+          "id": "ghel",
+          "name": "Ghel",
+          "range": 5
+        },
+        {
+          "id": "ilzhar",
+          "name": "Ilzhar",
+          "range": 6
+        },
+        {
+          "id": "jhyr",
+          "name": "Jhyr",
+          "range": 7
+        },
+        {
+          "id": "kezrin",
+          "name": "Kezrin",
+          "range": 8
+        },
+        {
+          "id": "lhyss",
+          "name": "Lhyss",
+          "range": 9
+        },
+        {
+          "id": "mzar",
+          "name": "Mzar",
+          "range": 10
+        },
+        {
+          "id": "nhyr",
+          "name": "Nhyr",
+          "range": 11
+        },
+        {
+          "id": "ozzin",
+          "name": "Ozzin",
+          "range": 12
+        },
+        {
+          "id": "phyr",
+          "name": "Phyr",
+          "range": 13
+        },
+        {
+          "id": "qhel",
+          "name": "Qhel",
+          "range": 14
+        },
+        {
+          "id": "rhyss",
+          "name": "Rhyss",
+          "range": 15
+        },
+        {
+          "id": "szar",
+          "name": "Szar",
+          "range": 16
+        },
+        {
+          "id": "tzel",
+          "name": "Tzel",
+          "range": 17
+        },
+        {
+          "id": "vrae",
+          "name": "Vrae",
+          "range": 18
+        },
+        {
+          "id": "xhyl",
+          "name": "Xhyl",
+          "range": 19
+        },
+        {
+          "id": "zhyss",
+          "name": "Zhyss",
+          "range": 20
+        }
+      ]
+    },
+    {
+      "id": "table.personName.darkElf.house",
+      "name": "Dark Elf House names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aelvrith",
+          "name": "Aelvrith",
+          "range": 1
+        },
+        {
+          "id": "bhazrae",
+          "name": "Bhazrae",
+          "range": 2
+        },
+        {
+          "id": "chrysvel",
+          "name": "Chrysvel",
+          "range": 3
+        },
+        {
+          "id": "dhuurn",
+          "name": "Dhuurn",
+          "range": 4
+        },
+        {
+          "id": "elzaryn",
+          "name": "Elzaryn",
+          "range": 5
+        },
+        {
+          "id": "ghelvrae",
+          "name": "Ghelvrae",
+          "range": 6
+        },
+        {
+          "id": "illzhyr",
+          "name": "Illzhyr",
+          "range": 7
+        },
+        {
+          "id": "jhalvarr",
+          "name": "Jhalvarr",
+          "range": 8
+        },
+        {
+          "id": "kharzith",
+          "name": "Kharzith",
+          "range": 9
+        },
+        {
+          "id": "lhurvain",
+          "name": "Lhurvain",
+          "range": 10
+        },
+        {
+          "id": "mhezzarin",
+          "name": "Mhezzarin",
+          "range": 11
+        },
+        {
+          "id": "nhaevryl",
+          "name": "Nhaevryl",
+          "range": 12
+        },
+        {
+          "id": "olvazhar",
+          "name": "Olvazhar",
+          "range": 13
+        },
+        {
+          "id": "phyrrith",
+          "name": "Phyrrith",
+          "range": 14
+        },
+        {
+          "id": "quarzael",
+          "name": "Quarzael",
+          "range": 15
+        },
+        {
+          "id": "rhyvenn",
+          "name": "Rhyvenn",
+          "range": 16
+        },
+        {
+          "id": "szoldarr",
+          "name": "Szoldarr",
+          "range": 17
+        },
+        {
+          "id": "tlazhyr",
+          "name": "Tlazhyr",
+          "range": 18
+        },
+        {
+          "id": "vhurnoth",
+          "name": "Vhurnoth",
+          "range": 19
+        },
+        {
+          "id": "zhaurvex",
+          "name": "Zhaurvex",
+          "range": 20
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.person.darkElf.masculine",
+      "name": "Dark Elf names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.darkElf"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.masculine",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.darkElf.feminine",
+      "name": "Dark Elf names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.darkElf"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.feminine",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.darkElf.neutral",
+      "name": "Dark Elf names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.darkElf"
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.neutral",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
-import type { StageView } from "../api";
+import type { GenerationResponse, StageView } from "../api";
+import { FiguresControls } from "./AuthorityFigures";
 import { OutcomeLine, TagList, applies } from "./generation";
 import { NameGridRow } from "./NameStage";
 
@@ -9,6 +10,7 @@ export function StageGrid({
   onRoll,
   onChoose,
   onCustomName,
+  onAct,
 }: {
   stages: StageView[];
   busy: boolean;
@@ -16,6 +18,8 @@ export function StageGrid({
   onChoose: (stage: number, result: string) => void;
   /** Types a name on the name stage. */
   onCustomName: (stage: number, name: string) => void;
+  /** Runs a figure action (Authority Figures stage). */
+  onAct: (call: Promise<GenerationResponse>) => void;
 }) {
   return (
     <table className="stage-table-grid">
@@ -27,28 +31,41 @@ export function StageGrid({
         </tr>
       </thead>
       <tbody>
-        {stages
-          .filter(applies)
-          .map((stage) =>
-            stage.naming ? (
-              <NameGridRow
-                key={stage.index}
-                stage={stage}
-                busy={busy}
-                onRoll={() => onRoll(stage.index)}
-                onChoose={(r) => onChoose(stage.index, r)}
-                onCustom={(name) => onCustomName(stage.index, name)}
-              />
-            ) : (
-              <StageGridRow
-                key={stage.index}
-                stage={stage}
-                busy={busy}
-                onRoll={() => onRoll(stage.index)}
-                onChoose={(r) => onChoose(stage.index, r)}
-              />
-            ),
-          )}
+        {stages.filter(applies).map((stage) =>
+          stage.figures ? (
+            <tr key={stage.index} className={`stage-row status-${stage.status}`}>
+              <th scope="row">
+                <span className="stage-row-name">{stage.stage.name}</span>
+                {stage.result && <span className="stage-row-table">{stage.result.name}</span>}
+              </th>
+              <td colSpan={2}>
+                <FiguresControls
+                  stage={stage}
+                  busy={busy}
+                  onRoll={() => onRoll(stage.index)}
+                  onAct={onAct}
+                />
+              </td>
+            </tr>
+          ) : stage.naming ? (
+            <NameGridRow
+              key={stage.index}
+              stage={stage}
+              busy={busy}
+              onRoll={() => onRoll(stage.index)}
+              onChoose={(r) => onChoose(stage.index, r)}
+              onCustom={(name) => onCustomName(stage.index, name)}
+            />
+          ) : (
+            <StageGridRow
+              key={stage.index}
+              stage={stage}
+              busy={busy}
+              onRoll={() => onRoll(stage.index)}
+              onChoose={(r) => onChoose(stage.index, r)}
+            />
+          ),
+        )}
       </tbody>
     </table>
   );

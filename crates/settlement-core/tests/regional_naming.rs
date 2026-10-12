@@ -415,7 +415,13 @@ fn saved_regional_names_survive_later_content_changes() {
 #[test]
 fn exactly_eight_kurovian_schemes_cover_every_kurovian_region() {
     let c = content();
-    let mut ids: Vec<&str> = c.naming_schemes.iter().map(|s| s.id.as_str()).collect();
+    // Settlement schemes only: person schemes name Authority Figures.
+    let mut ids: Vec<&str> = c
+        .naming_schemes
+        .iter()
+        .filter(|s| s.subject == settlement_core::naming::NamingSubject::Settlement)
+        .map(|s| s.id.as_str())
+        .collect();
     ids.sort();
     assert_eq!(
         ids,
@@ -447,10 +453,12 @@ fn exactly_eight_kurovian_schemes_cover_every_kurovian_region() {
             region.name
         );
     }
-    // No generic scheme exists yet: other Setting Profiles are not named.
+    // No generic settlement scheme exists yet: other Setting Profiles are
+    // not named.
     assert!(
         c.naming_schemes
             .iter()
+            .filter(|s| s.subject == settlement_core::naming::NamingSubject::Settlement)
             .all(|s| s.id.as_str().starts_with("naming.kurovia."))
     );
 }

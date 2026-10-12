@@ -85,6 +85,71 @@ Every `.json` file under `content/`, including subfolders, is merged in path
 order at build time. A new region gets its own file, for example
 `content/kurovia/naming/halingo.json`. No registry or code change is needed.
 
+## Person naming
+
+A naming scheme may name a person instead of the settlement:
+`"subject": "person"` (the default is `"settlement"`). Person schemes are used
+for Authority Figures. The scheme is chosen by the first `when` condition
+that holds over the settlement's tags **plus the figure's own tags**, such
+as `species.human` and `gender.woman`, so names route by species and, where
+the content wants, by gender. They never apply to the settlement's Name
+stage, and settlement schemes never name a person.
+
+Person naming uses the same methods, component tables, join rules and dice
+as settlement naming.
+
+### Species names (Authority Figures)
+
+Authority Figure names route **by species first**. There is no universal
+name table:
+
+```
+Species → Gender (where the species uses it) → Given name
+        → Family / clan / house / lineage / byname (where the species uses one)
+        → Final name
+```
+
+- **Temporary content.** The species are the current, temporary Kurovia list
+  (see [CONTENT.md](CONTENT.md)), and so are their names. All of them are
+  **original** and editable. Species can be added or removed without any
+  schema change: add a file with tables and schemes, or delete one.
+- **Files.** `content/people/naming/<species>.json`, one per species. For a
+  species key `<key>` (the `species.<key>` tag), its tables are
+  `table.personName.<key>.method`, its given-name pools and its second-name
+  table, and its schemes are `naming.person.<key>…`.
+- **Gendered pools.** Human, High Elf, Wood Elf, Dark Elf, Dragonborn and
+  Dwarf have masculine, feminine and neutral given-name pools (20 names each,
+  1d20). Three schemes per species route them: `gender.man` → masculine,
+  `gender.woman` → feminine, and a last, species-only scheme → neutral. The
+  neutral pool also names any gender added later, so a new gender never falls
+  through to another species.
+- **One pool.** Eladrin, Yuan-Ti, Firbolg and the four Genasi use one
+  given-name pool for every gender: 50 names on 1d100, two faces each.
+- **Second names.** Human family names, High Elf and Dark Elf house names,
+  Wood Elf kin names, Dwarf and Dragonborn clan names, Eladrin house names,
+  Yuan-Ti lineage names, and Earth and Fire Genasi bynames: 20 each, on 1d20.
+  Firbolgs and Air and Water Genasi go by a single name.
+- **Patterns.** Each species has its own method table (1d4). Most have one
+  pattern. Dragonborn use given name + clan name on 1–3, and the clan name
+  first (formal address) on 4. A method's optional `parts`
+  (`[{ "id": "given", "label": "Given name" }, …]`, one per component)
+  name what each component is.
+- **What is saved.** A generated name stores the full name, the figure's
+  species at the time, the scheme and method, each named part's result ID
+  (e.g. `given`: `mila`, `family`: `varen`) and every roll with its dice.
+  Saved settlements keep it exactly, whatever later edits do to the tables.
+- **Manual modes.** A name can be rolled again, typed, or put together part
+  by part: each part offers only its own species (and gender) table. God Mode
+  lifts result eligibility within that table; it never merges species pools.
+  Changing a figure's species or gender routes its name afresh (a typed name
+  stands).
+- **No name table.** A species with no scheme (for example one a user adds)
+  is never given another species' names: the figure shows "No name table
+  configured for <species>." and can be named by hand.
+- **Later layers.** Kurovian cultural or regional naming can be added on top
+  later, as person schemes whose `when` also checks a region tag, placed
+  before the species scheme. No regional modifiers exist yet.
+
 ## Format
 
 A naming file is an ordinary partial content set. Its `tables` are normal

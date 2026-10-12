@@ -12,6 +12,7 @@ use time::OffsetDateTime;
 
 use crate::authority::AuthorityRepresentatives;
 use crate::engine::{GenerationEvent, GenerationLog, Named};
+use crate::figures::AuthorityFigures;
 use crate::ids::{ResultId, TableId, TagId};
 use crate::naming::NameRecord;
 
@@ -86,6 +87,10 @@ pub struct SnapshotStage {
     /// [`SequenceStep::sub_stage`](crate::content::SequenceStep::sub_stage)).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub sub_stage: bool,
+    /// The Authority Figures stage's record (only on that stage): every
+    /// figure and relationship with its rolls, as generated.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub figures: Option<AuthorityFigures>,
     /// The name stage's record (only on the name stage).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<NameRecord>,
@@ -102,6 +107,11 @@ impl From<GenerationLog> for SettlementSnapshot {
 }
 
 impl SettlementSnapshot {
+    /// The Authority Figures and their relationships, as generated.
+    pub fn authority_figures(&self) -> Option<&AuthorityFigures> {
+        self.stages.iter().find_map(|s| s.figures.as_ref())
+    }
+
     /// Who represents the Authority: as stored, or, for a snapshot saved
     /// without it, as recorded in its log. Never re-read from content.
     pub fn authority_representatives(&self) -> Option<AuthorityRepresentatives> {
@@ -130,6 +140,7 @@ impl SettlementSnapshot {
                         tags: r.tags.clone(),
                         skipped: false,
                         sub_stage: false,
+                        figures: None,
                         name: None,
                     })
                 }

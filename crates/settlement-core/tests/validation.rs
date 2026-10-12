@@ -828,3 +828,41 @@ fn a_sub_stage_needs_a_stage_before_it() {
     let again = ContentSet::from_json(&parsed.to_json_pretty()).unwrap();
     assert_eq!(again.sequence, parsed.sequence);
 }
+
+#[test]
+fn the_authority_figures_stage_needs_its_tables() {
+    let mut c = base();
+    c["sequence"] = json!(["table.a", { "authority_figures": true, "name": "Authority Figures" }]);
+    let report = validate(&content(c));
+    for table in settlement_core::figures::required_tables() {
+        assert_has(&report, Severity::Error, IssueKind::MissingTable { table });
+    }
+    let bundled = settlement_core::bundled::bundled_content().unwrap();
+    assert!(!validate(&bundled).has_errors());
+}
+
+#[test]
+fn naming_part_labels_must_match_the_components() {
+    let mut c = base();
+    c["naming_schemes"] = json!([{
+        "id": "naming.person.x", "name": "X names", "subject": "person",
+        "when": { "has_tag": "tag.x" }, "method_table": "table.a",
+        "methods": [
+            { "result": "low", "components": ["table.a"], "join": { "style": "compound" },
+              "parts": [{ "id": "given", "label": "Given name" }, { "id": "family", "label": "Family name" }] },
+            { "result": "mid", "components": ["table.a"], "join": { "style": "compound" } },
+            { "result": "high", "components": ["table.a"], "join": { "style": "compound" },
+              "parts": [{ "id": "given", "label": "Given name" }] }
+        ]
+    }]);
+    let report = validate(&content(c));
+    assert_has(
+        &report,
+        Severity::Error,
+        IssueKind::NamingPartsLength {
+            components: 1,
+            parts: 2,
+        },
+    );
+    assert_eq!(report.errors().count(), 1, "{report}");
+}

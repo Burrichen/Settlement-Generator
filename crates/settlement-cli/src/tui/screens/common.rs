@@ -4,6 +4,7 @@ use ratatui::style::Modifier;
 use ratatui::text::{Line, Span};
 use settlement_core::editor::Coverage;
 use settlement_core::engine::Named;
+use settlement_core::figures::{AuthorityFigure, AuthorityFigures, FigureName};
 use settlement_core::ids::TagId;
 use settlement_core::session::{StageOutcome, StageStatus, StageView};
 use settlement_core::validation::{Severity, ValidationIssue};
@@ -20,6 +21,89 @@ pub struct SheetRow {
     pub sub_stage: bool,
     /// Did not apply. A skipped sub-stage is left out.
     pub skipped: bool,
+    /// The Authority Figures, on that stage's row.
+    pub figures: Option<AuthorityFigures>,
+}
+
+/// One field's result, e.g. a figure's species.
+fn field(figure: &AuthorityFigure, id: &str) -> String {
+    figure
+        .field(id)
+        .map_or_else(|| "—".to_owned(), |r| r.result.name.clone())
+}
+
+/// The Authority Figures and their relationships, compactly: the name in
+/// bold, species • gender • age, then the other details indented.
+pub fn figure_lines(
+    record: &AuthorityFigures,
+    styles: &Styles,
+    indent: usize,
+    show_tags: bool,
+) -> Vec<Line<'static>> {
+    let pad = " ".repeat(indent);
+    let mut lines = Vec::new();
+    for figure in &record.figures {
+        let heading = match &figure.role {
+            Some(role) => format!("{} {}", role.name, figure.label),
+            None => figure.label.clone(),
+        };
+        lines.push(Line::from(vec![
+            Span::raw(pad.clone()),
+            Span::styled(heading, styles.title().add_modifier(Modifier::BOLD)),
+        ]));
+        if let FigureName::Missing { reason } = &figure.name {
+            lines.push(Line::styled(format!("{pad}  {reason}"), styles.dim()));
+        }
+        lines.push(Line::styled(
+            format!(
+                "{pad}  {} • {} • {}",
+                field(figure, "species"),
+                field(figure, "gender"),
+                field(figure, "age")
+            ),
+            styles.dim(),
+        ));
+        for (id, label) in [
+            ("disposition", "Disposition"),
+            ("motive", "Motive"),
+            ("reputation", "Reputation"),
+            ("flaw", "Flaw"),
+        ] {
+            lines.push(Line::from(vec![
+                Span::styled(format!("{pad}  {label}: "), styles.dim()),
+                Span::raw(field(figure, id)),
+            ]));
+        }
+        // Name provenance, like tags, only with Tag View.
+        if show_tags && let FigureName::Generated { scheme, parts, .. } = &figure.name {
+            let parts: String = parts
+                .iter()
+                .map(|p| format!(" · {}: {}", p.label, p.result.name))
+                .collect();
+            lines.push(Line::styled(
+                format!("{pad}  named from {}{parts}", scheme.name),
+                styles.dim(),
+            ));
+        }
+        if show_tags && !figure.tags.is_empty() {
+            lines.push(tag_line(&figure.tags, styles, indent + 2));
+        }
+    }
+    if !record.relationships.is_empty() {
+        lines.push(Line::styled(format!("{pad}RELATIONSHIPS"), styles.dim()));
+        let label = |id| {
+            record
+                .figure(id)
+                .map_or_else(|| id.to_string(), |f| f.label.clone())
+        };
+        for r in &record.relationships {
+            lines.push(Line::from(vec![
+                Span::raw(format!("{pad}  {} ↔ {} — ", label(&r.a), label(&r.b))),
+                Span::styled(r.roll.result.name.clone(), styles.title()),
+            ]));
+        }
+    }
+    lines
 }
 
 /// A sub-stage that was skipped does not apply, and is not shown.
@@ -79,6 +163,9 @@ pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
         }
         if let Some(tags) = tags.as_ref().filter(|t| !t.is_empty()) {
             lines.push(tag_line(tags, styles, 18));
+        }
+        if let Some(figures) = &row.figures {
+            lines.extend(figure_lines(figures, styles, 18, row.tags.is_some()));
         }
     }
     lines

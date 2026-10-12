@@ -156,6 +156,90 @@ export interface StageView {
   naming?: NamingView;
   /** Elaborates the stage before it; left out where it does not apply. */
   sub_stage?: boolean;
+  /** Present on the Authority Figures stage only. */
+  figures?: FiguresView;
+}
+
+/** A table roll as recorded (the parts the interface shows). */
+export interface RollRecord {
+  table: Named;
+  dice?: string;
+  selected?: boolean;
+  attempts?: { roll: { total: number } }[];
+  result: Named;
+  tags?: Named[];
+}
+
+export interface FigureField {
+  field: string;
+  roll: RollRecord;
+}
+
+export interface NamePartRecord {
+  id: string;
+  label: string;
+  result: Named;
+}
+
+export type FigureName =
+  | {
+      source: "generated";
+      name: string;
+      species?: Named;
+      scheme: Named;
+      method: Named;
+      parts?: NamePartRecord[];
+      rolls: RollRecord[];
+    }
+  | { source: "custom"; name: string }
+  | { source: "missing"; reason: string };
+
+export interface AuthorityFigure {
+  id: string;
+  /** The name, else "Figure n". */
+  label: string;
+  role?: Named;
+  fields: FigureField[];
+  name: FigureName;
+  /** The figure's own tags; only sent with Tag View. */
+  tags?: Named[];
+  app_version: string;
+}
+
+export interface Relationship {
+  a: string;
+  b: string;
+  roll: RollRecord;
+}
+
+export interface AuthorityFigures {
+  request: { authority: Named; representation: "single" | "group"; size: number };
+  figures: AuthorityFigure[];
+  relationships?: Relationship[];
+  app_version: string;
+}
+
+export interface FigureFieldOptions {
+  field: string;
+  label: string;
+  table: Named;
+  options: ResultOption[];
+}
+
+export interface NamePartOptions {
+  part: number;
+  id: string;
+  label: string;
+  table: Named;
+  options: ResultOption[];
+}
+
+export interface FiguresView {
+  record?: AuthorityFigures;
+  fields: FigureFieldOptions[];
+  relationship_options: ResultOption[];
+  /** Per figure: the parts of its generated name and their results. */
+  name_parts?: NamePartOptions[][];
 }
 
 export type NameSource = "generated" | "custom";
@@ -215,6 +299,31 @@ export const generation = {
   /** Names the settlement with a typed name (the name stage). */
   customName: (stage: number, name: string) =>
     invoke<GenerationResponse>("generation_custom_name", { stage, name }),
+  rollFigureField: (stage: number, figure: number, field: string) =>
+    invoke<GenerationResponse>("generation_roll_figure_field", { stage, figure, field }),
+  chooseFigureField: (stage: number, figure: number, field: string, result: string) =>
+    invoke<GenerationResponse>("generation_choose_figure_field", { stage, figure, field, result }),
+  rollFigureName: (stage: number, figure: number) =>
+    invoke<GenerationResponse>("generation_roll_figure_name", { stage, figure }),
+  chooseFigureNamePart: (stage: number, figure: number, part: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_figure_name_part", {
+      stage,
+      figure,
+      part,
+      result,
+    }),
+  rollFigureNamePart: (stage: number, figure: number, part: number) =>
+    invoke<GenerationResponse>("generation_roll_figure_name_part", { stage, figure, part }),
+  figureName: (stage: number, figure: number, name: string) =>
+    invoke<GenerationResponse>("generation_figure_name", { stage, figure, name }),
+  rollRelationship: (stage: number, relationship: number) =>
+    invoke<GenerationResponse>("generation_roll_relationship", { stage, relationship }),
+  chooseRelationship: (stage: number, relationship: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_relationship", {
+      stage,
+      relationship,
+      result,
+    }),
   advance: () => invoke<GenerationResponse>("generation_advance"),
   back: () => invoke<GenerationResponse>("generation_back"),
   rollRemaining: () => invoke<GenerationResponse>("generation_roll_remaining"),
@@ -242,6 +351,8 @@ export interface SnapshotStage {
   skipped?: boolean;
   /** Elaborates the stage before it; left out where it does not apply. */
   sub_stage?: boolean;
+  /** The Authority Figures stage's record (only on that stage). */
+  figures?: AuthorityFigures;
   /** The name stage's record (only on the name stage). */
   name?: NameRecord;
 }

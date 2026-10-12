@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.airGenasi.method",
+      "name": "Air Genasi Naming Method",
+      "description": "How a Air Genasi Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "given",
+          "name": "Given name only",
+          "range": [1, 4]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.airGenasi.given",
+      "name": "Air Genasi Given Names",
+      "description": "Used for every gender.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "aeli",
+          "name": "Aeli",
+          "range": [1, 2]
+        },
+        {
+          "id": "aero",
+          "name": "Aero",
+          "range": [3, 4]
+        },
+        {
+          "id": "brysa",
+          "name": "Brysa",
+          "range": [5, 6]
+        },
+        {
+          "id": "ciel",
+          "name": "Ciel",
+          "range": [7, 8]
+        },
+        {
+          "id": "cirra",
+          "name": "Cirra",
+          "range": [9, 10]
+        },
+        {
+          "id": "dhal",
+          "name": "Dhal",
+          "range": [11, 12]
+        },
+        {
+          "id": "eolin",
+          "name": "Eolin",
+          "range": [13, 14]
+        },
+        {
+          "id": "faeh",
+          "name": "Faeh",
+          "range": [15, 16]
+        },
+        {
+          "id": "gyst",
+          "name": "Gyst",
+          "range": [17, 18]
+        },
+        {
+          "id": "hala",
+          "name": "Hala",
+          "range": [19, 20]
+        },
+        {
+          "id": "ivi",
+          "name": "Ivi",
+          "range": [21, 22]
+        },
+        {
+          "id": "kiri",
+          "name": "Kiri",
+          "range": [23, 24]
+        },
+        {
+          "id": "lio",
+          "name": "Lio",
+          "range": [25, 26]
+        },
+        {
+          "id": "mistra",
+          "name": "Mistra",
+          "range": [27, 28]
+        },
+        {
+          "id": "nimb",
+          "name": "Nimb",
+          "range": [29, 30]
+        },
+        {
+          "id": "oro",
+          "name": "Oro",
+          "range": [31, 32]
+        },
+        {
+          "id": "pael",
+          "name": "Pael",
+          "range": [33, 34]
+        },
+        {
+          "id": "quiri",
+          "name": "Quiri",
+          "range": [35, 36]
+        },
+        {
+          "id": "ria",
+          "name": "Ria",
+          "range": [37, 38]
+        },
+        {
+          "id": "sef",
+          "name": "Sef",
+          "range": [39, 40]
+        },
+        {
+          "id": "sirro",
+          "name": "Sirro",
+          "range": [41, 42]
+        },
+        {
+          "id": "sylfe",
+          "name": "Sylfe",
+          "range": [43, 44]
+        },
+        {
+          "id": "thyl",
+          "name": "Thyl",
+          "range": [45, 46]
+        },
+        {
+          "id": "uvel",
+          "name": "Uvel",
+          "range": [47, 48]
+        },
+        {
+          "id": "vaya",
+          "name": "Vaya",
+          "range": [49, 50]
+        },
+        {
+          "id": "whis",
+          "name": "Whis",
+          "range": [51, 52]
+        },
+        {
+          "id": "xiri",
+          "name": "Xiri",
+          "range": [53, 54]
+        },
+        {
+          "id": "yeli",
+          "name": "Yeli",
+          "range": [55, 56]
+        },
+        {
+          "id": "zefi",
+          "name": "Zefi",
+          "range": [57, 58]
+        },
+        {
+          "id": "aiya",
+          "name": "Aiya",
+          "range": [59, 60]
+        },
+        {
+          "id": "brio",
+          "name": "Brio",
+          "range": [61, 62]
+        },
+        {
+          "id": "caelo",
+          "name": "Caelo",
+          "range": [63, 64]
+        },
+        {
+          "id": "dreya",
+          "name": "Dreya",
+          "range": [65, 66]
+        },
+        {
+          "id": "eiri",
+          "name": "Eiri",
+          "range": [67, 68]
+        },
+        {
+          "id": "fio",
+          "name": "Fio",
+          "range": [69, 70]
+        },
+        {
+          "id": "hiyo",
+          "name": "Hiyo",
+          "range": [71, 72]
+        },
+        {
+          "id": "ilio",
+          "name": "Ilio",
+          "range": [73, 74]
+        },
+        {
+          "id": "liri",
+          "name": "Liri",
+          "range": [75, 76]
+        },
+        {
+          "id": "nuvo",
+          "name": "Nuvo",
+          "range": [77, 78]
+        },
+        {
+          "id": "peli",
+          "name": "Peli",
+          "range": [79, 80]
+        },
+        {
+          "id": "rasi",
+          "name": "Rasi",
+          "range": [81, 82]
+        },
+        {
+          "id": "sevi",
+          "name": "Sevi",
+          "range": [83, 84]
+        },
+        {
+          "id": "tyri",
+          "name": "Tyri",
+          "range": [85, 86]
+        },
+        {
+          "id": "velo",
+          "name": "Velo",
+          "range": [87, 88]
+        },
+        {
+          "id": "wila",
+          "name": "Wila",
+          "range": [89, 90]
+        },
+        {
+          "id": "yasa",
+          "name": "Yasa",
+          "range": [91, 92]
+        },
+        {
+          "id": "zuri",
+          "name": "Zuri",
+          "range": [93, 94]
+        },
+        {
+          "id": "avi",
+          "name": "Avi",
+          "range": [95, 96]
+        },
+        {
+          "id": "ciro",
+          "name": "Ciro",
+          "range": [97, 98]
+        },
+        {
+          "id": "eyli",
+          "name": "Eyli",
+          "range": [99, 100]
+        }
+      ]
+    }
+  ],
+  "naming_schemes": [
+    {
+      "id": "naming.person.airGenasi",
+      "name": "Air Genasi names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.airGenasi"
+      },
+      "method_table": "table.personName.airGenasi.method",
+      "methods": [
+        {
+          "result": "given",
+          "components": ["table.personName.airGenasi.given"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ],
+      "description": "Air genasi go by a single, light given name."
+    }
+  ]
+}

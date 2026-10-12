@@ -1,4 +1,5 @@
-import type { Named } from "../api";
+import type { AuthorityFigures, Named } from "../api";
+import { FiguresSummary } from "./AuthorityFigures";
 import { TagList } from "./generation";
 import { Ornament } from "./Ornament";
 
@@ -12,6 +13,8 @@ export interface SheetRow {
   tags?: Named[];
   /** Further lines of the value, from the stage's sub-stages. */
   details?: string[];
+  /** The Authority Figures, on that stage's row. */
+  figures?: AuthorityFigures;
 }
 
 /** A stage to lay out on a sheet, before sub-stages are folded in. */
@@ -57,7 +60,11 @@ export function SettlementSheet({
           <div key={row.key} className="sheet-row">
             <dt className="label">{row.label}</dt>
             <dd>
-              <span className="sheet-value">{row.value}</span>
+              {row.figures ? (
+                <FiguresSummary record={row.figures} showTags={row.tags !== undefined} />
+              ) : (
+                <span className="sheet-value">{row.value}</span>
+              )}
               {row.details?.map((d, i) => (
                 <span key={i} className="sheet-detail">
                   {d}

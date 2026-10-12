@@ -59,6 +59,7 @@ export function CompletedSettlement({
             tags: stage.tags,
             subStage: stage.sub_stage,
             skipped: stage.status === "skipped",
+            figures: stage.figures?.record,
           })),
         )}
         meta="Not saved yet"

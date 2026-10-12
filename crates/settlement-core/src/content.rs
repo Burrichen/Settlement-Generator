@@ -84,6 +84,9 @@ pub enum StepTarget {
     Table(TableId),
     /// Name the settlement with the naming scheme that applies, if any.
     Naming,
+    /// Generate the Authority Figures of the Authority resolved earlier
+    /// (see [`crate::figures`]). Written `{ "authority_figures": true }`.
+    AuthorityFigures,
 }
 
 impl SequenceStep {
@@ -91,7 +94,7 @@ impl SequenceStep {
     pub fn table(&self) -> Option<&TableId> {
         match &self.target {
             StepTarget::Table(t) => Some(t),
-            StepTarget::Naming => None,
+            StepTarget::Naming | StepTarget::AuthorityFigures => None,
         }
     }
 }
@@ -112,9 +115,15 @@ enum SequenceStepRepr {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         name: Option<String>,
     },
+    AuthorityFigures {
+        authority_figures: NamingMarker,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        name: Option<String>,
+    },
 }
 
-/// The literal `true` in `{ "naming": true }`.
+/// The literal `true` in `{ "naming": true }` and
+/// `{ "authority_figures": true }`.
 #[derive(Clone, Copy, Serialize, Deserialize)]
 #[serde(try_from = "bool", into = "bool")]
 struct NamingMarker;
@@ -125,7 +134,7 @@ impl TryFrom<bool> for NamingMarker {
         if value {
             Ok(NamingMarker)
         } else {
-            Err("`naming` must be true")
+            Err("the stage marker must be true")
         }
     }
 }
@@ -158,6 +167,11 @@ impl From<SequenceStepRepr> for SequenceStep {
                 name,
                 sub_stage: false,
             },
+            SequenceStepRepr::AuthorityFigures { name, .. } => SequenceStep {
+                target: StepTarget::AuthorityFigures,
+                name,
+                sub_stage: false,
+            },
         }
     }
 }
@@ -173,6 +187,10 @@ impl From<SequenceStep> for SequenceStepRepr {
             },
             (StepTarget::Naming, name) => SequenceStepRepr::Naming {
                 naming: NamingMarker,
+                name,
+            },
+            (StepTarget::AuthorityFigures, name) => SequenceStepRepr::AuthorityFigures {
+                authority_figures: NamingMarker,
                 name,
             },
         }

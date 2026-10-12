@@ -82,7 +82,11 @@ steps. Each step is one of:
 
 - a bare table ID;
 - `{ "table": id, "name": "Region" }`, optionally with `"sub_stage": true`;
-- `{ "naming": true, "name": "Name" }` for the name stage.
+- `{ "naming": true, "name": "Name" }` for the name stage;
+- `{ "authority_figures": true, "name": "Authority Figures" }` for the
+  Authority Figures stage (`figures.rs`). It needs the tables listed in
+  `figures::FIGURE_FIELDS` and `table.authorityRelationship`; validation
+  reports any that are missing.
 
 A **sub-stage** elaborates the stage before it (for example Authority Size
 after Authority) and is normally made conditional by its table's
@@ -303,6 +307,7 @@ interfaces show the message as it is.
 | `naming_method_missing`      | error    | A naming scheme's method-table result with no method, so rolling it could not produce a name  |
 | `naming_method_empty`        | error    | A naming method without component tables                                                      |
 | `naming_exception_length`    | error    | A spelling exception listing a different number of results than the method has components     |
+| `naming_parts_length`        | error    | A naming method whose `parts` list a different number of parts than it has components         |
 | `naming_replacement_empty`   | error    | A naming join replacement with an empty `from`                                                |
 
 Naming schemes are also checked for:
@@ -412,17 +417,18 @@ gives a clear error.
 
 A saved settlement is a self-contained **snapshot**:
 
-| Field                      | Meaning                                                                                                                                                                                  |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                       | Stable random ID (`stl-` + 32 hex digits)                                                                                                                                                |
-| `name`                     | Entered by the user. It is trimmed and cannot be empty                                                                                                                                   |
-| `created_at`, `updated_at` | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                                                                              |
-| `app_version`              | Application version that generated the current snapshot                                                                                                                                  |
-| `favourite`                | Boolean                                                                                                                                                                                  |
-| `snapshot.log`             | The full `GenerationLog` (§4)                                                                                                                                                            |
-| `snapshot.authority`       | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there |
-| `snapshot.stages`          | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                |
-| `snapshot.stages[].name`   | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log` |
+| Field                       | Meaning                                                                                                                                                                                                                                                                                                     |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                        | Stable random ID (`stl-` + 32 hex digits)                                                                                                                                                                                                                                                                   |
+| `name`                      | Entered by the user. It is trimmed and cannot be empty                                                                                                                                                                                                                                                      |
+| `created_at`, `updated_at`  | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                                                                                                                                                                                                 |
+| `app_version`               | Application version that generated the current snapshot                                                                                                                                                                                                                                                     |
+| `favourite`                 | Boolean                                                                                                                                                                                                                                                                                                     |
+| `snapshot.log`              | The full `GenerationLog` (§4)                                                                                                                                                                                                                                                                               |
+| `snapshot.authority`        | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there                                                                                                                    |
+| `snapshot.stages`           | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                                                                                                                                   |
+| `snapshot.stages[].figures` | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log` |
+| `snapshot.stages[].name`    | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                    |
 
 The generation log holds the table results, the labels visible at generation
 time, the tags (with names at that time), the recorded dice, routing, applied

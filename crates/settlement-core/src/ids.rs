@@ -84,6 +84,20 @@ define_id!(
     NamingSchemeId
 );
 define_id!(
+    /// Identifies a generated person (NPC), e.g. an Authority Figure.
+    /// Stable for the life of the person; relationships refer to it.
+    NpcId
+);
+
+impl NpcId {
+    /// A fresh random ID, `npc-` and 32 hex digits.
+    pub fn new_random() -> Self {
+        let bits: u128 = rand::random();
+        NpcId::new(format!("npc-{bits:032x}"))
+    }
+}
+
+define_id!(
     /// Identifies a subordinate generator that elaborates a result, such as
     /// the NPCs who hold an Authority. Reserved: no generators exist yet.
     GeneratorId

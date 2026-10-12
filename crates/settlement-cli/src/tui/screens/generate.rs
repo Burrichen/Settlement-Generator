@@ -7,14 +7,15 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent};
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::text::{Line, Span};
 use ratatui::widgets::{Paragraph, Wrap};
-use settlement_core::engine::{GenerationError, Selections, SkipReason};
+use settlement_core::engine::{GenerationError, ResultOption, Selections, SkipReason};
+use settlement_core::figures::{FIGURE_FIELDS, FigureName};
 use settlement_core::ids::ResultId;
 use settlement_core::naming::NameSource;
 use settlement_core::service::ActiveGeneration;
 use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageView};
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
 
-use super::common::{SheetRow, applies, outcome_lines, sheet_lines, tag_line};
+use super::common::{SheetRow, applies, figure_lines, outcome_lines, sheet_lines, tag_line};
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
@@ -24,10 +25,31 @@ enum Pending {
     Choose(usize, Vec<ResultId>),
     /// Typing a name on the name stage.
     CustomName(usize),
+    /// Picking what to change on the Authority Figures stage.
+    FigureTarget(usize, Vec<FigureTarget>),
+    /// Choosing a figure field's result: stage, figure, field, results.
+    FigureField(usize, usize, String, Vec<ResultId>),
+    /// Choosing a relationship's result: stage, relationship, results.
+    Relationship(usize, usize, Vec<ResultId>),
+    /// Choosing one part of a figure's name: stage, figure, part, results.
+    NamePart(usize, usize, usize, Vec<ResultId>),
+    /// Typing an Authority Figure's name: stage, figure.
+    FigureName(usize, usize),
     /// Naming the settlement to save it.
     Name,
     ConfirmLeave,
     ConfirmDelete,
+}
+
+/// Something on the Authority Figures stage that can be changed.
+#[derive(Clone)]
+enum FigureTarget {
+    Field(usize, String),
+    TypeName(usize),
+    RollName(usize),
+    /// A part of a generated name, e.g. the given name: figure, part.
+    NamePart(usize, usize),
+    Relationship(usize),
 }
 
 /// How the name stage's name came about, and anything that explains it:
@@ -97,6 +119,8 @@ pub struct GenerateScreen {
     phase: Phase,
     rows: RowsState,
     action: usize,
+    /// How far the completed settlement sheet is scrolled.
+    sheet_scroll: u16,
     modal: Option<(Modal, Pending)>,
     /// For edits: the saved settlement and its current name.
     edit: Option<(SettlementId, String)>,
@@ -112,6 +136,7 @@ impl GenerateScreen {
             phase: Phase::Working,
             rows: RowsState::default(),
             action: 0,
+            sheet_scroll: 0,
             modal: None,
             edit,
         })
@@ -409,6 +434,40 @@ impl GenerateScreen {
             ),
             Line::styled(heading, s.title()),
         ];
+        if let Some(figures) = &stage.figures {
+            top.extend(Self::stage_notes(&stage, ctx));
+            if let Some(e) = &self.error {
+                top.push(Line::styled(e.clone(), s.error()));
+            }
+            if stage.can_roll {
+                top.push(Line::from(vec![
+                    Span::styled("r", s.key()),
+                    Span::styled(
+                        if figures.record.is_some() {
+                            " reroll all figures"
+                        } else {
+                            " generate figures"
+                        },
+                        s.dim(),
+                    ),
+                ]));
+            } else if figures.record.is_none() {
+                top.push(Line::styled(
+                    "Resolve the Authority and its Authority Size first.",
+                    s.dim(),
+                ));
+            }
+            if let Some(record) = &figures.record {
+                top.push(Line::from(vec![
+                    Span::styled("Enter", s.key()),
+                    Span::styled(" change a figure's details or a relationship", s.dim()),
+                ]));
+                top.push(Line::default());
+                top.extend(figure_lines(record, s, 0, stage.tags.is_some()));
+            }
+            f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), area);
+            return;
+        }
         if let Some(naming) = &stage.naming {
             top.push(match &naming.name {
                 Some(name) => Line::styled(name.clone(), s.heading()),
@@ -496,16 +555,18 @@ impl GenerateScreen {
                 tags: stage.tags.clone(),
                 sub_stage: stage.sub_stage,
                 skipped: stage.status == StageStatus::Skipped,
+                figures: stage.figures.as_ref().and_then(|f| f.record.clone()),
             })
             .collect();
         let mut lines = vec![Line::styled("─── ◆ ───", s.border()), Line::default()];
         lines.extend(sheet_lines(&rows, s));
-        lines.push(Line::default());
-        lines.push(Line::styled("Not saved yet", s.dim()));
+        // The sheet scrolls (Authority Figures can make it long); the status
+        // and actions below it always stay in view.
+        let mut footer = vec![Line::default(), Line::styled("Not saved yet", s.dim())];
         if let Some(e) = &self.error {
-            lines.push(Line::styled(e.clone(), s.error()));
+            footer.push(Line::styled(e.clone(), s.error()));
         }
-        lines.push(Line::default());
+        footer.push(Line::default());
         let mut actions = Vec::new();
         for (i, label) in COMPLETED_ACTIONS.iter().enumerate() {
             if i > 0 {
@@ -517,8 +578,25 @@ impl GenerateScreen {
                 Span::styled(format!("  {label}  "), s.dim())
             });
         }
-        lines.push(Line::from(actions));
-        f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), area);
+        footer.push(Line::from(actions));
+        let footer_height = (footer.len() as u16 + 1).min(area.height);
+        let [sheet, bottom] =
+            Layout::vertical([Constraint::Fill(1), Constraint::Length(footer_height)]).areas(area);
+        let overflow = (lines.len() as u16).saturating_sub(sheet.height);
+        self.sheet_scroll = self.sheet_scroll.min(overflow);
+        if overflow > 0 {
+            footer.push(Line::from(vec![
+                Span::styled("↑↓", s.key()),
+                Span::styled(" scroll the settlement", s.dim()),
+            ]));
+        }
+        f.render_widget(
+            Paragraph::new(lines)
+                .wrap(Wrap { trim: false })
+                .scroll((self.sheet_scroll, 0)),
+            sheet,
+        );
+        f.render_widget(Paragraph::new(footer).wrap(Wrap { trim: false }), bottom);
     }
 
     // ----- input -----------------------------------------------------------------
@@ -532,6 +610,46 @@ impl GenerateScreen {
                 let (stage, id) = (*stage, ids[i].clone());
                 self.modal = None;
                 self.act(ctx, |a, dice| a.session.choose(stage, id, dice));
+            }
+            (ModalResult::Picked(i), Pending::FigureTarget(stage, targets)) => {
+                let (stage, target) = (*stage, targets[i].clone());
+                self.modal = None;
+                self.open_figure_target(ctx, stage, target);
+            }
+            (ModalResult::Picked(i), Pending::FigureField(stage, figure, field, ids)) => {
+                let (stage, figure, field, id) = (*stage, *figure, field.clone(), ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| {
+                    a.session
+                        .choose_figure_field(stage, figure, &field, id, dice)
+                });
+            }
+            (ModalResult::Picked(i), Pending::NamePart(stage, figure, part, ids)) => {
+                let (stage, figure, part, id) = (*stage, *figure, *part, ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| {
+                    a.session
+                        .choose_figure_name_part(stage, figure, part, id, dice)
+                });
+            }
+            (ModalResult::Picked(i), Pending::Relationship(stage, rel, ids)) => {
+                let (stage, rel, id) = (*stage, *rel, ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| {
+                    a.session.choose_relationship(stage, rel, id, dice)
+                });
+            }
+            (ModalResult::Text(name), Pending::FigureName(stage, figure)) => {
+                match self.active.session.set_figure_name(*stage, *figure, &name) {
+                    Ok(_) => {
+                        if let Ok(view) = self.active.view() {
+                            self.view = view;
+                        }
+                        self.error = None;
+                        self.modal = None;
+                    }
+                    Err(e) => modal.set_error(e.to_string()),
+                }
             }
             (ModalResult::Text(name), Pending::CustomName(stage)) => {
                 match self.active.session.set_custom_name(*stage, &name) {
@@ -577,6 +695,169 @@ impl GenerateScreen {
             _ => self.modal = None,
         }
         Some(Nav::Stay)
+    }
+
+    /// Opens the list of what can be changed on the Authority Figures stage:
+    /// each figure's name and fields, and each relationship.
+    fn open_figure_editor(&mut self, index: usize) {
+        let Some(view) = self.view.stages[index].figures.as_ref() else {
+            return;
+        };
+        let Some(record) = view.record.as_ref() else {
+            self.error = Some("Generate the Authority Figures first (r).".into());
+            return;
+        };
+        let mut items = Vec::new();
+        let mut targets = Vec::new();
+        for (i, figure) in record.figures.iter().enumerate() {
+            items.push(PickItem::new(format!("{} · Type a name", figure.label)));
+            targets.push(FigureTarget::TypeName(i));
+            if figure.name.text().is_some() {
+                items.push(PickItem::new(format!("{} · Roll a name", figure.label)));
+                targets.push(FigureTarget::RollName(i));
+            }
+            // Each part of a generated name, from the species' own tables.
+            for part in view.name_parts.get(i).into_iter().flatten() {
+                let current = match &figure.name {
+                    FigureName::Generated { rolls, .. } => rolls
+                        .get(part.part + 1)
+                        .map_or_else(String::new, |r| r.result.name.clone()),
+                    _ => String::new(),
+                };
+                items.push(
+                    PickItem::new(format!("{} · {}", figure.label, part.label)).hint(current),
+                );
+                targets.push(FigureTarget::NamePart(i, part.part));
+            }
+            for def in &FIGURE_FIELDS {
+                let current = figure
+                    .field(def.id)
+                    .map_or_else(String::new, |r| r.result.name.clone());
+                items
+                    .push(PickItem::new(format!("{} · {}", figure.label, def.label)).hint(current));
+                targets.push(FigureTarget::Field(i, def.id.to_owned()));
+            }
+        }
+        for (i, r) in record.relationships.iter().enumerate() {
+            let label = |id| {
+                record
+                    .figure(id)
+                    .map_or_else(|| id.to_string(), |f| f.label.clone())
+            };
+            items.push(
+                PickItem::new(format!("{} ↔ {}", label(&r.a), label(&r.b)))
+                    .hint(r.roll.result.name.clone()),
+            );
+            targets.push(FigureTarget::Relationship(i));
+        }
+        self.modal = Some((
+            Modal::pick("Change an Authority Figure", items, 0),
+            Pending::FigureTarget(index, targets),
+        ));
+    }
+
+    fn open_figure_target(&mut self, ctx: &mut Ctx, index: usize, target: FigureTarget) {
+        let Some(figures) = self.view.stages[index].figures.clone() else {
+            return;
+        };
+        let pick = |options: Vec<&ResultOption>, current: Option<&ResultId>| {
+            let items = options
+                .iter()
+                .map(|o| {
+                    PickItem::new(o.result.name.clone())
+                        .hint(o.range.map_or(String::new(), |r| r.to_string()))
+                })
+                .collect();
+            let ids: Vec<ResultId> = options.iter().map(|o| o.result.id.clone()).collect();
+            let at = current
+                .and_then(|c| ids.iter().position(|id| id == c))
+                .unwrap_or(0);
+            (items, ids, at)
+        };
+        match target {
+            FigureTarget::TypeName(figure) => {
+                let current = figures
+                    .record
+                    .as_ref()
+                    .and_then(|r| r.figures.get(figure))
+                    .and_then(|f| f.name.text().map(str::to_owned))
+                    .unwrap_or_default();
+                self.modal = Some((
+                    Modal::text(
+                        "Authority Figure name",
+                        &format!("Type a name, up to {MAX_NAME_LENGTH} characters."),
+                        &current,
+                    ),
+                    Pending::FigureName(index, figure),
+                ));
+            }
+            FigureTarget::RollName(figure) => {
+                self.act(ctx, |a, dice| {
+                    a.session.roll_figure_name(index, figure, dice)
+                });
+            }
+            FigureTarget::NamePart(figure, part) => {
+                let Some(options) = figures
+                    .name_parts
+                    .get(figure)
+                    .and_then(|parts| parts.iter().find(|p| p.part == part))
+                else {
+                    return;
+                };
+                let current = figures
+                    .record
+                    .as_ref()
+                    .and_then(|r| r.figures.get(figure))
+                    .and_then(|f| match &f.name {
+                        FigureName::Generated { rolls, .. } => {
+                            rolls.get(part + 1).map(|r| r.result.id.clone())
+                        }
+                        _ => None,
+                    });
+                let legal: Vec<&ResultOption> =
+                    options.options.iter().filter(|o| o.legal).collect();
+                let (items, ids, at) = pick(legal, current.as_ref());
+                self.modal = Some((
+                    Modal::pick(&format!("Choose {}", options.label), items, at),
+                    Pending::NamePart(index, figure, part, ids),
+                ));
+            }
+            FigureTarget::Field(figure, field) => {
+                let Some(options) = figures.fields.iter().find(|f| f.field == field) else {
+                    return;
+                };
+                let current = figures
+                    .record
+                    .as_ref()
+                    .and_then(|r| r.figures.get(figure))
+                    .and_then(|f| f.field(&field))
+                    .map(|r| r.result.id.clone());
+                let legal: Vec<&ResultOption> =
+                    options.options.iter().filter(|o| o.legal).collect();
+                let (items, ids, at) = pick(legal, current.as_ref());
+                self.modal = Some((
+                    Modal::pick(&format!("Choose {}", options.label), items, at),
+                    Pending::FigureField(index, figure, field, ids),
+                ));
+            }
+            FigureTarget::Relationship(rel) => {
+                let current = figures
+                    .record
+                    .as_ref()
+                    .and_then(|r| r.relationships.get(rel))
+                    .map(|r| r.roll.result.id.clone());
+                let legal: Vec<&ResultOption> = figures
+                    .relationship_options
+                    .iter()
+                    .filter(|o| o.legal)
+                    .collect();
+                let (items, ids, at) = pick(legal, current.as_ref());
+                self.modal = Some((
+                    Modal::pick("Choose a relationship", items, at),
+                    Pending::Relationship(index, rel, ids),
+                ));
+            }
+        }
     }
 
     /// Asks for a typed name on the name stage `index`.
@@ -648,6 +929,31 @@ impl GenerateScreen {
                 self.action = (self.action + 1).min(COMPLETED_ACTIONS.len() - 1);
                 None
             }
+            KeyCode::Up => {
+                self.sheet_scroll = self.sheet_scroll.saturating_sub(1);
+                None
+            }
+            KeyCode::Down => {
+                self.sheet_scroll = self.sheet_scroll.saturating_add(1);
+                None
+            }
+            KeyCode::PageUp => {
+                self.sheet_scroll = self.sheet_scroll.saturating_sub(10);
+                None
+            }
+            KeyCode::PageDown => {
+                self.sheet_scroll = self.sheet_scroll.saturating_add(10);
+                None
+            }
+            KeyCode::Home => {
+                self.sheet_scroll = 0;
+                None
+            }
+            KeyCode::End => {
+                // Clamped to the end when drawn.
+                self.sheet_scroll = u16::MAX;
+                None
+            }
             KeyCode::Enter => Some(self.action),
             KeyCode::Char('r') => Some(0),
             KeyCode::Char('s') => Some(1),
@@ -657,6 +963,7 @@ impl GenerateScreen {
         };
         match pick {
             Some(0) => {
+                self.sheet_scroll = 0;
                 self.act(ctx, |a, dice| a.session.reroll_all(dice));
                 if !self.view.complete {
                     self.phase = Phase::Working;
@@ -700,14 +1007,34 @@ impl Screen for GenerateScreen {
             self.render_completed(f, body, ctx);
         } else if self.edit.is_some() || self.view.mode == GenerationMode::OneTable {
             let (_, main, tags) = self.columns(body);
-            let [table, notes] =
-                Layout::vertical([Constraint::Fill(1), Constraint::Length(8)]).areas(main);
             let rows = self.stage_rows(ctx);
+            // On the Authority Figures row the notes show the figures, so they
+            // take the room the stage list does not need.
+            let on_figures = self
+                .rows
+                .current(&rows)
+                .is_some_and(|&i| self.view.stages[i].figures.is_some());
+            let constraints = if on_figures {
+                [
+                    Constraint::Length(rows.len() as u16 + 1),
+                    Constraint::Fill(1),
+                ]
+            } else {
+                [Constraint::Fill(1), Constraint::Length(8)]
+            };
+            let [table, notes] = Layout::vertical(constraints).areas(main);
             self.rows.render(f, table, &rows, &s, true);
             let mut lines = Vec::new();
             if let Some(&i) = self.rows.current(&rows) {
                 let stage = &self.view.stages[i];
                 lines.extend(Self::stage_notes(stage, ctx));
+                if let Some(record) = stage.figures.as_ref().and_then(|f| f.record.as_ref()) {
+                    lines.push(Line::from(vec![
+                        Span::styled("Enter", s.key()),
+                        Span::styled(" change a figure's details or a relationship", s.dim()),
+                    ]));
+                    lines.extend(figure_lines(record, &s, 0, stage.tags.is_some()));
+                }
                 lines.extend(outcome_lines(stage.outcome.as_ref(), &s));
                 if let Some(t) = stage.tags.as_ref().filter(|t| !t.is_empty()) {
                     lines.push(tag_line(t, &s, 0));
@@ -778,6 +1105,9 @@ impl Screen for GenerateScreen {
                 KeyCode::Char('a') if self.edit.is_none() => {
                     self.act(ctx, |a, dice| a.session.roll_remaining(dice));
                 }
+                KeyCode::Enter if self.view.stages[stage].figures.is_some() => {
+                    self.open_figure_editor(stage);
+                }
                 KeyCode::Enter => {
                     let view = &self.view.stages[stage];
                     let legal: Vec<_> = view.options.iter().filter(|o| o.legal).collect();
@@ -834,6 +1164,7 @@ impl Screen for GenerateScreen {
         }
         let automatic = self.view.mode == GenerationMode::Automatic;
         match key.code {
+            KeyCode::Enter if stage.figures.is_some() => self.open_figure_editor(index),
             KeyCode::Enter => {
                 if let Some(id) = self.rows.current(&rows).cloned() {
                     if self.act(ctx, |a, dice| a.session.choose(index, id, dice)) && automatic {
@@ -883,8 +1214,11 @@ impl Screen for GenerateScreen {
         // On the name stage, Enter chooses a method, r rolls a name and t
         // types one.
         let on_name = self.focused_stage().is_some_and(|s| s.naming.is_some());
+        let on_figures = self.focused_stage().is_some_and(|s| s.figures.is_some());
         let (choose, roll) = if on_name {
             ("method", "roll name")
+        } else if on_figures {
+            ("edit figures", "generate")
         } else {
             ("choose", "roll")
         };

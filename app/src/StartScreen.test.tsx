@@ -3,7 +3,14 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { GenerationResponse, SessionView, Settings, StageView } from "./api";
+import type {
+  AuthorityFigures,
+  FiguresView,
+  GenerationResponse,
+  SessionView,
+  Settings,
+  StageView,
+} from "./api";
 
 const STAGES = [
   "Setting Profile",
@@ -101,6 +108,11 @@ vi.mock("./api", async (importOriginal) => {
       rollRemaining: vi.fn(),
       runAutomatic: vi.fn(),
       rerollAll: vi.fn(),
+      chooseFigureField: vi.fn(),
+      chooseFigureNamePart: vi.fn(),
+      figureName: vi.fn(),
+      chooseRelationship: vi.fn(),
+      rollFigureName: vi.fn(),
       discard: vi.fn(async () => {}),
       save: vi.fn(async (name: string) => ({ id: "stl-1", name })),
     },
@@ -392,5 +404,198 @@ describe("authority sub-stages", () => {
     expect(size.value).toBe("four");
     expect(size.closest("tr")?.className).toContain("sub-stage");
     expect(screen.getAllByRole("combobox")).toHaveLength(STAGES.length + 1);
+  });
+});
+
+describe("authority figures", () => {
+  const record: AuthorityFigures = {
+    request: {
+      authority: { id: "council", name: "Local Council" },
+      representation: "group",
+      size: 2,
+    },
+    app_version: "0.1.1",
+    figures: [
+      {
+        id: "npc-a",
+        label: "Mila Varen",
+        name: { source: "custom", name: "Mila Varen" },
+        app_version: "0.1.1",
+        fields: [
+          ["species", "human", "Human"],
+          ["gender", "woman", "Woman"],
+          ["age", "middleAged", "Middle-aged"],
+          ["disposition", "reserved", "Reserved"],
+          ["motive", "preserveIndependence", "Preserve Independence"],
+          ["reputation", "respected", "Respected"],
+          ["flaw", "rigid", "Rigid / Inflexible"],
+        ].map(([field, id, name]) => ({
+          field,
+          roll: { table: { id: `t.${field}`, name: field }, result: { id, name } },
+        })),
+      },
+      {
+        id: "npc-b",
+        label: "Figure 2",
+        name: { source: "missing", reason: "No naming data for Dwarf (Man) yet." },
+        app_version: "0.1.1",
+        fields: [
+          {
+            field: "species",
+            roll: {
+              table: { id: "t.species", name: "Species" },
+              result: { id: "dwarf", name: "Dwarf" },
+            },
+          },
+        ],
+      },
+    ],
+    relationships: [
+      {
+        a: "npc-a",
+        b: "npc-b",
+        roll: {
+          table: { id: "t.rel", name: "Rel" },
+          result: { id: "distrusts", name: "Distrusts" },
+        },
+      },
+    ],
+  };
+  const fieldOptions: FiguresView["fields"] = [
+    {
+      field: "species",
+      label: "Species",
+      table: { id: "t.species", name: "Kurovia Authority Figure Species" },
+      options: [
+        { result: { id: "human", name: "Human" }, tags: [], legal: true },
+        { result: { id: "dwarf", name: "Dwarf" }, tags: [], legal: true },
+        { result: { id: "firbolg", name: "Firbolg" }, tags: [], legal: false },
+      ],
+    },
+  ];
+
+  function withFigures(mode: SessionView["mode"], generated: boolean): SessionView {
+    const v = view(mode, STAGES.length);
+    const i = STAGES.length;
+    v.stages.push({
+      ...stage(i, generated),
+      index: i,
+      stage: { id: "stage.authorityFigures", name: "Authority Figures" },
+      table: { id: "stage.authorityFigures", name: "Authority Figures" },
+      options: [],
+      can_roll: true,
+      result: generated ? { id: "authorityFigures", name: "2 Authority Figures" } : undefined,
+      figures: {
+        record: generated ? record : undefined,
+        fields: fieldOptions,
+        relationship_options: [
+          { result: { id: "distrusts", name: "Distrusts" }, tags: [], legal: true },
+          { result: { id: "admires", name: "Admires" }, tags: [], legal: true },
+        ],
+      },
+    });
+    v.complete = generated;
+    return v;
+  }
+
+  it("shows a compact outline of each figure and their relationships", async () => {
+    g.start.mockResolvedValue(ok(withFigures("automatic", true)));
+    g.runAutomatic.mockResolvedValue(ok(withFigures("automatic", true)));
+    await openStart();
+    const sheet = await screen.findByRole("article", { name: "Generated settlement" });
+    const row = within(sheet).getByText("Authority Figures").closest(".sheet-row") as HTMLElement;
+    expect(within(row).getByText("Mila Varen")).toBeTruthy();
+    expect(within(row).getByText("Human • Woman • Middle-aged")).toBeTruthy();
+    expect(within(row).getByText("Disposition: Reserved")).toBeTruthy();
+    expect(within(row).getByText("Motive: Preserve Independence")).toBeTruthy();
+    expect(within(row).getByText("Reputation: Respected")).toBeTruthy();
+    expect(within(row).getByText("Flaw: Rigid / Inflexible")).toBeTruthy();
+    // A figure without naming data says so instead of inventing a name.
+    expect(within(row).getByText("Figure 2")).toBeTruthy();
+    expect(within(row).getByText("No naming data for Dwarf (Man) yet.")).toBeTruthy();
+    expect(within(row).getByText("Mila Varen ↔ Figure 2 — Distrusts")).toBeTruthy();
+  });
+
+  it("lets each field, name and relationship be set in one-table mode", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    const v = withFigures("one_table", true);
+    g.start.mockResolvedValue(ok(v));
+    g.chooseFigureField.mockResolvedValue(ok(v));
+    g.figureName.mockResolvedValue(ok(v));
+    g.chooseRelationship.mockResolvedValue(ok(v));
+    const user = await openStart();
+    const i = STAGES.length;
+
+    const species = (await screen.findByLabelText("Mila Varen: Species")) as HTMLSelectElement;
+    expect(species.value).toBe("human");
+    // Only legal results are offered.
+    expect(within(species).queryByText("Firbolg")).toBeNull();
+    await user.selectOptions(species, "dwarf");
+    expect(g.chooseFigureField).toHaveBeenCalledWith(i, 0, "species", "dwarf");
+
+    await user.type(screen.getByLabelText("Figure 2: type a name"), "Orven Daal");
+    await user.click(screen.getAllByRole("button", { name: "Set name" })[1]);
+    expect(g.figureName).toHaveBeenCalledWith(i, 1, "Orven Daal");
+
+    await user.selectOptions(
+      screen.getByLabelText("Mila Varen ↔ Figure 2: relationship"),
+      "admires",
+    );
+    expect(g.chooseRelationship).toHaveBeenCalledWith(i, 0, "admires");
+  });
+
+  it("offers only the figure's own species name pools", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    const v = withFigures("one_table", true);
+    const figuresStage = v.stages[v.stages.length - 1];
+    const roll = (table: string, id: string, name: string) => ({
+      table: { id: table, name: table },
+      result: { id, name },
+    });
+    figuresStage.figures!.record!.figures[0].name = {
+      source: "generated",
+      name: "Mila Varen",
+      scheme: { id: "naming.person.human.feminine", name: "Human names (feminine)" },
+      method: { id: "givenSurname", name: "Given name + family name" },
+      parts: [
+        { id: "given", label: "Given name", result: { id: "mila", name: "Mila" } },
+        { id: "family", label: "Family name", result: { id: "varen", name: "Varen" } },
+      ],
+      rolls: [
+        roll("table.personName.human.method", "givenSurname", "Given name + family name"),
+        roll("table.personName.human.given.feminine", "mila", "Mila"),
+        roll("table.personName.human.family", "varen", "Varen"),
+      ],
+    };
+    figuresStage.figures!.name_parts = [
+      [
+        {
+          part: 0,
+          id: "given",
+          label: "Given name",
+          table: {
+            id: "table.personName.human.given.feminine",
+            name: "Human Feminine Given Names",
+          },
+          options: [
+            { result: { id: "mila", name: "Mila" }, tags: [], legal: true },
+            { result: { id: "adelis", name: "Adelis" }, tags: [], legal: true },
+          ],
+        },
+      ],
+      [],
+    ];
+    g.start.mockResolvedValue(ok(v));
+    g.chooseFigureNamePart.mockResolvedValue(ok(v));
+    const user = await openStart();
+    const given = (await screen.findByLabelText("Mila Varen: Given name")) as HTMLSelectElement;
+    expect(given.value).toBe("mila");
+    expect(within(given).getAllByRole("option")).toHaveLength(2);
+    await user.selectOptions(given, "adelis");
+    expect(g.chooseFigureNamePart).toHaveBeenCalledWith(STAGES.length, 0, 0, "adelis");
+    // The unnamed figure has no name parts to choose.
+    expect(screen.queryByLabelText("Figure 2: Given name")).toBeNull();
   });
 });

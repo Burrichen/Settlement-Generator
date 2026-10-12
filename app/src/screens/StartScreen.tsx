@@ -1,3 +1,4 @@
+import { FiguresControls } from "../components/AuthorityFigures";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { generation, type GenerationResponse, type SessionView, type StageView } from "../api";
 import { useApp } from "../app-state";
@@ -111,6 +112,7 @@ export function StartScreen() {
         onRoll={(i) => run(generation.roll(i))}
         onChoose={(i, r) => run(generation.choose(i, r))}
         onCustomName={(i, name) => run(generation.customName(i, name))}
+        onAct={run}
         onBack={() => run(generation.back())}
         onNext={async () => {
           const next = await run(generation.advance());
@@ -127,6 +129,7 @@ export function StartScreen() {
         onRoll={(i) => run(generation.roll(i))}
         onChoose={(i, r) => run(generation.choose(i, r))}
         onCustomName={(i, name) => run(generation.customName(i, name))}
+        onAct={run}
         onRollRemaining={() => run(generation.rollRemaining())}
         onFinish={() => setFinished(true)}
       />
@@ -270,6 +273,7 @@ function StagePanel({
   onRoll,
   onChoose,
   onCustomName,
+  onAct,
 }: {
   stage: StageView;
   total: number;
@@ -277,6 +281,7 @@ function StagePanel({
   onRoll: () => void;
   onChoose: (result: string) => void;
   onCustomName: (name: string) => void;
+  onAct: (call: Promise<GenerationResponse>) => void;
 }) {
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => heading.current?.focus(), [stage.index]);
@@ -293,7 +298,9 @@ function StagePanel({
       >
         {stage.stage.name}
       </h2>
-      {stage.naming ? (
+      {stage.figures ? (
+        <FiguresControls stage={stage} busy={busy} onRoll={onRoll} onAct={onAct} />
+      ) : stage.naming ? (
         <NameControls
           stage={stage}
           busy={busy}
@@ -359,6 +366,7 @@ function IncrementalFlow({
   onRoll,
   onChoose,
   onCustomName,
+  onAct,
   onBack,
   onNext,
 }: {
@@ -368,6 +376,7 @@ function IncrementalFlow({
   onRoll: (stage: number) => void;
   onChoose: (stage: number, result: string) => void;
   onCustomName: (stage: number, name: string) => void;
+  onAct: (call: Promise<GenerationResponse>) => void;
   onBack: () => void;
   onNext: () => void;
 }) {
@@ -385,6 +394,7 @@ function IncrementalFlow({
           onRoll={() => onRoll(index)}
           onChoose={(r) => onChoose(index, r)}
           onCustomName={(name) => onCustomName(index, name)}
+          onAct={onAct}
         />
         <ErrorNote error={error} />
         <nav className="step-nav" aria-label="Stage navigation">
@@ -415,6 +425,7 @@ function OneTableFlow({
   onRoll,
   onChoose,
   onCustomName,
+  onAct,
   onRollRemaining,
   onFinish,
 }: {
@@ -424,6 +435,7 @@ function OneTableFlow({
   onRoll: (stage: number) => void;
   onChoose: (stage: number, result: string) => void;
   onCustomName: (stage: number, name: string) => void;
+  onAct: (call: Promise<GenerationResponse>) => void;
   onRollRemaining: () => void;
   onFinish: () => void;
 }) {
@@ -455,6 +467,7 @@ function OneTableFlow({
           onRoll={onRoll}
           onChoose={onChoose}
           onCustomName={onCustomName}
+          onAct={onAct}
         />
       </div>
       <ActiveTags tags={view.active_tags} />

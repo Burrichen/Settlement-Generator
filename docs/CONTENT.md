@@ -14,21 +14,22 @@ Profile is kept, but no non-Kurovia content has been invented.
 `content/00-sequence.json`. Each stage carries its pipeline name, so the Region
 stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 
-| #   | Stage            | Table                                                    |
-| --- | ---------------- | -------------------------------------------------------- |
-| 1   | Setting Profile  | `table.settingProfile` (chosen)                          |
-| 2   | Region           | `table.genericRegion`, redirected by region-routing tags |
-| 3   | Name             | Naming stage: the naming scheme for the region, if any   |
-| 4   | Environment      | `table.environment`, redirected by Kurovia region tags   |
-| 5   | Connections      | `table.connections`                                      |
-| 6   | Size             | `table.size`                                             |
-| 7   | Origin           | `table.origin`                                           |
-| 8   | Purpose          | `table.purpose`                                          |
-| 9   | Age              | `table.age`                                              |
-| 10  | Economy          | `table.economy`                                          |
-| 11  | Authority        | `table.authority` (Power)                                |
-| 12  | ↳ Representation | `table.authorityRepresentation` (sub-stage, conditional) |
-| 13  | ↳ Authority Size | `table.authoritySize` (sub-stage, conditional)           |
+| #   | Stage             | Table                                                    |
+| --- | ----------------- | -------------------------------------------------------- |
+| 1   | Setting Profile   | `table.settingProfile` (chosen)                          |
+| 2   | Region            | `table.genericRegion`, redirected by region-routing tags |
+| 3   | Name              | Naming stage: the naming scheme for the region, if any   |
+| 4   | Environment       | `table.environment`, redirected by Kurovia region tags   |
+| 5   | Connections       | `table.connections`                                      |
+| 6   | Size              | `table.size`                                             |
+| 7   | Origin            | `table.origin`                                           |
+| 8   | Purpose           | `table.purpose`                                          |
+| 9   | Age               | `table.age`                                              |
+| 10  | Economy           | `table.economy`                                          |
+| 11  | Authority         | `table.authority` (Power)                                |
+| 12  | ↳ Representation  | `table.authorityRepresentation` (sub-stage, conditional) |
+| 13  | ↳ Authority Size  | `table.authoritySize` (sub-stage, conditional)           |
+| 14  | Authority Figures | `{ "authority_figures": true }`: see below               |
 
 Naming content (v0.1.1) is described in [NAMING_SYSTEM.md](NAMING_SYSTEM.md):
 
@@ -219,26 +220,71 @@ equal 20% chance of each size:
 - God Mode cannot make Authority Size apply to a single ruler: it lifts result
   eligibility only, never a table's eligibility.
 
-### Future: Authority NPCs
+### Authority Figures
 
-Each Authority type is planned to get its own generator for the NPC or NPCs
-who hold that authority. For example, a Local Council may produce several
-council members, Military Authority a commander or command group, and a
-Popular Assembly may have no central NPC at all. **No NPC generation exists
-yet.**
+The **Authority Figures** stage gives a rough, roleplay-ready outline of the
+people who hold the Authority. It is deliberately limited: no appearance,
+stat block, alignment, biography or secrets.
 
-To prepare for it, each Authority result already carries an optional
-`generator` reference with a stable ID, `authorityNpcs.<result id>` (for
-example `authorityNpcs.council`). Nothing resolves these references in this
-version, and they have no effect on generation. They are not shown in the
-editors.
+- **Input.** The `AuthorityRepresentatives` contract (`authority.rs`): the
+  Authority, its representation and its size, read from the settlement so
+  far. A single representative gives one figure; a group gives exactly
+  Authority Size figures. Each figure is meant to receive a **Role / Title**
+  resolved beforehand. No Role / Title stage exists yet, so figures currently
+  have none.
+- **Fields.** Every figure rolls each field on its own physical-dice table,
+  in this order:
 
-The future generator's input is ready: `settlement_core::authority::
-AuthorityRepresentatives`, read from a generation log or a saved snapshot,
-gives the Authority result and its tags, the representation (`single` or
-`group`) and the number of representatives. For example `authority.council`,
-`group`, `4` would create four Authority Figure NPCs; `authority.noble`,
-`single`, `1` would create one.
+  | Field               | Table                               | Dice |
+  | ------------------- | ----------------------------------- | ---- |
+  | Species             | `table.authorityFigure.species`     | 1d20 |
+  | Gender              | `table.authorityFigure.gender`      | 1d20 |
+  | Age                 | `table.authorityFigure.age`         | 1d12 |
+  | Disposition         | `table.authorityFigure.disposition` | 1d12 |
+  | Motive              | `table.authorityFigure.motive`      | 1d12 |
+  | Reputation          | `table.authorityFigure.reputation`  | 1d12 |
+  | Flaw / Complication | `table.authorityFigure.flaw`        | 1d12 |
+
+- **Species** follows the Environment pattern. `table.authorityFigure.species`
+  is a stage table that `world.kurovia` redirects to the **temporary**
+  `table.authorityFigure.species.kurovia` (1–4 Human, 5–6 High Elf, 7–8 Wood
+  Elf, 9 Dark Elf, 10 Dragonborn, 11 Earth Genasi, 12 Air Genasi, 13 Fire
+  Genasi, 14 Water Genasi, 15 Yuan-Ti, 16–17 Dwarf, 18 Eladrin, 19–20
+  Firbolg). Each result emits a `species.*` tag. The list and its weights are
+  expected to change and are editable like any table.
+- **Gender** (1–9 Man, 10–18 Woman, 19–20 Non-binary) emits `gender.man`,
+  `gender.woman` or `gender.nonBinary`. **Age** is a broad life stage (Young
+  Adult, Adult, Middle-aged, Older, Elderly), not a number of years.
+  **Disposition** is the figure's default manner; **Reputation** is how the
+  settlement sees them; a **Flaw / Complication** is not an alignment.
+- **Figure tags.** A figure's `species.*` and `gender.*` tags belong to the
+  figure. They route its name and never become settlement tags.
+- **Names** route by the figure's species (and gender, where the species
+  uses it) through species-specific **person** naming schemes: original,
+  temporary name tables for all thirteen species (see
+  [NAMING_SYSTEM.md](NAMING_SYSTEM.md)). There is no universal name table. A
+  species without one (e.g. added by a user) shows "No name table configured
+  for <species>.", is called "Figure n", and can be named by hand.
+- **Relationships.** With two or more figures, every **unordered pair** gets
+  exactly one relationship on `table.authorityRelationship` (1d10: 1 Hates, 2
+  Despises, 3 Distrusts, 4 Dislikes, 5–6 Neutral, 7 Respects, 8 Likes, 9
+  Trusts, 10 Admires). `n` figures have `n(n−1)/2` relationships, recorded
+  as `A ↔ B` by stable NPC ID, never once in each direction.
+- **Manual modes.** Each field, name and relationship can be chosen (legal
+  results only; God Mode lifts result eligibility, never a table's routing),
+  rerolled, or, for names, typed. Changing the Authority or its size
+  invalidates the figures. Changing a figure's species or gender routes its
+  name afresh, unless the name was typed.
+- **Saved settlements** keep every figure (stable `npc-…` ID, label, role,
+  each field's full roll record, name and its rolls, the figure's tags,
+  application version) and every relationship (both NPC IDs, result, d10
+  roll). Later content changes never alter them. Settlements saved before
+  Authority Figures existed show none, and none are generated unless the
+  user asks.
+
+Each Authority result also carries a reserved `generator` reference
+(`authorityNpcs.<result id>`) for a future, Authority-specific generator.
+Nothing resolves it yet.
 
 ## Pending modifiers (planned intents)
 
@@ -293,10 +339,11 @@ Notable Buildings systems do not exist yet. Their intents use a free-text
 
 ## Incomplete content (release blockers)
 
-| Item                 | Missing                                     |
-| -------------------- | ------------------------------------------- |
-| `table.environment`  | Environment content for non-Kurovia regions |
-| `table.horrorRegion` | Not designed (planned redirect only)        |
+| Item                            | Missing                                           |
+| ------------------------------- | ------------------------------------------------- |
+| `table.environment`             | Environment content for non-Kurovia regions       |
+| `table.horrorRegion`            | Not designed (planned redirect only)              |
+| `table.authorityFigure.species` | Authority Figure species for non-Kurovia settings |
 
 Validation reports incomplete tables with the `incomplete_content` code. The
 bundled-content test pins this list, so finishing or adding an incomplete item

@@ -88,7 +88,10 @@ fn bundled_content_has_no_errors_and_only_the_known_incomplete_items() {
         })
         .collect();
     // Release readiness: this list must be empty before shipping v0.1.0.
-    assert_eq!(incomplete, ["table.environment"]);
+    assert_eq!(
+        incomplete,
+        ["table.environment", "table.authorityFigure.species"]
+    );
 }
 
 #[test]
@@ -1439,7 +1442,8 @@ fn every_stage_has_its_pipeline_name() {
             "Economy",
             "Authority",
             "Representation",
-            "Authority Size"
+            "Authority Size",
+            "Authority Figures"
         ]
     );
 }

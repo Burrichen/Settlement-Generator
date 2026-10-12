@@ -20,9 +20,14 @@
     {
       "id": "world.kurovia",
       "name": "Kurovia",
-      "description": "Region-routing tag: Kurovia uses its own Region table.",
+      "description": "Region-routing tag: Kurovia uses its own Region table, and its own Authority Figure species.",
       "effects": [
-        { "kind": "redirect_table", "table": "table.genericRegion", "to": "table.kuroviaRegion" }
+        { "kind": "redirect_table", "table": "table.genericRegion", "to": "table.kuroviaRegion" },
+        {
+          "kind": "redirect_table",
+          "table": "table.authorityFigure.species",
+          "to": "table.authorityFigure.species.kurovia"
+        }
       ]
     },
     {
