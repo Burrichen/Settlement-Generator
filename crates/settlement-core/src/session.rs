@@ -15,6 +15,7 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 
 use crate::VERSION;
+use crate::authority::AuthorityRepresentatives;
 use crate::content::{ContentSet, ContentStatus, SelectionMode, StepTarget};
 use crate::dice::FaceSource;
 use crate::engine::{
@@ -126,6 +127,10 @@ pub struct StageView {
     /// name, and rolling generates a name.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub naming: Option<NamingView>,
+    /// The stage elaborates the one before it and is shown with it; a
+    /// skipped sub-stage does not apply and is left out.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub sub_stage: bool,
 }
 
 /// The name stage as an interface should present it.
@@ -322,11 +327,17 @@ struct Stage {
     kind: StageKind,
     /// Display name of the pipeline stage (e.g. "Region").
     label: String,
+    /// Elaborates the stage before it; see `SequenceStep::sub_stage`.
+    sub_stage: bool,
     state: StageState,
     previous: Option<Named<ResultId>>,
 }
 
 impl Stage {
+    fn is_skipped_sub_stage(&self) -> bool {
+        self.sub_stage && matches!(self.state, StageState::Skipped(_))
+    }
+
     /// The stage's table, for table stages.
     fn table(&self) -> Option<&TableId> {
         match &self.kind {
@@ -385,6 +396,7 @@ impl GenerationSession {
                 Stage {
                     kind,
                     label: step.name.clone().unwrap_or(fallback),
+                    sub_stage: step.sub_stage,
                     state: StageState::Pending,
                     previous: None,
                 }
@@ -583,6 +595,7 @@ impl GenerationSession {
                 events: res.events.clone(),
             }),
             naming: None,
+            sub_stage: stage.sub_stage,
         })
     }
 
@@ -695,6 +708,7 @@ impl GenerationSession {
                 events: res.events.clone(),
             }),
             naming: Some(naming),
+            sub_stage: false,
         })
     }
 
@@ -813,12 +827,24 @@ impl GenerationSession {
             return Err(GenerationError::StageNotResolved { stage: self.cursor });
         }
         self.cursor += 1;
+        // A sub-stage that does not apply is passed over.
+        while self
+            .stages
+            .get(self.cursor)
+            .is_some_and(Stage::is_skipped_sub_stage)
+        {
+            self.cursor += 1;
+        }
         Ok(self.cursor)
     }
 
-    /// Incremental: move back one stage. Results are kept until changed.
+    /// Incremental: move back one stage, passing over sub-stages that do not
+    /// apply. Results are kept until changed.
     pub fn back(&mut self) -> usize {
         self.cursor = self.cursor.saturating_sub(1);
+        while self.cursor > 0 && self.stages[self.cursor].is_skipped_sub_stage() {
+            self.cursor -= 1;
+        }
         self.cursor
     }
 
@@ -876,6 +902,7 @@ impl GenerationSession {
                         result: res.main_result(),
                         tags: self.recorded_names(&res.activated),
                         skipped: false,
+                        sub_stage: stage.sub_stage,
                         name: res.name.as_ref().map(|n| NameRecord {
                             name: n.text.clone(),
                             source: n.source,
@@ -893,12 +920,15 @@ impl GenerationSession {
                     result: None,
                     tags: Vec::new(),
                     skipped: matches!(stage.state, StageState::Skipped(_)),
+                    sub_stage: stage.sub_stage,
                     name: None,
                 }),
             })
             .collect();
+        let log = self.log();
         SettlementSnapshot {
-            log: self.log(),
+            authority: AuthorityRepresentatives::from_log(&log),
+            log,
             stages,
         }
     }
@@ -967,6 +997,11 @@ impl GenerationSession {
                 }
             };
             session.stages[index].state = state;
+        }
+        // Stages added since the snapshot was saved stay pending, except
+        // those that do not apply to it. Nothing saved is rerolled.
+        for index in 0..session.stages.len() {
+            session.skip_if_inapplicable(index);
         }
         session.cursor = session.stages.len();
         Ok(session)
@@ -1313,8 +1348,38 @@ impl GenerationSession {
                 }
                 StageState::Pending => {}
             }
+            if self.skip_if_inapplicable(index) {
+                reopened.retain(|&i| i != index);
+            }
         }
         Ok((invalidated, reopened))
+    }
+
+    /// A pending table stage that does not apply (inactive or ineligible) is
+    /// skipped as soon as everything before it is settled, so nobody is
+    /// asked to roll it. Whatever it held before no longer applies. Returns
+    /// whether it was skipped.
+    fn skip_if_inapplicable(&mut self, index: usize) -> bool {
+        let stage = &self.stages[index];
+        if !matches!(stage.state, StageState::Pending) || !self.settled_before(index) {
+            return false;
+        }
+        let Some(requested) = stage.table().cloned() else {
+            return false;
+        };
+        let state = State::with_tags(&self.tags_before(index));
+        let skipped = self
+            .generator()
+            .context(&requested, &state, None)
+            .ok()
+            .and_then(|c| c.skipped);
+        let Some(reason) = skipped else {
+            return false;
+        };
+        let stage = &mut self.stages[index];
+        stage.state = StageState::Skipped(reason);
+        stage.previous = None;
+        true
     }
 
     /// Re-checks the name stage. A typed name always stands. A generated

@@ -238,13 +238,25 @@ fn automatic_generation_end_to_end() {
     key(&mut app, KeyCode::Enter); // Start
     assert!(text(&mut app).contains("Choose a Setting Profile"));
     key(&mut app, KeyCode::Enter); // Kurovia (first)
-    // Automatic stops at Size, which has no approved distribution.
-    let screen = text(&mut app);
-    assert!(screen.contains("Size needs a choice"), "{screen}");
-    key(&mut app, KeyCode::Enter); // first size
+    // Automatic rolls every remaining stage, Size included.
     let screen = text(&mut app);
     assert!(screen.contains("SETTING PROFILE"), "{screen}");
     assert!(screen.contains("Kurovia"));
+    assert!(screen.contains("SIZE"), "{screen}");
+    assert!(screen.contains("ECONOMY"), "{screen}");
+    assert!(screen.contains("AUTHORITY"), "{screen}");
+    assert!(
+        ["Failing", "Struggling", "Stable", "Prosperous", "Wealthy"]
+            .iter()
+            .any(|economy| screen.contains(economy)),
+        "{screen}"
+    );
+    assert!(
+        ["Trading Post", "Village", "Town", "City", "Capital"]
+            .iter()
+            .any(|size| screen.contains(size)),
+        "{screen}"
+    );
     assert!(screen.contains("Not saved yet"));
 
     // Save: an empty name is refused, then a real one is accepted. (Clear
@@ -265,7 +277,7 @@ fn automatic_generation_end_to_end() {
 #[test]
 fn completed_settlement_can_be_rerolled_or_deleted() {
     let mut app = app();
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter, KeyCode::Enter]);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
     assert!(text(&mut app).contains("Re-roll"));
     key(&mut app, KeyCode::Char('r'));
     assert!(text(&mut app).contains("Not saved yet"), "still complete");
@@ -282,29 +294,51 @@ fn incremental_generation_one_stage_at_a_time() {
     set_manual(&mut app, GenerationPresentation::Incremental);
     key(&mut app, KeyCode::Enter);
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 1 OF 9"), "{screen}");
+    assert!(screen.contains("STAGE 1 OF 13"), "{screen}");
     assert!(screen.contains("Manual · Incremental"));
     // Next is refused until the stage is resolved.
     key(&mut app, KeyCode::Char('n'));
     assert!(text(&mut app).contains("must be rolled or chosen"));
     key(&mut app, KeyCode::Enter); // Kurovia
     key(&mut app, KeyCode::Char('n'));
-    assert!(text(&mut app).contains("STAGE 2 OF 9"));
-    for stage in 2..=9 {
+    assert!(text(&mut app).contains("STAGE 2 OF 13"));
+    for stage in 2..=10 {
+        if stage == 10 {
+            // Economy follows Age.
+            let screen = text(&mut app);
+            assert!(screen.contains("STAGE 10 OF 13"), "{screen}");
+            assert!(screen.contains("Economy"), "{screen}");
+        }
         if stage == 3 {
             // Name: typed, so the test does not depend on the region rolled.
             key(&mut app, KeyCode::Char('t'));
             type_text(&mut app, "Riverside");
             key(&mut app, KeyCode::Enter);
             assert!(text(&mut app).contains("Typed name"), "stage {stage}");
-        } else if stage == 6 {
-            key(&mut app, KeyCode::Enter); // Size must be chosen
         } else {
             key(&mut app, KeyCode::Char('r'));
             assert!(text(&mut app).contains("Rolled"), "stage {stage}");
         }
         key(&mut app, KeyCode::Char('n'));
     }
+    // Authority follows Economy. Choose Local Council (the first result):
+    // always a group, so Representation is passed over and Authority Size
+    // comes next.
+    let screen = text(&mut app);
+    assert!(screen.contains("STAGE 11 OF 13"), "{screen}");
+    assert!(screen.contains("Popular Assembly"), "{screen}");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Char('n'));
+    let screen = text(&mut app);
+    assert!(screen.contains("STAGE 13 OF 13"), "{screen}");
+    assert!(screen.contains("Authority Size"), "{screen}");
+    assert!(!screen.contains("Representation"), "skipped: {screen}");
+    key(&mut app, KeyCode::Char('r'));
+    assert!(text(&mut app).contains("Rolled"));
+    key(&mut app, KeyCode::Char('n'));
+    let screen = text(&mut app);
+    assert!(screen.contains("Local Council"), "{screen}");
+    assert!(screen.contains("Representatives"), "{screen}");
     assert!(text(&mut app).contains("Not saved yet"));
 }
 
@@ -315,32 +349,99 @@ fn one_table_generation_with_choices_and_rolls() {
     key(&mut app, KeyCode::Enter);
     assert!(text(&mut app).contains("Manual · One-table"));
     keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
-    key(&mut app, KeyCode::Char('a')); // rolls until Size stops it
-    assert!(text(&mut app).contains("Size cannot be generated yet"));
-    keys(
-        &mut app,
-        &[
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Down,
-        ],
-    );
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // choose a size
-    key(&mut app, KeyCode::Char('a'));
+    key(&mut app, KeyCode::Char('a')); // rolls every remaining stage
+    let screen = text(&mut app);
+    assert!(!screen.contains("cannot be generated yet"), "{screen}");
     key(&mut app, KeyCode::Char('f'));
     assert!(text(&mut app).contains("Not saved yet"));
 }
 
 #[test]
+fn one_table_shows_authority_sub_stages_only_where_they_apply() {
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a')); // roll everything
+    // Rows: Setting Profile … Economy, then Authority (row 10).
+    key(&mut app, KeyCode::Home);
+    for _ in 0..10 {
+        key(&mut app, KeyCode::Down);
+    }
+    // The picker opens on the current result; Home goes to the first.
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Home, KeyCode::Enter]); // Local Council
+    let screen = text_at(&mut app, 140, 50);
+    assert!(screen.contains("Local Council"), "{screen}");
+    assert!(!screen.contains("Representation"), "decided: {screen}");
+    assert!(screen.contains("  Authority Size"), "{screen}");
+    // The row under Authority is Authority Size: rolling it uses 1d10.
+    key(&mut app, KeyCode::Down);
+    key(&mut app, KeyCode::Char('r'));
+    let screen = text_at(&mut app, 140, 50);
+    assert!(screen.contains("on 1d10"), "{screen}");
+    assert!(screen.contains("Representatives"), "{screen}");
+
+    // A single ruler: Authority Size no longer applies and disappears.
+    key(&mut app, KeyCode::Up);
+    keys(
+        &mut app,
+        &[KeyCode::Enter, KeyCode::Home, KeyCode::Down, KeyCode::Enter],
+    ); // Noble
+    let screen = text_at(&mut app, 140, 50);
+    assert!(screen.contains("Noble / Landed Ruler"), "{screen}");
+    assert!(!screen.contains("Authority Size"), "{screen}");
+    assert!(!screen.contains("Representatives"), "{screen}");
+}
+
+#[test]
+fn view_folds_authority_size_into_authority() {
+    let mut app = app();
+    let mut active = app.ctx.service.start_generation().unwrap();
+    active
+        .session
+        .choose(0, ResultId::new("kurovia"), &mut RandomFaces::seeded(1))
+        .unwrap();
+    let mut sel = Selections::new();
+    sel.insert("table.authority".into(), "council".into());
+    sel.insert("table.authoritySize".into(), "five".into());
+    active
+        .session
+        .run_automatic(&sel, &mut RandomFaces::seeded(2))
+        .unwrap();
+    app.ctx.service.save_new(&active, "Ashford").unwrap();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 160, 70);
+    let authority = screen
+        .lines()
+        .position(|l| l.contains("AUTHORITY"))
+        .unwrap_or_else(|| panic!("{screen}"));
+    let lines: Vec<&str> = screen.lines().collect();
+    assert!(lines[authority].contains("Local Council"), "{screen}");
+    assert!(
+        lines[authority + 1].contains("5 Representatives"),
+        "{screen}"
+    );
+    assert!(!screen.contains("REPRESENTATION"), "{screen}");
+    assert!(!screen.contains("AUTHORITY SIZE"), "{screen}");
+    assert!(!screen.contains("Not applicable"), "{screen}");
+}
+
+#[test]
 fn tag_view_shows_tags_only_when_enabled() {
     let mut app = app();
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter, KeyCode::Enter]);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
     assert!(!text(&mut app).contains("tags:"));
     let mut app = app_with_tag_view();
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter, KeyCode::Enter]);
-    assert!(text(&mut app).contains("tags: Kurovia"));
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    let screen = text(&mut app);
+    assert!(screen.contains("tags: Kurovia"), "{screen}");
+    // The rolled Size shows its size.* tag (named like the result).
+    assert!(
+        ["Trading Post", "Village", "Town", "City", "Capital"]
+            .iter()
+            .any(|size| screen.contains(&format!("tags: {size}"))),
+        "{screen}"
+    );
 }
 
 fn app_with_tag_view() -> App {
@@ -406,6 +507,55 @@ fn view_lists_settlements_with_favourite_stars_and_actions() {
 }
 
 #[test]
+fn view_shows_the_stored_economy_and_its_tag_with_tag_view() {
+    let mut app = app();
+    let id = saved_settlement(&mut app, "Ashford", "town");
+    let stored = app
+        .ctx
+        .service
+        .saved_get(&id)
+        .unwrap()
+        .stages
+        .into_iter()
+        .find(|s| s.stage_table.as_str() == "table.economy")
+        .unwrap();
+    let economy = stored.result.unwrap().name;
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("ECONOMY"), "{screen}");
+    assert!(screen.contains(&economy), "{screen}");
+    assert!(!screen.contains("tags:"), "{screen}");
+
+    let mut app = app_with_tag_view();
+    saved_settlement(&mut app, "Ashford", "town");
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains(&format!("tags: {economy}")), "{screen}");
+}
+
+#[test]
+fn view_shows_the_stored_authority_and_its_tag_with_tag_view() {
+    let mut app = app_with_tag_view();
+    let id = saved_settlement(&mut app, "Ashford", "town");
+    let stored = app
+        .ctx
+        .service
+        .saved_get(&id)
+        .unwrap()
+        .stages
+        .into_iter()
+        .find(|s| s.stage_table.as_str() == "table.authority")
+        .unwrap();
+    let authority = stored.result.unwrap().name;
+    let tag = stored.tags[0].name.clone();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 160, 70);
+    assert!(screen.contains("AUTHORITY"), "{screen}");
+    assert!(screen.contains(&authority), "{screen}");
+    assert!(screen.contains(&format!("tags: {tag}")), "{screen}");
+}
+
+#[test]
 fn split_pane_on_wide_terminals_and_stacked_on_narrow_ones() {
     let mut app = app();
     saved_settlement(&mut app, "Ashford", "town");
@@ -460,6 +610,53 @@ fn tag_editor_renames_and_saves_through_the_core() {
         .unwrap()
         .tag;
     assert_eq!(tag.name, "Kurovia (renamed)");
+}
+
+#[test]
+fn table_editor_opens_size_like_any_other_table() {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..4 {
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter); // View Tables
+    let screen = text_at(&mut app, 140, 60);
+    let size_row = screen
+        .lines()
+        .find(|l| l.contains("table.size"))
+        .unwrap_or_else(|| panic!("{screen}"));
+    assert!(!size_row.contains("incomplete"), "{size_row}");
+    key(&mut app, KeyCode::Char('/')); // filter by ID
+    type_text(&mut app, "table.size");
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("ID table.size"), "{screen}");
+    assert!(screen.contains("1d10"), "{screen}");
+    assert!(!screen.contains("Marked incomplete"), "{screen}");
+    for size in ["Trading Post", "Village", "Town", "City", "Capital"] {
+        assert!(screen.contains(size), "{size}: {screen}");
+    }
+}
+
+#[test]
+fn table_editor_opens_authority_like_any_other_table() {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..4 {
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter); // View Tables
+    key(&mut app, KeyCode::Char('/')); // filter by ID
+    type_text(&mut app, "table.authority");
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    let screen = text_at(&mut app, 160, 70);
+    assert!(screen.contains("ID table.authority"), "{screen}");
+    assert!(screen.contains("1d12"), "{screen}");
+    for authority in ["Local Council", "Merchant / Guild Rule", "Popular Assembly"] {
+        assert!(screen.contains(authority), "{authority}: {screen}");
+    }
+    // The reserved generator reference is not shown as an editable field.
+    assert!(!screen.contains("authorityNpcs"), "{screen}");
 }
 
 #[test]
@@ -669,10 +866,7 @@ fn a_typed_name_is_always_possible_and_offered_when_saving() {
         "{screen}"
     );
 
-    // Finish the rest (Size must be chosen), then save: the name is offered.
-    key(&mut app, KeyCode::Char('a'));
-    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Down]);
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // Size
+    // Roll the rest, then save: the name is offered.
     key(&mut app, KeyCode::Char('a'));
     key(&mut app, KeyCode::Char('f'));
     key(&mut app, KeyCode::Char('s'));

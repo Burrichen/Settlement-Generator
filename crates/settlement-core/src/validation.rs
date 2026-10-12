@@ -212,6 +212,18 @@ pub enum IssueKind {
     },
     /// A result with no faces in the base layout or any variant.
     UnreachableResult,
+    /// A result of an `ordered` table whose base faces are not above those
+    /// of the results before it, so dice modifiers no longer follow the
+    /// scale.
+    ScaleOutOfOrder,
+    /// A result value that is not a positive integer.
+    InvalidValue {
+        value: i64,
+    },
+    /// A result without a value in a table whose other results have one.
+    MissingValue,
+    /// A sub-stage with no stage before it to belong to.
+    SubStageWithoutParent,
     /// A user-created item whose ID is outside the reserved `user.`
     /// namespace, so a future default could collide with it.
     NotUserId {
@@ -311,6 +323,18 @@ impl fmt::Display for IssueKind {
             IssueKind::UnreachableResult => {
                 f.write_str("result has no faces in any layout and can never be rolled")
             }
+            IssueKind::InvalidValue { value } => {
+                write!(f, "result value {value} must be a positive whole number")
+            }
+            IssueKind::MissingValue => f.write_str(
+                "result has no value, but other results of the table do",
+            ),
+            IssueKind::SubStageWithoutParent => {
+                f.write_str("the first stage cannot be a sub-stage")
+            }
+            IssueKind::ScaleOutOfOrder => f.write_str(
+                "the table is an ordered scale, but this result's faces are not above those of the results before it",
+            ),
             IssueKind::NotUserId { id } => write!(
                 f,
                 "user-created ID `{id}` must start with `{}`",
@@ -494,6 +518,15 @@ impl<'a> Validator<'a> {
             self.check_tag_effects(tag);
         }
         self.check_naming_schemes();
+        if content.sequence.first().is_some_and(|s| s.sub_stage) {
+            self.error(
+                Location {
+                    sequence_step: Some(0),
+                    ..Default::default()
+                },
+                IssueKind::SubStageWithoutParent,
+            );
+        }
         for (step, id) in content
             .sequence
             .iter()
@@ -721,6 +754,20 @@ impl<'a> Validator<'a> {
                 self.check_tag_ref(tag, &rloc);
             }
             self.check_condition(result.eligibility.as_ref(), &rloc);
+            // No generators exist yet, so a reference cannot be resolved;
+            // only its form is checked.
+            if let Some(generator) = &result.generator {
+                self.check_id(generator.as_str(), rloc.clone());
+            }
+            match result.value {
+                Some(value) if value < 1 => {
+                    self.error(rloc.clone(), IssueKind::InvalidValue { value });
+                }
+                None if table.results.iter().any(|r| r.value.is_some()) => {
+                    self.error(rloc.clone(), IssueKind::MissingValue);
+                }
+                _ => {}
+            }
         }
 
         let mut variant_ids = HashSet::new();
@@ -780,6 +827,9 @@ impl<'a> Validator<'a> {
             self.error(loc, IssueKind::MissingDice);
             return;
         }
+        if table.ordered {
+            self.check_scale_order(table);
+        }
 
         let layouts = Layout::all(table);
         // A variant that overrides neither dice nor ranges is the base layout
@@ -801,6 +851,22 @@ impl<'a> Validator<'a> {
                     IssueKind::UnreachableResult,
                 );
             }
+        }
+    }
+
+    /// An ordered table's base faces must ascend in result order. Results
+    /// that only appear in variants are not on the base layout.
+    fn check_scale_order(&mut self, table: &Table) {
+        let mut highest: Option<i32> = None;
+        for result in &table.results {
+            let Some(range) = result.range else { continue };
+            if highest.is_some_and(|h| range.min <= h) {
+                self.warning(
+                    Location::table(&table.id).with_result(&result.id),
+                    IssueKind::ScaleOutOfOrder,
+                );
+            }
+            highest = Some(highest.map_or(range.max, |h| h.max(range.max)));
         }
     }
 

@@ -527,6 +527,7 @@ pub fn effect_schema() -> Vec<EffectKindSchema> {
                             ("increase", "Increase"),
                             ("strong_increase", "Strong increase"),
                             ("decrease", "Decrease"),
+                            ("strong_decrease", "Strong decrease"),
                             ("guarantee", "Guarantee"),
                         ]
                         .into_iter()
@@ -564,6 +565,7 @@ mod tests {
             selection: Default::default(),
             status: Default::default(),
             status_note: String::new(),
+            ordered: false,
             active: true,
             eligibility: None,
             results: ranges
@@ -576,6 +578,8 @@ mod tests {
                     tags: vec![],
                     eligibility: None,
                     enabled: true,
+                    generator: None,
+                    value: None,
                 })
                 .collect(),
             variants: vec![],
@@ -721,6 +725,35 @@ mod tests {
             let described: HashSet<&str> = entry.fields.iter().map(|f| f.name.as_str()).collect();
             assert_eq!(keys, described, "{kind}");
         }
+    }
+
+    #[test]
+    fn intent_change_choices_match_every_intent_change() {
+        use IntentChange::*;
+        let expected: Vec<String> = [
+            Increase,
+            StrongIncrease,
+            Decrease,
+            StrongDecrease,
+            Guarantee,
+        ]
+        .iter()
+        .map(|c| {
+            serde_json::to_value(c)
+                .unwrap()
+                .as_str()
+                .unwrap()
+                .to_owned()
+        })
+        .collect();
+        let schema = effect_schema();
+        let intent = schema.iter().find(|s| s.kind == "intent").unwrap();
+        let change = intent.fields.iter().find(|f| f.name == "change").unwrap();
+        let FieldKind::Choice { options } = &change.kind else {
+            panic!("change is a choice");
+        };
+        let values: Vec<_> = options.iter().map(|o| o.value.clone()).collect();
+        assert_eq!(values, expected);
     }
 
     #[test]

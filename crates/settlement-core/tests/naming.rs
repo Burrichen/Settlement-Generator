@@ -445,7 +445,6 @@ fn the_name_stage_works_in_every_mode() {
     // name survives a full re-roll.
     let mut selections = settlement_core::engine::Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
-    selections.insert("table.size".into(), "town".into());
     let mut named = 0;
     for seed in 0..40 {
         let s = GenerationSession::automatic(

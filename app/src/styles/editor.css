@@ -497,3 +497,7 @@ legend code {
   display: block;
   margin: 2px 0 0;
 }
+
+.number-input {
+  width: 5.5em;
+}

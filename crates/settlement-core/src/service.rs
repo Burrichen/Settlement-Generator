@@ -375,6 +375,7 @@ impl AppService {
             selection: Default::default(),
             status: Default::default(),
             status_note: String::new(),
+            ordered: false,
             active: true,
             eligibility: None,
             results: vec![TableResult {
@@ -385,6 +386,8 @@ impl AppService {
                 tags: Vec::new(),
                 eligibility: None,
                 enabled: true,
+                generator: None,
+                value: None,
             }],
             variants: Vec::new(),
             follow_ups: Vec::new(),

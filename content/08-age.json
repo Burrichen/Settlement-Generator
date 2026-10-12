@@ -28,7 +28,7 @@
           "table": "table.size",
           "change": "decrease",
           "status": "planned",
-          "note": "New: Size decreases. Size distribution and exact change not yet approved."
+          "note": "New: Size decreases. Exact change not yet approved."
         },
         {
           "kind": "intent",
@@ -56,7 +56,7 @@
           "table": "table.size",
           "change": "increase",
           "status": "planned",
-          "note": "Old: Size increases. Size distribution and exact change not yet approved."
+          "note": "Old: Size increases. Exact change not yet approved."
         },
         {
           "kind": "intent",
@@ -76,7 +76,7 @@
           "table": "table.size",
           "change": "increase",
           "status": "planned",
-          "note": "Ancient: Size increases. Size distribution and exact change not yet approved."
+          "note": "Ancient: Size increases. Exact change not yet approved."
         },
         {
           "kind": "intent",

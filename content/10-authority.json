@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authority",
+      "name": "Authority",
+      "description": "Who officially governs the settlement: formal governance only, not hidden power, informal influence or factions.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "council",
+          "name": "Local Council",
+          "description": "A small governing body formally handles settlement affairs.",
+          "range": [1, 3],
+          "tags": ["authority.council"],
+          "generator": "authorityNpcs.council"
+        },
+        {
+          "id": "noble",
+          "name": "Noble / Landed Ruler",
+          "description": "A hereditary, landed or aristocratic figure formally governs the settlement.",
+          "range": [4, 5],
+          "tags": ["authority.noble"],
+          "generator": "authorityNpcs.noble"
+        },
+        {
+          "id": "appointed",
+          "name": "Appointed Official",
+          "description": "An official placed in authority by a higher government or ruling institution.",
+          "range": 6,
+          "tags": ["authority.appointed"],
+          "generator": "authorityNpcs.appointed"
+        },
+        {
+          "id": "guild",
+          "name": "Merchant / Guild Rule",
+          "description": "A merchant body, trade organisation or guild formally governs the settlement.",
+          "range": [7, 8],
+          "tags": ["authority.guild"],
+          "generator": "authorityNpcs.guild"
+        },
+        {
+          "id": "religious",
+          "name": "Religious Authority",
+          "description": "A religious institution or recognised religious leader formally governs.",
+          "range": 9,
+          "tags": ["authority.religious"],
+          "generator": "authorityNpcs.religious"
+        },
+        {
+          "id": "military",
+          "name": "Military Authority",
+          "description": "A military commander or military institution formally governs.",
+          "range": 10,
+          "tags": ["authority.military"],
+          "generator": "authorityNpcs.military"
+        },
+        {
+          "id": "elders",
+          "name": "Elders / Community Leaders",
+          "description": "Formal authority rests with respected or established members of the community.",
+          "range": 11,
+          "tags": ["authority.elders"],
+          "generator": "authorityNpcs.elders"
+        },
+        {
+          "id": "assembly",
+          "name": "Popular Assembly",
+          "description": "Major settlement decisions are formally made collectively by a broad group of residents or recognised citizens.",
+          "range": 12,
+          "tags": ["authority.assembly"],
+          "generator": "authorityNpcs.assembly"
+        }
+      ]
+    },
+    {
+      "id": "table.authorityRepresentation",
+      "name": "Representation",
+      "description": "Whether the authority has a single primary representative or a group. Only rolled when the Authority result does not already decide it.",
+      "dice": "1d4",
+      "eligibility": {
+        "not": {
+          "any": [
+            { "has_tag": "authorityRepresentation.single" },
+            { "has_tag": "authorityRepresentation.group" }
+          ]
+        }
+      },
+      "results": [
+        {
+          "id": "single",
+          "name": "Single Representative",
+          "range": [1, 2],
+          "tags": ["authorityRepresentation.single"]
+        },
+        {
+          "id": "group",
+          "name": "Group Representatives",
+          "range": [3, 4],
+          "tags": ["authorityRepresentation.group"]
+        }
+      ]
+    },
+    {
+      "id": "table.authoritySize",
+      "name": "Authority Size",
+      "description": "The number of primary governing representatives, who will later receive Authority Figure NPCs. Not the size of the wider institution.",
+      "dice": "1d10",
+      "eligibility": { "has_tag": "authorityRepresentation.group" },
+      "results": [
+        { "id": "two", "name": "2 Representatives", "range": [1, 2], "value": 2 },
+        { "id": "three", "name": "3 Representatives", "range": [3, 4], "value": 3 },
+        { "id": "four", "name": "4 Representatives", "range": [5, 6], "value": 4 },
+        { "id": "five", "name": "5 Representatives", "range": [7, 8], "value": 5 },
+        { "id": "six", "name": "6 Representatives", "range": [9, 10], "value": 6 }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "authority.council",
+      "name": "Local Council",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.group" }]
+    },
+    {
+      "id": "authority.noble",
+      "name": "Noble / Landed Ruler",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.single" }]
+    },
+    {
+      "id": "authority.appointed",
+      "name": "Appointed Official",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.single" }]
+    },
+    { "id": "authority.guild", "name": "Merchant / Guild Rule" },
+    {
+      "id": "authority.religious",
+      "name": "Religious Authority",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.single" }]
+    },
+    { "id": "authority.military", "name": "Military Authority" },
+    {
+      "id": "authority.elders",
+      "name": "Elders / Community Leaders",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.group" }]
+    },
+    {
+      "id": "authority.assembly",
+      "name": "Popular Assembly",
+      "effects": [{ "kind": "add_tag", "tag": "authorityRepresentation.group" }]
+    },
+    {
+      "id": "authorityRepresentation.single",
+      "name": "Single Representative",
+      "description": "The authority has one primary representative."
+    },
+    {
+      "id": "authorityRepresentation.group",
+      "name": "Group Representatives",
+      "description": "The authority has a group of primary representatives; Authority Size gives how many."
+    }
+  ]
+}

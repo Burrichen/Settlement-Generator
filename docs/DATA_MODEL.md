@@ -81,8 +81,15 @@ It is stored as JSON. `CONTENT_SCHEMA_VERSION` is currently `1`.
 steps. Each step is one of:
 
 - a bare table ID;
-- `{ "table": id, "name": "Region" }`;
+- `{ "table": id, "name": "Region" }`, optionally with `"sub_stage": true`;
 - `{ "naming": true, "name": "Name" }` for the name stage.
+
+A **sub-stage** elaborates the stage before it (for example Authority Size
+after Authority) and is normally made conditional by its table's
+`eligibility`. Interfaces show it with that stage: in a settlement sheet its
+result is a further line of the stage's value. A sub-stage that does not
+apply is left out, and Incremental navigation passes over it. The first step
+cannot be a sub-stage.
 
 A `name` labels the stage, and the label stays the same even when tags
 redirect the stage to another table. The name stage has no table of its own.
@@ -103,6 +110,7 @@ Fields marked † are optional, and their defaults are omitted when serialised.
 | `status_note` † | Why the content is not final                                                                                                                                        |
 | `active` †      | Default `true`. Inactive tables are skipped                                                                                                                         |
 | `eligibility` † | `Condition`. If false, the table is skipped                                                                                                                         |
+| `ordered` †     | Default `false`. The results form an ordered scale, listed lowest first, and the base layout's faces ascend in that order. A customisation cannot change it         |
 | `results`       | Ordered results. Each result's `range` forms the **base layout**                                                                                                    |
 | `variants` †    | Alternative layouts                                                                                                                                                 |
 | `follow_ups` †  | Conditional follow-up rolls (see below)                                                                                                                             |
@@ -126,14 +134,16 @@ follow-up roll and the change.
 
 ### Result
 
-| Field           | Meaning                                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `id`, `name`    | Identity and display text                                                                                                |
-| `description` † |                                                                                                                          |
-| `range` †       | Faces in the base layout: `[min, max]`, or a bare number for one face. Omitted means the result only appears in variants |
-| `tags` †        | Tag IDs emitted when selected                                                                                            |
-| `eligibility` † | `Condition`. If false when rolled, **reroll** (as at the table)                                                          |
-| `enabled` †     | Default `true`. A disabled result keeps its faces, but rolling it means rerolling                                        |
+| Field           | Meaning                                                                                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`, `name`    | Identity and display text                                                                                                                                                              |
+| `description` † |                                                                                                                                                                                        |
+| `range` †       | Faces in the base layout: `[min, max]`, or a bare number for one face. Omitted means the result only appears in variants                                                               |
+| `tags` †        | Tag IDs emitted when selected                                                                                                                                                          |
+| `eligibility` † | `Condition`. If false when rolled, **reroll** (as at the table)                                                                                                                        |
+| `enabled` †     | Default `true`. A disabled result keeps its faces, but rolling it means rerolling                                                                                                      |
+| `value` †       | The positive whole number the result stands for (e.g. `4` for "4 Representatives"). Within a table, every result has one or none does. Recorded with the roll                          |
+| `generator` †   | Reserved: the ID of a future subordinate generator for this result (e.g. `authorityNpcs.council`). Only the ID format is validated; it is not resolved and has no effect on generation |
 
 ### Variant (tag-driven alternative layout)
 
@@ -162,20 +172,24 @@ A condition is a JSON object with one key: `{"has_tag": id}`, `{"all": [..]}`,
 
 An effect definition is `{ "kind": …, ...params, "status"†, "note"† }`.
 
-| `kind`             | Parameters                                 | Behaviour                                                                                                                                                                         |
-| ------------------ | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `route_to`         | `table`, `variant`†                        | Each time the tag is emitted, roll `table` next (depth-first), optionally forcing a variant                                                                                       |
-| `use_variant`      | `table`, `variant`                         | While the tag is active, `table` uses this variant                                                                                                                                |
-| `restrict_results` | `table`, `only`†, `exclude`†               | While the tag is active, only/excluded results of `table` are ineligible, so they are rerolled. `only` lists intersect and `exclude` lists combine                                |
-| `modify_dice`      | `table`, `dice`†, `modifier`†              | While the tag is active, `table` is rolled with replacement dice and/or a modifier. A total past either end of the layout is read as that end                                     |
-| `secondary_roll`   | `label`, `dice`                            | Each time the tag is emitted, roll `dice` and record it under `label`                                                                                                             |
-| `add_tag`          | `tag`                                      | Each time the tag is emitted, also emit `tag`                                                                                                                                     |
-| `redirect_table`   | `table`, `to`                              | While the tag is active, rolling `table` rolls `to` instead (for example a setting-specific Region table). Redirects chain; cycles are rejected                                   |
-| `intent`           | `table`†, `results`†, `concept`†, `change` | An approved design intention without approved numbers (`increase`, `strong_increase`, `decrease` or `guarantee`). It is **never executable**: validation rejects an active intent |
+| `kind`             | Parameters                                 | Behaviour                                                                                                                                                                                            |
+| ------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `route_to`         | `table`, `variant`†                        | Each time the tag is emitted, roll `table` next (depth-first), optionally forcing a variant                                                                                                          |
+| `use_variant`      | `table`, `variant`                         | While the tag is active, `table` uses this variant                                                                                                                                                   |
+| `restrict_results` | `table`, `only`†, `exclude`†               | While the tag is active, only/excluded results of `table` are ineligible, so they are rerolled. `only` lists intersect and `exclude` lists combine                                                   |
+| `modify_dice`      | `table`, `dice`†, `modifier`†              | While the tag is active, `table` is rolled with replacement dice and/or a modifier. A total past either end of the layout is read as that end                                                        |
+| `secondary_roll`   | `label`, `dice`                            | Each time the tag is emitted, roll `dice` and record it under `label`                                                                                                                                |
+| `add_tag`          | `tag`                                      | Each time the tag is emitted, also emit `tag`                                                                                                                                                        |
+| `redirect_table`   | `table`, `to`                              | While the tag is active, rolling `table` rolls `to` instead (for example a setting-specific Region table). Redirects chain; cycles are rejected                                                      |
+| `intent`           | `table`†, `results`†, `concept`†, `change` | An approved design intention without approved numbers (`increase`, `strong_increase`, `decrease`, `strong_decrease` or `guarantee`). It is **never executable**: validation rejects an active intent |
 
 - **Future modifiers targeting later tables:** every effect that names a
   `table` applies whenever that table is rolled later in the same generation
   while the tag is active.
+- **Shifts along a scale:** an `intent` that names an `ordered` table but no
+  `results` records a shift along that table's scale in the given direction,
+  for example `connection.majorRoute` → `table.economy`, `increase`. The
+  strength is left for a later, approved `modify_dice` effect.
 - **Planned effects:** `"status": "planned"` stores an effect as design
   metadata. It is never executed, and its references (for example a table
   that does not exist yet) are not validated. Change it to `active` once the
@@ -237,6 +251,7 @@ chosen result still emits its tags.
 - `input_tags`, the tags active when the table was resolved;
 - `redirected_from`, `selected`, and the `follow_ups` records;
 - `routed_by`, the tag whose `route_to` caused the roll;
+- `value`, the final result's `value` at the time of the roll, if any;
 - `modifiers`, each tag effect that shaped the roll (variant, dice or
   restriction), stored as `{ tag, effect, ignored }`. `ignored` marks a
   restriction that God Mode overrode.
@@ -274,6 +289,10 @@ interfaces show the message as it is.
 | `routing_cycle`              | error    | Tables that route into each other through **every** rollable result, so generation never ends |
 | `routing_cycle`              | warning  | Tables that **can** route into each other (bounded by the step limit)                         |
 | `unreachable_result`         | warning  | A result with no faces in any layout                                                          |
+| `scale_out_of_order`         | warning  | A result of an `ordered` table whose base faces are not above those of the results before it  |
+| `invalid_value`              | error    | A result `value` that is not a positive whole number                                          |
+| `missing_value`              | error    | A result without a `value` in a table whose other results have one                            |
+| `sub_stage_without_parent`   | error    | A first sequence step marked as a sub-stage                                                   |
 | `not_user_id`                | error    | A user-created item outside the `user.` namespace                                             |
 | `override_target_missing`    | warning  | A customisation of a default that no longer exists. It is ignored                             |
 | `default_changed`            | warning  | A default that was updated after the user customised it                                       |
@@ -360,8 +379,8 @@ gives a clear error.
   `override_target_missing` warning.
 - **Variants and follow-up rolls** of a bundled table can be customised. Each
   is overridden as a whole list (`variants` and `follow_ups` in the patch).
-  The selection mode, content status and bundled result order of a built-in
-  table cannot be changed.
+  The selection mode, content status, `ordered` flag, result `generator`
+  references and bundled result order of a built-in table cannot be changed.
 - **Whole-item edits:** the editors send a complete draft.
   `put_table` and `put_tag` turn the draft into the smallest patch against
   the default. Unchanged fields stay default, removed bundled results become
@@ -401,6 +420,7 @@ A saved settlement is a self-contained **snapshot**:
 | `app_version`              | Application version that generated the current snapshot                                                                                                                                  |
 | `favourite`                | Boolean                                                                                                                                                                                  |
 | `snapshot.log`             | The full `GenerationLog` (§4)                                                                                                                                                            |
+| `snapshot.authority`       | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there |
 | `snapshot.stages`          | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                |
 | `snapshot.stages[].name`   | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log` |
 
@@ -546,6 +566,11 @@ stages before them:
 - An invalidated stage no longer contributes tags, so the check cascades
   predictably.
 - A skipped stage whose table would no longer be skipped is reopened.
+- A pending table stage whose table does not apply (inactive or ineligible) is
+  **skipped automatically** once every stage before it is settled, so nobody
+  is asked to roll it. Its previous result is dropped. Reopening a saved
+  snapshot does the same for stages added since it was saved; nothing saved
+  is rerolled.
 - An action that fails (for example rolling an incomplete table, or choosing
   an illegal result) changes nothing.
 

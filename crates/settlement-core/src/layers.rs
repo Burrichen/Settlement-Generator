@@ -201,6 +201,12 @@ pub struct ResultPatch {
     pub eligibility: Option<Option<Condition>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        with = "double_option"
+    )]
+    pub value: Option<Option<i64>>,
 }
 
 impl ResultPatch {
@@ -213,6 +219,7 @@ impl ResultPatch {
             tags: None,
             eligibility: None,
             enabled: None,
+            value: None,
         }
     }
 
@@ -223,6 +230,7 @@ impl ResultPatch {
         prune_field(&mut self.tags, &base.tags);
         prune_field(&mut self.eligibility, &base.eligibility);
         prune_field(&mut self.enabled, &base.enabled);
+        prune_field(&mut self.value, &base.value);
     }
 
     fn is_empty(&self) -> bool {
@@ -232,6 +240,7 @@ impl ResultPatch {
             && self.tags.is_none()
             && self.eligibility.is_none()
             && self.enabled.is_none()
+            && self.value.is_none()
     }
 
     fn apply(&self, result: &mut TableResult) {
@@ -241,6 +250,7 @@ impl ResultPatch {
         apply_field(&self.tags, &mut result.tags);
         apply_field(&self.eligibility, &mut result.eligibility);
         apply_field(&self.enabled, &mut result.enabled);
+        apply_field(&self.value, &mut result.value);
     }
 }
 
@@ -1060,6 +1070,7 @@ impl ContentLayers {
                     rp.tags = Some(result.tags.clone());
                     rp.eligibility = Some(result.eligibility.clone());
                     rp.enabled = Some(result.enabled);
+                    rp.value = Some(result.value);
                     rp.prune(base_result);
                     if !rp.is_empty() {
                         results.insert(result.id.clone(), ResultOverride::Modify(rp));

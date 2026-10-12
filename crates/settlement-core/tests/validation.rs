@@ -526,6 +526,49 @@ fn variants_without_overrides_do_not_repeat_base_issues() {
     assert!(report.issues[0].location.variant.is_none());
 }
 
+// ----- ordered scales ----------------------------------------------------------
+
+#[test]
+fn ordered_table_with_ascending_faces_is_valid() {
+    let mut c = base();
+    c["tables"][0]["ordered"] = json!(true);
+    let parsed = content(c);
+    assert!(parsed.tables[0].ordered);
+    let report = validate(&parsed);
+    assert!(report.issues.is_empty(), "{report}");
+}
+
+#[test]
+fn ordered_table_warns_when_faces_leave_scale_order() {
+    let mut c = base();
+    c["tables"][0]["ordered"] = json!(true);
+    c["tables"][0]["results"][0]["range"] = json!([3, 4]);
+    c["tables"][0]["results"][1]["range"] = json!([1, 2]);
+    let report = validate(&content(c));
+    assert!(!report.has_errors(), "{report}");
+    let warnings: Vec<_> = report.warnings().collect();
+    assert_eq!(warnings.len(), 1, "{report}");
+    assert_eq!(warnings[0].kind, IssueKind::ScaleOutOfOrder);
+    assert_eq!(
+        warnings[0].location.result.as_ref().unwrap().as_str(),
+        "mid"
+    );
+}
+
+#[test]
+fn unordered_table_may_put_faces_in_any_order() {
+    let mut c = base();
+    c["tables"][0]["results"][0]["range"] = json!([3, 4]);
+    c["tables"][0]["results"][1]["range"] = json!([1, 2]);
+    assert!(validate(&content(c)).issues.is_empty());
+}
+
+#[test]
+fn ordered_flag_is_omitted_when_false() {
+    let json = content(base()).to_json_pretty();
+    assert!(!json.contains("ordered"), "{json}");
+}
+
 // ----- choose-only, incomplete, intents, redirects, follow-ups, sequence -----
 
 #[test]
@@ -693,4 +736,95 @@ fn sequence_steps_may_be_bare_ids_or_labelled() {
     let json = serde_json::to_value(&set).unwrap();
     assert_eq!(json["sequence"][0], "table.a");
     assert_eq!(json["sequence"][1]["name"], "Again");
+}
+
+// ----- subordinate generator references ------------------------------------------
+
+#[test]
+fn unresolved_generator_references_are_valid_but_must_be_well_formed() {
+    let mut c = base();
+    c["tables"][0]["results"][0]["generator"] = json!("someGenerators.low");
+    let parsed = content(c.clone());
+    assert_eq!(
+        parsed.tables[0].results[0]
+            .generator
+            .as_ref()
+            .unwrap()
+            .as_str(),
+        "someGenerators.low"
+    );
+    assert!(parsed.tables[0].results[1].generator.is_none());
+    assert!(validate(&parsed).issues.is_empty());
+
+    c["tables"][0]["results"][0]["generator"] = json!("not valid");
+    let report = validate(&content(c));
+    assert_has(
+        &report,
+        Severity::Error,
+        IssueKind::InvalidId {
+            id: "not valid".into(),
+        },
+    );
+}
+
+// ----- result values and sub-stages ------------------------------------------------
+
+#[test]
+fn result_values_must_be_positive_and_complete() {
+    let mut c = base();
+    for (i, v) in [1, 2, 3].iter().enumerate() {
+        c["tables"][0]["results"][i]["value"] = json!(v);
+    }
+    let parsed = content(c.clone());
+    assert_eq!(parsed.tables[0].results[2].value, Some(3));
+    assert!(validate(&parsed).issues.is_empty());
+
+    let mut zero = c.clone();
+    zero["tables"][0]["results"][0]["value"] = json!(0);
+    assert_has(
+        &validate(&content(zero)),
+        Severity::Error,
+        IssueKind::InvalidValue { value: 0 },
+    );
+    let mut negative = c.clone();
+    negative["tables"][0]["results"][1]["value"] = json!(-4);
+    assert_has(
+        &validate(&content(negative)),
+        Severity::Error,
+        IssueKind::InvalidValue { value: -4 },
+    );
+    let mut partial = c;
+    partial["tables"][0]["results"][2]
+        .as_object_mut()
+        .unwrap()
+        .remove("value");
+    let report = validate(&content(partial));
+    assert_has(&report, Severity::Error, IssueKind::MissingValue);
+    assert_eq!(
+        report.issues[0].location.result.as_ref().unwrap().as_str(),
+        "high"
+    );
+}
+
+#[test]
+fn a_sub_stage_needs_a_stage_before_it() {
+    let mut c = base();
+    c["sequence"] = json!([{ "table": "table.a", "name": "A", "sub_stage": true }]);
+    assert_has(
+        &validate(&content(c.clone())),
+        Severity::Error,
+        IssueKind::SubStageWithoutParent,
+    );
+    c["tables"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({ "id": "table.b", "name": "B", "dice": "1d4",
+                      "results": [{ "id": "x", "name": "X", "range": [1, 4] }] }));
+    c["sequence"] = json!(["table.b", { "table": "table.a", "name": "A", "sub_stage": true }]);
+    let parsed = content(c);
+    assert!(parsed.sequence[1].sub_stage && !parsed.sequence[0].sub_stage);
+    assert!(validate(&parsed).issues.is_empty());
+    // Round trip keeps the flag.
+    let again = ContentSet::from_json(&parsed.to_json_pretty()).unwrap();
+    assert_eq!(again.sequence, parsed.sequence);
 }

@@ -253,6 +253,7 @@ enum Act {
     ResultName,
     ResultDescription,
     ResultFaces,
+    ResultValue,
     ResultTags,
     ResultEnabled,
     RemoveResult,
@@ -405,6 +406,14 @@ impl TableEditor {
                                 .map_or("none (variants only)".into(), |x| x.to_string()),
                         ),
                         Act::ResultFaces,
+                    ));
+                }
+                // Tables whose results stand for numbers (e.g. Authority
+                // Size) show them.
+                if self.draft.results.iter().any(|r| r.value.is_some()) {
+                    rows.push(Row::item(
+                        field("Value", r.value.map_or("—".into(), |v| v.to_string())),
+                        Act::ResultValue,
                     ));
                 }
                 rows.push(Row::item(
@@ -769,6 +778,18 @@ impl TableEditor {
                     self.draft.results[i].range = parse_range(&t)?;
                 }
             }
+            Act::ResultValue => {
+                if let Page::Result(i) = self.page {
+                    self.draft.results[i].value = if t.is_empty() {
+                        None
+                    } else {
+                        Some(
+                            t.parse()
+                                .map_err(|_| format!("“{t}” is not a whole number."))?,
+                        )
+                    };
+                }
+            }
             Act::VariantName => {
                 if let Page::Variant(i) = self.page {
                     self.draft.variants[i].name = value;
@@ -985,6 +1006,8 @@ impl TableEditor {
                     tags: Vec::new(),
                     eligibility: None,
                     enabled: true,
+                    generator: None,
+                    value: None,
                 });
                 self.page = Page::Result(self.draft.results.len() - 1);
                 self.state = RowsState::default();
@@ -1040,20 +1063,27 @@ impl TableEditor {
                 ));
                 return Nav::Stay;
             }
-            Act::ResultName | Act::ResultDescription | Act::ResultFaces => {
+            Act::ResultName | Act::ResultDescription | Act::ResultFaces | Act::ResultValue => {
                 if let Page::Result(i) = self.page {
                     let r = &self.draft.results[i];
-                    let (title, value) = match act {
-                        Act::ResultName => ("Result name", r.name.clone()),
-                        Act::ResultDescription => ("Result description", r.description.clone()),
-                        _ => ("Faces", r.range.map_or(String::new(), |x| x.to_string())),
+                    let faces_help = "Faces: a number, or two like 1-10; empty for none.";
+                    let (title, value, help) = match act {
+                        Act::ResultName => ("Result name", r.name.clone(), faces_help),
+                        Act::ResultDescription => {
+                            ("Result description", r.description.clone(), faces_help)
+                        }
+                        Act::ResultValue => (
+                            "Value",
+                            r.value.map_or(String::new(), |v| v.to_string()),
+                            "The number this result stands for: a positive whole number.",
+                        ),
+                        _ => (
+                            "Faces",
+                            r.range.map_or(String::new(), |x| x.to_string()),
+                            faces_help,
+                        ),
                     };
-                    self.text(
-                        title,
-                        "Faces: a number, or two like 1-10; empty for none.",
-                        &value,
-                        act,
-                    );
+                    self.text(title, help, &value, act);
                 }
             }
             Act::ResultTags => {

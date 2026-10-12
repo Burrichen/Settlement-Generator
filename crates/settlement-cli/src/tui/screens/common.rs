@@ -5,7 +5,7 @@ use ratatui::text::{Line, Span};
 use settlement_core::editor::Coverage;
 use settlement_core::engine::Named;
 use settlement_core::ids::TagId;
-use settlement_core::session::StageOutcome;
+use settlement_core::session::{StageOutcome, StageStatus, StageView};
 use settlement_core::validation::{Severity, ValidationIssue};
 
 use crate::tui::theme::Styles;
@@ -16,13 +16,51 @@ pub struct SheetRow {
     pub value: String,
     pub source: Option<String>,
     pub tags: Option<Vec<Named<TagId>>>,
+    /// Elaborates the row before it: shown as a further line of its value.
+    pub sub_stage: bool,
+    /// Did not apply. A skipped sub-stage is left out.
+    pub skipped: bool,
+}
+
+/// A sub-stage that was skipped does not apply, and is not shown.
+pub fn applies(stage: &StageView) -> bool {
+    !(stage.sub_stage && stage.status == StageStatus::Skipped)
 }
 
 /// A settlement laid out stage by stage: label, result, the table actually
-/// used, and tags (only when given, i.e. with Tag View).
+/// used, and tags (only when given, i.e. with Tag View). Each sub-stage that
+/// applies becomes a further line of the row before it (e.g. "Local
+/// Council" then "4 Representatives").
 pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
-    let mut lines = Vec::new();
+    /// A row with its sub-stages folded in.
+    struct Folded<'a> {
+        row: &'a SheetRow,
+        details: Vec<String>,
+        tags: Option<Vec<Named<TagId>>>,
+    }
+    let mut folded: Vec<Folded> = Vec::new();
     for row in rows {
+        match folded.last_mut() {
+            Some(parent) if row.sub_stage => {
+                if !row.skipped {
+                    parent.details.push(row.value.clone());
+                    if let Some(more) = &row.tags {
+                        parent
+                            .tags
+                            .get_or_insert_with(Vec::new)
+                            .extend(more.iter().cloned());
+                    }
+                }
+            }
+            _ => folded.push(Folded {
+                row,
+                details: Vec::new(),
+                tags: row.tags.clone(),
+            }),
+        }
+    }
+    let mut lines = Vec::new();
+    for Folded { row, details, tags } in folded {
         lines.push(Line::from(vec![
             Span::styled(format!("{:<18}", row.label.to_uppercase()), styles.dim()),
             Span::styled(row.value.clone(), styles.title()),
@@ -33,7 +71,13 @@ pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
                 styles.dim(),
             ),
         ]));
-        if let Some(tags) = row.tags.as_ref().filter(|t| !t.is_empty()) {
+        for detail in details {
+            lines.push(Line::from(vec![
+                Span::raw(" ".repeat(18)),
+                Span::styled(detail, styles.title()),
+            ]));
+        }
+        if let Some(tags) = tags.as_ref().filter(|t| !t.is_empty()) {
             lines.push(tag_line(tags, styles, 18));
         }
     }

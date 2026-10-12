@@ -51,11 +51,9 @@ fn generate(s: &mut AppService, name: &str) -> SettlementId {
         .session
         .choose(0, ResultId::new("kurovia"), &mut RandomFaces::seeded(5))
         .unwrap();
-    let mut sizes = Selections::new();
-    sizes.insert("table.size".into(), "town".into());
     active
         .session
-        .run_automatic(&sizes, &mut RandomFaces::seeded(6))
+        .run_automatic(&Selections::new(), &mut RandomFaces::seeded(6))
         .unwrap();
     s.save_new(&active, name).unwrap().id
 }
@@ -120,6 +118,8 @@ fn every_kind_of_content_edit_survives_a_restart() {
         tags: Vec::new(),
         eligibility: None,
         enabled: true,
+        generator: None,
+        value: None,
     };
     custom
         .results
@@ -269,11 +269,9 @@ fn edits_keep_the_generated_with_version_unless_results_change() {
     edit.session
         .roll_remaining(&mut RandomFaces::seeded(10))
         .unwrap();
-    let mut sizes = Selections::new();
-    sizes.insert("table.size".into(), "town".into());
     if !edit.session.is_complete() {
         edit.session
-            .run_automatic(&sizes, &mut RandomFaces::seeded(11))
+            .run_automatic(&Selections::new(), &mut RandomFaces::seeded(11))
             .unwrap();
     }
     assert!(edit.session.is_complete());

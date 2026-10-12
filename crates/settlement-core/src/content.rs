@@ -8,7 +8,7 @@ use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
-use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId};
+use crate::ids::{GeneratorId, NamingSchemeId, ResultId, TableId, TagId, VariantId};
 use crate::naming::NamingScheme;
 
 /// Version of the content file format understood by this build.
@@ -20,6 +20,10 @@ fn yes() -> bool {
 
 fn is_true(b: &bool) -> bool {
     *b
+}
+
+fn is_false(b: &bool) -> bool {
+    !*b
 }
 
 fn default_schema_version() -> u32 {
@@ -60,11 +64,17 @@ impl Default for ContentSet {
 /// `{ "table": id, "name": "Region" }` to give the stage its own label
 /// (shown even when tags redirect the stage to another table), or as
 /// `{ "naming": true, "name": "Name" }` for the settlement-name stage.
+/// A table step may add `"sub_stage": true`: see [`SequenceStep::sub_stage`].
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(from = "SequenceStepRepr", into = "SequenceStepRepr")]
 pub struct SequenceStep {
     pub target: StepTarget,
     pub name: Option<String>,
+    /// The stage elaborates the stage before it (e.g. Authority Size after
+    /// Authority). It is usually conditional, through its table's
+    /// eligibility: interfaces show it with the stage it belongs to, and
+    /// leave it out where it does not apply.
+    pub sub_stage: bool,
 }
 
 /// What a pipeline stage resolves.
@@ -94,6 +104,8 @@ enum SequenceStepRepr {
         table: TableId,
         #[serde(default, skip_serializing_if = "Option::is_none")]
         name: Option<String>,
+        #[serde(default, skip_serializing_if = "is_false")]
+        sub_stage: bool,
     },
     Naming {
         naming: NamingMarker,
@@ -130,14 +142,21 @@ impl From<SequenceStepRepr> for SequenceStep {
             SequenceStepRepr::Table(table) => SequenceStep {
                 target: StepTarget::Table(table),
                 name: None,
+                sub_stage: false,
             },
-            SequenceStepRepr::Step { table, name } => SequenceStep {
+            SequenceStepRepr::Step {
+                table,
+                name,
+                sub_stage,
+            } => SequenceStep {
                 target: StepTarget::Table(table),
                 name,
+                sub_stage,
             },
             SequenceStepRepr::Naming { name, .. } => SequenceStep {
                 target: StepTarget::Naming,
                 name,
+                sub_stage: false,
             },
         }
     }
@@ -146,8 +165,12 @@ impl From<SequenceStepRepr> for SequenceStep {
 impl From<SequenceStep> for SequenceStepRepr {
     fn from(step: SequenceStep) -> Self {
         match (step.target, step.name) {
-            (StepTarget::Table(table), None) => SequenceStepRepr::Table(table),
-            (StepTarget::Table(table), name) => SequenceStepRepr::Step { table, name },
+            (StepTarget::Table(table), None) if !step.sub_stage => SequenceStepRepr::Table(table),
+            (StepTarget::Table(table), name) => SequenceStepRepr::Step {
+                table,
+                name,
+                sub_stage: step.sub_stage,
+            },
             (StepTarget::Naming, name) => SequenceStepRepr::Naming {
                 naming: NamingMarker,
                 name,
@@ -249,6 +272,12 @@ pub struct Table {
     /// skipped.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub eligibility: Option<Condition>,
+    /// The results form an ordered scale, listed lowest first (e.g. Size:
+    /// Trading Post → Capital), and the base layout's faces ascend in the
+    /// same order, so a dice modifier moves the result along the scale.
+    /// Like `selection` and `status`, it cannot be changed by a customisation.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub ordered: bool,
     /// Ordered results. Each result's `range` forms the base layout.
     #[serde(default)]
     pub results: Vec<TableResult>,
@@ -318,6 +347,18 @@ pub struct TableResult {
     /// Disabled results keep their faces but are rerolled if rolled.
     #[serde(default = "yes", skip_serializing_if = "is_true")]
     pub enabled: bool,
+    /// A subordinate generator that will elaborate this result later (e.g.
+    /// `authorityNpcs.council` for the members of a Local Council). Optional
+    /// and not yet resolved: no generators exist in this version, so it has
+    /// no effect on generation. Like `ordered`, a customisation of a
+    /// bundled result keeps the default's reference.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub generator: Option<GeneratorId>,
+    /// The number the result stands for, as structured data (e.g. `4` for
+    /// "4 Representatives"). Recorded with the roll. Must be a positive
+    /// integer; within a table, either every result has one or none does.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub value: Option<i64>,
 }
 
 /// An alternative layout of a table, chosen by tags.
@@ -587,6 +628,7 @@ pub enum IntentChange {
     Increase,
     StrongIncrease,
     Decrease,
+    StrongDecrease,
     Guarantee,
 }
 

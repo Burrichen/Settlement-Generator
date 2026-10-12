@@ -2,8 +2,11 @@
 
 use std::collections::BTreeMap;
 
+use settlement_core::authority::{AuthorityRepresentatives, Representation};
 use settlement_core::bundled::{bundled_content, bundled_file_names};
-use settlement_core::content::{ContentSet, ContentStatus, Effect, SelectionMode, Table};
+use settlement_core::content::{
+    ContentSet, ContentStatus, Effect, IntentChange, SelectionMode, Table,
+};
 use settlement_core::dice::{DiceExpr, ScriptedFaces};
 use settlement_core::engine::{GenerationError, GenerationLog, Generator, Selections};
 use settlement_core::ids::TableId;
@@ -85,7 +88,7 @@ fn bundled_content_has_no_errors_and_only_the_known_incomplete_items() {
         })
         .collect();
     // Release readiness: this list must be empty before shipping v0.1.0.
-    assert_eq!(incomplete, ["table.environment", "table.size"]);
+    assert_eq!(incomplete, ["table.environment"]);
 }
 
 #[test]
@@ -157,7 +160,11 @@ fn sequence_is_the_approved_pipeline() {
             "table.size",
             "table.origin",
             "table.purpose",
-            "table.age"
+            "table.age",
+            "table.economy",
+            "table.authority",
+            "table.authorityRepresentation",
+            "table.authoritySize"
         ]
     );
 }
@@ -375,17 +382,748 @@ fn connections_table_and_region_variants() {
 }
 
 #[test]
-fn size_is_explicitly_incomplete() {
+fn size_table_is_standard_1d10() {
     let c = content();
     let t = table(&c, "table.size");
-    assert_eq!(t.status, ContentStatus::Incomplete);
-    assert!(t.dice.is_none(), "no distribution may be invented");
-    assert!(t.results.iter().all(|r| r.range.is_none()));
+    assert_eq!(t.status, ContentStatus::Final);
+    assert_eq!(t.selection, SelectionMode::Roll);
+    expect(
+        t,
+        "1d10",
+        &[
+            ("Trading Post", 20),
+            ("Village", 20),
+            ("Town", 20),
+            ("City", 20),
+            ("Capital", 20),
+        ],
+    );
+    // Every face 1-10 selects exactly one result.
+    for face in 1..=10 {
+        let claims = t
+            .results
+            .iter()
+            .filter(|r| r.range.unwrap().contains(face))
+            .count();
+        assert_eq!(claims, 1, "face {face}");
+    }
+    let faces_and_tags: Vec<_> = t
+        .results
+        .iter()
+        .map(|r| {
+            let range = r.range.unwrap();
+            let tags: Vec<_> = r.tags.iter().map(|g| g.as_str()).collect();
+            (r.id.as_str(), range.min, range.max, tags)
+        })
+        .collect();
+    assert_eq!(
+        faces_and_tags,
+        [
+            ("tradingPost", 1, 2, vec!["size.tradingPost"]),
+            ("village", 3, 4, vec!["size.village"]),
+            ("town", 5, 6, vec!["size.town"]),
+            ("city", 7, 8, vec!["size.city"]),
+            ("capital", 9, 10, vec!["size.capital"]),
+        ]
+    );
+    assert!(t.variants.is_empty() && t.follow_ups.is_empty());
+    for tag in [
+        "size.tradingPost",
+        "size.village",
+        "size.town",
+        "size.city",
+        "size.capital",
+    ] {
+        assert!(c.tag(&tag.into()).is_some(), "{tag} is defined");
+    }
+}
+
+#[test]
+fn size_is_an_ordered_scale_from_trading_post_to_capital() {
+    let c = content();
+    let t = table(&c, "table.size");
+    assert!(t.ordered);
     let names: Vec<_> = t.results.iter().map(|r| r.name.as_str()).collect();
     assert_eq!(
         names,
         ["Trading Post", "Village", "Town", "City", "Capital"]
     );
+    // The faces ascend with the scale, so a future dice modifier moves the
+    // result towards a smaller or larger settlement.
+    let mins: Vec<_> = t.results.iter().map(|r| r.range.unwrap().min).collect();
+    assert!(mins.windows(2).all(|w| w[0] < w[1]), "{mins:?}");
+    // Only the five core sizes: no Fortress, Hamlet or Small/Large variants.
+    assert_eq!(t.results.len(), 5);
+}
+
+#[test]
+fn size_modifiers_stay_planned_intents() {
+    let c = content();
+    // Authority intents are checked with the Authority table.
+    let intent = |tag: &str| -> Vec<(Option<String>, Vec<String>, IntentChange)> {
+        c.tag(&tag.into())
+            .unwrap()
+            .effects
+            .iter()
+            .filter(|d| {
+                d.effect
+                    .target_table()
+                    .is_none_or(|t| t.as_str() != "table.authority")
+            })
+            .map(|d| {
+                assert!(!d.is_active(), "{tag} has no approved numbers yet");
+                match &d.effect {
+                    Effect::Intent {
+                        table,
+                        results,
+                        change,
+                        ..
+                    } => (
+                        table.as_ref().map(|t| t.to_string()),
+                        results.iter().map(|r| r.to_string()).collect(),
+                        *change,
+                    ),
+                    other => panic!("{tag}: unexpected {other:?}"),
+                }
+            })
+            .collect()
+    };
+    let purpose = Some("table.purpose".to_string());
+    assert_eq!(
+        intent("size.tradingPost"),
+        [
+            (
+                purpose.clone(),
+                vec!["trade".into()],
+                IntentChange::StrongIncrease
+            ),
+            (
+                purpose.clone(),
+                vec!["transportWaystation".into()],
+                IntentChange::Increase
+            ),
+        ]
+    );
+    assert_eq!(
+        intent("size.capital"),
+        [(
+            purpose,
+            vec!["administrative".into()],
+            IntentChange::StrongIncrease
+        )]
+    );
+    for tag in ["size.village", "size.town", "size.city"] {
+        assert!(intent(tag).is_empty(), "{tag}");
+    }
+    // Age moves Size along its scale; the exact dice change is not approved.
+    let size = Some("table.size".to_string());
+    for (tag, change) in [
+        ("age.new", IntentChange::Decrease),
+        ("age.old", IntentChange::Increase),
+        ("age.ancient", IntentChange::Increase),
+    ] {
+        let size_intents: Vec<_> = intent(tag)
+            .into_iter()
+            .filter(|(table, ..)| *table == size)
+            .collect();
+        assert_eq!(size_intents, [(size.clone(), vec![], change)], "{tag}");
+    }
+}
+
+const ECONOMY: [&str; 5] = ["Failing", "Struggling", "Stable", "Prosperous", "Wealthy"];
+
+#[test]
+fn economy_table_is_standard_1d12() {
+    let c = content();
+    let t = table(&c, "table.economy");
+    assert_eq!(t.status, ContentStatus::Final);
+    assert_eq!(t.selection, SelectionMode::Roll);
+    assert_eq!(t.dice.as_deref(), Some("1d12"));
+    // Every face 1-12 selects exactly one result: full, non-overlapping
+    // coverage.
+    for face in 1..=12 {
+        let claims = t
+            .results
+            .iter()
+            .filter(|r| r.range.unwrap().contains(face))
+            .count();
+        assert_eq!(claims, 1, "face {face}");
+    }
+    let faces_and_tags: Vec<_> = t
+        .results
+        .iter()
+        .map(|r| {
+            let range = r.range.unwrap();
+            let tags: Vec<_> = r.tags.iter().map(|g| g.as_str()).collect();
+            (r.id.as_str(), range.min, range.max, tags)
+        })
+        .collect();
+    assert_eq!(
+        faces_and_tags,
+        [
+            ("failing", 1, 1, vec!["economy.failing"]),
+            ("struggling", 2, 3, vec!["economy.struggling"]),
+            ("stable", 4, 7, vec!["economy.stable"]),
+            ("prosperous", 8, 10, vec!["economy.prosperous"]),
+            ("wealthy", 11, 12, vec!["economy.wealthy"]),
+        ]
+    );
+    assert!(t.variants.is_empty() && t.follow_ups.is_empty());
+    for result in &t.results {
+        assert!(
+            c.tag(&result.tags[0]).is_some(),
+            "{} is defined",
+            result.tags[0]
+        );
+    }
+}
+
+#[test]
+fn economy_is_an_ordered_scale_from_failing_to_wealthy() {
+    let c = content();
+    let t = table(&c, "table.economy");
+    assert!(t.ordered);
+    let names: Vec<_> = t.results.iter().map(|r| r.name.as_str()).collect();
+    assert_eq!(names, ECONOMY);
+    let mins: Vec<_> = t.results.iter().map(|r| r.range.unwrap().min).collect();
+    assert!(mins.windows(2).all(|w| w[0] < w[1]), "{mins:?}");
+}
+
+#[test]
+fn economy_modifiers_stay_planned_intents() {
+    let c = content();
+    // (table or concept, change) of each intent on a tag.
+    let intents = |tag: &str| -> Vec<(String, IntentChange)> {
+        c.tag(&tag.into())
+            .unwrap()
+            .effects
+            .iter()
+            .filter_map(|d| match &d.effect {
+                Effect::Intent {
+                    table,
+                    results,
+                    concept,
+                    change,
+                } => {
+                    assert!(!d.is_active(), "{tag}: no approved numbers yet");
+                    let target = concept.clone().or_else(|| {
+                        results
+                            .is_empty()
+                            .then(|| table.as_ref().unwrap().to_string())
+                    })?;
+                    Some((target, *change))
+                }
+                _ => None,
+            })
+            .collect()
+    };
+    let economy = |change| ("table.economy".to_string(), change);
+    // Upstream: shifts along the Economy scale, without a magnitude.
+    assert_eq!(
+        intents("connection.isolated"),
+        [economy(IntentChange::Decrease)]
+    );
+    assert_eq!(
+        intents("connection.majorRoute"),
+        [economy(IntentChange::Increase)]
+    );
+    assert_eq!(intents("purpose.trade"), [economy(IntentChange::Increase)]);
+    // Downstream: destination tables do not exist yet.
+    let concept = |c: &str, change| (c.to_string(), change);
+    use IntentChange::*;
+    assert_eq!(
+        intents("economy.failing"),
+        [
+            concept("opportunities", StrongIncrease),
+            concept("building quality", StrongDecrease),
+            concept("economic pressures", Increase),
+        ]
+    );
+    assert_eq!(
+        intents("economy.struggling"),
+        [
+            concept("opportunities", Increase),
+            concept("building quality", Decrease),
+        ]
+    );
+    assert!(intents("economy.stable").is_empty());
+    assert_eq!(
+        intents("economy.prosperous"),
+        [concept("shops / services", Increase)]
+    );
+    assert_eq!(
+        intents("economy.wealthy"),
+        [
+            concept("shops / services", StrongIncrease),
+            concept("high-quality / notable buildings", Increase),
+        ]
+    );
+}
+
+#[test]
+fn automatic_generation_rolls_economy_on_1d12() {
+    let c = content();
+    let generator = Generator::new(&c).unwrap();
+    let mut selections = Selections::new();
+    selections.insert("table.settingProfile".into(), "kurovia".into());
+    let expected = |face: u32| match face {
+        1 => "Failing",
+        2..=3 => "Struggling",
+        4..=7 => "Stable",
+        8..=10 => "Prosperous",
+        _ => "Wealthy",
+    };
+    for face in 1..=12 {
+        // Region, Environment, Connections, Size, Origin, Purpose, Age, then
+        // Economy, then Authority.
+        // Authority 6 = Appointed Official: single, so no sub-rolls.
+        let mut dice = ScriptedFaces::new([1, 1, 1, 1, 1, 1, 1, face, 6]);
+        let log = generator.run_sequence(&selections, &mut dice).unwrap();
+        assert_eq!(dice.remaining(), 0, "unused dice");
+        let economy = log.record_for(&"table.economy".into()).unwrap();
+        assert!(!economy.selected);
+        assert_eq!(economy.dice.as_deref(), Some("1d12"));
+        assert_eq!(economy.attempts.len(), 1);
+        assert_eq!(economy.attempts[0].roll.total, face as i32);
+        let name = expected(face);
+        assert_eq!(economy.result.name, name, "face {face}");
+        let tag = format!("economy.{}", name.to_lowercase());
+        let tags: Vec<_> = economy.tags.iter().map(|g| g.id.as_str()).collect();
+        assert_eq!(tags, [tag.as_str()], "face {face}");
+        // Economy comes straight after Age.
+        let order: Vec<_> = log.table_rolls().map(|r| r.table.id.as_str()).collect();
+        let age = order.iter().position(|t| *t == "table.age").unwrap();
+        assert_eq!(order[age + 1], "table.economy");
+    }
+}
+
+#[test]
+fn economy_can_be_chosen_manually() {
+    let log = run(
+        "kurovia",
+        &[("table.economy", "wealthy")],
+        &[1, 1, 1, 1, 1, 1],
+    );
+    let economy = log.record_for(&"table.economy".into()).unwrap();
+    assert!(economy.selected);
+    assert_eq!(economy.result.name, "Wealthy");
+    assert!(log.has_tag(&"economy.wealthy".into()));
+}
+
+/// `(face range, result ID, name, tag)` of the approved Authority table.
+const AUTHORITY: [((i32, i32), &str, &str, &str); 8] = [
+    ((1, 3), "council", "Local Council", "authority.council"),
+    ((4, 5), "noble", "Noble / Landed Ruler", "authority.noble"),
+    (
+        (6, 6),
+        "appointed",
+        "Appointed Official",
+        "authority.appointed",
+    ),
+    ((7, 8), "guild", "Merchant / Guild Rule", "authority.guild"),
+    (
+        (9, 9),
+        "religious",
+        "Religious Authority",
+        "authority.religious",
+    ),
+    (
+        (10, 10),
+        "military",
+        "Military Authority",
+        "authority.military",
+    ),
+    (
+        (11, 11),
+        "elders",
+        "Elders / Community Leaders",
+        "authority.elders",
+    ),
+    (
+        (12, 12),
+        "assembly",
+        "Popular Assembly",
+        "authority.assembly",
+    ),
+];
+
+#[test]
+fn authority_table_is_standard_1d12() {
+    let c = content();
+    let t = table(&c, "table.authority");
+    assert_eq!(t.status, ContentStatus::Final);
+    assert_eq!(t.selection, SelectionMode::Roll);
+    assert_eq!(t.dice.as_deref(), Some("1d12"));
+    assert!(!t.ordered, "Authority is not a scale");
+    for face in 1..=12 {
+        let claims = t
+            .results
+            .iter()
+            .filter(|r| r.range.unwrap().contains(face))
+            .count();
+        assert_eq!(claims, 1, "face {face}");
+    }
+    let actual: Vec<_> = t
+        .results
+        .iter()
+        .map(|r| {
+            let range = r.range.unwrap();
+            assert_eq!(r.tags.len(), 1, "{}", r.id);
+            (
+                (range.min, range.max),
+                r.id.as_str(),
+                r.name.as_str(),
+                r.tags[0].as_str(),
+            )
+        })
+        .collect();
+    assert_eq!(actual, AUTHORITY);
+    for r in &t.results {
+        assert!(!r.description.is_empty(), "{} has a description", r.id);
+        assert!(c.tag(&r.tags[0]).is_some(), "{} is defined", r.tags[0]);
+    }
+    assert!(t.variants.is_empty() && t.follow_ups.is_empty());
+}
+
+#[test]
+fn authority_results_reserve_a_future_npc_generator() {
+    let c = content();
+    let t = table(&c, "table.authority");
+    for r in &t.results {
+        let generator = r.generator.as_ref().unwrap_or_else(|| panic!("{}", r.id));
+        assert_eq!(generator.as_str(), format!("authorityNpcs.{}", r.id));
+    }
+    // No other table uses the hook yet, and no NPC content exists.
+    for other in c
+        .tables
+        .iter()
+        .filter(|t| t.id.as_str() != "table.authority")
+    {
+        assert!(
+            other.results.iter().all(|r| r.generator.is_none()),
+            "{}",
+            other.id
+        );
+    }
+    for t in &c.tables {
+        let text = format!("{} {}", t.id, t.name).to_lowercase();
+        assert!(!text.contains("npc"), "{} must not be an NPC table", t.id);
+    }
+}
+
+#[test]
+fn authority_modifiers_stay_planned_intents() {
+    let c = content();
+    // `(result, change)` of each Authority intent on a tag.
+    let authority = |tag: &str| -> Vec<(String, IntentChange)> {
+        c.tag(&tag.into())
+            .unwrap()
+            .effects
+            .iter()
+            .filter_map(|d| match &d.effect {
+                Effect::Intent {
+                    table: Some(table),
+                    results,
+                    change,
+                    ..
+                } if table.as_str() == "table.authority" => {
+                    assert!(!d.is_active(), "{tag}: no approved numbers yet");
+                    assert_eq!(results.len(), 1, "{tag}");
+                    Some((results[0].to_string(), *change))
+                }
+                _ => None,
+            })
+            .collect()
+    };
+    use IntentChange::{Decrease, Increase};
+    let more = |r: &str| (r.to_string(), Increase);
+    assert_eq!(authority("origin.militaryOutpost"), [more("military")]);
+    assert_eq!(authority("origin.religiousFoundation"), [more("religious")]);
+    assert_eq!(authority("origin.estateSeat"), [more("noble")]);
+    assert_eq!(authority("origin.tradeStop"), [more("guild")]);
+    assert_eq!(authority("purpose.military"), [more("military")]);
+    assert_eq!(authority("purpose.religious"), [more("religious")]);
+    assert_eq!(authority("purpose.trade"), [more("guild")]);
+    assert_eq!(
+        authority("purpose.administrative"),
+        [more("council"), more("appointed")]
+    );
+    assert_eq!(authority("size.tradingPost"), [more("guild")]);
+    assert_eq!(
+        authority("size.capital"),
+        [
+            more("appointed"),
+            more("noble"),
+            more("council"),
+            ("elders".to_string(), Decrease)
+        ]
+    );
+    // Economy is independent of Authority.
+    for tag in c
+        .tags
+        .iter()
+        .filter(|t| t.id.as_str().starts_with("economy."))
+    {
+        assert!(authority(tag.id.as_str()).is_empty(), "{}", tag.id);
+    }
+    // Nothing else targets Authority.
+    let sources: Vec<_> = c
+        .tags
+        .iter()
+        .filter(|t| !authority(t.id.as_str()).is_empty())
+        .map(|t| t.id.as_str())
+        .collect();
+    assert_eq!(sources.len(), 10, "{sources:?}");
+}
+
+#[test]
+fn automatic_generation_rolls_authority_on_1d12() {
+    let c = content();
+    let generator = Generator::new(&c).unwrap();
+    let mut selections = Selections::new();
+    selections.insert("table.settingProfile".into(), "kurovia".into());
+    for face in 1..=12 {
+        // Region, Environment, Connections, Size, Origin, Purpose, Age,
+        // Economy, then Authority, then one sub-roll for some results: Size
+        // for a group (1 = 2 representatives) or Representation for Guild
+        // and Military (1 = single).
+        let mut faces = vec![1, 1, 1, 1, 1, 1, 1, 1, face];
+        if !matches!(face, 4..=6 | 9) {
+            faces.push(1);
+        }
+        let mut dice = ScriptedFaces::new(faces);
+        let log = generator.run_sequence(&selections, &mut dice).unwrap();
+        assert_eq!(dice.remaining(), 0, "unused dice");
+        let record = log.record_for(&"table.authority".into()).unwrap();
+        assert!(!record.selected);
+        assert_eq!(record.dice.as_deref(), Some("1d12"));
+        assert_eq!(record.attempts.len(), 1);
+        assert_eq!(record.attempts[0].roll.total, face as i32);
+        let (_, id, name, tag) = AUTHORITY
+            .iter()
+            .find(|((min, max), ..)| (*min..=*max).contains(&(face as i32)))
+            .unwrap();
+        assert_eq!(record.result.id.as_str(), *id, "face {face}");
+        assert_eq!(record.result.name, *name, "face {face}");
+        let tags: Vec<_> = record.tags.iter().map(|g| g.id.as_str()).collect();
+        assert_eq!(tags, [*tag], "face {face}");
+        // Authority follows Economy.
+        let order: Vec<_> = log.table_rolls().map(|r| r.table.id.as_str()).collect();
+        let economy = order.iter().position(|t| *t == "table.economy").unwrap();
+        assert_eq!(order[economy + 1], "table.authority");
+    }
+}
+
+#[test]
+fn authority_can_be_chosen_manually() {
+    let log = run(
+        "kurovia",
+        &[("table.authority", "assembly")],
+        &[1, 1, 1, 1, 1, 1],
+    );
+    let record = log.record_for(&"table.authority".into()).unwrap();
+    assert!(record.selected);
+    assert_eq!(record.result.name, "Popular Assembly");
+    assert!(log.has_tag(&"authority.assembly".into()));
+}
+
+// ----- Authority representation and size ---------------------------------------
+
+#[test]
+fn representation_is_a_conditional_1d4_split_evenly() {
+    let c = content();
+    let t = table(&c, "table.authorityRepresentation");
+    assert_eq!(t.dice.as_deref(), Some("1d4"));
+    assert!(t.eligibility.is_some(), "conditional");
+    let rows: Vec<_> = t
+        .results
+        .iter()
+        .map(|r| {
+            let range = r.range.unwrap();
+            (r.id.as_str(), range.min, range.max, r.tags[0].as_str())
+        })
+        .collect();
+    assert_eq!(
+        rows,
+        [
+            ("single", 1, 2, "authorityRepresentation.single"),
+            ("group", 3, 4, "authorityRepresentation.group"),
+        ]
+    );
+}
+
+#[test]
+fn authority_size_is_a_conditional_1d10_from_2_to_6() {
+    let c = content();
+    let t = table(&c, "table.authoritySize");
+    assert_eq!(t.dice.as_deref(), Some("1d10"));
+    assert!(t.eligibility.is_some(), "conditional");
+    // Every face 1-10 is claimed once, two faces (20%) per size.
+    for face in 1..=10 {
+        let claims = t
+            .results
+            .iter()
+            .filter(|r| r.range.unwrap().contains(face))
+            .count();
+        assert_eq!(claims, 1, "face {face}");
+    }
+    let rows: Vec<_> = t
+        .results
+        .iter()
+        .map(|r| {
+            let range = r.range.unwrap();
+            assert_eq!(range.max - range.min + 1, 2, "{} has two faces", r.id);
+            assert!(r.tags.is_empty(), "Authority Size is data, not a tag");
+            (range.min, range.max, r.value.unwrap(), r.name.as_str())
+        })
+        .collect();
+    assert_eq!(
+        rows,
+        [
+            (1, 2, 2, "2 Representatives"),
+            (3, 4, 3, "3 Representatives"),
+            (5, 6, 4, "4 Representatives"),
+            (7, 8, 5, "5 Representatives"),
+            (9, 10, 6, "6 Representatives"),
+        ]
+    );
+    let sequence: Vec<_> = c
+        .sequence
+        .iter()
+        .filter(|s| s.sub_stage)
+        .map(|s| s.table().unwrap().as_str())
+        .collect();
+    assert_eq!(
+        sequence,
+        ["table.authorityRepresentation", "table.authoritySize"]
+    );
+}
+
+/// Generates with every stage before Authority on face 1, then the given
+/// Authority face and sub-rolls. All dice must be used.
+fn generate_authority(faces_after_economy: &[u32]) -> GenerationLog {
+    let c = content();
+    let mut selections = Selections::new();
+    selections.insert("table.settingProfile".into(), "kurovia".into());
+    let mut faces = vec![1; 8];
+    faces.extend_from_slice(faces_after_economy);
+    let mut dice = ScriptedFaces::new(faces);
+    let log = Generator::new(&c)
+        .unwrap()
+        .run_sequence(&selections, &mut dice)
+        .unwrap();
+    assert_eq!(
+        dice.remaining(),
+        0,
+        "unused dice for {faces_after_economy:?}"
+    );
+    log
+}
+
+fn representatives(log: &GenerationLog) -> (Representation, u32) {
+    let r = AuthorityRepresentatives::from_log(log).unwrap();
+    (r.representation, r.size)
+}
+
+#[test]
+fn always_group_authorities_go_straight_to_authority_size() {
+    // Local Council (1-3), Elders (11) and Popular Assembly (12).
+    for authority in [1, 2, 3, 11, 12] {
+        let log = generate_authority(&[authority, 5]); // Size 5 = 4
+        assert!(
+            log.record_for(&"table.authorityRepresentation".into())
+                .is_none(),
+            "no representation roll for {authority}"
+        );
+        let size = log.record_for(&"table.authoritySize".into()).unwrap();
+        assert_eq!(size.dice.as_deref(), Some("1d10"));
+        assert_eq!(size.attempts[0].roll.total, 5);
+        assert_eq!(size.value, Some(4));
+        assert_eq!(representatives(&log), (Representation::Group, 4));
+        assert!(log.has_tag(&"authorityRepresentation.group".into()));
+    }
+}
+
+#[test]
+fn always_single_authorities_roll_nothing_more() {
+    // Noble (4-5), Appointed Official (6) and Religious Authority (9).
+    for authority in [4, 5, 6, 9] {
+        let log = generate_authority(&[authority]);
+        for table in ["table.authorityRepresentation", "table.authoritySize"] {
+            assert!(log.record_for(&table.into()).is_none(), "{table}");
+        }
+        assert_eq!(representatives(&log), (Representation::Single, 1));
+        assert!(log.has_tag(&"authorityRepresentation.single".into()));
+        assert!(!log.has_tag(&"authorityRepresentation.group".into()));
+    }
+}
+
+#[test]
+fn guild_and_military_roll_1d4_for_representation() {
+    // Merchant / Guild Rule (7-8) and Military Authority (10).
+    for authority in [7, 8, 10] {
+        for d4 in 1..=2 {
+            let log = generate_authority(&[authority, d4]);
+            let rep = log
+                .record_for(&"table.authorityRepresentation".into())
+                .unwrap();
+            assert_eq!(rep.dice.as_deref(), Some("1d4"));
+            assert_eq!(rep.attempts[0].roll.total, d4 as i32);
+            assert_eq!(rep.result.name, "Single Representative");
+            assert!(log.record_for(&"table.authoritySize".into()).is_none());
+            assert_eq!(representatives(&log), (Representation::Single, 1));
+        }
+        for d4 in 3..=4 {
+            let log = generate_authority(&[authority, d4, 10]); // Size 10 = 6
+            let rep = log
+                .record_for(&"table.authorityRepresentation".into())
+                .unwrap();
+            assert_eq!(rep.attempts[0].roll.total, d4 as i32);
+            assert_eq!(rep.result.name, "Group Representatives");
+            let size = log.record_for(&"table.authoritySize".into()).unwrap();
+            assert_eq!(size.attempts[0].roll.total, 10);
+            assert_eq!(representatives(&log), (Representation::Group, 6));
+        }
+    }
+}
+
+#[test]
+fn every_authority_size_face_gives_its_count() {
+    for (face, count) in [
+        (1, 2),
+        (2, 2),
+        (3, 3),
+        (4, 3),
+        (5, 4),
+        (6, 4),
+        (7, 5),
+        (8, 5),
+        (9, 6),
+        (10, 6),
+    ] {
+        let log = generate_authority(&[1, face]); // Local Council
+        let size = log.record_for(&"table.authoritySize".into()).unwrap();
+        assert_eq!(size.value, Some(count), "face {face}");
+        assert_eq!(size.result.name, format!("{count} Representatives"));
+        assert_eq!(representatives(&log).1, count as u32, "face {face}");
+    }
+}
+
+#[test]
+fn the_npc_contract_carries_authority_representation_and_size() {
+    let log = generate_authority(&[7, 4, 7]); // Guild, group, 5
+    let r = AuthorityRepresentatives::from_log(&log).unwrap();
+    assert_eq!(r.authority.id.as_str(), "guild");
+    assert_eq!(r.authority.name, "Merchant / Guild Rule");
+    let tags: Vec<_> = r.tags.iter().map(|t| t.id.as_str()).collect();
+    assert_eq!(tags, ["authority.guild"]);
+    assert_eq!((r.representation, r.size), (Representation::Group, 5));
+    let json = serde_json::to_value(&r).unwrap();
+    assert_eq!(json["representation"], "group");
+    assert_eq!(json["size"], 5);
+    // No NPCs are generated: nothing but the Authority stages was rolled.
+    let tables: Vec<_> = log.table_rolls().map(|r| r.table.id.as_str()).collect();
+    assert!(tables.iter().all(|t| !t.to_lowercase().contains("npc")));
 }
 
 #[test]
@@ -452,8 +1190,16 @@ fn known_modifier_intentions_are_recorded_as_planned_intents() {
             .filter(|d| !d.is_active())
             .filter_map(|d| match &d.effect {
                 Effect::Intent {
-                    results, concept, ..
+                    table,
+                    results,
+                    concept,
+                    ..
                 } => Some(concept.clone().unwrap_or_else(|| {
+                    // A whole-table intent (a shift along an ordered scale)
+                    // is shown by its table.
+                    if results.is_empty() {
+                        return table.as_ref().map(|t| t.to_string()).unwrap_or_default();
+                    }
                     results
                         .iter()
                         .map(|r| r.to_string())
@@ -473,13 +1219,15 @@ fn known_modifier_intentions_are_recorded_as_planned_intents() {
     assert_eq!(intents("env.ichorFields"), ["resourceExtraction"]);
     assert_eq!(
         intents("connection.majorRoute"),
-        ["trade+transportWaystation"]
+        ["trade+transportWaystation", "table.economy"]
     );
     assert_eq!(
         intents("connection.isolated"),
-        ["trade+transportWaystation"]
+        ["trade+transportWaystation", "table.economy"]
     );
-    assert_eq!(intents("origin.estateSeat"), ["noble"]);
+    assert_eq!(intents("purpose.trade"), ["table.economy", "guild"]);
+    // The "noble" concept (a guaranteed noble) and the Noble Authority result.
+    assert_eq!(intents("origin.estateSeat"), ["noble", "noble"]);
     assert_eq!(intents("age.new").len(), 3);
 }
 
@@ -489,8 +1237,12 @@ fn run(profile: &str, extra: &[(&str, &str)], faces: &[u32]) -> GenerationLog {
     let c = content();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), profile.into());
-    // Size has no approved distribution, so it must be chosen.
+    // Size, Economy and Authority are chosen so these tests' dice do not
+    // depend on them; rolling them is covered by their own tests below.
     selections.insert("table.size".into(), "village".into());
+    selections.insert("table.economy".into(), "stable".into());
+    selections.insert("table.authority".into(), "council".into());
+    selections.insert("table.authoritySize".into(), "four".into());
     for (t, r) in extra {
         selections.insert((*t).into(), (*r).into());
     }
@@ -512,7 +1264,7 @@ fn result_of(log: &GenerationLog, table: &str) -> String {
 #[test]
 fn kurovia_uses_the_kurovia_region_and_region_environment() {
     // Region 1 = Ordon; Environment 19 = Coast; Connections 16 = Major Route
-    // (Ordon variant); Size chosen (incomplete); Origin 20; Purpose 20; Age 8.
+    // (Ordon variant); Size chosen; Origin 20; Purpose 20; Age 8.
     let log = run("kurovia", &[], &[1, 19, 16, 20, 20, 8]);
     assert_eq!(result_of(&log, "table.kuroviaRegion"), "Ordon");
     let env = log
@@ -622,26 +1374,47 @@ fn other_profiles_use_generic_region_and_stop_at_undesigned_environment() {
 }
 
 #[test]
-fn incomplete_size_stops_automatic_generation_with_a_readable_error() {
+fn automatic_generation_rolls_size_on_1d10() {
     let c = content();
+    let generator = Generator::new(&c).unwrap();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
-    let err = Generator::new(&c)
-        .unwrap()
-        .run_sequence(&selections, &mut ScriptedFaces::new([1, 1, 1]))
-        .unwrap_err();
-    assert_eq!(
-        err.to_string(),
-        "Size cannot be generated yet: its content is incomplete (The dice distribution for Size has not been finalised.)"
-    );
+    // Region 1 = Ordon; Environment 1; Connections 1; then Size, Origin 1,
+    // Purpose 1, Age 1, Economy 1, Authority 6 (single: no sub-rolls).
+    for (face, name, tag) in [
+        (1, "Trading Post", "size.tradingPost"),
+        (2, "Trading Post", "size.tradingPost"),
+        (3, "Village", "size.village"),
+        (4, "Village", "size.village"),
+        (5, "Town", "size.town"),
+        (6, "Town", "size.town"),
+        (7, "City", "size.city"),
+        (8, "City", "size.city"),
+        (9, "Capital", "size.capital"),
+        (10, "Capital", "size.capital"),
+    ] {
+        let mut dice = ScriptedFaces::new([1, 1, 1, face, 1, 1, 1, 1, 6]);
+        let log = generator.run_sequence(&selections, &mut dice).unwrap();
+        assert_eq!(dice.remaining(), 0, "unused dice");
+        let size = log.record_for(&"table.size".into()).unwrap();
+        assert!(!size.selected);
+        assert_eq!(size.dice.as_deref(), Some("1d10"));
+        assert_eq!(size.attempts.len(), 1);
+        assert_eq!(size.attempts[0].roll.total, face as i32);
+        assert_eq!(size.result.name, name, "face {face}");
+        let size_tags: Vec<_> = size.tags.iter().map(|g| g.id.as_str()).collect();
+        assert_eq!(size_tags, [tag], "face {face}");
+        assert!(log.has_tag(&tag.into()));
+    }
 }
 
 #[test]
-fn incomplete_size_can_still_be_chosen_manually() {
-    let log = run("kurovia", &[("table.size", "town")], &[1, 1, 1, 1, 1, 1]);
+fn size_can_still_be_chosen_manually() {
+    let log = run("kurovia", &[("table.size", "capital")], &[1, 1, 1, 1, 1, 1]);
     let size = log.record_for(&"table.size".into()).unwrap();
     assert!(size.selected);
-    assert_eq!(size.result.name, "Town");
+    assert_eq!(size.result.name, "Capital");
+    assert!(log.has_tag(&"size.capital".into()));
 }
 
 #[test]
@@ -662,7 +1435,11 @@ fn every_stage_has_its_pipeline_name() {
             "Size",
             "Origin",
             "Purpose",
-            "Age"
+            "Age",
+            "Economy",
+            "Authority",
+            "Representation",
+            "Authority Size"
         ]
     );
 }

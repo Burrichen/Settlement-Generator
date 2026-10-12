@@ -233,6 +233,8 @@ impl SavedScreen {
                     .filter(|t| t.name != st.label)
                     .map(|t| t.name.clone()),
                 tags: ctx.settings.tag_view.then(|| st.tags.clone()),
+                sub_stage: st.sub_stage,
+                skipped: st.skipped,
             })
             .collect();
         lines.extend(sheet_lines(&rows, s));

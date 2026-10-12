@@ -10,6 +10,33 @@ export interface SheetRow {
   source?: string;
   /** Only passed when Tag View is on. */
   tags?: Named[];
+  /** Further lines of the value, from the stage's sub-stages. */
+  details?: string[];
+}
+
+/** A stage to lay out on a sheet, before sub-stages are folded in. */
+export interface SheetStage extends SheetRow {
+  subStage?: boolean;
+  skipped?: boolean;
+}
+
+/**
+ * Folds each sub-stage into the stage before it, as a further line of its
+ * value (e.g. "Local Council" then "4 Representatives"). Sub-stages that do
+ * not apply are left out.
+ */
+export function foldSubStages(stages: SheetStage[]): SheetRow[] {
+  const rows: SheetRow[] = [];
+  for (const { subStage, skipped, ...row } of stages) {
+    const parent = rows[rows.length - 1];
+    if (!subStage || !parent) {
+      rows.push(row);
+    } else if (!skipped) {
+      parent.details = [...(parent.details ?? []), row.value];
+      if (row.tags) parent.tags = [...(parent.tags ?? []), ...row.tags];
+    }
+  }
+  return rows;
 }
 
 /** A settlement laid out stage by stage, between ornaments. */
@@ -31,6 +58,11 @@ export function SettlementSheet({
             <dt className="label">{row.label}</dt>
             <dd>
               <span className="sheet-value">{row.value}</span>
+              {row.details?.map((d, i) => (
+                <span key={i} className="sheet-detail">
+                  {d}
+                </span>
+              ))}
               {row.source && <span className="sheet-source">{row.source}</span>}
               <TagList tags={row.tags} />
             </dd>

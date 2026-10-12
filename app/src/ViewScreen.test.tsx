@@ -36,6 +36,33 @@ function detailOf(s: SettlementSummary): SavedSettlementView {
         table: { id: "table.kuroviaRegion", name: "Kurovia Region" },
         result: { id: "ordon", name: `Ordon of ${s.name}` },
       },
+      {
+        label: "Economy",
+        stage_table: "table.economy",
+        table: { id: "table.economy", name: "Economy" },
+        result: { id: "prosperous", name: "Prosperous" },
+        tags: [{ id: "economy.prosperous", name: "Prosperous tag" }],
+      },
+      {
+        label: "Authority",
+        stage_table: "table.authority",
+        table: { id: "table.authority", name: "Authority" },
+        result: { id: "council", name: "Local Council" },
+        tags: [{ id: "authority.council", name: "Local Council tag" }],
+      },
+      {
+        label: "Representation",
+        stage_table: "table.authorityRepresentation",
+        skipped: true,
+        sub_stage: true,
+      },
+      {
+        label: "Authority Size",
+        stage_table: "table.authoritySize",
+        table: { id: "table.authoritySize", name: "Authority Size" },
+        result: { id: "four", name: "4 Representatives" },
+        sub_stage: true,
+      },
     ],
   };
 }
@@ -164,14 +191,27 @@ describe("snapshot pane", () => {
     const sheet = screen.getByRole("article", { name: /snapshot/ });
     expect(within(sheet).getByText("Kurovia")).toBeTruthy();
     expect(within(sheet).getByText("Kurovia Region")).toBeTruthy();
+    expect(within(sheet).getByText("Economy")).toBeTruthy();
+    expect(within(sheet).getByText("Prosperous")).toBeTruthy();
     expect(screen.getByText(/Generated with v0\.1\.0/)).toBeTruthy();
     expect(within(sheet).queryByText("Kurovia tag")).toBeNull();
+    expect(within(sheet).queryByText("Prosperous tag")).toBeNull();
+    expect(within(sheet).getByText("Authority")).toBeTruthy();
+    expect(within(sheet).getByText("Local Council")).toBeTruthy();
+    // The Authority sub-stages are folded into the Authority row.
+    const authority = within(sheet).getByText("Authority").closest(".sheet-row") as HTMLElement;
+    expect(within(authority).getByText("4 Representatives")).toBeTruthy();
+    expect(within(sheet).queryByText("Representation")).toBeNull();
+    expect(within(sheet).queryByText("Not applicable")).toBeNull();
+    expect(within(sheet).queryByText("Local Council tag")).toBeNull();
   });
 
   it("shows tags with Tag View", async () => {
     settings.tag_view = true;
     await openView();
     expect(screen.getByText("Kurovia tag")).toBeTruthy();
+    expect(screen.getByText("Prosperous tag")).toBeTruthy();
+    expect(screen.getByText("Local Council tag")).toBeTruthy();
   });
 });
 

@@ -96,6 +96,14 @@
           "change": "increase",
           "status": "planned",
           "note": "Trade Stop origin increases Trade/Transport. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["guild"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade Stop: Merchant / Guild Rule more likely. Exact dice change not yet approved."
         }
       ]
     },
@@ -151,6 +159,14 @@
           "change": "increase",
           "status": "planned",
           "note": "Religious Foundation origin increases Religious. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["religious"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Religious Foundation: Religious Authority more likely. Exact dice change not yet approved."
         }
       ]
     },
@@ -172,6 +188,14 @@
           "change": "increase",
           "status": "planned",
           "note": "Military Outpost origin increases Military. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Military Outpost: Military Authority more likely. Exact dice change not yet approved."
         }
       ]
     },
@@ -185,6 +209,14 @@
           "change": "guarantee",
           "status": "planned",
           "note": "Estate / Seat: guarantee at least one noble. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["noble"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Estate / Seat: Noble / Landed Ruler more likely. Exact dice change not yet approved."
         }
       ]
     },

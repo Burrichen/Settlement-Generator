@@ -14,6 +14,8 @@ const STAGES = [
   "Origin",
   "Purpose",
   "Age",
+  "Economy",
+  "Authority",
 ];
 const RESULTS = [
   "Kurovia",
@@ -24,6 +26,8 @@ const RESULTS = [
   "Trade Stop",
   "Fishing",
   "Old",
+  "Prosperous",
+  "Local Council",
 ];
 
 function stage(index: number, resolved: boolean, extra: Partial<StageView> = {}): StageView {
@@ -138,7 +142,7 @@ describe("automatic", () => {
   it("asks only for the Setting Profile, then shows the completed settlement", async () => {
     g.runAutomatic
       .mockResolvedValueOnce(ok(view("automatic", 0)))
-      .mockResolvedValueOnce(ok(view("automatic", 8)));
+      .mockResolvedValueOnce(ok(view("automatic", STAGES.length)));
     g.choose.mockResolvedValue(ok(view("automatic", 1)));
     const user = await openStart();
 
@@ -157,34 +161,34 @@ describe("automatic", () => {
   });
 
   it("stops with a readable message where content is incomplete", async () => {
-    const blocked = view("automatic", 4);
-    blocked.stages[4] = stage(4, false, {
+    const blocked = view("automatic", 2);
+    blocked.stages[2] = stage(2, false, {
       can_roll: false,
-      incomplete: "The dice distribution for Size has not been finalised.",
+      incomplete: "Environment for other regions has not been designed.",
     });
     g.runAutomatic.mockResolvedValueOnce({
       view: blocked,
-      error: "Size cannot be generated yet: its content is incomplete",
+      error: "Environment cannot be generated yet: its content is incomplete",
     });
     await openStart();
-    expect(await screen.findByRole("heading", { name: "Size needs a choice" })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Environment needs a choice" })).toBeTruthy();
     expect(screen.getByRole("alert").textContent).toContain(
-      "Size cannot be generated yet: its content is incomplete",
+      "Environment cannot be generated yet: its content is incomplete",
     );
   });
 });
 
 describe("completed settlement actions", () => {
   async function completed() {
-    g.start.mockResolvedValue(ok(view("automatic", 8)));
-    g.runAutomatic.mockResolvedValue(ok(view("automatic", 8)));
+    g.start.mockResolvedValue(ok(view("automatic", STAGES.length)));
+    g.runAutomatic.mockResolvedValue(ok(view("automatic", STAGES.length)));
     const user = await openStart();
     await screen.findByRole("article", { name: "Generated settlement" });
     return user;
   }
 
   it("re-rolls the entire settlement", async () => {
-    g.rerollAll.mockResolvedValue(ok(view("automatic", 8)));
+    g.rerollAll.mockResolvedValue(ok(view("automatic", STAGES.length)));
     const user = await completed();
     await user.click(screen.getByRole("button", { name: "Re-roll" }));
     expect(g.rerollAll).toHaveBeenCalledTimes(1);
@@ -310,13 +314,17 @@ describe("manual one-table", () => {
     g.start.mockResolvedValue(ok(view("one_table", 0)));
     g.roll.mockResolvedValue(ok(view("one_table", 0)));
     g.choose.mockResolvedValue(ok(view("one_table", 1)));
-    g.rollRemaining.mockResolvedValue(ok(view("one_table", 8)));
+    g.rollRemaining.mockResolvedValue(ok(view("one_table", STAGES.length)));
     const user = await openStart();
 
     await screen.findByRole("table");
-    expect(screen.getAllByRole("combobox")).toHaveLength(8);
+    expect(screen.getAllByRole("combobox")).toHaveLength(STAGES.length);
     await user.click(screen.getByRole("button", { name: "Roll Purpose" }));
     expect(g.roll).toHaveBeenCalledWith(6);
+    await user.click(screen.getByRole("button", { name: "Roll Economy" }));
+    expect(g.roll).toHaveBeenCalledWith(STAGES.indexOf("Economy"));
+    await user.click(screen.getByRole("button", { name: "Roll Authority" }));
+    expect(g.roll).toHaveBeenCalledWith(STAGES.indexOf("Authority"));
     await user.selectOptions(screen.getByLabelText("Setting Profile"), "r0");
     expect(g.choose).toHaveBeenCalledWith(0, "r0");
 
@@ -326,5 +334,63 @@ describe("manual one-table", () => {
     expect(finish.disabled).toBe(false);
     await user.click(finish);
     expect(await screen.findByRole("article", { name: "Generated settlement" })).toBeTruthy();
+  });
+});
+
+describe("authority sub-stages", () => {
+  /** Every stage resolved, plus Representation (skipped: decided by the
+   * Authority) and Authority Size (rolled), both sub-stages. */
+  function withSubStages(mode: SessionView["mode"]): SessionView {
+    const v = view(mode, STAGES.length);
+    const n = STAGES.length;
+    const sub = (i: number, name: string, extra: Partial<StageView>): StageView => ({
+      ...stage(i, false),
+      index: i,
+      stage: { id: `table.sub${i}`, name },
+      table: { id: `table.sub${i}`, name },
+      options: [],
+      sub_stage: true,
+      ...extra,
+    });
+    v.stages.push(
+      sub(n, "Representation", { status: "skipped", skipped: "not_eligible", can_roll: false }),
+      sub(n + 1, "Authority Size", {
+        status: "resolved",
+        result: { id: "four", name: "4 Representatives" },
+        options: [
+          { result: { id: "four", name: "4 Representatives" }, tags: [], legal: true },
+          { result: { id: "five", name: "5 Representatives" }, tags: [], legal: true },
+        ],
+      }),
+    );
+    v.complete = true;
+    v.next_pending = undefined;
+    return v;
+  }
+
+  it("shows Authority Size under Authority and leaves out what does not apply", async () => {
+    g.start.mockResolvedValue(ok(withSubStages("automatic")));
+    g.runAutomatic.mockResolvedValue(ok(withSubStages("automatic")));
+    await openStart();
+    const sheet = await screen.findByRole("article", { name: "Generated settlement" });
+    const authority = within(sheet).getByText("Authority").closest(".sheet-row") as HTMLElement;
+    expect(within(authority).getByText("Local Council")).toBeTruthy();
+    expect(within(authority).getByText("4 Representatives")).toBeTruthy();
+    expect(within(sheet).queryByText("Representation")).toBeNull();
+    expect(within(sheet).queryByText("Authority Size")).toBeNull();
+    expect(within(sheet).queryByText("Not applicable")).toBeNull();
+  });
+
+  it("shows only sub-stages that apply in the one-table grid", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    g.start.mockResolvedValue(ok(withSubStages("one_table")));
+    await openStart();
+    await screen.findByRole("table");
+    expect(screen.queryByLabelText("Representation")).toBeNull();
+    const size = screen.getByLabelText("Authority Size") as HTMLSelectElement;
+    expect(size.value).toBe("four");
+    expect(size.closest("tr")?.className).toContain("sub-stage");
+    expect(screen.getAllByRole("combobox")).toHaveLength(STAGES.length + 1);
   });
 });

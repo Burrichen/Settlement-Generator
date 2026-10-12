@@ -4,15 +4,20 @@
     {
       "id": "table.size",
       "name": "Size",
-      "description": "Approved result vocabulary. Fortress is deliberately deferred to future DLC/content.",
-      "status": "incomplete",
-      "status_note": "The dice distribution for Size has not been finalised.",
+      "description": "Standard Size, smallest to largest. Fortress is deliberately deferred to future DLC/content.",
+      "dice": "1d10",
+      "ordered": true,
       "results": [
-        { "id": "tradingPost", "name": "Trading Post", "tags": ["size.tradingPost"] },
-        { "id": "village", "name": "Village", "tags": ["size.village"] },
-        { "id": "town", "name": "Town", "tags": ["size.town"] },
-        { "id": "city", "name": "City", "tags": ["size.city"] },
-        { "id": "capital", "name": "Capital", "tags": ["size.capital"] }
+        {
+          "id": "tradingPost",
+          "name": "Trading Post",
+          "range": [1, 2],
+          "tags": ["size.tradingPost"]
+        },
+        { "id": "village", "name": "Village", "range": [3, 4], "tags": ["size.village"] },
+        { "id": "town", "name": "Town", "range": [5, 6], "tags": ["size.town"] },
+        { "id": "city", "name": "City", "range": [7, 8], "tags": ["size.city"] },
+        { "id": "capital", "name": "Capital", "range": [9, 10], "tags": ["size.capital"] }
       ]
     }
   ],
@@ -36,6 +41,14 @@
           "change": "increase",
           "status": "planned",
           "note": "Trading Post increases Transport. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["guild"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trading Post: Merchant / Guild Rule more likely. Exact dice change not yet approved."
         }
       ]
     },
@@ -53,6 +66,38 @@
           "change": "strong_increase",
           "status": "planned",
           "note": "Capital strongly increases Administrative. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["appointed"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Capital: Appointed Official more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["noble"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Capital: Noble / Landed Ruler more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["council"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Capital: Local Council more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["elders"],
+          "change": "decrease",
+          "status": "planned",
+          "note": "Capital: Elders / Community Leaders less likely. Exact dice change not yet approved."
         }
       ]
     }

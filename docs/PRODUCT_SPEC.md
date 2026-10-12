@@ -170,7 +170,9 @@ Settings are persistent and shared by both interfaces:
 ## 10. Generation
 
 The pipeline is: Setting Profile → Region → Name → Environment →
-Connections → Size → Origin → Purpose → Age. No other stages are inserted.
+Connections → Size → Origin → Purpose → Age → Economy → Authority
+(→ Representation → Authority Size, conditional sub-stages of Authority). No
+other stages are inserted.
 
 ### Name (v0.1.1)
 
@@ -275,8 +277,7 @@ Done:
 
 Still to be specified and built:
 
-- the content marked incomplete: the Size distribution and non-Kurovia
-  Environment;
+- the content marked incomplete: non-Kurovia Environment;
 - GUI: none outstanding beyond polish. The shell, Main Menu, Settings, Roadmap, Credits, both themes, and the Start
   generation flows (Automatic, Incremental, One-table, and the Completed
   Settlement with Re-roll, Save and Delete) and the saved-settlement View

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.economy",
+      "name": "Economy",
+      "description": "The settlement's current overall economic condition, poorest to richest.",
+      "dice": "1d12",
+      "ordered": true,
+      "results": [
+        { "id": "failing", "name": "Failing", "range": 1, "tags": ["economy.failing"] },
+        {
+          "id": "struggling",
+          "name": "Struggling",
+          "range": [2, 3],
+          "tags": ["economy.struggling"]
+        },
+        { "id": "stable", "name": "Stable", "range": [4, 7], "tags": ["economy.stable"] },
+        {
+          "id": "prosperous",
+          "name": "Prosperous",
+          "range": [8, 10],
+          "tags": ["economy.prosperous"]
+        },
+        { "id": "wealthy", "name": "Wealthy", "range": [11, 12], "tags": ["economy.wealthy"] }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "economy.failing",
+      "name": "Failing",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Failing: Opportunities increase strongly. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "concept": "building quality",
+          "change": "strong_decrease",
+          "status": "planned",
+          "note": "Failing: Building quality decreases strongly. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "concept": "economic pressures",
+          "change": "increase",
+          "status": "planned",
+          "note": "Failing: Economic Pressures increase. Destination table not yet present."
+        }
+      ]
+    },
+    {
+      "id": "economy.struggling",
+      "name": "Struggling",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "increase",
+          "status": "planned",
+          "note": "Struggling: Opportunities increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "concept": "building quality",
+          "change": "decrease",
+          "status": "planned",
+          "note": "Struggling: Building quality decreases. Destination table not yet present."
+        }
+      ]
+    },
+    { "id": "economy.stable", "name": "Stable" },
+    {
+      "id": "economy.prosperous",
+      "name": "Prosperous",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "shops / services",
+          "change": "increase",
+          "status": "planned",
+          "note": "Prosperous: Shops / services increase. Destination table not yet present."
+        }
+      ]
+    },
+    {
+      "id": "economy.wealthy",
+      "name": "Wealthy",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "shops / services",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Wealthy: Shops / services increase strongly. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "concept": "high-quality / notable buildings",
+          "change": "increase",
+          "status": "planned",
+          "note": "Wealthy: High-quality / notable buildings increase. Destination table not yet present."
+        }
+      ]
+    }
+  ]
+}

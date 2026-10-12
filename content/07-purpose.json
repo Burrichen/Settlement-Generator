@@ -48,15 +48,82 @@
   ],
   "tags": [
     { "id": "purpose.agriculture", "name": "Agriculture" },
-    { "id": "purpose.trade", "name": "Trade" },
+    {
+      "id": "purpose.trade",
+      "name": "Trade",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.economy",
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade: Economy shifts up. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["guild"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade: Merchant / Guild Rule more likely. Exact dice change not yet approved."
+        }
+      ]
+    },
     { "id": "purpose.resourceExtraction", "name": "Resource Extraction" },
     { "id": "purpose.craftIndustry", "name": "Craft / Industry" },
     { "id": "purpose.fishing", "name": "Fishing" },
     { "id": "purpose.forestry", "name": "Forestry" },
-    { "id": "purpose.religious", "name": "Religious" },
-    { "id": "purpose.administrative", "name": "Administrative" },
+    {
+      "id": "purpose.religious",
+      "name": "Religious",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["religious"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Religious: Religious Authority more likely. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "purpose.administrative",
+      "name": "Administrative",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["council"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Administrative: Local Council more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["appointed"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Administrative: Appointed Official more likely. Exact dice change not yet approved."
+        }
+      ]
+    },
     { "id": "purpose.transportWaystation", "name": "Transport / Waystation" },
-    { "id": "purpose.military", "name": "Military" },
+    {
+      "id": "purpose.military",
+      "name": "Military",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.authority",
+          "results": ["military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Military: Military Authority more likely. Exact dice change not yet approved."
+        }
+      ]
+    },
     { "id": "purpose.scholarly", "name": "Scholarly" }
   ]
 }

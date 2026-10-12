@@ -2,7 +2,7 @@
 // gate and the unsaved-changes guard. The core is mocked at `api`.
 import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, onTestFinished, vi } from "vitest";
 import type {
   ContentOverview,
   Coverage,
@@ -243,6 +243,45 @@ describe("table editor", () => {
       expect.objectContaining({ id: "table.econ", results: expect.any(Array) }),
     );
     expect(await screen.findByText("Saved")).toBeTruthy();
+  });
+
+  it("shows and edits result values only on tables that use them", async () => {
+    const counts: Table = {
+      id: "table.counts",
+      name: "Counts",
+      dice: "1d20",
+      results: [
+        { id: "poor", name: "Two", range: [1, 10], value: 2 },
+        { id: "rich", name: "Three", range: [11, 20], value: 3 },
+      ],
+    };
+    const original = api.table.getMockImplementation();
+    api.table.mockImplementation(async () => tableDetail(counts));
+    onTestFinished(() => {
+      api.table.mockImplementation(original!);
+    });
+    const user = await openEditor("View Tables");
+    const value = (await screen.findByLabelText("Three: value")) as HTMLInputElement;
+    expect(value.value).toBe("3");
+    await user.clear(value);
+    await user.type(value, "5");
+    const save = screen.getByRole("button", { name: "Save changes" }) as HTMLButtonElement;
+    await waitFor(() => expect(save.disabled).toBe(false));
+    await user.click(save);
+    expect(api.saveTable).toHaveBeenCalledWith(
+      expect.objectContaining({
+        results: [
+          expect.objectContaining({ id: "poor", value: 2 }),
+          expect.objectContaining({ id: "rich", value: 5 }),
+        ],
+      }),
+    );
+  });
+
+  it("has no value column on tables without values", async () => {
+    await openEditor("View Tables");
+    await screen.findByDisplayValue("Economy");
+    expect(screen.queryByRole("columnheader", { name: "Value" })).toBeNull();
   });
 
   it("adds results, variants and follow-up rolls with generated IDs", async () => {

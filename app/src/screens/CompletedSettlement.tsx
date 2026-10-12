@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { generation, type SessionView } from "../api";
 import { ConfirmBar, NameForm } from "../components/generation";
-import { SettlementSheet } from "../components/SettlementSheet";
+import { SettlementSheet, foldSubStages } from "../components/SettlementSheet";
 
 /**
  * The finished settlement. Shows each stage's result; tags only with Tag
@@ -50,13 +50,17 @@ export function CompletedSettlement({
     <div className="completed">
       <SettlementSheet
         label="Generated settlement"
-        rows={view.stages.map((stage) => ({
-          key: String(stage.index),
-          label: stage.stage.name,
-          value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
-          source: stage.table.name !== stage.stage.name ? stage.table.name : undefined,
-          tags: stage.tags,
-        }))}
+        rows={foldSubStages(
+          view.stages.map((stage) => ({
+            key: String(stage.index),
+            label: stage.stage.name,
+            value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
+            source: stage.table.name !== stage.stage.name ? stage.table.name : undefined,
+            tags: stage.tags,
+            subStage: stage.sub_stage,
+            skipped: stage.status === "skipped",
+          })),
+        )}
         meta="Not saved yet"
       />
 

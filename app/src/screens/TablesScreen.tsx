@@ -392,6 +392,8 @@ function ResultsEditor({
 }) {
   const update = (i: number, patch: Partial<TableResult>) =>
     set({ results: draft.results.map((r, j) => (j === i ? { ...r, ...patch } : r)) });
+  // Tables whose results stand for numbers (e.g. Authority Size) show them.
+  const valued = draft.results.some((r) => r.value !== undefined && r.value !== null);
   return (
     <section className="editor-section" aria-labelledby="table-results">
       <h3 id="table-results" className="label">
@@ -404,6 +406,7 @@ function ResultsEditor({
               {rolled && <th scope="col">Faces</th>}
               {rolled && <th scope="col">Chance</th>}
               <th scope="col">Result</th>
+              {valued && <th scope="col">Value</th>}
               <th scope="col">Emits tags</th>
               <th scope="col">Enabled</th>
               <th scope="col">
@@ -417,6 +420,7 @@ function ResultsEditor({
                 key={result.id}
                 result={result}
                 rolled={rolled}
+                valued={valued}
                 chance={chanceOf(base, result.id)}
                 onChange={(patch) => update(i, patch)}
                 onRemove={() => set({ results: draft.results.filter((_, j) => j !== i) })}
@@ -452,12 +456,14 @@ function ResultsEditor({
 function ResultRow({
   result,
   rolled,
+  valued,
   chance,
   onChange,
   onRemove,
 }: {
   result: TableResult;
   rolled: boolean;
+  valued: boolean;
   chance: string;
   onChange: (patch: Partial<TableResult>) => void;
   onRemove: () => void;
@@ -497,6 +503,23 @@ function ResultRow({
             </button>
           </span>
         </td>
+        {valued && (
+          <td>
+            <input
+              className="text-input number-input"
+              type="number"
+              min={1}
+              step={1}
+              aria-label={`${label}: value`}
+              value={result.value ?? ""}
+              onChange={(e) =>
+                onChange({
+                  value: e.target.value === "" ? undefined : Math.trunc(Number(e.target.value)),
+                })
+              }
+            />
+          </td>
+        )}
         <td>
           <TagMultiSelect
             label={`${label} tags`}
@@ -525,7 +548,7 @@ function ResultRow({
       </tr>
       {open && (
         <tr className="sub-row">
-          <td colSpan={rolled ? 6 : 4}>
+          <td colSpan={(rolled ? 6 : 4) + (valued ? 1 : 0)}>
             <span className="field-label">Eligible only when</span>
             <OptionalCondition
               label={`${label} eligibility`}

@@ -1,5 +1,5 @@
 import type { StageView } from "../api";
-import { OutcomeLine, TagList } from "./generation";
+import { OutcomeLine, TagList, applies } from "./generation";
 import { NameGridRow } from "./NameStage";
 
 /** Every stage in one table: choose a legal result or roll each stage. */
@@ -27,26 +27,28 @@ export function StageGrid({
         </tr>
       </thead>
       <tbody>
-        {stages.map((stage) =>
-          stage.naming ? (
-            <NameGridRow
-              key={stage.index}
-              stage={stage}
-              busy={busy}
-              onRoll={() => onRoll(stage.index)}
-              onChoose={(r) => onChoose(stage.index, r)}
-              onCustom={(name) => onCustomName(stage.index, name)}
-            />
-          ) : (
-            <StageGridRow
-              key={stage.index}
-              stage={stage}
-              busy={busy}
-              onRoll={() => onRoll(stage.index)}
-              onChoose={(r) => onChoose(stage.index, r)}
-            />
-          ),
-        )}
+        {stages
+          .filter(applies)
+          .map((stage) =>
+            stage.naming ? (
+              <NameGridRow
+                key={stage.index}
+                stage={stage}
+                busy={busy}
+                onRoll={() => onRoll(stage.index)}
+                onChoose={(r) => onChoose(stage.index, r)}
+                onCustom={(name) => onCustomName(stage.index, name)}
+              />
+            ) : (
+              <StageGridRow
+                key={stage.index}
+                stage={stage}
+                busy={busy}
+                onRoll={() => onRoll(stage.index)}
+                onChoose={(r) => onChoose(stage.index, r)}
+              />
+            ),
+          )}
       </tbody>
     </table>
   );
@@ -69,7 +71,7 @@ function StageGridRow({
   // since changed); keep it visible rather than silently replacing it.
   const currentMissing = stage.result && !legal.some((o) => o.result.id === stage.result?.id);
   return (
-    <tr className={`stage-row status-${stage.status}`}>
+    <tr className={`stage-row status-${stage.status}${stage.sub_stage ? " sub-stage" : ""}`}>
       <th scope="row">
         <label htmlFor={selectId} className="stage-row-name">
           {stage.stage.name}

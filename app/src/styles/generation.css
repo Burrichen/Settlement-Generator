@@ -209,6 +209,10 @@
   color: var(--text-muted);
 }
 
+.stage-rail .rail-sub {
+  padding-left: 14px;
+}
+
 .rail-done {
   color: var(--text-muted);
 }
@@ -396,6 +400,10 @@
   color: var(--text-muted);
 }
 
+.stage-row.sub-stage th {
+  padding-left: 18px;
+}
+
 .stage-row.status-pending .stage-row-name {
   color: var(--text-muted);
 }
@@ -468,6 +476,11 @@
   font-family: var(--font-display);
   font-weight: var(--display-weight);
   font-size: 20px;
+}
+
+.sheet-detail {
+  display: block;
+  font-size: 15px;
 }
 
 .sheet-source {

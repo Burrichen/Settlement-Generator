@@ -10,6 +10,7 @@ use std::fmt;
 use serde::{Deserialize, Serialize};
 use time::OffsetDateTime;
 
+use crate::authority::AuthorityRepresentatives;
 use crate::engine::{GenerationEvent, GenerationLog, Named};
 use crate::ids::{ResultId, TableId, TagId};
 use crate::naming::NameRecord;
@@ -57,6 +58,11 @@ pub struct SettlementSnapshot {
     /// and tags, so the settlement can be shown without current content.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub stages: Vec<SnapshotStage>,
+    /// Who represents the Authority, as generated: the input to the future
+    /// Authority Figure NPC generator. Absent in snapshots saved before it
+    /// existed; see [`SettlementSnapshot::authority_representatives`].
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub authority: Option<AuthorityRepresentatives>,
 }
 
 /// One pipeline stage of a saved settlement, as it was when saved.
@@ -76,6 +82,10 @@ pub struct SnapshotStage {
     pub tags: Vec<Named<TagId>>,
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub skipped: bool,
+    /// The stage elaborates the one before it (see
+    /// [`SequenceStep::sub_stage`](crate::content::SequenceStep::sub_stage)).
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub sub_stage: bool,
     /// The name stage's record (only on the name stage).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<NameRecord>,
@@ -86,11 +96,20 @@ impl From<GenerationLog> for SettlementSnapshot {
         SettlementSnapshot {
             log,
             stages: Vec::new(),
+            authority: None,
         }
     }
 }
 
 impl SettlementSnapshot {
+    /// Who represents the Authority: as stored, or, for a snapshot saved
+    /// without it, as recorded in its log. Never re-read from content.
+    pub fn authority_representatives(&self) -> Option<AuthorityRepresentatives> {
+        self.authority
+            .clone()
+            .or_else(|| AuthorityRepresentatives::from_log(&self.log))
+    }
+
     /// The stages to display: the recorded stages, or, for snapshots saved
     /// without them, one entry per top-level table record in the log.
     pub fn display_stages(&self) -> Vec<SnapshotStage> {
@@ -110,6 +129,7 @@ impl SettlementSnapshot {
                         result: Some(r.result.clone()),
                         tags: r.tags.clone(),
                         skipped: false,
+                        sub_stage: false,
                         name: None,
                     })
                 }

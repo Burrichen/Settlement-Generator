@@ -83,6 +83,11 @@ define_id!(
     /// Identifies a naming scheme. Unique across all naming schemes.
     NamingSchemeId
 );
+define_id!(
+    /// Identifies a subordinate generator that elaborates a result, such as
+    /// the NPCs who hold an Authority. Reserved: no generators exist yet.
+    GeneratorId
+);
 
 #[cfg(test)]
 mod tests {

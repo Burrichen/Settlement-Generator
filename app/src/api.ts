@@ -154,6 +154,8 @@ export interface StageView {
    * rolling generates a name.
    */
   naming?: NamingView;
+  /** Elaborates the stage before it; left out where it does not apply. */
+  sub_stage?: boolean;
 }
 
 export type NameSource = "generated" | "custom";
@@ -238,6 +240,8 @@ export interface SnapshotStage {
   result?: Named;
   tags?: Named[];
   skipped?: boolean;
+  /** Elaborates the stage before it; left out where it does not apply. */
+  sub_stage?: boolean;
   /** The name stage's record (only on the name stage). */
   name?: NameRecord;
 }
@@ -291,6 +295,10 @@ export interface TableResult {
   tags?: string[];
   eligibility?: Condition;
   enabled?: boolean;
+  /** Reserved reference to a future subordinate generator; kept as is. */
+  generator?: string;
+  /** The number the result stands for (a positive whole number). */
+  value?: number;
 }
 
 export interface RangeAssignment {
@@ -331,6 +339,7 @@ export interface Table {
   selection?: "roll" | "choose";
   status?: "final" | "incomplete";
   status_note?: string;
+  ordered?: boolean;
   active?: boolean;
   eligibility?: Condition;
   results: TableResult[];

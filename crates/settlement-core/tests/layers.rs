@@ -68,6 +68,8 @@ fn user_result(id: &str, range: Option<FaceRange>) -> TableResult {
         tags: vec![],
         eligibility: None,
         enabled: true,
+        generator: None,
+        value: None,
     }
 }
 
@@ -258,6 +260,7 @@ fn adding_tables_tags_and_results() {
         selection: Default::default(),
         status: Default::default(),
         status_note: String::new(),
+        ordered: false,
         follow_ups: vec![],
     })
     .unwrap();
@@ -426,6 +429,7 @@ fn deleting_custom_items_removes_them() {
         selection: Default::default(),
         status: Default::default(),
         status_note: String::new(),
+        ordered: false,
         follow_ups: vec![],
     })
     .unwrap();
@@ -726,6 +730,36 @@ fn putting_a_bundled_table_records_only_the_differences() {
 }
 
 #[test]
+fn a_bundled_scale_stays_ordered_when_customised() {
+    let mut defaults = v1_json();
+    defaults["tables"][0]["ordered"] = json!(true);
+    let mut l = ContentLayers::new(content(defaults), UserOverrides::default());
+    // An editor draft that leaves the flag out (or clears it) cannot unset it.
+    let mut table = table_of(&l, "t.main");
+    table.ordered = false;
+    table.results[0].name = "A edited".into();
+    l.put_table(table).unwrap();
+    assert_clean(&l);
+    let merged = table_of(&l, "t.main");
+    assert!(merged.ordered);
+    assert_eq!(merged.results[0].name, "A edited");
+
+    // Moving faces out of scale order is allowed, with a warning.
+    let mut table = merged;
+    table.results[0].range = Some(FaceRange::new(4, 6));
+    table.results[1].range = Some(FaceRange::new(1, 3));
+    l.apply_checked(|l| l.put_table(table)).unwrap();
+    let report = l.merged().report;
+    assert!(!report.has_errors(), "{report}");
+    assert!(
+        report
+            .warnings()
+            .any(|w| w.kind == IssueKind::ScaleOutOfOrder),
+        "{report}"
+    );
+}
+
+#[test]
 fn putting_a_table_can_remove_add_and_vary_results() {
     let mut l = layers();
     let mut table = v1().table(&t("t.main")).unwrap().clone();
@@ -814,6 +848,7 @@ fn putting_a_new_custom_table_creates_then_updates_it() {
         selection: Default::default(),
         status: Default::default(),
         status_note: String::new(),
+        ordered: false,
         active: true,
         eligibility: None,
         results: vec![user_result("user.a", Some(FaceRange::new(1, 4)))],

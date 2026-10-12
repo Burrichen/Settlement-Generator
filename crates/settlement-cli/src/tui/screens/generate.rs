@@ -14,7 +14,7 @@ use settlement_core::service::ActiveGeneration;
 use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageView};
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
 
-use super::common::{SheetRow, outcome_lines, sheet_lines, tag_line};
+use super::common::{SheetRow, applies, outcome_lines, sheet_lines, tag_line};
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
@@ -194,7 +194,13 @@ impl GenerateScreen {
             return None;
         }
         let index = if self.edit.is_some() || self.view.mode == GenerationMode::OneTable {
-            self.rows.selected
+            // Rows are the stages that apply, in order.
+            self.view
+                .stages
+                .iter()
+                .filter(|s| applies(s))
+                .nth(self.rows.selected)?
+                .index
         } else if self.view.mode == GenerationMode::Automatic {
             self.view.next_pending?
         } else {
@@ -240,6 +246,7 @@ impl GenerateScreen {
         self.view
             .stages
             .iter()
+            .filter(|stage| applies(stage))
             .map(|stage| {
                 let result = stage.result.as_ref().map_or_else(
                     || {
@@ -270,7 +277,7 @@ impl GenerateScreen {
                 });
                 Row::item(
                     Line::from(vec![
-                        Span::raw(format!("{:<18}", stage.stage.name)),
+                        Span::raw(format!("{:<18}", stage_label(stage))),
                         Span::styled(
                             format!("{result:<26}"),
                             if stage.status == StageStatus::Resolved {
@@ -326,6 +333,7 @@ impl GenerateScreen {
             .view
             .stages
             .iter()
+            .filter(|stage| applies(stage))
             .map(|stage| {
                 let (mark, style) = if stage.index == current {
                     ("▸", s.selected())
@@ -341,7 +349,7 @@ impl GenerateScreen {
                     .as_ref()
                     .map_or(String::new(), |r| format!("  {}", r.name));
                 Line::from(vec![
-                    Span::styled(format!("{mark} {}", stage.stage.name), style),
+                    Span::styled(format!("{mark} {}", stage_label(stage)), style),
                     Span::styled(result, s.dim()),
                 ])
             })
@@ -486,6 +494,8 @@ impl GenerateScreen {
                 ),
                 source: (stage.table.name != stage.stage.name).then(|| stage.table.name.clone()),
                 tags: stage.tags.clone(),
+                sub_stage: stage.sub_stage,
+                skipped: stage.status == StageStatus::Skipped,
             })
             .collect();
         let mut lines = vec![Line::styled("─── ◆ ───", s.border()), Line::default()];
@@ -913,5 +923,14 @@ impl Screen for GenerateScreen {
             hints.insert(3, ("t", "type name"));
         }
         hints
+    }
+}
+
+/// A stage's name in lists, with sub-stages indented under their stage.
+fn stage_label(stage: &StageView) -> String {
+    if stage.sub_stage {
+        format!("  {}", stage.stage.name)
+    } else {
+        stage.stage.name.clone()
     }
 }

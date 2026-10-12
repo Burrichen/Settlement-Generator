@@ -17,7 +17,7 @@ import {
 import { useApp } from "../app-state";
 import { ConfirmBar, nameProblem, MAX_NAME_LENGTH } from "../components/generation";
 import { ScreenFrame } from "../components/ScreenFrame";
-import { SettlementSheet } from "../components/SettlementSheet";
+import { SettlementSheet, foldSubStages } from "../components/SettlementSheet";
 import { StageGrid } from "../components/StageGrid";
 
 /**
@@ -309,13 +309,17 @@ function DetailPane({
       </header>
       <SettlementSheet
         label={`${detail.name} snapshot`}
-        rows={detail.stages.map((stage) => ({
-          key: stage.stage_table,
-          label: stage.label,
-          value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
-          source: stage.table && stage.table.name !== stage.label ? stage.table.name : undefined,
-          tags: tagView ? stage.tags : undefined,
-        }))}
+        rows={foldSubStages(
+          detail.stages.map((stage) => ({
+            key: stage.stage_table,
+            label: stage.label,
+            value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
+            source: stage.table && stage.table.name !== stage.label ? stage.table.name : undefined,
+            tags: tagView ? stage.tags : undefined,
+            subStage: stage.sub_stage,
+            skipped: stage.skipped,
+          })),
+        )}
         meta={`Snapshot saved with v${detail.app_version}. Later changes to tables do not alter it.`}
       />
     </div>

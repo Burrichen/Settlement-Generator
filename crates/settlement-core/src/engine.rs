@@ -130,6 +130,10 @@ pub struct TableRollRecord {
     pub result: Named<ResultId>,
     /// Enabled tags emitted by the final result.
     pub tags: Vec<Named<TagId>>,
+    /// The final result's numeric value at the time of the roll (e.g. a
+    /// number of representatives), if it has one.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub value: Option<i64>,
     /// Tag effects that shaped this roll (redirect, variant, dice,
     /// restrictions).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -584,6 +588,7 @@ impl<'c> Generator<'c> {
                 .result(&record.result.id)
                 .expect("records refer to table results");
             record.tags = self.enabled_tags(&result.tags);
+            record.value = result.value;
             let emitted = result.tags.clone();
             state
                 .events
@@ -1032,6 +1037,7 @@ impl<'c> Generator<'c> {
             follow_ups: Vec::new(),
             result: Named::new(&result.id, &result.name),
             tags: Vec::new(),
+            value: None,
             modifiers: prepared.modifiers,
         })
     }
@@ -1100,6 +1106,7 @@ impl<'c> Generator<'c> {
                     follow_ups: Vec::new(),
                     result: Named::new(&result.id, &result.name),
                     tags: Vec::new(),
+                    value: None,
                     modifiers: prepared.modifiers,
                 });
             }

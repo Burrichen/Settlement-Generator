@@ -109,6 +109,13 @@
           "change": "decrease",
           "status": "planned",
           "note": "Isolated decreases Trade and Transport. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.economy",
+          "change": "decrease",
+          "status": "planned",
+          "note": "Isolated: Economy shifts down. Exact dice change not yet approved."
         }
       ]
     },
@@ -125,6 +132,13 @@
           "change": "increase",
           "status": "planned",
           "note": "Major Route increases Trade and Transport. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.economy",
+          "change": "increase",
+          "status": "planned",
+          "note": "Major Route: Economy shifts up. Exact dice change not yet approved."
         }
       ]
     }

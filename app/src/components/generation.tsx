@@ -108,10 +108,15 @@ export function ResultList({
 }
 
 /** Vertical list of every stage with its status; the current one marked. */
+/** A sub-stage that was skipped does not apply, and is not shown. */
+export function applies(stage: StageView): boolean {
+  return !(stage.sub_stage && stage.status === "skipped");
+}
+
 export function StageRail({ stages, current }: { stages: StageView[]; current: number }) {
   return (
     <ol className="stage-rail" aria-label="Stages">
-      {stages.map((s) => {
+      {stages.filter(applies).map((s) => {
         const state =
           s.index === current
             ? "current"
@@ -123,7 +128,7 @@ export function StageRail({ stages, current }: { stages: StageView[]; current: n
         return (
           <li
             key={s.index}
-            className={`rail-${state}`}
+            className={`rail-${state}${s.sub_stage ? " rail-sub" : ""}`}
             aria-current={s.index === current ? "step" : undefined}
           >
             <span className="rail-mark" aria-hidden="true" />
