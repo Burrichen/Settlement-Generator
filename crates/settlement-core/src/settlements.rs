@@ -15,6 +15,7 @@ use crate::engine::{GenerationEvent, GenerationLog, Named};
 use crate::figures::AuthorityFigures;
 use crate::ids::{ResultId, TableId, TagId};
 use crate::naming::NameRecord;
+use crate::roles::RoleAllocation;
 
 /// Longest settlement name accepted (after trimming).
 pub const MAX_NAME_LENGTH: usize = 80;
@@ -87,6 +88,10 @@ pub struct SnapshotStage {
     /// [`SequenceStep::sub_stage`](crate::content::SequenceStep::sub_stage)).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub sub_stage: bool,
+    /// The Role Allocation stage's record (only on that stage): every role,
+    /// lead first, with its roll and any unique-role fallback.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roles: Option<RoleAllocation>,
     /// The Authority Figures stage's record (only on that stage): every
     /// figure and relationship with its rolls, as generated.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -107,6 +112,11 @@ impl From<GenerationLog> for SettlementSnapshot {
 }
 
 impl SettlementSnapshot {
+    /// The roles allocated to the Authority Figures, as allocated.
+    pub fn authority_roles(&self) -> Option<&RoleAllocation> {
+        self.stages.iter().find_map(|s| s.roles.as_ref())
+    }
+
     /// The Authority Figures and their relationships, as generated.
     pub fn authority_figures(&self) -> Option<&AuthorityFigures> {
         self.stages.iter().find_map(|s| s.figures.as_ref())
@@ -141,6 +151,7 @@ impl SettlementSnapshot {
                         skipped: false,
                         sub_stage: false,
                         figures: None,
+                        roles: None,
                         name: None,
                     })
                 }

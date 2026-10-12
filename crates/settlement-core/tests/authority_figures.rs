@@ -15,7 +15,21 @@ use settlement_core::settlements::SettlementSnapshot;
 
 const AUTHORITY: usize = 10;
 const AUTHORITY_SIZE: usize = 12;
-const FIGURES: usize = 13;
+const ROLES: usize = 13;
+const FIGURES: usize = 14;
+
+/// Generates the Authority Figures, allocating their roles first if they
+/// are not allocated yet (roles always come first).
+fn roll_figures(
+    s: &mut GenerationSession,
+    faces: &mut dyn settlement_core::dice::FaceSource,
+) -> Result<settlement_core::session::StageChange, GenerationError> {
+    let roles = s.view(ROLES, ViewOptions::default()).unwrap();
+    if roles.status == settlement_core::session::StageStatus::Pending {
+        s.roll(ROLES, &mut RandomFaces::seeded(99))?;
+    }
+    s.roll(FIGURES, faces)
+}
 
 fn content() -> ContentSet {
     bundled_content().unwrap()
@@ -251,7 +265,7 @@ fn figures(s: &GenerationSession) -> AuthorityFigures {
 #[test]
 fn a_single_ruler_has_one_figure_and_no_relationships() {
     let mut s = with_authority(content(), "noble", None);
-    s.roll(FIGURES, &mut RandomFaces::seeded(5)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(5)).unwrap();
     assert!(s.is_complete());
     let f = figures(&s);
     assert_eq!(f.request.size, 1);
@@ -270,7 +284,7 @@ fn groups_get_exactly_their_size_and_one_relationship_per_pair() {
         ("six", 6),
     ] {
         let mut s = with_authority(content(), "council", Some(size));
-        s.roll(FIGURES, &mut RandomFaces::seeded(6)).unwrap();
+        roll_figures(&mut s, &mut RandomFaces::seeded(6)).unwrap();
         let f = figures(&s);
         assert_eq!(f.figures.len(), count, "{size}");
         assert_eq!(f.relationships.len(), count * (count - 1) / 2, "{size}");
@@ -297,10 +311,17 @@ fn groups_get_exactly_their_size_and_one_relationship_per_pair() {
 #[test]
 fn every_figure_has_every_field_rolled_with_physical_dice() {
     let mut s = with_authority(content(), "elders", Some("three"));
-    s.roll(FIGURES, &mut RandomFaces::seeded(7)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(7)).unwrap();
     for (i, figure) in figures(&s).figures.iter().enumerate() {
         assert!(figure.id.as_str().starts_with("npc-"));
-        assert!(figure.role.is_none(), "no Role / Title stage exists yet");
+        // Roles were allocated first: the first figure leads.
+        let role = figure.role.as_ref().expect("a role");
+        let expected = if i == 0 {
+            settlement_core::roles::Allocation::Lead
+        } else {
+            settlement_core::roles::Allocation::Member
+        };
+        assert_eq!(role.allocation, expected, "figure {}", i + 1);
         let fields: Vec<_> = figure.fields.iter().map(|f| f.field.as_str()).collect();
         let expected: Vec<_> = FIGURE_FIELDS.iter().map(|f| f.id).collect();
         assert_eq!(fields, expected);
@@ -372,7 +393,7 @@ fn figures_are_reproducible_with_physical_dice() {
     // Flaw 6 Rigid / Inflexible; then the name: method 1, given 13 (Mila),
     // family 1 (Varen).
     let mut dice = ScriptedFaces::new([1, 12, 7, 4, 12, 2, 6, 1, 13, 1]);
-    s.roll(FIGURES, &mut dice).unwrap();
+    roll_figures(&mut s, &mut dice).unwrap();
     assert_eq!(dice.remaining(), 0, "no hidden rolls");
     let f = &figures(&s).figures[0];
     let results: Vec<_> = f
@@ -438,8 +459,7 @@ fn figures_are_reproducible_with_physical_dice() {
 fn a_species_without_a_name_table_is_a_clear_state_not_a_fallback() {
     let mut s = with_authority(with_custom_species(), "noble", None);
     // Species 4 = the user's Giant.
-    s.roll(FIGURES, &mut ScriptedFaces::new([4, 12, 7, 4, 12, 2, 6]))
-        .unwrap();
+    roll_figures(&mut s, &mut ScriptedFaces::new([4, 12, 7, 4, 12, 2, 6])).unwrap();
     let f = &figures(&s).figures[0];
     assert_eq!(f.field("species").unwrap().result.name, "Giant");
     assert_eq!(
@@ -473,8 +493,8 @@ fn a_species_without_a_name_table_is_a_clear_state_not_a_fallback() {
 #[test]
 fn a_new_species_routes_the_name_afresh_and_never_borrows_a_pool() {
     let mut s = with_authority(content(), "noble", None);
-    s.roll(
-        FIGURES,
+    roll_figures(
+        &mut s,
         &mut ScriptedFaces::new([1, 12, 7, 4, 12, 2, 6, 1, 13, 1]),
     )
     .unwrap();
@@ -504,7 +524,7 @@ fn a_new_species_routes_the_name_afresh_and_never_borrows_a_pool() {
 #[test]
 fn a_typed_figure_name_survives_a_change_of_species() {
     let mut s = with_authority(content(), "noble", None);
-    s.roll(FIGURES, &mut RandomFaces::seeded(8)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(8)).unwrap();
     s.set_figure_name(FIGURES, 0, "Tess").unwrap();
     s.choose_figure_field(
         FIGURES,
@@ -520,8 +540,8 @@ fn a_typed_figure_name_survives_a_change_of_species() {
 #[test]
 fn name_parts_can_be_chosen_from_the_species_own_tables() {
     let mut s = with_authority(content(), "noble", None);
-    s.roll(
-        FIGURES,
+    roll_figures(
+        &mut s,
         &mut ScriptedFaces::new([1, 12, 7, 4, 12, 2, 6, 1, 13, 1]),
     )
     .unwrap();
@@ -590,7 +610,7 @@ fn name_parts_can_be_chosen_from_the_species_own_tables() {
 #[test]
 fn fields_and_relationships_can_be_chosen_or_rerolled_individually() {
     let mut s = with_authority(content(), "council", Some("three"));
-    s.roll(FIGURES, &mut RandomFaces::seeded(9)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(9)).unwrap();
     let before = figures(&s);
 
     s.choose_figure_field(
@@ -657,7 +677,7 @@ fn god_mode_lifts_result_eligibility_for_figure_fields_only() {
         Some(serde_json::from_value(json!({ "not": { "has_tag": "world.kurovia" } })).unwrap());
 
     let mut s = with_authority(c.clone(), "noble", None);
-    s.roll(FIGURES, &mut RandomFaces::seeded(1)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(1)).unwrap();
     let view = s.view(FIGURES, ViewOptions::default()).unwrap();
     let species = &view.figures.unwrap().fields[0];
     assert!(
@@ -686,7 +706,7 @@ fn god_mode_lifts_result_eligibility_for_figure_fields_only() {
     god.choose(AUTHORITY, "noble".into(), &mut RandomFaces::seeded(3))
         .unwrap();
     // Changing the Authority invalidated the figures: generate them again.
-    god.roll(FIGURES, &mut RandomFaces::seeded(4)).unwrap();
+    roll_figures(&mut god, &mut RandomFaces::seeded(4)).unwrap();
     let species = &god
         .view(FIGURES, ViewOptions::default())
         .unwrap()
@@ -712,18 +732,19 @@ fn god_mode_lifts_result_eligibility_for_figure_fields_only() {
 #[test]
 fn changing_the_authority_invalidates_the_figures() {
     let mut s = with_authority(content(), "council", Some("four"));
-    s.roll(FIGURES, &mut RandomFaces::seeded(10)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(10)).unwrap();
     assert!(s.is_complete());
 
     // A different size: the four figures no longer fit.
     let change = s
         .choose(AUTHORITY_SIZE, "two".into(), &mut RandomFaces::seeded(1))
         .unwrap();
-    assert_eq!(change.invalidated, [FIGURES]);
+    // The roles no longer fit either.
+    assert_eq!(change.invalidated, [ROLES, FIGURES]);
     let v = s.view(FIGURES, ViewOptions::default()).unwrap();
     assert_eq!(v.status, StageStatus::Pending);
     assert_eq!(v.previous.unwrap().name, "4 Authority Figures");
-    s.roll(FIGURES, &mut RandomFaces::seeded(11)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(11)).unwrap();
     assert_eq!(figures(&s).figures.len(), 2);
 
     // A different Authority of the same size: also redone.
@@ -733,7 +754,7 @@ fn changing_the_authority_invalidates_the_figures() {
     assert_eq!(v.status, StageStatus::Pending);
 
     // Rerolling an unrelated earlier stage keeps them.
-    s.roll(FIGURES, &mut RandomFaces::seeded(12)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(12)).unwrap();
     let kept = figures(&s);
     let change = s.roll(6, &mut RandomFaces::seeded(13)).unwrap(); // Origin
     assert!(!change.invalidated.contains(&FIGURES));
@@ -778,7 +799,7 @@ fn snapshots_keep_the_figures_exactly() {
         .unwrap();
     s.choose(AUTHORITY_SIZE, "three".into(), &mut RandomFaces::seeded(1))
         .unwrap();
-    s.roll(FIGURES, &mut RandomFaces::seeded(15)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(15)).unwrap();
     s.set_figure_name(FIGURES, 1, "Orven Daal").unwrap();
     let snapshot = s.to_snapshot();
     let saved = snapshot.authority_figures().unwrap().clone();
@@ -823,7 +844,7 @@ fn snapshots_keep_the_figures_exactly() {
 #[test]
 fn settlements_saved_before_figures_existed_load_without_generating_any() {
     let mut s = with_authority(content(), "council", Some("two"));
-    s.roll(FIGURES, &mut RandomFaces::seeded(16)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(16)).unwrap();
     let mut old = s.to_snapshot();
     old.stages
         .retain(|st| st.stage_table.as_str() != "stage.authorityFigures");
@@ -843,16 +864,14 @@ fn settlements_saved_before_figures_existed_load_without_generating_any() {
     assert!(reopened.is_complete());
     assert!(reopened.to_snapshot().authority_figures().is_none());
     // The user may generate them deliberately.
-    reopened
-        .roll(FIGURES, &mut RandomFaces::seeded(17))
-        .unwrap();
+    roll_figures(&mut reopened, &mut RandomFaces::seeded(17)).unwrap();
     assert_eq!(figures(&reopened).figures.len(), 2);
 }
 
 #[test]
 fn figure_tags_are_only_shown_with_tag_view() {
     let mut s = with_authority(content(), "noble", None);
-    s.roll(FIGURES, &mut RandomFaces::seeded(18)).unwrap();
+    roll_figures(&mut s, &mut RandomFaces::seeded(18)).unwrap();
     let plain = s
         .view(FIGURES, ViewOptions::default())
         .unwrap()

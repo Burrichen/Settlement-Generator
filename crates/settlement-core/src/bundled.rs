@@ -64,6 +64,7 @@ pub fn bundled_content() -> Result<ContentSet, BundledContentError> {
         merged.tables.extend(part.tables);
         merged.tags.extend(part.tags);
         merged.naming_schemes.extend(part.naming_schemes);
+        merged.role_schemes.extend(part.role_schemes);
     }
     Ok(merged)
 }

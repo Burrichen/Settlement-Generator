@@ -98,6 +98,10 @@ impl NpcId {
 }
 
 define_id!(
+    /// Identifies a role scheme: the role tables an Authority uses.
+    RoleSchemeId
+);
+define_id!(
     /// Identifies a subordinate generator that elaborates a result, such as
     /// the NPCs who hold an Authority. Reserved: no generators exist yet.
     GeneratorId

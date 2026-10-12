@@ -14,6 +14,7 @@
     { "table": "table.authority", "name": "Authority" },
     { "table": "table.authorityRepresentation", "name": "Representation", "sub_stage": true },
     { "table": "table.authoritySize", "name": "Authority Size", "sub_stage": true },
+    { "authority_roles": true, "name": "Roles", "sub_stage": true },
     { "authority_figures": true, "name": "Authority Figures" }
   ]
 }

@@ -13,7 +13,7 @@ use crate::content::{
     StepTarget, Table,
 };
 use crate::dice::{DiceExpr, DiceParseError};
-use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId, is_valid_id};
+use crate::ids::{NamingSchemeId, ResultId, RoleSchemeId, TableId, TagId, VariantId, is_valid_id};
 use crate::layout::Layout;
 use crate::naming::JoinStyle;
 
@@ -47,6 +47,8 @@ pub struct Location {
     pub sequence_step: Option<usize>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub naming_scheme: Option<NamingSchemeId>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub role_scheme: Option<RoleSchemeId>,
 }
 
 impl Location {
@@ -139,6 +141,7 @@ pub enum IdScope {
     FollowUp,
     NamingScheme,
     NamingMethod,
+    RoleScheme,
 }
 
 impl fmt::Display for IdScope {
@@ -152,6 +155,7 @@ impl fmt::Display for IdScope {
             IdScope::FollowUp => "follow-up roll",
             IdScope::NamingScheme => "naming scheme",
             IdScope::NamingMethod => "naming method for result",
+            IdScope::RoleScheme => "role scheme",
         })
     }
 }
@@ -224,6 +228,15 @@ pub enum IssueKind {
     MissingValue,
     /// A sub-stage with no stage before it to belong to.
     SubStageWithoutParent,
+    /// A unique result without a fallback to resolve as when it is held.
+    UniqueWithoutFallback,
+    /// A fallback on a result that is not unique.
+    FallbackWithoutUnique,
+    /// A fallback that is itself unique, so it could also be held.
+    FallbackNotRepeatable,
+    /// A role scheme with neither a single table nor a lead and member
+    /// table, or with only one of lead and member.
+    RoleSchemeIncomplete,
     /// A user-created item whose ID is outside the reserved `user.`
     /// namespace, so a future default could collide with it.
     NotUserId {
@@ -338,6 +351,18 @@ impl fmt::Display for IssueKind {
             IssueKind::SubStageWithoutParent => {
                 f.write_str("the first stage cannot be a sub-stage")
             }
+            IssueKind::UniqueWithoutFallback => f.write_str(
+                "a unique result needs a fallback: the repeatable result it becomes when already held",
+            ),
+            IssueKind::FallbackWithoutUnique => {
+                f.write_str("only a unique result can have a fallback")
+            }
+            IssueKind::FallbackNotRepeatable => {
+                f.write_str("a fallback must be repeatable (not unique)")
+            }
+            IssueKind::RoleSchemeIncomplete => f.write_str(
+                "a role scheme needs a single role table, or both a lead and a member role table",
+            ),
             IssueKind::ScaleOutOfOrder => f.write_str(
                 "the table is an ordered scale, but this result's faces are not above those of the results before it",
             ),
@@ -528,6 +553,7 @@ impl<'a> Validator<'a> {
             self.check_tag_effects(tag);
         }
         self.check_naming_schemes();
+        self.check_role_schemes();
         if content.sequence.first().is_some_and(|s| s.sub_stage) {
             self.error(
                 Location {
@@ -612,6 +638,46 @@ impl<'a> Validator<'a> {
     /// Naming schemes: unique IDs, existing tables, a method for every
     /// method-table result (and only for those), components for every
     /// method, and exceptions and possessive endings that name real results.
+    fn check_role_schemes(&mut self) {
+        let content = self.content;
+        let mut seen = HashSet::new();
+        for scheme in &content.role_schemes {
+            let at = Location {
+                role_scheme: Some(scheme.id.clone()),
+                ..Default::default()
+            };
+            self.check_id(scheme.id.as_str(), at.clone());
+            if !seen.insert(&scheme.id) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateId {
+                        scope: IdScope::RoleScheme,
+                        id: scheme.id.to_string(),
+                    },
+                );
+            }
+            self.check_condition(Some(&scheme.when), &at);
+            for table in [&scheme.single, &scheme.lead, &scheme.member]
+                .into_iter()
+                .flatten()
+            {
+                if !self.tables.contains_key(table) {
+                    self.error(
+                        at.clone(),
+                        IssueKind::MissingTable {
+                            table: table.clone(),
+                        },
+                    );
+                }
+            }
+            let group = scheme.lead.is_some() || scheme.member.is_some();
+            let complete_group = scheme.lead.is_some() && scheme.member.is_some();
+            if (group && !complete_group) || (!group && scheme.single.is_none()) {
+                self.error(at, IssueKind::RoleSchemeIncomplete);
+            }
+        }
+    }
+
     fn check_naming_schemes(&mut self) {
         let content = self.content;
         let mut seen = HashSet::new();
@@ -797,6 +863,27 @@ impl<'a> Validator<'a> {
             // only its form is checked.
             if let Some(generator) = &result.generator {
                 self.check_id(generator.as_str(), rloc.clone());
+            }
+            for variant in &result.label_variants {
+                self.check_tag_ref(&variant.tag, &rloc);
+            }
+            match (result.unique, &result.fallback) {
+                (true, None) => self.error(rloc.clone(), IssueKind::UniqueWithoutFallback),
+                (false, Some(_)) => self.error(rloc.clone(), IssueKind::FallbackWithoutUnique),
+                (true, Some(fallback)) => match table.result(fallback) {
+                    None => self.error(
+                        rloc.clone(),
+                        IssueKind::BrokenResultReference {
+                            table: table.id.clone(),
+                            result: fallback.clone(),
+                        },
+                    ),
+                    Some(f) if f.unique => {
+                        self.error(rloc.clone(), IssueKind::FallbackNotRepeatable);
+                    }
+                    Some(_) => {}
+                },
+                (false, None) => {}
             }
             match result.value {
                 Some(value) if value < 1 => {

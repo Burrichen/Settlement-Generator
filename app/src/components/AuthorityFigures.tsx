@@ -1,9 +1,11 @@
 import { useState } from "react";
 import type {
+  Allocation,
   AuthorityFigure,
   AuthorityFigures,
   FiguresView,
   GenerationResponse,
+  RolesView,
   StageView,
 } from "../api";
 import { generation } from "../api";
@@ -22,8 +24,9 @@ const DETAILS: [string, string][] = [
 const result = (figure: AuthorityFigure, field: string) =>
   figure.fields.find((f) => f.field === field)?.roll.result.name;
 
+/** "Council Chair Mila Varen" (the role's title as shown for this figure). */
 function heading(figure: AuthorityFigure) {
-  return figure.role ? `${figure.role.name} ${figure.label}` : figure.label;
+  return figure.role ? `${figure.role.label} ${figure.label}` : figure.label;
 }
 
 /** "Mila Varen ↔ Orven Daal". */
@@ -45,7 +48,8 @@ export function FiguresSummary({
     <div className="figures">
       {record.figures.map((figure) => (
         <div key={figure.id} className="figure">
-          <span className="figure-name">{heading(figure)}</span>
+          {figure.role && <span className="figure-role">{figure.role.label}</span>}
+          <span className="figure-name">{figure.label}</span>
           {figure.name.source === "missing" && (
             <span className="figure-note">{figure.name.reason}</span>
           )}
@@ -275,5 +279,91 @@ function FigureEditor({
         })}
       </div>
     </fieldset>
+  );
+}
+
+/** "Figure 1 · Lead" (or Member, or just "Figure 1" for a single role). */
+function slotLabel(index: number, allocation: Allocation) {
+  const figure = `Figure ${index + 1}`;
+  if (allocation === "lead") return `${figure} · Lead`;
+  if (allocation === "member") return `${figure} · Member`;
+  return figure;
+}
+
+/**
+ * Manual controls for the Role Allocation stage: allocate every role, then
+ * choose any figure's role from its own table (lead first). A unique role
+ * already held becomes its fallback, as a roll would.
+ */
+export function RolesControls({
+  stage,
+  busy,
+  onRoll,
+  onAct,
+}: {
+  stage: StageView;
+  busy: boolean;
+  onRoll: () => void;
+  onAct: (call: Promise<GenerationResponse>) => void;
+}) {
+  const view = stage.roles as RolesView;
+  const record = view.record;
+  return (
+    <div className="figures-controls">
+      {stage.previous && stage.status === "pending" && (
+        <p className="note">
+          An earlier change affects this stage; it was <s>{stage.previous.name}</s>.
+        </p>
+      )}
+      {stage.skipped === "not_recorded" && <p className="note">Saved before roles existed.</p>}
+      {stage.can_roll && (
+        <button type="button" className="btn btn-small" disabled={busy} onClick={onRoll}>
+          {record ? "Reallocate all roles" : "Allocate roles"}
+        </button>
+      )}
+      {!stage.can_roll && !record && (
+        <p className="muted small">Resolve the Authority and its Authority Size first.</p>
+      )}
+      <div className="figure-fields">
+        {view.slots.map((slot, i) => {
+          const role = record?.roles[i];
+          const label = slotLabel(i, slot.allocation);
+          return (
+            <label key={i} className="figure-field">
+              <span>{label}</span>
+              {role ? (
+                <select
+                  className="select"
+                  aria-label={`${label}: role`}
+                  disabled={busy}
+                  value={role.role.id}
+                  onChange={(e) => onAct(generation.chooseRole(stage.index, i, e.target.value))}
+                >
+                  {!slot.options.some((o) => o.result.id === role.role.id) && (
+                    <option value={role.role.id} disabled>
+                      {role.role.name}
+                    </option>
+                  )}
+                  {slot.options
+                    .filter((o) => o.legal || o.result.id === role.role.id)
+                    .map((o) => (
+                      <option key={o.result.id} value={o.result.id}>
+                        {o.result.name}
+                      </option>
+                    ))}
+                </select>
+              ) : (
+                <span className="muted small">{slot.table.name}</span>
+              )}
+              {role?.fallback && (
+                <span className="figure-note">
+                  {role.initial.name} was already held, so this becomes {role.role.name}.
+                </span>
+              )}
+            </label>
+          );
+        })}
+      </div>
+    </div>
   );
 }

@@ -10,6 +10,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::ids::{GeneratorId, NamingSchemeId, ResultId, TableId, TagId, VariantId};
 use crate::naming::NamingScheme;
+use crate::roles::RoleScheme;
 
 /// Version of the content file format understood by this build.
 pub const CONTENT_SCHEMA_VERSION: u32 = 1;
@@ -46,6 +47,9 @@ pub struct ContentSet {
     /// Ways of naming settlements, chosen by tags (see `naming.rs`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub naming_schemes: Vec<NamingScheme>,
+    /// The role tables each Authority uses, chosen by tags (see `roles.rs`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub role_schemes: Vec<RoleScheme>,
 }
 
 impl Default for ContentSet {
@@ -56,6 +60,7 @@ impl Default for ContentSet {
             tables: Vec::new(),
             tags: Vec::new(),
             naming_schemes: Vec::new(),
+            role_schemes: Vec::new(),
         }
     }
 }
@@ -87,6 +92,10 @@ pub enum StepTarget {
     /// Generate the Authority Figures of the Authority resolved earlier
     /// (see [`crate::figures`]). Written `{ "authority_figures": true }`.
     AuthorityFigures,
+    /// Allocate a Role / Title to each Authority Figure before the figures
+    /// are generated (see [`crate::roles`]). Written
+    /// `{ "authority_roles": true }`.
+    AuthorityRoles,
 }
 
 impl SequenceStep {
@@ -94,7 +103,7 @@ impl SequenceStep {
     pub fn table(&self) -> Option<&TableId> {
         match &self.target {
             StepTarget::Table(t) => Some(t),
-            StepTarget::Naming | StepTarget::AuthorityFigures => None,
+            StepTarget::Naming | StepTarget::AuthorityFigures | StepTarget::AuthorityRoles => None,
         }
     }
 }
@@ -119,6 +128,13 @@ enum SequenceStepRepr {
         authority_figures: NamingMarker,
         #[serde(default, skip_serializing_if = "Option::is_none")]
         name: Option<String>,
+    },
+    AuthorityRoles {
+        authority_roles: NamingMarker,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        name: Option<String>,
+        #[serde(default, skip_serializing_if = "is_false")]
+        sub_stage: bool,
     },
 }
 
@@ -172,6 +188,13 @@ impl From<SequenceStepRepr> for SequenceStep {
                 name,
                 sub_stage: false,
             },
+            SequenceStepRepr::AuthorityRoles {
+                name, sub_stage, ..
+            } => SequenceStep {
+                target: StepTarget::AuthorityRoles,
+                name,
+                sub_stage,
+            },
         }
     }
 }
@@ -192,6 +215,11 @@ impl From<SequenceStep> for SequenceStepRepr {
             (StepTarget::AuthorityFigures, name) => SequenceStepRepr::AuthorityFigures {
                 authority_figures: NamingMarker,
                 name,
+            },
+            (StepTarget::AuthorityRoles, name) => SequenceStepRepr::AuthorityRoles {
+                authority_roles: NamingMarker,
+                name,
+                sub_stage: step.sub_stage,
             },
         }
     }
@@ -377,6 +405,37 @@ pub struct TableResult {
     /// integer; within a table, either every result has one or none does.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub value: Option<i64>,
+    /// When allocating roles (see `roles.rs`), a unique result can be held
+    /// by one person only. Rolling it again resolves as `fallback`, never a
+    /// reroll. Results are repeatable unless marked unique.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub unique: bool,
+    /// The repeatable result (in this table) a unique result resolves as
+    /// when it is already held. Required for, and only for, unique results.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fallback: Option<ResultId>,
+    /// Display labels chosen by a tag of the person who holds the result,
+    /// first match first (e.g. `gender.woman` → "Lady"). Otherwise `name`.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub label_variants: Vec<LabelVariant>,
+}
+
+/// A display label for a result, used when its holder has `tag`.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LabelVariant {
+    pub tag: TagId,
+    pub name: String,
+}
+
+impl LabelVariant {
+    /// The label for a holder with `tags`: the first matching variant, else
+    /// `name`.
+    pub fn pick(variants: &[LabelVariant], name: &str, tags: &[TagId]) -> String {
+        variants
+            .iter()
+            .find(|v| tags.contains(&v.tag))
+            .map_or_else(|| name.to_owned(), |v| v.name.clone())
+    }
 }
 
 /// An alternative layout of a table, chosen by tags.

@@ -7,8 +7,8 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent};
 use ratatui::layout::Rect;
 use ratatui::text::{Line, Span};
 use settlement_core::content::{
-    Condition, FollowUpOutcome, FollowUpRoll, RangeAssignment, SelectionMode, Table, TableResult,
-    TableVariant,
+    Condition, FollowUpOutcome, FollowUpRoll, LabelVariant, RangeAssignment, SelectionMode, Table,
+    TableResult, TableVariant,
 };
 use settlement_core::ids::{ResultId, TableId, TagId, VariantId};
 use settlement_core::layers::{Origin, new_user_id};
@@ -256,6 +256,9 @@ enum Act {
     ResultValue,
     ResultTags,
     ResultEnabled,
+    ResultUnique,
+    ResultFallback,
+    ResultVariants,
     RemoveResult,
     // Variant page
     VariantName,
@@ -280,6 +283,7 @@ enum Pending {
     OutcomeMenu(usize),
     OutcomeFaces(usize),
     OutcomeBecomes(usize, Vec<Option<ResultId>>),
+    Fallback(Vec<Option<ResultId>>),
     ConfirmDelete,
     ConfirmLeave,
 }
@@ -437,6 +441,37 @@ impl TableEditor {
                         if r.enabled { "On".into() } else { "Off".into() },
                     ),
                     Act::ResultEnabled,
+                ));
+                // Role allocation: unique results and their fallbacks.
+                rows.push(Row::item(
+                    field(
+                        "Unique",
+                        if r.unique {
+                            "Yes".into()
+                        } else {
+                            "No (repeatable)".into()
+                        },
+                    ),
+                    Act::ResultUnique,
+                ));
+                if r.unique {
+                    let fallback = r
+                        .fallback
+                        .as_ref()
+                        .and_then(|f| self.draft.result(f))
+                        .map_or("— (required)".into(), |f| f.name.clone());
+                    rows.push(Row::item(field("Fallback", fallback), Act::ResultFallback));
+                }
+                rows.push(Row::item(
+                    field(
+                        "Display variants",
+                        if r.label_variants.is_empty() {
+                            "—".into()
+                        } else {
+                            variants_text(&r.label_variants)
+                        },
+                    ),
+                    Act::ResultVariants,
                 ));
                 rows.push(Row::blank());
                 rows.push(Row::item(
@@ -778,6 +813,11 @@ impl TableEditor {
                     self.draft.results[i].range = parse_range(&t)?;
                 }
             }
+            Act::ResultVariants => {
+                if let Page::Result(i) = self.page {
+                    self.draft.results[i].label_variants = parse_variants(&t)?;
+                }
+            }
             Act::ResultValue => {
                 if let Page::Result(i) = self.page {
                     self.draft.results[i].value = if t.is_empty() {
@@ -907,6 +947,11 @@ impl TableEditor {
                 }
                 _ => self.message = Some(("Enter faces like 4 or 1-3.".into(), true)),
             },
+            (ModalResult::Picked(choice), Pending::Fallback(ids)) => {
+                if let Page::Result(i) = self.page {
+                    self.draft.results[i].fallback = ids[choice].clone();
+                }
+            }
             (ModalResult::Picked(choice), Pending::OutcomeBecomes(k, ids)) => {
                 if let Page::FollowUp(i) = self.page {
                     self.draft.follow_ups[i].outcomes[k].becomes = ids[choice].clone();
@@ -1008,6 +1053,9 @@ impl TableEditor {
                     enabled: true,
                     generator: None,
                     value: None,
+                    unique: false,
+                    fallback: None,
+                    label_variants: Vec::new(),
                 });
                 self.page = Page::Result(self.draft.results.len() - 1);
                 self.state = RowsState::default();
@@ -1117,6 +1165,46 @@ impl TableEditor {
             Act::ResultEnabled => {
                 if let Page::Result(i) = self.page {
                     self.draft.results[i].enabled = !self.draft.results[i].enabled;
+                }
+            }
+            Act::ResultUnique => {
+                if let Page::Result(i) = self.page {
+                    let r = &mut self.draft.results[i];
+                    r.unique = !r.unique;
+                    if !r.unique {
+                        r.fallback = None;
+                    }
+                }
+            }
+            Act::ResultFallback => {
+                if let Page::Result(i) = self.page {
+                    let this = self.draft.results[i].id.clone();
+                    let mut ids = vec![None];
+                    let mut items = vec![PickItem::new("None")];
+                    for r in self
+                        .draft
+                        .results
+                        .iter()
+                        .filter(|r| r.id != this && !r.unique)
+                    {
+                        ids.push(Some(r.id.clone()));
+                        items.push(PickItem::new(r.name.clone()));
+                    }
+                    self.modal = Some((
+                        Modal::pick("Fallback when already held", items, 0),
+                        Pending::Fallback(ids),
+                    ));
+                }
+            }
+            Act::ResultVariants => {
+                if let Page::Result(i) = self.page {
+                    let current = variants_text(&self.draft.results[i].label_variants);
+                    self.text(
+                        "Display variants",
+                        "tag=Label pairs separated by ;, e.g. gender.man=Lord; gender.woman=Lady",
+                        &current,
+                        Act::ResultVariants,
+                    );
                 }
             }
             Act::RemoveResult => {
@@ -1337,4 +1425,34 @@ impl Screen for TableEditor {
             vec![("↑↓", "move"), ("Enter", "edit"), ("Esc", "back to table")]
         }
     }
+}
+
+/// "gender.man=Lord; gender.woman=Lady".
+fn variants_text(variants: &[LabelVariant]) -> String {
+    variants
+        .iter()
+        .map(|v| format!("{}={}", v.tag, v.name))
+        .collect::<Vec<_>>()
+        .join("; ")
+}
+
+/// Reads `tag=Label` pairs separated by `;`. Empty means none.
+fn parse_variants(text: &str) -> Result<Vec<LabelVariant>, String> {
+    text.split(';')
+        .map(str::trim)
+        .filter(|p| !p.is_empty())
+        .map(|pair| {
+            let (tag, name) = pair
+                .split_once('=')
+                .ok_or_else(|| format!("“{pair}” needs the form tag=Label."))?;
+            let (tag, name) = (tag.trim(), name.trim());
+            if tag.is_empty() || name.is_empty() {
+                return Err(format!("“{pair}” needs both a tag and a label."));
+            }
+            Ok(LabelVariant {
+                tag: TagId::new(tag),
+                name: name.to_owned(),
+            })
+        })
+        .collect()
 }

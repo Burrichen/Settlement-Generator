@@ -122,6 +122,37 @@ fn generation_custom_name(
     state.act(|a| a.session.set_custom_name(stage, &name))
 }
 
+/// Rolls one Authority Figure's role again (by position, lead first).
+#[tauri::command]
+fn generation_roll_role(
+    state: State<'_, AppState>,
+    stage: usize,
+    slot: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_role(stage, slot, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one Authority Figure's role.
+#[tauri::command]
+fn generation_choose_role(
+    state: State<'_, AppState>,
+    stage: usize,
+    slot: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_role(
+            stage,
+            slot,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
 /// Rolls one field of one Authority Figure again.
 #[tauri::command]
 fn generation_roll_figure_field(
@@ -445,6 +476,8 @@ pub fn run() {
             generation_roll,
             generation_choose,
             generation_custom_name,
+            generation_roll_role,
+            generation_choose_role,
             generation_roll_figure_field,
             generation_choose_figure_field,
             generation_roll_figure_name,

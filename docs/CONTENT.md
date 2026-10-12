@@ -29,7 +29,8 @@ stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 | 11  | Authority         | `table.authority` (Power)                                |
 | 12  | ↳ Representation  | `table.authorityRepresentation` (sub-stage, conditional) |
 | 13  | ↳ Authority Size  | `table.authoritySize` (sub-stage, conditional)           |
-| 14  | Authority Figures | `{ "authority_figures": true }`: see below               |
+| 14  | ↳ Roles           | `{ "authority_roles": true }` (sub-stage): see below     |
+| 15  | Authority Figures | `{ "authority_figures": true }`: see below               |
 
 Naming content (v0.1.1) is described in [NAMING_SYSTEM.md](NAMING_SYSTEM.md):
 
@@ -220,6 +221,60 @@ equal 20% chance of each size:
 - God Mode cannot make Authority Size apply to a single ruler: it lifts result
   eligibility only, never a table's eligibility.
 
+### Authority Role Allocation (Roles)
+
+The **Roles** sub-stage gives every Authority Figure a Role / Title
+**before** the figures are generated (Authority → Representation → Authority
+Size → Roles → Authority Figures → relationships).
+
+- **Single representative:** one roll on the Authority's single role table.
+- **Group:** exactly one roll on its **lead** table, then `Authority Size − 1`
+  rolls on its **member** table. There is always exactly one role per
+  figure, and the lead is always the first figure. The same table is never
+  rolled for everyone, so a council never has four Council Chairs.
+- **Unique and repeatable roles.** A member result marked `unique` can be
+  held once. Rolling (or choosing) it again does **not** reroll: it resolves
+  as the result's `fallback`, which must be repeatable. The record keeps the
+  die, the result rolled and the role given, e.g. roll 5 → Treasurer →
+  Councillor.
+- **Routing** is data: a **role scheme** per Authority type (`roles.<type>`,
+  chosen by its `authority.*` tag) names its single, lead and member
+  tables. God Mode lifts result eligibility within the active table only;
+  it never merges the Authorities' tables.
+- **Stable IDs, not tags.** Roles are results with stable IDs (e.g.
+  `role.council.treasurer`) but emit no tags: they never join the
+  settlement's tag pool.
+- **Gendered titles.** One role ID per role. A result's `label_variants`
+  give its title by the holder's gender (e.g. `role.noble.lord` shows as
+  Lord for `gender.man` and Lady for `gender.woman`). The title is settled
+  once the figure's gender is rolled; without a variant (e.g. a non-binary
+  figure) the neutral name is shown, such as "Lord / Lady".
+- **Changes.** Changing the Authority, its Representation or its size
+  invalidates the roles (and the figures). Changing a role keeps the
+  figures and retitles them. Settlements saved before roles existed show
+  none, and none are allocated unless the user asks.
+
+| Authority (scheme)                   | Single (1d6)                                                                                                 | Lead                                                                        | Member                                                                                                                                                   |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Local Council (`roles.council`)      | —                                                                                                            | 1d6: 1–3 Council Chair, 4–5 First Councillor, 6 Civic Speaker               | 1d6: 1–3 Councillor, 4 Community Representative, 5 Treasurer (unique → Councillor), 6 Civic Steward (unique → Councillor)                                |
+| Noble / Landed Ruler (`roles.noble`) | 1–2 Lord / Lady, 3 Baron / Baroness, 4 Count / Countess, 5 Castellan, 6 Landed Noble                         | —                                                                           | —                                                                                                                                                        |
+| Appointed Official                   | 1 Governor, 2 Magistrate, 3 Administrator, 4 Steward, 5 Prefect, 6 Commissioner                              | —                                                                           | —                                                                                                                                                        |
+| Merchant / Guild Rule                | 1–2 Guildmaster, 3 Trade Master, 4 Merchant Principal, 5 Senior Factor, 6 Guild Representative               | 1d6: 1–3 Guildmaster, 4 Trade Master, 5 Merchant Principal, 6 Senior Factor | 1d6: 1–2 Guild Representative, 3 Senior Merchant, 4 Factor, 5 Treasurer (unique → Guild Representative), 6 Trade Speaker (unique → Guild Representative) |
+| Religious Authority                  | 1–2 High Priest / High Priestess, 3 Abbot / Abbess, 4 Prior / Prioress, 5 Temple Keeper, 6 Spiritual Steward | —                                                                           | —                                                                                                                                                        |
+| Military Authority                   | 1–2 Commander, 3 Captain, 4 Marshal, 5 Warden, 6 Commandant                                                  | 1d6: 1–3 Commander, 4 Marshal, 5 Commandant, 6 Warden                       | 1d6: 1–2 Captain, 3 Senior Officer, 4 Lieutenant, 5 Quartermaster (unique → Senior Officer), 6 Adjutant (unique → Senior Officer)                        |
+| Elders / Community Leaders           | —                                                                                                            | 1d6: 1–4 First Elder, 5–6 Community Speaker                                 | 1d6: 1–4 Elder, 5 Community Representative, 6 Senior Elder (all repeatable)                                                                              |
+| Popular Assembly                     | —                                                                                                            | 1d4: 1–2 Speaker, 3 Convenor, 4 Presiding Delegate                          | 1d4: 1–3 Delegate, 4 Citizen Representative (both repeatable)                                                                                            |
+
+Role tables are `table.authorityRole.<type>.<single|lead|member>`
+(`content/12-authority-roles.json`), editable like any table: dice, faces,
+names, the unique flag, the fallback and display variants (the result's
+**Role options** in the GUI). Result IDs follow the approved
+`role.<type>.<role>` IDs; the same role keeps the same ID across tables
+(e.g. `role.guild.guildmaster` on the single and lead tables). Popular
+Assembly's Authority Size is its primary representatives, not every
+assembly member. No guild, religion, military unit or noble house is
+generated.
+
 ### Authority Figures
 
 The **Authority Figures** stage gives a rough, roleplay-ready outline of the
@@ -229,9 +284,9 @@ stat block, alignment, biography or secrets.
 - **Input.** The `AuthorityRepresentatives` contract (`authority.rs`): the
   Authority, its representation and its size, read from the settlement so
   far. A single representative gives one figure; a group gives exactly
-  Authority Size figures. Each figure is meant to receive a **Role / Title**
-  resolved beforehand. No Role / Title stage exists yet, so figures currently
-  have none.
+  Authority Size figures. Each figure receives the **Role / Title** the
+  Roles stage allocated to its position (lead first) before any of its
+  details are rolled.
 - **Fields.** Every figure rolls each field on its own physical-dice table,
   in this order:
 

@@ -171,7 +171,7 @@ Settings are persistent and shared by both interfaces:
 
 The pipeline is: Setting Profile → Region → Name → Environment →
 Connections → Size → Origin → Purpose → Age → Economy → Authority
-(→ Representation → Authority Size, conditional sub-stages of Authority) →
+(→ Representation → Authority Size → Roles, sub-stages of Authority) →
 Authority Figures. No other stages are inserted.
 
 ### Name (v0.1.1)

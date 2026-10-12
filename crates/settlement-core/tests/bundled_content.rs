@@ -994,7 +994,7 @@ fn authority_size_is_a_conditional_1d10_from_2_to_6() {
         .sequence
         .iter()
         .filter(|s| s.sub_stage)
-        .map(|s| s.table().unwrap().as_str())
+        .filter_map(|s| s.table().map(|t| t.as_str()))
         .collect();
     assert_eq!(
         sequence,
@@ -1443,6 +1443,7 @@ fn every_stage_has_its_pipeline_name() {
             "Authority",
             "Representation",
             "Authority Size",
+            "Roles",
             "Authority Figures"
         ]
     );

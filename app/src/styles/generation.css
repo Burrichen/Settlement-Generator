@@ -642,6 +642,13 @@
   flex-direction: column;
 }
 
+.figure-role {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .figure-name {
   font-family: var(--font-display);
   font-weight: var(--display-weight);

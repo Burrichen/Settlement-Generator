@@ -317,7 +317,8 @@ function DetailPane({
             source: stage.table && stage.table.name !== stage.label ? stage.table.name : undefined,
             tags: tagView ? stage.tags : undefined,
             subStage: stage.sub_stage,
-            skipped: stage.skipped,
+            // Roles are shown with each Authority Figure instead.
+            skipped: stage.skipped || !!stage.roles,
             figures: stage.figures,
           })),
         )}

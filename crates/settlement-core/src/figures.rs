@@ -25,6 +25,7 @@ use serde::{Deserialize, Serialize};
 use crate::VERSION;
 use crate::authority::AuthorityRepresentatives;
 use crate::content::ContentSet;
+use crate::content::LabelVariant;
 use crate::dice::FaceSource;
 use crate::engine::ResultOption;
 use crate::engine::{
@@ -35,6 +36,7 @@ use crate::naming::{
     GeneratedName, NamePart, NamingMethod, NamingScheme, NamingSubject, generate_name,
     scheme_for_subject,
 };
+use crate::roles::{Allocation, RoleAssignment};
 
 /// The stage table recorded in snapshots for the Authority Figures stage,
 /// which has no table of its own.
@@ -166,9 +168,9 @@ pub struct AuthorityFigure {
     pub id: NpcId,
     /// What to call the figure: the name, else "Figure n".
     pub label: String,
-    /// The Role / Title resolved before generation, if any.
+    /// The Role / Title allocated before the figure was generated, if any.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub role: Option<Named<ResultId>>,
+    pub role: Option<FigureRole>,
     /// The fields, in [`FIGURE_FIELDS`] order.
     pub fields: Vec<FigureField>,
     pub name: FigureName,
@@ -185,6 +187,52 @@ impl AuthorityFigure {
     pub fn field(&self, id: &str) -> Option<&TableRollRecord> {
         self.fields.iter().find(|f| f.field == id).map(|f| &f.roll)
     }
+}
+
+/// A figure's Role / Title, from its role allocation.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FigureRole {
+    pub allocation: Allocation,
+    /// The stable role and its neutral title (e.g. "Lord / Lady").
+    pub role: Named<ResultId>,
+    /// The title as shown for this figure (e.g. "Lady" for a woman).
+    pub label: String,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub label_variants: Vec<LabelVariant>,
+}
+
+impl FigureRole {
+    fn new(assignment: &RoleAssignment, tags: &[Named<TagId>]) -> Self {
+        let mut role = FigureRole {
+            allocation: assignment.allocation,
+            role: assignment.role.clone(),
+            label: String::new(),
+            label_variants: assignment.label_variants.clone(),
+        };
+        role.relabel(tags);
+        role
+    }
+
+    /// Shows the title for a holder with `tags`.
+    fn relabel(&mut self, tags: &[Named<TagId>]) {
+        let ids: Vec<TagId> = tags.iter().map(|t| t.id.clone()).collect();
+        self.label = LabelVariant::pick(&self.label_variants, &self.role.name, &ids);
+    }
+}
+
+/// Gives each figure the role at its position (lead first). Titles follow
+/// each figure's own tags (e.g. its gender). The counts must match.
+pub(crate) fn apply_roles(
+    record: &mut AuthorityFigures,
+    roles: &[RoleAssignment],
+) -> Result<(), GenerationError> {
+    if roles.len() != record.figures.len() {
+        return Err(GenerationError::RolesDoNotMatch);
+    }
+    for (figure, assignment) in record.figures.iter_mut().zip(roles) {
+        figure.role = Some(FigureRole::new(assignment, &figure.tags));
+    }
+    Ok(())
 }
 
 /// How one pair of figures get on. Recorded once per unordered pair.
@@ -224,16 +272,20 @@ pub(crate) struct FigureGenerator<'g, 'c> {
 
 impl FigureGenerator<'_, '_> {
     /// Generates `request.size` figures, one relationship per unordered
-    /// pair. `roles` gives each figure's Role / Title, by position.
+    /// pair. `roles` gives each figure's Role / Title, by position (lead
+    /// first); when given there is exactly one per figure.
     pub fn generate(
         &self,
         request: &AuthorityRepresentatives,
-        roles: &[Named<ResultId>],
+        roles: &[RoleAssignment],
         faces: &mut dyn FaceSource,
     ) -> Result<AuthorityFigures, GenerationError> {
+        if !roles.is_empty() && roles.len() != request.size as usize {
+            return Err(GenerationError::RolesDoNotMatch);
+        }
         let mut figures = Vec::new();
         for i in 0..request.size as usize {
-            figures.push(self.figure(NpcId::new_random(), i, roles.get(i).cloned(), faces)?);
+            figures.push(self.figure(NpcId::new_random(), i, roles.get(i), faces)?);
         }
         let mut relationships = Vec::new();
         for i in 0..figures.len() {
@@ -258,7 +310,7 @@ impl FigureGenerator<'_, '_> {
         &self,
         id: NpcId,
         index: usize,
-        role: Option<Named<ResultId>>,
+        role: Option<&RoleAssignment>,
         faces: &mut dyn FaceSource,
     ) -> Result<AuthorityFigure, GenerationError> {
         let mut fields: Vec<FigureField> = Vec::new();
@@ -269,11 +321,12 @@ impl FigureGenerator<'_, '_> {
                 roll: self.roll(&TableId::new(def.table), &own, None, faces)?,
             });
         }
+        let tags = self.named(&self.own_tags(&fields));
         let mut figure = AuthorityFigure {
             id,
             label: String::new(),
-            role,
-            tags: self.named(&self.own_tags(&fields)),
+            role: role.map(|r| FigureRole::new(r, &tags)),
+            tags,
             fields,
             name: FigureName::Missing {
                 reason: String::new(),
@@ -318,6 +371,9 @@ impl FigureGenerator<'_, '_> {
             }),
         }
         figure.tags = self.named(&self.own_tags(&figure.fields));
+        if let Some(role) = &mut figure.role {
+            role.relabel(&figure.tags);
+        }
         let typed = matches!(figure.name, FigureName::Custom { .. });
         if figure.tags != before && !typed {
             figure.name = self.name(figure, None, faces)?;

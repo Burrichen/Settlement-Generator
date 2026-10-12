@@ -11,6 +11,7 @@ use settlement_core::engine::{GenerationError, ResultOption, Selections, SkipRea
 use settlement_core::figures::{FIGURE_FIELDS, FigureName};
 use settlement_core::ids::ResultId;
 use settlement_core::naming::NameSource;
+use settlement_core::roles::Allocation;
 use settlement_core::service::ActiveGeneration;
 use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageView};
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
@@ -35,6 +36,10 @@ enum Pending {
     NamePart(usize, usize, usize, Vec<ResultId>),
     /// Typing an Authority Figure's name: stage, figure.
     FigureName(usize, usize),
+    /// Picking which role to change: stage.
+    RoleSlot(usize),
+    /// Choosing a role: stage, slot, results.
+    Role(usize, usize, Vec<ResultId>),
     /// Naming the settlement to save it.
     Name,
     ConfirmLeave,
@@ -434,6 +439,35 @@ impl GenerateScreen {
             ),
             Line::styled(heading, s.title()),
         ];
+        if let Some(roles) = &stage.roles {
+            top.extend(Self::stage_notes(&stage, ctx));
+            if let Some(e) = &self.error {
+                top.push(Line::styled(e.clone(), s.error()));
+            }
+            if stage.can_roll {
+                top.push(Line::from(vec![
+                    Span::styled("r", s.key()),
+                    Span::styled(
+                        if roles.record.is_some() {
+                            " reallocate all roles"
+                        } else {
+                            " allocate roles"
+                        },
+                        s.dim(),
+                    ),
+                ]));
+            }
+            if roles.record.is_some() {
+                top.push(Line::from(vec![
+                    Span::styled("Enter", s.key()),
+                    Span::styled(" change a role", s.dim()),
+                ]));
+            }
+            top.push(Line::default());
+            top.extend(role_lines(&stage, s));
+            f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), area);
+            return;
+        }
         if let Some(figures) = &stage.figures {
             top.extend(Self::stage_notes(&stage, ctx));
             if let Some(e) = &self.error {
@@ -554,7 +588,8 @@ impl GenerateScreen {
                 source: (stage.table.name != stage.stage.name).then(|| stage.table.name.clone()),
                 tags: stage.tags.clone(),
                 sub_stage: stage.sub_stage,
-                skipped: stage.status == StageStatus::Skipped,
+                // Roles are shown with each Authority Figure instead.
+                skipped: stage.status == StageStatus::Skipped || stage.roles.is_some(),
                 figures: stage.figures.as_ref().and_then(|f| f.record.clone()),
             })
             .collect();
@@ -610,6 +645,16 @@ impl GenerateScreen {
                 let (stage, id) = (*stage, ids[i].clone());
                 self.modal = None;
                 self.act(ctx, |a, dice| a.session.choose(stage, id, dice));
+            }
+            (ModalResult::Picked(i), Pending::RoleSlot(stage)) => {
+                let stage = *stage;
+                self.modal = None;
+                self.open_role_slot(stage, i);
+            }
+            (ModalResult::Picked(i), Pending::Role(stage, slot, ids)) => {
+                let (stage, slot, id) = (*stage, *slot, ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| a.session.choose_role(stage, slot, id, dice));
             }
             (ModalResult::Picked(i), Pending::FigureTarget(stage, targets)) => {
                 let (stage, target) = (*stage, targets[i].clone());
@@ -695,6 +740,58 @@ impl GenerateScreen {
             _ => self.modal = None,
         }
         Some(Nav::Stay)
+    }
+
+    /// Opens the list of roles to change on the Role Allocation stage.
+    fn open_role_editor(&mut self, index: usize) {
+        let Some(view) = self.view.stages[index].roles.as_ref() else {
+            return;
+        };
+        let Some(record) = view.record.as_ref() else {
+            self.error = Some("Allocate the roles first (r).".into());
+            return;
+        };
+        let items = record
+            .roles
+            .iter()
+            .enumerate()
+            .map(|(i, r)| PickItem::new(role_slot_label(i, r.allocation)).hint(r.role.name.clone()))
+            .collect();
+        self.modal = Some((
+            Modal::pick("Change a role", items, 0),
+            Pending::RoleSlot(index),
+        ));
+    }
+
+    /// Opens the role results for one slot: only its own table's.
+    fn open_role_slot(&mut self, index: usize, slot: usize) {
+        let Some(view) = self.view.stages[index].roles.as_ref() else {
+            return;
+        };
+        let Some(options) = view.slots.get(slot) else {
+            return;
+        };
+        let current = view
+            .record
+            .as_ref()
+            .and_then(|r| r.roles.get(slot))
+            .map(|r| r.role.id.clone());
+        let legal: Vec<&ResultOption> = options.options.iter().filter(|o| o.legal).collect();
+        let items = legal
+            .iter()
+            .map(|o| {
+                PickItem::new(o.result.name.clone())
+                    .hint(o.range.map_or(String::new(), |r| r.to_string()))
+            })
+            .collect();
+        let ids: Vec<ResultId> = legal.iter().map(|o| o.result.id.clone()).collect();
+        let at = current
+            .and_then(|c| ids.iter().position(|id| *id == c))
+            .unwrap_or(0);
+        self.modal = Some((
+            Modal::pick(&format!("Choose {}", options.table.name), items, at),
+            Pending::Role(index, slot, ids),
+        ));
     }
 
     /// Opens the list of what can be changed on the Authority Figures stage:
@@ -1010,10 +1107,9 @@ impl Screen for GenerateScreen {
             let rows = self.stage_rows(ctx);
             // On the Authority Figures row the notes show the figures, so they
             // take the room the stage list does not need.
-            let on_figures = self
-                .rows
-                .current(&rows)
-                .is_some_and(|&i| self.view.stages[i].figures.is_some());
+            let on_figures = self.rows.current(&rows).is_some_and(|&i| {
+                self.view.stages[i].figures.is_some() || self.view.stages[i].roles.is_some()
+            });
             let constraints = if on_figures {
                 [
                     Constraint::Length(rows.len() as u16 + 1),
@@ -1028,6 +1124,13 @@ impl Screen for GenerateScreen {
             if let Some(&i) = self.rows.current(&rows) {
                 let stage = &self.view.stages[i];
                 lines.extend(Self::stage_notes(stage, ctx));
+                if stage.roles.is_some() {
+                    lines.push(Line::from(vec![
+                        Span::styled("Enter", s.key()),
+                        Span::styled(" change a role", s.dim()),
+                    ]));
+                    lines.extend(role_lines(stage, &s));
+                }
                 if let Some(record) = stage.figures.as_ref().and_then(|f| f.record.as_ref()) {
                     lines.push(Line::from(vec![
                         Span::styled("Enter", s.key()),
@@ -1108,6 +1211,9 @@ impl Screen for GenerateScreen {
                 KeyCode::Enter if self.view.stages[stage].figures.is_some() => {
                     self.open_figure_editor(stage);
                 }
+                KeyCode::Enter if self.view.stages[stage].roles.is_some() => {
+                    self.open_role_editor(stage);
+                }
                 KeyCode::Enter => {
                     let view = &self.view.stages[stage];
                     let legal: Vec<_> = view.options.iter().filter(|o| o.legal).collect();
@@ -1165,6 +1271,7 @@ impl Screen for GenerateScreen {
         let automatic = self.view.mode == GenerationMode::Automatic;
         match key.code {
             KeyCode::Enter if stage.figures.is_some() => self.open_figure_editor(index),
+            KeyCode::Enter if stage.roles.is_some() => self.open_role_editor(index),
             KeyCode::Enter => {
                 if let Some(id) = self.rows.current(&rows).cloned() {
                     if self.act(ctx, |a, dice| a.session.choose(index, id, dice)) && automatic {
@@ -1215,10 +1322,13 @@ impl Screen for GenerateScreen {
         // types one.
         let on_name = self.focused_stage().is_some_and(|s| s.naming.is_some());
         let on_figures = self.focused_stage().is_some_and(|s| s.figures.is_some());
+        let on_roles = self.focused_stage().is_some_and(|s| s.roles.is_some());
         let (choose, roll) = if on_name {
             ("method", "roll name")
         } else if on_figures {
             ("edit figures", "generate")
+        } else if on_roles {
+            ("change role", "allocate")
         } else {
             ("choose", "roll")
         };
@@ -1267,4 +1377,68 @@ fn stage_label(stage: &StageView) -> String {
     } else {
         stage.stage.name.clone()
     }
+}
+
+/// "Figure 1 · Lead" (or Member, or just "Figure 1" for a single role).
+fn role_slot_label(index: usize, allocation: Allocation) -> String {
+    match allocation {
+        Allocation::Single => format!("Figure {}", index + 1),
+        Allocation::Lead => format!("Figure {} · Lead", index + 1),
+        Allocation::Member => format!("Figure {} · Member", index + 1),
+    }
+}
+
+/// Each figure's role, with the die and any unique-role fallback; or the
+/// roles still to allocate.
+fn role_lines(stage: &StageView, s: &crate::tui::theme::Styles) -> Vec<Line<'static>> {
+    let Some(roles) = &stage.roles else {
+        return Vec::new();
+    };
+    let mut lines = Vec::new();
+    match &roles.record {
+        Some(record) => {
+            for (i, r) in record.roles.iter().enumerate() {
+                let how = if r.roll.selected {
+                    "chosen".to_owned()
+                } else {
+                    format!(
+                        "{} on {}",
+                        r.roll
+                            .attempts
+                            .last()
+                            .map_or(String::new(), |a| a.roll.total.to_string()),
+                        r.roll.dice.clone().unwrap_or_default()
+                    )
+                };
+                lines.push(Line::from(vec![
+                    Span::styled(format!("{:<18}", role_slot_label(i, r.allocation)), s.dim()),
+                    Span::styled(format!("{:<28}", r.role.name), s.title()),
+                    Span::styled(how, s.dim()),
+                ]));
+                if r.fallback.is_some() {
+                    lines.push(Line::styled(
+                        format!(
+                            "{}{} was already held, so this becomes {}",
+                            " ".repeat(18),
+                            r.initial.name,
+                            r.role.name
+                        ),
+                        s.dim(),
+                    ));
+                }
+            }
+        }
+        None => {
+            for (i, slot) in roles.slots.iter().enumerate() {
+                lines.push(Line::from(vec![
+                    Span::styled(
+                        format!("{:<18}", role_slot_label(i, slot.allocation)),
+                        s.dim(),
+                    ),
+                    Span::styled(slot.table.name.clone(), s.dim()),
+                ]));
+            }
+        }
+    }
+    lines
 }

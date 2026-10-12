@@ -24,12 +24,13 @@ use crate::engine::{
 };
 use crate::figures::{
     AuthorityFigures, FIGURE_FIELDS, FIGURES_STAGE_ID, FigureGenerator, NamePartOptions,
-    RELATIONSHIP_TABLE,
+    RELATIONSHIP_TABLE, apply_roles,
 };
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
 use crate::naming::{
     GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for,
 };
+use crate::roles::{ROLES_STAGE_ID, RoleAllocation, RoleAllocator, RoleSlotOptions};
 use crate::settings::{GenerationMethod, GenerationPresentation, Settings};
 use crate::settlements::{MAX_NAME_LENGTH, SettlementSnapshot, SnapshotStage};
 
@@ -140,6 +141,21 @@ pub struct StageView {
     /// Present on the Authority Figures stage only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub figures: Option<FiguresView>,
+    /// Present on the Role Allocation stage only.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub roles: Option<RolesView>,
+}
+
+/// The Role Allocation stage as an interface should present it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RolesView {
+    /// The roles, once allocated (lead first).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub record: Option<RoleAllocation>,
+    /// The role each figure receives, in order: its allocation (single,
+    /// lead or member), table and results under the current tags. Only the
+    /// tables of the Authority that applies.
+    pub slots: Vec<RoleSlotOptions>,
 }
 
 /// The Authority Figures stage as an interface should present it.
@@ -315,6 +331,9 @@ struct Resolution {
     /// The figures, on the Authority Figures stage. Their rolls are kept
     /// here, not in `events`.
     figures: Option<Box<AuthorityFigures>>,
+    /// The roles, on the Role Allocation stage. Their rolls are kept here,
+    /// not in `events`.
+    roles: Option<Box<RoleAllocation>>,
 }
 
 /// A resolved name; its rolls are the resolution's events.
@@ -333,8 +352,18 @@ const CUSTOM_NAME_ID: &str = "custom";
 /// Result ID summarising a resolved Authority Figures stage.
 const FIGURES_RESULT_ID: &str = "authorityFigures";
 
+/// Result ID summarising a resolved Role Allocation stage.
+const ROLES_RESULT_ID: &str = "authorityRoles";
+
 impl Resolution {
     fn main_result(&self) -> Option<Named<ResultId>> {
+        if let Some(roles) = &self.roles {
+            let titles: Vec<&str> = roles.roles.iter().map(|r| r.role.name.as_str()).collect();
+            return Some(Named {
+                id: ResultId::new(ROLES_RESULT_ID),
+                name: titles.join(", "),
+            });
+        }
         if let Some(figures) = &self.figures {
             let n = figures.figures.len();
             return Some(Named {
@@ -371,6 +400,7 @@ enum StageKind {
     Table(TableId),
     Naming,
     AuthorityFigures,
+    AuthorityRoles,
 }
 
 #[derive(Debug, Clone)]
@@ -393,7 +423,7 @@ impl Stage {
     fn table(&self) -> Option<&TableId> {
         match &self.kind {
             StageKind::Table(t) => Some(t),
-            StageKind::Naming | StageKind::AuthorityFigures => None,
+            StageKind::Naming | StageKind::AuthorityFigures | StageKind::AuthorityRoles => None,
         }
     }
 
@@ -405,12 +435,17 @@ impl Stage {
         matches!(self.kind, StageKind::AuthorityFigures)
     }
 
+    fn is_roles(&self) -> bool {
+        matches!(self.kind, StageKind::AuthorityRoles)
+    }
+
     /// The stage table recorded in snapshots.
     fn snapshot_table(&self) -> TableId {
         match &self.kind {
             StageKind::Table(t) => t.clone(),
             StageKind::Naming => TableId::new(NAME_STAGE_ID),
             StageKind::AuthorityFigures => TableId::new(FIGURES_STAGE_ID),
+            StageKind::AuthorityRoles => TableId::new(ROLES_STAGE_ID),
         }
     }
 }
@@ -452,6 +487,7 @@ impl GenerationSession {
                     StepTarget::AuthorityFigures => {
                         (StageKind::AuthorityFigures, "Authority Figures".to_owned())
                     }
+                    StepTarget::AuthorityRoles => (StageKind::AuthorityRoles, "Roles".to_owned()),
                 };
                 Stage {
                     kind,
@@ -603,6 +639,7 @@ impl GenerationSession {
             StageKind::Table(t) => t,
             StageKind::Naming => return self.naming_view(index, view),
             StageKind::AuthorityFigures => return self.figures_view(index, view),
+            StageKind::AuthorityRoles => return self.roles_view(index, view),
         };
         let before = self.tags_before(index);
         let state = State::with_tags(&before);
@@ -658,6 +695,7 @@ impl GenerationSession {
             naming: None,
             sub_stage: stage.sub_stage,
             figures: None,
+            roles: None,
         })
     }
 
@@ -772,6 +810,7 @@ impl GenerationSession {
             naming: Some(naming),
             sub_stage: false,
             figures: None,
+            roles: None,
         })
     }
 
@@ -859,6 +898,7 @@ impl GenerationSession {
                 app_version: crate::VERSION.to_owned(),
             }),
             figures: None,
+            roles: None,
         }));
         stage.previous = None;
         let (invalidated, reopened) = self.refresh(index + 1)?;
@@ -968,6 +1008,7 @@ impl GenerationSession {
                         skipped: false,
                         sub_stage: stage.sub_stage,
                         figures: res.figures.as_deref().cloned(),
+                        roles: res.roles.as_deref().cloned(),
                         name: res.name.as_ref().map(|n| NameRecord {
                             name: n.text.clone(),
                             source: n.source,
@@ -987,6 +1028,7 @@ impl GenerationSession {
                     skipped: matches!(stage.state, StageState::Skipped(_)),
                     sub_stage: stage.sub_stage,
                     figures: None,
+                    roles: None,
                     name: None,
                 }),
             })
@@ -1037,6 +1079,10 @@ impl GenerationSession {
                 session.stages[index].state = restored_figures(original);
                 continue;
             }
+            if session.stages[index].is_roles() {
+                session.stages[index].state = restored_roles(original);
+                continue;
+            }
             let Some(events) = events else { continue };
             let state = match events.first() {
                 Some(GenerationEvent::TableSkipped { reason, .. }) if events.len() == 1 => {
@@ -1064,6 +1110,7 @@ impl GenerationSession {
                         original,
                         name: None,
                         figures: None,
+                        roles: None,
                     }))
                 }
             };
@@ -1118,6 +1165,7 @@ impl GenerationSession {
                 app_version: record.app_version,
             }),
             figures: None,
+            roles: None,
         }))
     }
 
@@ -1167,6 +1215,7 @@ impl GenerationSession {
                 app_version: VERSION.to_owned(),
             }),
             figures: None,
+            roles: None,
         };
         let stage = &mut self.stages[index];
         stage.state = StageState::Resolved(Box::new(resolution));
@@ -1273,6 +1322,12 @@ impl GenerationSession {
                 }
                 return self.resolve_figures(index, faces);
             }
+            StageKind::AuthorityRoles => {
+                if choice.is_some() {
+                    return Err(GenerationError::NotRolesStage { stage: index });
+                }
+                return self.resolve_roles(index, faces);
+            }
         };
         let before = self.tags_before(index);
         let mut state = State::with_tags(&before);
@@ -1295,6 +1350,7 @@ impl GenerationSession {
                 original: None,
                 name: None,
                 figures: None,
+                roles: None,
             })),
         };
         let stage = &mut self.stages[index];
@@ -1351,6 +1407,14 @@ impl GenerationSession {
             let state = State::with_tags(&before);
             if self.stages[index].is_naming() {
                 match self.refresh_name(index, &before) {
+                    Some(true) => invalidated.push(index),
+                    Some(false) => reopened.push(index),
+                    None => {}
+                }
+                continue;
+            }
+            if self.stages[index].is_roles() {
+                match self.refresh_roles(index) {
                     Some(true) => invalidated.push(index),
                     Some(false) => reopened.push(index),
                     None => {}
@@ -1739,13 +1803,20 @@ impl GenerationSession {
         let before = self.tags_before(index);
         let state = match self.representatives_before(index) {
             Some(request) => {
+                // Roles are allocated first, by the Role Allocation stage.
+                let roles = match self.roles_before(index) {
+                    RolesBefore::Allocated(roles) if roles.request == request => roles.roles,
+                    RolesBefore::Allocated(_) => return Err(GenerationError::RolesDoNotMatch),
+                    RolesBefore::Pending => return Err(GenerationError::RolesNotAllocated),
+                    RolesBefore::None => Vec::new(),
+                };
                 let generator = self.generator();
                 let record = FigureGenerator {
                     generator: &generator,
                     content: &self.content,
                     settlement_tags: &before,
                 }
-                .generate(&request, &[], faces)?;
+                .generate(&request, &roles, faces)?;
                 StageState::Resolved(Box::new(Resolution {
                     input_tags: before,
                     events: Vec::new(),
@@ -1754,6 +1825,7 @@ impl GenerationSession {
                     original: None,
                     name: None,
                     figures: Some(Box::new(record)),
+                    roles: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -1796,13 +1868,34 @@ impl GenerationSession {
         let request = self.representatives_before(index);
         let settled = self.settled_before(index);
         let mut outcome = None;
+        let roles = self.roles_before(index);
         match &self.stages[index].state {
             StageState::Resolved(res) => {
-                let same = res
+                let mut same = res
                     .figures
                     .as_ref()
                     .is_some_and(|f| Some(&f.request) == request.as_ref());
-                if !same {
+                // The same Authority with different roles: the figures stand
+                // and take their new roles and titles.
+                let mut retitled = None;
+                if let (true, Some(figures), RolesBefore::Allocated(roles)) =
+                    (same, res.figures.as_deref(), &roles)
+                {
+                    let mut figures = figures.clone();
+                    match apply_roles(&mut figures, &roles.roles) {
+                        Ok(()) if Some(&figures) != res.figures.as_deref() => {
+                            retitled = Some(figures);
+                        }
+                        Ok(()) => {}
+                        Err(_) => same = false,
+                    }
+                }
+                if let Some(figures) = retitled {
+                    if let StageState::Resolved(res) = &mut self.stages[index].state {
+                        res.figures = Some(Box::new(figures));
+                        res.original = None;
+                    }
+                } else if !same {
                     let previous = res.main_result();
                     let stage = &mut self.stages[index];
                     stage.previous = previous;
@@ -1904,6 +1997,7 @@ impl GenerationSession {
             details: None,
             naming: None,
             sub_stage: stage.sub_stage,
+            roles: None,
             figures: Some(FiguresView {
                 record,
                 fields,
@@ -1930,6 +2024,267 @@ fn restored_figures(saved: Option<SnapshotStage>) -> StageState {
             original: Some(saved),
             name: None,
             figures: Some(Box::new(figures)),
+            roles: None,
+        })),
+        None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
+        None => StageState::Pending,
+    }
+}
+
+// ----- Role Allocation --------------------------------------------------------------
+
+/// What the Role Allocation stage before a stage holds.
+enum RolesBefore {
+    /// Allocated roles.
+    Allocated(RoleAllocation),
+    /// A Role Allocation stage is still to be resolved.
+    Pending,
+    /// No roles: no Role Allocation stage, or none recorded or applicable.
+    None,
+}
+
+impl GenerationSession {
+    /// Rolls one role again (by position: the lead first), checked against
+    /// the other roles held. A unique role already held becomes its
+    /// fallback.
+    pub fn roll_role(
+        &mut self,
+        index: usize,
+        slot: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_roles(index, |a, record| a.set_role(record, slot, None, faces))
+    }
+
+    /// Chooses one role. Choosing a unique role another figure holds gives
+    /// its fallback, as a roll would.
+    pub fn choose_role(
+        &mut self,
+        index: usize,
+        slot: usize,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_roles(index, |a, record| {
+            a.set_role(record, slot, Some(result), faces)
+        })
+    }
+
+    fn change_roles(
+        &mut self,
+        index: usize,
+        change: impl FnOnce(&RoleAllocator<'_, '_>, &mut RoleAllocation) -> Result<(), GenerationError>,
+    ) -> Result<StageChange, GenerationError> {
+        self.check_access(index)?;
+        let stage = self.stage(index)?;
+        if !stage.is_roles() {
+            return Err(GenerationError::NotRolesStage { stage: index });
+        }
+        let StageState::Resolved(res) = &stage.state else {
+            return Err(GenerationError::RolesNotAllocated);
+        };
+        let mut record = res
+            .roles
+            .as_deref()
+            .cloned()
+            .ok_or(GenerationError::RolesNotAllocated)?;
+        let before = self.tags_before(index);
+        let generator = self.generator();
+        change(
+            &RoleAllocator {
+                generator: &generator,
+                content: &self.content,
+                settlement_tags: &before,
+            },
+            &mut record,
+        )?;
+        if let StageState::Resolved(res) = &mut self.stages[index].state {
+            res.roles = Some(Box::new(record));
+            res.original = None;
+        }
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// Allocates every role. Skipped when there is no Authority.
+    fn resolve_roles(
+        &mut self,
+        index: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        let before = self.tags_before(index);
+        let state = match self.representatives_before(index) {
+            Some(request) => {
+                let generator = self.generator();
+                let record = RoleAllocator {
+                    generator: &generator,
+                    content: &self.content,
+                    settlement_tags: &before,
+                }
+                .allocate(&request, faces)?;
+                StageState::Resolved(Box::new(Resolution {
+                    input_tags: before,
+                    events: Vec::new(),
+                    activated: Vec::new(),
+                    contexts: Some(Vec::new()),
+                    original: None,
+                    name: None,
+                    figures: None,
+                    roles: Some(Box::new(record)),
+                }))
+            }
+            None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
+            None => return Err(GenerationError::RolesNeedAuthority),
+        };
+        let stage = &mut self.stages[index];
+        stage.state = state;
+        stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// The Role Allocation before `index`, if the sequence has one.
+    fn roles_before(&self, index: usize) -> RolesBefore {
+        for stage in self.stages[..index].iter().rev() {
+            if !stage.is_roles() {
+                continue;
+            }
+            return match &stage.state {
+                StageState::Resolved(res) => res
+                    .roles
+                    .as_deref()
+                    .cloned()
+                    .map_or(RolesBefore::None, RolesBefore::Allocated),
+                StageState::Pending => RolesBefore::Pending,
+                StageState::Skipped(_) => RolesBefore::None,
+            };
+        }
+        RolesBefore::None
+    }
+
+    /// Re-checks the Role Allocation stage. Roles stand while the Authority,
+    /// its size and its role scheme are unchanged; otherwise they are
+    /// invalidated. Returns `Some(true)` if invalidated, `Some(false)` if
+    /// reopened.
+    fn refresh_roles(&mut self, index: usize) -> Option<bool> {
+        let request = self.representatives_before(index);
+        let settled = self.settled_before(index);
+        let before = self.tags_before(index);
+        let scheme = crate::roles::scheme_for(&self.content, &before).map(|s| s.id.clone());
+        let mut outcome = None;
+        match &self.stages[index].state {
+            StageState::Resolved(res) => {
+                let same = res.roles.as_ref().is_some_and(|r| {
+                    Some(&r.request) == request.as_ref() && Some(&r.scheme.id) == scheme.as_ref()
+                });
+                if !same {
+                    let previous = res.main_result();
+                    let stage = &mut self.stages[index];
+                    stage.previous = previous;
+                    stage.state = StageState::Pending;
+                    outcome = Some(true);
+                }
+            }
+            StageState::Skipped(SkipReason::NotEligible) if request.is_some() => {
+                self.stages[index].state = StageState::Pending;
+                return Some(false);
+            }
+            _ => {}
+        }
+        if request.is_none() && settled && matches!(self.stages[index].state, StageState::Pending) {
+            let stage = &mut self.stages[index];
+            stage.state = StageState::Skipped(SkipReason::NotEligible);
+            stage.previous = None;
+        }
+        outcome
+    }
+
+    fn roles_view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
+        let stage = self.stage(index)?;
+        let before = self.tags_before(index);
+        let generator = self.generator();
+        let request = self.representatives_before(index);
+        let mut slots = request
+            .as_ref()
+            .map(|r| {
+                RoleAllocator {
+                    generator: &generator,
+                    content: &self.content,
+                    settlement_tags: &before,
+                }
+                .slot_options(r)
+            })
+            .unwrap_or_default();
+        if !view.show_tags {
+            for slot in &mut slots {
+                slot.options.iter_mut().for_each(|o| o.tags.clear());
+            }
+        }
+        let (status, result, skipped, resolution) = match &stage.state {
+            StageState::Pending => (StageStatus::Pending, None, None, None),
+            StageState::Skipped(reason) => (StageStatus::Skipped, None, Some(*reason), None),
+            StageState::Resolved(res) => {
+                (StageStatus::Resolved, res.main_result(), None, Some(res))
+            }
+        };
+        let table = Named {
+            id: TableId::new(ROLES_STAGE_ID),
+            name: stage.label.clone(),
+        };
+        Ok(StageView {
+            index,
+            stage: table.clone(),
+            table,
+            status,
+            current: self.mode == GenerationMode::Incremental && index == self.cursor,
+            actionable: self.check_access(index).is_ok(),
+            can_roll: request.is_some() && !slots.is_empty(),
+            dice: None,
+            incomplete: None,
+            options: Vec::new(),
+            result,
+            previous: stage.previous.clone(),
+            skipped,
+            outcome: None,
+            // Roles are never settlement tags.
+            tags: view.show_tags.then(Vec::new),
+            details: None,
+            naming: None,
+            sub_stage: stage.sub_stage,
+            figures: None,
+            roles: Some(RolesView {
+                record: resolution.and_then(|r| r.roles.as_deref()).cloned(),
+                slots,
+            }),
+        })
+    }
+}
+
+/// The Role Allocation stage as saved: its roles restored exactly, skipped
+/// if it did not apply, or "not recorded" for settlements saved before
+/// roles existed. Nothing is reallocated here.
+fn restored_roles(saved: Option<SnapshotStage>) -> StageState {
+    let Some(saved) = saved else {
+        return StageState::Skipped(SkipReason::NotRecorded);
+    };
+    match saved.roles.clone() {
+        Some(roles) => StageState::Resolved(Box::new(Resolution {
+            input_tags: Vec::new(),
+            events: Vec::new(),
+            activated: Vec::new(),
+            contexts: Some(Vec::new()),
+            original: Some(saved),
+            name: None,
+            figures: None,
+            roles: Some(Box::new(roles)),
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,

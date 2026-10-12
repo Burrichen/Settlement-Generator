@@ -22,6 +22,7 @@ import {
   originLabel,
   RangeInput,
   TagMultiSelect,
+  TagSelect,
   useCatalog,
 } from "../components/editors/common";
 import { ItemList, useEntityEditor } from "../components/editors/EntityEditor";
@@ -419,6 +420,7 @@ function ResultsEditor({
               <ResultRow
                 key={result.id}
                 result={result}
+                siblings={draft.results}
                 rolled={rolled}
                 valued={valued}
                 chance={chanceOf(base, result.id)}
@@ -455,6 +457,7 @@ function ResultsEditor({
 
 function ResultRow({
   result,
+  siblings,
   rolled,
   valued,
   chance,
@@ -462,6 +465,8 @@ function ResultRow({
   onRemove,
 }: {
   result: TableResult;
+  /** Every result of the table (fallback choices). */
+  siblings: TableResult[];
   rolled: boolean;
   valued: boolean;
   chance: string;
@@ -469,6 +474,13 @@ function ResultRow({
   onRemove: () => void;
 }) {
   const [open, setOpen] = useState(Boolean(result.eligibility));
+  const roleOptionsSet = Boolean(result.unique || result.label_variants?.length);
+  const [roleOpen, setRoleOpen] = useState(roleOptionsSet);
+  const variants = result.label_variants ?? [];
+  const setVariant = (i: number, patch: Partial<{ tag: string; name: string }>) =>
+    onChange({
+      label_variants: variants.map((v, j) => (j === i ? { ...v, ...patch } : v)),
+    });
   const label = result.name || result.id;
   return (
     <>
@@ -500,6 +512,14 @@ function ResultRow({
               onClick={() => setOpen(!open)}
             >
               {result.eligibility ? "Eligibility rule" : "Add eligibility rule"}
+            </button>
+            <button
+              type="button"
+              className="link-button"
+              aria-expanded={roleOpen}
+              onClick={() => setRoleOpen(!roleOpen)}
+            >
+              Role options
             </button>
           </span>
         </td>
@@ -555,6 +575,82 @@ function ResultRow({
               value={result.eligibility}
               onChange={(eligibility) => onChange({ eligibility })}
             />
+          </td>
+        </tr>
+      )}
+      {roleOpen && (
+        <tr className="sub-row">
+          <td colSpan={(rolled ? 6 : 4) + (valued ? 1 : 0)}>
+            <span className="field-help">
+              Used when allocating Authority roles. A unique result can be held once; a repeat
+              becomes its fallback, without a reroll.
+            </span>
+            <label className="check-row">
+              <input
+                type="checkbox"
+                aria-label={`${label}: unique`}
+                checked={result.unique ?? false}
+                onChange={(e) =>
+                  onChange(
+                    e.target.checked
+                      ? { unique: true }
+                      : { unique: undefined, fallback: undefined },
+                  )
+                }
+              />
+              Unique
+            </label>
+            {result.unique && (
+              <label className="field">
+                <span className="field-label">Becomes, when already held</span>
+                <select
+                  className="select select-inline"
+                  aria-label={`${label}: fallback`}
+                  value={result.fallback ?? ""}
+                  onChange={(e) => onChange({ fallback: e.target.value || undefined })}
+                >
+                  <option value="">Choose a repeatable result…</option>
+                  {siblings
+                    .filter((r) => r.id !== result.id && !r.unique)
+                    .map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            )}
+            <span className="field-label">Display variants</span>
+            {variants.map((v, i) => (
+              <span key={i} className="variant-row">
+                <TagSelect
+                  label={`${label}: display variant ${i + 1} tag`}
+                  value={v.tag}
+                  onChange={(tag) => setVariant(i, { tag })}
+                />
+                <input
+                  className="text-input"
+                  aria-label={`${label}: display variant ${i + 1} label`}
+                  value={v.name}
+                  onChange={(e) => setVariant(i, { name: e.target.value })}
+                />
+                <button
+                  type="button"
+                  className="icon-button"
+                  aria-label={`Remove display variant ${i + 1}`}
+                  onClick={() => onChange({ label_variants: variants.filter((_, j) => j !== i) })}
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+            <button
+              type="button"
+              className="btn btn-small"
+              onClick={() => onChange({ label_variants: [...variants, { tag: "", name: "" }] })}
+            >
+              Add display variant
+            </button>
           </td>
         </tr>
       )}

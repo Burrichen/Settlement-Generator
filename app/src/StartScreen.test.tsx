@@ -109,6 +109,7 @@ vi.mock("./api", async (importOriginal) => {
       runAutomatic: vi.fn(),
       rerollAll: vi.fn(),
       chooseFigureField: vi.fn(),
+      chooseRole: vi.fn(),
       chooseFigureNamePart: vi.fn(),
       figureName: vi.fn(),
       chooseRelationship: vi.fn(),
@@ -419,6 +420,11 @@ describe("authority figures", () => {
       {
         id: "npc-a",
         label: "Mila Varen",
+        role: {
+          allocation: "lead",
+          role: { id: "role.council.chair", name: "Council Chair" },
+          label: "Council Chair",
+        },
         name: { source: "custom", name: "Mila Varen" },
         app_version: "0.1.1",
         fields: [
@@ -476,7 +482,63 @@ describe("authority figures", () => {
 
   function withFigures(mode: SessionView["mode"], generated: boolean): SessionView {
     const v = view(mode, STAGES.length);
-    const i = STAGES.length;
+    const roleSlot = (allocation: "lead" | "member", table: string, ids: [string, string][]) => ({
+      allocation,
+      table: { id: table, name: table },
+      options: ids.map(([id, name]) => ({ result: { id, name }, tags: [], legal: true })),
+    });
+    // Roles: a sub-stage before the figures.
+    v.stages.push({
+      ...stage(STAGES.length, generated),
+      index: STAGES.length,
+      stage: { id: "stage.authorityRoles", name: "Roles" },
+      table: { id: "stage.authorityRoles", name: "Roles" },
+      options: [],
+      can_roll: true,
+      sub_stage: true,
+      result: generated ? { id: "authorityRoles", name: "Council Chair, Councillor" } : undefined,
+      roles: {
+        record: generated
+          ? {
+              request: record.request,
+              scheme: { id: "roles.council", name: "Local Council roles" },
+              app_version: "0.1.1",
+              roles: [
+                {
+                  allocation: "lead",
+                  roll: {
+                    table: { id: "t.lead", name: "Lead" },
+                    result: { id: "role.council.chair", name: "Council Chair" },
+                  },
+                  initial: { id: "role.council.chair", name: "Council Chair" },
+                  role: { id: "role.council.chair", name: "Council Chair" },
+                },
+                {
+                  allocation: "member",
+                  roll: {
+                    table: { id: "t.member", name: "Member" },
+                    result: { id: "role.council.treasurer", name: "Treasurer" },
+                  },
+                  initial: { id: "role.council.treasurer", name: "Treasurer" },
+                  fallback: { id: "role.council.councillor", name: "Councillor" },
+                  role: { id: "role.council.councillor", name: "Councillor" },
+                },
+              ],
+            }
+          : undefined,
+        slots: [
+          roleSlot("lead", "Local Council Lead Role", [
+            ["role.council.chair", "Council Chair"],
+            ["role.council.civicSpeaker", "Civic Speaker"],
+          ]),
+          roleSlot("member", "Local Council Member Role", [
+            ["role.council.councillor", "Councillor"],
+            ["role.council.treasurer", "Treasurer"],
+          ]),
+        ],
+      },
+    });
+    const i = STAGES.length + 1;
     v.stages.push({
       ...stage(i, generated),
       index: i,
@@ -525,7 +587,7 @@ describe("authority figures", () => {
     g.figureName.mockResolvedValue(ok(v));
     g.chooseRelationship.mockResolvedValue(ok(v));
     const user = await openStart();
-    const i = STAGES.length;
+    const i = STAGES.length + 1;
 
     const species = (await screen.findByLabelText("Mila Varen: Species")) as HTMLSelectElement;
     expect(species.value).toBe("human");
@@ -594,8 +656,39 @@ describe("authority figures", () => {
     expect(given.value).toBe("mila");
     expect(within(given).getAllByRole("option")).toHaveLength(2);
     await user.selectOptions(given, "adelis");
-    expect(g.chooseFigureNamePart).toHaveBeenCalledWith(STAGES.length, 0, 0, "adelis");
+    expect(g.chooseFigureNamePart).toHaveBeenCalledWith(STAGES.length + 1, 0, 0, "adelis");
     // The unnamed figure has no name parts to choose.
     expect(screen.queryByLabelText("Figure 2: Given name")).toBeNull();
+  });
+
+  it("shows each figure's role above its name, not as a separate row", async () => {
+    g.start.mockResolvedValue(ok(withFigures("automatic", true)));
+    g.runAutomatic.mockResolvedValue(ok(withFigures("automatic", true)));
+    await openStart();
+    const sheet = await screen.findByRole("article", { name: "Generated settlement" });
+    const role = within(sheet).getByText("Council Chair");
+    expect(role.className).toBe("figure-role");
+    expect(role.nextElementSibling?.textContent).toBe("Mila Varen");
+    expect(within(sheet).queryByText("Roles")).toBeNull();
+  });
+
+  it("lets each role be chosen from its own table in one-table mode", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    const v = withFigures("one_table", true);
+    g.start.mockResolvedValue(ok(v));
+    g.chooseRole.mockResolvedValue(ok(v));
+    const user = await openStart();
+    const lead = (await screen.findByLabelText("Figure 1 · Lead: role")) as HTMLSelectElement;
+    expect(lead.value).toBe("role.council.chair");
+    // Only the lead table's results are offered for the lead.
+    expect(within(lead).queryByText("Treasurer")).toBeNull();
+    const member = screen.getByLabelText("Figure 2 · Member: role") as HTMLSelectElement;
+    expect(member.value).toBe("role.council.councillor");
+    expect(
+      screen.getByText("Treasurer was already held, so this becomes Councillor."),
+    ).toBeTruthy();
+    await user.selectOptions(lead, "role.council.civicSpeaker");
+    expect(g.chooseRole).toHaveBeenCalledWith(STAGES.length, 0, "role.council.civicSpeaker");
   });
 });

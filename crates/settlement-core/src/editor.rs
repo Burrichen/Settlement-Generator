@@ -580,6 +580,9 @@ mod tests {
                     enabled: true,
                     generator: None,
                     value: None,
+                    unique: false,
+                    fallback: None,
+                    label_variants: Vec::new(),
                 })
                 .collect(),
             variants: vec![],

@@ -294,19 +294,19 @@ fn incremental_generation_one_stage_at_a_time() {
     set_manual(&mut app, GenerationPresentation::Incremental);
     key(&mut app, KeyCode::Enter);
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 1 OF 14"), "{screen}");
+    assert!(screen.contains("STAGE 1 OF 15"), "{screen}");
     assert!(screen.contains("Manual · Incremental"));
     // Next is refused until the stage is resolved.
     key(&mut app, KeyCode::Char('n'));
     assert!(text(&mut app).contains("must be rolled or chosen"));
     key(&mut app, KeyCode::Enter); // Kurovia
     key(&mut app, KeyCode::Char('n'));
-    assert!(text(&mut app).contains("STAGE 2 OF 14"));
+    assert!(text(&mut app).contains("STAGE 2 OF 15"));
     for stage in 2..=10 {
         if stage == 10 {
             // Economy follows Age.
             let screen = text(&mut app);
-            assert!(screen.contains("STAGE 10 OF 14"), "{screen}");
+            assert!(screen.contains("STAGE 10 OF 15"), "{screen}");
             assert!(screen.contains("Economy"), "{screen}");
         }
         if stage == 3 {
@@ -325,20 +325,29 @@ fn incremental_generation_one_stage_at_a_time() {
     // always a group, so Representation is passed over and Authority Size
     // comes next.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 11 OF 14"), "{screen}");
+    assert!(screen.contains("STAGE 11 OF 15"), "{screen}");
     assert!(screen.contains("Popular Assembly"), "{screen}");
     key(&mut app, KeyCode::Enter);
     key(&mut app, KeyCode::Char('n'));
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 13 OF 14"), "{screen}");
+    assert!(screen.contains("STAGE 13 OF 15"), "{screen}");
     assert!(screen.contains("Authority Size"), "{screen}");
     assert!(!screen.contains("Representation"), "skipped: {screen}");
     key(&mut app, KeyCode::Char('r'));
     assert!(text(&mut app).contains("Rolled"));
     key(&mut app, KeyCode::Char('n'));
+    // Roles: one lead and the rest members, before the figures.
+    let screen = text(&mut app);
+    assert!(screen.contains("STAGE 14 OF 15"), "{screen}");
+    assert!(screen.contains("allocate roles"), "{screen}");
+    assert!(screen.contains("Figure 1 · Lead"), "{screen}");
+    key(&mut app, KeyCode::Char('r'));
+    let screen = text(&mut app);
+    assert!(screen.contains("on 1d6"), "{screen}");
+    key(&mut app, KeyCode::Char('n'));
     // Authority Figures: generate them all.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 14 OF 14"), "{screen}");
+    assert!(screen.contains("STAGE 15 OF 15"), "{screen}");
     assert!(screen.contains("generate figures"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
     let screen = text_at(&mut app, 140, 80);
@@ -500,6 +509,54 @@ fn a_figures_given_name_is_chosen_from_its_species_pool() {
 }
 
 #[test]
+fn one_table_changes_a_role_through_the_picker() {
+    let mut app = app();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a'));
+    // Roles is the row above Authority Figures.
+    keys(&mut app, &[KeyCode::End, KeyCode::Up]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("  Roles"), "{screen}");
+    assert!(screen.contains("change a role"), "{screen}");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Change a role"), "{screen}");
+    key(&mut app, KeyCode::Enter); // the first figure's role
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Choose "), "{screen}");
+    keys(&mut app, &[KeyCode::Home, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(!screen.contains("Change a role"), "{screen}");
+    assert!(screen.contains("chosen"), "{screen}");
+}
+
+#[test]
+fn view_shows_each_figures_title_above_its_name() {
+    let mut app = app();
+    let id = saved_settlement(&mut app, "Ashford", "town");
+    let saved = app.ctx.service.saved_get(&id).unwrap();
+    let figures = saved
+        .stages
+        .iter()
+        .find_map(|st| st.figures.clone())
+        .unwrap();
+    let first = &figures.figures[0];
+    let title = first.role.as_ref().unwrap().label.clone();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 160, 90);
+    let lines: Vec<&str> = screen.lines().collect();
+    let at = lines
+        .iter()
+        .position(|l| l.contains(&first.label))
+        .unwrap_or_else(|| panic!("{screen}"));
+    assert!(lines[at - 1].contains(&title), "{screen}");
+    // The Roles stage is not listed on its own.
+    assert!(!screen.contains("ROLES"), "{screen}");
+}
+
+#[test]
 fn a_long_completed_settlement_scrolls_and_keeps_its_actions() {
     let mut app = app();
     set_manual(&mut app, GenerationPresentation::OneTable);
@@ -514,6 +571,8 @@ fn a_long_completed_settlement_scrolls_and_keeps_its_actions() {
     keys(&mut app, &[KeyCode::Enter, KeyCode::Home, KeyCode::Enter]); // Local Council
     key(&mut app, KeyCode::Down); // Authority Size
     keys(&mut app, &[KeyCode::Enter, KeyCode::End, KeyCode::Enter]); // 6
+    key(&mut app, KeyCode::Down); // Roles (invalidated)
+    key(&mut app, KeyCode::Char('r'));
     key(&mut app, KeyCode::Down); // Authority Figures (invalidated)
     key(&mut app, KeyCode::Char('r'));
     key(&mut app, KeyCode::Char('f'));
@@ -738,6 +797,47 @@ fn table_editor_opens_size_like_any_other_table() {
     for size in ["Trading Post", "Village", "Town", "City", "Capital"] {
         assert!(screen.contains(size), "{size}: {screen}");
     }
+}
+
+#[test]
+fn table_editor_shows_unique_roles_and_their_fallbacks() {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..4 {
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter); // View Tables
+    key(&mut app, KeyCode::Char('/'));
+    type_text(&mut app, "table.authorityRole.council.member");
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    // Move to the Treasurer result and open it.
+    for _ in 0..40 {
+        let screen = text_at(&mut app, 160, 70);
+        if screen
+            .lines()
+            .any(|l| l.contains('▸') && l.trim_end().ends_with("17%  Treasurer"))
+        {
+            break;
+        }
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 70);
+    assert!(
+        screen.contains("RESULT · role.council.treasurer"),
+        "{screen}"
+    );
+    let line = |label: &str| {
+        screen
+            .lines()
+            .find(|l| l.contains(label))
+            .unwrap_or_else(|| panic!("{label}: {screen}"))
+            .to_owned()
+    };
+    assert!(line("Unique").contains("Yes"), "{screen}");
+    assert!(line("Fallback").contains("Councillor"), "{screen}");
+    // No tags: roles never become settlement tags.
+    assert!(line("Emits tags").contains("—"), "{screen}");
 }
 
 #[test]

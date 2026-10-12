@@ -83,10 +83,16 @@ steps. Each step is one of:
 - a bare table ID;
 - `{ "table": id, "name": "Region" }`, optionally with `"sub_stage": true`;
 - `{ "naming": true, "name": "Name" }` for the name stage;
+- `{ "authority_roles": true, "name": "Roles", "sub_stage": true }` for Role
+  Allocation (`roles.rs`). It uses the content's `role_schemes`: each has an
+  `id`, `name`, a `when` condition (the first that applies is used) and a
+  `single` table and/or `lead` and `member` tables. A group gets one lead
+  roll and `size − 1` member rolls;
 - `{ "authority_figures": true, "name": "Authority Figures" }` for the
   Authority Figures stage (`figures.rs`). It needs the tables listed in
   `figures::FIGURE_FIELDS` and `table.authorityRelationship`; validation
-  reports any that are missing.
+  reports any that are missing. It needs the roles first, when the
+  sequence allocates them.
 
 A **sub-stage** elaborates the stage before it (for example Authority Size
 after Authority) and is normally made conditional by its table's
@@ -138,16 +144,19 @@ follow-up roll and the change.
 
 ### Result
 
-| Field           | Meaning                                                                                                                                                                                |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`, `name`    | Identity and display text                                                                                                                                                              |
-| `description` † |                                                                                                                                                                                        |
-| `range` †       | Faces in the base layout: `[min, max]`, or a bare number for one face. Omitted means the result only appears in variants                                                               |
-| `tags` †        | Tag IDs emitted when selected                                                                                                                                                          |
-| `eligibility` † | `Condition`. If false when rolled, **reroll** (as at the table)                                                                                                                        |
-| `enabled` †     | Default `true`. A disabled result keeps its faces, but rolling it means rerolling                                                                                                      |
-| `value` †       | The positive whole number the result stands for (e.g. `4` for "4 Representatives"). Within a table, every result has one or none does. Recorded with the roll                          |
-| `generator` †   | Reserved: the ID of a future subordinate generator for this result (e.g. `authorityNpcs.council`). Only the ID format is validated; it is not resolved and has no effect on generation |
+| Field              | Meaning                                                                                                                                                                                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`, `name`       | Identity and display text                                                                                                                                                              |
+| `description` †    |                                                                                                                                                                                        |
+| `range` †          | Faces in the base layout: `[min, max]`, or a bare number for one face. Omitted means the result only appears in variants                                                               |
+| `tags` †           | Tag IDs emitted when selected                                                                                                                                                          |
+| `eligibility` †    | `Condition`. If false when rolled, **reroll** (as at the table)                                                                                                                        |
+| `enabled` †        | Default `true`. A disabled result keeps its faces, but rolling it means rerolling                                                                                                      |
+| `value` †          | The positive whole number the result stands for (e.g. `4` for "4 Representatives"). Within a table, every result has one or none does. Recorded with the roll                          |
+| `unique` †         | Default `false`. In role allocation, held by one person only: a repeat resolves as `fallback`, never a reroll                                                                          |
+| `fallback` †       | Required for, and only for, a unique result: the repeatable result in the same table it becomes when already held                                                                      |
+| `label_variants` † | `[{ tag, name }]`: display labels by a tag of the holder, first match first (e.g. `gender.woman` → "Lady"). Otherwise `name`                                                           |
+| `generator` †      | Reserved: the ID of a future subordinate generator for this result (e.g. `authorityNpcs.council`). Only the ID format is validated; it is not resolved and has no effect on generation |
 
 ### Variant (tag-driven alternative layout)
 
@@ -297,6 +306,10 @@ interfaces show the message as it is.
 | `invalid_value`              | error    | A result `value` that is not a positive whole number                                          |
 | `missing_value`              | error    | A result without a `value` in a table whose other results have one                            |
 | `sub_stage_without_parent`   | error    | A first sequence step marked as a sub-stage                                                   |
+| `unique_without_fallback`    | error    | A unique result without a fallback                                                            |
+| `fallback_without_unique`    | error    | A fallback on a result that is not unique                                                     |
+| `fallback_not_repeatable`    | error    | A fallback that is itself unique                                                              |
+| `role_scheme_incomplete`     | error    | A role scheme with neither a single table nor both lead and member tables                     |
 | `not_user_id`                | error    | A user-created item outside the `user.` namespace                                             |
 | `override_target_missing`    | warning  | A customisation of a default that no longer exists. It is ignored                             |
 | `default_changed`            | warning  | A default that was updated after the user customised it                                       |
@@ -427,6 +440,7 @@ A saved settlement is a self-contained **snapshot**:
 | `snapshot.log`              | The full `GenerationLog` (§4)                                                                                                                                                                                                                                                                               |
 | `snapshot.authority`        | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there                                                                                                                    |
 | `snapshot.stages`           | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                                                                                                                                   |
+| `snapshot.stages[].roles`   | Role Allocation stage only (stage table `stage.authorityRoles`): the request, the scheme, and each role (allocation, roll record, the result rolled, the fallback given if any, the final role and its display variants, app version)                                                                       |
 | `snapshot.stages[].figures` | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log` |
 | `snapshot.stages[].name`    | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                    |
 

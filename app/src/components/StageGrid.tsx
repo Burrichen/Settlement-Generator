@@ -1,5 +1,5 @@
 import type { GenerationResponse, StageView } from "../api";
-import { FiguresControls } from "./AuthorityFigures";
+import { FiguresControls, RolesControls } from "./AuthorityFigures";
 import { OutcomeLine, TagList, applies } from "./generation";
 import { NameGridRow } from "./NameStage";
 
@@ -32,7 +32,21 @@ export function StageGrid({
       </thead>
       <tbody>
         {stages.filter(applies).map((stage) =>
-          stage.figures ? (
+          stage.roles ? (
+            <tr key={stage.index} className={`stage-row status-${stage.status} sub-stage`}>
+              <th scope="row">
+                <span className="stage-row-name">{stage.stage.name}</span>
+              </th>
+              <td colSpan={2}>
+                <RolesControls
+                  stage={stage}
+                  busy={busy}
+                  onRoll={() => onRoll(stage.index)}
+                  onAct={onAct}
+                />
+              </td>
+            </tr>
+          ) : stage.figures ? (
             <tr key={stage.index} className={`stage-row status-${stage.status}`}>
               <th scope="row">
                 <span className="stage-row-name">{stage.stage.name}</span>

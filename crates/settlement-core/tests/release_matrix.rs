@@ -120,6 +120,9 @@ fn every_kind_of_content_edit_survives_a_restart() {
         enabled: true,
         generator: None,
         value: None,
+        unique: false,
+        fallback: None,
+        label_variants: Vec::new(),
     };
     custom
         .results

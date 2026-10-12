@@ -43,13 +43,19 @@ pub fn figure_lines(
     let pad = " ".repeat(indent);
     let mut lines = Vec::new();
     for figure in &record.figures {
-        let heading = match &figure.role {
-            Some(role) => format!("{} {}", role.name, figure.label),
-            None => figure.label.clone(),
-        };
+        // The Role / Title, then the name.
+        if let Some(role) = &figure.role {
+            lines.push(Line::styled(
+                format!("{pad}{}", role.label),
+                styles.heading(),
+            ));
+        }
         lines.push(Line::from(vec![
             Span::raw(pad.clone()),
-            Span::styled(heading, styles.title().add_modifier(Modifier::BOLD)),
+            Span::styled(
+                figure.label.clone(),
+                styles.title().add_modifier(Modifier::BOLD),
+            ),
         ]));
         if let FigureName::Missing { reason } = &figure.name {
             lines.push(Line::styled(format!("{pad}  {reason}"), styles.dim()));

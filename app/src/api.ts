@@ -158,6 +158,8 @@ export interface StageView {
   sub_stage?: boolean;
   /** Present on the Authority Figures stage only. */
   figures?: FiguresView;
+  /** Present on the Role Allocation stage only. */
+  roles?: RolesView;
 }
 
 /** A table roll as recorded (the parts the interface shows). */
@@ -194,11 +196,57 @@ export type FigureName =
   | { source: "custom"; name: string }
   | { source: "missing"; reason: string };
 
+export type Allocation = "single" | "lead" | "member";
+
+export interface LabelVariant {
+  tag: string;
+  name: string;
+}
+
+/** A figure's Role / Title. */
+export interface FigureRole {
+  allocation: Allocation;
+  /** The stable role and its neutral title. */
+  role: Named;
+  /** The title as shown for this figure (e.g. "Lady"). */
+  label: string;
+  label_variants?: LabelVariant[];
+}
+
+export interface RoleAssignment {
+  allocation: Allocation;
+  roll: RollRecord;
+  /** The result rolled or chosen. */
+  initial: Named;
+  /** The role given instead, when a unique role was already held. */
+  fallback?: Named;
+  role: Named;
+  label_variants?: LabelVariant[];
+}
+
+export interface RoleAllocation {
+  request: AuthorityFigures["request"];
+  scheme: Named;
+  roles: RoleAssignment[];
+  app_version: string;
+}
+
+export interface RoleSlotOptions {
+  allocation: Allocation;
+  table: Named;
+  options: ResultOption[];
+}
+
+export interface RolesView {
+  record?: RoleAllocation;
+  slots: RoleSlotOptions[];
+}
+
 export interface AuthorityFigure {
   id: string;
   /** The name, else "Figure n". */
   label: string;
-  role?: Named;
+  role?: FigureRole;
   fields: FigureField[];
   name: FigureName;
   /** The figure's own tags; only sent with Tag View. */
@@ -299,6 +347,10 @@ export const generation = {
   /** Names the settlement with a typed name (the name stage). */
   customName: (stage: number, name: string) =>
     invoke<GenerationResponse>("generation_custom_name", { stage, name }),
+  rollRole: (stage: number, slot: number) =>
+    invoke<GenerationResponse>("generation_roll_role", { stage, slot }),
+  chooseRole: (stage: number, slot: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_role", { stage, slot, result }),
   rollFigureField: (stage: number, figure: number, field: string) =>
     invoke<GenerationResponse>("generation_roll_figure_field", { stage, figure, field }),
   chooseFigureField: (stage: number, figure: number, field: string, result: string) =>
@@ -353,6 +405,8 @@ export interface SnapshotStage {
   sub_stage?: boolean;
   /** The Authority Figures stage's record (only on that stage). */
   figures?: AuthorityFigures;
+  /** The Role Allocation stage's record (only on that stage). */
+  roles?: RoleAllocation;
   /** The name stage's record (only on the name stage). */
   name?: NameRecord;
 }
@@ -410,6 +464,12 @@ export interface TableResult {
   generator?: string;
   /** The number the result stands for (a positive whole number). */
   value?: number;
+  /** Held once per role allocation; a repeat becomes `fallback`. */
+  unique?: boolean;
+  /** The repeatable result a unique result becomes when already held. */
+  fallback?: string;
+  /** Display labels by a tag of the holder (e.g. gender.woman → Lady). */
+  label_variants?: LabelVariant[];
 }
 
 export interface RangeAssignment {

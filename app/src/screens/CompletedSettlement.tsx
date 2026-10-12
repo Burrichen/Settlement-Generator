@@ -58,7 +58,8 @@ export function CompletedSettlement({
             source: stage.table.name !== stage.stage.name ? stage.table.name : undefined,
             tags: stage.tags,
             subStage: stage.sub_stage,
-            skipped: stage.status === "skipped",
+            // Roles are shown with each Authority Figure instead.
+            skipped: stage.status === "skipped" || !!stage.roles,
             figures: stage.figures?.record,
           })),
         )}

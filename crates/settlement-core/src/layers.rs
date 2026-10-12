@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 use crate::content::{
-    Condition, ContentSet, EffectDef, FaceRange, FollowUpRoll, Table, TableResult, TableVariant,
-    Tag,
+    Condition, ContentSet, EffectDef, FaceRange, FollowUpRoll, LabelVariant, Table, TableResult,
+    TableVariant, Tag,
 };
 use crate::engine::{GenerationError, Generator};
 use crate::ids::{ResultId, TableId, TagId, USER_ID_PREFIX};
@@ -172,7 +172,7 @@ impl TablePatch {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "action", rename_all = "snake_case")]
 pub enum ResultOverride {
-    Modify(ResultPatch),
+    Modify(Box<ResultPatch>),
     /// A bundled result the user deleted.
     Delete,
 }
@@ -207,6 +207,16 @@ pub struct ResultPatch {
         with = "double_option"
     )]
     pub value: Option<Option<i64>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub unique: Option<bool>,
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        with = "double_option"
+    )]
+    pub fallback: Option<Option<ResultId>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub label_variants: Option<Vec<LabelVariant>>,
 }
 
 impl ResultPatch {
@@ -220,6 +230,9 @@ impl ResultPatch {
             eligibility: None,
             enabled: None,
             value: None,
+            unique: None,
+            fallback: None,
+            label_variants: None,
         }
     }
 
@@ -231,6 +244,9 @@ impl ResultPatch {
         prune_field(&mut self.eligibility, &base.eligibility);
         prune_field(&mut self.enabled, &base.enabled);
         prune_field(&mut self.value, &base.value);
+        prune_field(&mut self.unique, &base.unique);
+        prune_field(&mut self.fallback, &base.fallback);
+        prune_field(&mut self.label_variants, &base.label_variants);
     }
 
     fn is_empty(&self) -> bool {
@@ -241,6 +257,9 @@ impl ResultPatch {
             && self.eligibility.is_none()
             && self.enabled.is_none()
             && self.value.is_none()
+            && self.unique.is_none()
+            && self.fallback.is_none()
+            && self.label_variants.is_none()
     }
 
     fn apply(&self, result: &mut TableResult) {
@@ -251,6 +270,9 @@ impl ResultPatch {
         apply_field(&self.eligibility, &mut result.eligibility);
         apply_field(&self.enabled, &mut result.enabled);
         apply_field(&self.value, &mut result.value);
+        apply_field(&self.unique, &mut result.unique);
+        apply_field(&self.fallback, &mut result.fallback);
+        apply_field(&self.label_variants, &mut result.label_variants);
     }
 }
 
@@ -372,6 +394,7 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         // Naming schemes are content-file data; user overrides apply to
         // their method and component tables.
         naming_schemes: bundled.naming_schemes.clone(),
+        role_schemes: bundled.role_schemes.clone(),
     };
     if overrides.format_version != OVERRIDES_FORMAT_VERSION {
         issues.push(ValidationIssue::new(
@@ -1061,7 +1084,7 @@ impl ContentLayers {
                 }
                 Some(result) => {
                     let mut rp = match previous.as_ref().and_then(|p| p.results.get(&result.id)) {
-                        Some(ResultOverride::Modify(rp)) => rp.clone(),
+                        Some(ResultOverride::Modify(rp)) => (**rp).clone(),
                         _ => ResultPatch::new(base_result),
                     };
                     rp.name = Some(result.name.clone());
@@ -1071,9 +1094,12 @@ impl ContentLayers {
                     rp.eligibility = Some(result.eligibility.clone());
                     rp.enabled = Some(result.enabled);
                     rp.value = Some(result.value);
+                    rp.unique = Some(result.unique);
+                    rp.fallback = Some(result.fallback.clone());
+                    rp.label_variants = Some(result.label_variants.clone());
                     rp.prune(base_result);
                     if !rp.is_empty() {
-                        results.insert(result.id.clone(), ResultOverride::Modify(rp));
+                        results.insert(result.id.clone(), ResultOverride::Modify(Box::new(rp)));
                     }
                 }
             }
@@ -1208,10 +1234,9 @@ impl ContentLayers {
                 .ok_or_else(unknown),
             TableEdit::Patch { base, patch } => {
                 if let Some(base_result) = base.result(result) {
-                    let entry = patch
-                        .results
-                        .entry(result.clone())
-                        .or_insert_with(|| ResultOverride::Modify(ResultPatch::new(base_result)));
+                    let entry = patch.results.entry(result.clone()).or_insert_with(|| {
+                        ResultOverride::Modify(Box::new(ResultPatch::new(base_result)))
+                    });
                     let ResultOverride::Modify(rp) = entry else {
                         return Err(EditError::Deleted(result.to_string()));
                     };

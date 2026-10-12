@@ -37,7 +37,7 @@ pub struct Named<T> {
 }
 
 impl<T> Named<T> {
-    fn new(id: &T, name: &str) -> Self
+    pub(crate) fn new(id: &T, name: &str) -> Self
     where
         T: Clone,
     {
@@ -291,6 +291,20 @@ pub enum GenerationError {
     NamingIncomplete { table: TableId },
     #[error("stage {} is not the name stage", stage + 1)]
     NotNamingStage { stage: usize },
+    #[error("stage {} is not the Role Allocation stage", stage + 1)]
+    NotRolesStage { stage: usize },
+    #[error("roles need the Authority, its Representation and its Authority Size first")]
+    RolesNeedAuthority,
+    #[error("no roles have been allocated yet")]
+    RolesNotAllocated,
+    #[error("no role tables are configured for {authority}")]
+    NoRoleScheme { authority: String },
+    #[error("role scheme `{scheme}` has no {what} role table")]
+    RoleTableMissing { scheme: String, what: String },
+    #[error("there is no role {}", index + 1)]
+    NoSuchRole { index: usize },
+    #[error("the roles no longer match the Authority Figures; allocate them again")]
+    RolesDoNotMatch,
     #[error("stage {} is not the Authority Figures stage", stage + 1)]
     NotFiguresStage { stage: usize },
     #[error(

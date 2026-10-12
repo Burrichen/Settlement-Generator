@@ -40,7 +40,8 @@ const ECONOMY: usize = 9;
 const AUTHORITY: usize = 10;
 const REPRESENTATION: usize = 11;
 const AUTHORITY_SIZE: usize = 12;
-const FIGURES: usize = 13;
+const ROLES: usize = 13;
+const FIGURES: usize = 14;
 
 fn content() -> ContentSet {
     bundled_content().unwrap()
@@ -141,6 +142,7 @@ fn automatic_resolves_every_stage_with_real_dice() {
             "Authority",
             "Representation",
             "Authority Size",
+            "Roles",
             "Authority Figures"
         ]
     );
@@ -155,7 +157,8 @@ fn automatic_resolves_every_stage_with_real_dice() {
         } else if v.sub_stage && v.status == StageStatus::Skipped {
             assert_eq!(v.skipped, Some(SkipReason::NotEligible));
         } else {
-            sub_rolls += usize::from(v.sub_stage);
+            // Role Allocation keeps its rolls in its own record, not the log.
+            sub_rolls += usize::from(v.sub_stage && v.roles.is_none());
             assert_eq!(v.status, StageStatus::Resolved, "{}", v.stage.name);
         }
     }
@@ -309,6 +312,9 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
     // is next.
     assert_eq!(s.advance().unwrap(), AUTHORITY_SIZE);
     s.roll(AUTHORITY_SIZE, &mut dice(&[3])).unwrap(); // 3 Representatives
+    // Roles are allocated before the figures are generated.
+    assert_eq!(s.advance().unwrap(), ROLES);
+    s.roll(ROLES, &mut RandomFaces::seeded(5)).unwrap();
     s.advance().unwrap();
     s.roll(FIGURES, &mut RandomFaces::seeded(5)).unwrap();
     assert!(s.is_complete());
@@ -317,6 +323,7 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
     // upgrade no longer applies, so Connections is invalidated. Size,
     // Origin, Purpose, Age, Economy and Authority do not depend on it and
     // are kept. Going back passes over the skipped Representation.
+    assert_eq!(s.back(), ROLES);
     assert_eq!(s.back(), AUTHORITY_SIZE);
     s.back();
     assert_eq!(s.cursor(), AUTHORITY);
@@ -378,7 +385,7 @@ fn one_table_allows_any_stage_and_rechecks_dependants() {
     let c = content();
     let mut s = session(&c, GenerationMode::OneTable, false);
     let views = s.views(ViewOptions::default()).unwrap();
-    assert_eq!(views.len(), 14);
+    assert_eq!(views.len(), 15);
     assert!(views.iter().all(|v| v.actionable));
 
     // Connections rolled before a Region exists: Standard layout.
@@ -620,7 +627,7 @@ fn session_snapshot_includes_active_tags_only_with_tag_view() {
         })
         .unwrap();
     assert_eq!(tagged.active_tags.unwrap()[0].id.as_str(), "world.kurovia");
-    assert_eq!(tagged.stages.len(), 14);
+    assert_eq!(tagged.stages.len(), 15);
 }
 
 #[test]
@@ -759,6 +766,7 @@ fn snapshots_record_every_stage_for_display() {
             "Authority",
             "Representation",
             "Authority Size",
+            "Roles",
             "Authority Figures"
         ]
     );
@@ -1155,7 +1163,7 @@ fn authority_can_be_rolled_or_chosen_in_every_manual_mode() {
 
         s.roll(AUTHORITY, &mut dice(&[6])).unwrap();
         assert_eq!(result(&s, AUTHORITY).as_deref(), Some("Appointed Official"));
-        assert_eq!(s.next_pending(), Some(FIGURES), "{mode:?}");
+        assert_eq!(s.next_pending(), Some(ROLES), "{mode:?}");
         s.choose(AUTHORITY, "elders".into(), &mut none()).unwrap();
         assert_eq!(
             result(&s, AUTHORITY).as_deref(),
@@ -1212,7 +1220,7 @@ fn moving_back_and_forth_keeps_authority_intact() {
         result(&s, AUTHORITY).as_deref(),
         Some("Religious Authority")
     );
-    assert_eq!(s.next_pending(), Some(FIGURES));
+    assert_eq!(s.next_pending(), Some(ROLES));
 }
 
 #[test]
@@ -1281,7 +1289,11 @@ fn a_snapshot_saved_before_authority_existed_still_displays_and_can_be_finished(
     let c = content();
     let mut old = saved_settlement(&c);
     // As saved by a build without Authority, its sub-stages and figures.
-    let added = |t: &str| t.starts_with("table.authority") || t == "stage.authorityFigures";
+    let added = |t: &str| {
+        t.starts_with("table.authority")
+            || t == "stage.authorityFigures"
+            || t == "stage.authorityRoles"
+    };
     old.stages.retain(|s| !added(s.stage_table.as_str()));
     old.log.events.retain(|e| match e {
         GenerationEvent::TableRolled(r) => !added(r.table.id.as_str()),
@@ -1308,6 +1320,7 @@ fn a_snapshot_saved_before_authority_existed_still_displays_and_can_be_finished(
     // Authority Figures were not recorded either, and are not generated
     // behind the user's back.
     assert!(s.is_complete());
+    assert_eq!(view(&s, ROLES).skipped, Some(SkipReason::NotRecorded));
     assert_eq!(view(&s, FIGURES).skipped, Some(SkipReason::NotRecorded));
     assert_eq!(view(&s, AUTHORITY_SIZE).status, StageStatus::Skipped);
 }
@@ -1343,7 +1356,7 @@ fn incremental_single_authority_needs_no_further_rolls() {
         assert_eq!(v.status, StageStatus::Skipped);
         assert_eq!(v.skipped, Some(SkipReason::NotEligible));
     }
-    assert_eq!(s.next_pending(), Some(FIGURES));
+    assert_eq!(s.next_pending(), Some(ROLES));
     // Next passes over both sub-stages to the end.
     assert_eq!(s.advance().unwrap(), AUTHORITY_SIZE + 1);
     assert_eq!(representatives(&s), Some((Representation::Single, 1)));
@@ -1397,7 +1410,7 @@ fn incremental_guild_presents_the_representation_roll() {
     assert_eq!(s.advance().unwrap(), AUTHORITY_SIZE);
     s.choose(AUTHORITY_SIZE, "six".into(), &mut none()).unwrap();
     assert_eq!(representatives(&s), Some((Representation::Group, 6)));
-    assert_eq!(s.next_pending(), Some(FIGURES));
+    assert_eq!(s.next_pending(), Some(ROLES));
 }
 
 #[test]
@@ -1423,7 +1436,7 @@ fn military_representation_is_the_same_50_50_roll() {
         } else {
             assert_eq!(representatives(&s), Some((Representation::Single, 1)));
         }
-        assert_eq!(s.next_pending(), Some(FIGURES), "d4 {d4}");
+        assert_eq!(s.next_pending(), Some(ROLES), "d4 {d4}");
     }
 }
 
@@ -1440,7 +1453,7 @@ fn changing_authority_invalidates_incompatible_representation_and_size() {
     let size = view(&s, AUTHORITY_SIZE);
     assert_eq!(size.status, StageStatus::Skipped);
     assert!(size.result.is_none() && size.previous.is_none());
-    assert_eq!(s.next_pending(), Some(FIGURES));
+    assert_eq!(s.next_pending(), Some(ROLES));
     assert_eq!(representatives(&s), Some((Representation::Single, 1)));
     assert!(
         s.log().record_for(&"table.authoritySize".into()).is_none(),

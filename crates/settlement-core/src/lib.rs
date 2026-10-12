@@ -18,6 +18,7 @@ pub mod layers;
 mod layout;
 pub mod naming;
 pub mod roadmap;
+pub mod roles;
 pub mod service;
 pub mod session;
 pub mod settings;

@@ -1,4 +1,4 @@
-import { FiguresControls } from "../components/AuthorityFigures";
+import { FiguresControls, RolesControls } from "../components/AuthorityFigures";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { generation, type GenerationResponse, type SessionView, type StageView } from "../api";
 import { useApp } from "../app-state";
@@ -298,7 +298,9 @@ function StagePanel({
       >
         {stage.stage.name}
       </h2>
-      {stage.figures ? (
+      {stage.roles ? (
+        <RolesControls stage={stage} busy={busy} onRoll={onRoll} onAct={onAct} />
+      ) : stage.figures ? (
         <FiguresControls stage={stage} busy={busy} onRoll={onRoll} onAct={onAct} />
       ) : stage.naming ? (
         <NameControls

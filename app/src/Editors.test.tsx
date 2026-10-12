@@ -278,6 +278,36 @@ describe("table editor", () => {
     );
   });
 
+  it("edits unique roles and their fallbacks in the result's role options", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("Economy");
+    const toggles = screen.getAllByRole("button", { name: "Role options" });
+    await user.click(toggles[1]); // Rich
+    await user.click(screen.getByLabelText("Rich: unique"));
+    const fallback = screen.getByLabelText("Rich: fallback") as HTMLSelectElement;
+    // Only other, repeatable results can be a fallback.
+    expect(within(fallback).queryByText("Rich")).toBeNull();
+    await user.selectOptions(fallback, "poor");
+    await user.click(screen.getByRole("button", { name: "Add display variant" }));
+    await user.type(screen.getByLabelText("Rich: display variant 1 label"), "Wealthy");
+    const save = screen.getByRole("button", { name: "Save changes" }) as HTMLButtonElement;
+    await waitFor(() => expect(save.disabled).toBe(false));
+    await user.click(save);
+    expect(api.saveTable).toHaveBeenCalledWith(
+      expect.objectContaining({
+        results: [
+          expect.objectContaining({ id: "poor" }),
+          expect.objectContaining({
+            id: "rich",
+            unique: true,
+            fallback: "poor",
+            label_variants: [{ tag: "", name: "Wealthy" }],
+          }),
+        ],
+      }),
+    );
+  });
+
   it("has no value column on tables without values", async () => {
     await openEditor("View Tables");
     await screen.findByDisplayValue("Economy");

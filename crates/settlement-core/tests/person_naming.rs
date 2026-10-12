@@ -8,14 +8,28 @@ use std::sync::Arc;
 use settlement_core::bundled::bundled_content;
 use settlement_core::content::ContentSet;
 use settlement_core::dice::{RandomFaces, ScriptedFaces};
-use settlement_core::engine::GenerationOptions;
+use settlement_core::engine::{GenerationError, GenerationOptions};
 use settlement_core::figures::{AuthorityFigure, FigureName};
 use settlement_core::ids::TagId;
 use settlement_core::naming::{NamingScheme, NamingSubject, scheme_for_subject};
 use settlement_core::session::{GenerationMode, GenerationSession, ViewOptions};
 
 const AUTHORITY: usize = 10;
-const FIGURES: usize = 13;
+const ROLES: usize = 13;
+const FIGURES: usize = 14;
+
+/// Generates the Authority Figures, allocating their roles first if they
+/// are not allocated yet (roles always come first).
+fn roll_figures(
+    s: &mut GenerationSession,
+    faces: &mut dyn settlement_core::dice::FaceSource,
+) -> Result<settlement_core::session::StageChange, GenerationError> {
+    let roles = s.view(ROLES, ViewOptions::default()).unwrap();
+    if roles.status == settlement_core::session::StageStatus::Pending {
+        s.roll(ROLES, &mut RandomFaces::seeded(99))?;
+    }
+    s.roll(FIGURES, faces)
+}
 
 /// Every current Kurovia species: (result ID, d20 face, shared name pool).
 const SPECIES: [(&str, u32, bool); 13] = [
@@ -269,7 +283,7 @@ fn noble(faces: &[u32]) -> (GenerationSession, AuthorityFigure) {
     s.choose(AUTHORITY, "noble".into(), &mut RandomFaces::seeded(3))
         .unwrap();
     let mut dice = ScriptedFaces::new(faces.iter().copied());
-    s.roll(FIGURES, &mut dice).unwrap();
+    roll_figures(&mut s, &mut dice).unwrap();
     assert_eq!(dice.remaining(), 0, "every die is used, none hidden");
     let figure = s
         .view(FIGURES, ViewOptions::default())
@@ -395,8 +409,8 @@ fn renaming_a_name_result_keeps_routing_by_stable_id() {
     s.roll_remaining(&mut RandomFaces::seeded(2)).unwrap();
     s.choose(AUTHORITY, "noble".into(), &mut RandomFaces::seeded(3))
         .unwrap();
-    s.roll(
-        FIGURES,
+    roll_figures(
+        &mut s,
         &mut ScriptedFaces::new([1, 10, 1, 1, 1, 1, 1, 1, 13, 1]),
     )
     .unwrap();
@@ -428,8 +442,8 @@ fn god_mode_never_merges_species_pools() {
     s.roll_remaining(&mut RandomFaces::seeded(2)).unwrap();
     s.choose(AUTHORITY, "noble".into(), &mut RandomFaces::seeded(3))
         .unwrap();
-    s.roll(
-        FIGURES,
+    roll_figures(
+        &mut s,
         &mut ScriptedFaces::new([16, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
     )
     .unwrap();
