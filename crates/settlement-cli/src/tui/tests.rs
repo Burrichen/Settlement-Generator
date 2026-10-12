@@ -79,6 +79,25 @@ fn saved_settlement(
     app.ctx.service.save_new(&active, name).unwrap().id
 }
 
+/// Moves the One-table selection to the stage row labelled `label`.
+fn select_row(app: &mut App, label: &str) {
+    key(app, KeyCode::Home);
+    for _ in 0..40 {
+        let screen = text_at(app, 140, 60);
+        if screen.lines().any(|l| {
+            l.contains('▸')
+                && l.split_whitespace()
+                    .collect::<Vec<_>>()
+                    .join(" ")
+                    .contains(&format!("▸ {label} "))
+        }) {
+            return;
+        }
+        key(app, KeyCode::Down);
+    }
+    panic!("no row {label}");
+}
+
 fn set_manual(app: &mut App, presentation: GenerationPresentation) {
     let mut s = app.ctx.settings;
     s.generation_method = GenerationMethod::Manual;
@@ -149,7 +168,7 @@ fn every_screen_survives_resizing() {
     key(&mut app, KeyCode::Down);
     key(&mut app, KeyCode::Enter);
     check(&mut app);
-    for _ in 0..3 {
+    for _ in 0..4 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tags
@@ -222,8 +241,14 @@ fn theme_and_tag_view_are_shared_settings() {
     assert!(app.ctx.service.settings().unwrap().tag_view);
     keys(
         &mut app,
-        &[KeyCode::Down, KeyCode::Down, KeyCode::Down, KeyCode::Enter],
-    ); // Theme
+        &[
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Down,
+            KeyCode::Enter,
+        ],
+    ); // Theme (after Bare Minimum Buildings)
     assert_eq!(
         app.ctx.service.settings().unwrap().theme,
         settlement_core::settings::Theme::OldTimeyDark
@@ -294,19 +319,19 @@ fn incremental_generation_one_stage_at_a_time() {
     set_manual(&mut app, GenerationPresentation::Incremental);
     key(&mut app, KeyCode::Enter);
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 1 OF 15"), "{screen}");
+    assert!(screen.contains("STAGE 1 OF 19"), "{screen}");
     assert!(screen.contains("Manual · Incremental"));
     // Next is refused until the stage is resolved.
     key(&mut app, KeyCode::Char('n'));
     assert!(text(&mut app).contains("must be rolled or chosen"));
     key(&mut app, KeyCode::Enter); // Kurovia
     key(&mut app, KeyCode::Char('n'));
-    assert!(text(&mut app).contains("STAGE 2 OF 15"));
+    assert!(text(&mut app).contains("STAGE 2 OF 19"));
     for stage in 2..=10 {
         if stage == 10 {
             // Economy follows Age.
             let screen = text(&mut app);
-            assert!(screen.contains("STAGE 10 OF 15"), "{screen}");
+            assert!(screen.contains("STAGE 10 OF 19"), "{screen}");
             assert!(screen.contains("Economy"), "{screen}");
         }
         if stage == 3 {
@@ -325,12 +350,12 @@ fn incremental_generation_one_stage_at_a_time() {
     // always a group, so Representation is passed over and Authority Size
     // comes next.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 11 OF 15"), "{screen}");
+    assert!(screen.contains("STAGE 11 OF 19"), "{screen}");
     assert!(screen.contains("Popular Assembly"), "{screen}");
     key(&mut app, KeyCode::Enter);
     key(&mut app, KeyCode::Char('n'));
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 13 OF 15"), "{screen}");
+    assert!(screen.contains("STAGE 13 OF 19"), "{screen}");
     assert!(screen.contains("Authority Size"), "{screen}");
     assert!(!screen.contains("Representation"), "skipped: {screen}");
     key(&mut app, KeyCode::Char('r'));
@@ -338,7 +363,7 @@ fn incremental_generation_one_stage_at_a_time() {
     key(&mut app, KeyCode::Char('n'));
     // Roles: one lead and the rest members, before the figures.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 14 OF 15"), "{screen}");
+    assert!(screen.contains("STAGE 14 OF 19"), "{screen}");
     assert!(screen.contains("allocate roles"), "{screen}");
     assert!(screen.contains("Figure 1 · Lead"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
@@ -347,7 +372,7 @@ fn incremental_generation_one_stage_at_a_time() {
     key(&mut app, KeyCode::Char('n'));
     // Authority Figures: generate them all.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 15 OF 15"), "{screen}");
+    assert!(screen.contains("STAGE 15 OF 19"), "{screen}");
     assert!(screen.contains("generate figures"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
     let screen = text_at(&mut app, 140, 80);
@@ -358,8 +383,25 @@ fn incremental_generation_one_stage_at_a_time() {
     assert!(screen.contains("Disposition: "), "{screen}");
     assert!(screen.contains("RELATIONSHIPS"), "{screen}");
     key(&mut app, KeyCode::Char('n'));
+    // Security, Crime and Stability, in that order.
+    for (stage, name) in [(16, "Security"), (17, "Crime"), (18, "Stability")] {
+        let screen = text(&mut app);
+        assert!(screen.contains(&format!("STAGE {stage} OF 19")), "{screen}");
+        assert!(screen.contains(name), "{screen}");
+        key(&mut app, KeyCode::Char('r'));
+        assert!(text(&mut app).contains("on 1d12"), "{name}");
+        key(&mut app, KeyCode::Char('n'));
+    }
+    // Notable Locations last.
     let screen = text(&mut app);
+    assert!(screen.contains("STAGE 19 OF 19"), "{screen}");
+    key(&mut app, KeyCode::Char('r'));
+    key(&mut app, KeyCode::Char('n'));
+    let screen = text_at(&mut app, 120, 160);
     assert!(screen.contains("Local Council"), "{screen}");
+    for label in ["SECURITY", "CRIME", "STABILITY"] {
+        assert!(screen.contains(label), "{label}: {screen}");
+    }
     assert!(screen.contains("Representatives"), "{screen}");
     assert!(screen.contains("Not saved yet"), "{screen}");
     assert!(text(&mut app).contains("Not saved yet"));
@@ -456,7 +498,7 @@ fn one_table_edits_authority_figures_through_the_picker() {
     key(&mut app, KeyCode::Enter);
     keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
     key(&mut app, KeyCode::Char('a')); // roll everything, figures included
-    key(&mut app, KeyCode::End); // Authority Figures is the last row
+    select_row(&mut app, "Authority Figures");
     let screen = text_at(&mut app, 140, 60);
     assert!(screen.contains("Authority Figure"), "{screen}");
 
@@ -493,7 +535,7 @@ fn a_figures_given_name_is_chosen_from_its_species_pool() {
     key(&mut app, KeyCode::Enter);
     keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
     key(&mut app, KeyCode::Char('a'));
-    key(&mut app, KeyCode::End); // Authority Figures
+    select_row(&mut app, "Authority Figures");
     key(&mut app, KeyCode::Enter);
     // Type a name, Roll a name, then the parts of the generated name.
     keys(&mut app, &[KeyCode::Down, KeyCode::Down]);
@@ -515,8 +557,7 @@ fn one_table_changes_a_role_through_the_picker() {
     key(&mut app, KeyCode::Enter);
     keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
     key(&mut app, KeyCode::Char('a'));
-    // Roles is the row above Authority Figures.
-    keys(&mut app, &[KeyCode::End, KeyCode::Up]);
+    select_row(&mut app, "Roles");
     let screen = text_at(&mut app, 140, 60);
     assert!(screen.contains("  Roles"), "{screen}");
     assert!(screen.contains("change a role"), "{screen}");
@@ -751,7 +792,7 @@ fn editing_a_saved_settlement_saves_a_revision() {
 fn tag_editor_renames_and_saves_through_the_core() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..3 {
+    for _ in 0..4 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tags
@@ -777,7 +818,7 @@ fn tag_editor_renames_and_saves_through_the_core() {
 fn table_editor_opens_size_like_any_other_table() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..4 {
+    for _ in 0..5 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tables
@@ -803,7 +844,7 @@ fn table_editor_opens_size_like_any_other_table() {
 fn table_editor_shows_unique_roles_and_their_fallbacks() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..4 {
+    for _ in 0..5 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tables
@@ -844,7 +885,7 @@ fn table_editor_shows_unique_roles_and_their_fallbacks() {
 fn table_editor_opens_authority_like_any_other_table() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..4 {
+    for _ in 0..5 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tables
@@ -865,7 +906,7 @@ fn table_editor_opens_authority_like_any_other_table() {
 fn table_editor_shows_uncovered_faces_and_refuses_to_save() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..4 {
+    for _ in 0..5 {
         key(&mut app, KeyCode::Down);
     }
     key(&mut app, KeyCode::Enter); // View Tables
@@ -1110,4 +1151,93 @@ fn regions_without_naming_data_say_so_and_accept_a_typed_name() {
     type_text(&mut app, "Saltmarsh");
     key(&mut app, KeyCode::Enter);
     assert!(text(&mut app).contains("Saltmarsh"));
+}
+
+// ----- notable locations ---------------------------------------------------------------
+
+#[test]
+fn bare_minimum_buildings_is_a_saved_setting() {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]);
+    assert!(text(&mut app).contains("Bare Minimum Buildings"));
+    // Method → God Mode → Tag View → Bare Minimum Buildings.
+    keys(
+        &mut app,
+        &[KeyCode::Down, KeyCode::Down, KeyCode::Down, KeyCode::Enter],
+    );
+    assert!(app.ctx.service.settings().unwrap().bare_minimum_buildings);
+    let active = app.ctx.service.start_generation().unwrap();
+    assert!(active.session.options().bare_minimum_buildings);
+}
+
+#[test]
+fn one_table_changes_a_location_type_but_not_the_tavern() {
+    let mut app = app();
+    let mut s = app.ctx.settings;
+    s.bare_minimum_buildings = true;
+    app.ctx.save_settings(s).unwrap();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a'));
+    select_row(&mut app, "Notable Locations");
+    let screen = text_at(&mut app, 140, 60);
+    assert!(
+        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("change a count or a location's type"),
+        "{screen}"
+    );
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Change Notable Locations"), "{screen}");
+    assert!(screen.contains("Notable Location Count"), "{screen}");
+    // The Tavern is location 1 and is not offered.
+    assert!(!screen.contains("Location 1 "), "{screen}");
+    assert!(screen.contains("Location 2"), "{screen}");
+    key(&mut app, KeyCode::End); // the last rolled location
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Choose Notable Location Type"), "{screen}");
+    assert!(screen.contains("Roll again"), "{screen}");
+    assert!(screen.contains("Criminal"), "{screen}");
+    assert!(!screen.contains("Residence"), "{screen}");
+    keys(&mut app, &[KeyCode::Home, KeyCode::Enter]); // Roll again
+    let screen = text_at(&mut app, 140, 60);
+    assert!(!screen.contains("Choose Notable Location Type"), "{screen}");
+    assert!(
+        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        "{screen}"
+    );
+}
+
+#[test]
+fn view_lists_notable_locations_with_their_districts() {
+    let mut app = app();
+    let mut s = app.ctx.settings;
+    s.bare_minimum_buildings = true;
+    app.ctx.save_settings(s).unwrap();
+    let id = saved_settlement(&mut app, "Highmarch", "city");
+    let saved = app.ctx.service.saved_get(&id).unwrap();
+    let record = saved
+        .stages
+        .iter()
+        .find_map(|st| st.locations.clone())
+        .unwrap();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let screen = text_at(&mut app, 160, 120);
+    assert!(screen.contains("NOTABLE LOCATIONS"), "{screen}");
+    assert!(
+        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        "{screen}"
+    );
+    assert!(screen.contains("· District 1"), "{screen}");
+    assert!(
+        screen.contains(&record.districts.unwrap().roll.result.name),
+        "{screen}"
+    );
+    // One Tavern for the whole City, not one per district.
+    assert_eq!(screen.matches("4 spare rooms").count(), 1, "{screen}");
 }

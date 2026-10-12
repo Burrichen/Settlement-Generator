@@ -34,7 +34,15 @@ fn dice(values: &[u32]) -> ScriptedFaces {
 }
 
 fn session(c: &ContentSet, mode: GenerationMode, god_mode: bool) -> GenerationSession {
-    GenerationSession::new(Arc::new(c.clone()), GenerationOptions { god_mode }, mode).unwrap()
+    GenerationSession::new(
+        Arc::new(c.clone()),
+        GenerationOptions {
+            god_mode,
+            ..Default::default()
+        },
+        mode,
+    )
+    .unwrap()
 }
 
 /// A One-table session at Kurovia › Ordon (or another region by face).

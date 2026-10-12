@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.noble.single",
+      "name": "Noble / Landed Ruler Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.noble.lord",
+          "name": "Lord / Lady",
+          "range": [1, 2],
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "Lord"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "Lady"
+            }
+          ]
+        },
+        {
+          "id": "role.noble.baron",
+          "name": "Baron / Baroness",
+          "range": 3,
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "Baron"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "Baroness"
+            }
+          ]
+        },
+        {
+          "id": "role.noble.count",
+          "name": "Count / Countess",
+          "range": 4,
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "Count"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "Countess"
+            }
+          ]
+        },
+        {
+          "id": "role.noble.castellan",
+          "name": "Castellan",
+          "range": 5
+        },
+        {
+          "id": "role.noble.landedNoble",
+          "name": "Landed Noble",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

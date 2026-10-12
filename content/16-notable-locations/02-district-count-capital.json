@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.districtCount.capital",
+      "name": "Capital District Count",
+      "description": "How many districts a Capital has; each district rolls its own Notable Location Count.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "three",
+          "name": "3 Districts",
+          "range": [1, 2],
+          "value": 3
+        },
+        {
+          "id": "four",
+          "name": "4 Districts",
+          "range": [3, 4],
+          "value": 4
+        },
+        {
+          "id": "five",
+          "name": "5 Districts",
+          "range": [5, 6],
+          "value": 5
+        }
+      ]
+    }
+  ]
+}

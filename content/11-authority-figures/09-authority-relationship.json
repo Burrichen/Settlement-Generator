@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRelationship",
+      "name": "Authority Relationship",
+      "description": "How two Authority Figures regard each other. Rolled once per pair, not once per direction.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "hates",
+          "name": "Hates",
+          "range": 1
+        },
+        {
+          "id": "despises",
+          "name": "Despises",
+          "range": 2
+        },
+        {
+          "id": "distrusts",
+          "name": "Distrusts",
+          "range": 3
+        },
+        {
+          "id": "dislikes",
+          "name": "Dislikes",
+          "range": 4
+        },
+        {
+          "id": "neutral",
+          "name": "Neutral",
+          "range": [5, 6]
+        },
+        {
+          "id": "respects",
+          "name": "Respects",
+          "range": 7
+        },
+        {
+          "id": "likes",
+          "name": "Likes",
+          "range": 8
+        },
+        {
+          "id": "trusts",
+          "name": "Trusts",
+          "range": 9
+        },
+        {
+          "id": "admires",
+          "name": "Admires",
+          "range": 10
+        }
+      ]
+    }
+  ]
+}

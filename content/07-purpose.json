@@ -13,7 +13,12 @@
           "range": [1, 4],
           "tags": ["purpose.agriculture"]
         },
-        { "id": "trade", "name": "Trade", "range": [5, 7], "tags": ["purpose.trade"] },
+        {
+          "id": "trade",
+          "name": "Trade",
+          "range": [5, 7],
+          "tags": ["purpose.trade"]
+        },
         {
           "id": "resourceExtraction",
           "name": "Resource Extraction",
@@ -26,9 +31,24 @@
           "range": [11, 12],
           "tags": ["purpose.craftIndustry"]
         },
-        { "id": "fishing", "name": "Fishing", "range": [13, 14], "tags": ["purpose.fishing"] },
-        { "id": "forestry", "name": "Forestry", "range": 15, "tags": ["purpose.forestry"] },
-        { "id": "religious", "name": "Religious", "range": 16, "tags": ["purpose.religious"] },
+        {
+          "id": "fishing",
+          "name": "Fishing",
+          "range": [13, 14],
+          "tags": ["purpose.fishing"]
+        },
+        {
+          "id": "forestry",
+          "name": "Forestry",
+          "range": 15,
+          "tags": ["purpose.forestry"]
+        },
+        {
+          "id": "religious",
+          "name": "Religious",
+          "range": 16,
+          "tags": ["purpose.religious"]
+        },
         {
           "id": "administrative",
           "name": "Administrative",
@@ -41,13 +61,26 @@
           "range": 18,
           "tags": ["purpose.transportWaystation"]
         },
-        { "id": "military", "name": "Military", "range": 19, "tags": ["purpose.military"] },
-        { "id": "scholarly", "name": "Scholarly", "range": 20, "tags": ["purpose.scholarly"] }
+        {
+          "id": "military",
+          "name": "Military",
+          "range": 19,
+          "tags": ["purpose.military"]
+        },
+        {
+          "id": "scholarly",
+          "name": "Scholarly",
+          "range": 20,
+          "tags": ["purpose.scholarly"]
+        }
       ]
     }
   ],
   "tags": [
-    { "id": "purpose.agriculture", "name": "Agriculture" },
+    {
+      "id": "purpose.agriculture",
+      "name": "Agriculture"
+    },
     {
       "id": "purpose.trade",
       "name": "Trade",
@@ -66,13 +99,81 @@
           "change": "increase",
           "status": "planned",
           "note": "Trade: Merchant / Guild Rule more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.trade"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Trade: Trade / Shop locations more likely. Exact change not yet approved."
         }
       ]
     },
-    { "id": "purpose.resourceExtraction", "name": "Resource Extraction" },
-    { "id": "purpose.craftIndustry", "name": "Craft / Industry" },
-    { "id": "purpose.fishing", "name": "Fishing" },
-    { "id": "purpose.forestry", "name": "Forestry" },
+    {
+      "id": "purpose.resourceExtraction",
+      "name": "Resource Extraction",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.industry"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Resource Extraction: Industry / Resource locations more likely. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "purpose.craftIndustry",
+      "name": "Craft / Industry",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.craft"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Craft / Industry: Craft / Workshop locations more likely. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.industry"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Craft / Industry: Industry / Resource locations more likely. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "purpose.fishing",
+      "name": "Fishing",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.trade", "locationType.industry"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Fishing: Trade / Shop and/or Industry / Resource locations may become more likely; how it splits between them is not decided. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "purpose.forestry",
+      "name": "Forestry",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.craft", "locationType.industry"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Forestry: Craft / Workshop and/or Industry / Resource locations may become more likely; how it splits between them is not decided. Exact change not yet approved."
+        }
+      ]
+    },
     {
       "id": "purpose.religious",
       "name": "Religious",
@@ -84,6 +185,14 @@
           "change": "increase",
           "status": "planned",
           "note": "Religious: Religious Authority more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.religious"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Religious: Religious locations more likely. Exact change not yet approved."
         }
       ]
     },
@@ -106,10 +215,21 @@
           "change": "increase",
           "status": "planned",
           "note": "Administrative: Appointed Official more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.civic"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Administrative: Civic / Government locations more likely. Exact change not yet approved."
         }
       ]
     },
-    { "id": "purpose.transportWaystation", "name": "Transport / Waystation" },
+    {
+      "id": "purpose.transportWaystation",
+      "name": "Transport / Waystation"
+    },
     {
       "id": "purpose.military",
       "name": "Military",
@@ -121,9 +241,30 @@
           "change": "increase",
           "status": "planned",
           "note": "Military: Military Authority more likely. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Military: Military / Security locations more likely. Exact change not yet approved."
         }
       ]
     },
-    { "id": "purpose.scholarly", "name": "Scholarly" }
+    {
+      "id": "purpose.scholarly",
+      "name": "Scholarly",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.knowledge"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Scholarly: Knowledge / Education locations more likely. Exact change not yet approved."
+        }
+      ]
+    }
   ]
 }

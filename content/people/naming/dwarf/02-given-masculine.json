@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dwarf.given.masculine",
+      "name": "Dwarf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "agvar",
+          "name": "Agvar",
+          "range": 1
+        },
+        {
+          "id": "baldrek",
+          "name": "Baldrek",
+          "range": 2
+        },
+        {
+          "id": "bromgar",
+          "name": "Bromgar",
+          "range": 3
+        },
+        {
+          "id": "dagvorn",
+          "name": "Dagvorn",
+          "range": 4
+        },
+        {
+          "id": "durrik",
+          "name": "Durrik",
+          "range": 5
+        },
+        {
+          "id": "eldrun",
+          "name": "Eldrun",
+          "range": 6
+        },
+        {
+          "id": "fendrul",
+          "name": "Fendrul",
+          "range": 7
+        },
+        {
+          "id": "gorrim",
+          "name": "Gorrim",
+          "range": 8
+        },
+        {
+          "id": "haldun",
+          "name": "Haldun",
+          "range": 9
+        },
+        {
+          "id": "hrovik",
+          "name": "Hrovik",
+          "range": 10
+        },
+        {
+          "id": "kargrim",
+          "name": "Kargrim",
+          "range": 11
+        },
+        {
+          "id": "korvald",
+          "name": "Korvald",
+          "range": 12
+        },
+        {
+          "id": "mordran",
+          "name": "Mordran",
+          "range": 13
+        },
+        {
+          "id": "norgrim",
+          "name": "Norgrim",
+          "range": 14
+        },
+        {
+          "id": "ondrik",
+          "name": "Ondrik",
+          "range": 15
+        },
+        {
+          "id": "rothvar",
+          "name": "Rothvar",
+          "range": 16
+        },
+        {
+          "id": "skaldur",
+          "name": "Skaldur",
+          "range": 17
+        },
+        {
+          "id": "thrandor",
+          "name": "Thrandor",
+          "range": 18
+        },
+        {
+          "id": "ulvrik",
+          "name": "Ulvrik",
+          "range": 19
+        },
+        {
+          "id": "varrok",
+          "name": "Varrok",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

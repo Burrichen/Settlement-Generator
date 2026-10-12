@@ -19,6 +19,7 @@ const stored: { settings: Settings } = {
     god_mode: false,
     tag_view: false,
     theme: "modern_dark",
+    bare_minimum_buildings: false,
   },
 };
 
@@ -59,6 +60,7 @@ beforeEach(() => {
     god_mode: false,
     tag_view: false,
     theme: "modern_dark",
+    bare_minimum_buildings: false,
   };
   vi.clearAllMocks();
 });

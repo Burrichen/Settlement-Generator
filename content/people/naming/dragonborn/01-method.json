@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dragonborn.method",
+      "name": "Dragonborn Naming Method",
+      "description": "How a Dragonborn Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenClan",
+          "name": "Given name + clan name",
+          "range": [1, 3]
+        },
+        {
+          "id": "clanGiven",
+          "name": "Clan name first (formal address)",
+          "range": 4
+        }
+      ]
+    }
+  ]
+}

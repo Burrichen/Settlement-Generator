@@ -1,5 +1,6 @@
-import type { AuthorityFigures, Named } from "../api";
+import type { AuthorityFigures, Named, NotableLocations } from "../api";
 import { FiguresSummary } from "./AuthorityFigures";
+import { LocationsSummary } from "./NotableLocations";
 import { TagList } from "./generation";
 import { Ornament } from "./Ornament";
 
@@ -15,6 +16,8 @@ export interface SheetRow {
   details?: string[];
   /** The Authority Figures, on that stage's row. */
   figures?: AuthorityFigures;
+  /** The Notable Locations, on that stage's row. */
+  locations?: NotableLocations;
 }
 
 /** A stage to lay out on a sheet, before sub-stages are folded in. */
@@ -62,6 +65,8 @@ export function SettlementSheet({
             <dd>
               {row.figures ? (
                 <FiguresSummary record={row.figures} showTags={row.tags !== undefined} />
+              ) : row.locations ? (
+                <LocationsSummary record={row.locations} />
               ) : (
                 <span className="sheet-value">{row.value}</span>
               )}

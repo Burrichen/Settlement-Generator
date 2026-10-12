@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.highElf.house",
+      "name": "High Elf House names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aranvelis",
+          "name": "Aranvelis",
+          "range": 1
+        },
+        {
+          "id": "castaril",
+          "name": "Castaril",
+          "range": 2
+        },
+        {
+          "id": "elorvane",
+          "name": "Elorvane",
+          "range": 3
+        },
+        {
+          "id": "faerithal",
+          "name": "Faerithal",
+          "range": 4
+        },
+        {
+          "id": "ilmarion",
+          "name": "Ilmarion",
+          "range": 5
+        },
+        {
+          "id": "ismaren",
+          "name": "Ismaren",
+          "range": 6
+        },
+        {
+          "id": "lirathiel",
+          "name": "Lirathiel",
+          "range": 7
+        },
+        {
+          "id": "maervanis",
+          "name": "Maervanis",
+          "range": 8
+        },
+        {
+          "id": "nythalor",
+          "name": "Nythalor",
+          "range": 9
+        },
+        {
+          "id": "oronvael",
+          "name": "Oronvael",
+          "range": 10
+        },
+        {
+          "id": "quessaran",
+          "name": "Quessaran",
+          "range": 11
+        },
+        {
+          "id": "saelindor",
+          "name": "Saelindor",
+          "range": 12
+        },
+        {
+          "id": "sorvalen",
+          "name": "Sorvalen",
+          "range": 13
+        },
+        {
+          "id": "taerisande",
+          "name": "Taerisande",
+          "range": 14
+        },
+        {
+          "id": "thalanvar",
+          "name": "Thalanvar",
+          "range": 15
+        },
+        {
+          "id": "valtheris",
+          "name": "Valtheris",
+          "range": 16
+        },
+        {
+          "id": "vaelmoor",
+          "name": "Vaelmoor",
+          "range": 17
+        },
+        {
+          "id": "velarion",
+          "name": "Velarion",
+          "range": 18
+        },
+        {
+          "id": "yllathor",
+          "name": "Yllathor",
+          "range": 19
+        },
+        {
+          "id": "zerevain",
+          "name": "Zerevain",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

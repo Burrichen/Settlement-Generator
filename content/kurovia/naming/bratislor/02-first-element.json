@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.firstElement",
+      "name": "Bratislor Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "bel",
+          "name": "Bel",
+          "range": 1
+        },
+        {
+          "id": "bor",
+          "name": "Bor",
+          "range": 2
+        },
+        {
+          "id": "drev",
+          "name": "Drev",
+          "range": 3
+        },
+        {
+          "id": "kras",
+          "name": "Kras",
+          "range": 4
+        },
+        {
+          "id": "luka",
+          "name": "Luka",
+          "range": 5
+        },
+        {
+          "id": "mor",
+          "name": "Mor",
+          "range": 6
+        },
+        {
+          "id": "novo",
+          "name": "Novo",
+          "range": 7
+        },
+        {
+          "id": "staro",
+          "name": "Staro",
+          "range": 8
+        },
+        {
+          "id": "vel",
+          "name": "Vel",
+          "range": 9
+        },
+        {
+          "id": "ves",
+          "name": "Ves",
+          "range": 10
+        },
+        {
+          "id": "vran",
+          "name": "Vran",
+          "range": 11
+        },
+        {
+          "id": "zor",
+          "name": "Zor",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

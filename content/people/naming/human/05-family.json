@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.human.family",
+      "name": "Human Family names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "varen",
+          "name": "Varen",
+          "range": 1
+        },
+        {
+          "id": "daal",
+          "name": "Daal",
+          "range": 2
+        },
+        {
+          "id": "ashcombe",
+          "name": "Ashcombe",
+          "range": 3
+        },
+        {
+          "id": "belhollow",
+          "name": "Belhollow",
+          "range": 4
+        },
+        {
+          "id": "cardew",
+          "name": "Cardew",
+          "range": 5
+        },
+        {
+          "id": "denholm",
+          "name": "Denholm",
+          "range": 6
+        },
+        {
+          "id": "eskett",
+          "name": "Eskett",
+          "range": 7
+        },
+        {
+          "id": "fairlow",
+          "name": "Fairlow",
+          "range": 8
+        },
+        {
+          "id": "greywell",
+          "name": "Greywell",
+          "range": 9
+        },
+        {
+          "id": "harrowby",
+          "name": "Harrowby",
+          "range": 10
+        },
+        {
+          "id": "ingram",
+          "name": "Ingram",
+          "range": 11
+        },
+        {
+          "id": "kettleby",
+          "name": "Kettleby",
+          "range": 12
+        },
+        {
+          "id": "lanstrom",
+          "name": "Lanstrom",
+          "range": 13
+        },
+        {
+          "id": "marchbank",
+          "name": "Marchbank",
+          "range": 14
+        },
+        {
+          "id": "northcott",
+          "name": "Northcott",
+          "range": 15
+        },
+        {
+          "id": "orrin",
+          "name": "Orrin",
+          "range": 16
+        },
+        {
+          "id": "pembury",
+          "name": "Pembury",
+          "range": 17
+        },
+        {
+          "id": "rookwell",
+          "name": "Rookwell",
+          "range": 18
+        },
+        {
+          "id": "tremayne",
+          "name": "Tremayne",
+          "range": 19
+        },
+        {
+          "id": "wexley",
+          "name": "Wexley",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

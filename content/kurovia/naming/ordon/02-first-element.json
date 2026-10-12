@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.firstElement",
+      "name": "Ordon Name: First Element",
+      "description": "First part of a Geographic Compound name. Provisional editorial weights.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "alder",
+          "name": "Alder",
+          "range": [1, 4]
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": [5, 8]
+        },
+        {
+          "id": "burn",
+          "name": "Burn",
+          "range": [9, 11]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [12, 14]
+        },
+        {
+          "id": "bram",
+          "name": "Bram",
+          "range": [15, 17]
+        },
+        {
+          "id": "bracken",
+          "name": "Bracken",
+          "range": [18, 21]
+        },
+        {
+          "id": "crow",
+          "name": "Crow",
+          "range": [22, 24]
+        },
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": [25, 27]
+        },
+        {
+          "id": "elm",
+          "name": "Elm",
+          "range": [28, 31]
+        },
+        {
+          "id": "farn",
+          "name": "Farn",
+          "range": [32, 34]
+        },
+        {
+          "id": "green",
+          "name": "Green",
+          "range": [35, 37]
+        },
+        {
+          "id": "hart",
+          "name": "Hart",
+          "range": [38, 41]
+        },
+        {
+          "id": "hazel",
+          "name": "Hazel",
+          "range": [42, 45]
+        },
+        {
+          "id": "hol",
+          "name": "Hol",
+          "range": [46, 48]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [49, 51]
+        },
+        {
+          "id": "oak",
+          "name": "Oak",
+          "range": [52, 55]
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": [56, 58]
+        },
+        {
+          "id": "stan",
+          "name": "Stan",
+          "range": [59, 61]
+        },
+        {
+          "id": "thorn",
+          "name": "Thorn",
+          "range": [62, 65]
+        },
+        {
+          "id": "wren",
+          "name": "Wren",
+          "range": [66, 68]
+        },
+        {
+          "id": "beck",
+          "name": "Beck",
+          "range": [69, 72]
+        },
+        {
+          "id": "birch",
+          "name": "Birch",
+          "range": [73, 76]
+        },
+        {
+          "id": "broad",
+          "name": "Broad",
+          "range": [77, 79]
+        },
+        {
+          "id": "clay",
+          "name": "Clay",
+          "range": [80, 82]
+        },
+        {
+          "id": "east",
+          "name": "East",
+          "range": [83, 85]
+        },
+        {
+          "id": "fen",
+          "name": "Fen",
+          "range": [86, 88]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [89, 91]
+        },
+        {
+          "id": "mere",
+          "name": "Mere",
+          "range": [92, 94]
+        },
+        {
+          "id": "north",
+          "name": "North",
+          "range": [95, 97]
+        },
+        {
+          "id": "west",
+          "name": "West",
+          "range": [98, 100]
+        }
+      ]
+    }
+  ]
+}

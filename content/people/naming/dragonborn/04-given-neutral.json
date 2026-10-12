@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dragonborn.given.neutral",
+      "name": "Dragonborn Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "akresh",
+          "name": "Akresh",
+          "range": 1
+        },
+        {
+          "id": "bhar",
+          "name": "Bhar",
+          "range": 2
+        },
+        {
+          "id": "drazh",
+          "name": "Drazh",
+          "range": 3
+        },
+        {
+          "id": "esk",
+          "name": "Esk",
+          "range": 4
+        },
+        {
+          "id": "gorrin",
+          "name": "Gorrin",
+          "range": 5
+        },
+        {
+          "id": "haz",
+          "name": "Haz",
+          "range": 6
+        },
+        {
+          "id": "irrek",
+          "name": "Irrek",
+          "range": 7
+        },
+        {
+          "id": "jhar",
+          "name": "Jhar",
+          "range": 8
+        },
+        {
+          "id": "kesh",
+          "name": "Kesh",
+          "range": 9
+        },
+        {
+          "id": "krev",
+          "name": "Krev",
+          "range": 10
+        },
+        {
+          "id": "mazh",
+          "name": "Mazh",
+          "range": 11
+        },
+        {
+          "id": "nhor",
+          "name": "Nhor",
+          "range": 12
+        },
+        {
+          "id": "orsk",
+          "name": "Orsk",
+          "range": 13
+        },
+        {
+          "id": "rask",
+          "name": "Rask",
+          "range": 14
+        },
+        {
+          "id": "shav",
+          "name": "Shav",
+          "range": 15
+        },
+        {
+          "id": "tor",
+          "name": "Tor",
+          "range": 16
+        },
+        {
+          "id": "ulk",
+          "name": "Ulk",
+          "range": 17
+        },
+        {
+          "id": "varr",
+          "name": "Varr",
+          "range": 18
+        },
+        {
+          "id": "xen",
+          "name": "Xen",
+          "range": 19
+        },
+        {
+          "id": "zharr",
+          "name": "Zharr",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

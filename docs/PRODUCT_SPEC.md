@@ -139,6 +139,10 @@ Settings are persistent and shared by both interfaces:
   emitted by the chosen result are still applied.
 - **Tag View** (on/off): shows applied tags during generation and when viewing
   saved settlements.
+- **Bare Minimum Buildings** (on/off, off by default): every settlement gets
+  exactly one extra Notable Location, a Tavern with 4 spare rooms. It is
+  added to the rolled Notable Locations, never instead of one, and is never
+  repeated per district.
 - **Theme:** Modern Dark (the default) or Old-Timey Dark.
 
 ## 9. Saved settlements
@@ -172,7 +176,20 @@ Settings are persistent and shared by both interfaces:
 The pipeline is: Setting Profile → Region → Name → Environment →
 Connections → Size → Origin → Purpose → Age → Economy → Authority
 (→ Representation → Authority Size → Roles, sub-stages of Authority) →
-Authority Figures. No other stages are inserted.
+Authority Figures → Security → Crime → Stability → Notable Locations. No
+other stages are inserted.
+
+### Notable Locations
+
+- The count depends on the Size; Cities and Capitals first roll their number
+  of districts, then a count per district. Each rolled location rolls its
+  Type on a 1d20 (see [CONTENT.md](CONTENT.md)).
+- The settlement sheet lists them numbered, the Bare Minimum Buildings Tavern
+  first, each rolled location with its district.
+- In Manual generation the District Count, each count and each rolled
+  location's Type can be re-rolled or chosen. The guaranteed Tavern is fixed.
+- Subtypes, details, NPCs, map placement and the Noble system's residences
+  and estates are future work.
 
 ### Name (v0.1.1)
 

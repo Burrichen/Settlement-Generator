@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.darkElf.given.masculine",
+      "name": "Dark Elf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "azrevic",
+          "name": "Azrevic",
+          "range": 1
+        },
+        {
+          "id": "calvrith",
+          "name": "Calvrith",
+          "range": 2
+        },
+        {
+          "id": "daelzar",
+          "name": "Daelzar",
+          "range": 3
+        },
+        {
+          "id": "druvain",
+          "name": "Druvain",
+          "range": 4
+        },
+        {
+          "id": "esrith",
+          "name": "Esrith",
+          "range": 5
+        },
+        {
+          "id": "ghauntor",
+          "name": "Ghauntor",
+          "range": 6
+        },
+        {
+          "id": "ilvraz",
+          "name": "Ilvraz",
+          "range": 7
+        },
+        {
+          "id": "jhaedris",
+          "name": "Jhaedris",
+          "range": 8
+        },
+        {
+          "id": "kolvarr",
+          "name": "Kolvarr",
+          "range": 9
+        },
+        {
+          "id": "lhazrin",
+          "name": "Lhazrin",
+          "range": 10
+        },
+        {
+          "id": "mazrel",
+          "name": "Mazrel",
+          "range": 11
+        },
+        {
+          "id": "nhaerin",
+          "name": "Nhaerin",
+          "range": 12
+        },
+        {
+          "id": "orvexis",
+          "name": "Orvexis",
+          "range": 13
+        },
+        {
+          "id": "phaedril",
+          "name": "Phaedril",
+          "range": 14
+        },
+        {
+          "id": "rizzhar",
+          "name": "Rizzhar",
+          "range": 15
+        },
+        {
+          "id": "sezrak",
+          "name": "Sezrak",
+          "range": 16
+        },
+        {
+          "id": "tavrin",
+          "name": "Tavrin",
+          "range": 17
+        },
+        {
+          "id": "ulvaris",
+          "name": "Ulvaris",
+          "range": 18
+        },
+        {
+          "id": "vhaelon",
+          "name": "Vhaelon",
+          "range": 19
+        },
+        {
+          "id": "zhaldrin",
+          "name": "Zhaldrin",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

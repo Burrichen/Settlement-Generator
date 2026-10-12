@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationCount.village",
+      "name": "Village Notable Location Count",
+      "description": "How many Notable Locations a Village has.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "one",
+          "name": "1 Notable Location",
+          "range": [1, 2],
+          "value": 1
+        },
+        {
+          "id": "two",
+          "name": "2 Notable Locations",
+          "range": [3, 4],
+          "value": 2
+        },
+        {
+          "id": "three",
+          "name": "3 Notable Locations",
+          "range": [5, 6],
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

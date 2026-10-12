@@ -31,6 +31,10 @@ stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 | 13  | ↳ Authority Size  | `table.authoritySize` (sub-stage, conditional)           |
 | 14  | ↳ Roles           | `{ "authority_roles": true }` (sub-stage): see below     |
 | 15  | Authority Figures | `{ "authority_figures": true }`: see below               |
+| 16  | Security          | `table.security`                                         |
+| 17  | Crime             | `table.crime`                                            |
+| 18  | Stability         | `table.stability`                                        |
+| 19  | Notable Locations | `{ "notable_locations": true }`: see below               |
 
 Naming content (v0.1.1) is described in [NAMING_SYSTEM.md](NAMING_SYSTEM.md):
 
@@ -266,7 +270,8 @@ Size → Roles → Authority Figures → relationships).
 | Popular Assembly                     | —                                                                                                            | 1d4: 1–2 Speaker, 3 Convenor, 4 Presiding Delegate                          | 1d4: 1–3 Delegate, 4 Citizen Representative (both repeatable)                                                                                            |
 
 Role tables are `table.authorityRole.<type>.<single|lead|member>`
-(`content/12-authority-roles.json`), editable like any table: dice, faces,
+(`content/12-authority-roles/`, one file per table, plus
+`role-schemes.json`), editable like any table: dice, faces,
 names, the unique flag, the fallback and display variants (the result's
 **Role options** in the GUI). Result IDs follow the approved
 `role.<type>.<role>` IDs; the same role keeps the same ID across tables
@@ -341,6 +346,152 @@ Each Authority result also carries a reserved `generator` reference
 (`authorityNpcs.<result id>`) for a future, Authority-specific generator.
 Nothing resolves it yet.
 
+## Security, Crime and Stability
+
+Three broad settlement conditions after the Authority, in this order, each
+on its own **1d12** table (`content/13-security.json`, `14-crime.json`,
+`15-stability.json`). All three are **ordered scales** (`"ordered": true`,
+least to most) and their extremes are deliberately rarer. Each result emits
+its tag. No guards, criminal organisations, riots or other detailed systems
+are generated.
+
+| 1d12 | Security (`security.*`)              | Crime (`crime.*`)     | Stability (`stability.*`) |
+| ---- | ------------------------------------ | --------------------- | ------------------------- |
+| 1    | Undefended (`undefended`)            | Minimal (`minimal`)   | Volatile (`volatile`)     |
+| 2–4  | Lightly Defended (`lightlyDefended`) | Low (`low`)           | Unsettled (`unsettled`)   |
+| 5–8  | Guarded (`guarded`)                  | Moderate (`moderate`) | Stable (`stable`)         |
+| 9–11 | Well Defended (`wellDefended`)       | High (`high`)         | Cohesive (`cohesive`)     |
+| 12   | Fortified (`fortified`)              | Rampant (`rampant`)   | Unified (`unified`)       |
+
+- **Security** is how well protected and defended the settlement is.
+- **Crime** is the overall prevalence of criminal activity.
+- **Stability** is how socially and politically settled, cohesive and
+  resistant to internal unrest the settlement is. It is not Crime, Security
+  or the kind of Authority: no Authority makes a settlement more or less
+  stable.
+
+Their modifiers are planned intents (see below): directions only. **No
+magnitude is approved, and nothing shifts a roll.** Each intent on an
+ordered table records a shift along its scale for when one is approved.
+
+- Origin: Strategic Position and Military Outpost raise Security (these
+  replace the earlier placeholder "security-related rolls ↑").
+- Security → Crime: Undefended ↑↑, Lightly Defended ↑, Guarded none, Well
+  Defended ↓, Fortified ↓↓.
+- Economy → Crime is deliberately **U-shaped**: poverty breeds crime, and
+  wealth offers more valuable targets and opportunities.
+
+  ```
+  Failing      → Crime ↑↑
+  Struggling   → Crime ↑
+  Stable       → Crime neutral
+  Prosperous   → Crime ↑
+  Wealthy      → Crime ↑↑
+  ```
+
+- Economy → Stability is **not** U-shaped; a Wealthy settlement can have
+  more crime and still be very stable.
+
+  ```
+  Failing      → Stability ↓↓
+  Struggling   → Stability ↓
+  Stable       → Stability neutral
+  Prosperous   → Stability ↑
+  Wealthy      → Stability ↑
+  ```
+
+- Crime → Stability: Minimal ↑, Low ↑, Moderate none, High ↓, Rampant ↓↓.
+- High and Rampant Crime raise future pressures, opportunities, criminal
+  organisations / factions, demand for guards / security, crime-related
+  noticeboard jobs and crime-related buildings / services. Lower Crime may
+  reduce these later; that is not yet decided.
+- Stability → Opportunities, for the future Opportunity system (not
+  implemented):
+
+  ```
+  Volatile  → Opportunities ↑↑
+  Unsettled → Opportunities ↑
+  Stable    → neutral
+  ```
+
+  Cohesive and Unified give no bonus Opportunities.
+
+- Future Stability hooks (pressures, unrest, protests, riots, political
+  complications, factional conflict, migration and population, noticeboard
+  content) are noted here only; no intent records them until their direction
+  per result is approved.
+
+## Notable Locations
+
+`content/16-notable-locations/`, one table per file. A **Notable Location** is
+a place worth a name on the settlement sheet: somewhere a party might visit,
+ask about or be sent to. Ordinary buildings (homes, sheds, unremarkable
+workshops) are not Notable Locations and are not generated.
+
+**Count by Size.** The scheme in `location-schemes.json` that matches the
+settlement's Size tag picks the count table. Each count result carries its
+number as `value`.
+
+| Size             | Table                                        | Die  | Count                              |
+| ---------------- | -------------------------------------------- | ---- | ---------------------------------- |
+| Trading Post     | `table.notableLocationCount.tradingPost`     | 1d4  | 1–2: 1, 3–4: 2                     |
+| Village          | `table.notableLocationCount.village`         | 1d6  | 1–2: 1, 3–4: 2, 5–6: 3             |
+| Town             | `table.notableLocationCount.town`            | 1d6  | 1–2: 2, 3–4: 3, 5–6: 4             |
+| City district    | `table.notableLocationCount.cityDistrict`    | 1d8  | 1–2: 2, 3–4: 3, 5–6: 4, 7–8: 5     |
+| Capital district | `table.notableLocationCount.capitalDistrict` | 1d10 | 2 / 3 / 4 / 5 / 6 (two faces each) |
+
+**Cities and Capitals are mapped by district.** The District Count is rolled
+first, then each district rolls its own Notable Location Count:
+
+| Table                         | Die | Districts              |
+| ----------------------------- | --- | ---------------------- |
+| `table.districtCount.city`    | 1d6 | 1–2: 2, 3–4: 3, 5–6: 4 |
+| `table.districtCount.capital` | 1d6 | 1–2: 3, 3–4: 4, 5–6: 5 |
+
+Districts are labelled District 1, District 2, … (IDs `district-1`, …).
+Placing them on a map is future work.
+
+**Notable Location Type** (`table.notableLocationType`, a genuine 1d20), rolled
+once per rolled location. Result IDs are stable:
+
+| d20   | Type                  | ID                           |
+| ----- | --------------------- | ---------------------------- |
+| 1–3   | Hospitality           | `locationType.hospitality`   |
+| 4–6   | Trade / Shop          | `locationType.trade`         |
+| 7–8   | Craft / Workshop      | `locationType.craft`         |
+| 9–10  | Religious             | `locationType.religious`     |
+| 11    | Civic / Government    | `locationType.civic`         |
+| 12    | Military / Security   | `locationType.military`      |
+| 13    | Guild / Organisation  | `locationType.organisation`  |
+| 14    | Knowledge / Education | `locationType.knowledge`     |
+| 15    | Entertainment         | `locationType.entertainment` |
+| 16    | Criminal              | `locationType.criminal`      |
+| 17–18 | Industry / Resource   | `locationType.industry`      |
+| 19–20 | Unusual / Special     | `locationType.unusual`       |
+
+**Criminal replaces Residence / Estate.** There is no Residence / Estate
+result: noble residences and estates belong to the future **Noble system**,
+which will generate them itself. The Type emits no settlement tags.
+
+**Bare Minimum Buildings** (a setting, off by default) gives every settlement
+exactly **one** extra Notable Location: a **Tavern** (type Hospitality,
+subtype `locationSubtype.tavern`) with **exactly 4 spare rooms**.
+
+- It is **additive**: it never uses up a rolled location. A Trading Post that
+  rolls 1 has two Notable Locations with the setting on.
+- It is **one per settlement**, never one per district, and belongs to no
+  district.
+- The Type table is **not rolled** for it, and it cannot be re-rolled.
+- It is listed first and marked with its source (`bareMinimumBuildings`), so
+  a rolled Hospitality location is never mistaken for it.
+- Turning the setting off during generation removes only that Tavern; the
+  rolled locations stay. A saved settlement keeps what it was saved with.
+
+**Future work.** Location subtypes (other than the guaranteed Tavern's),
+Tavern details beyond its 4 spare rooms, shops, criminal organisations, the
+Noble system, location NPCs, interiors, map placement and settlement layout
+are not generated yet.
+
 ## Pending modifiers (planned intents)
 
 Every known modifier is stored as a **planned `intent` effect** on the tag that
@@ -353,40 +504,63 @@ The arrows below are directions only: ↑↑ and ↓↓ are `strong_increase` an
 unresolved**. The generator never executes intents, and validation rejects an intent
 marked active. No numeric dice changes are invented.
 
-| Source tag                      | Intent                                                                                            |
-| ------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `env.farmlandOpenCountry`       | Purpose: Agriculture ↑                                                                            |
-| `env.woodland`                  | Purpose: Forestry ↑                                                                               |
-| `env.coast`                     | Purpose: Fishing ↑, Trade ↑, Transport / Waystation ↑                                             |
-| `env.mountains`, `env.badlands` | Purpose: Resource Extraction ↑                                                                    |
-| `env.ichorFields`               | Purpose: Resource Extraction ↑↑                                                                   |
-| `env.crystallineWilds`          | none (stated in its description)                                                                  |
-| `connection.majorRoute`         | Purpose: Trade ↑, Transport ↑; Economy ↑                                                          |
-| `connection.isolated`           | Purpose: Trade ↓, Transport ↓; Economy ↓                                                          |
-| `purpose.trade`                 | Economy ↑; Authority: Merchant / Guild Rule ↑                                                     |
-| `purpose.military`              | Authority: Military Authority ↑                                                                   |
-| `purpose.religious`             | Authority: Religious Authority ↑                                                                  |
-| `purpose.administrative`        | Authority: Local Council ↑, Appointed Official ↑                                                  |
-| `size.tradingPost`              | Purpose: Trade ↑↑, Transport ↑; Authority: Guild Rule ↑                                           |
-| `size.capital`                  | Purpose: Administrative ↑↑; Authority: see below                                                  |
-| `origin.strategicPosition`      | security-related rolls ↑ (no table yet)                                                           |
-| `origin.militaryOutpost`        | security-related rolls ↑; Purpose: Military ↑; Authority: Military Authority ↑                    |
-| `origin.tradeStop`              | shops / commercial buildings ↑; Purpose: Trade ↑, Transport ↑; Authority: Merchant / Guild Rule ↑ |
-| `origin.resourceDiscovery`      | unique resource (guarantee); Purpose: Resource Extraction ↑                                       |
-| `origin.refugeResettlement`     | population-related rolls ↑                                                                        |
-| `origin.religiousFoundation`    | religious buildings / temples ↑; Purpose: Religious ↑; Authority: Religious Authority ↑           |
-| `origin.estateSeat`             | at least one noble (guarantee); Authority: Noble / Landed Ruler ↑                                 |
-| `age.new`                       | Size ↓ (smaller), population ↓, opportunities ↑                                                   |
-| `age.old`, `age.ancient`        | Size ↑ (larger), population ↑                                                                     |
-| `economy.failing`               | opportunities ↑↑, building quality ↓↓, economic pressures ↑                                       |
-| `economy.struggling`            | opportunities ↑, building quality ↓                                                               |
-| `economy.stable`                | none                                                                                              |
-| `economy.prosperous`            | shops / services ↑                                                                                |
-| `economy.wealthy`               | shops / services ↑↑, high-quality / notable buildings ↑                                           |
+| Source tag                                  | Intent                                                                                            |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `env.farmlandOpenCountry`                   | Purpose: Agriculture ↑                                                                            |
+| `env.woodland`                              | Purpose: Forestry ↑                                                                               |
+| `env.coast`                                 | Purpose: Fishing ↑, Trade ↑, Transport / Waystation ↑                                             |
+| `env.mountains`, `env.badlands`             | Purpose: Resource Extraction ↑                                                                    |
+| `env.ichorFields`                           | Purpose: Resource Extraction ↑↑                                                                   |
+| `env.crystallineWilds`                      | none (stated in its description)                                                                  |
+| `connection.majorRoute`                     | Purpose: Trade ↑, Transport ↑; Economy ↑                                                          |
+| `connection.isolated`                       | Purpose: Trade ↓, Transport ↓; Economy ↓                                                          |
+| `purpose.trade`                             | Economy ↑; Authority: Merchant / Guild Rule ↑                                                     |
+| `purpose.military`                          | Authority: Military Authority ↑                                                                   |
+| `purpose.religious`                         | Authority: Religious Authority ↑                                                                  |
+| `purpose.administrative`                    | Authority: Local Council ↑, Appointed Official ↑                                                  |
+| `size.tradingPost`                          | Purpose: Trade ↑↑, Transport ↑; Authority: Guild Rule ↑                                           |
+| `size.capital`                              | Purpose: Administrative ↑↑; Authority: see below                                                  |
+| `origin.strategicPosition`                  | Security ↑                                                                                        |
+| `origin.militaryOutpost`                    | Security ↑; Purpose: Military ↑; Authority: Military Authority ↑                                  |
+| `origin.tradeStop`                          | shops / commercial buildings ↑; Purpose: Trade ↑, Transport ↑; Authority: Merchant / Guild Rule ↑ |
+| `origin.resourceDiscovery`                  | unique resource (guarantee); Purpose: Resource Extraction ↑                                       |
+| `origin.refugeResettlement`                 | population-related rolls ↑                                                                        |
+| `origin.religiousFoundation`                | religious buildings / temples ↑; Purpose: Religious ↑; Authority: Religious Authority ↑           |
+| `origin.estateSeat`                         | at least one noble (guarantee); Authority: Noble / Landed Ruler ↑                                 |
+| `age.new`                                   | Size ↓ (smaller), population ↓, opportunities ↑                                                   |
+| `age.old`, `age.ancient`                    | Size ↑ (larger), population ↑                                                                     |
+| `economy.failing`                           | opportunities ↑↑, building quality ↓↓, economic pressures ↑; Crime ↑↑; Stability ↓↓               |
+| `economy.struggling`                        | opportunities ↑, building quality ↓; Crime ↑; Stability ↓                                         |
+| `economy.stable`                            | none                                                                                              |
+| `economy.prosperous`                        | shops / services ↑; Crime ↑; Stability ↑                                                          |
+| `economy.wealthy`                           | shops / services ↑↑, high-quality / notable buildings ↑; Crime ↑↑; Stability ↑                    |
+| `security.*`                                | Crime: see Security, Crime and Stability                                                          |
+| `crime.*`                                   | Stability; future systems: see Security, Crime and Stability                                      |
+| `stability.volatile`, `stability.unsettled` | Opportunities ↑↑ / ↑                                                                              |
+| Notable Location Type, see below            | `locationType.*` ↑ (one result, or several)                                                       |
 
 `size.capital` on Authority: Appointed Official ↑, Noble / Landed Ruler ↑,
 Local Council ↑, Elders / Community Leaders ↓. On Authority, ↑ means "more
 likely" and ↓ "less likely"; how much more or less likely is not defined.
+
+Notable Location Type intents (all ↑ unless stated):
+
+| Source tag                                    | Type                                  |
+| --------------------------------------------- | ------------------------------------- |
+| `purpose.trade`                               | Trade / Shop                          |
+| `purpose.craftIndustry`                       | Craft / Workshop, Industry / Resource |
+| `purpose.resourceExtraction`                  | Industry / Resource                   |
+| `purpose.fishing`                             | Trade / Shop, Industry / Resource     |
+| `purpose.forestry`                            | Craft / Workshop, Industry / Resource |
+| `purpose.religious`, `authority.religious`    | Religious                             |
+| `purpose.military`, `authority.military`      | Military / Security                   |
+| `purpose.administrative`                      | Civic / Government                    |
+| `purpose.scholarly`                           | Knowledge / Education                 |
+| `authority.guild`                             | Guild / Organisation                  |
+| `economy.prosperous`, `economy.wealthy`       | Trade / Shop                          |
+| `security.wellDefended`, `security.fortified` | Military / Security                   |
+| `crime.high`                                  | Criminal                              |
+| `crime.rampant`                               | Criminal ↑↑                           |
 
 The Opportunities, Building Quality, Economic Pressures, Shops / Services and
 Notable Buildings systems do not exist yet. Their intents use a free-text

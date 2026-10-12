@@ -27,6 +27,7 @@ use crate::figures::{
     RELATIONSHIP_TABLE, apply_roles,
 };
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
+use crate::locations::{LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, NotableLocations};
 use crate::naming::{
     GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for,
 };
@@ -144,6 +145,20 @@ pub struct StageView {
     /// Present on the Role Allocation stage only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub roles: Option<RolesView>,
+    /// Present on the Notable Locations stage only.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub locations: Option<LocationsView>,
+}
+
+/// The Notable Locations stage as an interface should present it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LocationsView {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub record: Option<NotableLocations>,
+    /// The tables it rolls and their results under the current tags.
+    pub options: LocationOptions,
+    /// Whether Bare Minimum Buildings is on for this settlement.
+    pub bare_minimum_buildings: bool,
 }
 
 /// The Role Allocation stage as an interface should present it.
@@ -334,6 +349,9 @@ struct Resolution {
     /// The roles, on the Role Allocation stage. Their rolls are kept here,
     /// not in `events`.
     roles: Option<Box<RoleAllocation>>,
+    /// The Notable Locations, on that stage. Their rolls are kept here, not
+    /// in `events`.
+    locations: Option<Box<NotableLocations>>,
 }
 
 /// A resolved name; its rolls are the resolution's events.
@@ -355,8 +373,18 @@ const FIGURES_RESULT_ID: &str = "authorityFigures";
 /// Result ID summarising a resolved Role Allocation stage.
 const ROLES_RESULT_ID: &str = "authorityRoles";
 
+/// Result ID summarising a resolved Notable Locations stage.
+const LOCATIONS_RESULT_ID: &str = "notableLocations";
+
 impl Resolution {
     fn main_result(&self) -> Option<Named<ResultId>> {
+        if let Some(locations) = &self.locations {
+            let n = locations.locations.len();
+            return Some(Named {
+                id: ResultId::new(LOCATIONS_RESULT_ID),
+                name: format!("{n} Notable Location{}", if n == 1 { "" } else { "s" }),
+            });
+        }
         if let Some(roles) = &self.roles {
             let titles: Vec<&str> = roles.roles.iter().map(|r| r.role.name.as_str()).collect();
             return Some(Named {
@@ -401,6 +429,7 @@ enum StageKind {
     Naming,
     AuthorityFigures,
     AuthorityRoles,
+    NotableLocations,
 }
 
 #[derive(Debug, Clone)]
@@ -423,7 +452,10 @@ impl Stage {
     fn table(&self) -> Option<&TableId> {
         match &self.kind {
             StageKind::Table(t) => Some(t),
-            StageKind::Naming | StageKind::AuthorityFigures | StageKind::AuthorityRoles => None,
+            StageKind::Naming
+            | StageKind::AuthorityFigures
+            | StageKind::AuthorityRoles
+            | StageKind::NotableLocations => None,
         }
     }
 
@@ -439,6 +471,10 @@ impl Stage {
         matches!(self.kind, StageKind::AuthorityRoles)
     }
 
+    fn is_locations(&self) -> bool {
+        matches!(self.kind, StageKind::NotableLocations)
+    }
+
     /// The stage table recorded in snapshots.
     fn snapshot_table(&self) -> TableId {
         match &self.kind {
@@ -446,6 +482,7 @@ impl Stage {
             StageKind::Naming => TableId::new(NAME_STAGE_ID),
             StageKind::AuthorityFigures => TableId::new(FIGURES_STAGE_ID),
             StageKind::AuthorityRoles => TableId::new(ROLES_STAGE_ID),
+            StageKind::NotableLocations => TableId::new(LOCATIONS_STAGE_ID),
         }
     }
 }
@@ -488,6 +525,9 @@ impl GenerationSession {
                         (StageKind::AuthorityFigures, "Authority Figures".to_owned())
                     }
                     StepTarget::AuthorityRoles => (StageKind::AuthorityRoles, "Roles".to_owned()),
+                    StepTarget::NotableLocations => {
+                        (StageKind::NotableLocations, "Notable Locations".to_owned())
+                    }
                 };
                 Stage {
                     kind,
@@ -640,6 +680,7 @@ impl GenerationSession {
             StageKind::Naming => return self.naming_view(index, view),
             StageKind::AuthorityFigures => return self.figures_view(index, view),
             StageKind::AuthorityRoles => return self.roles_view(index, view),
+            StageKind::NotableLocations => return self.locations_view(index, view),
         };
         let before = self.tags_before(index);
         let state = State::with_tags(&before);
@@ -696,6 +737,7 @@ impl GenerationSession {
             sub_stage: stage.sub_stage,
             figures: None,
             roles: None,
+            locations: None,
         })
     }
 
@@ -811,6 +853,7 @@ impl GenerationSession {
             sub_stage: false,
             figures: None,
             roles: None,
+            locations: None,
         })
     }
 
@@ -899,6 +942,7 @@ impl GenerationSession {
             }),
             figures: None,
             roles: None,
+            locations: None,
         }));
         stage.previous = None;
         let (invalidated, reopened) = self.refresh(index + 1)?;
@@ -1009,6 +1053,7 @@ impl GenerationSession {
                         sub_stage: stage.sub_stage,
                         figures: res.figures.as_deref().cloned(),
                         roles: res.roles.as_deref().cloned(),
+                        locations: res.locations.as_deref().cloned(),
                         name: res.name.as_ref().map(|n| NameRecord {
                             name: n.text.clone(),
                             source: n.source,
@@ -1029,6 +1074,7 @@ impl GenerationSession {
                     sub_stage: stage.sub_stage,
                     figures: None,
                     roles: None,
+                    locations: None,
                     name: None,
                 }),
             })
@@ -1083,6 +1129,10 @@ impl GenerationSession {
                 session.stages[index].state = restored_roles(original);
                 continue;
             }
+            if session.stages[index].is_locations() {
+                session.stages[index].state = restored_locations(original);
+                continue;
+            }
             let Some(events) = events else { continue };
             let state = match events.first() {
                 Some(GenerationEvent::TableSkipped { reason, .. }) if events.len() == 1 => {
@@ -1111,6 +1161,7 @@ impl GenerationSession {
                         name: None,
                         figures: None,
                         roles: None,
+                        locations: None,
                     }))
                 }
             };
@@ -1166,6 +1217,7 @@ impl GenerationSession {
             }),
             figures: None,
             roles: None,
+            locations: None,
         }))
     }
 
@@ -1216,6 +1268,7 @@ impl GenerationSession {
             }),
             figures: None,
             roles: None,
+            locations: None,
         };
         let stage = &mut self.stages[index];
         stage.state = StageState::Resolved(Box::new(resolution));
@@ -1328,6 +1381,12 @@ impl GenerationSession {
                 }
                 return self.resolve_roles(index, faces);
             }
+            StageKind::NotableLocations => {
+                if choice.is_some() {
+                    return Err(GenerationError::NotLocationsStage { stage: index });
+                }
+                return self.resolve_locations(index, faces);
+            }
         };
         let before = self.tags_before(index);
         let mut state = State::with_tags(&before);
@@ -1351,6 +1410,7 @@ impl GenerationSession {
                 name: None,
                 figures: None,
                 roles: None,
+                locations: None,
             })),
         };
         let stage = &mut self.stages[index];
@@ -1413,6 +1473,14 @@ impl GenerationSession {
                 }
                 continue;
             }
+            if self.stages[index].is_locations() {
+                match self.refresh_locations(index) {
+                    Some(true) => invalidated.push(index),
+                    Some(false) => reopened.push(index),
+                    None => {}
+                }
+                continue;
+            }
             if self.stages[index].is_roles() {
                 match self.refresh_roles(index) {
                     Some(true) => invalidated.push(index),
@@ -1444,10 +1512,20 @@ impl GenerationSession {
                         stage.previous = previous;
                         stage.state = StageState::Pending;
                         invalidated.push(index);
-                    } else if let StageState::Resolved(res) = &mut self.stages[index].state {
-                        res.input_tags = before;
-                        if res.contexts.is_none() {
-                            res.contexts = now;
+                    } else {
+                        // Kept: its rules did not change. Its trace is
+                        // brought up to date with the tags it now stands on,
+                        // so it never shows an upstream result that has
+                        // since changed.
+                        let names = self.recorded_names(&before);
+                        if let StageState::Resolved(res) = &mut self.stages[index].state {
+                            if res.input_tags != before {
+                                retrace(&mut res.events, &res.input_tags, &names);
+                            }
+                            res.input_tags = before;
+                            if res.contexts.is_none() {
+                                res.contexts = now;
+                            }
                         }
                     }
                 }
@@ -1826,6 +1904,7 @@ impl GenerationSession {
                     name: None,
                     figures: Some(Box::new(record)),
                     roles: None,
+                    locations: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -1998,6 +2077,7 @@ impl GenerationSession {
             naming: None,
             sub_stage: stage.sub_stage,
             roles: None,
+            locations: None,
             figures: Some(FiguresView {
                 record,
                 fields,
@@ -2025,6 +2105,7 @@ fn restored_figures(saved: Option<SnapshotStage>) -> StageState {
             name: None,
             figures: Some(Box::new(figures)),
             roles: None,
+            locations: None,
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,
@@ -2135,6 +2216,7 @@ impl GenerationSession {
                     name: None,
                     figures: None,
                     roles: Some(Box::new(record)),
+                    locations: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -2260,6 +2342,7 @@ impl GenerationSession {
             naming: None,
             sub_stage: stage.sub_stage,
             figures: None,
+            locations: None,
             roles: Some(RolesView {
                 record: resolution.and_then(|r| r.roles.as_deref()).cloned(),
                 slots,
@@ -2285,6 +2368,346 @@ fn restored_roles(saved: Option<SnapshotStage>) -> StageState {
             name: None,
             figures: None,
             roles: Some(Box::new(roles)),
+            locations: None,
+        })),
+        None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
+        None => StageState::Pending,
+    }
+}
+
+/// Replaces the upstream part of each record's input tags (the stage's old
+/// input tags) with `upstream`, keeping the tags activated within the stage
+/// before each record.
+fn retrace(events: &mut [GenerationEvent], old: &[TagId], upstream: &[Named<TagId>]) {
+    for event in events {
+        if let GenerationEvent::TableRolled(record) = event {
+            let within: Vec<Named<TagId>> = record
+                .input_tags
+                .iter()
+                .filter(|t| !old.contains(&t.id))
+                .cloned()
+                .collect();
+            record.input_tags = upstream.iter().cloned().chain(within).collect();
+        }
+    }
+}
+
+// ----- Notable Locations ------------------------------------------------------------
+
+impl GenerationSession {
+    /// Turns Bare Minimum Buildings on or off for this settlement. On adds
+    /// the guaranteed Tavern to generated Notable Locations if it is absent;
+    /// off removes that Tavern only, never a rolled location.
+    pub fn set_bare_minimum_buildings(&mut self, enabled: bool) -> Result<(), GenerationError> {
+        self.options.bare_minimum_buildings = enabled;
+        for index in 0..self.stages.len() {
+            if !self.stages[index].is_locations() {
+                continue;
+            }
+            let StageState::Resolved(res) = &self.stages[index].state else {
+                continue;
+            };
+            let Some(mut record) = res.locations.as_deref().cloned() else {
+                continue;
+            };
+            let before = self.tags_before(index);
+            let generator = self.generator();
+            LocationGenerator {
+                generator: &generator,
+                content: &self.content,
+                settlement_tags: &before,
+            }
+            .set_bare_minimum(&mut record, enabled)?;
+            if let StageState::Resolved(res) = &mut self.stages[index].state
+                && res.locations.as_deref() != Some(&record)
+            {
+                res.locations = Some(Box::new(record));
+                res.original = None;
+            }
+        }
+        Ok(())
+    }
+
+    /// Rolls the District Count again (Cities and Capitals), keeping the
+    /// districts that remain.
+    pub fn roll_district_count(
+        &mut self,
+        index: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_districts(r, None, faces))
+    }
+
+    pub fn choose_district_count(
+        &mut self,
+        index: usize,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_districts(r, Some(result), faces))
+    }
+
+    /// Rolls one area's Notable Location Count again (the settlement's, or
+    /// one district's), keeping its locations up to the new count.
+    pub fn roll_location_count(
+        &mut self,
+        index: usize,
+        area: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_count(r, area, None, faces))
+    }
+
+    pub fn choose_location_count(
+        &mut self,
+        index: usize,
+        area: usize,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_count(r, area, Some(result), faces))
+    }
+
+    /// Rolls one rolled location's Type again (by position in the list).
+    pub fn roll_location_type(
+        &mut self,
+        index: usize,
+        location: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_type(r, location, None, faces))
+    }
+
+    pub fn choose_location_type(
+        &mut self,
+        index: usize,
+        location: usize,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_type(r, location, Some(result), faces))
+    }
+
+    fn change_locations(
+        &mut self,
+        index: usize,
+        change: impl FnOnce(
+            &LocationGenerator<'_, '_>,
+            &mut NotableLocations,
+        ) -> Result<(), GenerationError>,
+    ) -> Result<StageChange, GenerationError> {
+        self.check_access(index)?;
+        let stage = self.stage(index)?;
+        if !stage.is_locations() {
+            return Err(GenerationError::NotLocationsStage { stage: index });
+        }
+        let StageState::Resolved(res) = &stage.state else {
+            return Err(GenerationError::LocationsNotGenerated);
+        };
+        let mut record = res
+            .locations
+            .as_deref()
+            .cloned()
+            .ok_or(GenerationError::LocationsNotGenerated)?;
+        let before = self.tags_before(index);
+        let generator = self.generator();
+        change(
+            &LocationGenerator {
+                generator: &generator,
+                content: &self.content,
+                settlement_tags: &before,
+            },
+            &mut record,
+        )?;
+        if let StageState::Resolved(res) = &mut self.stages[index].state {
+            res.locations = Some(Box::new(record));
+            res.original = None;
+        }
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// Generates every Notable Location. Skipped when there is no Size.
+    fn resolve_locations(
+        &mut self,
+        index: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        let before = self.tags_before(index);
+        let state = match self.size_before(index) {
+            Some(size) => {
+                let generator = self.generator();
+                let record = LocationGenerator {
+                    generator: &generator,
+                    content: &self.content,
+                    settlement_tags: &before,
+                }
+                .generate(&size, self.options.bare_minimum_buildings, faces)?;
+                StageState::Resolved(Box::new(Resolution {
+                    input_tags: before,
+                    events: Vec::new(),
+                    activated: Vec::new(),
+                    contexts: Some(Vec::new()),
+                    original: None,
+                    name: None,
+                    figures: None,
+                    roles: None,
+                    locations: Some(Box::new(record)),
+                }))
+            }
+            None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
+            None => return Err(GenerationError::LocationsNeedSize),
+        };
+        let stage = &mut self.stages[index];
+        stage.state = state;
+        stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// The settlement's Size, from the stages before `index`.
+    fn size_before(&self, index: usize) -> Option<Named<ResultId>> {
+        self.stages[..index]
+            .iter()
+            .find_map(|stage| match &stage.state {
+                StageState::Resolved(res) => res
+                    .records()
+                    .find_map(|r| (r.table.id.as_str() == "table.size").then(|| r.result.clone())),
+                _ => None,
+            })
+    }
+
+    /// Re-checks the Notable Locations stage. They stand while the Size and
+    /// its location scheme are unchanged; otherwise they are invalidated.
+    /// Returns `Some(true)` if invalidated, `Some(false)` if reopened.
+    fn refresh_locations(&mut self, index: usize) -> Option<bool> {
+        let size = self.size_before(index);
+        let settled = self.settled_before(index);
+        let before = self.tags_before(index);
+        let scheme = crate::locations::scheme_for(&self.content, &before).map(|s| s.id.clone());
+        let mut outcome = None;
+        match &self.stages[index].state {
+            StageState::Resolved(res) => {
+                let same = res.locations.as_ref().is_some_and(|l| {
+                    Some(&l.size.id) == size.as_ref().map(|s| &s.id)
+                        && Some(&l.scheme.id) == scheme.as_ref()
+                });
+                if !same {
+                    let previous = res.main_result();
+                    let stage = &mut self.stages[index];
+                    stage.previous = previous;
+                    stage.state = StageState::Pending;
+                    outcome = Some(true);
+                }
+            }
+            StageState::Skipped(SkipReason::NotEligible) if size.is_some() => {
+                self.stages[index].state = StageState::Pending;
+                return Some(false);
+            }
+            _ => {}
+        }
+        if size.is_none() && settled && matches!(self.stages[index].state, StageState::Pending) {
+            let stage = &mut self.stages[index];
+            stage.state = StageState::Skipped(SkipReason::NotEligible);
+            stage.previous = None;
+        }
+        outcome
+    }
+
+    fn locations_view(
+        &self,
+        index: usize,
+        view: ViewOptions,
+    ) -> Result<StageView, GenerationError> {
+        let stage = self.stage(index)?;
+        let before = self.tags_before(index);
+        let generator = self.generator();
+        let size = self.size_before(index);
+        let mut options = LocationGenerator {
+            generator: &generator,
+            content: &self.content,
+            settlement_tags: &before,
+        }
+        .options(size.as_ref());
+        if !view.show_tags {
+            for t in [
+                &mut options.districts,
+                &mut options.count,
+                &mut options.types,
+            ]
+            .into_iter()
+            .flatten()
+            {
+                t.options.iter_mut().for_each(|o| o.tags.clear());
+            }
+        }
+        let (status, result, skipped, resolution) = match &stage.state {
+            StageState::Pending => (StageStatus::Pending, None, None, None),
+            StageState::Skipped(reason) => (StageStatus::Skipped, None, Some(*reason), None),
+            StageState::Resolved(res) => {
+                (StageStatus::Resolved, res.main_result(), None, Some(res))
+            }
+        };
+        let table = Named {
+            id: TableId::new(LOCATIONS_STAGE_ID),
+            name: stage.label.clone(),
+        };
+        Ok(StageView {
+            index,
+            stage: table.clone(),
+            table,
+            status,
+            current: self.mode == GenerationMode::Incremental && index == self.cursor,
+            actionable: self.check_access(index).is_ok(),
+            can_roll: size.is_some() && options.count.is_some(),
+            dice: None,
+            incomplete: None,
+            options: Vec::new(),
+            result,
+            previous: stage.previous.clone(),
+            skipped,
+            outcome: None,
+            tags: view.show_tags.then(Vec::new),
+            details: None,
+            naming: None,
+            sub_stage: stage.sub_stage,
+            figures: None,
+            roles: None,
+            locations: Some(LocationsView {
+                record: resolution.and_then(|r| r.locations.as_deref()).cloned(),
+                options,
+                bare_minimum_buildings: self.options.bare_minimum_buildings,
+            }),
+        })
+    }
+}
+
+/// The Notable Locations stage as saved: restored exactly, skipped if it
+/// did not apply, or "not recorded" for settlements saved before Notable
+/// Locations existed. Nothing is regenerated here.
+fn restored_locations(saved: Option<SnapshotStage>) -> StageState {
+    let Some(saved) = saved else {
+        return StageState::Skipped(SkipReason::NotRecorded);
+    };
+    match saved.locations.clone() {
+        Some(locations) => StageState::Resolved(Box::new(Resolution {
+            input_tags: Vec::new(),
+            events: Vec::new(),
+            activated: Vec::new(),
+            contexts: Some(Vec::new()),
+            original: Some(saved),
+            name: None,
+            figures: None,
+            roles: None,
+            locations: Some(Box::new(locations)),
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,

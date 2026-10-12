@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.woodElf.given.neutral",
+      "name": "Wood Elf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "alder",
+          "name": "Alder",
+          "range": 1
+        },
+        {
+          "id": "bramble",
+          "name": "Bramble",
+          "range": 2
+        },
+        {
+          "id": "cress",
+          "name": "Cress",
+          "range": 3
+        },
+        {
+          "id": "dusk",
+          "name": "Dusk",
+          "range": 4
+        },
+        {
+          "id": "fallow",
+          "name": "Fallow",
+          "range": 5
+        },
+        {
+          "id": "fern",
+          "name": "Fern",
+          "range": 6
+        },
+        {
+          "id": "hollin",
+          "name": "Hollin",
+          "range": 7
+        },
+        {
+          "id": "juniper",
+          "name": "Juniper",
+          "range": 8
+        },
+        {
+          "id": "kestrel",
+          "name": "Kestrel",
+          "range": 9
+        },
+        {
+          "id": "larch",
+          "name": "Larch",
+          "range": 10
+        },
+        {
+          "id": "linden",
+          "name": "Linden",
+          "range": 11
+        },
+        {
+          "id": "moss",
+          "name": "Moss",
+          "range": 12
+        },
+        {
+          "id": "nettle",
+          "name": "Nettle",
+          "range": 13
+        },
+        {
+          "id": "osier",
+          "name": "Osier",
+          "range": 14
+        },
+        {
+          "id": "quince",
+          "name": "Quince",
+          "range": 15
+        },
+        {
+          "id": "reed",
+          "name": "Reed",
+          "range": 16
+        },
+        {
+          "id": "sorrel",
+          "name": "Sorrel",
+          "range": 17
+        },
+        {
+          "id": "thistle",
+          "name": "Thistle",
+          "range": 18
+        },
+        {
+          "id": "wren",
+          "name": "Wren",
+          "range": 19
+        },
+        {
+          "id": "yarrow",
+          "name": "Yarrow",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

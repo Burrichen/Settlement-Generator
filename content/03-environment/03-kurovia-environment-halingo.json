@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.halingo",
+      "name": "Kurovia Environment: Halingo",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aridDesert",
+          "name": "Arid / Desert",
+          "range": [1, 10],
+          "tags": ["env.aridDesert"]
+        },
+        {
+          "id": "badlands",
+          "name": "Badlands",
+          "range": [11, 17],
+          "tags": ["env.badlands"]
+        },
+        {
+          "id": "ichorFields",
+          "name": "Ichor Fields",
+          "range": [18, 20],
+          "tags": ["env.ichorFields"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.aridDesert",
+      "name": "Arid / Desert"
+    },
+    {
+      "id": "env.badlands",
+      "name": "Badlands",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["resourceExtraction"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Badlands increase Resource Extraction. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "env.ichorFields",
+      "name": "Ichor Fields",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["resourceExtraction"],
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Ichor Fields strongly increase Resource Extraction. Exact dice change not yet approved."
+        }
+      ]
+    }
+  ]
+}

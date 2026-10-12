@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "role_schemes": [
+    {
+      "id": "roles.council",
+      "name": "Local Council roles",
+      "when": {
+        "has_tag": "authority.council"
+      },
+      "lead": "table.authorityRole.council.lead",
+      "member": "table.authorityRole.council.member"
+    },
+    {
+      "id": "roles.noble",
+      "name": "Noble / Landed Ruler roles",
+      "when": {
+        "has_tag": "authority.noble"
+      },
+      "single": "table.authorityRole.noble.single"
+    },
+    {
+      "id": "roles.appointed",
+      "name": "Appointed Official roles",
+      "when": {
+        "has_tag": "authority.appointed"
+      },
+      "single": "table.authorityRole.appointed.single"
+    },
+    {
+      "id": "roles.guild",
+      "name": "Merchant / Guild Rule roles",
+      "when": {
+        "has_tag": "authority.guild"
+      },
+      "single": "table.authorityRole.guild.single",
+      "lead": "table.authorityRole.guild.lead",
+      "member": "table.authorityRole.guild.member"
+    },
+    {
+      "id": "roles.religious",
+      "name": "Religious Authority roles",
+      "when": {
+        "has_tag": "authority.religious"
+      },
+      "single": "table.authorityRole.religious.single"
+    },
+    {
+      "id": "roles.military",
+      "name": "Military Authority roles",
+      "when": {
+        "has_tag": "authority.military"
+      },
+      "single": "table.authorityRole.military.single",
+      "lead": "table.authorityRole.military.lead",
+      "member": "table.authorityRole.military.member"
+    },
+    {
+      "id": "roles.elders",
+      "name": "Elders / Community Leaders roles",
+      "when": {
+        "has_tag": "authority.elders"
+      },
+      "lead": "table.authorityRole.elders.lead",
+      "member": "table.authorityRole.elders.member"
+    },
+    {
+      "id": "roles.assembly",
+      "name": "Popular Assembly roles",
+      "when": {
+        "has_tag": "authority.assembly"
+      },
+      "lead": "table.authorityRole.assembly.lead",
+      "member": "table.authorityRole.assembly.member"
+    }
+  ]
+}

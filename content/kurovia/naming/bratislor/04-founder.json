@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.founder",
+      "name": "Bratislor Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "dragomir",
+          "name": "Dragomir",
+          "range": 1
+        },
+        {
+          "id": "vesna",
+          "name": "Vesna",
+          "range": 2
+        },
+        {
+          "id": "radan",
+          "name": "Radan",
+          "range": 3
+        },
+        {
+          "id": "ilena",
+          "name": "Ilena",
+          "range": 4
+        },
+        {
+          "id": "oskar",
+          "name": "Oskar",
+          "range": 5
+        },
+        {
+          "id": "vorel",
+          "name": "Vorel",
+          "range": 6
+        },
+        {
+          "id": "mira",
+          "name": "Mira",
+          "range": 7
+        },
+        {
+          "id": "sava",
+          "name": "Sava",
+          "range": 8
+        },
+        {
+          "id": "daria",
+          "name": "Daria",
+          "range": 9
+        },
+        {
+          "id": "branik",
+          "name": "Branik",
+          "range": 10
+        },
+        {
+          "id": "zora",
+          "name": "Zora",
+          "range": 11
+        },
+        {
+          "id": "stanimir",
+          "name": "Stanimir",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

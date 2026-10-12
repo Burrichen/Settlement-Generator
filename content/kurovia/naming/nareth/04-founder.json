@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.founder",
+      "name": "Nareth Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "talari",
+          "name": "Talari",
+          "range": 1
+        },
+        {
+          "id": "ivara",
+          "name": "Ivara",
+          "range": 2
+        },
+        {
+          "id": "namar",
+          "name": "Namar",
+          "range": 3
+        },
+        {
+          "id": "sorai",
+          "name": "Sorai",
+          "range": 4
+        },
+        {
+          "id": "vesha",
+          "name": "Vesha",
+          "range": 5
+        },
+        {
+          "id": "aruna",
+          "name": "Aruna",
+          "range": 6
+        },
+        {
+          "id": "kethra",
+          "name": "Kethra",
+          "range": 7
+        },
+        {
+          "id": "lurien",
+          "name": "Lurien",
+          "range": 8
+        },
+        {
+          "id": "maiva",
+          "name": "Maiva",
+          "range": 9
+        },
+        {
+          "id": "sarru",
+          "name": "Sarru",
+          "range": 10
+        },
+        {
+          "id": "tavira",
+          "name": "Tavira",
+          "range": 11
+        },
+        {
+          "id": "eshar",
+          "name": "Eshar",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

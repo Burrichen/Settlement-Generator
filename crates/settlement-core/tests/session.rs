@@ -42,6 +42,10 @@ const REPRESENTATION: usize = 11;
 const AUTHORITY_SIZE: usize = 12;
 const ROLES: usize = 13;
 const FIGURES: usize = 14;
+const SECURITY: usize = 15;
+const CRIME: usize = 16;
+const STABILITY: usize = 17;
+const LOCATIONS: usize = 18;
 
 fn content() -> ContentSet {
     bundled_content().unwrap()
@@ -56,7 +60,15 @@ fn dice(values: &[u32]) -> ScriptedFaces {
 }
 
 fn session(c: &ContentSet, mode: GenerationMode, god_mode: bool) -> GenerationSession {
-    GenerationSession::new(Arc::new(c.clone()), GenerationOptions { god_mode }, mode).unwrap()
+    GenerationSession::new(
+        Arc::new(c.clone()),
+        GenerationOptions {
+            god_mode,
+            ..Default::default()
+        },
+        mode,
+    )
+    .unwrap()
 }
 
 fn view(s: &GenerationSession, i: usize) -> StageView {
@@ -143,7 +155,11 @@ fn automatic_resolves_every_stage_with_real_dice() {
             "Representation",
             "Authority Size",
             "Roles",
-            "Authority Figures"
+            "Authority Figures",
+            "Security",
+            "Crime",
+            "Stability",
+            "Notable Locations"
         ]
     );
     // Every stage is resolved, except Name, which is skipped unless the
@@ -165,9 +181,10 @@ fn automatic_resolves_every_stage_with_real_dice() {
     // Every rolled stage recorded its dice.
     let log = s.log();
     let rolled: Vec<_> = log.table_rolls().filter(|r| !r.selected).collect();
-    // Region, Environment, Connections, Size, Origin, Purpose, Age, Economy
-    // and Authority, plus the Authority sub-stages that applied.
-    assert_eq!(rolled.len(), 9 + sub_rolls);
+    // Region, Environment, Connections, Size, Origin, Purpose, Age,
+    // Economy, Authority, Security, Crime and Stability, plus the Authority
+    // sub-stages that applied.
+    assert_eq!(rolled.len(), 12 + sub_rolls);
     assert!(
         rolled
             .iter()
@@ -317,12 +334,23 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
     s.roll(ROLES, &mut RandomFaces::seeded(5)).unwrap();
     s.advance().unwrap();
     s.roll(FIGURES, &mut RandomFaces::seeded(5)).unwrap();
+    // Then Security, Crime and Stability.
+    for (stage, face) in [(SECURITY, 6), (CRIME, 6), (STABILITY, 10)] {
+        assert_eq!(s.advance().unwrap(), stage);
+        s.roll(stage, &mut dice(&[face])).unwrap();
+    }
+    assert_eq!(s.advance().unwrap(), LOCATIONS);
+    s.roll(LOCATIONS, &mut RandomFaces::seeded(6)).unwrap();
     assert!(s.is_complete());
 
     // Go back to Environment and change Coast to Woodland: the coastal
     // upgrade no longer applies, so Connections is invalidated. Size,
-    // Origin, Purpose, Age, Economy and Authority do not depend on it and
-    // are kept. Going back passes over the skipped Representation.
+    // Origin, Purpose, Age, Economy, Authority, Security, Crime and
+    // Stability do not depend on it and are kept. Going back passes over
+    // the skipped Representation.
+    for stage in [STABILITY, CRIME, SECURITY, FIGURES] {
+        assert_eq!(s.back(), stage);
+    }
     assert_eq!(s.back(), ROLES);
     assert_eq!(s.back(), AUTHORITY_SIZE);
     s.back();
@@ -385,7 +413,7 @@ fn one_table_allows_any_stage_and_rechecks_dependants() {
     let c = content();
     let mut s = session(&c, GenerationMode::OneTable, false);
     let views = s.views(ViewOptions::default()).unwrap();
-    assert_eq!(views.len(), 15);
+    assert_eq!(views.len(), 19);
     assert!(views.iter().all(|v| v.actionable));
 
     // Connections rolled before a Region exists: Standard layout.
@@ -537,7 +565,7 @@ fn session_log_is_a_saveable_snapshot() {
     )
     .unwrap();
     let log = s.log();
-    assert_eq!(log.table_rolls().count(), 10);
+    assert_eq!(log.table_rolls().count(), 13);
     assert!(log.has_tag(&"world.kurovia".into()));
     let json = serde_json::to_string(&log).unwrap();
     assert_eq!(
@@ -627,7 +655,7 @@ fn session_snapshot_includes_active_tags_only_with_tag_view() {
         })
         .unwrap();
     assert_eq!(tagged.active_tags.unwrap()[0].id.as_str(), "world.kurovia");
-    assert_eq!(tagged.stages.len(), 15);
+    assert_eq!(tagged.stages.len(), 19);
 }
 
 #[test]
@@ -767,7 +795,11 @@ fn snapshots_record_every_stage_for_display() {
             "Representation",
             "Authority Size",
             "Roles",
-            "Authority Figures"
+            "Authority Figures",
+            "Security",
+            "Crime",
+            "Stability",
+            "Notable Locations"
         ]
     );
     assert_eq!(stages[1].table.as_ref().unwrap().name, "Kurovia Region");
@@ -881,7 +913,9 @@ fn snapshots_without_stage_records_still_display_and_reopen() {
                 && r.table.id.as_str() != "table.authority"
         })
         .count();
-    assert_eq!(shown.len(), 10 + sub_rolls);
+    // One per table rolled: the thirteen stage tables and any Authority
+    // sub-rolls.
+    assert_eq!(shown.len(), 13 + sub_rolls);
     assert_eq!(shown[1].label, "Generic Region");
     let s = GenerationSession::from_snapshot(
         Arc::new(c),
@@ -944,7 +978,10 @@ fn content_without_stages_is_refused_rather_than_crashing_an_interface() {
     empty.sequence.clear();
     let result = GenerationSession::new(
         Arc::new(empty),
-        GenerationOptions { god_mode: false },
+        GenerationOptions {
+            god_mode: false,
+            ..Default::default()
+        },
         GenerationMode::OneTable,
     );
     assert!(matches!(result, Err(GenerationError::EmptySequence)));

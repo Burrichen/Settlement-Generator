@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.darkElf.given.feminine",
+      "name": "Dark Elf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aszhira",
+          "name": "Aszhira",
+          "range": 1
+        },
+        {
+          "id": "charvessa",
+          "name": "Charvessa",
+          "range": 2
+        },
+        {
+          "id": "dhessira",
+          "name": "Dhessira",
+          "range": 3
+        },
+        {
+          "id": "elzhara",
+          "name": "Elzhara",
+          "range": 4
+        },
+        {
+          "id": "ghylvia",
+          "name": "Ghylvia",
+          "range": 5
+        },
+        {
+          "id": "ilyrrae",
+          "name": "Ilyrrae",
+          "range": 6
+        },
+        {
+          "id": "jhezra",
+          "name": "Jhezra",
+          "range": 7
+        },
+        {
+          "id": "khavira",
+          "name": "Khavira",
+          "range": 8
+        },
+        {
+          "id": "lirzhae",
+          "name": "Lirzhae",
+          "range": 9
+        },
+        {
+          "id": "mhaelva",
+          "name": "Mhaelva",
+          "range": 10
+        },
+        {
+          "id": "nhezzra",
+          "name": "Nhezzra",
+          "range": 11
+        },
+        {
+          "id": "olvirra",
+          "name": "Olvirra",
+          "range": 12
+        },
+        {
+          "id": "phyrelle",
+          "name": "Phyrelle",
+          "range": 13
+        },
+        {
+          "id": "quavessa",
+          "name": "Quavessa",
+          "range": 14
+        },
+        {
+          "id": "rhezzia",
+          "name": "Rhezzia",
+          "range": 15
+        },
+        {
+          "id": "shyvra",
+          "name": "Shyvra",
+          "range": 16
+        },
+        {
+          "id": "tryzzae",
+          "name": "Tryzzae",
+          "range": 17
+        },
+        {
+          "id": "uzhrae",
+          "name": "Uzhrae",
+          "range": 18
+        },
+        {
+          "id": "vhessana",
+          "name": "Vhessana",
+          "range": 19
+        },
+        {
+          "id": "zessyra",
+          "name": "Zessyra",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

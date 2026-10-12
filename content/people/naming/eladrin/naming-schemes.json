@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.eladrin",
+      "name": "Eladrin names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.eladrin"
+      },
+      "method_table": "table.personName.eladrin.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.eladrin.given", "table.personName.eladrin.house"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -240,6 +240,7 @@ impl SavedScreen {
                 // Roles are shown with each Authority Figure instead.
                 skipped: st.skipped || st.roles.is_some(),
                 figures: st.figures.clone(),
+                locations: st.locations.clone(),
             })
             .collect();
         lines.extend(sheet_lines(&rows, s));

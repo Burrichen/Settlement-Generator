@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.bratislor",
+      "name": "Bratislor",
+      "description": "Names for settlements in the Kurovian region of Bratislor. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.bratislor"
+          }
+        ]
+      },
+      "method_table": "table.naming.bratislor.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": [
+            "table.naming.bratislor.firstElement",
+            "table.naming.bratislor.secondElement"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.bratislor.founder", "table.naming.bratislor.founderEnding"],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        }
+      ]
+    }
+  ]
+}

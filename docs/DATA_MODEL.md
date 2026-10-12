@@ -92,7 +92,16 @@ steps. Each step is one of:
   Authority Figures stage (`figures.rs`). It needs the tables listed in
   `figures::FIGURE_FIELDS` and `table.authorityRelationship`; validation
   reports any that are missing. It needs the roles first, when the
-  sequence allocates them.
+  sequence allocates them;
+- `{ "notable_locations": true, "name": "Notable Locations" }` for the
+  Notable Locations stage (`locations.rs`). It uses the content's
+  `location_schemes`: each has an `id`, `name`, a `when` condition (the first
+  that applies is used, normally a `size.*` tag), a `count` table and, for
+  settlements mapped by district, a `districts` table. Every result of a
+  count or district table must carry its number as `value` (validation
+  reports `missing_value`). The Type table `table.notableLocationType` must
+  exist and contain `locationType.hospitality`, which the guaranteed Tavern
+  uses. The stage needs the Size; without one it is skipped as not eligible.
 
 A **sub-stage** elaborates the stage before it (for example Authority Size
 after Authority) and is normally made conditional by its table's
@@ -249,6 +258,9 @@ Each table is resolved as follows:
 9. **Tags:** the final result emits its enabled tags. Emission follows
    `add_tag` chains, with duplicates removed within one emission. It activates
    each tag and runs the per-emission effects (`route_to`, `secondary_roll`).
+
+`GenerationOptions` also carries `bare_minimum_buildings` (see §8), which only
+the Notable Locations stage reads. Both options are recorded in the log.
 
 **God Mode** (`GenerationOptions { god_mode }`, set with
 `Generator::with_options`) ignores tag-based result eligibility: result
@@ -430,19 +442,20 @@ gives a clear error.
 
 A saved settlement is a self-contained **snapshot**:
 
-| Field                       | Meaning                                                                                                                                                                                                                                                                                                     |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                        | Stable random ID (`stl-` + 32 hex digits)                                                                                                                                                                                                                                                                   |
-| `name`                      | Entered by the user. It is trimmed and cannot be empty                                                                                                                                                                                                                                                      |
-| `created_at`, `updated_at`  | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                                                                                                                                                                                                 |
-| `app_version`               | Application version that generated the current snapshot                                                                                                                                                                                                                                                     |
-| `favourite`                 | Boolean                                                                                                                                                                                                                                                                                                     |
-| `snapshot.log`              | The full `GenerationLog` (§4)                                                                                                                                                                                                                                                                               |
-| `snapshot.authority`        | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there                                                                                                                    |
-| `snapshot.stages`           | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                                                                                                                                   |
-| `snapshot.stages[].roles`   | Role Allocation stage only (stage table `stage.authorityRoles`): the request, the scheme, and each role (allocation, roll record, the result rolled, the fallback given if any, the final role and its display variants, app version)                                                                       |
-| `snapshot.stages[].figures` | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log` |
-| `snapshot.stages[].name`    | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                    |
+| Field                         | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                          | Stable random ID (`stl-` + 32 hex digits)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `name`                        | Entered by the user. It is trimmed and cannot be empty                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `created_at`, `updated_at`    | UTC, millisecond precision. JSON uses RFC 3339; the database stores Unix ms                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `app_version`                 | Application version that generated the current snapshot                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `favourite`                   | Boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `snapshot.log`                | The full `GenerationLog` (§4)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `snapshot.authority`          | Who represents the Authority, as generated: `{ authority, tags, representation, size }` (see `authority.rs`). Absent in older snapshots, where it is read from the log if recorded there                                                                                                                                                                                                                                                                                                                                                           |
+| `snapshot.stages`             | Each pipeline stage as saved: its label, stage table, the table actually used, the result, the tags activated, and whether it was skipped                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `snapshot.stages[].roles`     | Role Allocation stage only (stage table `stage.authorityRoles`): the request, the scheme, and each role (allocation, roll record, the result rolled, the fallback given if any, the final role and its display variants, app version)                                                                                                                                                                                                                                                                                                              |
+| `snapshot.stages[].figures`   | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                        |
+| `snapshot.stages[].locations` | Notable Locations stage only (stage table `stage.notableLocations`): the Size and scheme used, the District Count roll (Cities and Capitals), each area's count roll (`areas`, one per district or one for the settlement), every location (stable ID `notable-location-NN`, `source` `rolled` or `bareMinimumBuildings`, district, `type`, its Type roll, and for the guaranteed Tavern `subtype` and `spare_rooms`), the highest ID number `issued` (IDs are never reused) and the app version. These rolls are kept here, not in `snapshot.log` |
+| `snapshot.stages[].name`      | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                                                                                                                                           |
 
 The generation log holds the table results, the labels visible at generation
 time, the tags (with names at that time), the recorded dice, routing, applied
@@ -489,6 +502,7 @@ modifiers and the God Mode flag.
 | `generation_presentation` | `incremental`, `one_table`      | `incremental` |
 | `god_mode`                | boolean                         | `false`       |
 | `tag_view`                | boolean                         | `false`       |
+| `bare_minimum_buildings`  | boolean                         | `false`       |
 | `theme`                   | `modern_dark`, `old_timey_dark` | `modern_dark` |
 
 - The presentation is only meaningful for Manual. While the method is
@@ -500,7 +514,13 @@ modifiers and the God Mode flag.
 
   Its saved value is kept, and switching back to Manual restores it.
 
-- `god_mode` maps to `GenerationOptions` (§4) through `generation_options()`.
+- `god_mode` and `bare_minimum_buildings` map to `GenerationOptions` (§4)
+  through `generation_options()`.
+- `bare_minimum_buildings` adds one guaranteed Tavern (Hospitality, 4 spare
+  rooms) to the Notable Locations, on top of the rolled count and never per
+  district. `GenerationSession::set_bare_minimum_buildings` applies a change
+  to the settlement being generated: it adds or removes only that Tavern.
+  Settings saved before it existed read it as `false`.
 - `tag_view` controls whether interfaces show applied tags during generation
   and in saved settlements. The tags are always stored in the snapshot.
 - Each setting is stored as its own key. A value this build cannot read (for
@@ -580,7 +600,10 @@ under:
 After any change, later stages are re-checked in order using the tags of the
 stages before them:
 
-- A stage whose context is unchanged is kept.
+- A stage whose context is unchanged is kept. Its records' `input_tags` are
+  brought up to date with the tags it now follows, so its trace never shows
+  an upstream result that has since changed. (A planned intent is not an
+  executable rule, so it never invalidates a stage.)
 - A stage whose context changed is **invalidated**: it becomes pending, and its
   previous result is shown as `previous`.
 - An invalidated stage no longer contributes tags, so the check cascades

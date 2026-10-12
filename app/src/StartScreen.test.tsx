@@ -7,6 +7,7 @@ import type {
   AuthorityFigures,
   FiguresView,
   GenerationResponse,
+  NotableLocations,
   SessionView,
   Settings,
   StageView,
@@ -23,6 +24,9 @@ const STAGES = [
   "Age",
   "Economy",
   "Authority",
+  "Security",
+  "Crime",
+  "Stability",
 ];
 const RESULTS = [
   "Kurovia",
@@ -35,6 +39,9 @@ const RESULTS = [
   "Old",
   "Prosperous",
   "Local Council",
+  "Guarded",
+  "Moderate",
+  "Cohesive",
 ];
 
 function stage(index: number, resolved: boolean, extra: Partial<StageView> = {}): StageView {
@@ -110,6 +117,12 @@ vi.mock("./api", async (importOriginal) => {
       rerollAll: vi.fn(),
       chooseFigureField: vi.fn(),
       chooseRole: vi.fn(),
+      rollDistrictCount: vi.fn(),
+      chooseDistrictCount: vi.fn(),
+      rollLocationCount: vi.fn(),
+      chooseLocationCount: vi.fn(),
+      rollLocationType: vi.fn(),
+      chooseLocationType: vi.fn(),
       chooseFigureNamePart: vi.fn(),
       figureName: vi.fn(),
       chooseRelationship: vi.fn(),
@@ -142,6 +155,7 @@ beforeEach(() => {
     god_mode: false,
     tag_view: false,
     theme: "modern_dark",
+    bare_minimum_buildings: false,
   };
 });
 
@@ -365,7 +379,10 @@ describe("authority sub-stages", () => {
       sub_stage: true,
       ...extra,
     });
-    v.stages.push(
+    // Straight after Authority, before Security, Crime and Stability.
+    v.stages.splice(
+      STAGES.indexOf("Authority") + 1,
+      0,
       sub(n, "Representation", { status: "skipped", skipped: "not_eligible", can_roll: false }),
       sub(n + 1, "Authority Size", {
         status: "resolved",
@@ -690,5 +707,150 @@ describe("authority figures", () => {
     ).toBeTruthy();
     await user.selectOptions(lead, "role.council.civicSpeaker");
     expect(g.chooseRole).toHaveBeenCalledWith(STAGES.length, 0, "role.council.civicSpeaker");
+  });
+});
+
+describe("notable locations", () => {
+  const named = (id: string, name: string) => ({ id, name });
+  const roll = (table: string, id: string, name: string) => ({
+    table: named(table, table),
+    dice: "1d6",
+    result: named(id, name),
+  });
+  const record: NotableLocations = {
+    size: named("city", "City"),
+    scheme: named("locations.city", "City Notable Locations"),
+    districts: { roll: roll("City District Count", "two", "2 Districts"), count: 2 },
+    areas: [
+      {
+        district: { id: "district-1", label: "District 1" },
+        count: {
+          roll: roll("City District Notable Location Count", "two", "2 Notable Locations"),
+          count: 2,
+        },
+      },
+      {
+        district: { id: "district-2", label: "District 2" },
+        count: {
+          roll: roll("City District Notable Location Count", "one", "1 Notable Location"),
+          count: 1,
+        },
+      },
+    ],
+    locations: [
+      {
+        id: "notable-location-guaranteed-tavern",
+        source: "bareMinimumBuildings",
+        type: named("locationType.hospitality", "Hospitality"),
+        subtype: named("locationSubtype.tavern", "Tavern"),
+        spare_rooms: 4,
+      },
+      {
+        id: "notable-location-01",
+        source: "rolled",
+        district: "district-1",
+        type: named("locationType.hospitality", "Hospitality"),
+      },
+      {
+        id: "notable-location-02",
+        source: "rolled",
+        district: "district-1",
+        type: named("locationType.trade", "Trade / Shop"),
+      },
+      {
+        id: "notable-location-03",
+        source: "rolled",
+        district: "district-2",
+        type: named("locationType.criminal", "Criminal"),
+      },
+    ],
+    issued: 3,
+    app_version: "0.1.1",
+  };
+  const options = (table: string, ids: [string, string][]) => ({
+    table: named(table, table),
+    options: ids.map(([id, name]) => ({ result: named(id, name), tags: [], legal: true })),
+  });
+
+  function withLocations(mode: SessionView["mode"]): SessionView {
+    const v = view(mode, STAGES.length);
+    const i = STAGES.length;
+    v.stages.push({
+      ...stage(i, true),
+      index: i,
+      stage: named("stage.notableLocations", "Notable Locations"),
+      table: named("stage.notableLocations", "Notable Locations"),
+      options: [],
+      can_roll: true,
+      result: named("notableLocations", "4 Notable Locations"),
+      locations: {
+        record,
+        bare_minimum_buildings: true,
+        options: {
+          districts: options("City District Count", [
+            ["two", "2 Districts"],
+            ["three", "3 Districts"],
+          ]),
+          count: options("City District Notable Location Count", [
+            ["two", "2 Notable Locations"],
+            ["three", "3 Notable Locations"],
+          ]),
+          types: options("Notable Location Type", [
+            ["locationType.hospitality", "Hospitality"],
+            ["locationType.trade", "Trade / Shop"],
+            ["locationType.criminal", "Criminal"],
+          ]),
+        },
+      },
+    });
+    return v;
+  }
+
+  it("lists the guaranteed Tavern first, then each rolled location with its district", async () => {
+    g.start.mockResolvedValue(ok(withLocations("automatic")));
+    g.runAutomatic.mockResolvedValue(ok(withLocations("automatic")));
+    await openStart();
+    const sheet = await screen.findByRole("article", { name: "Generated settlement" });
+    const row = within(sheet).getByText("Notable Locations").closest(".sheet-row") as HTMLElement;
+    const items = within(row)
+      .getAllByRole("listitem")
+      .map((li) => li.textContent);
+    expect(items).toEqual([
+      "Tavern · Hospitality · 4 spare rooms",
+      "Hospitality · District 1",
+      "Trade / Shop · District 1",
+      "Criminal · District 2",
+    ]);
+    expect(within(row).getByText("2 Districts")).toBeTruthy();
+  });
+
+  it("lets counts and types be changed in one-table mode, but not the Tavern", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    const v = withLocations("one_table");
+    g.start.mockResolvedValue(ok(v));
+    g.chooseDistrictCount.mockResolvedValue(ok(v));
+    g.chooseLocationCount.mockResolvedValue(ok(v));
+    g.chooseLocationType.mockResolvedValue(ok(v));
+    g.rollLocationType.mockResolvedValue(ok(v));
+    const user = await openStart();
+    const i = STAGES.length;
+
+    await user.selectOptions(await screen.findByLabelText("District Count"), "three");
+    expect(g.chooseDistrictCount).toHaveBeenCalledWith(i, "three");
+
+    const second = screen.getByLabelText("District 2: Notable Location Count") as HTMLSelectElement;
+    // The current result is kept even though it is not offered.
+    expect(second.value).toBe("one");
+    await user.selectOptions(second, "three");
+    expect(g.chooseLocationCount).toHaveBeenCalledWith(i, 1, "three");
+
+    await user.selectOptions(screen.getByLabelText("Location 4: type"), "locationType.trade");
+    expect(g.chooseLocationType).toHaveBeenCalledWith(i, 3, "locationType.trade");
+
+    // The guaranteed Tavern has no type to choose.
+    expect(screen.queryByLabelText("Location 1: type")).toBeNull();
+    expect(screen.getByText("Added by Bare Minimum Buildings.")).toBeTruthy();
+    expect(screen.getByText("Bare Minimum Buildings: one extra Tavern is added.")).toBeTruthy();
   });
 });

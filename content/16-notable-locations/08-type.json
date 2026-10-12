@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationType",
+      "name": "Notable Location Type",
+      "description": "The broad kind of each rolled Notable Location. Subtypes are future work. Noble residences and estates belong to the future Noble system, not this table.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "locationType.hospitality",
+          "name": "Hospitality",
+          "description": "Places to stay, eat and drink: e.g. tavern, inn, eating house, boarding house.",
+          "range": [1, 3]
+        },
+        {
+          "id": "locationType.trade",
+          "name": "Trade / Shop",
+          "description": "Places that sell: e.g. general store, market, specialist merchant, apothecary.",
+          "range": [4, 6]
+        },
+        {
+          "id": "locationType.craft",
+          "name": "Craft / Workshop",
+          "description": "Places that make: e.g. smithy, carpenter, tailor, potter.",
+          "range": [7, 8]
+        },
+        {
+          "id": "locationType.religious",
+          "name": "Religious",
+          "description": "e.g. temple, shrine, monastery, sacred site.",
+          "range": [9, 10]
+        },
+        {
+          "id": "locationType.civic",
+          "name": "Civic / Government",
+          "description": "e.g. town hall, court, administrative office.",
+          "range": 11
+        },
+        {
+          "id": "locationType.military",
+          "name": "Military / Security",
+          "description": "e.g. barracks, guardhouse, fort, watch post.",
+          "range": 12
+        },
+        {
+          "id": "locationType.organisation",
+          "name": "Guild / Organisation",
+          "description": "e.g. guildhall, lodge, society headquarters.",
+          "range": 13
+        },
+        {
+          "id": "locationType.knowledge",
+          "name": "Knowledge / Education",
+          "description": "e.g. library, school, academy, archive.",
+          "range": 14
+        },
+        {
+          "id": "locationType.entertainment",
+          "name": "Entertainment",
+          "description": "e.g. theatre, arena, gambling hall, bathhouse.",
+          "range": 15
+        },
+        {
+          "id": "locationType.criminal",
+          "name": "Criminal",
+          "description": "e.g. thieves' den, smugglers' base, illicit gambling room, criminal front, black market, gang hideout, fence or other underworld operation.",
+          "range": 16
+        },
+        {
+          "id": "locationType.industry",
+          "name": "Industry / Resource",
+          "description": "e.g. mill, mine office, quarry works, warehouse, processing site.",
+          "range": [17, 18]
+        },
+        {
+          "id": "locationType.unusual",
+          "name": "Unusual / Special",
+          "description": "Locations that do not cleanly belong in another standard category.",
+          "range": [19, 20]
+        }
+      ]
+    }
+  ]
+}

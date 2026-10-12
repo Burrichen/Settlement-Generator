@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.guild.single",
+      "name": "Merchant / Guild Rule Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.guild.guildmaster",
+          "name": "Guildmaster",
+          "range": [1, 2]
+        },
+        {
+          "id": "role.guild.tradeMaster",
+          "name": "Trade Master",
+          "range": 3
+        },
+        {
+          "id": "role.guild.merchantPrincipal",
+          "name": "Merchant Principal",
+          "range": 4
+        },
+        {
+          "id": "role.guild.seniorFactor",
+          "name": "Senior Factor",
+          "range": 5
+        },
+        {
+          "id": "role.guild.representative",
+          "name": "Guild Representative",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

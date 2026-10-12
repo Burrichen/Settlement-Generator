@@ -19,6 +19,7 @@ pub enum Item {
     Presentation,
     GodMode,
     TagView,
+    BareMinimumBuildings,
     Theme,
     Tags,
     Tables,
@@ -97,6 +98,10 @@ impl SettingsScreen {
             },
             Row::item(toggle("God Mode", set.god_mode, ctx), Item::GodMode),
             Row::item(toggle("Tag View", set.tag_view, ctx), Item::TagView),
+            Row::item(
+                toggle("Bare Minimum Buildings", set.bare_minimum_buildings, ctx),
+                Item::BareMinimumBuildings,
+            ),
             Row::blank(),
             Row::info(Line::styled("CONTENT", s.dim())),
             Row::item(Line::raw("View Tags  ›"), Item::Tags),
@@ -157,6 +162,9 @@ impl SettingsScreen {
                 }
             }
             Item::GodMode => self.apply(ctx, |s| s.god_mode = !s.god_mode),
+            Item::BareMinimumBuildings => self.apply(ctx, |s| {
+                s.bare_minimum_buildings = !s.bare_minimum_buildings;
+            }),
             Item::TagView => self.apply(ctx, |s| s.tag_view = !s.tag_view),
             Item::Theme => self.apply(ctx, |s| {
                 s.theme = match s.theme {

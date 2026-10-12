@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.founderEnding",
+      "name": "Hjartheland Name: Founder Ending",
+      "description": "Founder Ending added after the founder's name. Equal starter weights.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "heim",
+          "name": "heim",
+          "range": 1
+        },
+        {
+          "id": "gard",
+          "name": "gard",
+          "range": 2
+        },
+        {
+          "id": "vik",
+          "name": "vik",
+          "range": 3
+        },
+        {
+          "id": "set",
+          "name": "set",
+          "range": 4
+        },
+        {
+          "id": "dal",
+          "name": "dal",
+          "range": 5
+        },
+        {
+          "id": "nes",
+          "name": "nes",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

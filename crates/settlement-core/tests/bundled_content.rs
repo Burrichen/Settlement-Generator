@@ -74,6 +74,34 @@ fn bundled_files_are_discovered() {
 }
 
 #[test]
+fn every_content_file_holds_at_most_one_table() {
+    fn walk(dir: &std::path::Path, out: &mut Vec<std::path::PathBuf>) {
+        for entry in std::fs::read_dir(dir).unwrap() {
+            let path = entry.unwrap().path();
+            if path.is_dir() {
+                walk(&path, out);
+            } else if path.extension().is_some_and(|e| e == "json") {
+                out.push(path);
+            }
+        }
+    }
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../content");
+    let mut files = Vec::new();
+    walk(&root, &mut files);
+    assert!(files.len() > 100, "{}", files.len());
+    for file in files {
+        let content: ContentSet =
+            serde_json::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap();
+        assert!(
+            content.tables.len() <= 1,
+            "{} has {} tables: every table has its own file",
+            file.display(),
+            content.tables.len()
+        );
+    }
+}
+
+#[test]
 fn bundled_content_has_no_errors_and_only_the_known_incomplete_items() {
     let report = validate(&content());
     assert!(!report.has_errors(), "{report}");
@@ -129,9 +157,15 @@ fn out_of_scope_tables_are_absent() {
         "Broad Character",
         "Fortress",
         "NPC",
+        "Residence / Estate",
+        "Residence",
+        "Estate",
     ] {
+        // Notable Locations are in scope; the old Location table is not.
         assert!(
-            !c.tables.iter().any(|t| t.name.contains(name)),
+            !c.tables
+                .iter()
+                .any(|t| t.name.contains(name) && !t.name.contains("Notable Location")),
             "{name} must not be a table"
         );
         assert!(
@@ -167,7 +201,10 @@ fn sequence_is_the_approved_pipeline() {
             "table.economy",
             "table.authority",
             "table.authorityRepresentation",
-            "table.authoritySize"
+            "table.authoritySize",
+            "table.security",
+            "table.crime",
+            "table.stability"
         ]
     );
 }
@@ -640,6 +677,8 @@ fn economy_modifiers_stay_planned_intents() {
             concept("opportunities", StrongIncrease),
             concept("building quality", StrongDecrease),
             concept("economic pressures", Increase),
+            concept("table.crime", StrongIncrease),
+            concept("table.stability", StrongDecrease),
         ]
     );
     assert_eq!(
@@ -647,18 +686,26 @@ fn economy_modifiers_stay_planned_intents() {
         [
             concept("opportunities", Increase),
             concept("building quality", Decrease),
+            concept("table.crime", Increase),
+            concept("table.stability", Decrease),
         ]
     );
     assert!(intents("economy.stable").is_empty());
     assert_eq!(
         intents("economy.prosperous"),
-        [concept("shops / services", Increase)]
+        [
+            concept("shops / services", Increase),
+            concept("table.crime", Increase),
+            concept("table.stability", Increase),
+        ]
     );
     assert_eq!(
         intents("economy.wealthy"),
         [
             concept("shops / services", StrongIncrease),
             concept("high-quality / notable buildings", Increase),
+            concept("table.crime", StrongIncrease),
+            concept("table.stability", Increase),
         ]
     );
 }
@@ -669,6 +716,7 @@ fn automatic_generation_rolls_economy_on_1d12() {
     let generator = Generator::new(&c).unwrap();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
+    choose_settlement_state(&mut selections);
     let expected = |face: u32| match face {
         1 => "Failing",
         2..=3 => "Struggling",
@@ -885,6 +933,7 @@ fn automatic_generation_rolls_authority_on_1d12() {
     let generator = Generator::new(&c).unwrap();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
+    choose_settlement_state(&mut selections);
     for face in 1..=12 {
         // Region, Environment, Connections, Size, Origin, Purpose, Age,
         // Economy, then Authority, then one sub-roll for some results: Size
@@ -1008,6 +1057,7 @@ fn generate_authority(faces_after_economy: &[u32]) -> GenerationLog {
     let c = content();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
+    choose_settlement_state(&mut selections);
     let mut faces = vec![1; 8];
     faces.extend_from_slice(faces_after_economy);
     let mut dice = ScriptedFaces::new(faces);
@@ -1228,7 +1278,10 @@ fn known_modifier_intentions_are_recorded_as_planned_intents() {
         intents("connection.isolated"),
         ["trade+transportWaystation", "table.economy"]
     );
-    assert_eq!(intents("purpose.trade"), ["table.economy", "guild"]);
+    assert_eq!(
+        intents("purpose.trade"),
+        ["table.economy", "guild", "locationType.trade"]
+    );
     // The "noble" concept (a guaranteed noble) and the Noble Authority result.
     assert_eq!(intents("origin.estateSeat"), ["noble", "noble"]);
     assert_eq!(intents("age.new").len(), 3);
@@ -1240,6 +1293,7 @@ fn run(profile: &str, extra: &[(&str, &str)], faces: &[u32]) -> GenerationLog {
     let c = content();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), profile.into());
+    choose_settlement_state(&mut selections);
     // Size, Economy and Authority are chosen so these tests' dice do not
     // depend on them; rolling them is covered by their own tests below.
     selections.insert("table.size".into(), "village".into());
@@ -1256,6 +1310,14 @@ fn run(profile: &str, extra: &[(&str, &str)], faces: &[u32]) -> GenerationLog {
         .unwrap();
     assert_eq!(dice.remaining(), 0, "unused dice");
     log
+}
+
+/// Chooses Security, Crime and Stability so a test's dice do not depend on
+/// them; rolling them is covered by `settlement_state.rs`.
+fn choose_settlement_state(selections: &mut Selections) {
+    selections.insert("table.security".into(), "guarded".into());
+    selections.insert("table.crime".into(), "moderate".into());
+    selections.insert("table.stability".into(), "stable".into());
 }
 
 fn result_of(log: &GenerationLog, table: &str) -> String {
@@ -1345,6 +1407,7 @@ fn other_profiles_use_generic_region_and_stop_at_undesigned_environment() {
     ] {
         let mut selections = Selections::new();
         selections.insert("table.settingProfile".into(), profile.into());
+        choose_settlement_state(&mut selections);
         selections.insert("table.size".into(), "village".into());
         let generator = Generator::new(&c).unwrap();
         // Region 9 = Coastlands from Generic Region (Horror's own table is
@@ -1382,6 +1445,7 @@ fn automatic_generation_rolls_size_on_1d10() {
     let generator = Generator::new(&c).unwrap();
     let mut selections = Selections::new();
     selections.insert("table.settingProfile".into(), "kurovia".into());
+    choose_settlement_state(&mut selections);
     // Region 1 = Ordon; Environment 1; Connections 1; then Size, Origin 1,
     // Purpose 1, Age 1, Economy 1, Authority 6 (single: no sub-rolls).
     for (face, name, tag) in [
@@ -1444,7 +1508,11 @@ fn every_stage_has_its_pipeline_name() {
             "Representation",
             "Authority Size",
             "Roles",
-            "Authority Figures"
+            "Authority Figures",
+            "Security",
+            "Crime",
+            "Stability",
+            "Notable Locations"
         ]
     );
 }

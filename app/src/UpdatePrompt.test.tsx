@@ -11,6 +11,7 @@ const settings: Settings = {
   god_mode: false,
   tag_view: false,
   theme: "modern_dark",
+  bare_minimum_buildings: false,
 };
 
 const offer: UpdateOffer = { current_version: "0.1.0", version: "0.2.0", notes: "Name generation" };

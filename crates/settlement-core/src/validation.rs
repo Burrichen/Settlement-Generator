@@ -13,7 +13,10 @@ use crate::content::{
     StepTarget, Table,
 };
 use crate::dice::{DiceExpr, DiceParseError};
-use crate::ids::{NamingSchemeId, ResultId, RoleSchemeId, TableId, TagId, VariantId, is_valid_id};
+use crate::ids::{
+    LocationSchemeId, NamingSchemeId, ResultId, RoleSchemeId, TableId, TagId, VariantId,
+    is_valid_id,
+};
 use crate::layout::Layout;
 use crate::naming::JoinStyle;
 
@@ -49,6 +52,8 @@ pub struct Location {
     pub naming_scheme: Option<NamingSchemeId>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub role_scheme: Option<RoleSchemeId>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub location_scheme: Option<LocationSchemeId>,
 }
 
 impl Location {
@@ -142,6 +147,7 @@ pub enum IdScope {
     NamingScheme,
     NamingMethod,
     RoleScheme,
+    LocationScheme,
 }
 
 impl fmt::Display for IdScope {
@@ -156,6 +162,7 @@ impl fmt::Display for IdScope {
             IdScope::NamingScheme => "naming scheme",
             IdScope::NamingMethod => "naming method for result",
             IdScope::RoleScheme => "role scheme",
+            IdScope::LocationScheme => "location scheme",
         })
     }
 }
@@ -554,6 +561,7 @@ impl<'a> Validator<'a> {
         }
         self.check_naming_schemes();
         self.check_role_schemes();
+        self.check_location_schemes();
         if content.sequence.first().is_some_and(|s| s.sub_stage) {
             self.error(
                 Location {
@@ -638,6 +646,71 @@ impl<'a> Validator<'a> {
     /// Naming schemes: unique IDs, existing tables, a method for every
     /// method-table result (and only for those), components for every
     /// method, and exceptions and possessive endings that name real results.
+    /// Location schemes: valid IDs, conditions and tables, and every result
+    /// of a count or district table has a count (`value`).
+    fn check_location_schemes(&mut self) {
+        let content = self.content;
+        let mut seen = HashSet::new();
+        for scheme in &content.location_schemes {
+            let at = Location {
+                location_scheme: Some(scheme.id.clone()),
+                ..Default::default()
+            };
+            self.check_id(scheme.id.as_str(), at.clone());
+            if !seen.insert(&scheme.id) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateId {
+                        scope: IdScope::LocationScheme,
+                        id: scheme.id.to_string(),
+                    },
+                );
+            }
+            self.check_condition(Some(&scheme.when), &at);
+            for id in std::iter::once(&scheme.count).chain(scheme.districts.as_ref()) {
+                let Some(table) = self.tables.get(id).copied() else {
+                    self.error(at.clone(), IssueKind::MissingTable { table: id.clone() });
+                    continue;
+                };
+                for result in table.results.iter().filter(|r| r.value.is_none()) {
+                    self.error(
+                        Location::table(&table.id).with_result(&result.id),
+                        IssueKind::MissingValue,
+                    );
+                }
+            }
+        }
+        // The Bare Minimum Buildings Tavern is a Hospitality location.
+        if content
+            .sequence
+            .iter()
+            .any(|s| s.target == StepTarget::NotableLocations)
+        {
+            let type_table = TableId::new(crate::locations::TYPE_TABLE);
+            match self.tables.get(&type_table).copied() {
+                None => self.error(
+                    Location::default(),
+                    IssueKind::MissingTable {
+                        table: type_table.clone(),
+                    },
+                ),
+                Some(t)
+                    if t.result(&crate::locations::HOSPITALITY_TYPE.into())
+                        .is_none() =>
+                {
+                    self.error(
+                        Location::table(&type_table),
+                        IssueKind::BrokenResultReference {
+                            table: type_table.clone(),
+                            result: crate::locations::HOSPITALITY_TYPE.into(),
+                        },
+                    );
+                }
+                Some(_) => {}
+            }
+        }
+    }
+
     fn check_role_schemes(&mut self) {
         let content = self.content;
         let mut seen = HashSet::new();

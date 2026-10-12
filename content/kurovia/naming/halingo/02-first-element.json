@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.firstElement",
+      "name": "Halingo Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "khar",
+          "name": "Khar",
+          "range": 1
+        },
+        {
+          "id": "sere",
+          "name": "Sere",
+          "range": 2
+        },
+        {
+          "id": "varr",
+          "name": "Varr",
+          "range": 3
+        },
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": 4
+        },
+        {
+          "id": "tal",
+          "name": "Tal",
+          "range": 5
+        },
+        {
+          "id": "brine",
+          "name": "Brine",
+          "range": 6
+        },
+        {
+          "id": "cinder",
+          "name": "Cinder",
+          "range": 7
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": 8
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": 9
+        },
+        {
+          "id": "mara",
+          "name": "Mara",
+          "range": 10
+        },
+        {
+          "id": "silt",
+          "name": "Silt",
+          "range": 11
+        },
+        {
+          "id": "vek",
+          "name": "Vek",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

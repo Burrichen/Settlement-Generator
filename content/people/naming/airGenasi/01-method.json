@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.airGenasi.method",
+      "name": "Air Genasi Naming Method",
+      "description": "How a Air Genasi Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "given",
+          "name": "Given name only",
+          "range": [1, 4]
+        }
+      ]
+    }
+  ]
+}

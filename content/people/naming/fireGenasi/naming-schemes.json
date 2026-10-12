@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.fireGenasi",
+      "name": "Fire Genasi names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.fireGenasi"
+      },
+      "method_table": "table.personName.fireGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.fireGenasi.given", "table.personName.fireGenasi.byname"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "byname",
+              "label": "Byname"
+            }
+          ]
+        }
+      ],
+      "description": "Fire genasi pair a given name with a byname drawn from flame and heat."
+    }
+  ]
+}

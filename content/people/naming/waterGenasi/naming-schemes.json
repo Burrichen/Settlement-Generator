@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.waterGenasi",
+      "name": "Water Genasi names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.waterGenasi"
+      },
+      "method_table": "table.personName.waterGenasi.method",
+      "methods": [
+        {
+          "result": "given",
+          "components": ["table.personName.waterGenasi.given"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ],
+      "description": "Water genasi go by a single, flowing given name."
+    }
+  ]
+}

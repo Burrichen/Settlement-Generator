@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dragonborn.given.masculine",
+      "name": "Dragonborn Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "akhoran",
+          "name": "Akhoran",
+          "range": 1
+        },
+        {
+          "id": "bazhrak",
+          "name": "Bazhrak",
+          "range": 2
+        },
+        {
+          "id": "dravkar",
+          "name": "Dravkar",
+          "range": 3
+        },
+        {
+          "id": "ghorvash",
+          "name": "Ghorvash",
+          "range": 4
+        },
+        {
+          "id": "hazrik",
+          "name": "Hazrik",
+          "range": 5
+        },
+        {
+          "id": "irrathos",
+          "name": "Irrathos",
+          "range": 6
+        },
+        {
+          "id": "jhakar",
+          "name": "Jhakar",
+          "range": 7
+        },
+        {
+          "id": "kordrav",
+          "name": "Kordrav",
+          "range": 8
+        },
+        {
+          "id": "krethos",
+          "name": "Krethos",
+          "range": 9
+        },
+        {
+          "id": "mazhur",
+          "name": "Mazhur",
+          "range": 10
+        },
+        {
+          "id": "norvash",
+          "name": "Norvash",
+          "range": 11
+        },
+        {
+          "id": "orrak",
+          "name": "Orrak",
+          "range": 12
+        },
+        {
+          "id": "rhazrek",
+          "name": "Rhazrek",
+          "range": 13
+        },
+        {
+          "id": "skarvon",
+          "name": "Skarvon",
+          "range": 14
+        },
+        {
+          "id": "tharnok",
+          "name": "Tharnok",
+          "range": 15
+        },
+        {
+          "id": "turrask",
+          "name": "Turrask",
+          "range": 16
+        },
+        {
+          "id": "vazhor",
+          "name": "Vazhor",
+          "range": 17
+        },
+        {
+          "id": "vrekkar",
+          "name": "Vrekkar",
+          "range": 18
+        },
+        {
+          "id": "xarthos",
+          "name": "Xarthos",
+          "range": 19
+        },
+        {
+          "id": "zorvath",
+          "name": "Zorvath",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

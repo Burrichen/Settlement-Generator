@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.secondElement",
+      "name": "Hjartheland Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "vik",
+          "name": "vik",
+          "range": 1
+        },
+        {
+          "id": "heim",
+          "name": "heim",
+          "range": 2
+        },
+        {
+          "id": "dal",
+          "name": "dal",
+          "range": 3
+        },
+        {
+          "id": "berg",
+          "name": "berg",
+          "range": 4
+        },
+        {
+          "id": "nes",
+          "name": "nes",
+          "range": 5
+        },
+        {
+          "id": "gard",
+          "name": "gard",
+          "range": 6
+        },
+        {
+          "id": "havn",
+          "name": "havn",
+          "range": 7
+        },
+        {
+          "id": "lund",
+          "name": "lund",
+          "range": 8
+        },
+        {
+          "id": "fjord",
+          "name": "fjord",
+          "range": 9
+        },
+        {
+          "id": "set",
+          "name": "set",
+          "range": 10
+        },
+        {
+          "id": "holt",
+          "name": "holt",
+          "range": 11
+        },
+        {
+          "id": "fell",
+          "name": "fell",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

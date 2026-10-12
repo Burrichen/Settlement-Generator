@@ -106,6 +106,7 @@ fn settings_round_trip() {
         god_mode: true,
         tag_view: true,
         theme: Theme::OldTimeyDark,
+        bare_minimum_buildings: true,
     };
     db.save_settings(&wanted).unwrap();
     assert_eq!(db.load_settings().unwrap(), wanted);

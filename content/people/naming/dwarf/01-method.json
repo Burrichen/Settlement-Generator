@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dwarf.method",
+      "name": "Dwarf Naming Method",
+      "description": "How a Dwarf Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + clan name",
+          "range": [1, 4]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.skgurr",
+      "name": "Kurovia Environment: Skgurr",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "coast",
+          "name": "Coast",
+          "range": [1, 7],
+          "tags": ["env.coast"]
+        },
+        {
+          "id": "hills",
+          "name": "Hills",
+          "range": [8, 13],
+          "tags": ["env.hills"]
+        },
+        {
+          "id": "moorlandHeath",
+          "name": "Moorland / Heath",
+          "range": [14, 17],
+          "tags": ["env.moorlandHeath"]
+        },
+        {
+          "id": "wetlands",
+          "name": "Wetlands",
+          "range": [18, 20],
+          "tags": ["env.wetlands"]
+        }
+      ]
+    }
+  ]
+}

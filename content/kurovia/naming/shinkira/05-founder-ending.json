@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.shinkira.founderEnding",
+      "name": "Shinkira Name: Founder Element",
+      "description": "Founder Element added after the founder's name. Equal starter weights.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "mura",
+          "name": "mura",
+          "range": 1
+        },
+        {
+          "id": "sato",
+          "name": "sato",
+          "range": 2
+        },
+        {
+          "id": "shinden",
+          "name": "shinden",
+          "range": 3
+        },
+        {
+          "id": "machi",
+          "name": "machi",
+          "range": 4
+        },
+        {
+          "id": "yashiki",
+          "name": "yashiki",
+          "range": 5
+        },
+        {
+          "id": "shiro",
+          "name": "shiro",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

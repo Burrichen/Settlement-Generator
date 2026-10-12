@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.gender",
+      "name": "Authority Figure Gender",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "man",
+          "name": "Man",
+          "range": [1, 9],
+          "tags": ["gender.man"]
+        },
+        {
+          "id": "woman",
+          "name": "Woman",
+          "range": [10, 18],
+          "tags": ["gender.woman"]
+        },
+        {
+          "id": "nonBinary",
+          "name": "Non-binary",
+          "range": [19, 20],
+          "tags": ["gender.nonBinary"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "gender.man",
+      "name": "Man"
+    },
+    {
+      "id": "gender.woman",
+      "name": "Woman"
+    },
+    {
+      "id": "gender.nonBinary",
+      "name": "Non-binary"
+    }
+  ]
+}

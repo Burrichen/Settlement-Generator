@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.ordon",
+      "name": "Kurovia Environment: Ordon",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "farmlandOpenCountry",
+          "name": "Farmland & Open Country",
+          "range": [1, 5],
+          "tags": ["env.farmlandOpenCountry"]
+        },
+        {
+          "id": "grasslandPlains",
+          "name": "Grassland / Plains",
+          "range": [6, 8],
+          "tags": ["env.grasslandPlains"]
+        },
+        {
+          "id": "woodland",
+          "name": "Woodland",
+          "range": [9, 11],
+          "tags": ["env.woodland"]
+        },
+        {
+          "id": "moorlandHeath",
+          "name": "Moorland / Heath",
+          "range": 12,
+          "tags": ["env.moorlandHeath"]
+        },
+        {
+          "id": "hills",
+          "name": "Hills",
+          "range": [13, 14],
+          "tags": ["env.hills"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": [15, 16],
+          "tags": ["env.mountains"]
+        },
+        {
+          "id": "wetlands",
+          "name": "Wetlands",
+          "range": [17, 18],
+          "tags": ["env.wetlands"]
+        },
+        {
+          "id": "coast",
+          "name": "Coast",
+          "range": [19, 20],
+          "tags": ["env.coast"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.farmlandOpenCountry",
+      "name": "Farmland & Open Country",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["agriculture"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Farmland increases Agriculture. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "env.grasslandPlains",
+      "name": "Grassland / Plains"
+    },
+    {
+      "id": "env.woodland",
+      "name": "Woodland",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["forestry"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Woodland increases Forestry. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "env.moorlandHeath",
+      "name": "Moorland / Heath"
+    },
+    {
+      "id": "env.hills",
+      "name": "Hills"
+    },
+    {
+      "id": "env.mountains",
+      "name": "Mountains",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["resourceExtraction"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Mountains increase Resource Extraction. Exact dice change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "env.wetlands",
+      "name": "Wetlands"
+    },
+    {
+      "id": "env.coast",
+      "name": "Coast",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["fishing"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Coast increases Fishing. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["trade"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Coast increases Trade. Exact dice change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.purpose",
+          "results": ["transportWaystation"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Coast increases Transport / Waystation. Exact dice change not yet approved."
+        }
+      ]
+    }
+  ]
+}

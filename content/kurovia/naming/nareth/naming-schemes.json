@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.nareth",
+      "name": "Nareth",
+      "description": "Names for settlements in the Kurovian region of Nareth. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.nareth"
+          }
+        ]
+      },
+      "method_table": "table.naming.nareth.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.nareth.firstElement", "table.naming.nareth.secondElement"],
+          "join": {
+            "style": "compound",
+            "replacements": []
+          }
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.nareth.founder", "table.naming.nareth.founderEnding"],
+          "join": {
+            "style": "compound",
+            "replacements": []
+          }
+        }
+      ]
+    }
+  ]
+}

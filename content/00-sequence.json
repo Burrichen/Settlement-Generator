@@ -15,6 +15,10 @@
     { "table": "table.authorityRepresentation", "name": "Representation", "sub_stage": true },
     { "table": "table.authoritySize", "name": "Authority Size", "sub_stage": true },
     { "authority_roles": true, "name": "Roles", "sub_stage": true },
-    { "authority_figures": true, "name": "Authority Figures" }
+    { "authority_figures": true, "name": "Authority Figures" },
+    { "table": "table.security", "name": "Security" },
+    { "table": "table.crime", "name": "Crime" },
+    { "table": "table.stability", "name": "Stability" },
+    { "notable_locations": true, "name": "Notable Locations" }
   ]
 }

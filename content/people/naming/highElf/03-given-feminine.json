@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.highElf.given.feminine",
+      "name": "High Elf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aelindra",
+          "name": "Aelindra",
+          "range": 1
+        },
+        {
+          "id": "caelith",
+          "name": "Caelith",
+          "range": 2
+        },
+        {
+          "id": "elysara",
+          "name": "Elysara",
+          "range": 3
+        },
+        {
+          "id": "faelyse",
+          "name": "Faelyse",
+          "range": 4
+        },
+        {
+          "id": "ilsarae",
+          "name": "Ilsarae",
+          "range": 5
+        },
+        {
+          "id": "ithriel",
+          "name": "Ithriel",
+          "range": 6
+        },
+        {
+          "id": "laelith",
+          "name": "Laelith",
+          "range": 7
+        },
+        {
+          "id": "lirenna",
+          "name": "Lirenna",
+          "range": 8
+        },
+        {
+          "id": "maerisel",
+          "name": "Maerisel",
+          "range": 9
+        },
+        {
+          "id": "nimrael",
+          "name": "Nimrael",
+          "range": 10
+        },
+        {
+          "id": "orisande",
+          "name": "Orisande",
+          "range": 11
+        },
+        {
+          "id": "quellith",
+          "name": "Quellith",
+          "range": 12
+        },
+        {
+          "id": "saerys",
+          "name": "Saerys",
+          "range": 13
+        },
+        {
+          "id": "sylmerel",
+          "name": "Sylmerel",
+          "range": 14
+        },
+        {
+          "id": "taelira",
+          "name": "Taelira",
+          "range": 15
+        },
+        {
+          "id": "thessaria",
+          "name": "Thessaria",
+          "range": 16
+        },
+        {
+          "id": "vaelora",
+          "name": "Vaelora",
+          "range": 17
+        },
+        {
+          "id": "velisande",
+          "name": "Velisande",
+          "range": 18
+        },
+        {
+          "id": "yrenna",
+          "name": "Yrenna",
+          "range": 19
+        },
+        {
+          "id": "zylenna",
+          "name": "Zylenna",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

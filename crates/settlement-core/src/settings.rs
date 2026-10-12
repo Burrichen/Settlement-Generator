@@ -41,6 +41,10 @@ pub struct Settings {
     pub god_mode: bool,
     /// Show applied tags during generation and in saved settlements.
     pub tag_view: bool,
+    /// Every settlement gets one extra Notable Location: a Tavern with 4
+    /// spare rooms. See [`GenerationOptions`].
+    #[serde(default)]
+    pub bare_minimum_buildings: bool,
     pub theme: Theme,
 }
 
@@ -90,6 +94,7 @@ impl Settings {
     pub fn generation_options(&self) -> GenerationOptions {
         GenerationOptions {
             god_mode: self.god_mode,
+            bare_minimum_buildings: self.bare_minimum_buildings,
         }
     }
 }
@@ -153,6 +158,7 @@ mod tests {
             god_mode: true,
             tag_view: true,
             theme: Theme::OldTimeyDark,
+            bare_minimum_buildings: true,
         })
         .unwrap();
         assert_eq!(
@@ -162,7 +168,8 @@ mod tests {
                 "generation_presentation": "one_table",
                 "god_mode": true,
                 "tag_view": true,
-                "theme": "old_timey_dark"
+                "theme": "old_timey_dark",
+                "bare_minimum_buildings": true
             })
         );
     }

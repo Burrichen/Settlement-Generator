@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.method",
+      "name": "Ordon Naming Method",
+      "description": "Which naming method an Ordon settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%).",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element, in restrained Old English / medieval British style, e.g. Alderwick.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "A founder's name + a settlement ending, possessive where English place names are, e.g. Godwinsbury.",
+          "range": [8, 10]
+        }
+      ]
+    }
+  ]
+}

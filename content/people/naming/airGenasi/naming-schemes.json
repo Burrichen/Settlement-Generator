@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.airGenasi",
+      "name": "Air Genasi names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.airGenasi"
+      },
+      "method_table": "table.personName.airGenasi.method",
+      "methods": [
+        {
+          "result": "given",
+          "components": ["table.personName.airGenasi.given"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ],
+      "description": "Air genasi go by a single, light given name."
+    }
+  ]
+}

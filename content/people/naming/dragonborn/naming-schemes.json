@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.dragonborn.masculine",
+      "name": "Dragonborn names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.dragonborn"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.dragonborn.method",
+      "methods": [
+        {
+          "result": "givenClan",
+          "components": [
+            "table.personName.dragonborn.given.masculine",
+            "table.personName.dragonborn.clan"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "clan",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "clanGiven",
+          "components": [
+            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.given.masculine"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "clan",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.dragonborn.feminine",
+      "name": "Dragonborn names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.dragonborn"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.dragonborn.method",
+      "methods": [
+        {
+          "result": "givenClan",
+          "components": [
+            "table.personName.dragonborn.given.feminine",
+            "table.personName.dragonborn.clan"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "clan",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "clanGiven",
+          "components": [
+            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.given.feminine"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "clan",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.dragonborn.neutral",
+      "name": "Dragonborn names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.dragonborn"
+      },
+      "method_table": "table.personName.dragonborn.method",
+      "methods": [
+        {
+          "result": "givenClan",
+          "components": [
+            "table.personName.dragonborn.given.neutral",
+            "table.personName.dragonborn.clan"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "clan",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "clanGiven",
+          "components": [
+            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.given.neutral"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "clan",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "location_schemes": [
+    {
+      "id": "locations.tradingPost",
+      "name": "Trading Post Notable Locations",
+      "when": {
+        "has_tag": "size.tradingPost"
+      },
+      "count": "table.notableLocationCount.tradingPost"
+    },
+    {
+      "id": "locations.village",
+      "name": "Village Notable Locations",
+      "when": {
+        "has_tag": "size.village"
+      },
+      "count": "table.notableLocationCount.village"
+    },
+    {
+      "id": "locations.town",
+      "name": "Town Notable Locations",
+      "when": {
+        "has_tag": "size.town"
+      },
+      "count": "table.notableLocationCount.town"
+    },
+    {
+      "id": "locations.city",
+      "name": "City Notable Locations",
+      "when": {
+        "has_tag": "size.city"
+      },
+      "count": "table.notableLocationCount.cityDistrict",
+      "districts": "table.districtCount.city"
+    },
+    {
+      "id": "locations.capital",
+      "name": "Capital Notable Locations",
+      "when": {
+        "has_tag": "size.capital"
+      },
+      "count": "table.notableLocationCount.capitalDistrict",
+      "districts": "table.districtCount.capital"
+    }
+  ]
+}

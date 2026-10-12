@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.environment",
+      "name": "Environment",
+      "description": "Environment stage. Each Kurovia region tag redirects this stage to that region's Kurovia Environment table.",
+      "status": "incomplete",
+      "status_note": "Environment content exists only for Kurovia regions. Environment for other regions has not been designed."
+    }
+  ]
+}

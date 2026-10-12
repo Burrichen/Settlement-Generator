@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.religious.single",
+      "name": "Religious Authority Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.religious.highPriest",
+          "name": "High Priest / High Priestess",
+          "range": [1, 2],
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "High Priest"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "High Priestess"
+            }
+          ]
+        },
+        {
+          "id": "role.religious.abbot",
+          "name": "Abbot / Abbess",
+          "range": 3,
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "Abbot"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "Abbess"
+            }
+          ]
+        },
+        {
+          "id": "role.religious.prior",
+          "name": "Prior / Prioress",
+          "range": 4,
+          "label_variants": [
+            {
+              "tag": "gender.man",
+              "name": "Prior"
+            },
+            {
+              "tag": "gender.woman",
+              "name": "Prioress"
+            }
+          ]
+        },
+        {
+          "id": "role.religious.templeKeeper",
+          "name": "Temple Keeper",
+          "range": 5
+        },
+        {
+          "id": "role.religious.spiritualSteward",
+          "name": "Spiritual Steward",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

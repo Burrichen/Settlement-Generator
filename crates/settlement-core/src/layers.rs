@@ -395,6 +395,7 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         // their method and component tables.
         naming_schemes: bundled.naming_schemes.clone(),
         role_schemes: bundled.role_schemes.clone(),
+        location_schemes: bundled.location_schemes.clone(),
     };
     if overrides.format_version != OVERRIDES_FORMAT_VERSION {
         issues.push(ValidationIssue::new(

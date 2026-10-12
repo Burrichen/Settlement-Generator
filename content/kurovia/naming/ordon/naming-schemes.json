@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.ordon",
+      "name": "Ordon",
+      "description": "Names for settlements in the Kurovian region of Ordon.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.ordon"
+          }
+        ]
+      },
+      "method_table": "table.naming.ordon.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.ordon.firstElement", "table.naming.ordon.secondElement"],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": [
+            {
+              "results": ["ash", "ham"],
+              "name": "Asham"
+            },
+            {
+              "results": ["ash", "hurst"],
+              "name": "Ashurst"
+            }
+          ]
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.ordon.founder", "table.naming.ordon.founderEnding"],
+          "join": {
+            "style": "possessive",
+            "suffix": "s",
+            "before": ["bury", "stead", "worth"]
+          }
+        }
+      ]
+    }
+  ]
+}

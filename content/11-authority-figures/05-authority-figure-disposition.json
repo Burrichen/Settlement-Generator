@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.disposition",
+      "name": "Authority Figure Disposition",
+      "description": "Their default interpersonal manner. Separate from Reputation.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "hostile",
+          "name": "Hostile",
+          "range": 1
+        },
+        {
+          "id": "suspicious",
+          "name": "Suspicious",
+          "range": [2, 3]
+        },
+        {
+          "id": "reserved",
+          "name": "Reserved",
+          "range": [4, 5]
+        },
+        {
+          "id": "neutral",
+          "name": "Neutral",
+          "range": [6, 7]
+        },
+        {
+          "id": "courteous",
+          "name": "Courteous",
+          "range": [8, 9]
+        },
+        {
+          "id": "friendly",
+          "name": "Friendly",
+          "range": [10, 11]
+        },
+        {
+          "id": "warm",
+          "name": "Warm",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.elders.member",
+      "name": "Elders / Community Leaders Member Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.elders.elder",
+          "name": "Elder",
+          "range": [1, 4]
+        },
+        {
+          "id": "role.elders.communityRepresentative",
+          "name": "Community Representative",
+          "range": 5
+        },
+        {
+          "id": "role.elders.seniorElder",
+          "name": "Senior Elder",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

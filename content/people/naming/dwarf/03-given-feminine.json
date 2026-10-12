@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dwarf.given.feminine",
+      "name": "Dwarf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "arnhild",
+          "name": "Arnhild",
+          "range": 1
+        },
+        {
+          "id": "bergit",
+          "name": "Bergit",
+          "range": 2
+        },
+        {
+          "id": "brunna",
+          "name": "Brunna",
+          "range": 3
+        },
+        {
+          "id": "dagrun",
+          "name": "Dagrun",
+          "range": 4
+        },
+        {
+          "id": "eldra",
+          "name": "Eldra",
+          "range": 5
+        },
+        {
+          "id": "fryda",
+          "name": "Fryda",
+          "range": 6
+        },
+        {
+          "id": "gunvor",
+          "name": "Gunvor",
+          "range": 7
+        },
+        {
+          "id": "hildra",
+          "name": "Hildra",
+          "range": 8
+        },
+        {
+          "id": "ingred",
+          "name": "Ingred",
+          "range": 9
+        },
+        {
+          "id": "jorunn",
+          "name": "Jorunn",
+          "range": 10
+        },
+        {
+          "id": "kelda",
+          "name": "Kelda",
+          "range": 11
+        },
+        {
+          "id": "margrun",
+          "name": "Margrun",
+          "range": 12
+        },
+        {
+          "id": "nolda",
+          "name": "Nolda",
+          "range": 13
+        },
+        {
+          "id": "orvild",
+          "name": "Orvild",
+          "range": 14
+        },
+        {
+          "id": "ragnil",
+          "name": "Ragnil",
+          "range": 15
+        },
+        {
+          "id": "sigrun",
+          "name": "Sigrun",
+          "range": 16
+        },
+        {
+          "id": "thora",
+          "name": "Thora",
+          "range": 17
+        },
+        {
+          "id": "ulvra",
+          "name": "Ulvra",
+          "range": 18
+        },
+        {
+          "id": "vigdis",
+          "name": "Vigdis",
+          "range": 19
+        },
+        {
+          "id": "ylva",
+          "name": "Ylva",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

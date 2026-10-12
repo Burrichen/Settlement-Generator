@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.secondElement",
+      "name": "Bratislor Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "grad",
+          "name": "grad",
+          "range": 1
+        },
+        {
+          "id": "ovo",
+          "name": "ovo",
+          "range": 2
+        },
+        {
+          "id": "ine",
+          "name": "ine",
+          "range": 3
+        },
+        {
+          "id": "ava",
+          "name": "ava",
+          "range": 4
+        },
+        {
+          "id": "pol",
+          "name": "pol",
+          "range": 5
+        },
+        {
+          "id": "nik",
+          "name": "nik",
+          "range": 6
+        },
+        {
+          "id": "ic",
+          "name": "ic",
+          "range": 7
+        },
+        {
+          "id": "gora",
+          "name": "gora",
+          "range": 8
+        },
+        {
+          "id": "dol",
+          "name": "dol",
+          "range": 9
+        },
+        {
+          "id": "ska",
+          "name": "ska",
+          "range": 10
+        },
+        {
+          "id": "ova",
+          "name": "ova",
+          "range": 11
+        },
+        {
+          "id": "ost",
+          "name": "ost",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

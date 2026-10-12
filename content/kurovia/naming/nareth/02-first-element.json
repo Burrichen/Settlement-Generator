@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.firstElement",
+      "name": "Nareth Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "va",
+          "name": "Va",
+          "range": 1
+        },
+        {
+          "id": "saq",
+          "name": "Saq",
+          "range": 2
+        },
+        {
+          "id": "naro",
+          "name": "Naro",
+          "range": 3
+        },
+        {
+          "id": "tal",
+          "name": "Tal",
+          "range": 4
+        },
+        {
+          "id": "iru",
+          "name": "Iru",
+          "range": 5
+        },
+        {
+          "id": "kori",
+          "name": "Kori",
+          "range": 6
+        },
+        {
+          "id": "mara",
+          "name": "Mara",
+          "range": 7
+        },
+        {
+          "id": "isha",
+          "name": "Isha",
+          "range": 8
+        },
+        {
+          "id": "eru",
+          "name": "Eru",
+          "range": 9
+        },
+        {
+          "id": "nema",
+          "name": "Nema",
+          "range": 10
+        },
+        {
+          "id": "varu",
+          "name": "Varu",
+          "range": 11
+        },
+        {
+          "id": "luma",
+          "name": "Luma",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

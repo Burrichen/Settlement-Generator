@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.firbolg",
+      "name": "Firbolg names",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.firbolg"
+      },
+      "method_table": "table.personName.firbolg.method",
+      "methods": [
+        {
+          "result": "given",
+          "components": ["table.personName.firbolg.given"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        }
+      ],
+      "description": "Firbolgs go by a single name."
+    }
+  ]
+}

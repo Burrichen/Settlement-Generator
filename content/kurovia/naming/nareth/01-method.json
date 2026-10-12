@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.method",
+      "name": "Nareth Naming Method",
+      "description": "Which naming method a Nareth settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Placeholder starter sounds awaiting editorial work: not established Nareth vocabulary, and no meanings are implied.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "Two starter sounds joined directly, e.g. Naroneth, Korivai.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "A founder name joined directly to an ending, e.g. Talarien, Ivaramar.",
+          "range": [8, 10]
+        }
+      ]
+    }
+  ]
+}

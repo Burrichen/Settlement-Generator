@@ -225,7 +225,10 @@ fn relationship_is_a_d10_without_tense_or_deep_admiration() {
 fn session(c: ContentSet, god_mode: bool) -> GenerationSession {
     GenerationSession::new(
         Arc::new(c),
-        GenerationOptions { god_mode },
+        GenerationOptions {
+            god_mode,
+            ..Default::default()
+        },
         GenerationMode::OneTable,
     )
     .unwrap()

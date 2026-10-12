@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.human.given.feminine",
+      "name": "Human Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "adelis",
+          "name": "Adelis",
+          "range": 1
+        },
+        {
+          "id": "brisa",
+          "name": "Brisa",
+          "range": 2
+        },
+        {
+          "id": "cressa",
+          "name": "Cressa",
+          "range": 3
+        },
+        {
+          "id": "dovenna",
+          "name": "Dovenna",
+          "range": 4
+        },
+        {
+          "id": "elsabet",
+          "name": "Elsabet",
+          "range": 5
+        },
+        {
+          "id": "fenna",
+          "name": "Fenna",
+          "range": 6
+        },
+        {
+          "id": "gisela",
+          "name": "Gisela",
+          "range": 7
+        },
+        {
+          "id": "hesper",
+          "name": "Hesper",
+          "range": 8
+        },
+        {
+          "id": "imogen",
+          "name": "Imogen",
+          "range": 9
+        },
+        {
+          "id": "jessamy",
+          "name": "Jessamy",
+          "range": 10
+        },
+        {
+          "id": "kerra",
+          "name": "Kerra",
+          "range": 11
+        },
+        {
+          "id": "linnet",
+          "name": "Linnet",
+          "range": 12
+        },
+        {
+          "id": "mila",
+          "name": "Mila",
+          "range": 13
+        },
+        {
+          "id": "nessaly",
+          "name": "Nessaly",
+          "range": 14
+        },
+        {
+          "id": "oriel",
+          "name": "Oriel",
+          "range": 15
+        },
+        {
+          "id": "petra",
+          "name": "Petra",
+          "range": 16
+        },
+        {
+          "id": "rosamel",
+          "name": "Rosamel",
+          "range": 17
+        },
+        {
+          "id": "sabeth",
+          "name": "Sabeth",
+          "range": 18
+        },
+        {
+          "id": "tamsin",
+          "name": "Tamsin",
+          "range": 19
+        },
+        {
+          "id": "veska",
+          "name": "Veska",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.targoth.method",
+      "name": "Targoth Naming Method",
+      "description": "Which naming method a Targoth settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Old, austere and durable names of high, remote and partly abandoned mountain country.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element as one word, e.g. Karhold, Skarnwatch.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "Founder's name + 's + a settlement feature, e.g. Varok's Gate, Thren's Watch.",
+          "range": [8, 10]
+        }
+      ]
+    }
+  ]
+}

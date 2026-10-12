@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.age",
+      "name": "Authority Figure Age",
+      "description": "Broad life stage, not a number of years. Species-agnostic for now.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "youngAdult",
+          "name": "Young Adult",
+          "range": 1
+        },
+        {
+          "id": "adult",
+          "name": "Adult",
+          "range": [2, 5]
+        },
+        {
+          "id": "middleAged",
+          "name": "Middle-aged",
+          "range": [6, 9]
+        },
+        {
+          "id": "older",
+          "name": "Older",
+          "range": [10, 11]
+        },
+        {
+          "id": "elderly",
+          "name": "Elderly",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

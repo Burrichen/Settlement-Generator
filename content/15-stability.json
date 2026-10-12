@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.stability",
+      "name": "Stability",
+      "description": "How socially and politically settled, cohesive and resistant to internal unrest the settlement is, least to most. Not the same as Crime, Security or the kind of Authority. The extremes are rarer.",
+      "dice": "1d12",
+      "ordered": true,
+      "results": [
+        {
+          "id": "volatile",
+          "name": "Volatile",
+          "range": 1,
+          "tags": ["stability.volatile"]
+        },
+        {
+          "id": "unsettled",
+          "name": "Unsettled",
+          "range": [2, 4],
+          "tags": ["stability.unsettled"]
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": [5, 8],
+          "tags": ["stability.stable"]
+        },
+        {
+          "id": "cohesive",
+          "name": "Cohesive",
+          "range": [9, 11],
+          "tags": ["stability.cohesive"]
+        },
+        {
+          "id": "unified",
+          "name": "Unified",
+          "range": 12,
+          "tags": ["stability.unified"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "stability.volatile",
+      "name": "Volatile",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Volatile: Opportunities strongly increase. Destination table not yet present. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "stability.unsettled",
+      "name": "Unsettled",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "increase",
+          "status": "planned",
+          "note": "Unsettled: Opportunities increase. Destination table not yet present. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "stability.stable",
+      "name": "Stable"
+    },
+    {
+      "id": "stability.cohesive",
+      "name": "Cohesive"
+    },
+    {
+      "id": "stability.unified",
+      "name": "Unified"
+    }
+  ]
+}

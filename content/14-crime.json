@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.crime",
+      "name": "Crime",
+      "description": "The overall prevalence of criminal activity, least to most. The extremes are rarer.",
+      "dice": "1d12",
+      "ordered": true,
+      "results": [
+        {
+          "id": "minimal",
+          "name": "Minimal",
+          "range": 1,
+          "tags": ["crime.minimal"]
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "range": [2, 4],
+          "tags": ["crime.low"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [5, 8],
+          "tags": ["crime.moderate"]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [9, 11],
+          "tags": ["crime.high"]
+        },
+        {
+          "id": "rampant",
+          "name": "Rampant",
+          "range": 12,
+          "tags": ["crime.rampant"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "crime.minimal",
+      "name": "Minimal",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "increase",
+          "status": "planned",
+          "note": "Minimal Crime: Stability increases. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "crime.low",
+      "name": "Low",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "increase",
+          "status": "planned",
+          "note": "Low Crime: Stability increases. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "crime.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "crime.high",
+      "name": "High",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "decrease",
+          "status": "planned",
+          "note": "High Crime: Stability decreases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "pressures",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: pressures increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: opportunities increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "criminal organisations / factions",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: criminal organisations / factions increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "demand for guards / security",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: demand for guards / security increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "crime-related noticeboard jobs",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: crime-related noticeboard jobs increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "crime-related buildings / services",
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: crime-related buildings / services increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.criminal"],
+          "change": "increase",
+          "status": "planned",
+          "note": "High Crime: Criminal locations more likely. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "crime.rampant",
+      "name": "Rampant",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "strong_decrease",
+          "status": "planned",
+          "note": "Rampant Crime: Stability strongly decreases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "pressures",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: pressures increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "opportunities",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: opportunities increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "criminal organisations / factions",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: criminal organisations / factions increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "demand for guards / security",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: demand for guards / security increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "crime-related noticeboard jobs",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: crime-related noticeboard jobs increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "concept": "crime-related buildings / services",
+          "change": "increase",
+          "status": "planned",
+          "note": "Rampant Crime: crime-related buildings / services increase. Destination system not yet present. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.criminal"],
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Rampant Crime: Criminal locations much more likely. Exact change not yet approved."
+        }
+      ]
+    }
+  ]
+}

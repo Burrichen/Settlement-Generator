@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.darkElf.house",
+      "name": "Dark Elf House names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aelvrith",
+          "name": "Aelvrith",
+          "range": 1
+        },
+        {
+          "id": "bhazrae",
+          "name": "Bhazrae",
+          "range": 2
+        },
+        {
+          "id": "chrysvel",
+          "name": "Chrysvel",
+          "range": 3
+        },
+        {
+          "id": "dhuurn",
+          "name": "Dhuurn",
+          "range": 4
+        },
+        {
+          "id": "elzaryn",
+          "name": "Elzaryn",
+          "range": 5
+        },
+        {
+          "id": "ghelvrae",
+          "name": "Ghelvrae",
+          "range": 6
+        },
+        {
+          "id": "illzhyr",
+          "name": "Illzhyr",
+          "range": 7
+        },
+        {
+          "id": "jhalvarr",
+          "name": "Jhalvarr",
+          "range": 8
+        },
+        {
+          "id": "kharzith",
+          "name": "Kharzith",
+          "range": 9
+        },
+        {
+          "id": "lhurvain",
+          "name": "Lhurvain",
+          "range": 10
+        },
+        {
+          "id": "mhezzarin",
+          "name": "Mhezzarin",
+          "range": 11
+        },
+        {
+          "id": "nhaevryl",
+          "name": "Nhaevryl",
+          "range": 12
+        },
+        {
+          "id": "olvazhar",
+          "name": "Olvazhar",
+          "range": 13
+        },
+        {
+          "id": "phyrrith",
+          "name": "Phyrrith",
+          "range": 14
+        },
+        {
+          "id": "quarzael",
+          "name": "Quarzael",
+          "range": 15
+        },
+        {
+          "id": "rhyvenn",
+          "name": "Rhyvenn",
+          "range": 16
+        },
+        {
+          "id": "szoldarr",
+          "name": "Szoldarr",
+          "range": 17
+        },
+        {
+          "id": "tlazhyr",
+          "name": "Tlazhyr",
+          "range": 18
+        },
+        {
+          "id": "vhurnoth",
+          "name": "Vhurnoth",
+          "range": 19
+        },
+        {
+          "id": "zhaurvex",
+          "name": "Zhaurvex",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

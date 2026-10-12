@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.founder",
+      "name": "Hjartheland Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "eirik",
+          "name": "Eirik",
+          "range": 1
+        },
+        {
+          "id": "signe",
+          "name": "Signe",
+          "range": 2
+        },
+        {
+          "id": "astrid",
+          "name": "Astrid",
+          "range": 3
+        },
+        {
+          "id": "torvald",
+          "name": "Torvald",
+          "range": 4
+        },
+        {
+          "id": "hakon",
+          "name": "Hakon",
+          "range": 5
+        },
+        {
+          "id": "runa",
+          "name": "Runa",
+          "range": 6
+        },
+        {
+          "id": "halvor",
+          "name": "Halvor",
+          "range": 7
+        },
+        {
+          "id": "yrsa",
+          "name": "Yrsa",
+          "range": 8
+        },
+        {
+          "id": "sigrun",
+          "name": "Sigrun",
+          "range": 9
+        },
+        {
+          "id": "alva",
+          "name": "Alva",
+          "range": 10
+        },
+        {
+          "id": "jorund",
+          "name": "Jorund",
+          "range": 11
+        },
+        {
+          "id": "leif",
+          "name": "Leif",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

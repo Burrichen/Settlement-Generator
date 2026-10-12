@@ -14,6 +14,7 @@ use crate::authority::AuthorityRepresentatives;
 use crate::engine::{GenerationEvent, GenerationLog, Named};
 use crate::figures::AuthorityFigures;
 use crate::ids::{ResultId, TableId, TagId};
+use crate::locations::NotableLocations;
 use crate::naming::NameRecord;
 use crate::roles::RoleAllocation;
 
@@ -88,6 +89,10 @@ pub struct SnapshotStage {
     /// [`SequenceStep::sub_stage`](crate::content::SequenceStep::sub_stage)).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub sub_stage: bool,
+    /// The Notable Locations stage's record (only on that stage): counts,
+    /// districts and every location with its rolls and source.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub locations: Option<NotableLocations>,
     /// The Role Allocation stage's record (only on that stage): every role,
     /// lead first, with its roll and any unique-role fallback.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -112,6 +117,11 @@ impl From<GenerationLog> for SettlementSnapshot {
 }
 
 impl SettlementSnapshot {
+    /// The Notable Locations, as generated.
+    pub fn notable_locations(&self) -> Option<&NotableLocations> {
+        self.stages.iter().find_map(|s| s.locations.as_ref())
+    }
+
     /// The roles allocated to the Authority Figures, as allocated.
     pub fn authority_roles(&self) -> Option<&RoleAllocation> {
         self.stages.iter().find_map(|s| s.roles.as_ref())
@@ -152,6 +162,7 @@ impl SettlementSnapshot {
                         sub_stage: false,
                         figures: None,
                         roles: None,
+                        locations: None,
                         name: None,
                     })
                 }

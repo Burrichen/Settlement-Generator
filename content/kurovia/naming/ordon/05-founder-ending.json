@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.founderEnding",
+      "name": "Ordon Name: Founder Ending",
+      "description": "Settlement ending added to a founder's name.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ton",
+          "name": "ton",
+          "range": [1, 3]
+        },
+        {
+          "id": "ham",
+          "name": "ham",
+          "range": [4, 5]
+        },
+        {
+          "id": "bury",
+          "name": "bury",
+          "range": [6, 7]
+        },
+        {
+          "id": "stead",
+          "name": "stead",
+          "range": [8, 9]
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": 10
+        },
+        {
+          "id": "worth",
+          "name": "worth",
+          "range": 11
+        },
+        {
+          "id": "ley",
+          "name": "ley",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

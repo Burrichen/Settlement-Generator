@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.targoth",
+      "name": "Kurovia Environment: Targoth",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": [1, 11],
+          "tags": ["env.mountains"]
+        },
+        {
+          "id": "coldTundra",
+          "name": "Cold / Tundra",
+          "range": [12, 15],
+          "tags": ["env.coldTundra"]
+        },
+        {
+          "id": "hills",
+          "name": "Hills",
+          "range": [16, 17],
+          "tags": ["env.hills"]
+        },
+        {
+          "id": "subterranean",
+          "name": "Subterranean",
+          "range": [18, 20],
+          "tags": ["env.subterranean"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.subterranean",
+      "name": "Subterranean"
+    }
+  ]
+}

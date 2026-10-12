@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.darkElf.masculine",
+      "name": "Dark Elf names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.darkElf"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.masculine",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.darkElf.feminine",
+      "name": "Dark Elf names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.darkElf"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.feminine",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.darkElf.neutral",
+      "name": "Dark Elf names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.darkElf"
+      },
+      "method_table": "table.personName.darkElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.darkElf.given.neutral",
+            "table.personName.darkElf.house"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "house",
+              "label": "House name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

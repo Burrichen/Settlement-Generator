@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.species",
+      "name": "Authority Figure Species",
+      "description": "Authority Figure species. Each setting redirects this table to its own list.",
+      "status": "incomplete",
+      "status_note": "Authority Figure species exist only for Kurovia. Species for other settings have not been designed.",
+      "results": []
+    }
+  ]
+}

@@ -61,6 +61,7 @@ export function CompletedSettlement({
             // Roles are shown with each Authority Figure instead.
             skipped: stage.status === "skipped" || !!stage.roles,
             figures: stage.figures?.record,
+            locations: stage.locations?.record,
           })),
         )}
         meta="Not saved yet"

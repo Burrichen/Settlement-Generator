@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dwarf.given.neutral",
+      "name": "Dwarf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aldur",
+          "name": "Aldur",
+          "range": 1
+        },
+        {
+          "id": "brenn",
+          "name": "Brenn",
+          "range": 2
+        },
+        {
+          "id": "dorn",
+          "name": "Dorn",
+          "range": 3
+        },
+        {
+          "id": "eskil",
+          "name": "Eskil",
+          "range": 4
+        },
+        {
+          "id": "fenn",
+          "name": "Fenn",
+          "range": 5
+        },
+        {
+          "id": "grett",
+          "name": "Grett",
+          "range": 6
+        },
+        {
+          "id": "hald",
+          "name": "Hald",
+          "range": 7
+        },
+        {
+          "id": "isk",
+          "name": "Isk",
+          "range": 8
+        },
+        {
+          "id": "jorn",
+          "name": "Jorn",
+          "range": 9
+        },
+        {
+          "id": "keld",
+          "name": "Keld",
+          "range": 10
+        },
+        {
+          "id": "lund",
+          "name": "Lund",
+          "range": 11
+        },
+        {
+          "id": "morr",
+          "name": "Morr",
+          "range": 12
+        },
+        {
+          "id": "nyle",
+          "name": "Nyle",
+          "range": 13
+        },
+        {
+          "id": "orm",
+          "name": "Orm",
+          "range": 14
+        },
+        {
+          "id": "rune",
+          "name": "Rune",
+          "range": 15
+        },
+        {
+          "id": "sten",
+          "name": "Sten",
+          "range": 16
+        },
+        {
+          "id": "tork",
+          "name": "Tork",
+          "range": 17
+        },
+        {
+          "id": "ulf",
+          "name": "Ulf",
+          "range": 18
+        },
+        {
+          "id": "vann",
+          "name": "Vann",
+          "range": 19
+        },
+        {
+          "id": "yske",
+          "name": "Yske",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

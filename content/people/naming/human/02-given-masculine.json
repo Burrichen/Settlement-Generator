@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.human.given.masculine",
+      "name": "Human Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "corvel",
+          "name": "Corvel",
+          "range": 1
+        },
+        {
+          "id": "dasric",
+          "name": "Dasric",
+          "range": 2
+        },
+        {
+          "id": "edrin",
+          "name": "Edrin",
+          "range": 3
+        },
+        {
+          "id": "falkan",
+          "name": "Falkan",
+          "range": 4
+        },
+        {
+          "id": "gaspen",
+          "name": "Gaspen",
+          "range": 5
+        },
+        {
+          "id": "halven",
+          "name": "Halven",
+          "range": 6
+        },
+        {
+          "id": "iveric",
+          "name": "Iveric",
+          "range": 7
+        },
+        {
+          "id": "jorran",
+          "name": "Jorran",
+          "range": 8
+        },
+        {
+          "id": "kestor",
+          "name": "Kestor",
+          "range": 9
+        },
+        {
+          "id": "lothen",
+          "name": "Lothen",
+          "range": 10
+        },
+        {
+          "id": "marrec",
+          "name": "Marrec",
+          "range": 11
+        },
+        {
+          "id": "nerrick",
+          "name": "Nerrick",
+          "range": 12
+        },
+        {
+          "id": "orwyn",
+          "name": "Orwyn",
+          "range": 13
+        },
+        {
+          "id": "pashel",
+          "name": "Pashel",
+          "range": 14
+        },
+        {
+          "id": "quennet",
+          "name": "Quennet",
+          "range": 15
+        },
+        {
+          "id": "rovan",
+          "name": "Rovan",
+          "range": 16
+        },
+        {
+          "id": "stelan",
+          "name": "Stelan",
+          "range": 17
+        },
+        {
+          "id": "tobren",
+          "name": "Tobren",
+          "range": 18
+        },
+        {
+          "id": "valdren",
+          "name": "Valdren",
+          "range": 19
+        },
+        {
+          "id": "wulric",
+          "name": "Wulric",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

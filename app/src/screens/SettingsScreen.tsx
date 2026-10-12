@@ -82,6 +82,13 @@ export function SettingsScreen() {
                 checked={settings.tag_view}
                 onChange={(v) => change({ tag_view: v })}
               />
+              <ToggleRow
+                id="bare-minimum-buildings"
+                title="Bare Minimum Buildings"
+                help="Every settlement gets one extra Notable Location: a Tavern with 4 spare rooms."
+                checked={settings.bare_minimum_buildings}
+                onChange={(v) => change({ bare_minimum_buildings: v })}
+              />
             </div>
           </section>
 

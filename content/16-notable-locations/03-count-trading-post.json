@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationCount.tradingPost",
+      "name": "Trading Post Notable Location Count",
+      "description": "How many Notable Locations a Trading Post has.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "one",
+          "name": "1 Notable Location",
+          "range": [1, 2],
+          "value": 1
+        },
+        {
+          "id": "two",
+          "name": "2 Notable Locations",
+          "range": [3, 4],
+          "value": 2
+        }
+      ]
+    }
+  ]
+}

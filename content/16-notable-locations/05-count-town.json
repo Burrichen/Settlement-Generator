@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationCount.town",
+      "name": "Town Notable Location Count",
+      "description": "How many Notable Locations a Town has.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "two",
+          "name": "2 Notable Locations",
+          "range": [1, 2],
+          "value": 2
+        },
+        {
+          "id": "three",
+          "name": "3 Notable Locations",
+          "range": [3, 4],
+          "value": 3
+        },
+        {
+          "id": "four",
+          "name": "4 Notable Locations",
+          "range": [5, 6],
+          "value": 4
+        }
+      ]
+    }
+  ]
+}

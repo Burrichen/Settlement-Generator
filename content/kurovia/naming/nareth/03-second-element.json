@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.secondElement",
+      "name": "Nareth Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ra",
+          "name": "ra",
+          "range": 1
+        },
+        {
+          "id": "neth",
+          "name": "neth",
+          "range": 2
+        },
+        {
+          "id": "kai",
+          "name": "kai",
+          "range": 3
+        },
+        {
+          "id": "ri",
+          "name": "ri",
+          "range": 4
+        },
+        {
+          "id": "lo",
+          "name": "lo",
+          "range": 5
+        },
+        {
+          "id": "sha",
+          "name": "sha",
+          "range": 6
+        },
+        {
+          "id": "vai",
+          "name": "vai",
+          "range": 7
+        },
+        {
+          "id": "mar",
+          "name": "mar",
+          "range": 8
+        },
+        {
+          "id": "thil",
+          "name": "thil",
+          "range": 9
+        },
+        {
+          "id": "sen",
+          "name": "sen",
+          "range": 10
+        },
+        {
+          "id": "ru",
+          "name": "ru",
+          "range": 11
+        },
+        {
+          "id": "ta",
+          "name": "ta",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

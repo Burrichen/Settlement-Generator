@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.founder",
+      "name": "Halingo Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "varesh",
+          "name": "Varesh",
+          "range": 1
+        },
+        {
+          "id": "tamar",
+          "name": "Tamar",
+          "range": 2
+        },
+        {
+          "id": "karven",
+          "name": "Karven",
+          "range": 3
+        },
+        {
+          "id": "delan",
+          "name": "Delan",
+          "range": 4
+        },
+        {
+          "id": "sevrin",
+          "name": "Sevrin",
+          "range": 5
+        },
+        {
+          "id": "harad",
+          "name": "Harad",
+          "range": 6
+        },
+        {
+          "id": "marella",
+          "name": "Marella",
+          "range": 7
+        },
+        {
+          "id": "orvek",
+          "name": "Orvek",
+          "range": 8
+        },
+        {
+          "id": "saren",
+          "name": "Saren",
+          "range": 9
+        },
+        {
+          "id": "jorek",
+          "name": "Jorek",
+          "range": 10
+        },
+        {
+          "id": "varin",
+          "name": "Varin",
+          "range": 11
+        },
+        {
+          "id": "ilyra",
+          "name": "Ilyra",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

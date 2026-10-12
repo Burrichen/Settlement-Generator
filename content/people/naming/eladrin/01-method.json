@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.eladrin.method",
+      "name": "Eladrin Naming Method",
+      "description": "How a Eladrin Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + house name",
+          "range": [1, 4]
+        }
+      ]
+    }
+  ]
+}

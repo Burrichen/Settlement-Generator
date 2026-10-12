@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.shinkira",
+      "name": "Shinkira",
+      "description": "Names for settlements in the Kurovian region of Shinkira. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.shinkira"
+          }
+        ]
+      },
+      "method_table": "table.naming.shinkira.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": [
+            "table.naming.shinkira.firstElement",
+            "table.naming.shinkira.secondElement"
+          ],
+          "join": {
+            "style": "compound"
+          }
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.shinkira.founder", "table.naming.shinkira.founderEnding"],
+          "join": {
+            "style": "compound"
+          }
+        }
+      ]
+    }
+  ]
+}

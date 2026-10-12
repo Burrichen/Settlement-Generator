@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.founder",
+      "name": "Ordon Name: Founder",
+      "description": "The founder a Historical Founder name is taken from: one face each.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "aldric",
+          "name": "Aldric",
+          "range": 1
+        },
+        {
+          "id": "alden",
+          "name": "Alden",
+          "range": 2
+        },
+        {
+          "id": "alaric",
+          "name": "Alaric",
+          "range": 3
+        },
+        {
+          "id": "aelfric",
+          "name": "Aelfric",
+          "range": 4
+        },
+        {
+          "id": "aethelred",
+          "name": "Aethelred",
+          "range": 5
+        },
+        {
+          "id": "athelstan",
+          "name": "Athelstan",
+          "range": 6
+        },
+        {
+          "id": "athelwyn",
+          "name": "Athelwyn",
+          "range": 7
+        },
+        {
+          "id": "alwyn",
+          "name": "Alwyn",
+          "range": 8
+        },
+        {
+          "id": "alfrith",
+          "name": "Alfrith",
+          "range": 9
+        },
+        {
+          "id": "ardel",
+          "name": "Ardel",
+          "range": 10
+        },
+        {
+          "id": "beorn",
+          "name": "Beorn",
+          "range": 11
+        },
+        {
+          "id": "beorht",
+          "name": "Beorht",
+          "range": 12
+        },
+        {
+          "id": "beric",
+          "name": "Beric",
+          "range": 13
+        },
+        {
+          "id": "berengar",
+          "name": "Berengar",
+          "range": 14
+        },
+        {
+          "id": "brandel",
+          "name": "Brandel",
+          "range": 15
+        },
+        {
+          "id": "cenric",
+          "name": "Cenric",
+          "range": 16
+        },
+        {
+          "id": "ceolric",
+          "name": "Ceolric",
+          "range": 17
+        },
+        {
+          "id": "cuthred",
+          "name": "Cuthred",
+          "range": 18
+        },
+        {
+          "id": "cuthbert",
+          "name": "Cuthbert",
+          "range": 19
+        },
+        {
+          "id": "dunstan",
+          "name": "Dunstan",
+          "range": 20
+        },
+        {
+          "id": "eadric",
+          "name": "Eadric",
+          "range": 21
+        },
+        {
+          "id": "eadwyn",
+          "name": "Eadwyn",
+          "range": 22
+        },
+        {
+          "id": "eadgar",
+          "name": "Eadgar",
+          "range": 23
+        },
+        {
+          "id": "ealdred",
+          "name": "Ealdred",
+          "range": 24
+        },
+        {
+          "id": "edran",
+          "name": "Edran",
+          "range": 25
+        },
+        {
+          "id": "osric",
+          "name": "Osric",
+          "range": 26
+        },
+        {
+          "id": "oswin",
+          "name": "Oswin",
+          "range": 27
+        },
+        {
+          "id": "oswald",
+          "name": "Oswald",
+          "range": 28
+        },
+        {
+          "id": "osgar",
+          "name": "Osgar",
+          "range": 29
+        },
+        {
+          "id": "odran",
+          "name": "Odran",
+          "range": 30
+        },
+        {
+          "id": "roderic",
+          "name": "Roderic",
+          "range": 31
+        },
+        {
+          "id": "rannulf",
+          "name": "Rannulf",
+          "range": 32
+        },
+        {
+          "id": "ranald",
+          "name": "Ranald",
+          "range": 33
+        },
+        {
+          "id": "radulf",
+          "name": "Radulf",
+          "range": 34
+        },
+        {
+          "id": "redwald",
+          "name": "Redwald",
+          "range": 35
+        },
+        {
+          "id": "reynard",
+          "name": "Reynard",
+          "range": 36
+        },
+        {
+          "id": "roderan",
+          "name": "Roderan",
+          "range": 37
+        },
+        {
+          "id": "rowena",
+          "name": "Rowena",
+          "range": 38
+        },
+        {
+          "id": "rhoswen",
+          "name": "Rhoswen",
+          "range": 39
+        },
+        {
+          "id": "sigebert",
+          "name": "Sigebert",
+          "range": 40
+        },
+        {
+          "id": "sigeward",
+          "name": "Sigeward",
+          "range": 41
+        },
+        {
+          "id": "sigmund",
+          "name": "Sigmund",
+          "range": 42
+        },
+        {
+          "id": "swithun",
+          "name": "Swithun",
+          "range": 43
+        },
+        {
+          "id": "saewyn",
+          "name": "Saewyn",
+          "range": 44
+        },
+        {
+          "id": "thored",
+          "name": "Thored",
+          "range": 45
+        },
+        {
+          "id": "thurgar",
+          "name": "Thurgar",
+          "range": 46
+        },
+        {
+          "id": "thurstan",
+          "name": "Thurstan",
+          "range": 47
+        },
+        {
+          "id": "tostig",
+          "name": "Tostig",
+          "range": 48
+        },
+        {
+          "id": "ulric",
+          "name": "Ulric",
+          "range": 49
+        },
+        {
+          "id": "ulfred",
+          "name": "Ulfred",
+          "range": 50
+        },
+        {
+          "id": "valric",
+          "name": "Valric",
+          "range": 51
+        },
+        {
+          "id": "veyran",
+          "name": "Veyran",
+          "range": 52
+        },
+        {
+          "id": "veyla",
+          "name": "Veyla",
+          "range": 53
+        },
+        {
+          "id": "verren",
+          "name": "Verren",
+          "range": 54
+        },
+        {
+          "id": "varnold",
+          "name": "Varnold",
+          "range": 55
+        },
+        {
+          "id": "wulfric",
+          "name": "Wulfric",
+          "range": 56
+        },
+        {
+          "id": "wulfstan",
+          "name": "Wulfstan",
+          "range": 57
+        },
+        {
+          "id": "wulfram",
+          "name": "Wulfram",
+          "range": 58
+        },
+        {
+          "id": "wulfgard",
+          "name": "Wulfgard",
+          "range": 59
+        },
+        {
+          "id": "wulwyn",
+          "name": "Wulwyn",
+          "range": 60
+        },
+        {
+          "id": "wynric",
+          "name": "Wynric",
+          "range": 61
+        },
+        {
+          "id": "wynstan",
+          "name": "Wynstan",
+          "range": 62
+        },
+        {
+          "id": "wymond",
+          "name": "Wymond",
+          "range": 63
+        },
+        {
+          "id": "wulda",
+          "name": "Wulda",
+          "range": 64
+        },
+        {
+          "id": "ysold",
+          "name": "Ysold",
+          "range": 65
+        },
+        {
+          "id": "ydran",
+          "name": "Ydran",
+          "range": 66
+        },
+        {
+          "id": "yven",
+          "name": "Yven",
+          "range": 67
+        },
+        {
+          "id": "ysmar",
+          "name": "Ysmar",
+          "range": 68
+        },
+        {
+          "id": "erland",
+          "name": "Erland",
+          "range": 69
+        },
+        {
+          "id": "erdwyn",
+          "name": "Erdwyn",
+          "range": 70
+        },
+        {
+          "id": "elric",
+          "name": "Elric",
+          "range": 71
+        },
+        {
+          "id": "elswyth",
+          "name": "Elswyth",
+          "range": 72
+        },
+        {
+          "id": "eormund",
+          "name": "Eormund",
+          "range": 73
+        },
+        {
+          "id": "godwin",
+          "name": "Godwin",
+          "range": 74
+        },
+        {
+          "id": "godfrey",
+          "name": "Godfrey",
+          "range": 75
+        },
+        {
+          "id": "helmar",
+          "name": "Helmar",
+          "range": 76
+        },
+        {
+          "id": "hildren",
+          "name": "Hildren",
+          "range": 77
+        },
+        {
+          "id": "hadran",
+          "name": "Hadran",
+          "range": 78
+        },
+        {
+          "id": "hester",
+          "name": "Hester",
+          "range": 79
+        },
+        {
+          "id": "isolde",
+          "name": "Isolde",
+          "range": 80
+        },
+        {
+          "id": "ismere",
+          "name": "Ismere",
+          "range": 81
+        },
+        {
+          "id": "ildren",
+          "name": "Ildren",
+          "range": 82
+        },
+        {
+          "id": "iveric",
+          "name": "Iveric",
+          "range": 83
+        },
+        {
+          "id": "jorren",
+          "name": "Jorren",
+          "range": 84
+        },
+        {
+          "id": "judric",
+          "name": "Judric",
+          "range": 85
+        },
+        {
+          "id": "leofric",
+          "name": "Leofric",
+          "range": 86
+        },
+        {
+          "id": "leofwyn",
+          "name": "Leofwyn",
+          "range": 87
+        },
+        {
+          "id": "lothren",
+          "name": "Lothren",
+          "range": 88
+        },
+        {
+          "id": "lucan",
+          "name": "Lucan",
+          "range": 89
+        },
+        {
+          "id": "maeric",
+          "name": "Maeric",
+          "range": 90
+        },
+        {
+          "id": "maerwyn",
+          "name": "Maerwyn",
+          "range": 91
+        },
+        {
+          "id": "maud",
+          "name": "Maud",
+          "range": 92
+        },
+        {
+          "id": "morwen",
+          "name": "Morwen",
+          "range": 93
+        },
+        {
+          "id": "moryn",
+          "name": "Moryn",
+          "range": 94
+        },
+        {
+          "id": "nerys",
+          "name": "Nerys",
+          "range": 95
+        },
+        {
+          "id": "norric",
+          "name": "Norric",
+          "range": 96
+        },
+        {
+          "id": "othmar",
+          "name": "Othmar",
+          "range": 97
+        },
+        {
+          "id": "orwen",
+          "name": "Orwen",
+          "range": 98
+        },
+        {
+          "id": "godric",
+          "name": "Godric",
+          "range": 99
+        },
+        {
+          "id": "hereward",
+          "name": "Hereward",
+          "range": 100
+        }
+      ]
+    }
+  ]
+}

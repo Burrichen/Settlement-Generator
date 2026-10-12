@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.woodElf.given.feminine",
+      "name": "Wood Elf Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aspa",
+          "name": "Aspa",
+          "range": 1
+        },
+        {
+          "id": "bryony",
+          "name": "Bryony",
+          "range": 2
+        },
+        {
+          "id": "cerra",
+          "name": "Cerra",
+          "range": 3
+        },
+        {
+          "id": "dessa",
+          "name": "Dessa",
+          "range": 4
+        },
+        {
+          "id": "elka",
+          "name": "Elka",
+          "range": 5
+        },
+        {
+          "id": "fenwyn",
+          "name": "Fenwyn",
+          "range": 6
+        },
+        {
+          "id": "gilla",
+          "name": "Gilla",
+          "range": 7
+        },
+        {
+          "id": "hesta",
+          "name": "Hesta",
+          "range": 8
+        },
+        {
+          "id": "iska",
+          "name": "Iska",
+          "range": 9
+        },
+        {
+          "id": "juna",
+          "name": "Juna",
+          "range": 10
+        },
+        {
+          "id": "kesra",
+          "name": "Kesra",
+          "range": 11
+        },
+        {
+          "id": "liska",
+          "name": "Liska",
+          "range": 12
+        },
+        {
+          "id": "mora",
+          "name": "Mora",
+          "range": 13
+        },
+        {
+          "id": "nerra",
+          "name": "Nerra",
+          "range": 14
+        },
+        {
+          "id": "orla",
+          "name": "Orla",
+          "range": 15
+        },
+        {
+          "id": "peshka",
+          "name": "Peshka",
+          "range": 16
+        },
+        {
+          "id": "rhosa",
+          "name": "Rhosa",
+          "range": 17
+        },
+        {
+          "id": "sella",
+          "name": "Sella",
+          "range": 18
+        },
+        {
+          "id": "tansy",
+          "name": "Tansy",
+          "range": 19
+        },
+        {
+          "id": "willa",
+          "name": "Willa",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

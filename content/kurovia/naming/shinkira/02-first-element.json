@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.shinkira.firstElement",
+      "name": "Shinkira Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "aki",
+          "name": "Aki",
+          "range": 1
+        },
+        {
+          "id": "asa",
+          "name": "Asa",
+          "range": 2
+        },
+        {
+          "id": "fuyu",
+          "name": "Fuyu",
+          "range": 3
+        },
+        {
+          "id": "hana",
+          "name": "Hana",
+          "range": 4
+        },
+        {
+          "id": "hira",
+          "name": "Hira",
+          "range": 5
+        },
+        {
+          "id": "hoshi",
+          "name": "Hoshi",
+          "range": 6
+        },
+        {
+          "id": "kiri",
+          "name": "Kiri",
+          "range": 7
+        },
+        {
+          "id": "kuro",
+          "name": "Kuro",
+          "range": 8
+        },
+        {
+          "id": "mizu",
+          "name": "Mizu",
+          "range": 9
+        },
+        {
+          "id": "sugi",
+          "name": "Sugi",
+          "range": 10
+        },
+        {
+          "id": "taki",
+          "name": "Taki",
+          "range": 11
+        },
+        {
+          "id": "tsuki",
+          "name": "Tsuki",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

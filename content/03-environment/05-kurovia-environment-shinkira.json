@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.shinkira",
+      "name": "Kurovia Environment: Shinkira",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "farmlandOpenCountry",
+          "name": "Farmland & Open Country",
+          "range": 1,
+          "tags": ["env.farmlandOpenCountry"]
+        },
+        {
+          "id": "grasslandPlains",
+          "name": "Grassland / Plains",
+          "range": 2,
+          "tags": ["env.grasslandPlains"]
+        },
+        {
+          "id": "woodland",
+          "name": "Woodland",
+          "range": [3, 7],
+          "tags": ["env.woodland"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": [8, 12],
+          "tags": ["env.mountains"]
+        },
+        {
+          "id": "hills",
+          "name": "Hills",
+          "range": [13, 14],
+          "tags": ["env.hills"]
+        },
+        {
+          "id": "coast",
+          "name": "Coast",
+          "range": [15, 17],
+          "tags": ["env.coast"]
+        },
+        {
+          "id": "crystallineWilds",
+          "name": "Crystalline Wilds",
+          "range": [18, 20],
+          "tags": ["env.crystallineWilds"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.crystallineWilds",
+      "name": "Crystalline Wilds",
+      "description": "Currently carries no special Purpose modifier."
+    }
+  ]
+}

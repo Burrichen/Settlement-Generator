@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.security",
+      "name": "Security",
+      "description": "How well protected and defended the settlement is, least to most. The extremes are rarer.",
+      "dice": "1d12",
+      "ordered": true,
+      "results": [
+        {
+          "id": "undefended",
+          "name": "Undefended",
+          "range": 1,
+          "tags": ["security.undefended"]
+        },
+        {
+          "id": "lightlyDefended",
+          "name": "Lightly Defended",
+          "range": [2, 4],
+          "tags": ["security.lightlyDefended"]
+        },
+        {
+          "id": "guarded",
+          "name": "Guarded",
+          "range": [5, 8],
+          "tags": ["security.guarded"]
+        },
+        {
+          "id": "wellDefended",
+          "name": "Well Defended",
+          "range": [9, 11],
+          "tags": ["security.wellDefended"]
+        },
+        {
+          "id": "fortified",
+          "name": "Fortified",
+          "range": 12,
+          "tags": ["security.fortified"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "security.undefended",
+      "name": "Undefended",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Undefended: Crime strongly increases. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "security.lightlyDefended",
+      "name": "Lightly Defended",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "increase",
+          "status": "planned",
+          "note": "Lightly Defended: Crime increases. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "security.guarded",
+      "name": "Guarded"
+    },
+    {
+      "id": "security.wellDefended",
+      "name": "Well Defended",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "decrease",
+          "status": "planned",
+          "note": "Well Defended: Crime decreases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Well Defended: Military / Security locations more likely. Exact change not yet approved."
+        }
+      ]
+    },
+    {
+      "id": "security.fortified",
+      "name": "Fortified",
+      "effects": [
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "strong_decrease",
+          "status": "planned",
+          "note": "Fortified: Crime strongly decreases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.military"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Fortified: Military / Security locations more likely. Exact change not yet approved."
+        }
+      ]
+    }
+  ]
+}

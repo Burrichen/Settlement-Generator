@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.hjartheland",
+      "name": "Hjartheland",
+      "description": "Names for settlements in the Kurovian region of Hjartheland. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.hjartheland"
+          }
+        ]
+      },
+      "method_table": "table.naming.hjartheland.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": [
+            "table.naming.hjartheland.firstElement",
+            "table.naming.hjartheland.secondElement"
+          ],
+          "join": {
+            "style": "compound"
+          }
+        },
+        {
+          "result": "founder",
+          "components": [
+            "table.naming.hjartheland.founder",
+            "table.naming.hjartheland.founderEnding"
+          ],
+          "join": {
+            "style": "compound"
+          }
+        }
+      ]
+    }
+  ]
+}

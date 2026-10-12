@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.secondElement",
+      "name": "Ordon Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Provisional editorial weights.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "ton",
+          "name": "ton",
+          "range": [1, 14]
+        },
+        {
+          "id": "ham",
+          "name": "ham",
+          "range": [15, 27]
+        },
+        {
+          "id": "ley",
+          "name": "ley",
+          "range": [28, 40]
+        },
+        {
+          "id": "ford",
+          "name": "ford",
+          "range": [41, 48]
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": [49, 56]
+        },
+        {
+          "id": "bury",
+          "name": "bury",
+          "range": [57, 59]
+        },
+        {
+          "id": "field",
+          "name": "field",
+          "range": [60, 62]
+        },
+        {
+          "id": "den",
+          "name": "den",
+          "range": [63, 65]
+        },
+        {
+          "id": "combe",
+          "name": "combe",
+          "range": [66, 68]
+        },
+        {
+          "id": "hurst",
+          "name": "hurst",
+          "range": [69, 71]
+        },
+        {
+          "id": "well",
+          "name": "well",
+          "range": [72, 74]
+        },
+        {
+          "id": "worth",
+          "name": "worth",
+          "range": [75, 77]
+        },
+        {
+          "id": "brook",
+          "name": "brook",
+          "range": [78, 80]
+        },
+        {
+          "id": "bridge",
+          "name": "bridge",
+          "range": [81, 83]
+        },
+        {
+          "id": "dale",
+          "name": "dale",
+          "range": [84, 86]
+        },
+        {
+          "id": "cliff",
+          "name": "cliff",
+          "range": [87, 88]
+        },
+        {
+          "id": "croft",
+          "name": "croft",
+          "range": [89, 90]
+        },
+        {
+          "id": "gate",
+          "name": "gate",
+          "range": [91, 92]
+        },
+        {
+          "id": "holt",
+          "name": "holt",
+          "range": [93, 94]
+        },
+        {
+          "id": "moor",
+          "name": "moor",
+          "range": [95, 96]
+        },
+        {
+          "id": "stead",
+          "name": "stead",
+          "range": [97, 98]
+        },
+        {
+          "id": "wood",
+          "name": "wood",
+          "range": [99, 100]
+        }
+      ]
+    }
+  ]
+}

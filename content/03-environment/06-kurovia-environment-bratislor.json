@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.bratislor",
+      "name": "Kurovia Environment: Bratislor",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "wastelandBlightedLand",
+          "name": "Wasteland / Blighted Land",
+          "range": [1, 14],
+          "tags": ["env.wastelandBlightedLand"]
+        },
+        {
+          "id": "woodland",
+          "name": "Woodland",
+          "range": [15, 17],
+          "tags": ["env.woodland"]
+        },
+        {
+          "id": "farmlandOpenCountry",
+          "name": "Farmland & Open Country",
+          "range": [18, 20],
+          "tags": ["env.farmlandOpenCountry"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.wastelandBlightedLand",
+      "name": "Wasteland / Blighted Land"
+    }
+  ]
+}

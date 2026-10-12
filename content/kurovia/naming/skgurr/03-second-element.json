@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.skgurr.secondElement",
+      "name": "Skgurr Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "haven",
+          "name": "haven",
+          "range": 1
+        },
+        {
+          "id": "wick",
+          "name": "wick",
+          "range": 2
+        },
+        {
+          "id": "ness",
+          "name": "ness",
+          "range": 3
+        },
+        {
+          "id": "firth",
+          "name": "firth",
+          "range": 4
+        },
+        {
+          "id": "holm",
+          "name": "holm",
+          "range": 5
+        },
+        {
+          "id": "head",
+          "name": "head",
+          "range": 6
+        },
+        {
+          "id": "port",
+          "name": "port",
+          "range": 7
+        },
+        {
+          "id": "muir",
+          "name": "muir",
+          "range": 8
+        },
+        {
+          "id": "crag",
+          "name": "crag",
+          "range": 9
+        },
+        {
+          "id": "shore",
+          "name": "shore",
+          "range": 10
+        },
+        {
+          "id": "point",
+          "name": "point",
+          "range": 11
+        },
+        {
+          "id": "bay",
+          "name": "bay",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

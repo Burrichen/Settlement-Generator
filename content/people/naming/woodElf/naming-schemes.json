@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.woodElf.masculine",
+      "name": "Wood Elf names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.woodElf"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.woodElf.given.masculine",
+            "table.personName.woodElf.kin"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.woodElf.feminine",
+      "name": "Wood Elf names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.woodElf"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.woodElf.given.feminine", "table.personName.woodElf.kin"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.woodElf.neutral",
+      "name": "Wood Elf names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.woodElf"
+      },
+      "method_table": "table.personName.woodElf.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.woodElf.given.neutral", "table.personName.woodElf.kin"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "kin",
+              "label": "Kin name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -57,17 +57,16 @@ Changes made on another stage do the following:
 
 ## Files
 
-| File                                      | Contains                                                                 |
-| ----------------------------------------- | ------------------------------------------------------------------------ |
-| `content/00-sequence.json`                | The pipeline, including the `{ "naming": true }` Name stage              |
-| `content/kurovia/naming/ordon.json`       | Ordon: the method table, four component tables, and the scheme           |
-| `content/kurovia/naming/halingo.json`     | Halingo (provisional sample): the same five tables and the scheme        |
-| `content/kurovia/naming/skgurr.json`      | Skgurr (provisional sample): the same five tables and the scheme         |
-| `content/kurovia/naming/shinkira.json`    | Shinkira (provisional sample): the same five tables and the scheme       |
-| `content/kurovia/naming/bratislor.json`   | Bratislor (provisional sample): the same five tables and the scheme      |
-| `content/kurovia/naming/hjartheland.json` | Hjartheland (provisional sample): the same five tables and the scheme    |
-| `content/kurovia/naming/nareth.json`      | Nareth (placeholder starter sounds): the same five tables and the scheme |
-| `content/kurovia/naming/targoth.json`     | Targoth (provisional sample): the same five tables and the scheme        |
+Every table has its own file. Each region's naming data is a folder:
+
+| Path                               | Contains                                                                               |
+| ---------------------------------- | -------------------------------------------------------------------------------------- |
+| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                            |
+| `content/kurovia/naming/<region>/` | `01-method.json` … `05-founder-ending.json` (one table each) and `naming-schemes.json` |
+
+The regions are Ordon (approved), and Halingo, Skgurr, Shinkira, Bratislor,
+Hjartheland and Targoth (provisional samples), and Nareth (placeholder
+starter sounds).
 
 All eight Kurovian regions have a naming scheme. No generic scheme exists
 yet, so other Setting Profiles skip the Name stage.
@@ -82,8 +81,9 @@ Every region follows the same predictable pattern. For region `<key>`:
 Component result IDs are the lower-case entry, e.g. `khar` or `varesh`.
 
 Every `.json` file under `content/`, including subfolders, is merged in path
-order at build time. A new region gets its own file, for example
-`content/kurovia/naming/halingo.json`. No registry or code change is needed.
+order at build time. A new region gets its own folder, for example
+`content/kurovia/naming/halingo/`, with one file per table and a
+`naming-schemes.json`. No registry or code change is needed.
 
 ## Person naming
 
@@ -113,7 +113,8 @@ Species → Gender (where the species uses it) → Given name
   (see [CONTENT.md](CONTENT.md)), and so are their names. All of them are
   **original** and editable. Species can be added or removed without any
   schema change: add a file with tables and schemes, or delete one.
-- **Files.** `content/people/naming/<species>.json`, one per species. For a
+- **Files.** `content/people/naming/<species>/`, a folder per species with
+  one file per table and a `naming-schemes.json`. For a
   species key `<key>` (the `species.<key>` tag), its tables are
   `table.personName.<key>.method`, its given-name pools and its second-name
   table, and its schemes are `naming.person.<key>…`.
@@ -434,7 +435,8 @@ They live only in the content files.
 
 ### In VS Code (content authors)
 
-1. Open `content/kurovia/naming/ordon.json`.
+1. Open the table's file in `content/kurovia/naming/ordon/` (for example
+   `02-first-element.json`), or `naming-schemes.json` for the scheme.
 2. Edit as needed:
    - **Rename an entry:** change its `"name"`. Keep its `"id"`; spelling
      exceptions and possessive endings refer to IDs.
@@ -481,11 +483,12 @@ They live only in the content files.
 
 ### Adding another region
 
-Create `content/kurovia/naming/<region>.json` with:
+Create the folder `content/kurovia/naming/<region>/` with:
 
-- its own method table;
-- its own component tables;
-- a scheme whose `when` is `world.kurovia` plus that region's tag.
+- its own method table, in its own file;
+- each component table in its own file;
+- a `naming-schemes.json` whose scheme's `when` is `world.kurovia` plus that
+  region's tag.
 
 Then add tests for its lists. The engine needs no change.
 

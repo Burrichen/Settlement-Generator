@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.highElf.given.masculine",
+      "name": "High Elf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aeravel",
+          "name": "Aeravel",
+          "range": 1
+        },
+        {
+          "id": "caelorin",
+          "name": "Caelorin",
+          "range": 2
+        },
+        {
+          "id": "elandrin",
+          "name": "Elandrin",
+          "range": 3
+        },
+        {
+          "id": "faerondel",
+          "name": "Faerondel",
+          "range": 4
+        },
+        {
+          "id": "galvesar",
+          "name": "Galvesar",
+          "range": 5
+        },
+        {
+          "id": "ithrenos",
+          "name": "Ithrenos",
+          "range": 6
+        },
+        {
+          "id": "ilvaran",
+          "name": "Ilvaran",
+          "range": 7
+        },
+        {
+          "id": "lorvane",
+          "name": "Lorvane",
+          "range": 8
+        },
+        {
+          "id": "melrandis",
+          "name": "Melrandis",
+          "range": 9
+        },
+        {
+          "id": "nythandor",
+          "name": "Nythandor",
+          "range": 10
+        },
+        {
+          "id": "orvalis",
+          "name": "Orvalis",
+          "range": 11
+        },
+        {
+          "id": "quessavar",
+          "name": "Quessavar",
+          "range": 12
+        },
+        {
+          "id": "saelvar",
+          "name": "Saelvar",
+          "range": 13
+        },
+        {
+          "id": "sorithil",
+          "name": "Sorithil",
+          "range": 14
+        },
+        {
+          "id": "teralion",
+          "name": "Teralion",
+          "range": 15
+        },
+        {
+          "id": "thalorin",
+          "name": "Thalorin",
+          "range": 16
+        },
+        {
+          "id": "valemir",
+          "name": "Valemir",
+          "range": 17
+        },
+        {
+          "id": "velcaris",
+          "name": "Velcaris",
+          "range": 18
+        },
+        {
+          "id": "ysmerion",
+          "name": "Ysmerion",
+          "range": 19
+        },
+        {
+          "id": "zaerith",
+          "name": "Zaerith",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dragonborn.given.feminine",
+      "name": "Dragonborn Feminine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "arrisha",
+          "name": "Arrisha",
+          "range": 1
+        },
+        {
+          "id": "bhazira",
+          "name": "Bhazira",
+          "range": 2
+        },
+        {
+          "id": "darrova",
+          "name": "Darrova",
+          "range": 3
+        },
+        {
+          "id": "esharra",
+          "name": "Esharra",
+          "range": 4
+        },
+        {
+          "id": "ghessra",
+          "name": "Ghessra",
+          "range": 5
+        },
+        {
+          "id": "hylka",
+          "name": "Hylka",
+          "range": 6
+        },
+        {
+          "id": "iskarra",
+          "name": "Iskarra",
+          "range": 7
+        },
+        {
+          "id": "jhessra",
+          "name": "Jhessra",
+          "range": 8
+        },
+        {
+          "id": "kalvessa",
+          "name": "Kalvessa",
+          "range": 9
+        },
+        {
+          "id": "korrisha",
+          "name": "Korrisha",
+          "range": 10
+        },
+        {
+          "id": "marrava",
+          "name": "Marrava",
+          "range": 11
+        },
+        {
+          "id": "nazhira",
+          "name": "Nazhira",
+          "range": 12
+        },
+        {
+          "id": "orsha",
+          "name": "Orsha",
+          "range": 13
+        },
+        {
+          "id": "rhessa",
+          "name": "Rhessa",
+          "range": 14
+        },
+        {
+          "id": "sharrova",
+          "name": "Sharrova",
+          "range": 15
+        },
+        {
+          "id": "tavrun",
+          "name": "Tavrun",
+          "range": 16
+        },
+        {
+          "id": "thessrae",
+          "name": "Thessrae",
+          "range": 17
+        },
+        {
+          "id": "ulkara",
+          "name": "Ulkara",
+          "range": 18
+        },
+        {
+          "id": "varrasha",
+          "name": "Varrasha",
+          "range": 19
+        },
+        {
+          "id": "zhavira",
+          "name": "Zhavira",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRepresentation",
+      "name": "Representation",
+      "description": "Whether the authority has a single primary representative or a group. Only rolled when the Authority result does not already decide it.",
+      "dice": "1d4",
+      "eligibility": {
+        "not": {
+          "any": [
+            {
+              "has_tag": "authorityRepresentation.single"
+            },
+            {
+              "has_tag": "authorityRepresentation.group"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "id": "single",
+          "name": "Single Representative",
+          "range": [1, 2],
+          "tags": ["authorityRepresentation.single"]
+        },
+        {
+          "id": "group",
+          "name": "Group Representatives",
+          "range": [3, 4],
+          "tags": ["authorityRepresentation.group"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "authorityRepresentation.single",
+      "name": "Single Representative",
+      "description": "The authority has one primary representative."
+    },
+    {
+      "id": "authorityRepresentation.group",
+      "name": "Group Representatives",
+      "description": "The authority has a group of primary representatives; Authority Size gives how many."
+    }
+  ]
+}

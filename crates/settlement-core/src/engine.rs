@@ -224,6 +224,10 @@ pub struct GenerationOptions {
     /// the chosen result still emits its tags.
     #[serde(default)]
     pub god_mode: bool,
+    /// Bare Minimum Buildings: add one guaranteed Tavern with 4 spare rooms
+    /// to the settlement's Notable Locations, in addition to the rolled ones.
+    #[serde(default)]
+    pub bare_minimum_buildings: bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -291,6 +295,24 @@ pub enum GenerationError {
     NamingIncomplete { table: TableId },
     #[error("stage {} is not the name stage", stage + 1)]
     NotNamingStage { stage: usize },
+    #[error("stage {} is not the Notable Locations stage", stage + 1)]
+    NotLocationsStage { stage: usize },
+    #[error("Notable Locations need the settlement's Size first")]
+    LocationsNeedSize,
+    #[error("no Notable Locations have been generated yet")]
+    LocationsNotGenerated,
+    #[error("no Notable Location tables are configured for {size}")]
+    NoLocationScheme { size: String },
+    #[error("this settlement is not mapped by district")]
+    NoDistricts,
+    #[error("there is no area {}", index + 1)]
+    NoSuchArea { index: usize },
+    #[error("there is no Notable Location {}", index + 1)]
+    NoSuchLocation { index: usize },
+    #[error("the Bare Minimum Buildings Tavern is not rolled; turn the setting off to remove it")]
+    GuaranteedLocationNotRolled,
+    #[error("count table `{table}` gave a result without a count value")]
+    CountWithoutValue { table: TableId },
     #[error("stage {} is not the Role Allocation stage", stage + 1)]
     NotRolesStage { stage: usize },
     #[error("roles need the Authority, its Representation and its Authority Size first")]

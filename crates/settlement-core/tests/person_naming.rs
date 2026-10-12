@@ -433,7 +433,10 @@ fn renaming_a_name_result_keeps_routing_by_stable_id() {
 fn god_mode_never_merges_species_pools() {
     let mut s = GenerationSession::new(
         Arc::new(content()),
-        GenerationOptions { god_mode: true },
+        GenerationOptions {
+            god_mode: true,
+            ..Default::default()
+        },
         GenerationMode::OneTable,
     )
     .unwrap();

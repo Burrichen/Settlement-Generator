@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.secondElement",
+      "name": "Halingo Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "well",
+          "name": "Well",
+          "range": 1
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "range": 2
+        },
+        {
+          "id": "pass",
+          "name": "Pass",
+          "range": 3
+        },
+        {
+          "id": "hold",
+          "name": "Hold",
+          "range": 4
+        },
+        {
+          "id": "wash",
+          "name": "Wash",
+          "range": 5
+        },
+        {
+          "id": "reach",
+          "name": "Reach",
+          "range": 6
+        },
+        {
+          "id": "ridge",
+          "name": "Ridge",
+          "range": 7
+        },
+        {
+          "id": "ford",
+          "name": "Ford",
+          "range": 8
+        },
+        {
+          "id": "crossing",
+          "name": "Crossing",
+          "range": 9
+        },
+        {
+          "id": "gate",
+          "name": "Gate",
+          "range": 10
+        },
+        {
+          "id": "station",
+          "name": "Station",
+          "range": 11
+        },
+        {
+          "id": "haven",
+          "name": "Haven",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

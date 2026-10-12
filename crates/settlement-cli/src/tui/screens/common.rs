@@ -6,6 +6,7 @@ use settlement_core::editor::Coverage;
 use settlement_core::engine::Named;
 use settlement_core::figures::{AuthorityFigure, AuthorityFigures, FigureName};
 use settlement_core::ids::TagId;
+use settlement_core::locations::{NotableLocation, NotableLocations};
 use settlement_core::session::{StageOutcome, StageStatus, StageView};
 use settlement_core::validation::{Severity, ValidationIssue};
 
@@ -23,6 +24,53 @@ pub struct SheetRow {
     pub skipped: bool,
     /// The Authority Figures, on that stage's row.
     pub figures: Option<AuthorityFigures>,
+    /// The Notable Locations, on that stage's row.
+    pub locations: Option<NotableLocations>,
+}
+
+/// One Notable Location: "Tavern · Hospitality · 4 spare rooms · District 1".
+pub fn location_label(record: &NotableLocations, location: &NotableLocation) -> String {
+    let mut parts: Vec<String> = Vec::new();
+    if let Some(subtype) = &location.subtype {
+        parts.push(subtype.name.clone());
+    }
+    parts.push(location.location_type.name.clone());
+    if let Some(rooms) = location.spare_rooms {
+        parts.push(format!("{rooms} spare rooms"));
+    }
+    if let Some(district) = record
+        .areas
+        .iter()
+        .filter_map(|a| a.district.as_ref())
+        .find(|d| Some(&d.id) == location.district.as_ref())
+    {
+        parts.push(district.label.clone());
+    }
+    parts.join(" · ")
+}
+
+/// The Notable Locations as a numbered list (the guaranteed Tavern first),
+/// after the District Count if any.
+pub fn location_lines(
+    record: &NotableLocations,
+    styles: &Styles,
+    indent: usize,
+) -> Vec<Line<'static>> {
+    let pad = " ".repeat(indent);
+    let mut lines = Vec::new();
+    if let Some(districts) = &record.districts {
+        lines.push(Line::styled(
+            format!("{pad}{}", districts.roll.result.name),
+            styles.title(),
+        ));
+    }
+    for (i, location) in record.locations.iter().enumerate() {
+        lines.push(Line::from(vec![
+            Span::styled(format!("{pad}{:>2}. ", i + 1), styles.dim()),
+            Span::styled(location_label(record, location), styles.title()),
+        ]));
+    }
+    lines
 }
 
 /// One field's result, e.g. a figure's species.
@@ -172,6 +220,9 @@ pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
         }
         if let Some(figures) = &row.figures {
             lines.extend(figure_lines(figures, styles, 18, row.tags.is_some()));
+        }
+        if let Some(locations) = &row.locations {
+            lines.extend(location_lines(locations, styles, 18));
         }
     }
     lines

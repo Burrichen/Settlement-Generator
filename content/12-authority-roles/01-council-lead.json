@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.council.lead",
+      "name": "Local Council Lead Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.council.chair",
+          "name": "Council Chair",
+          "range": [1, 3]
+        },
+        {
+          "id": "role.council.firstCouncillor",
+          "name": "First Councillor",
+          "range": [4, 5]
+        },
+        {
+          "id": "role.council.civicSpeaker",
+          "name": "Civic Speaker",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

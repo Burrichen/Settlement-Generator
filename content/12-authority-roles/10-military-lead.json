@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.military.lead",
+      "name": "Military Authority Lead Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.military.commander",
+          "name": "Commander",
+          "range": [1, 3]
+        },
+        {
+          "id": "role.military.marshal",
+          "name": "Marshal",
+          "range": 4
+        },
+        {
+          "id": "role.military.commandant",
+          "name": "Commandant",
+          "range": 5
+        },
+        {
+          "id": "role.military.warden",
+          "name": "Warden",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.nareth",
+      "name": "Kurovia Environment: Nareth",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "tropicalJungle",
+          "name": "Tropical / Jungle",
+          "range": [1, 13],
+          "tags": ["env.tropicalJungle"]
+        },
+        {
+          "id": "wetlands",
+          "name": "Wetlands",
+          "range": [14, 20],
+          "tags": ["env.wetlands"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.tropicalJungle",
+      "name": "Tropical / Jungle"
+    }
+  ]
+}

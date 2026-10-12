@@ -21,6 +21,7 @@ const settings: Settings = {
   god_mode: false,
   tag_view: false,
   theme: "modern_dark",
+  bare_minimum_buildings: false,
 };
 
 const d20: Table = {

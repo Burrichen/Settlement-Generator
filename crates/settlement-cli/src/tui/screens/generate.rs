@@ -10,13 +10,17 @@ use ratatui::widgets::{Paragraph, Wrap};
 use settlement_core::engine::{GenerationError, ResultOption, Selections, SkipReason};
 use settlement_core::figures::{FIGURE_FIELDS, FigureName};
 use settlement_core::ids::ResultId;
+use settlement_core::locations::{LocationSource, TableOptions};
 use settlement_core::naming::NameSource;
 use settlement_core::roles::Allocation;
 use settlement_core::service::ActiveGeneration;
 use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageView};
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
 
-use super::common::{SheetRow, applies, figure_lines, outcome_lines, sheet_lines, tag_line};
+use super::common::{
+    SheetRow, applies, figure_lines, location_label, location_lines, outcome_lines, sheet_lines,
+    tag_line,
+};
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
@@ -40,6 +44,11 @@ enum Pending {
     RoleSlot(usize),
     /// Choosing a role: stage, slot, results.
     Role(usize, usize, Vec<ResultId>),
+    /// Picking what to change on the Notable Locations stage.
+    LocationTarget(usize, Vec<LocationTarget>),
+    /// Choosing a Notable Locations result: stage, target, results (`None`
+    /// rolls again).
+    LocationResult(usize, LocationTarget, Vec<Option<ResultId>>),
     /// Naming the settlement to save it.
     Name,
     ConfirmLeave,
@@ -55,6 +64,17 @@ enum FigureTarget {
     /// A part of a generated name, e.g. the given name: figure, part.
     NamePart(usize, usize),
     Relationship(usize),
+}
+
+/// Something on the Notable Locations stage that can be changed. The
+/// guaranteed Tavern is fixed.
+#[derive(Clone, Copy)]
+enum LocationTarget {
+    Districts,
+    /// One area's Notable Location Count.
+    Count(usize),
+    /// One rolled location's Type (by position in the list).
+    Type(usize),
 }
 
 /// How the name stage's name came about, and anything that explains it:
@@ -439,6 +459,43 @@ impl GenerateScreen {
             ),
             Line::styled(heading, s.title()),
         ];
+        if let Some(locations) = &stage.locations {
+            top.extend(Self::stage_notes(&stage, ctx));
+            if let Some(e) = &self.error {
+                top.push(Line::styled(e.clone(), s.error()));
+            }
+            if stage.can_roll {
+                top.push(Line::from(vec![
+                    Span::styled("r", s.key()),
+                    Span::styled(
+                        if locations.record.is_some() {
+                            " re-roll all Notable Locations"
+                        } else {
+                            " roll Notable Locations"
+                        },
+                        s.dim(),
+                    ),
+                ]));
+            } else if locations.record.is_none() {
+                top.push(Line::styled("Resolve the Size first.", s.dim()));
+            }
+            if locations.bare_minimum_buildings {
+                top.push(Line::styled(
+                    "Bare Minimum Buildings: one extra Tavern is added.",
+                    s.dim(),
+                ));
+            }
+            if let Some(record) = &locations.record {
+                top.push(Line::from(vec![
+                    Span::styled("Enter", s.key()),
+                    Span::styled(" change a count or a location's type", s.dim()),
+                ]));
+                top.push(Line::default());
+                top.extend(location_lines(record, s, 0));
+            }
+            f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), area);
+            return;
+        }
         if let Some(roles) = &stage.roles {
             top.extend(Self::stage_notes(&stage, ctx));
             if let Some(e) = &self.error {
@@ -591,6 +648,7 @@ impl GenerateScreen {
                 // Roles are shown with each Authority Figure instead.
                 skipped: stage.status == StageStatus::Skipped || stage.roles.is_some(),
                 figures: stage.figures.as_ref().and_then(|f| f.record.clone()),
+                locations: stage.locations.as_ref().and_then(|l| l.record.clone()),
             })
             .collect();
         let mut lines = vec![Line::styled("─── ◆ ───", s.border()), Line::default()];
@@ -645,6 +703,31 @@ impl GenerateScreen {
                 let (stage, id) = (*stage, ids[i].clone());
                 self.modal = None;
                 self.act(ctx, |a, dice| a.session.choose(stage, id, dice));
+            }
+            (ModalResult::Picked(i), Pending::LocationTarget(stage, targets)) => {
+                let (stage, target) = (*stage, targets[i]);
+                self.modal = None;
+                self.open_location_target(stage, target);
+            }
+            (ModalResult::Picked(i), Pending::LocationResult(stage, target, ids)) => {
+                let (stage, target, id) = (*stage, *target, ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| match (target, id) {
+                    (LocationTarget::Districts, None) => a.session.roll_district_count(stage, dice),
+                    (LocationTarget::Districts, Some(id)) => {
+                        a.session.choose_district_count(stage, id, dice)
+                    }
+                    (LocationTarget::Count(area), None) => {
+                        a.session.roll_location_count(stage, area, dice)
+                    }
+                    (LocationTarget::Count(area), Some(id)) => {
+                        a.session.choose_location_count(stage, area, id, dice)
+                    }
+                    (LocationTarget::Type(l), None) => a.session.roll_location_type(stage, l, dice),
+                    (LocationTarget::Type(l), Some(id)) => {
+                        a.session.choose_location_type(stage, l, id, dice)
+                    }
+                });
             }
             (ModalResult::Picked(i), Pending::RoleSlot(stage)) => {
                 let stage = *stage;
@@ -740,6 +823,92 @@ impl GenerateScreen {
             _ => self.modal = None,
         }
         Some(Nav::Stay)
+    }
+
+    /// Opens the list of what can be changed on the Notable Locations stage:
+    /// the District Count, each area's count and each rolled location's Type.
+    fn open_location_editor(&mut self, index: usize) {
+        let Some(view) = self.view.stages[index].locations.as_ref() else {
+            return;
+        };
+        let Some(record) = view.record.as_ref() else {
+            self.error = Some("Roll the Notable Locations first (r).".into());
+            return;
+        };
+        let mut items = Vec::new();
+        let mut targets = Vec::new();
+        if let Some(districts) = &record.districts {
+            items.push(PickItem::new("District Count").hint(districts.roll.result.name.clone()));
+            targets.push(LocationTarget::Districts);
+        }
+        for (i, area) in record.areas.iter().enumerate() {
+            let label = area.district.as_ref().map_or_else(
+                || "Notable Location Count".to_owned(),
+                |d| format!("{}: Notable Location Count", d.label),
+            );
+            items.push(PickItem::new(label).hint(area.count.roll.result.name.clone()));
+            targets.push(LocationTarget::Count(i));
+        }
+        for (i, location) in record.locations.iter().enumerate() {
+            if location.source == LocationSource::Rolled {
+                items.push(
+                    PickItem::new(format!("Location {}", i + 1))
+                        .hint(location_label(record, location)),
+                );
+                targets.push(LocationTarget::Type(i));
+            }
+        }
+        self.modal = Some((
+            Modal::pick("Change Notable Locations", items, 0),
+            Pending::LocationTarget(index, targets),
+        ));
+    }
+
+    /// Opens one Notable Locations table's legal results, after "Roll again".
+    fn open_location_target(&mut self, index: usize, target: LocationTarget) {
+        let Some(view) = self.view.stages[index].locations.as_ref() else {
+            return;
+        };
+        let Some(record) = view.record.as_ref() else {
+            return;
+        };
+        let (options, current): (Option<&TableOptions>, Option<ResultId>) = match target {
+            LocationTarget::Districts => (
+                view.options.districts.as_ref(),
+                record.districts.as_ref().map(|d| d.roll.result.id.clone()),
+            ),
+            LocationTarget::Count(area) => (
+                view.options.count.as_ref(),
+                record
+                    .areas
+                    .get(area)
+                    .map(|a| a.count.roll.result.id.clone()),
+            ),
+            LocationTarget::Type(l) => (
+                view.options.types.as_ref(),
+                record.locations.get(l).map(|l| l.location_type.id.clone()),
+            ),
+        };
+        let Some(options) = options else {
+            return;
+        };
+        let legal: Vec<&ResultOption> = options.options.iter().filter(|o| o.legal).collect();
+        let mut items = vec![PickItem::new("Roll again")];
+        let mut ids = vec![None];
+        for o in legal {
+            items.push(
+                PickItem::new(o.result.name.clone())
+                    .hint(o.range.map_or(String::new(), |r| r.to_string())),
+            );
+            ids.push(Some(o.result.id.clone()));
+        }
+        let at = current
+            .and_then(|c| ids.iter().position(|id| id.as_ref() == Some(&c)))
+            .unwrap_or(0);
+        self.modal = Some((
+            Modal::pick(&format!("Choose {}", options.table.name), items, at),
+            Pending::LocationResult(index, target, ids),
+        ));
     }
 
     /// Opens the list of roles to change on the Role Allocation stage.
@@ -1108,7 +1277,8 @@ impl Screen for GenerateScreen {
             // On the Authority Figures row the notes show the figures, so they
             // take the room the stage list does not need.
             let on_figures = self.rows.current(&rows).is_some_and(|&i| {
-                self.view.stages[i].figures.is_some() || self.view.stages[i].roles.is_some()
+                let stage = &self.view.stages[i];
+                stage.figures.is_some() || stage.roles.is_some() || stage.locations.is_some()
             });
             let constraints = if on_figures {
                 [
@@ -1130,6 +1300,13 @@ impl Screen for GenerateScreen {
                         Span::styled(" change a role", s.dim()),
                     ]));
                     lines.extend(role_lines(stage, &s));
+                }
+                if let Some(record) = stage.locations.as_ref().and_then(|l| l.record.as_ref()) {
+                    lines.push(Line::from(vec![
+                        Span::styled("Enter", s.key()),
+                        Span::styled(" change a count or a location's type", s.dim()),
+                    ]));
+                    lines.extend(location_lines(record, &s, 0));
                 }
                 if let Some(record) = stage.figures.as_ref().and_then(|f| f.record.as_ref()) {
                     lines.push(Line::from(vec![
@@ -1214,6 +1391,9 @@ impl Screen for GenerateScreen {
                 KeyCode::Enter if self.view.stages[stage].roles.is_some() => {
                     self.open_role_editor(stage);
                 }
+                KeyCode::Enter if self.view.stages[stage].locations.is_some() => {
+                    self.open_location_editor(stage);
+                }
                 KeyCode::Enter => {
                     let view = &self.view.stages[stage];
                     let legal: Vec<_> = view.options.iter().filter(|o| o.legal).collect();
@@ -1272,6 +1452,7 @@ impl Screen for GenerateScreen {
         match key.code {
             KeyCode::Enter if stage.figures.is_some() => self.open_figure_editor(index),
             KeyCode::Enter if stage.roles.is_some() => self.open_role_editor(index),
+            KeyCode::Enter if stage.locations.is_some() => self.open_location_editor(index),
             KeyCode::Enter => {
                 if let Some(id) = self.rows.current(&rows).cloned() {
                     if self.act(ctx, |a, dice| a.session.choose(index, id, dice)) && automatic {
@@ -1323,12 +1504,15 @@ impl Screen for GenerateScreen {
         let on_name = self.focused_stage().is_some_and(|s| s.naming.is_some());
         let on_figures = self.focused_stage().is_some_and(|s| s.figures.is_some());
         let on_roles = self.focused_stage().is_some_and(|s| s.roles.is_some());
+        let on_locations = self.focused_stage().is_some_and(|s| s.locations.is_some());
         let (choose, roll) = if on_name {
             ("method", "roll name")
         } else if on_figures {
             ("edit figures", "generate")
         } else if on_roles {
             ("change role", "allocate")
+        } else if on_locations {
+            ("change", "roll all")
         } else {
             ("choose", "roll")
         };

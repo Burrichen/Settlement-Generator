@@ -122,6 +122,96 @@ fn generation_custom_name(
     state.act(|a| a.session.set_custom_name(stage, &name))
 }
 
+/// Rolls the District Count again (Cities and Capitals).
+#[tauri::command]
+fn generation_roll_district_count(
+    state: State<'_, AppState>,
+    stage: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_district_count(stage, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses the District Count.
+#[tauri::command]
+fn generation_choose_district_count(
+    state: State<'_, AppState>,
+    stage: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_district_count(
+            stage,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Rolls one area's Notable Location Count again.
+#[tauri::command]
+fn generation_roll_location_count(
+    state: State<'_, AppState>,
+    stage: usize,
+    area: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_location_count(stage, area, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one area's Notable Location Count.
+#[tauri::command]
+fn generation_choose_location_count(
+    state: State<'_, AppState>,
+    stage: usize,
+    area: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_location_count(
+            stage,
+            area,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Rolls one Notable Location's Type again.
+#[tauri::command]
+fn generation_roll_location_type(
+    state: State<'_, AppState>,
+    stage: usize,
+    location: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_location_type(stage, location, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one Notable Location's Type.
+#[tauri::command]
+fn generation_choose_location_type(
+    state: State<'_, AppState>,
+    stage: usize,
+    location: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_location_type(
+            stage,
+            location,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
 /// Rolls one Authority Figure's role again (by position, lead first).
 #[tauri::command]
 fn generation_roll_role(
@@ -476,6 +566,12 @@ pub fn run() {
             generation_roll,
             generation_choose,
             generation_custom_name,
+            generation_roll_district_count,
+            generation_choose_district_count,
+            generation_roll_location_count,
+            generation_choose_location_count,
+            generation_roll_location_type,
+            generation_choose_location_type,
             generation_roll_role,
             generation_choose_role,
             generation_roll_figure_field,

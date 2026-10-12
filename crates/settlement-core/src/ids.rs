@@ -102,6 +102,10 @@ define_id!(
     RoleSchemeId
 );
 define_id!(
+    /// Identifies a location scheme: the Notable Location tables a Size uses.
+    LocationSchemeId
+);
+define_id!(
     /// Identifies a subordinate generator that elaborates a result, such as
     /// the NPCs who hold an Authority. Reserved: no generators exist yet.
     GeneratorId

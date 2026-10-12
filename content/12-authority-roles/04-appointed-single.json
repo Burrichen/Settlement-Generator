@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.appointed.single",
+      "name": "Appointed Official Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.appointed.governor",
+          "name": "Governor",
+          "range": 1
+        },
+        {
+          "id": "role.appointed.magistrate",
+          "name": "Magistrate",
+          "range": 2
+        },
+        {
+          "id": "role.appointed.administrator",
+          "name": "Administrator",
+          "range": 3
+        },
+        {
+          "id": "role.appointed.steward",
+          "name": "Steward",
+          "range": 4
+        },
+        {
+          "id": "role.appointed.prefect",
+          "name": "Prefect",
+          "range": 5
+        },
+        {
+          "id": "role.appointed.commissioner",
+          "name": "Commissioner",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

@@ -8,21 +8,36 @@
       "dice": "1d12",
       "ordered": true,
       "results": [
-        { "id": "failing", "name": "Failing", "range": 1, "tags": ["economy.failing"] },
+        {
+          "id": "failing",
+          "name": "Failing",
+          "range": 1,
+          "tags": ["economy.failing"]
+        },
         {
           "id": "struggling",
           "name": "Struggling",
           "range": [2, 3],
           "tags": ["economy.struggling"]
         },
-        { "id": "stable", "name": "Stable", "range": [4, 7], "tags": ["economy.stable"] },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": [4, 7],
+          "tags": ["economy.stable"]
+        },
         {
           "id": "prosperous",
           "name": "Prosperous",
           "range": [8, 10],
           "tags": ["economy.prosperous"]
         },
-        { "id": "wealthy", "name": "Wealthy", "range": [11, 12], "tags": ["economy.wealthy"] }
+        {
+          "id": "wealthy",
+          "name": "Wealthy",
+          "range": [11, 12],
+          "tags": ["economy.wealthy"]
+        }
       ]
     }
   ],
@@ -51,6 +66,20 @@
           "change": "increase",
           "status": "planned",
           "note": "Failing: Economic Pressures increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Failing: Crime strongly increases (deprivation and instability). Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "strong_decrease",
+          "status": "planned",
+          "note": "Failing: Stability strongly decreases. Exact change not yet approved."
         }
       ]
     },
@@ -71,10 +100,27 @@
           "change": "decrease",
           "status": "planned",
           "note": "Struggling: Building quality decreases. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "increase",
+          "status": "planned",
+          "note": "Struggling: Crime increases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "decrease",
+          "status": "planned",
+          "note": "Struggling: Stability decreases. Exact change not yet approved."
         }
       ]
     },
-    { "id": "economy.stable", "name": "Stable" },
+    {
+      "id": "economy.stable",
+      "name": "Stable"
+    },
     {
       "id": "economy.prosperous",
       "name": "Prosperous",
@@ -85,6 +131,28 @@
           "change": "increase",
           "status": "planned",
           "note": "Prosperous: Shops / services increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "increase",
+          "status": "planned",
+          "note": "Prosperous: Crime increases (more valuable targets and opportunities). Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "increase",
+          "status": "planned",
+          "note": "Prosperous: Stability increases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.trade"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Prosperous: Trade / Shop locations more likely. Exact change not yet approved."
         }
       ]
     },
@@ -105,6 +173,28 @@
           "change": "increase",
           "status": "planned",
           "note": "Wealthy: High-quality / notable buildings increase. Destination table not yet present."
+        },
+        {
+          "kind": "intent",
+          "table": "table.crime",
+          "change": "strong_increase",
+          "status": "planned",
+          "note": "Wealthy: Crime strongly increases (more valuable targets and opportunities). Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.stability",
+          "change": "increase",
+          "status": "planned",
+          "note": "Wealthy: Stability increases. Exact change not yet approved."
+        },
+        {
+          "kind": "intent",
+          "table": "table.notableLocationType",
+          "results": ["locationType.trade"],
+          "change": "increase",
+          "status": "planned",
+          "note": "Wealthy: Trade / Shop locations more likely. Exact change not yet approved."
         }
       ]
     }

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.skgurr.firstElement",
+      "name": "Skgurr Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "dun",
+          "name": "Dun",
+          "range": 1
+        },
+        {
+          "id": "glen",
+          "name": "Glen",
+          "range": 2
+        },
+        {
+          "id": "brae",
+          "name": "Brae",
+          "range": 3
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "range": 4
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": 5
+        },
+        {
+          "id": "keld",
+          "name": "Keld",
+          "range": 6
+        },
+        {
+          "id": "mor",
+          "name": "Mor",
+          "range": 7
+        },
+        {
+          "id": "skel",
+          "name": "Skel",
+          "range": 8
+        },
+        {
+          "id": "strath",
+          "name": "Strath",
+          "range": 9
+        },
+        {
+          "id": "cairn",
+          "name": "Cairn",
+          "range": 10
+        },
+        {
+          "id": "rook",
+          "name": "Rook",
+          "range": 11
+        },
+        {
+          "id": "thorn",
+          "name": "Thorn",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

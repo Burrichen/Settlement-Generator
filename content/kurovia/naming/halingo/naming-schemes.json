@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.halingo",
+      "name": "Halingo",
+      "description": "Names for settlements in the Kurovian region of Halingo. Provisional sample data, not official Kurovian lore.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.halingo"
+          }
+        ]
+      },
+      "method_table": "table.naming.halingo.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": ["table.naming.halingo.firstElement", "table.naming.halingo.secondElement"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "words"
+          }
+        },
+        {
+          "result": "founder",
+          "components": ["table.naming.halingo.founder", "table.naming.halingo.founderEnding"],
+          "join": {
+            "style": "possessive",
+            "suffix": "'s",
+            "after_s": "'",
+            "separator": " ",
+            "case": "words"
+          }
+        }
+      ]
+    }
+  ]
+}

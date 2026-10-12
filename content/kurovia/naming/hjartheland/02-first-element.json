@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.firstElement",
+      "name": "Hjartheland Name: First Element",
+      "description": "First part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": 1
+        },
+        {
+          "id": "hrafn",
+          "name": "Hrafn",
+          "range": 2
+        },
+        {
+          "id": "bjorn",
+          "name": "Bjorn",
+          "range": 3
+        },
+        {
+          "id": "eir",
+          "name": "Eir",
+          "range": 4
+        },
+        {
+          "id": "skar",
+          "name": "Skar",
+          "range": 5
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": 6
+        },
+        {
+          "id": "sval",
+          "name": "Sval",
+          "range": 7
+        },
+        {
+          "id": "hald",
+          "name": "Hald",
+          "range": 8
+        },
+        {
+          "id": "stein",
+          "name": "Stein",
+          "range": 9
+        },
+        {
+          "id": "vard",
+          "name": "Vard",
+          "range": 10
+        },
+        {
+          "id": "hjell",
+          "name": "Hjell",
+          "range": 11
+        },
+        {
+          "id": "skog",
+          "name": "Skog",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

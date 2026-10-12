@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.shinkira.secondElement",
+      "name": "Shinkira Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "mura",
+          "name": "mura",
+          "range": 1
+        },
+        {
+          "id": "sato",
+          "name": "sato",
+          "range": 2
+        },
+        {
+          "id": "hara",
+          "name": "hara",
+          "range": 3
+        },
+        {
+          "id": "sawa",
+          "name": "sawa",
+          "range": 4
+        },
+        {
+          "id": "kawa",
+          "name": "kawa",
+          "range": 5
+        },
+        {
+          "id": "tani",
+          "name": "tani",
+          "range": 6
+        },
+        {
+          "id": "yama",
+          "name": "yama",
+          "range": 7
+        },
+        {
+          "id": "oka",
+          "name": "oka",
+          "range": 8
+        },
+        {
+          "id": "shima",
+          "name": "shima",
+          "range": 9
+        },
+        {
+          "id": "mori",
+          "name": "mori",
+          "range": 10
+        },
+        {
+          "id": "numa",
+          "name": "numa",
+          "range": 11
+        },
+        {
+          "id": "zaki",
+          "name": "zaki",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

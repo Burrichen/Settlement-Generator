@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.targoth.secondElement",
+      "name": "Targoth Name: Second Element",
+      "description": "Second part of a Geographic Compound name. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "hold",
+          "name": "hold",
+          "range": 1
+        },
+        {
+          "id": "gate",
+          "name": "gate",
+          "range": 2
+        },
+        {
+          "id": "fell",
+          "name": "fell",
+          "range": 3
+        },
+        {
+          "id": "watch",
+          "name": "watch",
+          "range": 4
+        },
+        {
+          "id": "stone",
+          "name": "stone",
+          "range": 5
+        },
+        {
+          "id": "deep",
+          "name": "deep",
+          "range": 6
+        },
+        {
+          "id": "rest",
+          "name": "rest",
+          "range": 7
+        },
+        {
+          "id": "reach",
+          "name": "reach",
+          "range": 8
+        },
+        {
+          "id": "spire",
+          "name": "spire",
+          "range": 9
+        },
+        {
+          "id": "dun",
+          "name": "dun",
+          "range": 10
+        },
+        {
+          "id": "vale",
+          "name": "vale",
+          "range": 11
+        },
+        {
+          "id": "cairn",
+          "name": "cairn",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -25,6 +25,8 @@ export interface Settings {
   god_mode: boolean;
   tag_view: boolean;
   theme: Theme;
+  /** Every settlement gets one extra Notable Location: a Tavern. */
+  bare_minimum_buildings: boolean;
 }
 
 export function getAppInfo(): Promise<AppInfo> {
@@ -160,6 +162,8 @@ export interface StageView {
   figures?: FiguresView;
   /** Present on the Role Allocation stage only. */
   roles?: RolesView;
+  /** Present on the Notable Locations stage only. */
+  locations?: LocationsView;
 }
 
 /** A table roll as recorded (the parts the interface shows). */
@@ -240,6 +244,56 @@ export interface RoleSlotOptions {
 export interface RolesView {
   record?: RoleAllocation;
   slots: RoleSlotOptions[];
+}
+
+export type LocationSource = "rolled" | "bareMinimumBuildings";
+
+export interface CountRoll {
+  roll: RollRecord;
+  count: number;
+}
+
+export interface District {
+  id: string;
+  label: string;
+}
+
+export interface LocationArea {
+  district?: District;
+  count: CountRoll;
+}
+
+export interface NotableLocation {
+  id: string;
+  source: LocationSource;
+  district?: string;
+  type: Named;
+  type_roll?: RollRecord;
+  subtype?: Named;
+  spare_rooms?: number;
+}
+
+export interface NotableLocations {
+  size: Named;
+  scheme: Named;
+  districts?: CountRoll;
+  areas: LocationArea[];
+  /** The guaranteed Tavern first (if any), then the rolled locations. */
+  locations: NotableLocation[];
+  /** The highest rolled-location number issued (IDs are never reused). */
+  issued: number;
+  app_version: string;
+}
+
+export interface TableOptions {
+  table: Named;
+  options: ResultOption[];
+}
+
+export interface LocationsView {
+  record?: NotableLocations;
+  options: { districts?: TableOptions; count?: TableOptions; types?: TableOptions };
+  bare_minimum_buildings: boolean;
 }
 
 export interface AuthorityFigure {
@@ -347,6 +401,18 @@ export const generation = {
   /** Names the settlement with a typed name (the name stage). */
   customName: (stage: number, name: string) =>
     invoke<GenerationResponse>("generation_custom_name", { stage, name }),
+  rollDistrictCount: (stage: number) =>
+    invoke<GenerationResponse>("generation_roll_district_count", { stage }),
+  chooseDistrictCount: (stage: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_district_count", { stage, result }),
+  rollLocationCount: (stage: number, area: number) =>
+    invoke<GenerationResponse>("generation_roll_location_count", { stage, area }),
+  chooseLocationCount: (stage: number, area: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_location_count", { stage, area, result }),
+  rollLocationType: (stage: number, location: number) =>
+    invoke<GenerationResponse>("generation_roll_location_type", { stage, location }),
+  chooseLocationType: (stage: number, location: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_location_type", { stage, location, result }),
   rollRole: (stage: number, slot: number) =>
     invoke<GenerationResponse>("generation_roll_role", { stage, slot }),
   chooseRole: (stage: number, slot: number, result: string) =>
@@ -407,6 +473,8 @@ export interface SnapshotStage {
   figures?: AuthorityFigures;
   /** The Role Allocation stage's record (only on that stage). */
   roles?: RoleAllocation;
+  /** The Notable Locations stage's record (only on that stage). */
+  locations?: NotableLocations;
   /** The name stage's record (only on the name stage). */
   name?: NameRecord;
 }

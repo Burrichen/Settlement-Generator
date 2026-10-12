@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.method",
+      "name": "Hjartheland Naming Method",
+      "description": "Which naming method a Hjartheland settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Scandinavian / Old Norse inspired: traditional, sturdy and geographically meaningful.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "geographic",
+          "name": "Geographic Compound",
+          "description": "First element + second element as one word, e.g. Nordvik, Eirheim, Steindal.",
+          "range": [1, 7]
+        },
+        {
+          "id": "founder",
+          "name": "Historical Founder",
+          "description": "A founder's name joined directly to an ending, without a possessive s, e.g. Eirikheim, Signevik.",
+          "range": [8, 10]
+        }
+      ]
+    }
+  ]
+}

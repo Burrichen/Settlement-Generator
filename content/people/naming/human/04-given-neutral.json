@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.human.given.neutral",
+      "name": "Human Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "arden",
+          "name": "Arden",
+          "range": 1
+        },
+        {
+          "id": "briar",
+          "name": "Briar",
+          "range": 2
+        },
+        {
+          "id": "cael",
+          "name": "Cael",
+          "range": 3
+        },
+        {
+          "id": "dorran",
+          "name": "Dorran",
+          "range": 4
+        },
+        {
+          "id": "ellis",
+          "name": "Ellis",
+          "range": 5
+        },
+        {
+          "id": "florin",
+          "name": "Florin",
+          "range": 6
+        },
+        {
+          "id": "gale",
+          "name": "Gale",
+          "range": 7
+        },
+        {
+          "id": "haskel",
+          "name": "Haskel",
+          "range": 8
+        },
+        {
+          "id": "isley",
+          "name": "Isley",
+          "range": 9
+        },
+        {
+          "id": "jory",
+          "name": "Jory",
+          "range": 10
+        },
+        {
+          "id": "kit",
+          "name": "Kit",
+          "range": 11
+        },
+        {
+          "id": "lark",
+          "name": "Lark",
+          "range": 12
+        },
+        {
+          "id": "merrow",
+          "name": "Merrow",
+          "range": 13
+        },
+        {
+          "id": "noel",
+          "name": "Noel",
+          "range": 14
+        },
+        {
+          "id": "oakes",
+          "name": "Oakes",
+          "range": 15
+        },
+        {
+          "id": "pell",
+          "name": "Pell",
+          "range": 16
+        },
+        {
+          "id": "quill",
+          "name": "Quill",
+          "range": 17
+        },
+        {
+          "id": "rowan",
+          "name": "Rowan",
+          "range": 18
+        },
+        {
+          "id": "sable",
+          "name": "Sable",
+          "range": 19
+        },
+        {
+          "id": "teague",
+          "name": "Teague",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

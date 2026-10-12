@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.guild.member",
+      "name": "Merchant / Guild Rule Member Role",
+      "description": "Treasurer and Trade Speaker are unique; a second one becomes a Guild Representative.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.guild.representative",
+          "name": "Guild Representative",
+          "range": [1, 2]
+        },
+        {
+          "id": "role.guild.seniorMerchant",
+          "name": "Senior Merchant",
+          "range": 3
+        },
+        {
+          "id": "role.guild.factor",
+          "name": "Factor",
+          "range": 4
+        },
+        {
+          "id": "role.guild.treasurer",
+          "name": "Treasurer",
+          "range": 5,
+          "unique": true,
+          "fallback": "role.guild.representative"
+        },
+        {
+          "id": "role.guild.tradeSpeaker",
+          "name": "Trade Speaker",
+          "range": 6,
+          "unique": true,
+          "fallback": "role.guild.representative"
+        }
+      ]
+    }
+  ]
+}

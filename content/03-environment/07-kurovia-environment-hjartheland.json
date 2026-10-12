@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.kuroviaEnvironment.hjartheland",
+      "name": "Kurovia Environment: Hjartheland",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "coldTundra",
+          "name": "Cold / Tundra",
+          "range": [1, 7],
+          "tags": ["env.coldTundra"]
+        },
+        {
+          "id": "glacial",
+          "name": "Glacial",
+          "range": [8, 14],
+          "tags": ["env.glacial"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": [15, 17],
+          "tags": ["env.mountains"]
+        },
+        {
+          "id": "foreverIce",
+          "name": "Forever Ice",
+          "range": [18, 20],
+          "tags": ["env.foreverIce"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "env.coldTundra",
+      "name": "Cold / Tundra"
+    },
+    {
+      "id": "env.glacial",
+      "name": "Glacial"
+    },
+    {
+      "id": "env.foreverIce",
+      "name": "Forever Ice"
+    }
+  ]
+}

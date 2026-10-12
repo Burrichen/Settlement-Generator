@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.highElf.given.neutral",
+      "name": "High Elf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "aethis",
+          "name": "Aethis",
+          "range": 1
+        },
+        {
+          "id": "aurel",
+          "name": "Aurel",
+          "range": 2
+        },
+        {
+          "id": "caelis",
+          "name": "Caelis",
+          "range": 3
+        },
+        {
+          "id": "elarys",
+          "name": "Elarys",
+          "range": 4
+        },
+        {
+          "id": "ennis",
+          "name": "Ennis",
+          "range": 5
+        },
+        {
+          "id": "faen",
+          "name": "Faen",
+          "range": 6
+        },
+        {
+          "id": "ilrae",
+          "name": "Ilrae",
+          "range": 7
+        },
+        {
+          "id": "iselt",
+          "name": "Iselt",
+          "range": 8
+        },
+        {
+          "id": "liris",
+          "name": "Liris",
+          "range": 9
+        },
+        {
+          "id": "maelis",
+          "name": "Maelis",
+          "range": 10
+        },
+        {
+          "id": "nythe",
+          "name": "Nythe",
+          "range": 11
+        },
+        {
+          "id": "orrel",
+          "name": "Orrel",
+          "range": 12
+        },
+        {
+          "id": "quelis",
+          "name": "Quelis",
+          "range": 13
+        },
+        {
+          "id": "saerin",
+          "name": "Saerin",
+          "range": 14
+        },
+        {
+          "id": "sivren",
+          "name": "Sivren",
+          "range": 15
+        },
+        {
+          "id": "taelis",
+          "name": "Taelis",
+          "range": 16
+        },
+        {
+          "id": "thaeris",
+          "name": "Thaeris",
+          "range": 17
+        },
+        {
+          "id": "velar",
+          "name": "Velar",
+          "range": 18
+        },
+        {
+          "id": "ysel",
+          "name": "Ysel",
+          "range": 19
+        },
+        {
+          "id": "zeyrin",
+          "name": "Zeyrin",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

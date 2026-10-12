@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.species.kurovia",
+      "name": "Kurovia Authority Figure Species",
+      "description": "Temporary species list and weighting for Kurovia Authority Figures; expected to change.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "human",
+          "name": "Human",
+          "range": [1, 4],
+          "tags": ["species.human"]
+        },
+        {
+          "id": "highElf",
+          "name": "High Elf",
+          "range": [5, 6],
+          "tags": ["species.highElf"]
+        },
+        {
+          "id": "woodElf",
+          "name": "Wood Elf",
+          "range": [7, 8],
+          "tags": ["species.woodElf"]
+        },
+        {
+          "id": "darkElf",
+          "name": "Dark Elf",
+          "range": 9,
+          "tags": ["species.darkElf"]
+        },
+        {
+          "id": "dragonborn",
+          "name": "Dragonborn",
+          "range": 10,
+          "tags": ["species.dragonborn"]
+        },
+        {
+          "id": "earthGenasi",
+          "name": "Earth Genasi",
+          "range": 11,
+          "tags": ["species.earthGenasi"]
+        },
+        {
+          "id": "airGenasi",
+          "name": "Air Genasi",
+          "range": 12,
+          "tags": ["species.airGenasi"]
+        },
+        {
+          "id": "fireGenasi",
+          "name": "Fire Genasi",
+          "range": 13,
+          "tags": ["species.fireGenasi"]
+        },
+        {
+          "id": "waterGenasi",
+          "name": "Water Genasi",
+          "range": 14,
+          "tags": ["species.waterGenasi"]
+        },
+        {
+          "id": "yuanTi",
+          "name": "Yuan-Ti",
+          "range": 15,
+          "tags": ["species.yuanTi"]
+        },
+        {
+          "id": "dwarf",
+          "name": "Dwarf",
+          "range": [16, 17],
+          "tags": ["species.dwarf"]
+        },
+        {
+          "id": "eladrin",
+          "name": "Eladrin",
+          "range": 18,
+          "tags": ["species.eladrin"]
+        },
+        {
+          "id": "firbolg",
+          "name": "Firbolg",
+          "range": [19, 20],
+          "tags": ["species.firbolg"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "species.human",
+      "name": "Human"
+    },
+    {
+      "id": "species.highElf",
+      "name": "High Elf"
+    },
+    {
+      "id": "species.woodElf",
+      "name": "Wood Elf"
+    },
+    {
+      "id": "species.darkElf",
+      "name": "Dark Elf"
+    },
+    {
+      "id": "species.dragonborn",
+      "name": "Dragonborn"
+    },
+    {
+      "id": "species.earthGenasi",
+      "name": "Earth Genasi"
+    },
+    {
+      "id": "species.airGenasi",
+      "name": "Air Genasi"
+    },
+    {
+      "id": "species.fireGenasi",
+      "name": "Fire Genasi"
+    },
+    {
+      "id": "species.waterGenasi",
+      "name": "Water Genasi"
+    },
+    {
+      "id": "species.yuanTi",
+      "name": "Yuan-Ti"
+    },
+    {
+      "id": "species.dwarf",
+      "name": "Dwarf"
+    },
+    {
+      "id": "species.eladrin",
+      "name": "Eladrin"
+    },
+    {
+      "id": "species.firbolg",
+      "name": "Firbolg"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.person.human.masculine",
+      "name": "Human names (masculine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.human"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
+      },
+      "method_table": "table.personName.human.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.human.given.masculine", "table.personName.human.family"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.human.feminine",
+      "name": "Human names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.human"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.human.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.human.given.feminine", "table.personName.human.family"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.human.neutral",
+      "name": "Human names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.human"
+      },
+      "method_table": "table.personName.human.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

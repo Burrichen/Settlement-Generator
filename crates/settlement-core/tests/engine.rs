@@ -462,7 +462,10 @@ use settlement_core::content::Effect;
 use settlement_core::engine::GenerationOptions;
 
 fn god_mode() -> GenerationOptions {
-    GenerationOptions { god_mode: true }
+    GenerationOptions {
+        god_mode: true,
+        ..Default::default()
+    }
 }
 
 #[test]

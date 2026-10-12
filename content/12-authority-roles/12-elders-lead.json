@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.elders.lead",
+      "name": "Elders / Community Leaders Lead Role",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.elders.firstElder",
+          "name": "First Elder",
+          "range": [1, 4]
+        },
+        {
+          "id": "role.elders.communitySpeaker",
+          "name": "Community Speaker",
+          "range": [5, 6]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.skgurr.founder",
+      "name": "Skgurr Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ewan",
+          "name": "Ewan",
+          "range": 1
+        },
+        {
+          "id": "mairi",
+          "name": "Mairi",
+          "range": 2
+        },
+        {
+          "id": "duncan",
+          "name": "Duncan",
+          "range": 3
+        },
+        {
+          "id": "sorley",
+          "name": "Sorley",
+          "range": 4
+        },
+        {
+          "id": "fergus",
+          "name": "Fergus",
+          "range": 5
+        },
+        {
+          "id": "iona",
+          "name": "Iona",
+          "range": 6
+        },
+        {
+          "id": "torin",
+          "name": "Torin",
+          "range": 7
+        },
+        {
+          "id": "morven",
+          "name": "Morven",
+          "range": 8
+        },
+        {
+          "id": "rona",
+          "name": "Rona",
+          "range": 9
+        },
+        {
+          "id": "ivor",
+          "name": "Ivor",
+          "range": 10
+        },
+        {
+          "id": "eilidh",
+          "name": "Eilidh",
+          "range": 11
+        },
+        {
+          "id": "alasdair",
+          "name": "Alasdair",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

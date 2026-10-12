@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.motive",
+      "name": "Authority Figure Motive",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "protectSettlement",
+          "name": "Protect the Settlement",
+          "range": [1, 2]
+        },
+        {
+          "id": "maintainOrder",
+          "name": "Maintain Order",
+          "range": 3
+        },
+        {
+          "id": "increaseProsperity",
+          "name": "Increase Prosperity",
+          "range": 4
+        },
+        {
+          "id": "gainInfluence",
+          "name": "Gain Influence",
+          "range": 5
+        },
+        {
+          "id": "upholdTradition",
+          "name": "Uphold Tradition",
+          "range": 6
+        },
+        {
+          "id": "reformSettlement",
+          "name": "Reform the Settlement",
+          "range": 7
+        },
+        {
+          "id": "serveFaith",
+          "name": "Serve Their Faith / Ideals",
+          "range": 8
+        },
+        {
+          "id": "protectOwnPeople",
+          "name": "Protect Their Own People",
+          "range": 9
+        },
+        {
+          "id": "personalWealth",
+          "name": "Personal Wealth",
+          "range": 10
+        },
+        {
+          "id": "buildLegacy",
+          "name": "Build a Legacy",
+          "range": 11
+        },
+        {
+          "id": "preserveIndependence",
+          "name": "Preserve Independence",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -9,6 +9,7 @@ use std::fmt;
 use serde::{Deserialize, Serialize};
 
 use crate::ids::{GeneratorId, NamingSchemeId, ResultId, TableId, TagId, VariantId};
+use crate::locations::LocationScheme;
 use crate::naming::NamingScheme;
 use crate::roles::RoleScheme;
 
@@ -50,6 +51,10 @@ pub struct ContentSet {
     /// The role tables each Authority uses, chosen by tags (see `roles.rs`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub role_schemes: Vec<RoleScheme>,
+    /// The Notable Location tables each Size uses, chosen by tags (see
+    /// `locations.rs`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub location_schemes: Vec<LocationScheme>,
 }
 
 impl Default for ContentSet {
@@ -61,6 +66,7 @@ impl Default for ContentSet {
             tags: Vec::new(),
             naming_schemes: Vec::new(),
             role_schemes: Vec::new(),
+            location_schemes: Vec::new(),
         }
     }
 }
@@ -96,6 +102,9 @@ pub enum StepTarget {
     /// are generated (see [`crate::roles`]). Written
     /// `{ "authority_roles": true }`.
     AuthorityRoles,
+    /// Generate the settlement's Notable Locations (see
+    /// [`crate::locations`]). Written `{ "notable_locations": true }`.
+    NotableLocations,
 }
 
 impl SequenceStep {
@@ -103,7 +112,10 @@ impl SequenceStep {
     pub fn table(&self) -> Option<&TableId> {
         match &self.target {
             StepTarget::Table(t) => Some(t),
-            StepTarget::Naming | StepTarget::AuthorityFigures | StepTarget::AuthorityRoles => None,
+            StepTarget::Naming
+            | StepTarget::AuthorityFigures
+            | StepTarget::AuthorityRoles
+            | StepTarget::NotableLocations => None,
         }
     }
 }
@@ -126,6 +138,11 @@ enum SequenceStepRepr {
     },
     AuthorityFigures {
         authority_figures: NamingMarker,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        name: Option<String>,
+    },
+    NotableLocations {
+        notable_locations: NamingMarker,
         #[serde(default, skip_serializing_if = "Option::is_none")]
         name: Option<String>,
     },
@@ -188,6 +205,11 @@ impl From<SequenceStepRepr> for SequenceStep {
                 name,
                 sub_stage: false,
             },
+            SequenceStepRepr::NotableLocations { name, .. } => SequenceStep {
+                target: StepTarget::NotableLocations,
+                name,
+                sub_stage: false,
+            },
             SequenceStepRepr::AuthorityRoles {
                 name, sub_stage, ..
             } => SequenceStep {
@@ -214,6 +236,10 @@ impl From<SequenceStep> for SequenceStepRepr {
             },
             (StepTarget::AuthorityFigures, name) => SequenceStepRepr::AuthorityFigures {
                 authority_figures: NamingMarker,
+                name,
+            },
+            (StepTarget::NotableLocations, name) => SequenceStepRepr::NotableLocations {
+                notable_locations: NamingMarker,
                 name,
             },
             (StepTarget::AuthorityRoles, name) => SequenceStepRepr::AuthorityRoles {

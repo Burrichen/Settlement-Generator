@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.shinkira.founder",
+      "name": "Shinkira Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "arai",
+          "name": "Arai",
+          "range": 1
+        },
+        {
+          "id": "endo",
+          "name": "Endo",
+          "range": 2
+        },
+        {
+          "id": "hoshino",
+          "name": "Hoshino",
+          "range": 3
+        },
+        {
+          "id": "ishida",
+          "name": "Ishida",
+          "range": 4
+        },
+        {
+          "id": "kagawa",
+          "name": "Kagawa",
+          "range": 5
+        },
+        {
+          "id": "kitamura",
+          "name": "Kitamura",
+          "range": 6
+        },
+        {
+          "id": "mizuno",
+          "name": "Mizuno",
+          "range": 7
+        },
+        {
+          "id": "morita",
+          "name": "Morita",
+          "range": 8
+        },
+        {
+          "id": "nakai",
+          "name": "Nakai",
+          "range": 9
+        },
+        {
+          "id": "sakurai",
+          "name": "Sakurai",
+          "range": 10
+        },
+        {
+          "id": "takeda",
+          "name": "Takeda",
+          "range": 11
+        },
+        {
+          "id": "ueda",
+          "name": "Ueda",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.military.member",
+      "name": "Military Authority Member Role",
+      "description": "Quartermaster and Adjutant are unique; a second one becomes a Senior Officer.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "role.military.captain",
+          "name": "Captain",
+          "range": [1, 2]
+        },
+        {
+          "id": "role.military.seniorOfficer",
+          "name": "Senior Officer",
+          "range": 3
+        },
+        {
+          "id": "role.military.lieutenant",
+          "name": "Lieutenant",
+          "range": 4
+        },
+        {
+          "id": "role.military.quartermaster",
+          "name": "Quartermaster",
+          "range": 5,
+          "unique": true,
+          "fallback": "role.military.seniorOfficer"
+        },
+        {
+          "id": "role.military.adjutant",
+          "name": "Adjutant",
+          "range": 6,
+          "unique": true,
+          "fallback": "role.military.seniorOfficer"
+        }
+      ]
+    }
+  ]
+}

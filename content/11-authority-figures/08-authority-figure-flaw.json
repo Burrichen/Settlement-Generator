@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.flaw",
+      "name": "Authority Figure Flaw / Complication",
+      "description": "A weakness or complication; not an alignment.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "arrogant",
+          "name": "Arrogant",
+          "range": 1
+        },
+        {
+          "id": "indecisive",
+          "name": "Indecisive",
+          "range": 2
+        },
+        {
+          "id": "greedy",
+          "name": "Greedy",
+          "range": 3
+        },
+        {
+          "id": "overlyTrusting",
+          "name": "Overly Trusting",
+          "range": 4
+        },
+        {
+          "id": "vindictive",
+          "name": "Vindictive",
+          "range": 5
+        },
+        {
+          "id": "rigid",
+          "name": "Rigid / Inflexible",
+          "range": 6
+        },
+        {
+          "id": "secretive",
+          "name": "Secretive",
+          "range": 7
+        },
+        {
+          "id": "easilyInfluenced",
+          "name": "Easily Influenced",
+          "range": 8
+        },
+        {
+          "id": "impulsive",
+          "name": "Impulsive",
+          "range": 9
+        },
+        {
+          "id": "cowardly",
+          "name": "Cowardly",
+          "range": 10
+        },
+        {
+          "id": "nepotistic",
+          "name": "Nepotistic",
+          "range": 11
+        },
+        {
+          "id": "obsessive",
+          "name": "Obsessive",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

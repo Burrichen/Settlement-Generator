@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityFigure.reputation",
+      "name": "Authority Figure Reputation",
+      "description": "How the settlement generally perceives the figure.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "beloved",
+          "name": "Beloved",
+          "range": 1
+        },
+        {
+          "id": "respected",
+          "name": "Respected",
+          "range": [2, 3]
+        },
+        {
+          "id": "trusted",
+          "name": "Trusted",
+          "range": [4, 5]
+        },
+        {
+          "id": "divisive",
+          "name": "Divisive",
+          "range": [6, 7]
+        },
+        {
+          "id": "feared",
+          "name": "Feared",
+          "range": 8
+        },
+        {
+          "id": "disliked",
+          "name": "Disliked",
+          "range": [9, 10]
+        },
+        {
+          "id": "mocked",
+          "name": "Mocked",
+          "range": 11
+        },
+        {
+          "id": "mysterious",
+          "name": "Mysterious",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

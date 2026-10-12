@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.human.method",
+      "name": "Human Naming Method",
+      "description": "How a Human Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + family name",
+          "range": [1, 4]
+        }
+      ]
+    }
+  ]
+}

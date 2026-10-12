@@ -320,6 +320,7 @@ function DetailPane({
             // Roles are shown with each Authority Figure instead.
             skipped: stage.skipped || !!stage.roles,
             figures: stage.figures,
+            locations: stage.locations,
           })),
         )}
         meta={`Snapshot saved with v${detail.app_version}. Later changes to tables do not alter it.`}

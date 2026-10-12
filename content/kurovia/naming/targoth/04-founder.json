@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.targoth.founder",
+      "name": "Targoth Name: Founder",
+      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "varok",
+          "name": "Varok",
+          "range": 1
+        },
+        {
+          "id": "thren",
+          "name": "Thren",
+          "range": 2
+        },
+        {
+          "id": "odrik",
+          "name": "Odrik",
+          "range": 3
+        },
+        {
+          "id": "maren",
+          "name": "Maren",
+          "range": 4
+        },
+        {
+          "id": "dravar",
+          "name": "Dravar",
+          "range": 5
+        },
+        {
+          "id": "keled",
+          "name": "Keled",
+          "range": 6
+        },
+        {
+          "id": "voran",
+          "name": "Voran",
+          "range": 7
+        },
+        {
+          "id": "torek",
+          "name": "Torek",
+          "range": 8
+        },
+        {
+          "id": "ravik",
+          "name": "Ravik",
+          "range": 9
+        },
+        {
+          "id": "elvar",
+          "name": "Elvar",
+          "range": 10
+        },
+        {
+          "id": "sorn",
+          "name": "Sorn",
+          "range": 11
+        },
+        {
+          "id": "kerin",
+          "name": "Kerin",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

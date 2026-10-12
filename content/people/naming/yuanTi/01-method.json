@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.yuanTi.method",
+      "name": "Yuan-Ti Naming Method",
+      "description": "How a Yuan-Ti Authority Figure's name is put together.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "givenSurname",
+          "name": "Given name + lineage name",
+          "range": [1, 4]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.targoth.founderEnding",
+      "name": "Targoth Name: Founder Feature",
+      "description": "Founder Feature added after the founder's name. Equal starter weights.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "hold",
+          "name": "Hold",
+          "range": 1
+        },
+        {
+          "id": "gate",
+          "name": "Gate",
+          "range": 2
+        },
+        {
+          "id": "watch",
+          "name": "Watch",
+          "range": 3
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "range": 4
+        },
+        {
+          "id": "cairn",
+          "name": "Cairn",
+          "range": 5
+        },
+        {
+          "id": "deep",
+          "name": "Deep",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

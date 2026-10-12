@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.darkElf.given.neutral",
+      "name": "Dark Elf Neutral Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "azrel",
+          "name": "Azrel",
+          "range": 1
+        },
+        {
+          "id": "caelzir",
+          "name": "Caelzir",
+          "range": 2
+        },
+        {
+          "id": "dhyrr",
+          "name": "Dhyrr",
+          "range": 3
+        },
+        {
+          "id": "ezrin",
+          "name": "Ezrin",
+          "range": 4
+        },
+        {
+          "id": "ghel",
+          "name": "Ghel",
+          "range": 5
+        },
+        {
+          "id": "ilzhar",
+          "name": "Ilzhar",
+          "range": 6
+        },
+        {
+          "id": "jhyr",
+          "name": "Jhyr",
+          "range": 7
+        },
+        {
+          "id": "kezrin",
+          "name": "Kezrin",
+          "range": 8
+        },
+        {
+          "id": "lhyss",
+          "name": "Lhyss",
+          "range": 9
+        },
+        {
+          "id": "mzar",
+          "name": "Mzar",
+          "range": 10
+        },
+        {
+          "id": "nhyr",
+          "name": "Nhyr",
+          "range": 11
+        },
+        {
+          "id": "ozzin",
+          "name": "Ozzin",
+          "range": 12
+        },
+        {
+          "id": "phyr",
+          "name": "Phyr",
+          "range": 13
+        },
+        {
+          "id": "qhel",
+          "name": "Qhel",
+          "range": 14
+        },
+        {
+          "id": "rhyss",
+          "name": "Rhyss",
+          "range": 15
+        },
+        {
+          "id": "szar",
+          "name": "Szar",
+          "range": 16
+        },
+        {
+          "id": "tzel",
+          "name": "Tzel",
+          "range": 17
+        },
+        {
+          "id": "vrae",
+          "name": "Vrae",
+          "range": 18
+        },
+        {
+          "id": "xhyl",
+          "name": "Xhyl",
+          "range": 19
+        },
+        {
+          "id": "zhyss",
+          "name": "Zhyss",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

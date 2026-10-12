@@ -83,6 +83,7 @@ fn every_setting_survives_a_restart() {
             god_mode: true,
             tag_view: true,
             theme: Theme::OldTimeyDark,
+            bare_minimum_buildings: false,
         }
     );
 }

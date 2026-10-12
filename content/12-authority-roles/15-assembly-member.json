@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.authorityRole.assembly.member",
+      "name": "Popular Assembly Member Role",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "role.assembly.delegate",
+          "name": "Delegate",
+          "range": [1, 3]
+        },
+        {
+          "id": "role.assembly.citizenRepresentative",
+          "name": "Citizen Representative",
+          "range": 4
+        }
+      ]
+    }
+  ]
+}

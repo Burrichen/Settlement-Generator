@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.woodElf.given.masculine",
+      "name": "Wood Elf Masculine Given Names",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ardo",
+          "name": "Ardo",
+          "range": 1
+        },
+        {
+          "id": "bresk",
+          "name": "Bresk",
+          "range": 2
+        },
+        {
+          "id": "corran",
+          "name": "Corran",
+          "range": 3
+        },
+        {
+          "id": "dathen",
+          "name": "Dathen",
+          "range": 4
+        },
+        {
+          "id": "fennick",
+          "name": "Fennick",
+          "range": 5
+        },
+        {
+          "id": "garro",
+          "name": "Garro",
+          "range": 6
+        },
+        {
+          "id": "hask",
+          "name": "Hask",
+          "range": 7
+        },
+        {
+          "id": "ilver",
+          "name": "Ilver",
+          "range": 8
+        },
+        {
+          "id": "jarrow",
+          "name": "Jarrow",
+          "range": 9
+        },
+        {
+          "id": "kellan",
+          "name": "Kellan",
+          "range": 10
+        },
+        {
+          "id": "lorne",
+          "name": "Lorne",
+          "range": 11
+        },
+        {
+          "id": "merrin",
+          "name": "Merrin",
+          "range": 12
+        },
+        {
+          "id": "nesk",
+          "name": "Nesk",
+          "range": 13
+        },
+        {
+          "id": "orrick",
+          "name": "Orrick",
+          "range": 14
+        },
+        {
+          "id": "perran",
+          "name": "Perran",
+          "range": 15
+        },
+        {
+          "id": "rusk",
+          "name": "Rusk",
+          "range": 16
+        },
+        {
+          "id": "senn",
+          "name": "Senn",
+          "range": 17
+        },
+        {
+          "id": "tamrin",
+          "name": "Tamrin",
+          "range": 18
+        },
+        {
+          "id": "varro",
+          "name": "Varro",
+          "range": 19
+        },
+        {
+          "id": "wode",
+          "name": "Wode",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}
