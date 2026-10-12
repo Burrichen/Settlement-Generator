@@ -79,6 +79,7 @@ Requirements common to both:
 | ---------- | ---------------------------------------------- |
 | v0.1.0     | First release (scope defined by later prompts) |
 | v0.1.1     | Settlement name generation                     |
+| v0.1.5     | Authority, settlement state, Notable Locations |
 | Next MINOR | Improved name generation                       |
 | Next MAJOR | New tables                                     |
 
@@ -313,6 +314,13 @@ Still to be specified and built:
   - provisional sample packs for the other seven Kurovian regions: Halingo,
     Skgurr, Shinkira, Bratislor, Hjartheland, Nareth and Targoth.
   - Still to come: a generic scheme for other Setting Profiles.
+- Released in v0.1.5:
+  - Size distribution, Economy, Authority with Representation and Authority
+    Size;
+  - Authority Figures with species-specific names, and their Roles;
+  - Security, Crime and Stability;
+  - Notable Locations (count by Size and district, 1d20 Type) and the Bare
+    Minimum Buildings setting.
 - Windows release packaging: one per-user NSIS installer with the GUI
   (`settlement-generator.exe`) and the CLI (`settlement-generator-cli.exe`),
   built by `npm run release:build` (see RELEASING.md).
