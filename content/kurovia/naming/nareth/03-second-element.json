@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.nareth.secondElement",
-      "name": "Nareth Name: Second Element",
-      "description": "Second part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Nareth Old Geographic: Second Element",
+      "description": "Inherited fictional settlement-name endings, including all twelve original starter result IDs.",
+      "dice": "1d20",
       "results": [
         {
           "id": "ra",
@@ -66,6 +66,46 @@
           "id": "ta",
           "name": "ta",
           "range": 12
+        },
+        {
+          "id": "ven",
+          "name": "ven",
+          "range": 13
+        },
+        {
+          "id": "rin",
+          "name": "rin",
+          "range": 14
+        },
+        {
+          "id": "lya",
+          "name": "lya",
+          "range": 15
+        },
+        {
+          "id": "nai",
+          "name": "nai",
+          "range": 16
+        },
+        {
+          "id": "thal",
+          "name": "thal",
+          "range": 17
+        },
+        {
+          "id": "ya",
+          "name": "ya",
+          "range": 18
+        },
+        {
+          "id": "rel",
+          "name": "rel",
+          "range": 19
+        },
+        {
+          "id": "tu",
+          "name": "tu",
+          "range": 20
         }
       ]
     }

@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.halingo.founderEnding",
-      "name": "Halingo Name: Founder Feature",
-      "description": "Founder Feature added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "name": "Halingo Landholder: Place",
+      "description": "Well, Station, Claim, Siding and similar functional naming sites. Paired with bare proprietor name and a space, not English possessive.",
+      "dice": "1d12",
       "results": [
         {
           "id": "well",
@@ -36,6 +36,36 @@
           "id": "pass",
           "name": "Pass",
           "range": 6
+        },
+        {
+          "id": "claim",
+          "name": "Claim",
+          "range": 7
+        },
+        {
+          "id": "junction",
+          "name": "Junction",
+          "range": 8
+        },
+        {
+          "id": "post",
+          "name": "Post",
+          "range": 9
+        },
+        {
+          "id": "camp",
+          "name": "Camp",
+          "range": 10
+        },
+        {
+          "id": "siding",
+          "name": "Siding",
+          "range": 11
+        },
+        {
+          "id": "haven",
+          "name": "Haven",
+          "range": 12
         }
       ]
     }

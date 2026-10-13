@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.hjartheland",
       "name": "Hjartheland",
-      "description": "Names for settlements in the Kurovian region of Hjartheland. Provisional sample data, not official Kurovian lore.",
+      "description": "Fictionalised West-Norse / Norwegian-inspired region naming, with old settlement, mountain, snow/glacier, waterway, forest, refuge, small historic landholder and ancient layers. UTF-8 place-name forms are starter content, not an assertion of accurate modern Norwegian.",
       "when": {
         "all": [
           {
@@ -25,7 +25,63 @@
           ],
           "join": {
             "style": "compound"
-          }
+          },
+          "exceptions": []
+        },
+        {
+          "result": "mountain",
+          "components": [
+            "table.naming.hjartheland.mountainFirst",
+            "table.naming.hjartheland.mountainSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "winter",
+          "components": [
+            "table.naming.hjartheland.winterFirst",
+            "table.naming.hjartheland.winterSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "water",
+          "components": [
+            "table.naming.hjartheland.waterFirst",
+            "table.naming.hjartheland.waterSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "forest",
+          "components": [
+            "table.naming.hjartheland.forestFirst",
+            "table.naming.hjartheland.forestSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "shelter",
+          "components": [
+            "table.naming.hjartheland.shelterFirst",
+            "table.naming.hjartheland.shelterSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         },
         {
           "result": "founder",
@@ -35,7 +91,18 @@
           ],
           "join": {
             "style": "compound"
-          }
+          },
+          "exceptions": []
+        },
+        {
+          "result": "inherited",
+          "components": [
+            "table.naming.hjartheland.inheritedName"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         }
       ]
     }

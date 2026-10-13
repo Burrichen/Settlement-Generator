@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.nareth.founderEnding",
-      "name": "Nareth Name: Founder Ending",
-      "description": "Founder Ending added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "name": "Nareth Ancestral: Locality Ending",
+      "description": "Fictional local endings for old family and community place names. First six preserve existing IDs.",
+      "dice": "1d12",
       "results": [
         {
           "id": "en",
@@ -36,6 +36,36 @@
           "id": "ket",
           "name": "ket",
           "range": 6
+        },
+        {
+          "id": "na",
+          "name": "na",
+          "range": 7
+        },
+        {
+          "id": "sari",
+          "name": "sari",
+          "range": 8
+        },
+        {
+          "id": "ven",
+          "name": "ven",
+          "range": 9
+        },
+        {
+          "id": "ma",
+          "name": "ma",
+          "range": 10
+        },
+        {
+          "id": "lin",
+          "name": "lin",
+          "range": 11
+        },
+        {
+          "id": "ru",
+          "name": "ru",
+          "range": 12
         }
       ]
     }

@@ -4,38 +4,208 @@
     {
       "id": "table.naming.bratislor.founderEnding",
       "name": "Bratislor Name: Founder Element",
-      "description": "Founder Element added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "description": "Ownership, family-association and inherited settlement endings. 25 entries, four faces each; not a claim that every combination is linguistically authentic.",
+      "dice": "1d100",
       "results": [
         {
           "id": "grad",
           "name": "grad",
-          "range": 1
+          "range": [
+            1,
+            4
+          ]
         },
         {
           "id": "ov",
           "name": "ov",
-          "range": 2
+          "range": [
+            5,
+            8
+          ]
         },
         {
           "id": "in",
           "name": "in",
-          "range": 3
+          "range": [
+            9,
+            12
+          ]
         },
         {
           "id": "ova",
           "name": "ova",
-          "range": 4
+          "range": [
+            13,
+            16
+          ]
         },
         {
           "id": "dol",
           "name": "dol",
-          "range": 5
+          "range": [
+            17,
+            20
+          ]
         },
         {
           "id": "pol",
           "name": "pol",
-          "range": 6
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "ice",
+          "name": "ice",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "ovice",
+          "name": "ovice",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "ovce",
+          "name": "ovce",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "any",
+          "name": "any",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "ani",
+          "name": "ani",
+          "range": [
+            41,
+            44
+          ]
+        },
+        {
+          "id": "en",
+          "name": "en",
+          "range": [
+            45,
+            48
+          ]
+        },
+        {
+          "id": "eni",
+          "name": "eni",
+          "range": [
+            49,
+            52
+          ]
+        },
+        {
+          "id": "nik",
+          "name": "nik",
+          "range": [
+            53,
+            56
+          ]
+        },
+        {
+          "id": "ovec",
+          "name": "ovec",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "ev",
+          "name": "ev",
+          "range": [
+            61,
+            64
+          ]
+        },
+        {
+          "id": "eva",
+          "name": "eva",
+          "range": [
+            65,
+            68
+          ]
+        },
+        {
+          "id": "ina",
+          "name": "ina",
+          "range": [
+            69,
+            72
+          ]
+        },
+        {
+          "id": "sk",
+          "name": "sk",
+          "range": [
+            73,
+            76
+          ]
+        },
+        {
+          "id": "ska",
+          "name": "ska",
+          "range": [
+            77,
+            80
+          ]
+        },
+        {
+          "id": "bor",
+          "name": "bor",
+          "range": [
+            81,
+            84
+          ]
+        },
+        {
+          "id": "brod",
+          "name": "brod",
+          "range": [
+            85,
+            88
+          ]
+        },
+        {
+          "id": "slav",
+          "name": "slav",
+          "range": [
+            89,
+            92
+          ]
+        },
+        {
+          "id": "selo",
+          "name": "selo",
+          "range": [
+            93,
+            96
+          ]
+        },
+        {
+          "id": "gora",
+          "name": "gora",
+          "range": [
+            97,
+            100
+          ]
         }
       ]
     }

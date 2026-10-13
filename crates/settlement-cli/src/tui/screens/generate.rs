@@ -30,6 +30,11 @@ enum Pending {
     Choose(usize, Vec<ResultId>),
     /// Typing a name on the name stage.
     CustomName(usize),
+    /// Picking which part of the settlement's generated name to change.
+    SettlementNamePart(usize),
+    /// Rolling (`None`) or choosing one part of the settlement's name:
+    /// stage, part, results.
+    SettlementNameResult(usize, usize, Vec<Option<ResultId>>),
     /// Picking what to change on the Authority Figures stage.
     FigureTarget(usize, Vec<FigureTarget>),
     /// Choosing a figure field's result: stage, figure, field, results.
@@ -118,13 +123,40 @@ fn naming_lines(stage: &StageView, ctx: &Ctx) -> Vec<Line<'static>> {
     }
     for part in &naming.parts {
         let roll = match (&part.roll, &part.dice) {
-            (Some(roll), Some(dice)) => format!(" — rolled {roll} on {dice}"),
+            (Some(roll), Some(dice)) if !part.chosen => format!(" — rolled {roll} on {dice}"),
             _ => " — chosen".into(),
         };
         lines.push(Line::styled(
-            format!("{}: {}{roll}", part.table.name, part.result.name),
+            format!(
+                "{}: {} ({}){roll}",
+                part.table.name, part.result.name, part.result.id
+            ),
             s.dim(),
         ));
+    }
+    if let Some(assembly) = &naming.assembly {
+        let how = match (&assembly.exception, &assembly.curated) {
+            (Some(e), _) => {
+                let note = if e.note.is_empty() {
+                    String::new()
+                } else {
+                    format!(" ({})", e.note)
+                };
+                format!("Spelling exception: {}{note}", e.name)
+            }
+            (None, Some(c)) => format!(
+                "Approved name: {} ({}) chosen by {}",
+                c.source, c.table, c.variant
+            ),
+            (None, None) => format!("Joined: {}", assembly.join),
+        };
+        lines.push(Line::styled(how, s.dim()));
+    }
+    if naming.part_options.iter().any(|p| !p.options.is_empty()) {
+        lines.push(Line::from(vec![
+            Span::styled("c", s.key()),
+            Span::styled(" change one part of the name", s.dim()),
+        ]));
     }
     lines
 }
@@ -704,6 +736,19 @@ impl GenerateScreen {
                 self.modal = None;
                 self.act(ctx, |a, dice| a.session.choose(stage, id, dice));
             }
+            (ModalResult::Picked(i), Pending::SettlementNamePart(stage)) => {
+                let stage = *stage;
+                self.modal = None;
+                self.open_settlement_name_part(stage, i);
+            }
+            (ModalResult::Picked(i), Pending::SettlementNameResult(stage, part, ids)) => {
+                let (stage, part, id) = (*stage, *part, ids[i].clone());
+                self.modal = None;
+                self.act(ctx, |a, dice| match id {
+                    None => a.session.roll_name_part(stage, part, dice),
+                    Some(id) => a.session.choose_name_part(stage, part, id, dice),
+                });
+            }
             (ModalResult::Picked(i), Pending::LocationTarget(stage, targets)) => {
                 let (stage, target) = (*stage, targets[i]);
                 self.modal = None;
@@ -1126,6 +1171,60 @@ impl GenerateScreen {
         }
     }
 
+    /// Lists the parts of the settlement's generated name, to change one.
+    fn open_settlement_name_parts(&mut self, index: usize) {
+        let Some(naming) = self.view.stages[index].naming.as_ref() else {
+            return;
+        };
+        if naming.part_options.is_empty() {
+            self.error = Some("Roll a name first (r); a typed name has no parts.".into());
+            return;
+        }
+        let items = naming
+            .part_options
+            .iter()
+            .map(|p| {
+                let current = naming
+                    .parts
+                    .get(p.part)
+                    .map(|r| r.result.name.clone())
+                    .unwrap_or_default();
+                PickItem::new(p.label.clone()).hint(current)
+            })
+            .collect();
+        self.modal = Some((
+            Modal::pick("Change part of the name", items, 0),
+            Pending::SettlementNamePart(index),
+        ));
+    }
+
+    /// Lists one part's results, each with the name it would give.
+    fn open_settlement_name_part(&mut self, index: usize, part: usize) {
+        let Some(options) = self.view.stages[index]
+            .naming
+            .as_ref()
+            .and_then(|n| n.part_options.get(part))
+        else {
+            return;
+        };
+        let mut items = vec![PickItem::new(format!("Roll {} again", options.label))];
+        let mut ids = vec![None];
+        for (i, o) in options.options.iter().enumerate().filter(|(_, o)| o.legal) {
+            let preview = options.previews.get(i).cloned().flatten();
+            let range = o.range.map_or(String::new(), |r| r.to_string());
+            let hint = match preview {
+                Some(name) => format!("{range} → {name}"),
+                None => range,
+            };
+            items.push(PickItem::new(o.result.name.clone()).hint(hint));
+            ids.push(Some(o.result.id.clone()));
+        }
+        self.modal = Some((
+            Modal::pick(&format!("Choose {}", options.label), items, 0),
+            Pending::SettlementNameResult(index, part, ids),
+        ));
+    }
+
     /// Asks for a typed name on the name stage `index`.
     fn ask_custom_name(&mut self, index: usize) {
         let current = self.view.stages[index]
@@ -1381,6 +1480,9 @@ impl Screen for GenerateScreen {
                 KeyCode::Char('t') if self.view.stages[stage].naming.is_some() => {
                     self.ask_custom_name(stage);
                 }
+                KeyCode::Char('c') if self.view.stages[stage].naming.is_some() => {
+                    self.open_settlement_name_parts(stage);
+                }
                 // As in the GUI: roll the rest only when generating, not editing.
                 KeyCode::Char('a') if self.edit.is_none() => {
                     self.act(ctx, |a, dice| a.session.roll_remaining(dice));
@@ -1466,6 +1568,9 @@ impl Screen for GenerateScreen {
             KeyCode::Char('t') if !automatic && stage.naming.is_some() => {
                 self.ask_custom_name(index);
             }
+            KeyCode::Char('c') if !automatic && stage.naming.is_some() => {
+                self.open_settlement_name_parts(index);
+            }
             KeyCode::Char('n') | KeyCode::Right if !automatic => {
                 let last = index + 1 == self.view.stages.len();
                 if self.act(ctx, |a, _| a.session.advance()) {
@@ -1549,6 +1654,7 @@ impl Screen for GenerateScreen {
         };
         if on_name && (self.edit.is_some() || self.view.mode != GenerationMode::Automatic) {
             hints.insert(3, ("t", "type name"));
+            hints.insert(4, ("c", "name part"));
         }
         hints
     }

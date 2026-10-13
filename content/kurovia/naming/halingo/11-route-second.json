@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.routeSecond",
+      "name": "Halingo Route & Rail: Infrastructure",
+      "description": "Junction, siding, freight depot, terminus, stage stop and crossings appropriate to Halingo rail networks.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "junction",
+          "name": "Junction",
+          "range": 1
+        },
+        {
+          "id": "siding",
+          "name": "Siding",
+          "range": 2
+        },
+        {
+          "id": "station",
+          "name": "Station",
+          "range": 3
+        },
+        {
+          "id": "depot",
+          "name": "Depot",
+          "range": 4
+        },
+        {
+          "id": "halt",
+          "name": "Halt",
+          "range": 5
+        },
+        {
+          "id": "crossing",
+          "name": "Crossing",
+          "range": 6
+        },
+        {
+          "id": "gate",
+          "name": "Gate",
+          "range": 7
+        },
+        {
+          "id": "pass",
+          "name": "Pass",
+          "range": 8
+        },
+        {
+          "id": "relay",
+          "name": "Relay",
+          "range": 9
+        },
+        {
+          "id": "terminus",
+          "name": "Terminus",
+          "range": 10
+        },
+        {
+          "id": "switch",
+          "name": "Switch",
+          "range": 11
+        },
+        {
+          "id": "mile",
+          "name": "Mile",
+          "range": 12
+        },
+        {
+          "id": "exchange",
+          "name": "Exchange",
+          "range": 13
+        },
+        {
+          "id": "post",
+          "name": "Post",
+          "range": 14
+        },
+        {
+          "id": "cut",
+          "name": "Cut",
+          "range": 15
+        },
+        {
+          "id": "crossroads",
+          "name": "Crossroads",
+          "range": 16
+        },
+        {
+          "id": "outpost",
+          "name": "Outpost",
+          "range": 17
+        },
+        {
+          "id": "trestle",
+          "name": "Trestle",
+          "range": 18
+        },
+        {
+          "id": "bridge",
+          "name": "Bridge",
+          "range": 19
+        },
+        {
+          "id": "branch",
+          "name": "Branch",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

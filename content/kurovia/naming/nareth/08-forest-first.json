@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.forestFirst",
+      "name": "Nareth Canopy: First Element",
+      "description": "Colour, sun, moon, greenery and local fictional stems in forest settlements; a creative rather than literal Quechua morphology.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "puka",
+          "name": "Puka",
+          "range": [
+            1,
+            2
+          ],
+          "description": "Quechua reference element: red. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "yana",
+          "name": "Yana",
+          "range": [
+            3,
+            4
+          ],
+          "description": "Quechua reference element: dark / black. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "hatun",
+          "name": "Hatun",
+          "range": [
+            5,
+            6
+          ],
+          "description": "Quechua reference element: large / great. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chawpi",
+          "name": "Chawpi",
+          "range": [
+            7,
+            8
+          ],
+          "description": "Quechua reference element: middle / centre. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "quri",
+          "name": "Quri",
+          "range": [
+            9,
+            10
+          ],
+          "description": "Quechua reference element: gold. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "tika",
+          "name": "Tika",
+          "range": [
+            11,
+            12
+          ],
+          "description": "Quechua reference element: flower. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "inti",
+          "name": "Inti",
+          "range": [
+            13,
+            14
+          ],
+          "description": "Quechua reference element: sun. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "killa",
+          "name": "Killa",
+          "range": [
+            15,
+            16
+          ],
+          "description": "Quechua reference element: moon. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "rumi",
+          "name": "Rumi",
+          "range": [
+            17,
+            18
+          ],
+          "description": "Quechua reference element: stone. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "yuraq",
+          "name": "Yuraq",
+          "range": [
+            19,
+            20
+          ],
+          "description": "Quechua reference element: white. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "muyu",
+          "name": "Muyu",
+          "range": [
+            21,
+            22
+          ],
+          "description": "Quechua reference element: round / turn. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "kantu",
+          "name": "Kantu",
+          "range": [
+            23,
+            24
+          ],
+          "description": "Quechua reference element: flower name. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wayra",
+          "name": "Wayra",
+          "range": [
+            25,
+            26
+          ],
+          "description": "Quechua reference element: wind. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "allpa",
+          "name": "Allpa",
+          "range": [
+            27,
+            28
+          ],
+          "description": "Quechua reference element: earth / soil. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chiri",
+          "name": "Chiri",
+          "range": [
+            29,
+            30
+          ],
+          "description": "Quechua reference element: cold. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "kiswar",
+          "name": "Kiswar",
+          "range": [
+            31,
+            32
+          ],
+          "description": "Quechua reference element: native Andean tree. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "luma",
+          "name": "Luma",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "nari",
+          "name": "Nari",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "kayra",
+          "name": "Kayra",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "tuma",
+          "name": "Tuma",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "ilaya",
+          "name": "Ilaya",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "vasha",
+          "name": "Vasha",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "sorina",
+          "name": "Sorina",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "kesh",
+          "name": "Kesh",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "seru",
+          "name": "Seru",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "yarun",
+          "name": "Yarun",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "taraya",
+          "name": "Taraya",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "veyu",
+          "name": "Veyu",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "yama",
+          "name": "Yama",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "vira",
+          "name": "Vira",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "kurin",
+          "name": "Kurin",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "maraya",
+          "name": "Maraya",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "larun",
+          "name": "Larun",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "aya",
+          "name": "Aya",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "sira",
+          "name": "Sira",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "pava",
+          "name": "Pava",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "sulaya",
+          "name": "Sulaya",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "nema",
+          "name": "Nema",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "ivara",
+          "name": "Ivara",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "yari",
+          "name": "Yari",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "chira",
+          "name": "Chira",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "kalu",
+          "name": "Kalu",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "verana",
+          "name": "Verana",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "talun",
+          "name": "Talun",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "mera",
+          "name": "Mera",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "naru",
+          "name": "Naru",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "urena",
+          "name": "Urena",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "saren",
+          "name": "Saren",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "ariva",
+          "name": "Ariva",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "luraya",
+          "name": "Luraya",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

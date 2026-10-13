@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.winterFirst",
+      "name": "Hjartheland Winter: First Element",
+      "description": "Frost, hard snow, ice, wind, darkness, pale light and long winter qualifiers. 40 roots with 2-3 d100 faces each.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "sno",
+          "name": "Snø",
+          "range": [
+            1,
+            3
+          ]
+        },
+        {
+          "id": "is",
+          "name": "Is",
+          "range": [
+            4,
+            6
+          ]
+        },
+        {
+          "id": "frost",
+          "name": "Frost",
+          "range": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": "rim",
+          "name": "Rim",
+          "range": [
+            10,
+            12
+          ]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [
+            13,
+            15
+          ]
+        },
+        {
+          "id": "sval",
+          "name": "Sval",
+          "range": [
+            16,
+            18
+          ]
+        },
+        {
+          "id": "skavl",
+          "name": "Skavl",
+          "range": [
+            19,
+            21
+          ]
+        },
+        {
+          "id": "vinter",
+          "name": "Vinter",
+          "range": [
+            22,
+            24
+          ]
+        },
+        {
+          "id": "hrim",
+          "name": "Hrim",
+          "range": [
+            25,
+            27
+          ]
+        },
+        {
+          "id": "kvit",
+          "name": "Kvit",
+          "range": [
+            28,
+            30
+          ]
+        },
+        {
+          "id": "bleik",
+          "name": "Bleik",
+          "range": [
+            31,
+            33
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            34,
+            36
+          ]
+        },
+        {
+          "id": "storm",
+          "name": "Storm",
+          "range": [
+            37,
+            39
+          ]
+        },
+        {
+          "id": "mork",
+          "name": "Mørk",
+          "range": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "gra",
+          "name": "Grå",
+          "range": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "stille",
+          "name": "Stille",
+          "range": [
+            46,
+            48
+          ]
+        },
+        {
+          "id": "natt",
+          "name": "Natt",
+          "range": [
+            49,
+            51
+          ]
+        },
+        {
+          "id": "skum",
+          "name": "Skum",
+          "range": [
+            52,
+            54
+          ]
+        },
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": [
+            55,
+            57
+          ]
+        },
+        {
+          "id": "djup",
+          "name": "Djup",
+          "range": [
+            58,
+            60
+          ]
+        },
+        {
+          "id": "hog",
+          "name": "Høg",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "skarp",
+          "name": "Skarp",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "blank",
+          "name": "Blank",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "bla",
+          "name": "Blå",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "skodde",
+          "name": "Skodde",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "mane",
+          "name": "Måne",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "dag",
+          "name": "Dag",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "royk",
+          "name": "Røyk",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "bratt",
+          "name": "Bratt",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "tynn",
+          "name": "Tynn",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "tung",
+          "name": "Tung",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "lys",
+          "name": "Lys",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "hard",
+          "name": "Hard",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "mild",
+          "name": "Mild",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "take",
+          "name": "Tåke",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "driv",
+          "name": "Driv",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "snef",
+          "name": "Snef",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "klar",
+          "name": "Klar",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

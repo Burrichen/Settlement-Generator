@@ -4,6 +4,7 @@
 //! is data, and behaviour comes from the generic [`Effect`] and [`Condition`]
 //! vocabularies interpreted by the engine. See `docs/DATA_MODEL.md`.
 
+use std::collections::BTreeMap;
 use std::fmt;
 
 use serde::{Deserialize, Serialize};
@@ -444,6 +445,12 @@ pub struct TableResult {
     /// first match first (e.g. `gender.woman` → "Lady"). Otherwise `name`.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub label_variants: Vec<LabelVariant>,
+    /// Individually approved final names, keyed by the result ID of another
+    /// table that selects between them (e.g. founder Oswald: `a` →
+    /// "Oswalden", `b` → "Oswaldwick"). Read by naming methods whose join
+    /// style is `curated_variant`; written exactly as given.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub approved_names: BTreeMap<ResultId, String>,
 }
 
 /// A display label for a result, used when its holder has `tag`.

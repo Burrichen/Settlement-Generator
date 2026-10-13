@@ -4,20 +4,26 @@
     {
       "id": "table.naming.shinkira.method",
       "name": "Shinkira Naming Method",
-      "description": "Which naming method a Shinkira settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Romanised, Japanese-inspired forms used as temporary creative data; not a complete or historically accurate naming system.",
+      "description": "Original two-method Shinkira scheme, 70% geographical and 30% inherited/historical. Engine-compatible simple tables.",
       "dice": "1d10",
       "results": [
         {
           "id": "geographic",
           "name": "Geographic Compound",
-          "description": "First element + second element as one word, e.g. Kirisawa, Mizumura.",
-          "range": [1, 7]
+          "description": "Two-part place names drawing from Shinkira mountains, forests, waters, cultivated land and a few Utsuro-influenced stems. Ordinary direct joining; no curated variants.",
+          "range": [
+            1,
+            7
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "A family or founder name + a settlement element as one word, without an English possessive, e.g. Takedamura, Mizunosato.",
-          "range": [8, 10]
+          "name": "Historic Family or Settlement",
+          "description": "Inherited family, shrine, castle and old settlement elements joined to common town endings. Ordinary direct joining; no curated variants.",
+          "range": [
+            8,
+            10
+          ]
         }
       ]
     }

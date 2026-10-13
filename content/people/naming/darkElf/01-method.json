@@ -4,13 +4,458 @@
     {
       "id": "table.personName.darkElf.method",
       "name": "Dark Elf Naming Method",
-      "description": "How a Dark Elf Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "All 50 results generate a given name + a family or house name. Court 36%; Deep 24%; Twilight 20%; Moon 16%; human-influenced 4%. This is ordinary method routing with 1d100, not a new runtime naming rule.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + house name",
-          "range": [1, 4]
+          "name": "Ancient Courts — collection 1/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.court.02",
+          "name": "Ancient Courts — collection 2/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.court.03",
+          "name": "Ancient Courts — collection 3/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.court.04",
+          "name": "Ancient Courts — collection 4/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.court.05",
+          "name": "Ancient Courts — collection 5/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.court.06",
+          "name": "Ancient Courts — collection 6/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.court.07",
+          "name": "Ancient Courts — collection 7/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.court.08",
+          "name": "Ancient Courts — collection 8/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.court.09",
+          "name": "Ancient Courts — collection 9/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.court.10",
+          "name": "Ancient Courts — collection 10/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.court.11",
+          "name": "Ancient Courts — collection 11/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.court.12",
+          "name": "Ancient Courts — collection 12/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.court.13",
+          "name": "Ancient Courts — collection 13/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.court.14",
+          "name": "Ancient Courts — collection 14/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.court.15",
+          "name": "Ancient Courts — collection 15/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.court.16",
+          "name": "Ancient Courts — collection 16/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.court.17",
+          "name": "Ancient Courts — collection 17/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.court.18",
+          "name": "Ancient Courts — collection 18/18",
+          "description": "Given name + family/house name. Ancient Courts. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.deep.01",
+          "name": "Deep Houses — collection 1/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.deep.02",
+          "name": "Deep Houses — collection 2/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.deep.03",
+          "name": "Deep Houses — collection 3/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.deep.04",
+          "name": "Deep Houses — collection 4/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.deep.05",
+          "name": "Deep Houses — collection 5/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.deep.06",
+          "name": "Deep Houses — collection 6/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.deep.07",
+          "name": "Deep Houses — collection 7/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.deep.08",
+          "name": "Deep Houses — collection 8/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.deep.09",
+          "name": "Deep Houses — collection 9/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.deep.10",
+          "name": "Deep Houses — collection 10/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.deep.11",
+          "name": "Deep Houses — collection 11/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.deep.12",
+          "name": "Deep Houses — collection 12/12",
+          "description": "Given name + family/house name. Deep Houses. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.01",
+          "name": "Twilight & Wildwood — collection 1/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.02",
+          "name": "Twilight & Wildwood — collection 2/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.03",
+          "name": "Twilight & Wildwood — collection 3/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.04",
+          "name": "Twilight & Wildwood — collection 4/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.05",
+          "name": "Twilight & Wildwood — collection 5/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.06",
+          "name": "Twilight & Wildwood — collection 6/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.07",
+          "name": "Twilight & Wildwood — collection 7/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.08",
+          "name": "Twilight & Wildwood — collection 8/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.09",
+          "name": "Twilight & Wildwood — collection 9/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.twilight.10",
+          "name": "Twilight & Wildwood — collection 10/10",
+          "description": "Given name + family/house name. Twilight & Wildwood. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.moon.01",
+          "name": "Lunar & Starborn — collection 1/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.moon.02",
+          "name": "Lunar & Starborn — collection 2/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.moon.03",
+          "name": "Lunar & Starborn — collection 3/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.moon.04",
+          "name": "Lunar & Starborn — collection 4/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.moon.05",
+          "name": "Lunar & Starborn — collection 5/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.moon.06",
+          "name": "Lunar & Starborn — collection 6/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.moon.07",
+          "name": "Lunar & Starborn — collection 7/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.moon.08",
+          "name": "Lunar & Starborn — collection 8/8",
+          "description": "Given name + family/house name. Lunar & Starborn. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.01",
+          "name": "Mortal Contact — collection 1/2",
+          "description": "Given name + family/house name. Mortal Contact. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.02",
+          "name": "Mortal Contact — collection 2/2",
+          "description": "Given name + family/house name. Mortal Contact. All complete names are preauthored in data; no runtime syllable construction.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

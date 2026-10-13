@@ -4,20 +4,38 @@
     {
       "id": "table.naming.ordon.method",
       "name": "Ordon Naming Method",
-      "description": "Which naming method an Ordon settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%).",
-      "dice": "1d10",
+      "description": "Five historically layered British-inspired naming approaches; 62% old/inherited land & founders, 30% Victorian industry & transport, 8% individual civic/inherited names. Exact d100 weights; user-editable fictional setting content.",
+      "dice": "1d100",
       "results": [
         {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "First element + second element, in restrained Old English / medieval British style, e.g. Alderwick.",
-          "range": [1, 7]
+          "name": "Old English & Landscape",
+          "range": [1, 42],
+          "description": "Inherited woodland, terrain, agricultural and early medieval place-name compounds."
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "A founder's name + a settlement ending, possessive where English place names are, e.g. Godwinsbury.",
-          "range": [8, 10]
+          "name": "Founders, Manors & Estates",
+          "range": [43, 62],
+          "description": "Names derived from early occupants, landholding families and estate forms; occasional Norman influence."
+        },
+        {
+          "id": "industrial",
+          "name": "Victorian Works & Industry",
+          "range": [63, 80],
+          "description": "Industrial villages and towns named after productive materials, workshops, mining and mill environments."
+        },
+        {
+          "id": "route",
+          "name": "Railways, Canals & Market Roads",
+          "range": [81, 92],
+          "description": "Later commercial and transport names commemorating roads, stations, wharves, markets and canal infrastructure."
+        },
+        {
+          "id": "inherited",
+          "name": "Parish, Civic & Inherited Names",
+          "range": [93, 100],
+          "description": "Curated established place names and a few later civic, parish or commemorative formations."
         }
       ]
     }

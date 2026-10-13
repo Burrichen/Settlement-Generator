@@ -3,69 +3,329 @@
   "tables": [
     {
       "id": "table.naming.halingo.founder",
-      "name": "Halingo Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Halingo Landholder: Name",
+      "description": "Stakeholders, early inhabitants, claimants, financiers and proprietors. Founder-name ID preserved; no claim that all sites commemorate revered founders.",
+      "dice": "1d100",
       "results": [
         {
           "id": "varesh",
           "name": "Varesh",
-          "range": 1
+          "range": [
+            1,
+            3
+          ]
         },
         {
           "id": "tamar",
           "name": "Tamar",
-          "range": 2
+          "range": [
+            4,
+            6
+          ]
         },
         {
           "id": "karven",
           "name": "Karven",
-          "range": 3
+          "range": [
+            7,
+            9
+          ]
         },
         {
           "id": "delan",
           "name": "Delan",
-          "range": 4
+          "range": [
+            10,
+            12
+          ]
         },
         {
           "id": "sevrin",
           "name": "Sevrin",
-          "range": 5
+          "range": [
+            13,
+            15
+          ]
         },
         {
           "id": "harad",
           "name": "Harad",
-          "range": 6
+          "range": [
+            16,
+            18
+          ]
         },
         {
           "id": "marella",
           "name": "Marella",
-          "range": 7
+          "range": [
+            19,
+            21
+          ]
         },
         {
           "id": "orvek",
           "name": "Orvek",
-          "range": 8
+          "range": [
+            22,
+            24
+          ]
         },
         {
           "id": "saren",
           "name": "Saren",
-          "range": 9
+          "range": [
+            25,
+            27
+          ]
         },
         {
           "id": "jorek",
           "name": "Jorek",
-          "range": 10
+          "range": [
+            28,
+            30
+          ]
         },
         {
           "id": "varin",
           "name": "Varin",
-          "range": 11
+          "range": [
+            31,
+            33
+          ]
         },
         {
           "id": "ilyra",
           "name": "Ilyra",
-          "range": 12
+          "range": [
+            34,
+            36
+          ]
+        },
+        {
+          "id": "abram",
+          "name": "Abram",
+          "range": [
+            37,
+            39
+          ]
+        },
+        {
+          "id": "ada",
+          "name": "Ada",
+          "range": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "calder",
+          "name": "Calder",
+          "range": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "corven",
+          "name": "Corven",
+          "range": [
+            46,
+            48
+          ]
+        },
+        {
+          "id": "damar",
+          "name": "Damar",
+          "range": [
+            49,
+            51
+          ]
+        },
+        {
+          "id": "della",
+          "name": "Della",
+          "range": [
+            52,
+            54
+          ]
+        },
+        {
+          "id": "enoch",
+          "name": "Enoch",
+          "range": [
+            55,
+            57
+          ]
+        },
+        {
+          "id": "ezra",
+          "name": "Ezra",
+          "range": [
+            58,
+            60
+          ]
+        },
+        {
+          "id": "hester",
+          "name": "Hester",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "jaren",
+          "name": "Jaren",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "kess",
+          "name": "Kess",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "lorne",
+          "name": "Lorne",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "maren",
+          "name": "Maren",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "orlan",
+          "name": "Orlan",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "rala",
+          "name": "Rala",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "ruvan",
+          "name": "Ruvan",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "silas",
+          "name": "Silas",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "senna",
+          "name": "Senna",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "tarek",
+          "name": "Tarek",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "tavin",
+          "name": "Tavin",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "toren",
+          "name": "Toren",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "veyra",
+          "name": "Veyra",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "wren",
+          "name": "Wren",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "yara",
+          "name": "Yara",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "zarek",
+          "name": "Zarek",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "letha",
+          "name": "Letha",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "boran",
+          "name": "Boran",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "odran",
+          "name": "Odran",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

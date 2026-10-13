@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.mountainFirst",
+      "name": "Hjartheland Mountain: First Element",
+      "description": "Mountain forms and descriptive compact roots: stone, highlands, colour, raptors, steepness and weather.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "stein",
+          "name": "Stein",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "skard",
+          "name": "Skard",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "bratt",
+          "name": "Bratt",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "hog",
+          "name": "Høg",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "kvit",
+          "name": "Kvit",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "svart",
+          "name": "Svart",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "aust",
+          "name": "Aust",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "vest",
+          "name": "Vest",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "stor",
+          "name": "Stor",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "lill",
+          "name": "Lill",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "hjell",
+          "name": "Hjell",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "kross",
+          "name": "Kross",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "hrafn",
+          "name": "Hrafn",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "ulv",
+          "name": "Ulv",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "bjorn",
+          "name": "Bjorn",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "rein",
+          "name": "Rein",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "lyn",
+          "name": "Lyn",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "rim",
+          "name": "Rim",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "frost",
+          "name": "Frost",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "is",
+          "name": "Is",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "sno",
+          "name": "Snø",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "tjern",
+          "name": "Tjern",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "hald",
+          "name": "Hald",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "lys",
+          "name": "Lys",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "mork",
+          "name": "Mørk",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "gra",
+          "name": "Grå",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "bla",
+          "name": "Blå",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "storm",
+          "name": "Storm",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "sval",
+          "name": "Sval",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "skarv",
+          "name": "Skarv",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "hamar",
+          "name": "Hamar",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "hjort",
+          "name": "Hjort",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "helle",
+          "name": "Helle",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "leir",
+          "name": "Leir",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "ur",
+          "name": "Ur",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "sol",
+          "name": "Sol",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "eld",
+          "name": "Eld",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "kvern",
+          "name": "Kvern",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "klyv",
+          "name": "Klyv",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "heid",
+          "name": "Heid",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "borg",
+          "name": "Borg",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "rogn",
+          "name": "Rogn",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "hauk",
+          "name": "Hauk",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "grov",
+          "name": "Grov",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "tverr",
+          "name": "Tverr",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

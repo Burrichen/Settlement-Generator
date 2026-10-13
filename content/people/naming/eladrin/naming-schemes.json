@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.eladrin",
-      "name": "Eladrin names",
+      "id": "naming.person.eladrin.masculine",
+      "name": "Eladrin names — universal / genderless",
       "subject": "person",
       "when": {
-        "has_tag": "species.eladrin"
+        "all": [
+          {
+            "has_tag": "species.eladrin"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.eladrin.method",
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.eladrin.given", "table.personName.eladrin.house"],
+          "components": [
+            "table.personName.eladrin.given.neutral",
+            "table.personName.eladrin.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -24,8 +34,6615 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.02",
+            "table.personName.eladrin.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.03",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.04",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.05",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.06",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.07",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.08",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.09",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.10",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.11",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.12",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.13",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.14",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.15",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.16",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.17",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.18",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.19",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.20",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.21",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.22",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.23",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.24",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.01",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.02",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.03",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.04",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.05",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.06",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.07",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.08",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.09",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.10",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.11",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.12",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.13",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.14",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.15",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.16",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.17",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.18",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.19",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.20",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.21",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.22",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.23",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.24",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.01",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.02",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.03",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.04",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.05",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.06",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.07",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.08",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.09",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.10",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.11",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.12",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.13",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.14",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.15",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.16",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.17",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.18",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.19",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.20",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.21",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.22",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.23",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.24",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.01",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.02",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.03",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.04",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.05",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.06",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.07",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.08",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.09",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.10",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.11",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.12",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.13",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.14",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.15",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.16",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.17",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.18",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.19",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.20",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.21",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.22",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.23",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.24",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.01",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.02",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.03",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.04",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.eladrin.feminine",
+      "name": "Eladrin names — universal / genderless",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.eladrin"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.eladrin.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.eladrin.given.neutral",
+            "table.personName.eladrin.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.02",
+            "table.personName.eladrin.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.03",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.04",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.05",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.06",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.07",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.08",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.09",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.10",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.11",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.12",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.13",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.14",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.15",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.16",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.17",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.18",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.19",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.20",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.21",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.22",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.23",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.24",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.01",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.02",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.03",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.04",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.05",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.06",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.07",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.08",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.09",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.10",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.11",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.12",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.13",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.14",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.15",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.16",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.17",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.18",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.19",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.20",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.21",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.22",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.23",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.24",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.01",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.02",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.03",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.04",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.05",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.06",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.07",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.08",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.09",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.10",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.11",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.12",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.13",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.14",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.15",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.16",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.17",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.18",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.19",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.20",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.21",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.22",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.23",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.24",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.01",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.02",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.03",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.04",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.05",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.06",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.07",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.08",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.09",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.10",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.11",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.12",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.13",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.14",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.15",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.16",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.17",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.18",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.19",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.20",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.21",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.22",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.23",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.24",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.01",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.02",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.03",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.04",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.eladrin.neutral",
+      "name": "Eladrin names — universal / genderless",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.eladrin"
+      },
+      "method_table": "table.personName.eladrin.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.eladrin.given.neutral",
+            "table.personName.eladrin.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.02",
+            "table.personName.eladrin.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.03",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.04",
+            "table.personName.eladrin.family.spring.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.05",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.06",
+            "table.personName.eladrin.family.spring.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.07",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.08",
+            "table.personName.eladrin.family.spring.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.09",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.10",
+            "table.personName.eladrin.family.spring.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.11",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.12",
+            "table.personName.eladrin.family.spring.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.13",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.14",
+            "table.personName.eladrin.family.spring.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.15",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.16",
+            "table.personName.eladrin.family.spring.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.17",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.18",
+            "table.personName.eladrin.family.spring.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.19",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.20",
+            "table.personName.eladrin.family.spring.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.21",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.22",
+            "table.personName.eladrin.family.spring.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.23",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spring.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.spring.24",
+            "table.personName.eladrin.family.spring.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.01",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.02",
+            "table.personName.eladrin.family.summer.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.03",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.04",
+            "table.personName.eladrin.family.summer.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.05",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.06",
+            "table.personName.eladrin.family.summer.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.07",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.08",
+            "table.personName.eladrin.family.summer.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.09",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.10",
+            "table.personName.eladrin.family.summer.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.11",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.12",
+            "table.personName.eladrin.family.summer.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.13",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.14",
+            "table.personName.eladrin.family.summer.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.15",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.16",
+            "table.personName.eladrin.family.summer.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.17",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.18",
+            "table.personName.eladrin.family.summer.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.19",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.20",
+            "table.personName.eladrin.family.summer.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.21",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.22",
+            "table.personName.eladrin.family.summer.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.23",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.summer.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.summer.24",
+            "table.personName.eladrin.family.summer.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.01",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.02",
+            "table.personName.eladrin.family.autumn.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.03",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.04",
+            "table.personName.eladrin.family.autumn.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.05",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.06",
+            "table.personName.eladrin.family.autumn.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.07",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.08",
+            "table.personName.eladrin.family.autumn.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.09",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.10",
+            "table.personName.eladrin.family.autumn.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.11",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.12",
+            "table.personName.eladrin.family.autumn.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.13",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.14",
+            "table.personName.eladrin.family.autumn.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.15",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.16",
+            "table.personName.eladrin.family.autumn.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.17",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.18",
+            "table.personName.eladrin.family.autumn.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.19",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.20",
+            "table.personName.eladrin.family.autumn.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.21",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.22",
+            "table.personName.eladrin.family.autumn.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.23",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.autumn.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.autumn.24",
+            "table.personName.eladrin.family.autumn.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.01",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.02",
+            "table.personName.eladrin.family.winter.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.03",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.04",
+            "table.personName.eladrin.family.winter.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.05",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.05",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.06",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.06",
+            "table.personName.eladrin.family.winter.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.07",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.07",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.08",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.08",
+            "table.personName.eladrin.family.winter.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.09",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.09",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.10",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.10",
+            "table.personName.eladrin.family.winter.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.11",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.11",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.12",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.12",
+            "table.personName.eladrin.family.winter.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.13",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.13",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.14",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.14",
+            "table.personName.eladrin.family.winter.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.15",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.15",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.16",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.16",
+            "table.personName.eladrin.family.winter.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.17",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.17",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.18",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.18",
+            "table.personName.eladrin.family.winter.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.19",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.19",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.20",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.20",
+            "table.personName.eladrin.family.winter.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.21",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.21",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.22",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.22",
+            "table.personName.eladrin.family.winter.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.23",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.23",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.winter.24",
+          "components": [
+            "table.personName.eladrin.given.neutral.winter.24",
+            "table.personName.eladrin.family.winter.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.01",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.01",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.02",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.02",
+            "table.personName.eladrin.family.unbound.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.03",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.03",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.unbound.04",
+          "components": [
+            "table.personName.eladrin.given.neutral.unbound.04",
+            "table.personName.eladrin.family.unbound.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / court name"
             }
           ]
         }

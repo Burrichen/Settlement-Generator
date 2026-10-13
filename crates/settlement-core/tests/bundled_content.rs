@@ -90,6 +90,11 @@ fn every_content_file_holds_at_most_one_table() {
     walk(&root, &mut files);
     assert!(files.len() > 100, "{}", files.len());
     for file in files {
+        // Name packs are the exception: a pool's culture or sub-pool tables
+        // share its file.
+        if file.components().any(|c| c.as_os_str() == "naming") {
+            continue;
+        }
         let content: ContentSet =
             serde_json::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap();
         assert!(

@@ -3,14 +3,609 @@
   "tables": [
     {
       "id": "table.personName.eladrin.method",
-      "name": "Eladrin Naming Method",
-      "description": "How a Eladrin Authority Figure's name is put together.",
-      "dice": "1d4",
+      "name": "Eladrin Naming Method — Genderless Seasonal Courts",
+      "description": "All names use ONE shared genderless given-name pool. Seasons are naming aesthetics, not gender and not a forced character season. 24% Spring, 24% Summer, 24% Autumn, 24% Winter, 4% Unbound. Each d100 method routes to one fixed d100 given-name table and one fixed d100 family/court table.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + house name",
-          "range": [1, 4]
+          "name": "Spring — Blossom & Song: names 01/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 1
+        },
+        {
+          "id": "givenSurname.spring.02",
+          "name": "Spring — Blossom & Song: names 02/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 2
+        },
+        {
+          "id": "givenSurname.spring.03",
+          "name": "Spring — Blossom & Song: names 03/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 3
+        },
+        {
+          "id": "givenSurname.spring.04",
+          "name": "Spring — Blossom & Song: names 04/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 4
+        },
+        {
+          "id": "givenSurname.spring.05",
+          "name": "Spring — Blossom & Song: names 05/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 5
+        },
+        {
+          "id": "givenSurname.spring.06",
+          "name": "Spring — Blossom & Song: names 06/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 6
+        },
+        {
+          "id": "givenSurname.spring.07",
+          "name": "Spring — Blossom & Song: names 07/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 7
+        },
+        {
+          "id": "givenSurname.spring.08",
+          "name": "Spring — Blossom & Song: names 08/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 8
+        },
+        {
+          "id": "givenSurname.spring.09",
+          "name": "Spring — Blossom & Song: names 09/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 9
+        },
+        {
+          "id": "givenSurname.spring.10",
+          "name": "Spring — Blossom & Song: names 10/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 10
+        },
+        {
+          "id": "givenSurname.spring.11",
+          "name": "Spring — Blossom & Song: names 11/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 11
+        },
+        {
+          "id": "givenSurname.spring.12",
+          "name": "Spring — Blossom & Song: names 12/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 12
+        },
+        {
+          "id": "givenSurname.spring.13",
+          "name": "Spring — Blossom & Song: names 13/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 13
+        },
+        {
+          "id": "givenSurname.spring.14",
+          "name": "Spring — Blossom & Song: names 14/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 14
+        },
+        {
+          "id": "givenSurname.spring.15",
+          "name": "Spring — Blossom & Song: names 15/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 15
+        },
+        {
+          "id": "givenSurname.spring.16",
+          "name": "Spring — Blossom & Song: names 16/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 16
+        },
+        {
+          "id": "givenSurname.spring.17",
+          "name": "Spring — Blossom & Song: names 17/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 17
+        },
+        {
+          "id": "givenSurname.spring.18",
+          "name": "Spring — Blossom & Song: names 18/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 18
+        },
+        {
+          "id": "givenSurname.spring.19",
+          "name": "Spring — Blossom & Song: names 19/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 19
+        },
+        {
+          "id": "givenSurname.spring.20",
+          "name": "Spring — Blossom & Song: names 20/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 20
+        },
+        {
+          "id": "givenSurname.spring.21",
+          "name": "Spring — Blossom & Song: names 21/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 21
+        },
+        {
+          "id": "givenSurname.spring.22",
+          "name": "Spring — Blossom & Song: names 22/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 22
+        },
+        {
+          "id": "givenSurname.spring.23",
+          "name": "Spring — Blossom & Song: names 23/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 23
+        },
+        {
+          "id": "givenSurname.spring.24",
+          "name": "Spring — Blossom & Song: names 24/24",
+          "description": "Roll shared genderless given name then a family/court name. Spring — Blossom & Song.",
+          "range": 24
+        },
+        {
+          "id": "givenSurname.summer.01",
+          "name": "Summer — Radiance & Revel: names 01/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 25
+        },
+        {
+          "id": "givenSurname.summer.02",
+          "name": "Summer — Radiance & Revel: names 02/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 26
+        },
+        {
+          "id": "givenSurname.summer.03",
+          "name": "Summer — Radiance & Revel: names 03/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 27
+        },
+        {
+          "id": "givenSurname.summer.04",
+          "name": "Summer — Radiance & Revel: names 04/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 28
+        },
+        {
+          "id": "givenSurname.summer.05",
+          "name": "Summer — Radiance & Revel: names 05/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 29
+        },
+        {
+          "id": "givenSurname.summer.06",
+          "name": "Summer — Radiance & Revel: names 06/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 30
+        },
+        {
+          "id": "givenSurname.summer.07",
+          "name": "Summer — Radiance & Revel: names 07/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 31
+        },
+        {
+          "id": "givenSurname.summer.08",
+          "name": "Summer — Radiance & Revel: names 08/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 32
+        },
+        {
+          "id": "givenSurname.summer.09",
+          "name": "Summer — Radiance & Revel: names 09/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 33
+        },
+        {
+          "id": "givenSurname.summer.10",
+          "name": "Summer — Radiance & Revel: names 10/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 34
+        },
+        {
+          "id": "givenSurname.summer.11",
+          "name": "Summer — Radiance & Revel: names 11/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 35
+        },
+        {
+          "id": "givenSurname.summer.12",
+          "name": "Summer — Radiance & Revel: names 12/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 36
+        },
+        {
+          "id": "givenSurname.summer.13",
+          "name": "Summer — Radiance & Revel: names 13/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 37
+        },
+        {
+          "id": "givenSurname.summer.14",
+          "name": "Summer — Radiance & Revel: names 14/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 38
+        },
+        {
+          "id": "givenSurname.summer.15",
+          "name": "Summer — Radiance & Revel: names 15/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 39
+        },
+        {
+          "id": "givenSurname.summer.16",
+          "name": "Summer — Radiance & Revel: names 16/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 40
+        },
+        {
+          "id": "givenSurname.summer.17",
+          "name": "Summer — Radiance & Revel: names 17/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 41
+        },
+        {
+          "id": "givenSurname.summer.18",
+          "name": "Summer — Radiance & Revel: names 18/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 42
+        },
+        {
+          "id": "givenSurname.summer.19",
+          "name": "Summer — Radiance & Revel: names 19/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 43
+        },
+        {
+          "id": "givenSurname.summer.20",
+          "name": "Summer — Radiance & Revel: names 20/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 44
+        },
+        {
+          "id": "givenSurname.summer.21",
+          "name": "Summer — Radiance & Revel: names 21/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 45
+        },
+        {
+          "id": "givenSurname.summer.22",
+          "name": "Summer — Radiance & Revel: names 22/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 46
+        },
+        {
+          "id": "givenSurname.summer.23",
+          "name": "Summer — Radiance & Revel: names 23/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 47
+        },
+        {
+          "id": "givenSurname.summer.24",
+          "name": "Summer — Radiance & Revel: names 24/24",
+          "description": "Roll shared genderless given name then a family/court name. Summer — Radiance & Revel.",
+          "range": 48
+        },
+        {
+          "id": "givenSurname.autumn.01",
+          "name": "Autumn — Harvest & Memory: names 01/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 49
+        },
+        {
+          "id": "givenSurname.autumn.02",
+          "name": "Autumn — Harvest & Memory: names 02/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 50
+        },
+        {
+          "id": "givenSurname.autumn.03",
+          "name": "Autumn — Harvest & Memory: names 03/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 51
+        },
+        {
+          "id": "givenSurname.autumn.04",
+          "name": "Autumn — Harvest & Memory: names 04/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 52
+        },
+        {
+          "id": "givenSurname.autumn.05",
+          "name": "Autumn — Harvest & Memory: names 05/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 53
+        },
+        {
+          "id": "givenSurname.autumn.06",
+          "name": "Autumn — Harvest & Memory: names 06/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 54
+        },
+        {
+          "id": "givenSurname.autumn.07",
+          "name": "Autumn — Harvest & Memory: names 07/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 55
+        },
+        {
+          "id": "givenSurname.autumn.08",
+          "name": "Autumn — Harvest & Memory: names 08/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 56
+        },
+        {
+          "id": "givenSurname.autumn.09",
+          "name": "Autumn — Harvest & Memory: names 09/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 57
+        },
+        {
+          "id": "givenSurname.autumn.10",
+          "name": "Autumn — Harvest & Memory: names 10/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 58
+        },
+        {
+          "id": "givenSurname.autumn.11",
+          "name": "Autumn — Harvest & Memory: names 11/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 59
+        },
+        {
+          "id": "givenSurname.autumn.12",
+          "name": "Autumn — Harvest & Memory: names 12/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 60
+        },
+        {
+          "id": "givenSurname.autumn.13",
+          "name": "Autumn — Harvest & Memory: names 13/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 61
+        },
+        {
+          "id": "givenSurname.autumn.14",
+          "name": "Autumn — Harvest & Memory: names 14/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 62
+        },
+        {
+          "id": "givenSurname.autumn.15",
+          "name": "Autumn — Harvest & Memory: names 15/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 63
+        },
+        {
+          "id": "givenSurname.autumn.16",
+          "name": "Autumn — Harvest & Memory: names 16/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 64
+        },
+        {
+          "id": "givenSurname.autumn.17",
+          "name": "Autumn — Harvest & Memory: names 17/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 65
+        },
+        {
+          "id": "givenSurname.autumn.18",
+          "name": "Autumn — Harvest & Memory: names 18/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 66
+        },
+        {
+          "id": "givenSurname.autumn.19",
+          "name": "Autumn — Harvest & Memory: names 19/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 67
+        },
+        {
+          "id": "givenSurname.autumn.20",
+          "name": "Autumn — Harvest & Memory: names 20/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 68
+        },
+        {
+          "id": "givenSurname.autumn.21",
+          "name": "Autumn — Harvest & Memory: names 21/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 69
+        },
+        {
+          "id": "givenSurname.autumn.22",
+          "name": "Autumn — Harvest & Memory: names 22/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 70
+        },
+        {
+          "id": "givenSurname.autumn.23",
+          "name": "Autumn — Harvest & Memory: names 23/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 71
+        },
+        {
+          "id": "givenSurname.autumn.24",
+          "name": "Autumn — Harvest & Memory: names 24/24",
+          "description": "Roll shared genderless given name then a family/court name. Autumn — Harvest & Memory.",
+          "range": 72
+        },
+        {
+          "id": "givenSurname.winter.01",
+          "name": "Winter — Frost & Stillness: names 01/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 73
+        },
+        {
+          "id": "givenSurname.winter.02",
+          "name": "Winter — Frost & Stillness: names 02/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 74
+        },
+        {
+          "id": "givenSurname.winter.03",
+          "name": "Winter — Frost & Stillness: names 03/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 75
+        },
+        {
+          "id": "givenSurname.winter.04",
+          "name": "Winter — Frost & Stillness: names 04/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 76
+        },
+        {
+          "id": "givenSurname.winter.05",
+          "name": "Winter — Frost & Stillness: names 05/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.winter.06",
+          "name": "Winter — Frost & Stillness: names 06/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.winter.07",
+          "name": "Winter — Frost & Stillness: names 07/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.winter.08",
+          "name": "Winter — Frost & Stillness: names 08/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.winter.09",
+          "name": "Winter — Frost & Stillness: names 09/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.winter.10",
+          "name": "Winter — Frost & Stillness: names 10/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.winter.11",
+          "name": "Winter — Frost & Stillness: names 11/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.winter.12",
+          "name": "Winter — Frost & Stillness: names 12/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.winter.13",
+          "name": "Winter — Frost & Stillness: names 13/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.winter.14",
+          "name": "Winter — Frost & Stillness: names 14/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.winter.15",
+          "name": "Winter — Frost & Stillness: names 15/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.winter.16",
+          "name": "Winter — Frost & Stillness: names 16/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.winter.17",
+          "name": "Winter — Frost & Stillness: names 17/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.winter.18",
+          "name": "Winter — Frost & Stillness: names 18/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.winter.19",
+          "name": "Winter — Frost & Stillness: names 19/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.winter.20",
+          "name": "Winter — Frost & Stillness: names 20/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.winter.21",
+          "name": "Winter — Frost & Stillness: names 21/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.winter.22",
+          "name": "Winter — Frost & Stillness: names 22/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.winter.23",
+          "name": "Winter — Frost & Stillness: names 23/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.winter.24",
+          "name": "Winter — Frost & Stillness: names 24/24",
+          "description": "Roll shared genderless given name then a family/court name. Winter — Frost & Stillness.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.unbound.01",
+          "name": "Unbound — Dream & Fey Paths: names 01/4",
+          "description": "Roll shared genderless given name then a family/court name. Unbound — Dream & Fey Paths.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.unbound.02",
+          "name": "Unbound — Dream & Fey Paths: names 02/4",
+          "description": "Roll shared genderless given name then a family/court name. Unbound — Dream & Fey Paths.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.unbound.03",
+          "name": "Unbound — Dream & Fey Paths: names 03/4",
+          "description": "Roll shared genderless given name then a family/court name. Unbound — Dream & Fey Paths.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.unbound.04",
+          "name": "Unbound — Dream & Fey Paths: names 04/4",
+          "description": "Roll shared genderless given name then a family/court name. Unbound — Dream & Fey Paths.",
+          "range": 100
         }
       ]
     }

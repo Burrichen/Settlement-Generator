@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.targoth.founder",
-      "name": "Targoth Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Targoth Name: Ancient Lineage",
+      "description": "20 names remembered in ruined shrines, guardian lineages, hermit retreats and isolated sanctuaries. Original twelve Targoth founder entries retained. Each occupies one face on 1d20.",
+      "dice": "1d20",
       "results": [
         {
           "id": "varok",
@@ -66,6 +66,46 @@
           "id": "kerin",
           "name": "Kerin",
           "range": 12
+        },
+        {
+          "id": "vashir",
+          "name": "Vashir",
+          "range": 13
+        },
+        {
+          "id": "daran",
+          "name": "Daran",
+          "range": 14
+        },
+        {
+          "id": "neyru",
+          "name": "Neyru",
+          "range": 15
+        },
+        {
+          "id": "sorya",
+          "name": "Sorya",
+          "range": 16
+        },
+        {
+          "id": "kalren",
+          "name": "Kalren",
+          "range": 17
+        },
+        {
+          "id": "eren",
+          "name": "Eren",
+          "range": 18
+        },
+        {
+          "id": "zarun",
+          "name": "Zarun",
+          "range": 19
+        },
+        {
+          "id": "teshan",
+          "name": "Teshan",
+          "range": 20
         }
       ]
     }

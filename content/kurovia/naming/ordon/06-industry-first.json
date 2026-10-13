@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.industryFirst",
+      "name": "Ordon Industry: Trade, Material or Works",
+      "description": "40 industry/trade roots, each with four vetted, editable place-name forms. Not every industrial noun can be concatenated naturally with every ending.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "coal",
+          "name": "Coal",
+          "range": [1, 3],
+          "approved_names": {
+            "a": "Coalbrook",
+            "b": "Coalfield",
+            "c": "Coalford",
+            "d": "Coalbank"
+          }
+        },
+        {
+          "id": "cinder",
+          "name": "Cinder",
+          "range": [4, 6],
+          "approved_names": {
+            "a": "Cinderford",
+            "b": "Cinderbank",
+            "c": "Cinderwick",
+            "d": "Cinderhill"
+          }
+        },
+        {
+          "id": "iron",
+          "name": "Iron",
+          "range": [7, 9],
+          "approved_names": {
+            "a": "Ironbridge",
+            "b": "Ironford",
+            "c": "Ironbank",
+            "d": "Irondale"
+          }
+        },
+        {
+          "id": "copper",
+          "name": "Copper",
+          "range": [10, 12],
+          "approved_names": {
+            "a": "Copperbank",
+            "b": "Copperford",
+            "c": "Copperwick",
+            "d": "Copperfield"
+          }
+        },
+        {
+          "id": "tin",
+          "name": "Tin",
+          "range": [13, 15],
+          "approved_names": {
+            "a": "Tinbrook",
+            "b": "Tinfield",
+            "c": "Tindale",
+            "d": "Tincroft"
+          }
+        },
+        {
+          "id": "brass",
+          "name": "Brass",
+          "range": [16, 18],
+          "approved_names": {
+            "a": "Brassford",
+            "b": "Brassbank",
+            "c": "Brasswick",
+            "d": "Brassbridge"
+          }
+        },
+        {
+          "id": "steel",
+          "name": "Steel",
+          "range": [19, 21],
+          "approved_names": {
+            "a": "Steelbank",
+            "b": "Steelford",
+            "c": "Steelwick",
+            "d": "Steelbridge"
+          }
+        },
+        {
+          "id": "slate",
+          "name": "Slate",
+          "range": [22, 24],
+          "approved_names": {
+            "a": "Slateford",
+            "b": "Slatebank",
+            "c": "Slatewick",
+            "d": "Slatebrook"
+          }
+        },
+        {
+          "id": "flint",
+          "name": "Flint",
+          "range": [25, 27],
+          "approved_names": {
+            "a": "Flintford",
+            "b": "Flintbank",
+            "c": "Flintwick",
+            "d": "Flintbridge"
+          }
+        },
+        {
+          "id": "clay",
+          "name": "Clay",
+          "range": [28, 30],
+          "approved_names": {
+            "a": "Claybank",
+            "b": "Clayford",
+            "c": "Claybrook",
+            "d": "Claywick"
+          }
+        },
+        {
+          "id": "brick",
+          "name": "Brick",
+          "range": [31, 33],
+          "approved_names": {
+            "a": "Brickford",
+            "b": "Brickbank",
+            "c": "Brickwick",
+            "d": "Brickhill"
+          }
+        },
+        {
+          "id": "kiln",
+          "name": "Kiln",
+          "range": [34, 36],
+          "approved_names": {
+            "a": "Kilnford",
+            "b": "Kilnwick",
+            "c": "Kilnbank",
+            "d": "Kilnstead"
+          }
+        },
+        {
+          "id": "forge",
+          "name": "Forge",
+          "range": [37, 39],
+          "approved_names": {
+            "a": "Forgeford",
+            "b": "Forgewick",
+            "c": "Forgebank",
+            "d": "Forgeham"
+          }
+        },
+        {
+          "id": "foundry",
+          "name": "Foundry",
+          "range": [40, 42],
+          "approved_names": {
+            "a": "Foulden",
+            "b": "Fouldham",
+            "c": "Founderswick",
+            "d": "Fouldbridge"
+          }
+        },
+        {
+          "id": "mill",
+          "name": "Mill",
+          "range": [43, 45],
+          "approved_names": {
+            "a": "Millford",
+            "b": "Millbank",
+            "c": "Millwick",
+            "d": "Millbrook"
+          }
+        },
+        {
+          "id": "wool",
+          "name": "Wool",
+          "range": [46, 48],
+          "approved_names": {
+            "a": "Woolford",
+            "b": "Woolwick",
+            "c": "Woolbridge",
+            "d": "Woolham"
+          }
+        },
+        {
+          "id": "cotton",
+          "name": "Cotton",
+          "range": [49, 51],
+          "approved_names": {
+            "a": "Cottonford",
+            "b": "Cottonbank",
+            "c": "Cottonwick",
+            "d": "Cottonbury"
+          }
+        },
+        {
+          "id": "glass",
+          "name": "Glass",
+          "range": [52, 54],
+          "approved_names": {
+            "a": "Glassford",
+            "b": "Glasswick",
+            "c": "Glassbank",
+            "d": "Glassbrook"
+          }
+        },
+        {
+          "id": "coke",
+          "name": "Coke",
+          "range": [55, 57],
+          "approved_names": {
+            "a": "Cokeham",
+            "b": "Cokeford",
+            "c": "Cokebank",
+            "d": "Cokewick"
+          }
+        },
+        {
+          "id": "char",
+          "name": "Char",
+          "range": [58, 60],
+          "approved_names": {
+            "a": "Charford",
+            "b": "Charwick",
+            "c": "Charbank",
+            "d": "Charfield"
+          }
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": [61, 62],
+          "approved_names": {
+            "a": "Ashford",
+            "b": "Ashbank",
+            "c": "Ashwick",
+            "d": "Ashbridge"
+          }
+        },
+        {
+          "id": "soot",
+          "name": "Soot",
+          "range": [63, 64],
+          "approved_names": {
+            "a": "Smeltford",
+            "b": "Smeltbridge",
+            "c": "Smeltwick",
+            "d": "Smeltbank"
+          }
+        },
+        {
+          "id": "loom",
+          "name": "Loom",
+          "range": [65, 66],
+          "approved_names": {
+            "a": "Loomford",
+            "b": "Loomwick",
+            "c": "Loomfield",
+            "d": "Loombridge"
+          }
+        },
+        {
+          "id": "rope",
+          "name": "Rope",
+          "range": [67, 68],
+          "approved_names": {
+            "a": "Roperford",
+            "b": "Roperwick",
+            "c": "Roperham",
+            "d": "Roperbank"
+          }
+        },
+        {
+          "id": "hammer",
+          "name": "Hammer",
+          "range": [69, 70],
+          "approved_names": {
+            "a": "Hamerford",
+            "b": "Hamerwick",
+            "c": "Hamerbank",
+            "d": "Hamerbury"
+          }
+        },
+        {
+          "id": "smith",
+          "name": "Smith",
+          "range": [71, 72],
+          "approved_names": {
+            "a": "Smithfield",
+            "b": "Smithwick",
+            "c": "Smithford",
+            "d": "Smithbank"
+          }
+        },
+        {
+          "id": "dyer",
+          "name": "Dyer",
+          "range": [73, 74],
+          "approved_names": {
+            "a": "Dyerford",
+            "b": "Dyerham",
+            "c": "Dyerwick",
+            "d": "Dyerbank"
+          }
+        },
+        {
+          "id": "quarry",
+          "name": "Quarry",
+          "range": [75, 76],
+          "approved_names": {
+            "a": "Quarryford",
+            "b": "Quarrybank",
+            "c": "Quarrywick",
+            "d": "Quarryton"
+          }
+        },
+        {
+          "id": "furnace",
+          "name": "Furnace",
+          "range": [77, 78],
+          "approved_names": {
+            "a": "Furnessford",
+            "b": "Furnesswick",
+            "c": "Furnessbank",
+            "d": "Furnessham"
+          }
+        },
+        {
+          "id": "flax",
+          "name": "Flax",
+          "range": [79, 80],
+          "approved_names": {
+            "a": "Flaxford",
+            "b": "Flaxwick",
+            "c": "Flaxfield",
+            "d": "Flaxbrook"
+          }
+        },
+        {
+          "id": "lead",
+          "name": "Lead",
+          "range": [81, 82],
+          "approved_names": {
+            "a": "Leadford",
+            "b": "Leadbank",
+            "c": "Leadwick",
+            "d": "Leadbridge"
+          }
+        },
+        {
+          "id": "morrow",
+          "name": "Morrow",
+          "range": [83, 84],
+          "approved_names": {
+            "a": "Morrowbank",
+            "b": "Morrowford",
+            "c": "Morrowwick",
+            "d": "Morrowbridge"
+          }
+        },
+        {
+          "id": "wire",
+          "name": "Wire",
+          "range": [85, 86],
+          "approved_names": {
+            "a": "Wireford",
+            "b": "Wirewick",
+            "c": "Wirebank",
+            "d": "Wirebrook"
+          }
+        },
+        {
+          "id": "tanner",
+          "name": "Tanner",
+          "range": [87, 88],
+          "approved_names": {
+            "a": "Tannerford",
+            "b": "Tannerwick",
+            "c": "Tannerbank",
+            "d": "Tannerham"
+          }
+        },
+        {
+          "id": "malt",
+          "name": "Malt",
+          "range": [89, 90],
+          "approved_names": {
+            "a": "Maltford",
+            "b": "Maltwick",
+            "c": "Maltbank",
+            "d": "Maltham"
+          }
+        },
+        {
+          "id": "lime",
+          "name": "Lime",
+          "range": [91, 92],
+          "approved_names": {
+            "a": "Limeford",
+            "b": "Limebank",
+            "c": "Limefield",
+            "d": "Limewick"
+          }
+        },
+        {
+          "id": "mason",
+          "name": "Mason",
+          "range": [93, 94],
+          "approved_names": {
+            "a": "Masonford",
+            "b": "Masonwick",
+            "c": "Masonbank",
+            "d": "Masonbury"
+          }
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": [95, 96],
+          "approved_names": {
+            "a": "Weaverford",
+            "b": "Weaverbank",
+            "c": "Weaverham",
+            "d": "Weaverwick"
+          }
+        },
+        {
+          "id": "pitch",
+          "name": "Pitch",
+          "range": [97, 98],
+          "approved_names": {
+            "a": "Pitchford",
+            "b": "Pitchbank",
+            "c": "Pitchwick",
+            "d": "Pitchwell"
+          }
+        },
+        {
+          "id": "pit",
+          "name": "Pit",
+          "range": [99, 100],
+          "approved_names": {
+            "a": "Pitsford",
+            "b": "Pitwick",
+            "c": "Pitfield",
+            "d": "Pittington"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -29,7 +29,8 @@ use crate::figures::{
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
 use crate::locations::{LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, NotableLocations};
 use crate::naming::{
-    GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for, sole_method,
+    GeneratedName, NAME_STAGE_ID, NameAssembly, NamePart, NameRecord, NameSource, NamingMethod,
+    NamingScheme, generate_name, scheme_for, sole_method,
 };
 use crate::roles::{ROLES_STAGE_ID, RoleAllocation, RoleAllocator, RoleSlotOptions};
 use crate::settings::{GenerationMethod, GenerationPresentation, Settings};
@@ -216,6 +217,14 @@ pub struct NamingView {
     /// Each rolled part (only with `show_tags`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub parts: Vec<NamePartView>,
+    /// How the parts were joined: the join style and any spelling
+    /// exception or approved name used (only with `show_tags`).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub assembly: Option<NameAssembly>,
+    /// For a generated name, each part's table and the results it can take,
+    /// with the name each would give, for rolling or choosing one part.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub part_options: Vec<NamePartOptions>,
     /// The active tags that selected the scheme, e.g. Kurovia and Ordon
     /// (only with `show_tags`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -227,6 +236,9 @@ pub struct NamingView {
 pub struct NamePartView {
     pub table: Named<TableId>,
     pub result: Named<ResultId>,
+    /// The result was chosen, not rolled.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub chosen: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub dice: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -257,6 +269,15 @@ pub struct FollowUpOutcome {
     /// The result it changed to, if it changed.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub becomes: Option<String>,
+}
+
+/// The table records of `events` that were not routed by a tag: for a
+/// name, the method roll and then one per component.
+fn primary_records(events: &[GenerationEvent]) -> impl Iterator<Item = &TableRollRecord> {
+    events.iter().filter_map(|e| match e {
+        GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(&**r),
+        _ => None,
+    })
 }
 
 fn outcome_of(resolution: &Resolution) -> Option<StageOutcome> {
@@ -361,6 +382,7 @@ struct NameInfo {
     source: NameSource,
     scheme: Option<Named<NamingSchemeId>>,
     method: Option<Named<ResultId>>,
+    assembly: Option<NameAssembly>,
     app_version: String,
 }
 
@@ -805,12 +827,19 @@ impl GenerationSession {
                     .map(|r| NamePartView {
                         table: r.table.clone(),
                         result: r.result.clone(),
+                        chosen: r.selected,
                         dice: r.dice.clone(),
                         roll: r.accepted().map(|a| a.roll.to_string()),
                     })
                     .collect(),
                 _ => Vec::new(),
             },
+            assembly: name
+                .filter(|_| view.show_tags)
+                .and_then(|n| n.assembly.clone()),
+            part_options: resolution
+                .map(|res| self.name_part_options(res, &state))
+                .unwrap_or_default(),
             routing: match scheme {
                 Some(scheme) if view.show_tags => {
                     let used: Vec<TagId> = scheme
@@ -940,6 +969,7 @@ impl GenerationSession {
                 source: NameSource::Custom,
                 scheme: None,
                 method: None,
+                assembly: None,
                 app_version: crate::VERSION.to_owned(),
             }),
             figures: None,
@@ -953,6 +983,30 @@ impl GenerationSession {
             invalidated,
             reopened,
         })
+    }
+
+    /// Rolls one part of the generated name again (e.g. the founder, or the
+    /// approved form), keeping the method and the other parts, and joins
+    /// the name again by the method's rules.
+    pub fn roll_name_part(
+        &mut self,
+        index: usize,
+        part: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.set_name_part(index, part, None, faces)
+    }
+
+    /// Chooses one part of the generated name from its component table,
+    /// keeping the method and the other parts.
+    pub fn choose_name_part(
+        &mut self,
+        index: usize,
+        part: usize,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.set_name_part(index, part, Some(result), faces)
     }
 
     /// Rolls every pending stage in order (choose-only stages must already
@@ -1062,6 +1116,7 @@ impl GenerationSession {
                             scheme: n.scheme.clone(),
                             method: n.method.clone(),
                             rolls: res.records().cloned().collect(),
+                            assembly: n.assembly.clone(),
                             app_version: n.app_version.clone(),
                         }),
                     }
@@ -1215,6 +1270,7 @@ impl GenerationSession {
                 source: record.source,
                 scheme: record.scheme,
                 method: record.method,
+                assembly: record.assembly,
                 app_version: record.app_version,
             }),
             figures: None,
@@ -1249,8 +1305,12 @@ impl GenerationSession {
             });
         };
         let mut state = State::with_tags(&before);
-        let GeneratedName { text, method, .. } =
-            generate_name(&self.generator(), &scheme, &mut state, method, faces)?;
+        let GeneratedName {
+            text,
+            method,
+            assembly,
+            ..
+        } = generate_name(&self.generator(), &scheme, &mut state, method, faces)?;
         let events = state.take_events();
         let resolution = Resolution {
             contexts: Some(self.contexts(&before, &events)?),
@@ -1266,6 +1326,7 @@ impl GenerationSession {
                     name: scheme.name.clone(),
                 }),
                 method: Some(method),
+                assembly: Some(assembly),
                 app_version: VERSION.to_owned(),
             }),
             figures: None,
@@ -1275,6 +1336,163 @@ impl GenerationSession {
         let stage = &mut self.stages[index];
         stage.state = StageState::Resolved(Box::new(resolution));
         stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// The scheme and method of a generated name, as they are in the
+    /// content now.
+    fn naming_of<'s>(
+        &'s self,
+        name: &NameInfo,
+    ) -> Result<(&'s NamingScheme, &'s NamingMethod), GenerationError> {
+        if name.source != NameSource::Generated {
+            return Err(GenerationError::NameNotGenerated);
+        }
+        let scheme = name
+            .scheme
+            .as_ref()
+            .and_then(|s| self.content.naming_scheme(&s.id))
+            .ok_or(GenerationError::NoNamingScheme)?;
+        let method = name
+            .method
+            .as_ref()
+            .and_then(|m| scheme.method(&m.id))
+            .ok_or(GenerationError::NoNamingScheme)?;
+        Ok((scheme, method))
+    }
+
+    /// For each part of a generated name: its table, the results it can
+    /// take under `state`, and the name each would give with the other
+    /// parts kept. Empty for a typed name or one whose method is gone.
+    fn name_part_options(&self, res: &Resolution, state: &State) -> Vec<NamePartOptions> {
+        let Some(Ok((_, method))) = res.name.as_ref().map(|n| self.naming_of(n)) else {
+            return Vec::new();
+        };
+        let rolled: Vec<&TableRollRecord> = primary_records(&res.events).skip(1).collect();
+        let generator = self.generator();
+        method
+            .components
+            .iter()
+            .enumerate()
+            .filter_map(|(i, table)| {
+                let (table, options) = generator.options_for(table, state).ok()?;
+                let (id, label) = method.parts.get(i).map_or_else(
+                    || (format!("part{}", i + 1), table.name.clone()),
+                    |p| (p.id.clone(), p.label.clone()),
+                );
+                let previews = options
+                    .iter()
+                    .map(|o| {
+                        let parts: Vec<NamePart> = rolled
+                            .iter()
+                            .enumerate()
+                            .map(|(j, r)| match j == i {
+                                true => NamePart {
+                                    table: &table.id,
+                                    result: &o.result.id,
+                                    text: &o.result.name,
+                                },
+                                false => NamePart::of(r),
+                            })
+                            .collect();
+                        (parts.len() == method.components.len())
+                            .then(|| method.compose(&self.content, &parts).ok())
+                            .flatten()
+                            .map(|c| c.text)
+                    })
+                    .collect();
+                Some(NamePartOptions {
+                    part: i,
+                    id,
+                    label,
+                    table,
+                    options,
+                    previews,
+                    current: rolled.get(i).map(|r| r.result.id.clone()),
+                })
+            })
+            .collect()
+    }
+
+    /// Rolls (or uses the chosen result of) one part of the generated name.
+    fn set_name_part(
+        &mut self,
+        index: usize,
+        part: usize,
+        choice: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.check_access(index)?;
+        let stage = self.stage(index)?;
+        if !stage.is_naming() {
+            return Err(GenerationError::NotNamingStage { stage: index });
+        }
+        let StageState::Resolved(res) = &stage.state else {
+            return Err(GenerationError::NameNotGenerated);
+        };
+        let name = res.name.as_ref().ok_or(GenerationError::NameNotGenerated)?;
+        let (scheme, method) = self.naming_of(name)?;
+        let table = method
+            .components
+            .get(part)
+            .ok_or(GenerationError::NoSuchNamePart { index: part })?;
+        let before = self.tags_before(index);
+        let mut state = State::with_tags(&before);
+        self.generator().process(
+            &mut state,
+            [Request::new(table.clone()).with_choice(choice)].into(),
+            &Selections::new(),
+            faces,
+        )?;
+        let record = state
+            .take_events()
+            .into_iter()
+            .find_map(|e| match e {
+                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(r),
+                _ => None,
+            })
+            .ok_or_else(|| GenerationError::NamingIncomplete {
+                table: table.clone(),
+            })?;
+        let mut events = res.events.clone();
+        let slot = events
+            .iter()
+            .enumerate()
+            .filter(|(_, e)| matches!(e, GenerationEvent::TableRolled(r) if r.routed_by.is_none()))
+            .map(|(i, _)| i)
+            .nth(part + 1)
+            .ok_or(GenerationError::NoSuchNamePart { index: part })?;
+        events[slot] = GenerationEvent::TableRolled(record);
+        let parts: Vec<NamePart> = primary_records(&events).skip(1).map(NamePart::of).collect();
+        let composed = method.compose(&self.content, &parts)?;
+        let info = NameInfo {
+            text: composed.text,
+            source: NameSource::Generated,
+            scheme: Some(Named {
+                id: scheme.id.clone(),
+                name: scheme.name.clone(),
+            }),
+            method: name.method.clone(),
+            assembly: Some(composed.assembly),
+            app_version: VERSION.to_owned(),
+        };
+        let resolution = Resolution {
+            contexts: Some(self.contexts(&before, &events)?),
+            input_tags: before,
+            events,
+            activated: Vec::new(),
+            original: None,
+            name: Some(info),
+            figures: None,
+            roles: None,
+            locations: None,
+        };
+        self.stages[index].state = StageState::Resolved(Box::new(resolution));
         let (invalidated, reopened) = self.refresh(index + 1)?;
         Ok(StageChange {
             stage: index,

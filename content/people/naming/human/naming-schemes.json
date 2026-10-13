@@ -19,7 +19,1880 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.human.given.masculine", "table.personName.human.family"],
+          "components": [
+            "table.personName.human.given.masculine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.01",
+          "components": [
+            "table.personName.human.given.masculine.akan-ghanaian.01",
+            "table.personName.human.family.akan-ghanaian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.02",
+          "components": [
+            "table.personName.human.given.masculine.akan-ghanaian.02",
+            "table.personName.human.family.akan-ghanaian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-hellenic-byzantine.01",
+          "components": [
+            "table.personName.human.given.masculine.ancient-hellenic-byzantine.01",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-roman-latin.01",
+          "components": [
+            "table.personName.human.given.masculine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-norman-medieval-britain.01",
+          "components": [
+            "table.personName.human.given.masculine.anglo-norman-medieval-britain.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-saxon-early-medieval.01",
+          "components": [
+            "table.personName.human.given.masculine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.arabic-romanised-examples-broad-historical-modern.01",
+          "components": [
+            "table.personName.human.given.masculine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.01",
+          "components": [
+            "table.personName.human.given.masculine.armenian.01",
+            "table.personName.human.family.armenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.02",
+          "components": [
+            "table.personName.human.given.masculine.armenian.02",
+            "table.personName.human.family.armenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.01",
+          "components": [
+            "table.personName.human.given.masculine.austrian-german.01",
+            "table.personName.human.family.austrian-german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.02",
+          "components": [
+            "table.personName.human.given.masculine.austrian-german.02",
+            "table.personName.human.family.austrian-german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.01",
+          "components": [
+            "table.personName.human.given.masculine.azerbaijani.01",
+            "table.personName.human.family.azerbaijani.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.02",
+          "components": [
+            "table.personName.human.given.masculine.azerbaijani.02",
+            "table.personName.human.family.azerbaijani.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.01",
+          "components": [
+            "table.personName.human.given.masculine.british-english.01",
+            "table.personName.human.family.british-english.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.02",
+          "components": [
+            "table.personName.human.given.masculine.british-english.02",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.01",
+          "components": [
+            "table.personName.human.given.masculine.bulgarian.01",
+            "table.personName.human.family.bulgarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.02",
+          "components": [
+            "table.personName.human.given.masculine.bulgarian.02",
+            "table.personName.human.family.bulgarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.01",
+          "components": [
+            "table.personName.human.given.masculine.croatian.01",
+            "table.personName.human.family.croatian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.02",
+          "components": [
+            "table.personName.human.given.masculine.croatian.02",
+            "table.personName.human.family.croatian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.01",
+          "components": [
+            "table.personName.human.given.masculine.czech.01",
+            "table.personName.human.family.czech.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.02",
+          "components": [
+            "table.personName.human.given.masculine.czech.02",
+            "table.personName.human.family.czech.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.01",
+          "components": [
+            "table.personName.human.given.masculine.danish.01",
+            "table.personName.human.family.danish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.02",
+          "components": [
+            "table.personName.human.given.masculine.danish.02",
+            "table.personName.human.family.danish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.01",
+          "components": [
+            "table.personName.human.given.masculine.dutch.01",
+            "table.personName.human.family.dutch.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.02",
+          "components": [
+            "table.personName.human.given.masculine.dutch.02",
+            "table.personName.human.family.dutch.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.01",
+          "components": [
+            "table.personName.human.given.masculine.french-belgian.01",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.02",
+          "components": [
+            "table.personName.human.given.masculine.french-belgian.02",
+            "table.personName.human.family.french-belgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.gender-flexible-names.01",
+          "components": [
+            "table.personName.human.given.masculine.gender-flexible-names.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.01",
+          "components": [
+            "table.personName.human.given.masculine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.02",
+          "components": [
+            "table.personName.human.given.masculine.georgian.02",
+            "table.personName.human.family.georgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.01",
+          "components": [
+            "table.personName.human.given.masculine.german.01",
+            "table.personName.human.family.german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.02",
+          "components": [
+            "table.personName.human.given.masculine.german.02",
+            "table.personName.human.family.german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.01",
+          "components": [
+            "table.personName.human.given.masculine.greek.01",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.02",
+          "components": [
+            "table.personName.human.given.masculine.greek.02",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hebrew-jewish-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.masculine.hebrew-jewish-romanised-examples.01",
+            "table.personName.human.family.hebrew-jewish-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.01",
+          "components": [
+            "table.personName.human.given.masculine.hungarian.01",
+            "table.personName.human.family.hungarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.02",
+          "components": [
+            "table.personName.human.given.masculine.hungarian.02",
+            "table.personName.human.family.hungarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.01",
+          "components": [
+            "table.personName.human.given.masculine.icelandic.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.02",
+          "components": [
+            "table.personName.human.given.masculine.icelandic.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.01",
+          "components": [
+            "table.personName.human.given.masculine.indonesian.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.02",
+          "components": [
+            "table.personName.human.given.masculine.indonesian.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.01",
+          "components": [
+            "table.personName.human.given.masculine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.02",
+          "components": [
+            "table.personName.human.given.masculine.irish-gaelic.02",
+            "table.personName.human.family.irish-gaelic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.01",
+          "components": [
+            "table.personName.human.given.masculine.italian.01",
+            "table.personName.human.family.italian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.02",
+          "components": [
+            "table.personName.human.given.masculine.italian.02",
+            "table.personName.human.family.italian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.01",
+          "components": [
+            "table.personName.human.given.masculine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.02",
+          "components": [
+            "table.personName.human.given.masculine.japanese-romanised-name-examples-mixed-periods.02",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.01",
+          "components": [
+            "table.personName.human.given.masculine.kenyan-multicultural.01",
+            "table.personName.human.family.kenyan-multicultural.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.02",
+          "components": [
+            "table.personName.human.given.masculine.kenyan-multicultural.02",
+            "table.personName.human.family.kenyan-multicultural.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.korean.01",
+          "components": [
+            "table.personName.human.given.masculine.korean.01",
+            "table.personName.human.family.korean.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.01",
+          "components": [
+            "table.personName.human.given.masculine.mandarin-chinese.01",
+            "table.personName.human.family.mandarin-chinese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.02",
+          "components": [
+            "table.personName.human.given.masculine.mandarin-chinese.02",
+            "table.personName.human.family.mandarin-chinese.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.masculine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.02",
+          "components": [
+            "table.personName.human.given.masculine.north-indian-sanskrit-derived-romanised-examples.02",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.norwegian.01",
+          "components": [
+            "table.personName.human.given.masculine.norwegian.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old-norse-viking-age-inspired.01",
+          "components": [
+            "table.personName.human.given.masculine.old-norse-viking-age-inspired.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.persian-iranian-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.masculine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.portuguese.01",
+          "components": [
+            "table.personName.human.given.masculine.portuguese.01",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.01",
+          "components": [
+            "table.personName.human.given.masculine.romanian.01",
+            "table.personName.human.family.romanian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.02",
+          "components": [
+            "table.personName.human.given.masculine.romanian.02",
+            "table.personName.human.family.romanian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.01",
+          "components": [
+            "table.personName.human.given.masculine.russian.01",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.02",
+          "components": [
+            "table.personName.human.given.masculine.russian.02",
+            "table.personName.human.family.russian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.01",
+          "components": [
+            "table.personName.human.given.masculine.slovak.01",
+            "table.personName.human.family.slovak.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.02",
+          "components": [
+            "table.personName.human.given.masculine.slovak.02",
+            "table.personName.human.family.slovak.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.01",
+          "components": [
+            "table.personName.human.given.masculine.slovenian.01",
+            "table.personName.human.family.slovenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.02",
+          "components": [
+            "table.personName.human.given.masculine.slovenian.02",
+            "table.personName.human.family.slovenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.01",
+          "components": [
+            "table.personName.human.given.masculine.spanish.01",
+            "table.personName.human.family.spanish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.02",
+          "components": [
+            "table.personName.human.given.masculine.spanish.02",
+            "table.personName.human.family.spanish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.01",
+          "components": [
+            "table.personName.human.given.masculine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.02",
+          "components": [
+            "table.personName.human.given.masculine.swahili-speaking-east-africa.02",
+            "table.personName.human.family.swahili-speaking-east-africa.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.01",
+          "components": [
+            "table.personName.human.given.masculine.swedish.01",
+            "table.personName.human.family.swedish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.02",
+          "components": [
+            "table.personName.human.given.masculine.swedish.02",
+            "table.personName.human.family.swedish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.01",
+          "components": [
+            "table.personName.human.given.masculine.tamil-south-indian-romanised-given-examples.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.02",
+          "components": [
+            "table.personName.human.given.masculine.tamil-south-indian-romanised-given-examples.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.01",
+          "components": [
+            "table.personName.human.given.masculine.turkish.01",
+            "table.personName.human.family.turkish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.02",
+          "components": [
+            "table.personName.human.given.masculine.turkish.02",
+            "table.personName.human.family.turkish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.01",
+          "components": [
+            "table.personName.human.given.masculine.ukrainian.01",
+            "table.personName.human.family.ukrainian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.02",
+          "components": [
+            "table.personName.human.given.masculine.ukrainian.02",
+            "table.personName.human.family.ukrainian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.01",
+          "components": [
+            "table.personName.human.given.masculine.uzbek.01",
+            "table.personName.human.family.uzbek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.02",
+          "components": [
+            "table.personName.human.given.masculine.uzbek.02",
+            "table.personName.human.family.uzbek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.victorian-edwardian-britain-inspired.01",
+          "components": [
+            "table.personName.human.given.masculine.victorian-edwardian-britain-inspired.01",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.01",
+          "components": [
+            "table.personName.human.given.masculine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.02",
+          "components": [
+            "table.personName.human.given.masculine.yoruba.02",
+            "table.personName.human.family.yoruba.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.01",
+          "components": [
+            "table.personName.human.given.masculine.zulu.01",
+            "table.personName.human.family.zulu.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.02",
+          "components": [
+            "table.personName.human.given.masculine.zulu.02",
+            "table.personName.human.family.zulu.02"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -56,7 +1929,1880 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.human.given.feminine", "table.personName.human.family"],
+          "components": [
+            "table.personName.human.given.feminine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.01",
+          "components": [
+            "table.personName.human.given.feminine.akan-ghanaian.01",
+            "table.personName.human.family.akan-ghanaian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.02",
+          "components": [
+            "table.personName.human.given.feminine.akan-ghanaian.02",
+            "table.personName.human.family.akan-ghanaian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-hellenic-byzantine.01",
+          "components": [
+            "table.personName.human.given.feminine.ancient-hellenic-byzantine.01",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-roman-latin.01",
+          "components": [
+            "table.personName.human.given.feminine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-norman-medieval-britain.01",
+          "components": [
+            "table.personName.human.given.feminine.anglo-norman-medieval-britain.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-saxon-early-medieval.01",
+          "components": [
+            "table.personName.human.given.feminine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.arabic-romanised-examples-broad-historical-modern.01",
+          "components": [
+            "table.personName.human.given.feminine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.01",
+          "components": [
+            "table.personName.human.given.feminine.armenian.01",
+            "table.personName.human.family.armenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.02",
+          "components": [
+            "table.personName.human.given.feminine.armenian.02",
+            "table.personName.human.family.armenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.01",
+          "components": [
+            "table.personName.human.given.feminine.austrian-german.01",
+            "table.personName.human.family.austrian-german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.02",
+          "components": [
+            "table.personName.human.given.feminine.austrian-german.02",
+            "table.personName.human.family.austrian-german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.01",
+          "components": [
+            "table.personName.human.given.feminine.azerbaijani.01",
+            "table.personName.human.family.azerbaijani.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.02",
+          "components": [
+            "table.personName.human.given.feminine.azerbaijani.02",
+            "table.personName.human.family.azerbaijani.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.01",
+          "components": [
+            "table.personName.human.given.feminine.british-english.01",
+            "table.personName.human.family.british-english.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.02",
+          "components": [
+            "table.personName.human.given.feminine.british-english.02",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.01",
+          "components": [
+            "table.personName.human.given.feminine.bulgarian.01",
+            "table.personName.human.family.bulgarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.02",
+          "components": [
+            "table.personName.human.given.feminine.bulgarian.02",
+            "table.personName.human.family.bulgarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.01",
+          "components": [
+            "table.personName.human.given.feminine.croatian.01",
+            "table.personName.human.family.croatian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.02",
+          "components": [
+            "table.personName.human.given.feminine.croatian.02",
+            "table.personName.human.family.croatian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.01",
+          "components": [
+            "table.personName.human.given.feminine.czech.01",
+            "table.personName.human.family.czech.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.02",
+          "components": [
+            "table.personName.human.given.feminine.czech.02",
+            "table.personName.human.family.czech.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.01",
+          "components": [
+            "table.personName.human.given.feminine.danish.01",
+            "table.personName.human.family.danish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.02",
+          "components": [
+            "table.personName.human.given.feminine.danish.02",
+            "table.personName.human.family.danish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.01",
+          "components": [
+            "table.personName.human.given.feminine.dutch.01",
+            "table.personName.human.family.dutch.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.02",
+          "components": [
+            "table.personName.human.given.feminine.dutch.02",
+            "table.personName.human.family.dutch.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.01",
+          "components": [
+            "table.personName.human.given.feminine.french-belgian.01",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.02",
+          "components": [
+            "table.personName.human.given.feminine.french-belgian.02",
+            "table.personName.human.family.french-belgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.gender-flexible-names.01",
+          "components": [
+            "table.personName.human.given.feminine.gender-flexible-names.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.01",
+          "components": [
+            "table.personName.human.given.feminine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.02",
+          "components": [
+            "table.personName.human.given.feminine.georgian.02",
+            "table.personName.human.family.georgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.01",
+          "components": [
+            "table.personName.human.given.feminine.german.01",
+            "table.personName.human.family.german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.02",
+          "components": [
+            "table.personName.human.given.feminine.german.02",
+            "table.personName.human.family.german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.01",
+          "components": [
+            "table.personName.human.given.feminine.greek.01",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.02",
+          "components": [
+            "table.personName.human.given.feminine.greek.02",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hebrew-jewish-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.feminine.hebrew-jewish-romanised-examples.01",
+            "table.personName.human.family.hebrew-jewish-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.01",
+          "components": [
+            "table.personName.human.given.feminine.hungarian.01",
+            "table.personName.human.family.hungarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.02",
+          "components": [
+            "table.personName.human.given.feminine.hungarian.02",
+            "table.personName.human.family.hungarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.01",
+          "components": [
+            "table.personName.human.given.feminine.icelandic.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.02",
+          "components": [
+            "table.personName.human.given.feminine.icelandic.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.01",
+          "components": [
+            "table.personName.human.given.feminine.indonesian.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.02",
+          "components": [
+            "table.personName.human.given.feminine.indonesian.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.01",
+          "components": [
+            "table.personName.human.given.feminine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.02",
+          "components": [
+            "table.personName.human.given.feminine.irish-gaelic.02",
+            "table.personName.human.family.irish-gaelic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.01",
+          "components": [
+            "table.personName.human.given.feminine.italian.01",
+            "table.personName.human.family.italian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.02",
+          "components": [
+            "table.personName.human.given.feminine.italian.02",
+            "table.personName.human.family.italian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.01",
+          "components": [
+            "table.personName.human.given.feminine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.02",
+          "components": [
+            "table.personName.human.given.feminine.japanese-romanised-name-examples-mixed-periods.02",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.01",
+          "components": [
+            "table.personName.human.given.feminine.kenyan-multicultural.01",
+            "table.personName.human.family.kenyan-multicultural.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.02",
+          "components": [
+            "table.personName.human.given.feminine.kenyan-multicultural.02",
+            "table.personName.human.family.kenyan-multicultural.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.korean.01",
+          "components": [
+            "table.personName.human.given.feminine.korean.01",
+            "table.personName.human.family.korean.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.01",
+          "components": [
+            "table.personName.human.given.feminine.mandarin-chinese.01",
+            "table.personName.human.family.mandarin-chinese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.02",
+          "components": [
+            "table.personName.human.given.feminine.mandarin-chinese.02",
+            "table.personName.human.family.mandarin-chinese.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.feminine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.02",
+          "components": [
+            "table.personName.human.given.feminine.north-indian-sanskrit-derived-romanised-examples.02",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.norwegian.01",
+          "components": [
+            "table.personName.human.given.feminine.norwegian.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old-norse-viking-age-inspired.01",
+          "components": [
+            "table.personName.human.given.feminine.old-norse-viking-age-inspired.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.persian-iranian-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.feminine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.portuguese.01",
+          "components": [
+            "table.personName.human.given.feminine.portuguese.01",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.01",
+          "components": [
+            "table.personName.human.given.feminine.romanian.01",
+            "table.personName.human.family.romanian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.02",
+          "components": [
+            "table.personName.human.given.feminine.romanian.02",
+            "table.personName.human.family.romanian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.01",
+          "components": [
+            "table.personName.human.given.feminine.russian.01",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.02",
+          "components": [
+            "table.personName.human.given.feminine.russian.02",
+            "table.personName.human.family.russian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.01",
+          "components": [
+            "table.personName.human.given.feminine.slovak.01",
+            "table.personName.human.family.slovak.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.02",
+          "components": [
+            "table.personName.human.given.feminine.slovak.02",
+            "table.personName.human.family.slovak.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.01",
+          "components": [
+            "table.personName.human.given.feminine.slovenian.01",
+            "table.personName.human.family.slovenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.02",
+          "components": [
+            "table.personName.human.given.feminine.slovenian.02",
+            "table.personName.human.family.slovenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.01",
+          "components": [
+            "table.personName.human.given.feminine.spanish.01",
+            "table.personName.human.family.spanish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.02",
+          "components": [
+            "table.personName.human.given.feminine.spanish.02",
+            "table.personName.human.family.spanish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.01",
+          "components": [
+            "table.personName.human.given.feminine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.02",
+          "components": [
+            "table.personName.human.given.feminine.swahili-speaking-east-africa.02",
+            "table.personName.human.family.swahili-speaking-east-africa.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.01",
+          "components": [
+            "table.personName.human.given.feminine.swedish.01",
+            "table.personName.human.family.swedish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.02",
+          "components": [
+            "table.personName.human.given.feminine.swedish.02",
+            "table.personName.human.family.swedish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.01",
+          "components": [
+            "table.personName.human.given.feminine.tamil-south-indian-romanised-given-examples.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.02",
+          "components": [
+            "table.personName.human.given.feminine.tamil-south-indian-romanised-given-examples.02",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.01",
+          "components": [
+            "table.personName.human.given.feminine.turkish.01",
+            "table.personName.human.family.turkish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.02",
+          "components": [
+            "table.personName.human.given.feminine.turkish.02",
+            "table.personName.human.family.turkish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.01",
+          "components": [
+            "table.personName.human.given.feminine.ukrainian.01",
+            "table.personName.human.family.ukrainian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.02",
+          "components": [
+            "table.personName.human.given.feminine.ukrainian.02",
+            "table.personName.human.family.ukrainian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.01",
+          "components": [
+            "table.personName.human.given.feminine.uzbek.01",
+            "table.personName.human.family.uzbek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.02",
+          "components": [
+            "table.personName.human.given.feminine.uzbek.02",
+            "table.personName.human.family.uzbek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.victorian-edwardian-britain-inspired.01",
+          "components": [
+            "table.personName.human.given.feminine.victorian-edwardian-britain-inspired.01",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.01",
+          "components": [
+            "table.personName.human.given.feminine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.02",
+          "components": [
+            "table.personName.human.given.feminine.yoruba.02",
+            "table.personName.human.family.yoruba.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.01",
+          "components": [
+            "table.personName.human.given.feminine.zulu.01",
+            "table.personName.human.family.zulu.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.02",
+          "components": [
+            "table.personName.human.given.feminine.zulu.02",
+            "table.personName.human.family.zulu.02"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -86,7 +3832,1880 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.akan-ghanaian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.akan-ghanaian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.akan-ghanaian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-hellenic-byzantine.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancient-roman-latin.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-norman-medieval-britain.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.anglo-saxon-early-medieval.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.arabic-romanised-examples-broad-historical-modern.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.armenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.armenian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.armenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.austrian-german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.austrian-german.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.austrian-german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.azerbaijani.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.azerbaijani.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.azerbaijani.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.british-english.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.bulgarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bulgarian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.bulgarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.croatian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.croatian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.croatian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.czech.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.czech.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.czech.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.danish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.danish.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.danish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.dutch.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dutch.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.dutch.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.french-belgian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.french-belgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.gender-flexible-names.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.georgian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.georgian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.german.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.german.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.german.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.greek.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hebrew-jewish-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.hebrew-jewish-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.hungarian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hungarian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.hungarian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.icelandic.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.indonesian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.irish-gaelic.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.irish-gaelic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.italian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.italian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.italian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.japanese-romanised-name-examples-mixed-periods.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.kenyan-multicultural.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.kenyan-multicultural.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.kenyan-multicultural.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.korean.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.korean.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.mandarin-chinese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mandarin-chinese.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.mandarin-chinese.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.north-indian-sanskrit-derived-romanised-examples.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.norwegian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old-norse-viking-age-inspired.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.persian-iranian-romanised-examples.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.portuguese.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.romanian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.romanian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.romanian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.russian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.russian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.slovak.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovak.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.slovak.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.slovenian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.slovenian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.slovenian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.spanish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.spanish.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.spanish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swahili-speaking-east-africa.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swahili-speaking-east-africa.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swedish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.swedish.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swedish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tamil-south-indian-romanised-given-examples.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.turkish.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.turkish.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.turkish.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.ukrainian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ukrainian.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.ukrainian.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.uzbek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.uzbek.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.uzbek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.victorian-edwardian-britain-inspired.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.yoruba.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.yoruba.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.zulu.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.zulu.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.zulu.02"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",

@@ -1,13 +1,22 @@
 // The name stage. Naming methods, rolls and the joining rules all come from
 // the core; this only presents the stage and sends the user's choices.
 import { useEffect, useState, type FormEvent } from "react";
-import type { NamingView, StageView } from "../api";
+import {
+  formatRange,
+  generation,
+  type GenerationResponse,
+  type NameAssembly,
+  type NamingView,
+  type StageView,
+} from "../api";
 import { MAX_NAME_LENGTH, nameProblem, OutcomeLine, ResultList } from "./generation";
 
 export interface NameActions {
   onRoll: () => void;
   onChoose: (method: string) => void;
   onCustom: (name: string) => void;
+  /** Runs a name-part action (roll or choose one part). */
+  onAct: (call: Promise<GenerationResponse>) => void;
 }
 
 /** Name stage controls for the Incremental panel. */
@@ -17,6 +26,7 @@ export function NameControls({
   onRoll,
   onChoose,
   onCustom,
+  onAct,
 }: { stage: StageView; busy: boolean } & NameActions) {
   const naming = stage.naming as NamingView;
   const methods = stage.options.some((o) => o.legal);
@@ -33,6 +43,7 @@ export function NameControls({
           <OutcomeLine outcome={stage.outcome} />
         </div>
       )}
+      <NameParts stage={stage} busy={busy} onAct={onAct} />
       {methods && (
         <>
           <span className="label results-label">Or choose a naming method</span>
@@ -88,6 +99,85 @@ function NameNote({ stage }: { stage: StageView }) {
     );
   }
   return null;
+}
+
+/**
+ * The parts of a generated name, each of which can be chosen or rolled
+ * again on its own. Every option shows the name it would give, so approved
+ * variants (e.g. Oswald: A → Oswalden, B → Oswaldwick) can be inspected.
+ */
+export function NameParts({
+  stage,
+  busy,
+  onAct,
+}: {
+  stage: StageView;
+  busy: boolean;
+  onAct: (call: Promise<GenerationResponse>) => void;
+}) {
+  const parts = stage.naming?.part_options ?? [];
+  if (parts.length === 0) return null;
+  return (
+    <fieldset className="name-parts">
+      <legend className="label">Name parts</legend>
+      {parts.map((part) => {
+        const id = `name-part-${stage.index}-${part.part}`;
+        const legal = part.options
+          .map((o, i) => ({ option: o, preview: part.previews?.[i] ?? null }))
+          .filter(({ option }) => option.legal);
+        const current = part.current ?? "";
+        return (
+          <div key={part.part} className="name-part-row">
+            <label htmlFor={id} className="small">
+              {part.label}
+            </label>
+            <select
+              id={id}
+              className="select"
+              disabled={busy}
+              value={current}
+              onChange={(e) =>
+                e.target.value &&
+                onAct(generation.chooseNamePart(stage.index, part.part, e.target.value))
+              }
+            >
+              <option value="" disabled>
+                Choose…
+              </option>
+              {legal.map(({ option, preview }) => (
+                <option key={option.result.id} value={option.result.id}>
+                  {option.result.name}
+                  {preview && preview !== option.result.name ? ` → ${preview}` : ""}
+                  {option.range !== undefined ? ` (${formatRange(option.range)})` : ""}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              className="btn btn-small"
+              disabled={busy}
+              onClick={() => onAct(generation.rollNamePart(stage.index, part.part))}
+            >
+              Roll <span className="visually-hidden">{part.label}</span>
+            </button>
+          </div>
+        );
+      })}
+    </fieldset>
+  );
+}
+
+/** "Joined: compound", the exception used, or the approved name read. */
+function assemblyText(assembly: NameAssembly): string {
+  if (assembly.exception) {
+    const note = assembly.exception.note ? ` (${assembly.exception.note})` : "";
+    return `Spelling exception: ${assembly.exception.name}${note}`;
+  }
+  if (assembly.curated) {
+    const c = assembly.curated;
+    return `Approved name of ${c.source} (${c.table}) chosen by variant ${c.variant}`;
+  }
+  return `Joined: ${assembly.join}`;
 }
 
 /** Type a name: always possible, with or without naming data. */
@@ -170,16 +260,24 @@ export function NamingDetails({ naming }: { naming?: NamingView }) {
         <div key={part.table.id} className="naming-part">
           <dt>{part.table.name}</dt>
           <dd>
-            {part.result.name}
-            {part.roll && (
+            {part.result.name} <code className="muted">{part.result.id}</code>
+            {part.roll && !part.chosen ? (
               <span className="muted">
                 {" "}
                 — rolled {part.roll} on {part.dice}
               </span>
+            ) : (
+              <span className="muted"> — chosen</span>
             )}
           </dd>
         </div>
       ))}
+      {naming.assembly && (
+        <>
+          <dt>Assembly</dt>
+          <dd>{assemblyText(naming.assembly)}</dd>
+        </>
+      )}
     </dl>
   );
 }
@@ -191,6 +289,7 @@ export function NameGridRow({
   onRoll,
   onChoose,
   onCustom,
+  onAct,
 }: { stage: StageView; busy: boolean } & NameActions) {
   const naming = stage.naming as NamingView;
   const legal = stage.options.filter((o) => o.legal);
@@ -222,6 +321,7 @@ export function NameGridRow({
             ))}
           </select>
         )}
+        <NameParts stage={stage} busy={busy} onAct={onAct} />
         <CustomNameForm stage={stage} busy={busy} onCustom={onCustom} compact />
         <NamingDetails naming={naming} />
       </td>

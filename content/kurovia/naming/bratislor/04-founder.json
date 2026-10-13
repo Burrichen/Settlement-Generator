@@ -4,68 +4,408 @@
     {
       "id": "table.naming.bratislor.founder",
       "name": "Bratislor Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "description": "Historical founder and family names. 50 entries, 2 faces each. Joined directly in current v1 schema; more realistic derivational morphology is an optional future engine extension.",
+      "dice": "1d100",
       "results": [
         {
           "id": "dragomir",
           "name": "Dragomir",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "vesna",
           "name": "Vesna",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "radan",
           "name": "Radan",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "ilena",
           "name": "Ilena",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "oskar",
           "name": "Oskar",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "vorel",
           "name": "Vorel",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "mira",
           "name": "Mira",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "sava",
           "name": "Sava",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "daria",
           "name": "Daria",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "branik",
           "name": "Branik",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "zora",
           "name": "Zora",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "stanimir",
           "name": "Stanimir",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "bogdan",
+          "name": "Bogdan",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "borek",
+          "name": "Borek",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "borislav",
+          "name": "Borislav",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "branimir",
+          "name": "Branimir",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "boleslav",
+          "name": "Boleslav",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "danek",
+          "name": "Danek",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "darin",
+          "name": "Darin",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "dobran",
+          "name": "Dobran",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "doman",
+          "name": "Doman",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "dorin",
+          "name": "Dorin",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "dragan",
+          "name": "Dragan",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "dragutin",
+          "name": "Dragutin",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "dusan",
+          "name": "Dusan",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "emil",
+          "name": "Emil",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "ilar",
+          "name": "Ilar",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "jaromir",
+          "name": "Jaromir",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "javor",
+          "name": "Javor",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "karel",
+          "name": "Karel",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "kazimir",
+          "name": "Kazimir",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "lukan",
+          "name": "Lukan",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "marcin",
+          "name": "Marcin",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "marek",
+          "name": "Marek",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "milan",
+          "name": "Milan",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "milorad",
+          "name": "Milorad",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "milovan",
+          "name": "Milovan",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "mirko",
+          "name": "Mirko",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "nikol",
+          "name": "Nikol",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "olen",
+          "name": "Olen",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "radek",
+          "name": "Radek",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "radimir",
+          "name": "Radimir",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "radoslav",
+          "name": "Radoslav",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "rostan",
+          "name": "Rostan",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "sorin",
+          "name": "Sorin",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "stanek",
+          "name": "Stanek",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "stovar",
+          "name": "Stovar",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "varen",
+          "name": "Varen",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "velimir",
+          "name": "Velimir",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "zdenek",
+          "name": "Zdenek",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

@@ -3,39 +3,49 @@
   "tables": [
     {
       "id": "table.naming.targoth.founderEnding",
-      "name": "Targoth Name: Founder Feature",
-      "description": "Founder Feature added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "name": "Targoth Name: Sanctuary Ending",
+      "description": "Five simple compound endings for ancient sites, hermit refuges, stone citadels, and holy heights. Each receives two faces of 1d10. No variant mechanism or special transformations.",
+      "dice": "1d10",
       "results": [
         {
-          "id": "hold",
-          "name": "Hold",
-          "range": 1
+          "id": "ling",
+          "name": "ling",
+          "range": [
+            1,
+            2
+          ]
         },
         {
-          "id": "gate",
-          "name": "Gate",
-          "range": 2
+          "id": "dzong",
+          "name": "dzong",
+          "range": [
+            3,
+            4
+          ]
         },
         {
-          "id": "watch",
-          "name": "Watch",
-          "range": 3
+          "id": "khang",
+          "name": "khang",
+          "range": [
+            5,
+            6
+          ]
         },
         {
-          "id": "rest",
-          "name": "Rest",
-          "range": 4
+          "id": "tse",
+          "name": "tse",
+          "range": [
+            7,
+            8
+          ]
         },
         {
-          "id": "cairn",
-          "name": "Cairn",
-          "range": 5
-        },
-        {
-          "id": "deep",
-          "name": "Deep",
-          "range": 6
+          "id": "thang",
+          "name": "thang",
+          "range": [
+            9,
+            10
+          ]
         }
       ]
     }

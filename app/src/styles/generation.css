@@ -629,6 +629,39 @@
   margin-bottom: 6px;
 }
 
+/* Changing one part of a generated name. */
+.name-parts {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+  max-width: 560px;
+}
+
+.name-parts legend {
+  margin-bottom: 4px;
+}
+
+.name-part-row {
+  display: grid;
+  grid-template-columns: minmax(8em, max-content) 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.name-part-row .select {
+  min-width: 0;
+}
+
+.name-row .name-part-row {
+  grid-template-columns: 1fr auto;
+}
+
+.name-row .name-part-row label {
+  grid-column: 1 / -1;
+}
+
 /* ----- Authority Figures ----------------------------------------------------- */
 
 .figures {

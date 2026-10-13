@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.hazeEnding",
+      "name": "Bratislor Name: Haze-Era Ending",
+      "description": "Conventional place-name endings paired with post-catastrophe local descriptors. Names stay believable without requiring supernatural words.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ov",
+          "name": "ov",
+          "range": 1
+        },
+        {
+          "id": "in",
+          "name": "in",
+          "range": 2
+        },
+        {
+          "id": "dol",
+          "name": "dol",
+          "range": 3
+        },
+        {
+          "id": "grad",
+          "name": "grad",
+          "range": 4
+        },
+        {
+          "id": "ice",
+          "name": "ice",
+          "range": 5
+        },
+        {
+          "id": "ova",
+          "name": "ova",
+          "range": 6
+        },
+        {
+          "id": "eni",
+          "name": "eni",
+          "range": 7
+        },
+        {
+          "id": "nik",
+          "name": "nik",
+          "range": 8
+        },
+        {
+          "id": "ava",
+          "name": "ava",
+          "range": 9
+        },
+        {
+          "id": "ost",
+          "name": "ost",
+          "range": 10
+        },
+        {
+          "id": "brod",
+          "name": "brod",
+          "range": 11
+        },
+        {
+          "id": "gora",
+          "name": "gora",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.industrySecond",
+      "name": "Ordon Industry: Approved Name Form",
+      "description": "Roll 1d4 to select the corresponding approved settlement name form in 06-industry-first.json.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "a",
+          "name": "A",
+          "range": 1
+        },
+        {
+          "id": "b",
+          "name": "B",
+          "range": 2
+        },
+        {
+          "id": "c",
+          "name": "C",
+          "range": 3
+        },
+        {
+          "id": "d",
+          "name": "D",
+          "range": 4
+        }
+      ]
+    }
+  ]
+}

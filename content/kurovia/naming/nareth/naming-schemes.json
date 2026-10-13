@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.nareth",
       "name": "Nareth",
-      "description": "Names for settlements in the Kurovian region of Nareth. Provisional sample data, not official Kurovian lore.",
+      "description": "Fictional rainforest and wetlands naming system drawing on selected real Quechua place-name concepts and original Ixtal-like hidden-civilisation fantasy; ten independently weighted methods. Known canon Uru Taal and Aruven excluded from the generator.",
       "when": {
         "all": [
           {
@@ -18,20 +18,113 @@
       "method_table": "table.naming.nareth.method",
       "methods": [
         {
-          "result": "geographic",
-          "components": ["table.naming.nareth.firstElement", "table.naming.nareth.secondElement"],
+          "result": "river",
+          "components": [
+            "table.naming.nareth.riverFirst",
+            "table.naming.nareth.riverSecond"
+          ],
           "join": {
-            "style": "compound",
-            "replacements": []
-          }
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "forest",
+          "components": [
+            "table.naming.nareth.forestFirst",
+            "table.naming.nareth.forestSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "wetland",
+          "components": [
+            "table.naming.nareth.wetlandFirst",
+            "table.naming.nareth.wetlandSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "settlement",
+          "components": [
+            "table.naming.nareth.settlementFirst",
+            "table.naming.nareth.settlementSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "trail",
+          "components": [
+            "table.naming.nareth.trailFirst",
+            "table.naming.nareth.trailSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "stone",
+          "components": [
+            "table.naming.nareth.stoneFirst",
+            "table.naming.nareth.stoneSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "geographic",
+          "components": [
+            "table.naming.nareth.firstElement",
+            "table.naming.nareth.secondElement"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         },
         {
           "result": "founder",
-          "components": ["table.naming.nareth.founder", "table.naming.nareth.founderEnding"],
+          "components": [
+            "table.naming.nareth.founder",
+            "table.naming.nareth.founderEnding"
+          ],
           "join": {
-            "style": "compound",
-            "replacements": []
-          }
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "elemental",
+          "components": [
+            "table.naming.nareth.elementalFirst",
+            "table.naming.nareth.elementalSecond"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "inherited",
+          "components": [
+            "table.naming.nareth.inheritedName"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         }
       ]
     }

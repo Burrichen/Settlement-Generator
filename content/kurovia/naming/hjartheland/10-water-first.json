@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.waterFirst",
+      "name": "Hjartheland Water: First Element",
+      "description": "Frozen lakes, rivers, channels, fjord legacy, current, colour and coastal/waterway descriptors.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "aust",
+          "name": "Aust",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "vest",
+          "name": "Vest",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "sval",
+          "name": "Sval",
+          "range": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": "djup",
+          "name": "Djup",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "gra",
+          "name": "Grå",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "kvit",
+          "name": "Kvit",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "svart",
+          "name": "Svart",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "eir",
+          "name": "Eir",
+          "range": [
+            41,
+            43
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            44,
+            46
+          ]
+        },
+        {
+          "id": "stille",
+          "name": "Stille",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "storm",
+          "name": "Storm",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "bratt",
+          "name": "Bratt",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "stein",
+          "name": "Stein",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "helle",
+          "name": "Helle",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "sand",
+          "name": "Sand",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "lys",
+          "name": "Lys",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "frost",
+          "name": "Frost",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "rim",
+          "name": "Rim",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "is",
+          "name": "Is",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "sno",
+          "name": "Snø",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "skar",
+          "name": "Skar",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "myr",
+          "name": "Myr",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "fjell",
+          "name": "Fjell",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "eik",
+          "name": "Eik",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "gran",
+          "name": "Gran",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "skog",
+          "name": "Skog",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

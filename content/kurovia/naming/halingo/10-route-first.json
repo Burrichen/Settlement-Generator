@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.routeFirst",
+      "name": "Halingo Route & Rail: Qualifier",
+      "description": "Directions, condition, geography and some inherited place roots, typical of waypoints, crossroads and railway settlements.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "dry",
+          "name": "Dry",
+          "range": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": "new",
+          "name": "New",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "east",
+          "name": "East",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "west",
+          "name": "West",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "north",
+          "name": "North",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "south",
+          "name": "South",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "upper",
+          "name": "Upper",
+          "range": [
+            41,
+            43
+          ]
+        },
+        {
+          "id": "lower",
+          "name": "Lower",
+          "range": [
+            44,
+            46
+          ]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "long",
+          "name": "Long",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "last",
+          "name": "Last",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "first",
+          "name": "First",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "third",
+          "name": "Third",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "iron",
+          "name": "Iron",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "dust",
+          "name": "Dust",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "salt",
+          "name": "Salt",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "cinder",
+          "name": "Cinder",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "khar",
+          "name": "Khar",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "varr",
+          "name": "Varr",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "tal",
+          "name": "Tal",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "sere",
+          "name": "Sere",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "mara",
+          "name": "Mara",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "vek",
+          "name": "Vek",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "broken",
+          "name": "Broken",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

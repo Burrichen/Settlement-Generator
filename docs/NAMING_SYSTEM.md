@@ -6,7 +6,8 @@ validation, overrides and snapshots as every other stage. Nothing about a
 particular region is written in code.
 
 This document covers how naming works, the file format, the dice rules, and
-how to edit naming content.
+how to edit naming content. Ordon's pack (five methods, approved names) has
+its own guide: [ORDON_NAMING.md](ORDON_NAMING.md).
 
 ## How a name is chosen
 
@@ -57,16 +58,20 @@ Changes made on another stage do the following:
 
 ## Files
 
-Every table has its own file. Each region's naming data is a folder:
+Each region's naming data is a folder. Naming is the one exception to the
+"one table per file" rule: a name pack may keep a pool's culture or sub-pool
+tables in the same file as the pool (the human given-name files, for
+example). Everything outside `naming/` folders still has one table per file.
 
-| Path                               | Contains                                                                                                            |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                                                         |
-| `content/kurovia/naming/<region>/` | `01-method.json` … `05-founder-ending.json` (one table each) and `naming-schemes.json`. Skgurr has no founder files |
+| Path                               | Contains                                                                                                                                                                   |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                                                                                                                |
+| `content/kurovia/naming/<region>/` | One file per table (`01-method.json`, `02-first-element.json`, …) and the region's own `naming-schemes.json`. Ordon has ten tables; see [ORDON_NAMING.md](ORDON_NAMING.md) |
 
-The regions are Ordon (approved), and Halingo, Skgurr, Shinkira, Bratislor,
-Hjartheland and Targoth (provisional samples), and Nareth (placeholder
-starter sounds).
+Ordon, Bratislor, Halingo, Hjartheland and Nareth have expanded packs;
+Skgurr, Shinkira and Targoth are still small. Which settlement and personal
+name sets have not been revamped yet is tracked in
+[NAMING_BACKLOG.md](NAMING_BACKLOG.md).
 
 All eight Kurovian regions have a naming scheme. No generic scheme exists
 yet, so other Setting Profiles skip the Name stage.
@@ -75,13 +80,14 @@ Every region follows the same predictable pattern. For region `<key>`:
 
 - scheme `naming.kurovia.<key>`;
 - tables `table.naming.<key>.method`, `.firstElement`, `.secondElement`,
-  `.founder` and `.founderEnding`;
-- method results `geographic` and `founder`.
+  and further tables for any other methods the region has;
+- method results such as `geographic` and `founder`, plus the region's own.
 
 Component result IDs are the lower-case entry, e.g. `khar` or `varesh`.
 
 Every `.json` file under `content/`, including subfolders, is merged in path
-order at build time. A new region gets its own folder, for example
+order at build time. Keep authoring material (previews, catalogues, archived
+lists) outside `content/`, e.g. in `authoring/`, or it is bundled too. A new region gets its own folder, for example
 `content/kurovia/naming/halingo/`, with one file per table and a
 `naming-schemes.json`. No registry or code change is needed.
 
@@ -164,10 +170,10 @@ any other table. Its `naming_schemes` connect those tables.
     {
       "id": "table.naming.ordon.method",
       "name": "Ordon Naming Method",
-      "dice": "1d10",
+      "dice": "1d100",
       "results": [
-        { "id": "geographic", "name": "Geographic Compound", "range": [1, 7] },
-        { "id": "founder", "name": "Historical Founder", "range": [8, 10] }
+        { "id": "geographic", "name": "Old English & Landscape", "range": [1, 42] },
+        { "id": "founder", "name": "Founders, Manors & Estates", "range": [43, 62] }
       ]
     }
   ],
@@ -182,12 +188,19 @@ any other table. Its `naming_schemes` connect those tables.
           "result": "geographic",
           "components": ["table.naming.ordon.firstElement", "table.naming.ordon.secondElement"],
           "join": { "style": "compound" },
-          "exceptions": [{ "results": ["ash", "ham"], "name": "Asham" }]
+          "exceptions": [
+            { "results": ["ash", "ham"], "name": "Asham", "note": "Historical-looking contraction" }
+          ]
         },
         {
           "result": "founder",
           "components": ["table.naming.ordon.founder", "table.naming.ordon.founderEnding"],
-          "join": { "style": "possessive", "suffix": "s", "before": ["bury", "stead", "worth"] }
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error"
+          }
         }
       ]
     }
@@ -216,12 +229,12 @@ A method has two halves:
   on any table.
 - **The method entry** in `methods` holds the rest:
 
-| Field        | Meaning                                                                           |
-| ------------ | --------------------------------------------------------------------------------- |
-| `result`     | The method table result this method belongs to                                    |
-| `components` | Tables rolled in order; each gives one part                                       |
-| `join`       | How parts are joined (below)                                                      |
-| `exceptions` | Exact spellings for particular combinations of component **result IDs**, in order |
+| Field        | Meaning                                                                            |
+| ------------ | ---------------------------------------------------------------------------------- |
+| `result`     | The method table result this method belongs to                                     |
+| `components` | Tables rolled in order; each gives one part                                        |
+| `join`       | How parts are joined (below)                                                       |
+| `exceptions` | Exact spellings for particular combinations of component results, in order (below) |
 
 Adding a method means adding a result to the method table, giving it faces,
 and adding a matching `methods` entry. A scheme may have any number of
@@ -233,49 +246,64 @@ A join rule writes the parts in order. It puts `separator` between them, adds
 a possessive suffix where the style says so, and then capitalises the result
 according to `case`.
 
-| Field          | Values                                         | Meaning                                                                                                                                                                                                         |
-| -------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `style`        | `compound` (default), `possessive`             | See below                                                                                                                                                                                                       |
-| `separator`    | text, default none                             | Written between parts, e.g. `" "` for two-word names                                                                                                                                                            |
-| `case`         | `sentence` (default), `words`, `as_written`    | `sentence`: first letter upper case, the rest lower case. `words`: the same for each space-separated word. `as_written`: unchanged                                                                              |
-| `replacements` | list of `{ "from": …, "to": … }`, default none | Exact substitutions applied in order to the joined name, ignoring case, before capitalisation. They let an editor add phonetic rules, e.g. `{ "from": "aa", "to": "a" }`. An empty `from` is a validation error |
+| Field          | Values                                                         | Meaning                                                                                                                                                                                                         |
+| -------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `style`        | `compound` (default), `space`, `possessive`, `curated_variant` | See below                                                                                                                                                                                                       |
+| `separator`    | text, default none                                             | Written between parts, e.g. `" "` for two-word names                                                                                                                                                            |
+| `case`         | `sentence` (default), `words`, `as_written`                    | `sentence`: first letter upper case, the rest lower case. `words`: the same for each space-separated word. `as_written`: unchanged                                                                              |
+| `replacements` | list of `{ "from": …, "to": … }`, default none                 | Exact substitutions applied in order to the joined name, ignoring case, before capitalisation. They let an editor add phonetic rules, e.g. `{ "from": "aa", "to": "a" }`. An empty `from` is a validation error |
 
-| Style        | Rule                                                                                                                                                                                                                                                                                                             |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `compound`   | The parts as they are                                                                                                                                                                                                                                                                                            |
-| `possessive` | `suffix` is written after a part when the next part's result ID is listed in `before`, or before every next part when `before` is absent. If the part already ends in "s" (ignoring case), `after_s` is written instead when given. Without `after_s`, a part that already ends with `suffix` gets nothing added |
+| Style             | Rule                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `compound`        | The parts as they are                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `space`           | The parts separated by one space, each word capitalised: the same as `compound` with `"separator": " "` and `"case": "words"`. An explicit `separator` or `case` still applies                                                                                                                                                                                                                                                                        |
+| `curated_variant` | Not a join: the source part's result holds approved final names in `approved_names`, keyed by the variant part's result ID, and that name is used **exactly as written** (no separator, case, replacement or possessive). `variant_from_result_id` (zero-based, usually `1`) picks the variant part; `source_from_result_id` (default `0`) the source. A missing name is a validation error, never a fallback. See [ORDON_NAMING.md](ORDON_NAMING.md) |
+| `possessive`      | `suffix` is written after a part when the next part's result ID is listed in `before`, or before every next part when `before` is absent. If the part already ends in "s" (ignoring case), `after_s` is written instead when given. Without `after_s`, a part that already ends with `suffix` gets nothing added                                                                                                                                      |
+
+A method with **one component** gives that part exactly as written, with no
+capitalisation or replacement, so complete names such as "St. Cuthred" or
+"Vara Talen" stay as authored. A join's optional `description` is an
+editor's note with no effect.
 
 Each rule belongs to a method, never to the whole application, and each region
 chooses its own:
 
-| Region / method        | `join`                                                                                         | Examples                                          |
-| ---------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| Ordon Geographic       | `{ "style": "compound" }`                                                                      | Alderwick, Brackenbury                            |
-| Ordon Founder          | `{ "style": "possessive", "suffix": "s", "before": ["bury", "stead", "worth"] }`               | Godwinsbury, Bericwick, Nerysbury                 |
-| Halingo Geographic     | `{ "style": "compound", "separator": " ", "case": "words" }`                                   | Khar Well, Cinder Ridge                           |
-| Halingo Founder        | `{ "style": "possessive", "suffix": "'s", "after_s": "'", "separator": " ", "case": "words" }` | Varesh's Well; a founder ending in s: Tamas' Well |
-| Skgurr Geographic      | `{ "style": "compound" }` (Skgurr's only method)                                               | Dunwick, Inverness, Muckleskerry                  |
-| Shinkira Geographic    | `{ "style": "compound" }`                                                                      | Kirisawa, Kuroyama                                |
-| Shinkira Founder       | `{ "style": "compound" }`: no apostrophe, no English possessive                                | Takedamura, Mizunosato                            |
-| Bratislor Geographic   | `{ "style": "compound" }`                                                                      | Drevgrad, Morava, Vranova                         |
-| Bratislor Founder      | `{ "style": "compound" }`: no English possessive                                               | Vorelgrad, Radanov, Branikdol                     |
-| Hjartheland Geographic | `{ "style": "compound" }`                                                                      | Nordvik, Eirheim, Steindal                        |
-| Hjartheland Founder    | `{ "style": "compound" }`: no possessive s                                                     | Eirikheim, Signevik, Hakongard                    |
-| Nareth Geographic      | `{ "style": "compound", "replacements": [] }`                                                  | Naroneth, Korivai, Lumari                         |
-| Nareth Founder         | `{ "style": "compound", "replacements": [] }`                                                  | Talarien, Ivaramar, Namarvai                      |
-| Targoth Geographic     | `{ "style": "compound" }`                                                                      | Karhold, Skarnwatch, Vathgate                     |
-| Targoth Founder        | `{ "style": "possessive", "suffix": "'s", "separator": " ", "case": "words" }`                 | Varok's Gate, Thren's Watch, Voran's Rest         |
+| Region / method                    | `join`                                                                                          | Examples                                          |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Ordon Geographic                   | `{ "style": "compound" }`                                                                       | Alderwick, Brackenbury                            |
+| Ordon Founder, Industry, Transport | `{ "style": "curated_variant", "source_field": "approved_names", "variant_from_result_id": 1 }` | Oswaldwick, Foulden, Market Cross                 |
+| Ordon Inherited                    | `{ "style": "compound" }`, one component                                                        | Netherleigh, St. Cuthred                          |
+| Halingo Geographic                 | `{ "style": "compound", "separator": " ", "case": "words" }`                                    | Khar Well, Cinder Ridge                           |
+| Halingo Founder                    | `{ "style": "possessive", "suffix": "'s", "after_s": "'", "separator": " ", "case": "words" }`  | Varesh's Well; a founder ending in s: Tamas' Well |
+| Skgurr Geographic                  | `{ "style": "compound" }` (Skgurr's only method)                                                | Dunwick, Inverness, Muckleskerry                  |
+| Shinkira Geographic                | `{ "style": "compound" }`                                                                       | Kirisawa, Kuroyama                                |
+| Shinkira Founder                   | `{ "style": "compound" }`: no apostrophe, no English possessive                                 | Takedamura, Mizunosato                            |
+| Bratislor Geographic               | `{ "style": "compound" }`                                                                       | Drevgrad, Morava, Vranova                         |
+| Bratislor Founder                  | `{ "style": "compound" }`: no English possessive                                                | Vorelgrad, Radanov, Branikdol                     |
+| Hjartheland Geographic             | `{ "style": "compound" }`                                                                       | Nordvik, Eirheim, Steindal                        |
+| Hjartheland Founder                | `{ "style": "compound" }`: no possessive s                                                      | Eirikheim, Signevik, Hakongard                    |
+| Nareth Geographic                  | `{ "style": "compound", "replacements": [] }`                                                   | Naroneth, Korivai, Lumari                         |
+| Nareth Founder                     | `{ "style": "compound", "replacements": [] }`                                                   | Talarien, Ivaramar, Namarvai                      |
+| Targoth Geographic                 | `{ "style": "compound" }`                                                                       | Karhold, Skarnwatch, Vathgate                     |
+| Targoth Founder                    | `{ "style": "possessive", "suffix": "'s", "separator": " ", "case": "words" }`                  | Varok's Gate, Thren's Watch, Voran's Rest         |
 
 The fields `separator`, `case`, `after_s` and `replacements` were added for
-v0.1.1's regional packs. Each defaults to the original behaviour, so Ordon's file is
-unchanged.
+v0.1.1's regional packs; `space` and `curated_variant` for the Ordon Quality
+Pass v2. Each is additive: every existing style and default behaves as before.
 
-**Spelling exceptions** are checked before the join rule. When the
-component results are exactly the listed result IDs, in order, the
-exception's `name` is used **exactly as written**. Ordon has two:
+**Spelling exceptions** are checked before the join rule, for every style.
+When the component results match, in order, the exception's `name` is used
+**exactly as written**. An exception lists either:
 
-- Ash + ham → Asham
-- Ash + hurst → Ashurst
+- `results`: component **result IDs**. Preferred: renaming a component never
+  breaks it. `{ "results": ["ash", "ham"], "name": "Asham", "note": "…" }`
+- `components`: component **display names**, the form some packs are
+  supplied in: `{ "components": ["Ash", "ham"], "output": "Asham" }`
+  (`output` is read as `name`). Validation requires each name to match
+  exactly one result, so a renamed component is reported, never ignored.
+
+`note` is optional and has no effect. Ordon has 17 exceptions, e.g.
+Ash + ham → Asham, Hill + ley → Hildley and Mill + ley → Milnley.
 
 There are no hidden spelling changes and no rerolls to improve a name. An
 awkward result stays visible and can be rerolled, or replaced with a typed
@@ -291,15 +319,7 @@ name.
 - Rolls are reproducible: the same dice give the same name. Every die
   is recorded: the method roll, then one roll per component.
 
-The Ordon starter weights are provisional editorial values:
-
-| Table                           | Dice  | Layout                                                                                                      |
-| ------------------------------- | ----- | ----------------------------------------------------------------------------------------------------------- |
-| Ordon Naming Method             | 1d10  | Geographic Compound 1–7 (70%), Historical Founder 8–10 (30%)                                                |
-| Ordon Name: First Element (30)  | 1d100 | 4 faces each: Alder, Ash, Bracken, Elm, Hart, Hazel, Oak, Thorn, Beck, Birch; 3 faces each for the other 20 |
-| Ordon Name: Second Element (22) | 1d100 | ton 14, ham 13, ley 13, ford 8, wick 8, then 3 or 2 faces each                                              |
-| Ordon Name: Founder (100)       | 1d100 | One face per name, in the approved order                                                                    |
-| Ordon Name: Founder Ending      | 1d12  | ton 1–3, ham 4–5, bury 6–7, stead 8–9, wick 10, worth 11, ley 12                                            |
+Ordon's weights and tables are listed in [ORDON_NAMING.md](ORDON_NAMING.md).
 
 ## Regional packs: Halingo, Skgurr, Shinkira
 
@@ -390,8 +410,7 @@ meaningful.
 
 - **Geographic Compound:** one word, e.g. Nordvik, Eirheim, Steindal, Skognes.
 - **Historical Founder:** founder + ending, joined directly, e.g. Eirikheim,
-  Signevik, Hakongard. There is no possessive s; Ordon's rule does not apply
-  here.
+  Signevik, Hakongard. There is no possessive s.
 - **Spelling:** the shipped lists are plain ASCII (Bjorn). If an editor uses
   letters such as ø or æ, they are joined and capitalised correctly.
 
@@ -429,19 +448,26 @@ name Targon is not used.
 
 ### In the app (any user)
 
-**Settings → View Tables** lists the five Ordon tables. Users can:
+**Settings → View Tables** lists every naming table. Users can:
 
 - rename methods, elements, founders and endings;
 - change dice and faces, which changes the weights;
 - add or remove entries;
-- add a tag condition to a method, as result eligibility.
+- add a tag condition to a method, as result eligibility;
+- edit **approved names**: a table read by a `curated_variant` method shows
+  one field per variant on each result (e.g. Oswald: Variant A, Variant B);
+- edit each method's **joining rule and spelling exceptions**, in the
+  **Naming methods** section of the scheme's method table. Each method is
+  saved and reset on its own.
 
 The coverage strip shows every face, so gaps and overlaps are visible before
 saving. Customisations are stored as user overrides: updates never overwrite
-them, and **Reset** restores the default.
+them, and **Reset** restores the default. A change that would make the
+content invalid (a missing approved name, an exception naming an unknown
+result) is refused with the reason.
 
-Joining rules, exceptions and scheme routing are not editable in the app yet.
-They live only in the content files.
+Scheme routing (`when`), a method's components and new methods live only in
+the content files.
 
 ### In VS Code (content authors)
 
@@ -457,8 +483,10 @@ They live only in the content files.
      faces taken from neighbouring entries.
    - **Change a method's weight:** edit the method table's ranges.
    - **Add a spelling exception:** add
-     `{ "results": [first ID, second ID], "name": "Exact Spelling" }` to the
-     method's `exceptions`.
+     `{ "results": [first ID, second ID], "name": "Exact Spelling", "note": "Why" }`
+     to the method's `exceptions`.
+   - **Edit an approved name:** edit the source result's
+     `"approved_names": { "a": "…", "b": "…" }`. Every variant needs one.
    - **Change possessive endings:** edit the method's `join.before` list of
      ending result IDs.
    - **Change how parts are joined:** edit the method's `join`. For
@@ -479,11 +507,12 @@ They live only in the content files.
    - gaps or overlaps in ranges;
    - unknown IDs;
    - a method-table result without a method;
-   - an exception with the wrong number of parts.
+   - an exception with the wrong number of parts;
+   - a missing or empty approved name, naming the table, result and variant.
 
-   `crates/settlement-core/tests/naming.rs` checks the approved Ordon lists,
-   weights and examples. Update it when the editorial weights change on
-   purpose.
+   `crates/settlement-core/tests/naming.rs` and `tests/ordon_naming.rs`
+   check the approved Ordon lists, weights, examples and full catalogue.
+   Update them when the editorial content changes on purpose.
 
 4. Build. The content is compiled into both the GUI and the terminal
    application.
@@ -492,8 +521,9 @@ They live only in the content files.
 
 Create the folder `content/kurovia/naming/<region>/` with:
 
-- its own method table, in its own file;
-- each component table in its own file;
+- its own method table;
+- its component tables (one file per table is usual, but sub-pool tables may
+  share a file);
 - a `naming-schemes.json` whose scheme's `when` is `world.kurovia` plus that
   region's tag.
 
@@ -507,7 +537,9 @@ The Name stage is saved in the snapshot as a **name record** with:
 - whether it was generated or typed;
 - the scheme and method (ID and name);
 - every roll: the method roll and each component roll, with dice, totals
-  and result IDs;
+  and result IDs, and whether each was rolled or chosen;
+- how it was assembled: the join style, and any spelling exception or
+  approved name used (names saved before this was recorded have none);
 - the application version that produced it.
 
 Saved names are never regenerated:
@@ -524,9 +556,10 @@ dialog offers the Name stage's name, which can be changed there.
 Both interfaces call the same core session. There is no second name
 generator.
 
-| Action                    | GUI                                                         | Terminal                        |
-| ------------------------- | ----------------------------------------------------------- | ------------------------------- |
-| Roll a name (or reroll)   | "Roll name" / "Reroll name" (Incremental), Roll in the grid | `r` on the Name stage           |
-| Choose a method           | Method list (Incremental), "Naming method" select (grid)    | `Enter` on the Name stage       |
-| Type a name               | "Or type a name" form                                       | `t` on the Name stage           |
-| Inspect routing and rolls | Tag View                                                    | Tag View (notes under the grid) |
+| Action                    | GUI                                                                               | Terminal                                                              |
+| ------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Roll a name (or reroll)   | "Roll name" / "Reroll name" (Incremental), Roll in the grid                       | `r` on the Name stage                                                 |
+| Choose a method           | Method list (Incremental), "Naming method" select (grid)                          | `Enter` on the Name stage                                             |
+| Change one part           | "Name parts": a select per part, showing the name each option gives, and its Roll | `c` on the Name stage: pick the part, then roll it or choose a result |
+| Type a name               | "Or type a name" form                                                             | `t` on the Name stage                                                 |
+| Inspect routing and rolls | Tag View                                                                          | Tag View (notes under the grid)                                       |

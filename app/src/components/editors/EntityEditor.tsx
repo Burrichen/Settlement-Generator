@@ -211,6 +211,17 @@ export function useEntityEditor<T extends { id: string }, D>({
     setMessage(null);
   };
 
+  /** Takes a newer saved detail (e.g. after a related save), keeping
+   * unsaved changes to the draft. */
+  const replaceDetail = (d: D) => {
+    setDetail(d);
+    if (!dirty) {
+      const entity = entityOf(d);
+      setOriginal(entity);
+      setDraft(entity);
+    }
+  };
+
   const clear = () => {
     setSelectedId(null);
     setDetail(null);
@@ -252,5 +263,6 @@ export function useEntityEditor<T extends { id: string }, D>({
     saveDraft,
     revert,
     clear,
+    replaceDetail,
   };
 }

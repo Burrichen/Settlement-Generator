@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.trailSecond",
+      "name": "Nareth Crossing: Route Element",
+      "description": "Bridge, waystation, gateway, gully and nearby settlement terms.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "chaka",
+          "name": "chaka",
+          "range": 1,
+          "description": "Quechua reference element: bridge. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "tampu",
+          "name": "tampu",
+          "range": 2,
+          "description": "Quechua reference element: waystation / lodging. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "punku",
+          "name": "punku",
+          "range": 3,
+          "description": "Quechua reference element: door / gateway. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "mayu",
+          "name": "mayu",
+          "range": 4,
+          "description": "Quechua reference element: river. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wayqu",
+          "name": "wayqu",
+          "range": 5,
+          "description": "Quechua reference element: ravine / gully. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pata",
+          "name": "pata",
+          "range": 6,
+          "description": "Quechua reference element: upper place / terrace. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wasi",
+          "name": "wasi",
+          "range": 7,
+          "description": "Quechua reference element: house. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "llaqta",
+          "name": "llaqta",
+          "range": 8,
+          "description": "Quechua reference element: town / inhabited place. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "marka",
+          "name": "marka",
+          "range": 9,
+          "description": "Quechua reference element: town / region (varies). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "qucha",
+          "name": "qucha",
+          "range": 10,
+          "description": "Quechua reference element: lagoon / lake. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "nari",
+          "name": "nari",
+          "range": 11
+        },
+        {
+          "id": "tal",
+          "name": "tal",
+          "range": 12
+        },
+        {
+          "id": "rayu",
+          "name": "rayu",
+          "range": 13
+        },
+        {
+          "id": "veni",
+          "name": "veni",
+          "range": 14
+        },
+        {
+          "id": "mara",
+          "name": "mara",
+          "range": 15
+        },
+        {
+          "id": "kira",
+          "name": "kira",
+          "range": 16
+        },
+        {
+          "id": "runa",
+          "name": "runa",
+          "range": 17
+        },
+        {
+          "id": "vara",
+          "name": "vara",
+          "range": 18
+        },
+        {
+          "id": "kai",
+          "name": "kai",
+          "range": 19
+        },
+        {
+          "id": "shala",
+          "name": "shala",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

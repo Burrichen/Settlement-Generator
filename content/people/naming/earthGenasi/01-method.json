@@ -4,13 +4,458 @@
     {
       "id": "table.personName.earthGenasi.method",
       "name": "Earth Genasi Naming Method",
-      "description": "How a Earth Genasi Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "Single-space Given name + family name. 34% Stoneborn/Deep Earth, 26% Crystal/Gem, 18% Mountain/Cavern, 10% Living Earth, 12% mortal-raised. 50 ordinary, 2-face d100 routes; no new joining rule.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + byname",
-          "range": [1, 4]
+          "name": "Stoneborn & Deep Earth — collection 1/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.02",
+          "name": "Stoneborn & Deep Earth — collection 2/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.03",
+          "name": "Stoneborn & Deep Earth — collection 3/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.04",
+          "name": "Stoneborn & Deep Earth — collection 4/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.05",
+          "name": "Stoneborn & Deep Earth — collection 5/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.06",
+          "name": "Stoneborn & Deep Earth — collection 6/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.07",
+          "name": "Stoneborn & Deep Earth — collection 7/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.08",
+          "name": "Stoneborn & Deep Earth — collection 8/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.09",
+          "name": "Stoneborn & Deep Earth — collection 9/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.10",
+          "name": "Stoneborn & Deep Earth — collection 10/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.11",
+          "name": "Stoneborn & Deep Earth — collection 11/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.12",
+          "name": "Stoneborn & Deep Earth — collection 12/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.13",
+          "name": "Stoneborn & Deep Earth — collection 13/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.14",
+          "name": "Stoneborn & Deep Earth — collection 14/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.15",
+          "name": "Stoneborn & Deep Earth — collection 15/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.16",
+          "name": "Stoneborn & Deep Earth — collection 16/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.bedrock.17",
+          "name": "Stoneborn & Deep Earth — collection 17/17",
+          "description": "Stoneborn & Deep Earth: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.01",
+          "name": "Gems & Resonant Crystal — collection 1/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.02",
+          "name": "Gems & Resonant Crystal — collection 2/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.03",
+          "name": "Gems & Resonant Crystal — collection 3/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.04",
+          "name": "Gems & Resonant Crystal — collection 4/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.05",
+          "name": "Gems & Resonant Crystal — collection 5/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.06",
+          "name": "Gems & Resonant Crystal — collection 6/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.07",
+          "name": "Gems & Resonant Crystal — collection 7/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.08",
+          "name": "Gems & Resonant Crystal — collection 8/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.09",
+          "name": "Gems & Resonant Crystal — collection 9/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.10",
+          "name": "Gems & Resonant Crystal — collection 10/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.11",
+          "name": "Gems & Resonant Crystal — collection 11/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.12",
+          "name": "Gems & Resonant Crystal — collection 12/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.crystal.13",
+          "name": "Gems & Resonant Crystal — collection 13/13",
+          "description": "Gems & Resonant Crystal: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.01",
+          "name": "Mountain & Cavern — collection 1/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.02",
+          "name": "Mountain & Cavern — collection 2/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.03",
+          "name": "Mountain & Cavern — collection 3/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.04",
+          "name": "Mountain & Cavern — collection 4/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.05",
+          "name": "Mountain & Cavern — collection 5/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.06",
+          "name": "Mountain & Cavern — collection 6/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.07",
+          "name": "Mountain & Cavern — collection 7/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.08",
+          "name": "Mountain & Cavern — collection 8/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.mountain.09",
+          "name": "Mountain & Cavern — collection 9/9",
+          "description": "Mountain & Cavern: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.loam.01",
+          "name": "Living Earth & Loam — collection 1/5",
+          "description": "Living Earth & Loam: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.loam.02",
+          "name": "Living Earth & Loam — collection 2/5",
+          "description": "Living Earth & Loam: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.loam.03",
+          "name": "Living Earth & Loam — collection 3/5",
+          "description": "Living Earth & Loam: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.loam.04",
+          "name": "Living Earth & Loam — collection 4/5",
+          "description": "Living Earth & Loam: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.loam.05",
+          "name": "Living Earth & Loam — collection 5/5",
+          "description": "Living Earth & Loam: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.01",
+          "name": "Mortal-Raised Traditions — collection 1/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.02",
+          "name": "Mortal-Raised Traditions — collection 2/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.03",
+          "name": "Mortal-Raised Traditions — collection 3/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.04",
+          "name": "Mortal-Raised Traditions — collection 4/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.05",
+          "name": "Mortal-Raised Traditions — collection 5/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.06",
+          "name": "Mortal-Raised Traditions — collection 6/6",
+          "description": "Mortal-Raised Traditions: the selected complete given name and complete family name are joined with a space.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

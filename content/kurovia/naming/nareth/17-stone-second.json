@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.stoneSecond",
+      "name": "Nareth Stonework: Structure Element",
+      "description": "Terraces, courtyards, gateways, town and stonework formations. Use no direct Ixtal names.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "pata",
+          "name": "pata",
+          "range": 1,
+          "description": "Quechua reference element: upper place / terrace. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "kancha",
+          "name": "kancha",
+          "range": 2,
+          "description": "Quechua reference element: enclosure. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wasi",
+          "name": "wasi",
+          "range": 3,
+          "description": "Quechua reference element: house. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "marka",
+          "name": "marka",
+          "range": 4,
+          "description": "Quechua reference element: town / region (varies). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "llaqta",
+          "name": "llaqta",
+          "range": 5,
+          "description": "Quechua reference element: town / inhabited place. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "qaqa",
+          "name": "qaqa",
+          "range": 6,
+          "description": "Quechua reference element: rock / crag. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "punku",
+          "name": "punku",
+          "range": 7,
+          "description": "Quechua reference element: door / gateway. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chaka",
+          "name": "chaka",
+          "range": 8,
+          "description": "Quechua reference element: bridge. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "tampu",
+          "name": "tampu",
+          "range": 9,
+          "description": "Quechua reference element: waystation / lodging. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "suyu",
+          "name": "suyu",
+          "range": 10,
+          "description": "Quechua reference element: region / quarter. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "vara",
+          "name": "vara",
+          "range": 11
+        },
+        {
+          "id": "ten",
+          "name": "ten",
+          "range": 12
+        },
+        {
+          "id": "shara",
+          "name": "shara",
+          "range": 13
+        },
+        {
+          "id": "neth",
+          "name": "neth",
+          "range": 14
+        },
+        {
+          "id": "layu",
+          "name": "layu",
+          "range": 15
+        },
+        {
+          "id": "kar",
+          "name": "kar",
+          "range": 16
+        },
+        {
+          "id": "sen",
+          "name": "sen",
+          "range": 17
+        },
+        {
+          "id": "tari",
+          "name": "tari",
+          "range": 18
+        },
+        {
+          "id": "vena",
+          "name": "vena",
+          "range": 19
+        },
+        {
+          "id": "kai",
+          "name": "kai",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

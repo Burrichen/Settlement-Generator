@@ -39,7 +39,8 @@ stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 Naming content (v0.1.1) is described in [NAMING_SYSTEM.md](NAMING_SYSTEM.md):
 
 - Naming data so far, in `content/kurovia/naming/`:
-  - **Ordon**, the approved content;
+  - **Ordon**, the approved content: the Ordon Quality Pass v2, with five
+    methods (see [ORDON_NAMING.md](ORDON_NAMING.md));
   - **Halingo**, **Skgurr**, **Shinkira**, **Bratislor**, **Hjartheland**,
     **Nareth** and **Targoth**, provisional samples that are not official
     lore.

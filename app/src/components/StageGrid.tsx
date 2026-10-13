@@ -85,6 +85,7 @@ export function StageGrid({
               onRoll={() => onRoll(stage.index)}
               onChoose={(r) => onChoose(stage.index, r)}
               onCustom={(name) => onCustomName(stage.index, name)}
+              onAct={onAct}
             />
           ) : (
             <StageGridRow

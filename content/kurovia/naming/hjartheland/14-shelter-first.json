@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.shelterFirst",
+      "name": "Hjartheland Shelter: First Element",
+      "description": "Directional, practical route and winter-weather roots. Names imply where one may find warmth, crossings or provision.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "sor",
+          "name": "Sør",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "aust",
+          "name": "Aust",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "vest",
+          "name": "Vest",
+          "range": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "ovre",
+          "name": "Øvre",
+          "range": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": "nedre",
+          "name": "Nedre",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "gamle",
+          "name": "Gamle",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "nye",
+          "name": "Nye",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "fjell",
+          "name": "Fjell",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "hog",
+          "name": "Høg",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "lag",
+          "name": "Låg",
+          "range": [
+            41,
+            43
+          ]
+        },
+        {
+          "id": "smal",
+          "name": "Smal",
+          "range": [
+            44,
+            46
+          ]
+        },
+        {
+          "id": "bratt",
+          "name": "Bratt",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "sval",
+          "name": "Sval",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "sno",
+          "name": "Snø",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "rim",
+          "name": "Rim",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "stein",
+          "name": "Stein",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "varde",
+          "name": "Varde",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "kross",
+          "name": "Kross",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "frost",
+          "name": "Frost",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "hjell",
+          "name": "Hjell",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "skar",
+          "name": "Skar",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "eir",
+          "name": "Eir",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "folk",
+          "name": "Folk",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "bjorn",
+          "name": "Bjorn",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "skog",
+          "name": "Skog",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

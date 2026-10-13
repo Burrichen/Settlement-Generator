@@ -17,7 +17,8 @@ use crate::content::{
     TableVariant, Tag,
 };
 use crate::engine::{GenerationError, Generator};
-use crate::ids::{ResultId, TableId, TagId, USER_ID_PREFIX};
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, USER_ID_PREFIX};
+use crate::naming::{JoinRule, NamingMethod, SpellingException};
 use crate::validation::{
     IdScope, IssueKind, Location, Severity, ValidationIssue, ValidationReport, validate,
 };
@@ -64,6 +65,10 @@ pub struct UserOverrides {
     pub tables: BTreeMap<TableId, TableOverride>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub tags: BTreeMap<TagId, TagOverride>,
+    /// Changes to bundled naming methods' joining rules and spelling
+    /// exceptions, by scheme and then by method (method-table result).
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub naming_methods: BTreeMap<NamingSchemeId, BTreeMap<ResultId, NamingMethodPatch>>,
 }
 
 impl Default for UserOverrides {
@@ -72,13 +77,32 @@ impl Default for UserOverrides {
             format_version: OVERRIDES_FORMAT_VERSION,
             tables: BTreeMap::new(),
             tags: BTreeMap::new(),
+            naming_methods: BTreeMap::new(),
         }
     }
 }
 
 impl UserOverrides {
     pub fn is_empty(&self) -> bool {
-        self.tables.is_empty() && self.tags.is_empty()
+        self.tables.is_empty() && self.tags.is_empty() && self.naming_methods.is_empty()
+    }
+}
+
+/// Changes to one bundled naming method. `None` means "use the default".
+/// Components and the method's scheme are not customisable.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct NamingMethodPatch {
+    pub base: Fingerprint,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub join: Option<JoinRule>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub exceptions: Option<Vec<SpellingException>>,
+}
+
+impl NamingMethodPatch {
+    fn apply(&self, method: &mut NamingMethod) {
+        apply_field(&self.join, &mut method.join);
+        apply_field(&self.exceptions, &mut method.exceptions);
     }
 }
 
@@ -217,6 +241,9 @@ pub struct ResultPatch {
     pub fallback: Option<Option<ResultId>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub label_variants: Option<Vec<LabelVariant>>,
+    /// The whole approved-names map, when customised.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub approved_names: Option<BTreeMap<ResultId, String>>,
 }
 
 impl ResultPatch {
@@ -233,6 +260,7 @@ impl ResultPatch {
             unique: None,
             fallback: None,
             label_variants: None,
+            approved_names: None,
         }
     }
 
@@ -247,6 +275,7 @@ impl ResultPatch {
         prune_field(&mut self.unique, &base.unique);
         prune_field(&mut self.fallback, &base.fallback);
         prune_field(&mut self.label_variants, &base.label_variants);
+        prune_field(&mut self.approved_names, &base.approved_names);
     }
 
     fn is_empty(&self) -> bool {
@@ -260,6 +289,7 @@ impl ResultPatch {
             && self.unique.is_none()
             && self.fallback.is_none()
             && self.label_variants.is_none()
+            && self.approved_names.is_none()
     }
 
     fn apply(&self, result: &mut TableResult) {
@@ -273,6 +303,7 @@ impl ResultPatch {
         apply_field(&self.unique, &mut result.unique);
         apply_field(&self.fallback, &mut result.fallback);
         apply_field(&self.label_variants, &mut result.label_variants);
+        apply_field(&self.approved_names, &mut result.approved_names);
     }
 }
 
@@ -359,6 +390,9 @@ pub struct Origins {
     pub deleted_tables: BTreeSet<TableId>,
     pub deleted_results: BTreeMap<TableId, BTreeSet<ResultId>>,
     pub deleted_tags: BTreeSet<TagId>,
+    /// Naming methods whose join or exceptions the user changed.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub modified_naming_methods: BTreeMap<NamingSchemeId, BTreeSet<ResultId>>,
 }
 
 /// The effective content and everything known about how it was produced.
@@ -554,6 +588,41 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         }
     }
 
+    for (scheme_id, methods) in &overrides.naming_methods {
+        let loc = Location::naming_scheme(scheme_id);
+        for (result, patch) in methods {
+            let bundled_method = bundled
+                .naming_scheme(scheme_id)
+                .and_then(|s| s.method(result));
+            let target = content
+                .naming_schemes
+                .iter_mut()
+                .find(|s| &s.id == scheme_id)
+                .and_then(|s| s.methods.iter_mut().find(|m| &m.result == result));
+            let (Some(base), Some(target)) = (bundled_method, target) else {
+                issues.push(ValidationIssue::new(
+                    Severity::Warning,
+                    loc.clone().with_result(result),
+                    IssueKind::OverrideTargetMissing,
+                ));
+                continue;
+            };
+            if patch.base != Fingerprint::of(base) {
+                issues.push(ValidationIssue::new(
+                    Severity::Warning,
+                    loc.clone().with_result(result),
+                    IssueKind::DefaultChanged,
+                ));
+            }
+            patch.apply(target);
+            origins
+                .modified_naming_methods
+                .entry(scheme_id.clone())
+                .or_default()
+                .insert(result.clone());
+        }
+    }
+
     issues.extend(validate(&content).issues);
     MergedContent {
         content,
@@ -652,6 +721,11 @@ pub enum EditError {
     NotUserId(String),
     #[error("`{0}` is not a bundled default, so it has no default to restore")]
     NotBundled(String),
+    #[error("naming scheme `{scheme}` has no method `{method}`")]
+    UnknownNamingMethod {
+        scheme: NamingSchemeId,
+        method: ResultId,
+    },
 }
 
 /// A unique ID in the user namespace, e.g. `user.table.0192f3a4c1d2-7f3e09a1`.
@@ -1044,6 +1118,73 @@ impl ContentLayers {
         self.overrides = UserOverrides::default();
     }
 
+    // ----- naming methods ---------------------------------------------------
+
+    /// Stores the joining rule and spelling exceptions of a bundled naming
+    /// method. Only fields that differ from the default are kept, so a
+    /// later update to the default still flows through the rest.
+    pub fn put_naming_method(
+        &mut self,
+        scheme: &NamingSchemeId,
+        method: &ResultId,
+        join: JoinRule,
+        exceptions: Vec<SpellingException>,
+    ) -> Result<(), EditError> {
+        let base = self
+            .bundled
+            .naming_scheme(scheme)
+            .and_then(|s| s.method(method))
+            .ok_or_else(|| EditError::UnknownNamingMethod {
+                scheme: scheme.clone(),
+                method: method.clone(),
+            })?;
+        let mut patch = self
+            .overrides
+            .naming_methods
+            .get(scheme)
+            .and_then(|m| m.get(method))
+            .cloned()
+            .unwrap_or_else(|| NamingMethodPatch {
+                base: Fingerprint::of(base),
+                join: None,
+                exceptions: None,
+            });
+        patch.join = Some(join);
+        patch.exceptions = Some(exceptions);
+        prune_field(&mut patch.join, &base.join);
+        prune_field(&mut patch.exceptions, &base.exceptions);
+        let methods = self
+            .overrides
+            .naming_methods
+            .entry(scheme.clone())
+            .or_default();
+        if patch.join.is_none() && patch.exceptions.is_none() {
+            methods.remove(method);
+        } else {
+            methods.insert(method.clone(), patch);
+        }
+        if methods.is_empty() {
+            self.overrides.naming_methods.remove(scheme);
+        }
+        Ok(())
+    }
+
+    /// Restores a naming method's joining rule and exceptions to the
+    /// default.
+    pub fn reset_naming_method(
+        &mut self,
+        scheme: &NamingSchemeId,
+        method: &ResultId,
+    ) -> Result<(), EditError> {
+        if let Some(methods) = self.overrides.naming_methods.get_mut(scheme) {
+            methods.remove(method);
+            if methods.is_empty() {
+                self.overrides.naming_methods.remove(scheme);
+            }
+        }
+        Ok(())
+    }
+
     // ----- whole-item edits (editors) ---------------------------------------
 
     /// Stores `table` as the effective version of its ID. Creates a custom
@@ -1098,6 +1239,7 @@ impl ContentLayers {
                     rp.unique = Some(result.unique);
                     rp.fallback = Some(result.fallback.clone());
                     rp.label_variants = Some(result.label_variants.clone());
+                    rp.approved_names = Some(result.approved_names.clone());
                     rp.prune(base_result);
                     if !rp.is_empty() {
                         results.insert(result.id.clone(), ResultOverride::Modify(Box::new(rp)));

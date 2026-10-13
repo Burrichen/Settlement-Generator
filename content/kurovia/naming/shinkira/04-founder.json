@@ -3,69 +3,409 @@
   "tables": [
     {
       "id": "table.naming.shinkira.founder",
-      "name": "Shinkira Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Shinkira Name: Historic Source",
+      "description": "50 historical personal/family names and older shrine, estate or castle-place stems. First 12 founders preserved. Each appears twice on 1d100.",
+      "dice": "1d100",
       "results": [
         {
           "id": "arai",
           "name": "Arai",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "endo",
           "name": "Endo",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "hoshino",
           "name": "Hoshino",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "ishida",
           "name": "Ishida",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "kagawa",
           "name": "Kagawa",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "kitamura",
           "name": "Kitamura",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "mizuno",
           "name": "Mizuno",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "morita",
           "name": "Morita",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "nakai",
           "name": "Nakai",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "sakurai",
           "name": "Sakurai",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "takeda",
           "name": "Takeda",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "ueda",
           "name": "Ueda",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "miya",
+          "name": "Miya",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "tera",
+          "name": "Tera",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "monzen",
+          "name": "Monzen",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "torii",
+          "name": "Torii",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "shiro",
+          "name": "Shiro",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "kura",
+          "name": "Kura",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "yashiro",
+          "name": "Yashiro",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "goten",
+          "name": "Goten",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "inoue",
+          "name": "Inoue",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "kado",
+          "name": "Kado",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "yagura",
+          "name": "Yagura",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "kaneda",
+          "name": "Kaneda",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "kido",
+          "name": "Kido",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "kodama",
+          "name": "Kodama",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "komatsu",
+          "name": "Komatsu",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "kondo",
+          "name": "Kondo",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "kurosawa",
+          "name": "Kurosawa",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "makino",
+          "name": "Makino",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "matsuda",
+          "name": "Matsuda",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "miyasaka",
+          "name": "Miyasaka",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "moriyama",
+          "name": "Moriyama",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "naruse",
+          "name": "Naruse",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "nishida",
+          "name": "Nishida",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "ogawa",
+          "name": "Ogawa",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "oshima",
+          "name": "Oshima",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "ota",
+          "name": "Ota",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "sakamoto",
+          "name": "Sakamoto",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "shibata",
+          "name": "Shibata",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "shimura",
+          "name": "Shimura",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "sugano",
+          "name": "Sugano",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "tachibana",
+          "name": "Tachibana",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "taira",
+          "name": "Taira",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "tanabe",
+          "name": "Tanabe",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "tsukishiro",
+          "name": "Tsukishiro",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "watanabe",
+          "name": "Watanabe",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "yamada",
+          "name": "Yamada",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "yoshino",
+          "name": "Yoshino",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "yukimura",
+          "name": "Yukimura",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

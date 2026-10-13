@@ -272,9 +272,9 @@ fn incremental_presents_one_stage_at_a_time() {
     s.roll(REGION, &mut dice(&[4])).unwrap(); // Shinkira
     assert_eq!(result(&s, REGION).as_deref(), Some("Shinkira"));
     s.advance().unwrap();
-    // Shinkira has a naming scheme: Kiri + sawa.
+    // Shinkira has a naming scheme: Hana + sawa.
     s.roll(NAME, &mut dice(&[1, 7, 4])).unwrap();
-    assert_eq!(result(&s, NAME).as_deref(), Some("Kirisawa"));
+    assert_eq!(result(&s, NAME).as_deref(), Some("Hanasawa"));
     s.advance().unwrap();
 
     assert_eq!(
@@ -373,13 +373,13 @@ fn changing_an_earlier_stage_invalidates_dependent_stages_only() {
 
     // Changing the Region changes which Environment table applies, and
     // which naming scheme names the settlement: the Shinkira name is
-    // invalidated (and shown as "was Kirisawa").
+    // invalidated (and shown as "was Hanasawa").
     s.back();
     s.back();
     let change = s.roll(REGION, &mut dice(&[1])).unwrap(); // Ordon
     assert_eq!(change.invalidated, [NAME, ENVIRONMENT]);
     assert_eq!(view(&s, NAME).status, StageStatus::Pending);
-    assert_eq!(view(&s, NAME).previous.unwrap().name, "Kirisawa");
+    assert_eq!(view(&s, NAME).previous.unwrap().name, "Hanasawa");
     assert_eq!(
         view(&s, ENVIRONMENT).table.name,
         "Kurovia Environment: Ordon"
@@ -565,7 +565,7 @@ fn session_log_is_a_saveable_snapshot() {
     )
     .unwrap();
     let log = s.log();
-    assert_eq!(log.table_rolls().count(), 13);
+    assert_eq!(log.table_rolls().count(), 14);
     assert!(log.has_tag(&"world.kurovia".into()));
     let json = serde_json::to_string(&log).unwrap();
     assert_eq!(

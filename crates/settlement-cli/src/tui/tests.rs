@@ -1071,30 +1071,59 @@ fn names_are_rolled_chosen_rerolled_and_inspected_from_the_keyboard() {
     assert!(screen.contains("type name"), "hint for typing a name");
 
     // r: roll a name (method, then each part, with real dice).
-    app.ctx.dice = Box::new(ScriptedFaces::new([1, 1, 49]));
+    app.ctx.dice = Box::new(ScriptedFaces::new([1, 1, 5]));
     key(&mut app, KeyCode::Char('r'));
     let screen = text_at(&mut app, 140, 50);
     assert!(screen.contains("Alderwick"), "{screen}");
     assert!(
-        screen.contains("Ordon naming · Geographic Compound"),
+        screen.contains("Ordon naming · Old English & Landscape"),
         "{screen}"
     );
-    // Tag View: routing and every roll.
+    // Tag View: routing, every roll with its stable ID, and the join.
     assert!(screen.contains("chosen by Kurovia + Ordon"), "{screen}");
     assert!(
-        screen.contains("Ordon Name: First Element: Alder — rolled 1 on 1d100"),
+        screen.contains("Ordon Geographic: First Element: Alder (alder) — rolled 1 on 1d100"),
         "{screen}"
     );
+    assert!(screen.contains("Joined: compound"), "{screen}");
 
     // Enter: choose a method; its parts are rolled.
     key(&mut app, KeyCode::Enter);
     let picker = text(&mut app);
-    assert!(picker.contains("Historical Founder"), "{picker}");
-    app.ctx.dice = Box::new(ScriptedFaces::new([74, 6]));
+    assert!(picker.contains("Founders, Manors & Estates"), "{picker}");
+    app.ctx.dice = Box::new(ScriptedFaces::new([28, 3]));
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]);
-    assert!(text(&mut app).contains("Godwinsbury"));
+    let screen = text_at(&mut app, 140, 50);
+    assert!(screen.contains("Oswaldwick"), "{screen}");
+    assert!(
+        screen.contains("Approved name: oswald (table.naming.ordon.founder) chosen by b"),
+        "{screen}"
+    );
     // The region is untouched by naming.
     assert!(text(&mut app).contains("Ordon"));
+}
+
+#[test]
+fn one_part_of_a_settlement_name_is_chosen_with_its_approved_name_shown() {
+    use settlement_core::dice::ScriptedFaces;
+    let mut app = one_table_at_ordon_name();
+    app.ctx.dice = Box::new(ScriptedFaces::new([50, 28, 3])); // Oswaldwick
+    key(&mut app, KeyCode::Char('r'));
+    assert!(text(&mut app).contains("Oswaldwick"));
+
+    // c: pick the part, then a result; each shows the name it gives.
+    key(&mut app, KeyCode::Char('c'));
+    let picker = text_at(&mut app, 140, 50);
+    assert!(picker.contains("Change part of the name"), "{picker}");
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // the A/B form
+    let picker = text_at(&mut app, 140, 50);
+    assert!(picker.contains("Roll"), "{picker}");
+    assert!(picker.contains("→ Oswalden"), "{picker}");
+    assert!(picker.contains("→ Oswaldwick"), "{picker}");
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // A
+    let screen = text(&mut app);
+    assert!(screen.contains("Oswalden"), "{screen}");
+    assert!(!screen.contains("Oswaldwick"), "{screen}");
 }
 
 #[test]
@@ -1240,4 +1269,171 @@ fn view_lists_notable_locations_with_their_districts() {
     );
     // One Tavern for the whole City, not one per district.
     assert_eq!(screen.matches("4 spare rooms").count(), 1, "{screen}");
+}
+
+// ----- naming content in the table editor ----------------------------------------------
+
+/// Presses Down until the selected row (marked ▸) contains `needle`.
+fn down_to(app: &mut App, needle: &str) {
+    // 120 columns: the width the table editor lays its rows out at.
+    for _ in 0..400 {
+        let screen = text_at(app, 120, 60);
+        if screen
+            .lines()
+            .any(|l| l.contains('▸') && l.contains(needle))
+        {
+            return;
+        }
+        key(app, KeyCode::Down);
+    }
+    panic!("no row with “{needle}”:\n{}", text_at(app, 120, 60));
+}
+
+/// Opens table `id` in View Tables.
+fn open_table(app: &mut App, id: &str) {
+    keys(app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..5 {
+        key(app, KeyCode::Down);
+    }
+    key(app, KeyCode::Enter); // View Tables
+    key(app, KeyCode::Char('/'));
+    type_text(app, id);
+    keys(app, &[KeyCode::Enter, KeyCode::Enter]);
+    assert!(text(app).contains(&format!("ID {id}")), "{}", text(app));
+}
+
+#[test]
+fn approved_names_are_edited_one_variant_at_a_time() {
+    let mut app = app();
+    open_table(&mut app, "table.naming.ordon.founder");
+    // The results list shows each founder's approved names.
+    let screen = text_at(&mut app, 160, 60);
+    assert!(screen.contains("→ Alderton / Aldridge"), "{screen}");
+    down_to(&mut app, "Oswald");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 60);
+    assert!(screen.contains("APPROVED NAMES"), "{screen}");
+    assert!(
+        screen.contains("Variant A") && screen.contains("Oswalden"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("Variant B") && screen.contains("Oswaldwick"),
+        "{screen}"
+    );
+
+    // Change B on its own.
+    down_to(&mut app, "Variant B");
+    key(&mut app, KeyCode::Enter);
+    for _ in 0.."Oswaldwick".len() {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "Oswaldby");
+    key(&mut app, KeyCode::Enter);
+    assert!(text_at(&mut app, 160, 60).contains("Oswaldby"));
+    key(&mut app, KeyCode::Esc); // back to the table
+    key(&mut app, KeyCode::Char('s'));
+    let saved = app
+        .ctx
+        .service
+        .table_detail(&"table.naming.ordon.founder".into())
+        .unwrap();
+    let oswald = saved.table.result(&ResultId::new("oswald")).unwrap();
+    assert_eq!(oswald.approved_names[&ResultId::new("a")], "Oswalden");
+    assert_eq!(oswald.approved_names[&ResultId::new("b")], "Oswaldby");
+
+    // Emptying B is refused with the table, result and variant named.
+    down_to(&mut app, "Oswald");
+    key(&mut app, KeyCode::Enter);
+    down_to(&mut app, "Variant B");
+    key(&mut app, KeyCode::Enter);
+    for _ in 0.."Oswaldby".len() {
+        key(&mut app, KeyCode::Backspace);
+    }
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 60);
+    assert!(screen.contains("— missing"), "{screen}");
+    key(&mut app, KeyCode::Esc);
+    key(&mut app, KeyCode::End); // the validation section, below the results
+    let screen = text_at(&mut app, 200, 80);
+    assert!(
+        screen.contains("table `table.naming.ordon.founder`"),
+        "{screen}"
+    );
+    assert!(screen.contains("result `oswald`"), "{screen}");
+    assert!(
+        screen.contains("no approved name for variant \"B\""),
+        "{screen}"
+    );
+    assert!(screen.contains("fix the problems above"), "{screen}");
+    key(&mut app, KeyCode::Char('s'));
+    let unchanged = app
+        .ctx
+        .service
+        .table_detail(&"table.naming.ordon.founder".into())
+        .unwrap();
+    assert_eq!(
+        unchanged
+            .table
+            .result(&ResultId::new("oswald"))
+            .unwrap()
+            .approved_names[&ResultId::new("b")],
+        "Oswaldby",
+        "nothing saved"
+    );
+}
+
+#[test]
+fn naming_methods_and_exceptions_are_edited_from_the_method_table() {
+    let mut app = app();
+    open_table(&mut app, "table.naming.ordon.method");
+    let screen = text_at(&mut app, 160, 60);
+    assert!(screen.contains("NAMING METHODS"), "{screen}");
+    assert!(screen.contains("curated_variant"), "{screen}");
+    down_to(&mut app, "Old English & Landscape   compound");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(screen.contains("Ash + ham → Asham"), "{screen}");
+    assert!(screen.contains("Hill + ley → Hildley"), "{screen}");
+    assert!(
+        screen.contains("Avoid Hillley triple-l syllable"),
+        "{screen}"
+    );
+
+    // Add an exception: pick its parts, then name it.
+    down_to(&mut app, "+ Add exception");
+    key(&mut app, KeyCode::Enter); // opens the new exception's menu
+    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]); // first element
+    down_to(&mut app, "Oak");
+    key(&mut app, KeyCode::Enter);
+    down_to(&mut app, "→ —");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Enter); // Name
+    type_text(&mut app, "Ockton");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(screen.contains("Oak + ton → Ockton"), "{screen}");
+    down_to(&mut app, "Save naming method");
+    key(&mut app, KeyCode::Enter);
+    assert!(text_at(&mut app, 160, 80).contains("Naming method saved"));
+
+    // Generation uses it at once.
+    let mut active = app.ctx.service.start_generation().unwrap();
+    let s = &mut active.session;
+    s.choose(0, ResultId::new("kurovia"), &mut RandomFaces::seeded(1))
+        .unwrap();
+    s.roll(1, &mut settlement_core::dice::ScriptedFaces::new([1]))
+        .unwrap();
+    s.roll(
+        2,
+        &mut settlement_core::dice::ScriptedFaces::new([1, 31, 1]),
+    )
+    .unwrap();
+    assert_eq!(s.name().as_deref(), Some("Ockton"));
+
+    // Reset restores the default.
+    down_to(&mut app, "Reset to default");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(!screen.contains("Ockton"), "{screen}");
 }

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.singleWord",
+      "name": "Halingo Singular Name: Whole Name",
+      "description": "Exactly one ordinary abstract word, usually a vice, virtue, wish or judgment. Rare (2 percent of all settlements). Heresy is a pre-existing reserved town name and is intentionally excluded from generated results.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "dissent",
+          "name": "Dissent",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "malice",
+          "name": "Malice",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "mercy",
+          "name": "Mercy",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "defiance",
+          "name": "Defiance",
+          "range": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "penance",
+          "name": "Penance",
+          "range": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": "solace",
+          "name": "Solace",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "vigil",
+          "name": "Vigil",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "ransom",
+          "name": "Ransom",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "providence",
+          "name": "Providence",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "exile",
+          "name": "Exile",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "reprieve",
+          "name": "Reprieve",
+          "range": [
+            41,
+            44
+          ]
+        },
+        {
+          "id": "reckoning",
+          "name": "Reckoning",
+          "range": [
+            45,
+            48
+          ]
+        },
+        {
+          "id": "atonement",
+          "name": "Atonement",
+          "range": [
+            49,
+            52
+          ]
+        },
+        {
+          "id": "sanctuary",
+          "name": "Sanctuary",
+          "range": [
+            53,
+            56
+          ]
+        },
+        {
+          "id": "endurance",
+          "name": "Endurance",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "want",
+          "name": "Want",
+          "range": [
+            61,
+            64
+          ]
+        },
+        {
+          "id": "vesper",
+          "name": "Vesper",
+          "range": [
+            65,
+            68
+          ]
+        },
+        {
+          "id": "ruin",
+          "name": "Ruin",
+          "range": [
+            69,
+            72
+          ]
+        },
+        {
+          "id": "deliverance",
+          "name": "Deliverance",
+          "range": [
+            73,
+            76
+          ]
+        },
+        {
+          "id": "scorn",
+          "name": "Scorn",
+          "range": [
+            77,
+            80
+          ]
+        },
+        {
+          "id": "covenant",
+          "name": "Covenant",
+          "range": [
+            81,
+            84
+          ]
+        },
+        {
+          "id": "salvation",
+          "name": "Salvation",
+          "range": [
+            85,
+            88
+          ]
+        },
+        {
+          "id": "remorse",
+          "name": "Remorse",
+          "range": [
+            89,
+            92
+          ]
+        },
+        {
+          "id": "fortune",
+          "name": "Fortune",
+          "range": [
+            93,
+            96
+          ]
+        },
+        {
+          "id": "respite",
+          "name": "Respite",
+          "range": [
+            97,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.industryFirst",
+      "name": "Halingo Mining & Ichor: Material",
+      "description": "Extraction, mining, ore processing, industrial residue and Halingo Ichor. Ichor is the pre-existing local term, not a synonym for ordinary oil.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "gold",
+          "name": "Gold",
+          "range": [
+            1,
+            3
+          ]
+        },
+        {
+          "id": "silver",
+          "name": "Silver",
+          "range": [
+            4,
+            6
+          ]
+        },
+        {
+          "id": "copper",
+          "name": "Copper",
+          "range": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": "iron",
+          "name": "Iron",
+          "range": [
+            10,
+            12
+          ]
+        },
+        {
+          "id": "lead",
+          "name": "Lead",
+          "range": [
+            13,
+            15
+          ]
+        },
+        {
+          "id": "tin",
+          "name": "Tin",
+          "range": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "cobalt",
+          "name": "Cobalt",
+          "range": [
+            18,
+            19
+          ]
+        },
+        {
+          "id": "chalk",
+          "name": "Chalk",
+          "range": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "quartz",
+          "name": "Quartz",
+          "range": [
+            22,
+            24
+          ]
+        },
+        {
+          "id": "flint",
+          "name": "Flint",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "salt",
+          "name": "Salt",
+          "range": [
+            27,
+            29
+          ]
+        },
+        {
+          "id": "brine",
+          "name": "Brine",
+          "range": [
+            30,
+            32
+          ]
+        },
+        {
+          "id": "sulphur",
+          "name": "Sulphur",
+          "range": [
+            33,
+            35
+          ]
+        },
+        {
+          "id": "gypsum",
+          "name": "Gypsum",
+          "range": [
+            36,
+            38
+          ]
+        },
+        {
+          "id": "borax",
+          "name": "Borax",
+          "range": [
+            39,
+            41
+          ]
+        },
+        {
+          "id": "obsidian",
+          "name": "Obsidian",
+          "range": [
+            42,
+            44
+          ]
+        },
+        {
+          "id": "glass",
+          "name": "Glass",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "soot",
+          "name": "Soot",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "ash",
+          "name": "Ash",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "cinder",
+          "name": "Cinder",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "slag",
+          "name": "Slag",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "pitch",
+          "name": "Pitch",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "tar",
+          "name": "Tar",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "ichor",
+          "name": "Ichor",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "rust",
+          "name": "Rust",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "shale",
+          "name": "Shale",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "slate",
+          "name": "Slate",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "clay",
+          "name": "Clay",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "coal",
+          "name": "Coal",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "ochre",
+          "name": "Ochre",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "brass",
+          "name": "Brass",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "dust",
+          "name": "Dust",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "bone",
+          "name": "Bone",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "ember",
+          "name": "Ember",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "furnace",
+          "name": "Furnace",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "scrap",
+          "name": "Scrap",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "char",
+          "name": "Char",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

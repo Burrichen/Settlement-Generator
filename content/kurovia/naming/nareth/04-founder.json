@@ -3,69 +3,329 @@
   "tables": [
     {
       "id": "table.naming.nareth.founder",
-      "name": "Nareth Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Nareth Ancestral: Personal / Lineage Name",
+      "description": "Inherited family/lineage-associated proper-name forms, kept rare and fictional. Preserves twelve original result IDs.",
+      "dice": "1d100",
       "results": [
         {
           "id": "talari",
           "name": "Talari",
-          "range": 1
+          "range": [
+            1,
+            3
+          ]
         },
         {
           "id": "ivara",
           "name": "Ivara",
-          "range": 2
+          "range": [
+            4,
+            6
+          ]
         },
         {
           "id": "namar",
           "name": "Namar",
-          "range": 3
+          "range": [
+            7,
+            9
+          ]
         },
         {
           "id": "sorai",
           "name": "Sorai",
-          "range": 4
+          "range": [
+            10,
+            12
+          ]
         },
         {
           "id": "vesha",
           "name": "Vesha",
-          "range": 5
+          "range": [
+            13,
+            15
+          ]
         },
         {
           "id": "aruna",
           "name": "Aruna",
-          "range": 6
+          "range": [
+            16,
+            18
+          ]
         },
         {
           "id": "kethra",
           "name": "Kethra",
-          "range": 7
+          "range": [
+            19,
+            21
+          ]
         },
         {
           "id": "lurien",
           "name": "Lurien",
-          "range": 8
+          "range": [
+            22,
+            24
+          ]
         },
         {
           "id": "maiva",
           "name": "Maiva",
-          "range": 9
+          "range": [
+            25,
+            27
+          ]
         },
         {
           "id": "sarru",
           "name": "Sarru",
-          "range": 10
+          "range": [
+            28,
+            30
+          ]
         },
         {
           "id": "tavira",
           "name": "Tavira",
-          "range": 11
+          "range": [
+            31,
+            33
+          ]
         },
         {
           "id": "eshar",
           "name": "Eshar",
-          "range": 12
+          "range": [
+            34,
+            36
+          ]
+        },
+        {
+          "id": "avari",
+          "name": "Avari",
+          "range": [
+            37,
+            39
+          ]
+        },
+        {
+          "id": "chalen",
+          "name": "Chalen",
+          "range": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "ruvaya",
+          "name": "Ruvaya",
+          "range": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "yalun",
+          "name": "Yalun",
+          "range": [
+            46,
+            48
+          ]
+        },
+        {
+          "id": "mireya",
+          "name": "Mireya",
+          "range": [
+            49,
+            51
+          ]
+        },
+        {
+          "id": "kaluri",
+          "name": "Kaluri",
+          "range": [
+            52,
+            54
+          ]
+        },
+        {
+          "id": "tareva",
+          "name": "Tareva",
+          "range": [
+            55,
+            57
+          ]
+        },
+        {
+          "id": "noreli",
+          "name": "Noreli",
+          "range": [
+            58,
+            60
+          ]
+        },
+        {
+          "id": "sasira",
+          "name": "Sasira",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "kaveya",
+          "name": "Kaveya",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "iloren",
+          "name": "Iloren",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "ravari",
+          "name": "Ravari",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "sayen",
+          "name": "Sayen",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "urami",
+          "name": "Urami",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "keshara",
+          "name": "Keshara",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "noruma",
+          "name": "Noruma",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "ravin",
+          "name": "Ravin",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "daluri",
+          "name": "Daluri",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "seraya",
+          "name": "Seraya",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "veluma",
+          "name": "Veluma",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "parika",
+          "name": "Parika",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "tenara",
+          "name": "Tenara",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "maliri",
+          "name": "Maliri",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "loraya",
+          "name": "Loraya",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "vareli",
+          "name": "Vareli",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "kinara",
+          "name": "Kinara",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "kayura",
+          "name": "Kayura",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "taviren",
+          "name": "Taviren",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

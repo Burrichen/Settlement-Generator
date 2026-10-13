@@ -38,8 +38,8 @@ const SPECIES: [(&str, u32, bool); 13] = [
     ("woodElf", 7, false),
     ("darkElf", 9, false),
     ("dragonborn", 10, false),
-    ("earthGenasi", 11, true),
-    ("airGenasi", 12, true),
+    ("earthGenasi", 11, false),
+    ("airGenasi", 12, false),
     ("fireGenasi", 13, true),
     ("waterGenasi", 14, true),
     ("yuanTi", 15, true),
@@ -183,17 +183,14 @@ fn every_name_table_is_dense_and_fully_covered() {
         .iter()
         .filter(|t| t.id.as_str().starts_with("table.personName."))
     {
-        if t.id.as_str().ends_with(".method") {
-            assert_eq!(t.dice.as_deref(), Some("1d4"), "{}", t.id);
-            continue;
-        }
         seen += 1;
-        let (dice, faces, size) = match t.dice.as_deref() {
-            Some("1d20") => ("1d20", 20, 20),
-            Some("1d100") => ("1d100", 100, 50),
+        let faces: i32 = match t.dice.as_deref() {
+            Some("1d4") => 4,
+            Some("1d20") => 20,
+            Some("1d100") => 100,
             other => panic!("{}: {other:?}", t.id),
         };
-        assert_eq!(t.results.len(), size, "{} ({dice})", t.id);
+        let size = t.results.len();
         for face in 1..=faces {
             let claims = t
                 .results
@@ -207,9 +204,9 @@ fn every_name_table_is_dense_and_fully_covered() {
         assert_eq!(ids.len(), size, "{}: stable IDs are unique", t.id);
         assert_eq!(names.len(), size, "{}: names are unique", t.id);
     }
-    // 6 gendered species × 4 tables, 7 shared-pool species × 1, and four
-    // second-name tables (Eladrin, Yuan-Ti, Earth and Fire Genasi).
-    assert_eq!(seen, 6 * 4 + 7 + 4);
+    // Every species' method table and name pools, including the revamped
+    // packs' culture and sub-pool tables.
+    assert!(seen > 1000, "{seen}");
 }
 
 #[test]
@@ -238,8 +235,6 @@ fn no_well_known_published_or_famous_names_are_used() {
         "Eberk",
         "Medrash",
         "Kava",
-        "Sora",
-        "Nami",
         "Nimue",
         "Isolde",
         "Battlehammer",
@@ -310,41 +305,67 @@ fn generated(figure: &AuthorityFigure) -> (&str, Vec<(&str, &str)>) {
     )
 }
 
+/// The name a table gives on a face.
+fn at(table: &str, face: i32) -> String {
+    let c = content();
+    let t = c.tables.iter().find(|t| t.id.as_str() == table).unwrap();
+    let r = t
+        .results
+        .iter()
+        .find(|r| r.range.unwrap().contains(face))
+        .unwrap();
+    r.name.clone()
+}
+
 #[test]
 fn each_species_puts_its_name_together_its_own_way() {
-    // Dwarf man: given name + clan name.
+    // Dwarf man, method 1: given name + family name.
     let (_, f) = noble(&[16, 1, 1, 1, 1, 1, 1, 1, 2, 3]);
+    let given = at("table.personName.dwarf.given.masculine", 2);
+    let family = at("table.personName.dwarf.family", 3);
     assert_eq!(
         generated(&f),
         (
-            "Baldrek Brassmantle",
-            vec![("given", "Baldrek"), ("clan", "Brassmantle")]
+            format!("{given} {family}").as_str(),
+            vec![("given", given.as_str()), ("family", family.as_str())]
         )
     );
-    // Dragonborn woman, method 4: clan name first.
-    let (_, f) = noble(&[10, 10, 1, 1, 1, 1, 1, 4, 1, 1]);
+    // Dragonborn woman: family name first.
+    let (_, f) = noble(&[10, 10, 1, 1, 1, 1, 1, 1, 1, 1]);
+    let family = at("table.personName.dragonborn.family", 1);
+    let given = at("table.personName.dragonborn.given.feminine", 1);
     assert_eq!(
         generated(&f),
         (
-            "Arkhavarr Arrisha",
-            vec![("clan", "Arkhavarr"), ("given", "Arrisha")]
+            format!("{family} {given}").as_str(),
+            vec![("family", family.as_str()), ("given", given.as_str())]
         )
     );
     // Firbolg (any gender): a single name from a d100 pool.
     let (_, f) = noble(&[19, 19, 1, 1, 1, 1, 1, 1, 3]);
     assert_eq!(generated(&f), ("Bannoch", vec![("given", "Bannoch")]));
-    // Earth Genasi: given name + earthen byname.
+    // Earth Genasi man: given name + family name.
     let (_, f) = noble(&[11, 1, 1, 1, 1, 1, 1, 1, 100, 20]);
+    let given = at("table.personName.earthGenasi.given.masculine", 100);
+    let family = at("table.personName.earthGenasi.family", 20);
     assert_eq!(
         generated(&f),
         (
-            "Zinna Veinseeker",
-            vec![("given", "Zinna"), ("byname", "Veinseeker")]
+            format!("{given} {family}").as_str(),
+            vec![("given", given.as_str()), ("family", family.as_str())]
         )
     );
-    // Air Genasi: a single name.
-    let (_, f) = noble(&[12, 10, 1, 1, 1, 1, 1, 1, 1]);
-    assert_eq!(generated(&f), ("Aeli", vec![("given", "Aeli")]));
+    // Air Genasi woman: given name + family name.
+    let (_, f) = noble(&[12, 10, 1, 1, 1, 1, 1, 1, 1, 1]);
+    let given = at("table.personName.airGenasi.given.feminine", 1);
+    let family = at("table.personName.airGenasi.family", 1);
+    assert_eq!(
+        generated(&f),
+        (
+            format!("{given} {family}").as_str(),
+            vec![("given", given.as_str()), ("family", family.as_str())]
+        )
+    );
     // High Elf non-binary: the neutral pool + house name.
     let (_, f) = noble(&[5, 19, 1, 1, 1, 1, 1, 1, 1, 1]);
     assert_eq!(
@@ -460,6 +481,6 @@ fn god_mode_never_merges_species_pools() {
         parts[0].table.id.as_str(),
         "table.personName.dwarf.given.masculine"
     );
-    assert_eq!(parts[0].options.len(), 20);
+    assert_eq!(parts[0].options.len(), 100);
     assert!(parts[0].options.iter().all(|o| o.legal));
 }

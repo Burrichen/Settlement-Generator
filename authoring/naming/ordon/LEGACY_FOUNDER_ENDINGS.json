@@ -1,0 +1,65 @@
+{
+  "purpose": "Old unrestricted suffix index; for editorial reference only; not used for production founder names.",
+  "entries": [
+    {
+      "id": "ton",
+      "name": "ton",
+      "range": 1
+    },
+    {
+      "id": "ham",
+      "name": "ham",
+      "range": 2
+    },
+    {
+      "id": "bury",
+      "name": "bury",
+      "range": 3
+    },
+    {
+      "id": "stead",
+      "name": "stead",
+      "range": 4
+    },
+    {
+      "id": "wick",
+      "name": "wick",
+      "range": 5
+    },
+    {
+      "id": "worth",
+      "name": "worth",
+      "range": 6
+    },
+    {
+      "id": "ley",
+      "name": "ley",
+      "range": 7
+    },
+    {
+      "id": "field",
+      "name": "field",
+      "range": 8
+    },
+    {
+      "id": "ford",
+      "name": "ford",
+      "range": 9
+    },
+    {
+      "id": "croft",
+      "name": "croft",
+      "range": 10
+    },
+    {
+      "id": "holt",
+      "name": "holt",
+      "range": 11
+    },
+    {
+      "id": "bridge",
+      "name": "bridge",
+      "range": 12
+    }
+  ]
+}

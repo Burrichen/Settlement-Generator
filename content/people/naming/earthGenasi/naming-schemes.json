@@ -2,19 +2,26 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.earthGenasi",
-      "name": "Earth Genasi names",
+      "id": "naming.person.earthGenasi.masculine",
+      "name": "Earth Genasi names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.earthGenasi"
+        "all": [
+          {
+            "has_tag": "species.earthGenasi"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.earthGenasi.method",
       "methods": [
         {
           "result": "givenSurname",
           "components": [
-            "table.personName.earthGenasi.given",
-            "table.personName.earthGenasi.byname"
+            "table.personName.earthGenasi.given.masculine",
+            "table.personName.earthGenasi.family"
           ],
           "join": {
             "style": "compound",
@@ -27,13 +34,3319 @@
               "label": "Given name"
             },
             {
-              "id": "byname",
-              "label": "Byname"
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.02",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.02",
+            "table.personName.earthGenasi.family.bedrock.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.03",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.03",
+            "table.personName.earthGenasi.family.bedrock.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.04",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.04",
+            "table.personName.earthGenasi.family.bedrock.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.05",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.05",
+            "table.personName.earthGenasi.family.bedrock.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.06",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.06",
+            "table.personName.earthGenasi.family.bedrock.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.07",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.07",
+            "table.personName.earthGenasi.family.bedrock.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.08",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.08",
+            "table.personName.earthGenasi.family.bedrock.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.09",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.09",
+            "table.personName.earthGenasi.family.bedrock.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.10",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.10",
+            "table.personName.earthGenasi.family.bedrock.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.11",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.11",
+            "table.personName.earthGenasi.family.bedrock.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.12",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.12",
+            "table.personName.earthGenasi.family.bedrock.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.13",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.13",
+            "table.personName.earthGenasi.family.bedrock.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.14",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.14",
+            "table.personName.earthGenasi.family.bedrock.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.15",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.15",
+            "table.personName.earthGenasi.family.bedrock.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.16",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.16",
+            "table.personName.earthGenasi.family.bedrock.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.17",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.bedrock.17",
+            "table.personName.earthGenasi.family.bedrock.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.01",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.01",
+            "table.personName.earthGenasi.family.crystal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.02",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.02",
+            "table.personName.earthGenasi.family.crystal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.03",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.03",
+            "table.personName.earthGenasi.family.crystal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.04",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.04",
+            "table.personName.earthGenasi.family.crystal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.05",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.05",
+            "table.personName.earthGenasi.family.crystal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.06",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.06",
+            "table.personName.earthGenasi.family.crystal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.07",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.07",
+            "table.personName.earthGenasi.family.crystal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.08",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.08",
+            "table.personName.earthGenasi.family.crystal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.09",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.09",
+            "table.personName.earthGenasi.family.crystal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.10",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.10",
+            "table.personName.earthGenasi.family.crystal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.11",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.11",
+            "table.personName.earthGenasi.family.crystal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.12",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.12",
+            "table.personName.earthGenasi.family.crystal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.13",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.crystal.13",
+            "table.personName.earthGenasi.family.crystal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.01",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.01",
+            "table.personName.earthGenasi.family.mountain.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.02",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.02",
+            "table.personName.earthGenasi.family.mountain.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.03",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.03",
+            "table.personName.earthGenasi.family.mountain.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.04",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.04",
+            "table.personName.earthGenasi.family.mountain.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.05",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.05",
+            "table.personName.earthGenasi.family.mountain.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.06",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.06",
+            "table.personName.earthGenasi.family.mountain.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.07",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.07",
+            "table.personName.earthGenasi.family.mountain.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.08",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.08",
+            "table.personName.earthGenasi.family.mountain.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.09",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mountain.09",
+            "table.personName.earthGenasi.family.mountain.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.01",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.loam.01",
+            "table.personName.earthGenasi.family.loam.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.02",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.loam.02",
+            "table.personName.earthGenasi.family.loam.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.03",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.loam.03",
+            "table.personName.earthGenasi.family.loam.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.04",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.loam.04",
+            "table.personName.earthGenasi.family.loam.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.05",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.loam.05",
+            "table.personName.earthGenasi.family.loam.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.01",
+            "table.personName.earthGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.02",
+            "table.personName.earthGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.03",
+            "table.personName.earthGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.04",
+            "table.personName.earthGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.05",
+            "table.personName.earthGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.earthGenasi.given.masculine.mortal.06",
+            "table.personName.earthGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
             }
           ]
         }
-      ],
-      "description": "Earth genasi pair a given name with a byname drawn from stone and the deep earth."
+      ]
+    },
+    {
+      "id": "naming.person.earthGenasi.feminine",
+      "name": "Earth Genasi names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.earthGenasi"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.earthGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.earthGenasi.given.feminine",
+            "table.personName.earthGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.02",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.02",
+            "table.personName.earthGenasi.family.bedrock.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.03",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.03",
+            "table.personName.earthGenasi.family.bedrock.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.04",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.04",
+            "table.personName.earthGenasi.family.bedrock.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.05",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.05",
+            "table.personName.earthGenasi.family.bedrock.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.06",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.06",
+            "table.personName.earthGenasi.family.bedrock.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.07",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.07",
+            "table.personName.earthGenasi.family.bedrock.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.08",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.08",
+            "table.personName.earthGenasi.family.bedrock.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.09",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.09",
+            "table.personName.earthGenasi.family.bedrock.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.10",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.10",
+            "table.personName.earthGenasi.family.bedrock.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.11",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.11",
+            "table.personName.earthGenasi.family.bedrock.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.12",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.12",
+            "table.personName.earthGenasi.family.bedrock.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.13",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.13",
+            "table.personName.earthGenasi.family.bedrock.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.14",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.14",
+            "table.personName.earthGenasi.family.bedrock.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.15",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.15",
+            "table.personName.earthGenasi.family.bedrock.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.16",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.16",
+            "table.personName.earthGenasi.family.bedrock.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.17",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.bedrock.17",
+            "table.personName.earthGenasi.family.bedrock.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.01",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.01",
+            "table.personName.earthGenasi.family.crystal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.02",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.02",
+            "table.personName.earthGenasi.family.crystal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.03",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.03",
+            "table.personName.earthGenasi.family.crystal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.04",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.04",
+            "table.personName.earthGenasi.family.crystal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.05",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.05",
+            "table.personName.earthGenasi.family.crystal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.06",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.06",
+            "table.personName.earthGenasi.family.crystal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.07",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.07",
+            "table.personName.earthGenasi.family.crystal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.08",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.08",
+            "table.personName.earthGenasi.family.crystal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.09",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.09",
+            "table.personName.earthGenasi.family.crystal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.10",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.10",
+            "table.personName.earthGenasi.family.crystal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.11",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.11",
+            "table.personName.earthGenasi.family.crystal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.12",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.12",
+            "table.personName.earthGenasi.family.crystal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.13",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.crystal.13",
+            "table.personName.earthGenasi.family.crystal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.01",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.01",
+            "table.personName.earthGenasi.family.mountain.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.02",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.02",
+            "table.personName.earthGenasi.family.mountain.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.03",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.03",
+            "table.personName.earthGenasi.family.mountain.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.04",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.04",
+            "table.personName.earthGenasi.family.mountain.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.05",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.05",
+            "table.personName.earthGenasi.family.mountain.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.06",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.06",
+            "table.personName.earthGenasi.family.mountain.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.07",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.07",
+            "table.personName.earthGenasi.family.mountain.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.08",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.08",
+            "table.personName.earthGenasi.family.mountain.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.09",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mountain.09",
+            "table.personName.earthGenasi.family.mountain.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.01",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.loam.01",
+            "table.personName.earthGenasi.family.loam.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.02",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.loam.02",
+            "table.personName.earthGenasi.family.loam.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.03",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.loam.03",
+            "table.personName.earthGenasi.family.loam.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.04",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.loam.04",
+            "table.personName.earthGenasi.family.loam.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.05",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.loam.05",
+            "table.personName.earthGenasi.family.loam.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.01",
+            "table.personName.earthGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.02",
+            "table.personName.earthGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.03",
+            "table.personName.earthGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.04",
+            "table.personName.earthGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.05",
+            "table.personName.earthGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.earthGenasi.given.feminine.mortal.06",
+            "table.personName.earthGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.earthGenasi.neutral",
+      "name": "Earth Genasi names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.earthGenasi"
+      },
+      "method_table": "table.personName.earthGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.earthGenasi.given.neutral",
+            "table.personName.earthGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.02",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.02",
+            "table.personName.earthGenasi.family.bedrock.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.03",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.03",
+            "table.personName.earthGenasi.family.bedrock.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.04",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.04",
+            "table.personName.earthGenasi.family.bedrock.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.05",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.05",
+            "table.personName.earthGenasi.family.bedrock.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.06",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.06",
+            "table.personName.earthGenasi.family.bedrock.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.07",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.07",
+            "table.personName.earthGenasi.family.bedrock.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.08",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.08",
+            "table.personName.earthGenasi.family.bedrock.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.09",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.09",
+            "table.personName.earthGenasi.family.bedrock.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.10",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.10",
+            "table.personName.earthGenasi.family.bedrock.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.11",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.11",
+            "table.personName.earthGenasi.family.bedrock.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.12",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.12",
+            "table.personName.earthGenasi.family.bedrock.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.13",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.13",
+            "table.personName.earthGenasi.family.bedrock.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.14",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.14",
+            "table.personName.earthGenasi.family.bedrock.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.15",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.15",
+            "table.personName.earthGenasi.family.bedrock.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.16",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.16",
+            "table.personName.earthGenasi.family.bedrock.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.bedrock.17",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.bedrock.17",
+            "table.personName.earthGenasi.family.bedrock.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.01",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.01",
+            "table.personName.earthGenasi.family.crystal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.02",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.02",
+            "table.personName.earthGenasi.family.crystal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.03",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.03",
+            "table.personName.earthGenasi.family.crystal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.04",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.04",
+            "table.personName.earthGenasi.family.crystal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.05",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.05",
+            "table.personName.earthGenasi.family.crystal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.06",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.06",
+            "table.personName.earthGenasi.family.crystal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.07",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.07",
+            "table.personName.earthGenasi.family.crystal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.08",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.08",
+            "table.personName.earthGenasi.family.crystal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.09",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.09",
+            "table.personName.earthGenasi.family.crystal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.10",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.10",
+            "table.personName.earthGenasi.family.crystal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.11",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.11",
+            "table.personName.earthGenasi.family.crystal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.12",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.12",
+            "table.personName.earthGenasi.family.crystal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.crystal.13",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.crystal.13",
+            "table.personName.earthGenasi.family.crystal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.01",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.01",
+            "table.personName.earthGenasi.family.mountain.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.02",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.02",
+            "table.personName.earthGenasi.family.mountain.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.03",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.03",
+            "table.personName.earthGenasi.family.mountain.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.04",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.04",
+            "table.personName.earthGenasi.family.mountain.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.05",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.05",
+            "table.personName.earthGenasi.family.mountain.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.06",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.06",
+            "table.personName.earthGenasi.family.mountain.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.07",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.07",
+            "table.personName.earthGenasi.family.mountain.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.08",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.08",
+            "table.personName.earthGenasi.family.mountain.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mountain.09",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mountain.09",
+            "table.personName.earthGenasi.family.mountain.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.01",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.loam.01",
+            "table.personName.earthGenasi.family.loam.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.02",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.loam.02",
+            "table.personName.earthGenasi.family.loam.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.03",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.loam.03",
+            "table.personName.earthGenasi.family.loam.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.04",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.loam.04",
+            "table.personName.earthGenasi.family.loam.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.loam.05",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.loam.05",
+            "table.personName.earthGenasi.family.loam.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.01",
+            "table.personName.earthGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.02",
+            "table.personName.earthGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.03",
+            "table.personName.earthGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.04",
+            "table.personName.earthGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.05",
+            "table.personName.earthGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.earthGenasi.given.neutral.mortal.06",
+            "table.personName.earthGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

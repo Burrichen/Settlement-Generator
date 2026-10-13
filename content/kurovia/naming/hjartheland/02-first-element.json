@@ -3,69 +3,409 @@
   "tables": [
     {
       "id": "table.naming.hjartheland.firstElement",
-      "name": "Hjartheland Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Hjartheland Traditional: First Element",
+      "description": "Traditional old-West-Norse-inspired roots, landscape, trees, animals and directional stems. First twelve preserve the starter pack.",
+      "dice": "1d100",
       "results": [
         {
           "id": "nord",
           "name": "Nord",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "hrafn",
           "name": "Hrafn",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "bjorn",
           "name": "Bjorn",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "eir",
           "name": "Eir",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "skar",
           "name": "Skar",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "kald",
           "name": "Kald",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "sval",
           "name": "Sval",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "hald",
           "name": "Hald",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "stein",
           "name": "Stein",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "vard",
           "name": "Vard",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "hjell",
           "name": "Hjell",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "skog",
           "name": "Skog",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "aust",
+          "name": "Aust",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "vest",
+          "name": "Vest",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "sor",
+          "name": "Sør",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "stor",
+          "name": "Stor",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "lill",
+          "name": "Lill",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "gran",
+          "name": "Gran",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "birk",
+          "name": "Birk",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "furu",
+          "name": "Furu",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "eik",
+          "name": "Eik",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "rogn",
+          "name": "Rogn",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "lind",
+          "name": "Lind",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "ask",
+          "name": "Ask",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "hassel",
+          "name": "Hassel",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "falk",
+          "name": "Falk",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "ulv",
+          "name": "Ulv",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "rein",
+          "name": "Rein",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "elg",
+          "name": "Elg",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "hjort",
+          "name": "Hjort",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "hauk",
+          "name": "Hauk",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "hare",
+          "name": "Hare",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "myr",
+          "name": "Myr",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "torv",
+          "name": "Torv",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "mose",
+          "name": "Mose",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "elv",
+          "name": "Elv",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "bekke",
+          "name": "Bekke",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "hegg",
+          "name": "Hegg",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "sol",
+          "name": "Sol",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "rim",
+          "name": "Rim",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "frost",
+          "name": "Frost",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "fonn",
+          "name": "Fonn",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "kvit",
+          "name": "Kvit",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "gra",
+          "name": "Grå",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "svart",
+          "name": "Svart",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "bratt",
+          "name": "Bratt",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "lyng",
+          "name": "Lyng",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "mo",
+          "name": "Mo",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

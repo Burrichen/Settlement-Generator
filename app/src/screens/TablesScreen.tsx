@@ -4,6 +4,7 @@ import {
   toPair,
   type Coverage,
   type FollowUpRoll,
+  type Named,
   type RangeAssignment,
   type Table,
   type TableDetail,
@@ -26,6 +27,11 @@ import {
   useCatalog,
 } from "../components/editors/common";
 import { ItemList, useEntityEditor } from "../components/editors/EntityEditor";
+import {
+  ApprovedNamesEditor,
+  approvedVariants,
+  NamingMethodsEditor,
+} from "../components/editors/NamingEditors";
 import { EditorActions } from "./TagsScreen";
 
 /** View Tables: every effective table, edited through one generic form. */
@@ -332,7 +338,13 @@ function TableForm({
         </section>
       )}
 
-      <ResultsEditor draft={draft} set={set} base={base} rolled={rolled} />
+      <ResultsEditor
+        draft={draft}
+        set={set}
+        base={base}
+        rolled={rolled}
+        approved={approvedVariants(editor.detail)}
+      />
 
       <section className="editor-section" aria-labelledby="table-eligibility">
         <h3 id="table-eligibility" className="label">
@@ -348,6 +360,16 @@ function TableForm({
 
       {rolled && <VariantsEditor draft={draft} set={set} />}
       {rolled && <FollowUpsEditor draft={draft} set={set} />}
+
+      {editor.detail && (
+        <NamingMethodsEditor
+          detail={editor.detail}
+          onSaved={(d) => {
+            editor.replaceDetail(d);
+            void refresh();
+          }}
+        />
+      )}
 
       <section className="editor-section" aria-labelledby="table-problems">
         <h3 id="table-problems" className="label">
@@ -385,11 +407,14 @@ function ResultsEditor({
   set,
   base,
   rolled,
+  approved,
 }: {
   draft: Table;
   set: (patch: Partial<Table>) => void;
   base: Coverage | undefined;
   rolled: boolean;
+  /** Variants each result needs an approved name for (curated naming). */
+  approved: Named[];
 }) {
   const update = (i: number, patch: Partial<TableResult>) =>
     set({ results: draft.results.map((r, j) => (j === i ? { ...r, ...patch } : r)) });
@@ -424,6 +449,7 @@ function ResultsEditor({
                 rolled={rolled}
                 valued={valued}
                 chance={chanceOf(base, result.id)}
+                approved={approved}
                 onChange={(patch) => update(i, patch)}
                 onRemove={() => set({ results: draft.results.filter((_, j) => j !== i) })}
               />
@@ -461,6 +487,7 @@ function ResultRow({
   rolled,
   valued,
   chance,
+  approved,
   onChange,
   onRemove,
 }: {
@@ -470,6 +497,7 @@ function ResultRow({
   rolled: boolean;
   valued: boolean;
   chance: string;
+  approved: Named[];
   onChange: (patch: Partial<TableResult>) => void;
   onRemove: () => void;
 }) {
@@ -566,6 +594,17 @@ function ResultRow({
           </button>
         </td>
       </tr>
+      {(approved.length > 0 || Object.keys(result.approved_names ?? {}).length > 0) && (
+        <tr className="sub-row">
+          <td colSpan={(rolled ? 6 : 4) + (valued ? 1 : 0)}>
+            <ApprovedNamesEditor
+              result={result}
+              variants={approved}
+              onChange={(approved_names) => onChange({ approved_names })}
+            />
+          </td>
+        </tr>
+      )}
       {open && (
         <tr className="sub-row">
           <td colSpan={(rolled ? 6 : 4) + (valued ? 1 : 0)}>

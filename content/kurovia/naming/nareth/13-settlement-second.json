@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.settlementSecond",
+      "name": "Nareth Community: Settlement Element",
+      "description": "Settlements, houses, enclosures, waystations, cultivated clearings and fictional local forms.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "llaqta",
+          "name": "llaqta",
+          "range": 1,
+          "description": "Quechua reference element: town / inhabited place. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "marka",
+          "name": "marka",
+          "range": 2,
+          "description": "Quechua reference element: town / region (varies). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wasi",
+          "name": "wasi",
+          "range": 3,
+          "description": "Quechua reference element: house. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "kancha",
+          "name": "kancha",
+          "range": 4,
+          "description": "Quechua reference element: enclosure. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "tampu",
+          "name": "tampu",
+          "range": 5,
+          "description": "Quechua reference element: waystation / lodging. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pata",
+          "name": "pata",
+          "range": 6,
+          "description": "Quechua reference element: upper place / terrace. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chakra",
+          "name": "chakra",
+          "range": 7,
+          "description": "Quechua reference element: cultivated field. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chaka",
+          "name": "chaka",
+          "range": 8,
+          "description": "Quechua reference element: bridge. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "punku",
+          "name": "punku",
+          "range": 9,
+          "description": "Quechua reference element: door / gateway. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "waylla",
+          "name": "waylla",
+          "range": 10,
+          "description": "Quechua reference element: grass / meadow. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "naya",
+          "name": "naya",
+          "range": 11
+        },
+        {
+          "id": "ren",
+          "name": "ren",
+          "range": 12
+        },
+        {
+          "id": "tal",
+          "name": "tal",
+          "range": 13
+        },
+        {
+          "id": "vara",
+          "name": "vara",
+          "range": 14
+        },
+        {
+          "id": "iri",
+          "name": "iri",
+          "range": 15
+        },
+        {
+          "id": "mura",
+          "name": "mura",
+          "range": 16
+        },
+        {
+          "id": "rayu",
+          "name": "rayu",
+          "range": 17
+        },
+        {
+          "id": "kiri",
+          "name": "kiri",
+          "range": 18
+        },
+        {
+          "id": "na",
+          "name": "na",
+          "range": 19
+        },
+        {
+          "id": "vek",
+          "name": "vek",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

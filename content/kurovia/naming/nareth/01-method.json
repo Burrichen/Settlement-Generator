@@ -4,20 +4,98 @@
     {
       "id": "table.naming.nareth.method",
       "name": "Nareth Naming Method",
-      "description": "Which naming method a Nareth settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Placeholder starter sounds awaiting editorial work: not established Nareth vocabulary, and no meanings are implied.",
-      "dice": "1d10",
+      "description": "Ten editable methods for Nareth rainforest and flooded settlement names. Each d100 face is assigned once. Inca-era Quechua geography inspires place-name mechanics; Ixtal informs the rarer ancient architectural atmosphere; no claim of grammatical reconstruction.",
+      "dice": "1d100",
       "results": [
         {
+          "id": "river",
+          "name": "Rivers & Confluences",
+          "description": "Waterways and settlements named after river branches, water colour, springs or river mouths.",
+          "range": [
+            1,
+            25
+          ]
+        },
+        {
+          "id": "forest",
+          "name": "Forest & Canopy",
+          "description": "Canopy, trees, forest clearings, animals and life under heavy vegetation.",
+          "range": [
+            26,
+            47
+          ]
+        },
+        {
+          "id": "wetland",
+          "name": "Wetlands & Floodplains",
+          "description": "Flooded woods, lagoons, backwaters and marshes.",
+          "range": [
+            48,
+            64
+          ]
+        },
+        {
+          "id": "settlement",
+          "name": "Villages & Cultivated Clearings",
+          "description": "Everyday settlements named after inhabited plots, homes, planted land and enclosures.",
+          "range": [
+            65,
+            75
+          ]
+        },
+        {
+          "id": "trail",
+          "name": "Trails & River Crossings",
+          "description": "River crossings, routes, landings, bridges and travel refuges.",
+          "range": [
+            76,
+            82
+          ]
+        },
+        {
+          "id": "stone",
+          "name": "Ancient Stone & Terraces",
+          "description": "Older built sites, raised plazas, terraces, stone bridges and other durable works.",
+          "range": [
+            83,
+            88
+          ]
+        },
+        {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "Two starter sounds joined directly, e.g. Naroneth, Korivai.",
-          "range": [1, 7]
+          "name": "Old Geographic Compounds",
+          "description": "Preserves the older fictional Nareth geographic compound vocabulary.",
+          "range": [
+            89,
+            92
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "A founder name joined directly to an ending, e.g. Talarien, Ivaramar.",
-          "range": [8, 10]
+          "name": "Ancestral Settlements",
+          "description": "Inherited personal and lineage names; rare, without implying any pre-defined family history.",
+          "range": [
+            93,
+            95
+          ]
+        },
+        {
+          "id": "elemental",
+          "name": "Elemental & Hidden Places",
+          "description": "Rare deliberately fictional old-city sounding names, inspired by Ixtal atmosphere.",
+          "range": [
+            96,
+            98
+          ]
+        },
+        {
+          "id": "inherited",
+          "name": "Inherited Proper Names",
+          "description": "Rare complete proper names; some preserve the two-word style of Uru Taal.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

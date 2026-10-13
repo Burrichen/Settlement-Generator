@@ -10,3 +10,6 @@ node_modules/
 
 # Release packaging: the CLI copied in as a Tauri sidecar by scripts/build-release.mjs.
 /src-tauri/binaries
+
+# macOS Finder metadata
+.DS_Store

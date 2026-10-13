@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.waterFirst",
+      "name": "Halingo Water & Survival: Descriptor",
+      "description": "Conditions or perceived reliability of water, safety and shelter. Inspired by scarce oasis and overland route resting points.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "last",
+          "name": "Last",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "hidden",
+          "name": "Hidden",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "deep",
+          "name": "Deep",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "shallow",
+          "name": "Shallow",
+          "range": [
+            13,
+            15
+          ]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [
+            16,
+            19
+          ]
+        },
+        {
+          "id": "new",
+          "name": "New",
+          "range": [
+            20,
+            22
+          ]
+        },
+        {
+          "id": "upper",
+          "name": "Upper",
+          "range": [
+            23,
+            25
+          ]
+        },
+        {
+          "id": "lower",
+          "name": "Lower",
+          "range": [
+            26,
+            28
+          ]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [
+            29,
+            31
+          ]
+        },
+        {
+          "id": "white",
+          "name": "White",
+          "range": [
+            32,
+            34
+          ]
+        },
+        {
+          "id": "bitter",
+          "name": "Bitter",
+          "range": [
+            35,
+            38
+          ]
+        },
+        {
+          "id": "sweet",
+          "name": "Sweet",
+          "range": [
+            39,
+            41
+          ]
+        },
+        {
+          "id": "dry",
+          "name": "Dry",
+          "range": [
+            42,
+            45
+          ]
+        },
+        {
+          "id": "brackish",
+          "name": "Brackish",
+          "range": [
+            46,
+            49
+          ]
+        },
+        {
+          "id": "cold",
+          "name": "Cold",
+          "range": [
+            50,
+            53
+          ]
+        },
+        {
+          "id": "warm",
+          "name": "Warm",
+          "range": [
+            54,
+            56
+          ]
+        },
+        {
+          "id": "clear",
+          "name": "Clear",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "still",
+          "name": "Still",
+          "range": [
+            61,
+            63
+          ]
+        },
+        {
+          "id": "narrow",
+          "name": "Narrow",
+          "range": [
+            64,
+            66
+          ]
+        },
+        {
+          "id": "sealed",
+          "name": "Sealed",
+          "range": [
+            67,
+            69
+          ]
+        },
+        {
+          "id": "broken",
+          "name": "Broken",
+          "range": [
+            70,
+            72
+          ]
+        },
+        {
+          "id": "faint",
+          "name": "Faint",
+          "range": [
+            73,
+            75
+          ]
+        },
+        {
+          "id": "salt",
+          "name": "Salt",
+          "range": [
+            76,
+            79
+          ]
+        },
+        {
+          "id": "blind",
+          "name": "Blind",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "far",
+          "name": "Far",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "lone",
+          "name": "Lone",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "lost",
+          "name": "Lost",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "dawn",
+          "name": "Dawn",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "red",
+          "name": "Red",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "ashen",
+          "name": "Ashen",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

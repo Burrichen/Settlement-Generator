@@ -3,509 +3,909 @@
   "tables": [
     {
       "id": "table.naming.ordon.founder",
-      "name": "Ordon Name: Founder",
-      "description": "The founder a Historical Founder name is taken from: one face each.",
+      "name": "Ordon Manorial: Historical Person or Landholder",
+      "description": "100 source founder names, each with two explicitly reviewed settlement-name spellings. A separate 1d4 chooses form A/B; DO NOT concatenate a bare founder and random suffix.",
       "dice": "1d100",
       "results": [
         {
           "id": "aldric",
           "name": "Aldric",
-          "range": 1
+          "range": 1,
+          "approved_names": {
+            "a": "Alderton",
+            "b": "Aldridge"
+          }
         },
         {
           "id": "alden",
           "name": "Alden",
-          "range": 2
+          "range": 2,
+          "approved_names": {
+            "a": "Aldenham",
+            "b": "Aldenbury"
+          }
         },
         {
           "id": "alaric",
           "name": "Alaric",
-          "range": 3
+          "range": 3,
+          "approved_names": {
+            "a": "Alricford",
+            "b": "Alricton"
+          }
         },
         {
           "id": "aelfric",
           "name": "Aelfric",
-          "range": 4
+          "range": 4,
+          "approved_names": {
+            "a": "Alfriston",
+            "b": "Alfricwell"
+          }
         },
         {
           "id": "aethelred",
           "name": "Aethelred",
-          "range": 5
+          "range": 5,
+          "approved_names": {
+            "a": "Athelford",
+            "b": "Redleigh"
+          }
         },
         {
           "id": "athelstan",
           "name": "Athelstan",
-          "range": 6
+          "range": 6,
+          "approved_names": {
+            "a": "Athelton",
+            "b": "Stanbury"
+          }
         },
         {
           "id": "athelwyn",
           "name": "Athelwyn",
-          "range": 7
+          "range": 7,
+          "approved_names": {
+            "a": "Athelwick",
+            "b": "Elwynfield"
+          }
         },
         {
           "id": "alwyn",
           "name": "Alwyn",
-          "range": 8
+          "range": 8,
+          "approved_names": {
+            "a": "Alwynham",
+            "b": "Alwynford"
+          }
         },
         {
           "id": "alfrith",
           "name": "Alfrith",
-          "range": 9
+          "range": 9,
+          "approved_names": {
+            "a": "Alford",
+            "b": "Alwick"
+          }
         },
         {
           "id": "ardel",
           "name": "Ardel",
-          "range": 10
+          "range": 10,
+          "approved_names": {
+            "a": "Ardelbury",
+            "b": "Ardelton"
+          }
         },
         {
           "id": "beorn",
           "name": "Beorn",
-          "range": 11
+          "range": 11,
+          "approved_names": {
+            "a": "Beornham",
+            "b": "Bernley"
+          }
         },
         {
           "id": "beorht",
           "name": "Beorht",
-          "range": 12
+          "range": 12,
+          "approved_names": {
+            "a": "Berton",
+            "b": "Berstead"
+          }
         },
         {
           "id": "beric",
           "name": "Beric",
-          "range": 13
+          "range": 13,
+          "approved_names": {
+            "a": "Berrington",
+            "b": "Berwick"
+          }
         },
         {
           "id": "berengar",
           "name": "Berengar",
-          "range": 14
+          "range": 14,
+          "approved_names": {
+            "a": "Berington",
+            "b": "Berensham"
+          }
         },
         {
           "id": "brandel",
           "name": "Brandel",
-          "range": 15
+          "range": 15,
+          "approved_names": {
+            "a": "Brandeston",
+            "b": "Brandley"
+          }
         },
         {
           "id": "cenric",
           "name": "Cenric",
-          "range": 16
+          "range": 16,
+          "approved_names": {
+            "a": "Kennerton",
+            "b": "Kenridge"
+          }
         },
         {
           "id": "ceolric",
           "name": "Ceolric",
-          "range": 17
+          "range": 17,
+          "approved_names": {
+            "a": "Kelston",
+            "b": "Kelbury"
+          }
         },
         {
           "id": "cuthred",
           "name": "Cuthred",
-          "range": 18
+          "range": 18,
+          "approved_names": {
+            "a": "Cutherton",
+            "b": "Cutham"
+          }
         },
         {
           "id": "cuthbert",
           "name": "Cuthbert",
-          "range": 19
+          "range": 19,
+          "approved_names": {
+            "a": "Cuthberton",
+            "b": "Cuthbury"
+          }
         },
         {
           "id": "dunstan",
           "name": "Dunstan",
-          "range": 20
+          "range": 20,
+          "approved_names": {
+            "a": "Dunston",
+            "b": "Dunstanbury"
+          }
         },
         {
           "id": "eadric",
           "name": "Eadric",
-          "range": 21
+          "range": 21,
+          "approved_names": {
+            "a": "Edricton",
+            "b": "Edridge"
+          }
         },
         {
           "id": "eadwyn",
           "name": "Eadwyn",
-          "range": 22
+          "range": 22,
+          "approved_names": {
+            "a": "Edwinton",
+            "b": "Edwinsbury"
+          }
         },
         {
           "id": "eadgar",
           "name": "Eadgar",
-          "range": 23
+          "range": 23,
+          "approved_names": {
+            "a": "Edgarham",
+            "b": "Edgarton"
+          }
         },
         {
           "id": "ealdred",
           "name": "Ealdred",
-          "range": 24
+          "range": 24,
+          "approved_names": {
+            "a": "Elderton",
+            "b": "Eldredbury"
+          }
         },
         {
           "id": "edran",
           "name": "Edran",
-          "range": 25
+          "range": 25,
+          "approved_names": {
+            "a": "Edrington",
+            "b": "Edransstead"
+          }
         },
         {
           "id": "osric",
           "name": "Osric",
-          "range": 26
+          "range": 26,
+          "approved_names": {
+            "a": "Osricton",
+            "b": "Osbury"
+          }
         },
         {
           "id": "oswin",
           "name": "Oswin",
-          "range": 27
+          "range": 27,
+          "approved_names": {
+            "a": "Oswinham",
+            "b": "Oswinsbury"
+          }
         },
         {
           "id": "oswald",
           "name": "Oswald",
-          "range": 28
+          "range": 28,
+          "approved_names": {
+            "a": "Oswalden",
+            "b": "Oswaldwick"
+          }
         },
         {
           "id": "osgar",
           "name": "Osgar",
-          "range": 29
+          "range": 29,
+          "approved_names": {
+            "a": "Osgarham",
+            "b": "Osgarwick"
+          }
         },
         {
           "id": "odran",
           "name": "Odran",
-          "range": 30
+          "range": 30,
+          "approved_names": {
+            "a": "Odranton",
+            "b": "Odransbury"
+          }
         },
         {
           "id": "roderic",
           "name": "Roderic",
-          "range": 31
+          "range": 31,
+          "approved_names": {
+            "a": "Roderston",
+            "b": "Rodricwick"
+          }
         },
         {
           "id": "rannulf",
           "name": "Rannulf",
-          "range": 32
+          "range": 32,
+          "approved_names": {
+            "a": "Ransford",
+            "b": "Ransbury"
+          }
         },
         {
           "id": "ranald",
           "name": "Ranald",
-          "range": 33
+          "range": 33,
+          "approved_names": {
+            "a": "Randalton",
+            "b": "Ranoldswick"
+          }
         },
         {
           "id": "radulf",
           "name": "Radulf",
-          "range": 34
+          "range": 34,
+          "approved_names": {
+            "a": "Radford",
+            "b": "Radham"
+          }
         },
         {
           "id": "redwald",
           "name": "Redwald",
-          "range": 35
+          "range": 35,
+          "approved_names": {
+            "a": "Redwaldham",
+            "b": "Redwold"
+          }
         },
         {
           "id": "reynard",
           "name": "Reynard",
-          "range": 36
+          "range": 36,
+          "approved_names": {
+            "a": "Reynardton",
+            "b": "Rainsbury"
+          }
         },
         {
           "id": "roderan",
           "name": "Roderan",
-          "range": 37
+          "range": 37,
+          "approved_names": {
+            "a": "Rodenham",
+            "b": "Roderbury"
+          }
         },
         {
           "id": "rowena",
           "name": "Rowena",
-          "range": 38
+          "range": 38,
+          "approved_names": {
+            "a": "Rowenfield",
+            "b": "Rowenbury"
+          }
         },
         {
           "id": "rhoswen",
           "name": "Rhoswen",
-          "range": 39
+          "range": 39,
+          "approved_names": {
+            "a": "Roswenleigh",
+            "b": "Roswenford"
+          }
         },
         {
           "id": "sigebert",
           "name": "Sigebert",
-          "range": 40
+          "range": 40,
+          "approved_names": {
+            "a": "Sigberton",
+            "b": "Sigbury"
+          }
         },
         {
           "id": "sigeward",
           "name": "Sigeward",
-          "range": 41
+          "range": 41,
+          "approved_names": {
+            "a": "Sigwardham",
+            "b": "Sigwardbury"
+          }
         },
         {
           "id": "sigmund",
           "name": "Sigmund",
-          "range": 42
+          "range": 42,
+          "approved_names": {
+            "a": "Sigmundham",
+            "b": "Sigmorton"
+          }
         },
         {
           "id": "swithun",
           "name": "Swithun",
-          "range": 43
+          "range": 43,
+          "approved_names": {
+            "a": "Switham",
+            "b": "Swithunton"
+          }
         },
         {
           "id": "saewyn",
           "name": "Saewyn",
-          "range": 44
+          "range": 44,
+          "approved_names": {
+            "a": "Savenham",
+            "b": "Saewynley"
+          }
         },
         {
           "id": "thored",
           "name": "Thored",
-          "range": 45
+          "range": 45,
+          "approved_names": {
+            "a": "Thoreton",
+            "b": "Thorsbury"
+          }
         },
         {
           "id": "thurgar",
           "name": "Thurgar",
-          "range": 46
+          "range": 46,
+          "approved_names": {
+            "a": "Thurgarton",
+            "b": "Thurgarham"
+          }
         },
         {
           "id": "thurstan",
           "name": "Thurstan",
-          "range": 47
+          "range": 47,
+          "approved_names": {
+            "a": "Thurston",
+            "b": "Thursbury"
+          }
         },
         {
           "id": "tostig",
           "name": "Tostig",
-          "range": 48
+          "range": 48,
+          "approved_names": {
+            "a": "Tostington",
+            "b": "Tostwick"
+          }
         },
         {
           "id": "ulric",
           "name": "Ulric",
-          "range": 49
+          "range": 49,
+          "approved_names": {
+            "a": "Ulricton",
+            "b": "Ulridge"
+          }
         },
         {
           "id": "ulfred",
           "name": "Ulfred",
-          "range": 50
+          "range": 50,
+          "approved_names": {
+            "a": "Ulfredham",
+            "b": "Ulfredton"
+          }
         },
         {
           "id": "valric",
           "name": "Valric",
-          "range": 51
+          "range": 51,
+          "approved_names": {
+            "a": "Valricton",
+            "b": "Valridge"
+          }
         },
         {
           "id": "veyran",
           "name": "Veyran",
-          "range": 52
+          "range": 52,
+          "approved_names": {
+            "a": "Veyranwick",
+            "b": "Veyranford"
+          }
         },
         {
           "id": "veyla",
           "name": "Veyla",
-          "range": 53
+          "range": 53,
+          "approved_names": {
+            "a": "Veylamere",
+            "b": "Veylbury"
+          }
         },
         {
           "id": "verren",
           "name": "Verren",
-          "range": 54
+          "range": 54,
+          "approved_names": {
+            "a": "Verrenton",
+            "b": "Verrenham"
+          }
         },
         {
           "id": "varnold",
           "name": "Varnold",
-          "range": 55
+          "range": 55,
+          "approved_names": {
+            "a": "Varnham",
+            "b": "Varnbury"
+          }
         },
         {
           "id": "wulfric",
           "name": "Wulfric",
-          "range": 56
+          "range": 56,
+          "approved_names": {
+            "a": "Wulfriston",
+            "b": "Wulfwick"
+          }
         },
         {
           "id": "wulfstan",
           "name": "Wulfstan",
-          "range": 57
+          "range": 57,
+          "approved_names": {
+            "a": "Wulston",
+            "b": "Wulfsbury"
+          }
         },
         {
           "id": "wulfram",
           "name": "Wulfram",
-          "range": 58
+          "range": 58,
+          "approved_names": {
+            "a": "Wulframton",
+            "b": "Wulframden"
+          }
         },
         {
           "id": "wulfgard",
           "name": "Wulfgard",
-          "range": 59
+          "range": 59,
+          "approved_names": {
+            "a": "Wulfgate",
+            "b": "Wulford"
+          }
         },
         {
           "id": "wulwyn",
           "name": "Wulwyn",
-          "range": 60
+          "range": 60,
+          "approved_names": {
+            "a": "Wulwynham",
+            "b": "Wulwenford"
+          }
         },
         {
           "id": "wynric",
           "name": "Wynric",
-          "range": 61
+          "range": 61,
+          "approved_names": {
+            "a": "Wynerton",
+            "b": "Wynridge"
+          }
         },
         {
           "id": "wynstan",
           "name": "Wynstan",
-          "range": 62
+          "range": 62,
+          "approved_names": {
+            "a": "Wynston",
+            "b": "Wynstead"
+          }
         },
         {
           "id": "wymond",
           "name": "Wymond",
-          "range": 63
+          "range": 63,
+          "approved_names": {
+            "a": "Wymondham",
+            "b": "Wymondbury"
+          }
         },
         {
           "id": "wulda",
           "name": "Wulda",
-          "range": 64
+          "range": 64,
+          "approved_names": {
+            "a": "Wuldham",
+            "b": "Wuldwick"
+          }
         },
         {
           "id": "ysold",
           "name": "Ysold",
-          "range": 65
+          "range": 65,
+          "approved_names": {
+            "a": "Ysoldham",
+            "b": "Ysoldbury"
+          }
         },
         {
           "id": "ydran",
           "name": "Ydran",
-          "range": 66
+          "range": 66,
+          "approved_names": {
+            "a": "Ydranwick",
+            "b": "Ydransbury"
+          }
         },
         {
           "id": "yven",
           "name": "Yven",
-          "range": 67
+          "range": 67,
+          "approved_names": {
+            "a": "Yvenham",
+            "b": "Yvenford"
+          }
         },
         {
           "id": "ysmar",
           "name": "Ysmar",
-          "range": 68
+          "range": 68,
+          "approved_names": {
+            "a": "Ysmerton",
+            "b": "Ysmarwick"
+          }
         },
         {
           "id": "erland",
           "name": "Erland",
-          "range": 69
+          "range": 69,
+          "approved_names": {
+            "a": "Erlandton",
+            "b": "Erlandbury"
+          }
         },
         {
           "id": "erdwyn",
           "name": "Erdwyn",
-          "range": 70
+          "range": 70,
+          "approved_names": {
+            "a": "Erdwenham",
+            "b": "Erdwick"
+          }
         },
         {
           "id": "elric",
           "name": "Elric",
-          "range": 71
+          "range": 71,
+          "approved_names": {
+            "a": "Elricford",
+            "b": "Elridge"
+          }
         },
         {
           "id": "elswyth",
           "name": "Elswyth",
-          "range": 72
+          "range": 72,
+          "approved_names": {
+            "a": "Elswetham",
+            "b": "Elswick"
+          }
         },
         {
           "id": "eormund",
           "name": "Eormund",
-          "range": 73
+          "range": 73,
+          "approved_names": {
+            "a": "Ormondham",
+            "b": "Ormston"
+          }
         },
         {
           "id": "godwin",
           "name": "Godwin",
-          "range": 74
+          "range": 74,
+          "approved_names": {
+            "a": "Godwinsbury",
+            "b": "Godwinham"
+          }
         },
         {
           "id": "godfrey",
           "name": "Godfrey",
-          "range": 75
+          "range": 75,
+          "approved_names": {
+            "a": "Godfreyton",
+            "b": "Godfreywick"
+          }
         },
         {
           "id": "helmar",
           "name": "Helmar",
-          "range": 76
+          "range": 76,
+          "approved_names": {
+            "a": "Helmarbury",
+            "b": "Helmarston"
+          }
         },
         {
           "id": "hildren",
           "name": "Hildren",
-          "range": 77
+          "range": 77,
+          "approved_names": {
+            "a": "Hildrenham",
+            "b": "Hildenford"
+          }
         },
         {
           "id": "hadran",
           "name": "Hadran",
-          "range": 78
+          "range": 78,
+          "approved_names": {
+            "a": "Hadransbury",
+            "b": "Hadranham"
+          }
         },
         {
           "id": "hester",
           "name": "Hester",
-          "range": 79
+          "range": 79,
+          "approved_names": {
+            "a": "Hesterfield",
+            "b": "Hesterwick"
+          }
         },
         {
           "id": "isolde",
           "name": "Isolde",
-          "range": 80
+          "range": 80,
+          "approved_names": {
+            "a": "Isoldeham",
+            "b": "Isoldbury"
+          }
         },
         {
           "id": "ismere",
           "name": "Ismere",
-          "range": 81
+          "range": 81,
+          "approved_names": {
+            "a": "Ismereford",
+            "b": "Ismerwick"
+          }
         },
         {
           "id": "ildren",
           "name": "Ildren",
-          "range": 82
+          "range": 82,
+          "approved_names": {
+            "a": "Ildrenham",
+            "b": "Ildensbury"
+          }
         },
         {
           "id": "iveric",
           "name": "Iveric",
-          "range": 83
+          "range": 83,
+          "approved_names": {
+            "a": "Iverton",
+            "b": "Iverwick"
+          }
         },
         {
           "id": "jorren",
           "name": "Jorren",
-          "range": 84
+          "range": 84,
+          "approved_names": {
+            "a": "Jorrenham",
+            "b": "Jorrenford"
+          }
         },
         {
           "id": "judric",
           "name": "Judric",
-          "range": 85
+          "range": 85,
+          "approved_names": {
+            "a": "Judricton",
+            "b": "Judridge"
+          }
         },
         {
           "id": "leofric",
           "name": "Leofric",
-          "range": 86
+          "range": 86,
+          "approved_names": {
+            "a": "Leofricton",
+            "b": "Leofridge"
+          }
         },
         {
           "id": "leofwyn",
           "name": "Leofwyn",
-          "range": 87
+          "range": 87,
+          "approved_names": {
+            "a": "Leofwynham",
+            "b": "Leofwynbury"
+          }
         },
         {
           "id": "lothren",
           "name": "Lothren",
-          "range": 88
+          "range": 88,
+          "approved_names": {
+            "a": "Lothrenford",
+            "b": "Lothbury"
+          }
         },
         {
           "id": "lucan",
           "name": "Lucan",
-          "range": 89
+          "range": 89,
+          "approved_names": {
+            "a": "Lucanton",
+            "b": "Lucanbury"
+          }
         },
         {
           "id": "maeric",
           "name": "Maeric",
-          "range": 90
+          "range": 90,
+          "approved_names": {
+            "a": "Maericton",
+            "b": "Maerwick"
+          }
         },
         {
           "id": "maerwyn",
           "name": "Maerwyn",
-          "range": 91
+          "range": 91,
+          "approved_names": {
+            "a": "Maerwynham",
+            "b": "Maerwynford"
+          }
         },
         {
           "id": "maud",
           "name": "Maud",
-          "range": 92
+          "range": 92,
+          "approved_names": {
+            "a": "Maudham",
+            "b": "Maudsley"
+          }
         },
         {
           "id": "morwen",
           "name": "Morwen",
-          "range": 93
+          "range": 93,
+          "approved_names": {
+            "a": "Morwenham",
+            "b": "Morwenbury"
+          }
         },
         {
           "id": "moryn",
           "name": "Moryn",
-          "range": 94
+          "range": 94,
+          "approved_names": {
+            "a": "Morynwick",
+            "b": "Morynford"
+          }
         },
         {
           "id": "nerys",
           "name": "Nerys",
-          "range": 95
+          "range": 95,
+          "approved_names": {
+            "a": "Nerysbury",
+            "b": "Neryswell"
+          }
         },
         {
           "id": "norric",
           "name": "Norric",
-          "range": 96
+          "range": 96,
+          "approved_names": {
+            "a": "Norricton",
+            "b": "Norridge"
+          }
         },
         {
           "id": "othmar",
           "name": "Othmar",
-          "range": 97
+          "range": 97,
+          "approved_names": {
+            "a": "Othmarham",
+            "b": "Othmarbury"
+          }
         },
         {
           "id": "orwen",
           "name": "Orwen",
-          "range": 98
+          "range": 98,
+          "approved_names": {
+            "a": "Orwenham",
+            "b": "Orwenford"
+          }
         },
         {
           "id": "godric",
           "name": "Godric",
-          "range": 99
+          "range": 99,
+          "approved_names": {
+            "a": "Godricton",
+            "b": "Godricsbury"
+          }
         },
         {
           "id": "hereward",
           "name": "Hereward",
-          "range": 100
+          "range": 100,
+          "approved_names": {
+            "a": "Harrowden",
+            "b": "Harrowwick"
+          }
         }
       ]
     }

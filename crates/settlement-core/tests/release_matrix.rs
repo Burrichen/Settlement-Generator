@@ -124,6 +124,7 @@ fn every_kind_of_content_edit_survives_a_restart() {
         unique: false,
         fallback: None,
         label_variants: Vec::new(),
+        approved_names: Default::default(),
     };
     custom
         .results

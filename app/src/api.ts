@@ -334,6 +334,10 @@ export interface NamePartOptions {
   label: string;
   table: Named;
   options: ResultOption[];
+  /** Settlement names: the name each option would give (null: none). */
+  previews?: (string | null)[];
+  /** Settlement names: the part's current result. */
+  current?: string;
 }
 
 export interface FiguresView {
@@ -354,6 +358,10 @@ export interface NamingView {
   method?: Named;
   /** Each rolled part (only with Tag View). */
   parts?: NamePartView[];
+  /** How the parts were joined (only with Tag View). */
+  assembly?: NameAssembly;
+  /** For a generated name: each part's results, for changing one part. */
+  part_options?: NamePartOptions[];
   /** Active tags that selected the scheme (only with Tag View). */
   routing?: Named[];
 }
@@ -361,9 +369,48 @@ export interface NamingView {
 export interface NamePartView {
   table: Named;
   result: Named;
+  /** Chosen rather than rolled. */
+  chosen?: boolean;
   dice?: string;
   roll?: string;
 }
+
+/** A spelling exception: component result IDs (or display names) → name. */
+export interface SpellingException {
+  results?: string[];
+  components?: string[];
+  name: string;
+  note?: string;
+}
+
+/** How a generated name was put together. */
+export interface NameAssembly {
+  join: string;
+  exception?: SpellingException;
+  curated?: { table: string; source: string; field: string; variant: string };
+}
+
+export type JoinStyle =
+  | { style: "compound" }
+  | { style: "space" }
+  | { style: "possessive"; suffix: string; before?: string[]; after_s?: string }
+  | {
+      style: "curated_variant";
+      source_field: string;
+      source_from_result_id?: number;
+      variant_from_result_id: number;
+      on_missing: "error";
+    };
+
+export type Capitalisation = "sentence" | "words" | "as_written";
+
+/** A naming method's joining rule. */
+export type JoinRule = JoinStyle & {
+  separator?: string;
+  case?: Capitalisation;
+  replacements?: { from: string; to: string }[];
+  description?: string;
+};
 
 export interface SessionView {
   mode: GenerationMode;
@@ -421,6 +468,12 @@ export const generation = {
     invoke<GenerationResponse>("generation_roll_figure_field", { stage, figure, field }),
   chooseFigureField: (stage: number, figure: number, field: string, result: string) =>
     invoke<GenerationResponse>("generation_choose_figure_field", { stage, figure, field, result }),
+  /** Rolls one part of the settlement's generated name again. */
+  rollNamePart: (stage: number, part: number) =>
+    invoke<GenerationResponse>("generation_roll_name_part", { stage, part }),
+  /** Chooses one part of the settlement's generated name. */
+  chooseNamePart: (stage: number, part: number, result: string) =>
+    invoke<GenerationResponse>("generation_choose_name_part", { stage, part, result }),
   rollFigureName: (stage: number, figure: number) =>
     invoke<GenerationResponse>("generation_roll_figure_name", { stage, figure }),
   chooseFigureNamePart: (stage: number, figure: number, part: number, result: string) =>
@@ -485,6 +538,8 @@ export interface NameRecord {
   source: NameSource;
   scheme?: Named;
   method?: Named;
+  /** How the parts were joined; absent for typed and older names. */
+  assembly?: NameAssembly;
   /** Version that produced the name. */
   app_version: string;
 }
@@ -538,6 +593,8 @@ export interface TableResult {
   fallback?: string;
   /** Display labels by a tag of the holder (e.g. gender.woman → Lady). */
   label_variants?: LabelVariant[];
+  /** Approved final names keyed by a variant result's ID (curated_variant). */
+  approved_names?: Record<string, string>;
 }
 
 export interface RangeAssignment {
@@ -612,6 +669,7 @@ export interface IssueLocation {
   effect?: number;
   follow_up?: string;
   sequence_step?: number;
+  naming_scheme?: string;
 }
 
 export interface ValidationIssue {
@@ -678,6 +736,28 @@ export interface TableDetail {
   built_in: boolean;
   coverage: Coverage[];
   issues: ValidationIssue[];
+  /** Naming methods reading approved names from this table's results. */
+  approved_names?: ApprovedNameSlots[];
+  /** When this is a naming method table: each method's join and exceptions. */
+  naming_methods?: NamingMethodDetail[];
+}
+
+export interface ApprovedNameSlots {
+  scheme: Named;
+  method: Named;
+  variant_table: Named;
+  /** One approved name is needed per variant. */
+  variants: Named[];
+}
+
+export interface NamingMethodDetail {
+  scheme: Named;
+  method: Named;
+  join: JoinRule;
+  exceptions: SpellingException[];
+  components: { table: Named; results: Named[] }[];
+  modified: boolean;
+  built_in: boolean;
 }
 
 export interface TagUsage {
@@ -743,6 +823,20 @@ export const content = {
   resetTable: (id: string) => invoke<ContentOverview>("content_reset_table", { id }),
   resetTag: (id: string) => invoke<ContentOverview>("content_reset_tag", { id }),
   resetAll: () => invoke<ContentOverview>("content_reset_all"),
+  checkNamingMethod: (
+    scheme: string,
+    method: string,
+    join: JoinRule,
+    exceptions: SpellingException[],
+  ) => invoke<DraftCheck>("content_check_naming_method", { scheme, method, join, exceptions }),
+  saveNamingMethod: (
+    scheme: string,
+    method: string,
+    join: JoinRule,
+    exceptions: SpellingException[],
+  ) => invoke<TableDetail>("content_save_naming_method", { scheme, method, join, exceptions }),
+  resetNamingMethod: (scheme: string, method: string) =>
+    invoke<TableDetail>("content_reset_naming_method", { scheme, method }),
   effectSchema: () => invoke<EffectKindSchema[]>("effect_schema"),
 };
 

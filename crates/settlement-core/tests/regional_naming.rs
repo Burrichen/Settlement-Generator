@@ -1,8 +1,9 @@
-//! Regional naming packs: Halingo, Skgurr and Shinkira, and the later packs.
-//! Each region tag selects its own scheme; every table covers its dice
-//! exactly; the approved examples come out of real dice rolls; and each
-//! region's joining rule is its own. Skgurr has its own d100 element tables
-//! and only the Geographic Compound method.
+//! Regional naming packs: Halingo, Skgurr, Shinkira, Bratislor, Hjartheland,
+//! Nareth and Targoth (Ordon has its own tests). Each region tag selects its
+//! own scheme; every table covers its dice exactly; every method result is
+//! wired to a method; examples come out of real dice rolls; and each region's
+//! joining rule is its own. Skgurr has its own d100 element tables and only
+//! the Geographic Compound method.
 
 use std::sync::Arc;
 
@@ -95,15 +96,6 @@ fn table<'c>(c: &'c ContentSet, key: &str, suffix: &str) -> &'c settlement_core:
         .unwrap_or_else(|| panic!("table.naming.{key}.{suffix}"))
 }
 
-/// Names of a table's results, in face order.
-fn entries(c: &ContentSet, key: &str, suffix: &str) -> Vec<String> {
-    table(c, key, suffix)
-        .results
-        .iter()
-        .map(|r| r.name.clone())
-        .collect()
-}
-
 // ----- routing -------------------------------------------------------------------------
 
 #[test]
@@ -159,38 +151,39 @@ fn every_scheme_routes_on_kurovia_and_its_own_region_tag() {
 
 // ----- dice coverage -------------------------------------------------------------------
 
-/// Regions with the starter layout (d12/d6 parts, 70/30 method). Skgurr has
-/// its own approved layout.
-fn starter_regions() -> impl Iterator<Item = &'static Region> {
-    REGIONS.iter().filter(|r| r.key != "skgurr")
+fn scheme<'c>(c: &'c ContentSet, key: &str) -> &'c settlement_core::naming::NamingScheme {
+    c.naming_schemes
+        .iter()
+        .find(|s| s.id.as_str() == format!("naming.kurovia.{key}"))
+        .unwrap()
 }
 
 #[test]
-fn every_d12_and_d6_table_covers_its_dice_exactly() {
+fn every_regional_table_covers_its_dice_exactly() {
     let c = content();
-    for region in starter_regions() {
-        for (suffix, dice, sides) in [
-            ("firstElement", "1d12", 12),
-            ("secondElement", "1d12", 12),
-            ("founder", "1d12", 12),
-            ("founderEnding", "1d6", 6),
-        ] {
-            let t = table(&c, region.key, suffix);
-            assert_eq!(t.dice.as_deref(), Some(dice), "{}", t.id);
-            assert_eq!(t.results.len(), sides, "{}", t.id);
-            for face in 1..=sides as i32 {
+    for region in &REGIONS {
+        let scheme = scheme(&c, region.key);
+        let tables = std::iter::once(&scheme.method_table)
+            .chain(scheme.methods.iter().flat_map(|m| m.components.iter()));
+        for id in tables {
+            let t = c.table(id).unwrap_or_else(|| panic!("{id}"));
+            // Skgurr's single method is selected, not rolled.
+            let Some(dice) = t.dice.as_deref() else {
+                assert_eq!(t.results.len(), 1, "{id}");
+                continue;
+            };
+            let sides: i32 = dice
+                .strip_prefix("1d")
+                .and_then(|n| n.parse().ok())
+                .unwrap_or_else(|| panic!("{id}: {dice}"));
+            for face in 1..=sides {
                 let owners = t
                     .results
                     .iter()
                     .filter(|r| r.range.is_some_and(|range| range.contains(face)))
                     .count();
-                assert_eq!(owners, 1, "{} face {face}", t.id);
+                assert_eq!(owners, 1, "{id} face {face}");
             }
-            // Equally likely: one face each.
-            assert!(t.results.iter().all(|r| {
-                let range = r.range.unwrap();
-                range.min == range.max
-            }));
         }
     }
 }
@@ -250,95 +243,42 @@ fn skgurr_always_uses_geographic_compound() {
 }
 
 #[test]
-fn methods_are_weighted_70_30_on_a_d10() {
+fn every_method_result_has_its_own_method() {
     let c = content();
-    for region in starter_regions() {
-        let method = table(&c, region.key, "method");
-        assert_eq!(method.dice.as_deref(), Some("1d10"));
-        let layout: Vec<(&str, &str, i32, i32)> = method
+    for region in &REGIONS {
+        let scheme = scheme(&c, region.key);
+        let results: Vec<&str> = c
+            .table(&scheme.method_table)
+            .unwrap()
             .results
             .iter()
-            .map(|r| {
-                let range = r.range.unwrap();
-                (r.id.as_str(), r.name.as_str(), range.min, range.max)
-            })
+            .map(|r| r.id.as_str())
             .collect();
-        assert_eq!(
-            layout,
-            [
-                ("geographic", "Geographic Compound", 1, 7),
-                ("founder", "Historical Founder", 8, 10)
-            ]
+        let methods: Vec<&str> = scheme.methods.iter().map(|m| m.result.as_str()).collect();
+        assert_eq!(results, methods, "{}", region.key);
+    }
+}
+
+#[test]
+fn halingo_never_generates_heresy() {
+    // Heresy is an established Halingo settlement: it is reserved.
+    let c = content();
+    let scheme = scheme(&c, "halingo");
+    for id in scheme.methods.iter().flat_map(|m| m.components.iter()) {
+        let t = c.table(id).unwrap();
+        assert!(
+            t.results
+                .iter()
+                .all(|r| !r.name.eq_ignore_ascii_case("heresy")),
+            "{id}"
         );
     }
 }
 
-// ----- the approved lists --------------------------------------------------------------
-
-#[test]
-fn the_approved_entries_are_present_in_order() {
-    let c = content();
-    let expect = |key: &str, suffix: &str, list: &str| {
-        let want: Vec<String> = list.split(", ").map(str::to_owned).collect();
-        assert_eq!(entries(&c, key, suffix), want, "{key} {suffix}");
-    };
-    expect(
-        "halingo",
-        "firstElement",
-        "Khar, Sere, Varr, Dun, Tal, Brine, Cinder, Ash, Red, Mara, Silt, Vek",
-    );
-    expect(
-        "halingo",
-        "secondElement",
-        "Well, Rest, Pass, Hold, Wash, Reach, Ridge, Ford, Crossing, Gate, Station, Haven",
-    );
-    expect(
-        "halingo",
-        "founder",
-        "Varesh, Tamar, Karven, Delan, Sevrin, Harad, Marella, Orvek, Saren, Jorek, Varin, Ilyra",
-    );
-    expect(
-        "halingo",
-        "founderEnding",
-        "Well, Rest, Crossing, Station, Hold, Pass",
-    );
-    expect(
-        "skgurr",
-        "firstElement",
-        "Dun, Glen, Strath, Brae, Inver, Ard, Auchen, Bal, Ben, Craig, Drum, Cairn, Corrie, Kin, Loch, Keld, Mor, Skel, Rook, Grey, Black, Thorn, Sgeir, Rubha, Tobar, Cnoc, Eilean, Sron, Skerry, Muckle",
-    );
-    expect(
-        "skgurr",
-        "secondElement",
-        "wick, ness, nish, firth, holm, muir, crag, haven, port, shore, head, bay, point, glen, brae, burn, dale, ford, kirk, well, skerry, geo, voe, bost, ster, isle, rock, watch, croft, sound",
-    );
-    expect(
-        "shinkira",
-        "firstElement",
-        "Aki, Asa, Fuyu, Hana, Hira, Hoshi, Kiri, Kuro, Mizu, Sugi, Taki, Tsuki",
-    );
-    expect(
-        "shinkira",
-        "secondElement",
-        "mura, sato, hara, sawa, kawa, tani, yama, oka, shima, mori, numa, zaki",
-    );
-    expect(
-        "shinkira",
-        "founder",
-        "Arai, Endo, Hoshino, Ishida, Kagawa, Kitamura, Mizuno, Morita, Nakai, Sakurai, Takeda, Ueda",
-    );
-    expect(
-        "shinkira",
-        "founderEnding",
-        "mura, sato, shinden, machi, yashiki, shiro",
-    );
-}
-
 // ----- names from real dice ----------------------------------------------------------------
 
-/// `[method face, first part face, second part face]`: method 1–7 is
-/// Geographic, 8–10 Historical Founder.
-fn check(region: u32, cases: &[([u32; 3], &str)]) {
+/// `[method face, part faces…]`: one face per component of the method.
+fn check(region: u32, cases: &[(&[u32], &str)]) {
     let c = content();
     for (faces, expected) in cases {
         assert_eq!(name(&c, region, faces), *expected, "dice {faces:?}");
@@ -350,18 +290,20 @@ fn halingo_names() {
     check(
         2,
         &[
-            ([1, 1, 1], "Khar Well"),
-            ([1, 7, 7], "Cinder Ridge"),
-            ([1, 11, 9], "Silt Crossing"),
-            ([1, 3, 2], "Varr Rest"),
-            ([8, 1, 1], "Varesh's Well"),
-            ([8, 3, 3], "Karven's Crossing"),
-            ([8, 9, 2], "Saren's Rest"),
+            (&[1, 1, 1], "Khar Well"),
+            (&[1, 7, 7], "Dun Rest"),
+            (&[16, 1, 1], "Last Well"),
+            (&[28, 5, 3], "Silver Lode"),
+            (&[38, 10, 4], "Black Depot"),
+            (&[44, 1], "Cinderford"),
+            (&[70, 1, 1], "Varesh Well"),
+            (&[73, 1], "Kharaven"),
+            (&[97, 1, 1], "Broken Beacon"),
+            (&[99, 1], "Dissent"),
         ],
     );
 }
 
-/// Skgurr rolls no method die: `[first part face, second part face]`.
 #[test]
 fn skgurr_names() {
     let c = content();
@@ -396,21 +338,16 @@ fn shinkira_names() {
     check(
         4,
         &[
-            ([1, 7, 4], "Kirisawa"),
-            ([1, 9, 1], "Mizumura"),
-            ([1, 8, 7], "Kuroyama"),
-            ([1, 5, 8], "Hiraoka"),
-            ([8, 11, 1], "Takedamura"),
-            ([8, 7, 2], "Mizunosato"),
-            ([8, 12, 3], "Uedashinden"),
+            (&[1, 7, 4], "Hanasawa"),
+            (&[1, 50, 20], "Kitashinden"),
+            (&[8, 1, 1], "Araimura"),
+            (&[8, 100, 20], "Yukimurazaki"),
         ],
     );
 }
 
 #[test]
 fn founders_ending_in_s_follow_each_regions_own_rule() {
-    // No approved Halingo founder ends in "s", so add one (as a user could)
-    // and check the documented rule.
     let mut c = content();
     let founders = c
         .tables
@@ -418,11 +355,12 @@ fn founders_ending_in_s_follow_each_regions_own_rule() {
         .find(|t| t.id.as_str() == "table.naming.halingo.founder")
         .unwrap();
     founders.results[0].name = "Tamas".into();
-    // Halingo: an apostrophe only.
-    assert_eq!(name(&c, 2, &[8, 1, 1]), "Tamas' Well");
+    // Halingo joins a landholder and a site with a space, no possessive.
+    assert_eq!(name(&c, 2, &[70, 1, 1]), "Tamas Well");
     // Shinkira never adds a possessive, and Ordon keeps its own rule.
-    assert_eq!(name(&c, 4, &[8, 11, 1]), "Takedamura");
-    assert_eq!(name(&c, 1, &[8, 95, 6]), "Nerysbury");
+    assert_eq!(name(&c, 4, &[8, 1, 1]), "Araimura");
+    // Ordon's approved founder form carries its own possessive: Nerys, A.
+    assert_eq!(name(&c, 1, &[43, 95, 1]), "Nerysbury");
 }
 
 #[test]
@@ -434,18 +372,18 @@ fn regional_tables_are_customised_through_the_normal_override_system() {
     service.save_table(founders).unwrap();
 
     let content = service.content().unwrap();
-    assert_eq!(name(&content, 2, &[8, 1, 1]), "Vareshi's Well");
+    assert_eq!(name(&content, 2, &[70, 1, 1]), "Vareshi Well");
     // Resetting restores the shipped entry.
     service.reset_table(&id).unwrap();
     let content = service.content().unwrap();
-    assert_eq!(name(&content, 2, &[8, 1, 1]), "Varesh's Well");
+    assert_eq!(name(&content, 2, &[70, 1, 1]), "Varesh Well");
 }
 
 #[test]
 fn saved_regional_names_survive_later_content_changes() {
     let c = content();
     let mut s = at_region(&c, 2);
-    s.roll(NAME, &mut dice(&[8, 1, 1])).unwrap(); // Varesh's Well
+    s.roll(NAME, &mut dice(&[70, 1, 1])).unwrap(); // Varesh Well
     let snapshot = s.to_snapshot();
 
     let mut changed = c.clone();
@@ -462,7 +400,7 @@ fn saved_regional_names_survive_later_content_changes() {
         &snapshot,
     )
     .unwrap();
-    assert_eq!(reopened.name().as_deref(), Some("Varesh's Well"));
+    assert_eq!(reopened.name().as_deref(), Some("Varesh Well"));
     let record = snapshot
         .stages
         .iter()
@@ -526,98 +464,16 @@ fn exactly_eight_kurovian_schemes_cover_every_kurovian_region() {
 }
 
 #[test]
-fn the_later_approved_entries_are_present_in_order() {
-    let c = content();
-    let expect = |key: &str, suffix: &str, list: &str| {
-        let want: Vec<String> = list.split(", ").map(str::to_owned).collect();
-        assert_eq!(entries(&c, key, suffix), want, "{key} {suffix}");
-    };
-    expect(
-        "bratislor",
-        "firstElement",
-        "Bel, Bor, Drev, Kras, Luka, Mor, Novo, Staro, Vel, Ves, Vran, Zor",
-    );
-    expect(
-        "bratislor",
-        "secondElement",
-        "grad, ovo, ine, ava, pol, nik, ic, gora, dol, ska, ova, ost",
-    );
-    expect(
-        "bratislor",
-        "founder",
-        "Dragomir, Vesna, Radan, Ilena, Oskar, Vorel, Mira, Sava, Daria, Branik, Zora, Stanimir",
-    );
-    expect("bratislor", "founderEnding", "grad, ov, in, ova, dol, pol");
-    expect(
-        "hjartheland",
-        "firstElement",
-        "Nord, Hrafn, Bjorn, Eir, Skar, Kald, Sval, Hald, Stein, Vard, Hjell, Skog",
-    );
-    expect(
-        "hjartheland",
-        "secondElement",
-        "vik, heim, dal, berg, nes, gard, havn, lund, fjord, set, holt, fell",
-    );
-    expect(
-        "hjartheland",
-        "founder",
-        "Eirik, Signe, Astrid, Torvald, Hakon, Runa, Halvor, Yrsa, Sigrun, Alva, Jorund, Leif",
-    );
-    expect(
-        "hjartheland",
-        "founderEnding",
-        "heim, gard, vik, set, dal, nes",
-    );
-    expect(
-        "nareth",
-        "firstElement",
-        "Va, Saq, Naro, Tal, Iru, Kori, Mara, Isha, Eru, Nema, Varu, Luma",
-    );
-    expect(
-        "nareth",
-        "secondElement",
-        "ra, neth, kai, ri, lo, sha, vai, mar, thil, sen, ru, ta",
-    );
-    expect(
-        "nareth",
-        "founder",
-        "Talari, Ivara, Namar, Sorai, Vesha, Aruna, Kethra, Lurien, Maiva, Sarru, Tavira, Eshar",
-    );
-    expect("nareth", "founderEnding", "en, mar, tal, vai, ra, ket");
-    expect(
-        "targoth",
-        "firstElement",
-        "Kar, Tor, Varn, Drel, Or, Kel, Mor, Vath, Bren, Skarn, Dru, Thar",
-    );
-    expect(
-        "targoth",
-        "secondElement",
-        "hold, gate, fell, watch, stone, deep, rest, reach, spire, dun, vale, cairn",
-    );
-    expect(
-        "targoth",
-        "founder",
-        "Varok, Thren, Odrik, Maren, Dravar, Keled, Voran, Torek, Ravik, Elvar, Sorn, Kerin",
-    );
-    expect(
-        "targoth",
-        "founderEnding",
-        "Hold, Gate, Watch, Rest, Cairn, Deep",
-    );
-}
-
-#[test]
 fn bratislor_names() {
     check(
         5,
         &[
-            ([1, 3, 1], "Drevgrad"),
-            ([1, 6, 4], "Morava"),
-            ([1, 11, 11], "Vranova"),
-            ([1, 9, 1], "Velgrad"),
-            ([8, 6, 1], "Vorelgrad"),
-            ([8, 3, 2], "Radanov"),
-            ([8, 10, 5], "Branikdol"),
+            (&[1, 1, 1], "Belgrad"),
+            (&[1, 9, 4], "Lukagrad"),
+            (&[9, 1, 1], "Dragomirgrad"),
+            (&[14, 1, 1], "Mlinov"),
+            (&[17, 1, 1], "Ardanesti"),
+            (&[19, 1, 1], "Sivov"),
         ],
     );
 }
@@ -627,13 +483,11 @@ fn hjartheland_names() {
     check(
         6,
         &[
-            ([1, 1, 1], "Nordvik"),
-            ([1, 4, 2], "Eirheim"),
-            ([1, 9, 3], "Steindal"),
-            ([1, 12, 5], "Skognes"),
-            ([8, 1, 1], "Eirikheim"),
-            ([8, 2, 3], "Signevik"),
-            ([8, 5, 2], "Hakongard"),
+            (&[1, 1, 1], "Nordvik"),
+            (&[23, 1, 1], "Steindal"),
+            (&[43, 1, 1], "Snøbre"),
+            (&[94, 1, 1], "Eiriksheim"),
+            (&[98, 1], "Eldrun"),
         ],
     );
 }
@@ -643,13 +497,11 @@ fn nareth_names() {
     check(
         7,
         &[
-            ([1, 3, 2], "Naroneth"),
-            ([1, 6, 7], "Korivai"),
-            ([1, 2, 8], "Saqmar"),
-            ([1, 12, 4], "Lumari"),
-            ([8, 1, 1], "Talarien"),
-            ([8, 2, 2], "Ivaramar"),
-            ([8, 3, 4], "Namarvai"),
+            (&[1, 1, 1], "Yanamayu"),
+            (&[26, 1, 1], "Pukallaqta"),
+            (&[65, 1, 1], "Rumillaqta"),
+            (&[93, 1, 1], "Talarien"),
+            (&[99, 1], "Yuranei"),
         ],
     );
 }
@@ -659,38 +511,43 @@ fn targoth_names() {
     check(
         8,
         &[
-            ([1, 1, 1], "Karhold"),
-            ([1, 10, 4], "Skarnwatch"),
-            ([1, 8, 2], "Vathgate"),
-            ([1, 4, 5], "Drelstone"),
-            ([8, 1, 2], "Varok's Gate"),
-            ([8, 2, 3], "Thren's Watch"),
-            ([8, 7, 4], "Voran's Rest"),
+            (&[1, 1, 1], "Karla"),
+            (&[1, 40, 10], "Surengang"),
+            (&[9, 1, 1], "Varok's Ling"),
+            (&[9, 11, 2], "Sorn's Ling"),
         ],
     );
+}
+
+/// The name a regional table gives on a face.
+fn at(c: &ContentSet, key: &str, suffix: &str, face: i32) -> String {
+    table(c, key, suffix)
+        .results
+        .iter()
+        .find(|r| r.range.is_some_and(|range| range.contains(face)))
+        .unwrap()
+        .name
+        .clone()
 }
 
 #[test]
 fn non_english_conventions_are_kept() {
     let mut c = content();
     // Hjartheland and Bratislor never add an English possessive.
-    assert_eq!(name(&c, 6, &[8, 1, 1]), "Eirikheim");
-    assert_eq!(
-        name(&c, 5, &[8, 2, 2]),
-        "Vesnaov",
-        "joined as written, no s"
-    );
+    assert_eq!(name(&c, 6, &[94, 1, 1]), "Eiriksheim");
+    assert_eq!(name(&c, 5, &[9, 1, 1]), "Dragomirgrad");
     // Letters beyond English join and capitalise correctly, if an editor
-    // uses them (the shipped lists are plain ASCII).
+    // uses them.
     let first = c
         .tables
         .iter_mut()
         .find(|t| t.id.as_str() == "table.naming.hjartheland.firstElement")
         .unwrap();
-    first.results[2].name = "bjørn".into();
-    first.results[0].name = "ØST".into();
-    assert_eq!(name(&c, 6, &[1, 3, 1]), "Bjørnvik");
-    assert_eq!(name(&c, 6, &[1, 1, 3]), "Østdal");
+    first.results[2].name = "bjørn".into(); // faces 5–6
+    first.results[0].name = "ØST".into(); // faces 1–2
+    let second = |face| at(&c, "hjartheland", "secondElement", face);
+    assert_eq!(name(&c, 6, &[1, 5, 1]), format!("Bjørn{}", second(1)));
+    assert_eq!(name(&c, 6, &[1, 1, 3]), format!("Øst{}", second(3)));
     // Targoth founders always take 's, as in English place names.
     let founders = c
         .tables
@@ -698,14 +555,14 @@ fn non_english_conventions_are_kept() {
         .find(|t| t.id.as_str() == "table.naming.targoth.founder")
         .unwrap();
     founders.results[10].name = "Sorns".into();
-    assert_eq!(name(&c, 8, &[8, 11, 2]), "Sorns's Gate");
+    assert_eq!(name(&c, 8, &[9, 11, 2]), "Sorns's Ling");
 }
 
 #[test]
 fn nareth_phonetic_rules_are_data_not_code() {
     let mut c = content();
     // Shipped with no transformations: parts are joined as they are.
-    assert_eq!(name(&c, 7, &[1, 1, 1]), "Vara");
+    assert_eq!(name(&c, 7, &[1, 1, 1]), "Yanamayu");
     let scheme = c
         .naming_schemes
         .iter_mut()
@@ -719,7 +576,7 @@ fn nareth_phonetic_rules_are_data_not_code() {
     );
     // An editor can add a phonetic rule as data.
     let rule: settlement_core::naming::Replacement =
-        serde_json::from_value(serde_json::json!({ "from": "ara", "to": "ra" })).unwrap();
+        serde_json::from_value(serde_json::json!({ "from": "nama", "to": "na" })).unwrap();
     scheme.methods[0].join.replacements.push(rule);
-    assert_eq!(name(&c, 7, &[1, 1, 1]), "Vra");
+    assert_eq!(name(&c, 7, &[1, 1, 1]), "Yanayu");
 }

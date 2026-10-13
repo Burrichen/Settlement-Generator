@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.waterSecond",
+      "name": "Hjartheland Water: Waterway Ending",
+      "description": "Bays, lakes, channels, isthmuses, boatsheds, headlands and small waterways. Twenty equally likely d20 endings.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "vik",
+          "name": "vik",
+          "range": 1
+        },
+        {
+          "id": "fjord",
+          "name": "fjord",
+          "range": 2
+        },
+        {
+          "id": "nes",
+          "name": "nes",
+          "range": 3
+        },
+        {
+          "id": "sund",
+          "name": "sund",
+          "range": 4
+        },
+        {
+          "id": "vatn",
+          "name": "vatn",
+          "range": 5
+        },
+        {
+          "id": "tjern",
+          "name": "tjern",
+          "range": 6
+        },
+        {
+          "id": "elv",
+          "name": "elv",
+          "range": 7
+        },
+        {
+          "id": "a",
+          "name": "å",
+          "range": 8
+        },
+        {
+          "id": "bekk",
+          "name": "bekk",
+          "range": 9
+        },
+        {
+          "id": "havn",
+          "name": "havn",
+          "range": 10
+        },
+        {
+          "id": "holme",
+          "name": "holme",
+          "range": 11
+        },
+        {
+          "id": "oy",
+          "name": "øy",
+          "range": 12
+        },
+        {
+          "id": "odde",
+          "name": "odde",
+          "range": 13
+        },
+        {
+          "id": "strand",
+          "name": "strand",
+          "range": 14
+        },
+        {
+          "id": "skjaer",
+          "name": "skjær",
+          "range": 15
+        },
+        {
+          "id": "eid",
+          "name": "eid",
+          "range": 16
+        },
+        {
+          "id": "kilen",
+          "name": "kilen",
+          "range": 17
+        },
+        {
+          "id": "poll",
+          "name": "poll",
+          "range": 18
+        },
+        {
+          "id": "osen",
+          "name": "osen",
+          "range": 19
+        },
+        {
+          "id": "naust",
+          "name": "naust",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

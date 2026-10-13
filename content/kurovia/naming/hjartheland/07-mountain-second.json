@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.mountainSecond",
+      "name": "Hjartheland Mountain: Landform Ending",
+      "description": "Ridge, height, mountain foot, pass, summit, valley and slope endings. 24 endings explicitly weighted over d100.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "dal",
+          "name": "dal",
+          "range": [
+            1,
+            5
+          ]
+        },
+        {
+          "id": "dalen",
+          "name": "dalen",
+          "range": [
+            6,
+            10
+          ]
+        },
+        {
+          "id": "fell",
+          "name": "fell",
+          "range": [
+            11,
+            15
+          ]
+        },
+        {
+          "id": "berg",
+          "name": "berg",
+          "range": [
+            16,
+            20
+          ]
+        },
+        {
+          "id": "tind",
+          "name": "tind",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "skar",
+          "name": "skar",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "haug",
+          "name": "haug",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "li",
+          "name": "li",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "as",
+          "name": "ås",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "knaus",
+          "name": "knaus",
+          "range": [
+            41,
+            44
+          ]
+        },
+        {
+          "id": "egg",
+          "name": "egg",
+          "range": [
+            45,
+            48
+          ]
+        },
+        {
+          "id": "kleiv",
+          "name": "kleiv",
+          "range": [
+            49,
+            52
+          ]
+        },
+        {
+          "id": "botn",
+          "name": "botn",
+          "range": [
+            53,
+            56
+          ]
+        },
+        {
+          "id": "slette",
+          "name": "slette",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "mo",
+          "name": "mo",
+          "range": [
+            61,
+            64
+          ]
+        },
+        {
+          "id": "vidda",
+          "name": "vidda",
+          "range": [
+            65,
+            68
+          ]
+        },
+        {
+          "id": "rud",
+          "name": "rud",
+          "range": [
+            69,
+            72
+          ]
+        },
+        {
+          "id": "tun",
+          "name": "tun",
+          "range": [
+            73,
+            76
+          ]
+        },
+        {
+          "id": "skaret",
+          "name": "skaret",
+          "range": [
+            77,
+            80
+          ]
+        },
+        {
+          "id": "fjell",
+          "name": "fjell",
+          "range": [
+            81,
+            84
+          ]
+        },
+        {
+          "id": "hogda",
+          "name": "høgda",
+          "range": [
+            85,
+            88
+          ]
+        },
+        {
+          "id": "varde",
+          "name": "varde",
+          "range": [
+            89,
+            92
+          ]
+        },
+        {
+          "id": "pass",
+          "name": "pass",
+          "range": [
+            93,
+            96
+          ]
+        },
+        {
+          "id": "brekka",
+          "name": "brekka",
+          "range": [
+            97,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

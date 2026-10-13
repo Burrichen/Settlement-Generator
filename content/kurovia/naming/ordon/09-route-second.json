@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.routeSecond",
+      "name": "Ordon Transport: Approved Name Form",
+      "description": "Roll 1d4 and look up one of four approved settlement names under the first result in 08-route-first.json.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "a",
+          "name": "A",
+          "range": 1
+        },
+        {
+          "id": "b",
+          "name": "B",
+          "range": 2
+        },
+        {
+          "id": "c",
+          "name": "C",
+          "range": 3
+        },
+        {
+          "id": "d",
+          "name": "D",
+          "range": 4
+        }
+      ]
+    }
+  ]
+}

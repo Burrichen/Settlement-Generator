@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.warningFirst",
+      "name": "Halingo Warning: Incident",
+      "description": "Names referring to failed expeditions, dangerous routes, ruin or neglected landmarks; rare, not all supernatural.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "broken",
+          "name": "Broken",
+          "range": 1
+        },
+        {
+          "id": "lost",
+          "name": "Lost",
+          "range": 2
+        },
+        {
+          "id": "fallen",
+          "name": "Fallen",
+          "range": 3
+        },
+        {
+          "id": "split",
+          "name": "Split",
+          "range": 4
+        },
+        {
+          "id": "burnt",
+          "name": "Burnt",
+          "range": 5
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": 6
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "range": 7
+        },
+        {
+          "id": "bitter",
+          "name": "Bitter",
+          "range": 8
+        },
+        {
+          "id": "bleached",
+          "name": "Bleached",
+          "range": 9
+        },
+        {
+          "id": "crooked",
+          "name": "Crooked",
+          "range": 10
+        },
+        {
+          "id": "forsaken",
+          "name": "Forsaken",
+          "range": 11
+        },
+        {
+          "id": "silent",
+          "name": "Silent",
+          "range": 12
+        },
+        {
+          "id": "shattered",
+          "name": "Shattered",
+          "range": 13
+        },
+        {
+          "id": "hollow",
+          "name": "Hollow",
+          "range": 14
+        },
+        {
+          "id": "scoured",
+          "name": "Scoured",
+          "range": 15
+        },
+        {
+          "id": "scorched",
+          "name": "Scorched",
+          "range": 16
+        },
+        {
+          "id": "vanished",
+          "name": "Vanished",
+          "range": 17
+        },
+        {
+          "id": "last",
+          "name": "Last",
+          "range": 18
+        },
+        {
+          "id": "dead",
+          "name": "Dead",
+          "range": 19
+        },
+        {
+          "id": "blind",
+          "name": "Blind",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

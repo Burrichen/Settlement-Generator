@@ -1,0 +1,1637 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.personName.dwarf.family",
+      "name": "Dwarf Clans — 50 Great Clans",
+      "description": "50 distinct inherited clan names. Each name covers two faces of d100. The 50 Great Clans are more common per individual clan than the 150 lesser clans.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "great.001",
+          "name": "Anvilward",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "great.002",
+          "name": "Ashenmantle",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "great.003",
+          "name": "Blackvein",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "great.004",
+          "name": "Bronzewall",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "great.005",
+          "name": "Cinderhelm",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "great.006",
+          "name": "Coppercrown",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "great.007",
+          "name": "Deepdelve",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "great.008",
+          "name": "Emberanvil",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "great.009",
+          "name": "Flintmantle",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "great.010",
+          "name": "Forgewarden",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "great.011",
+          "name": "Frostmantle",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "great.012",
+          "name": "Goldbraid",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "great.013",
+          "name": "Granitehand",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "great.014",
+          "name": "Greyhammer",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "great.015",
+          "name": "Hearthwarden",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "great.016",
+          "name": "Ironhearth",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "great.017",
+          "name": "Ironvow",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "great.018",
+          "name": "Oathhammer",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "great.019",
+          "name": "Quarryborn",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "great.020",
+          "name": "Redquartz",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "great.021",
+          "name": "Runegrip",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "great.022",
+          "name": "Slateward",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "great.023",
+          "name": "Stonegird",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "great.024",
+          "name": "Thunderpick",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "great.025",
+          "name": "Undervale",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "great.026",
+          "name": "Starforge",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "great.027",
+          "name": "Kragdur",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "great.028",
+          "name": "Durvorn",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "great.029",
+          "name": "Khazdrim",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "great.030",
+          "name": "Barum",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "great.031",
+          "name": "Brundrik",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "great.032",
+          "name": "Dhorun",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "great.033",
+          "name": "Ordhain",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "great.034",
+          "name": "Vargrum",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "great.035",
+          "name": "Tharvok",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "great.036",
+          "name": "Keldrum",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "great.037",
+          "name": "Brokhan",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "great.038",
+          "name": "Halgrim",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "great.039",
+          "name": "Durkhar",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "great.040",
+          "name": "Varnak",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "great.041",
+          "name": "Beldrum",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "great.042",
+          "name": "Hadrun",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "great.043",
+          "name": "Skorn",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "great.044",
+          "name": "Kravenn",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "great.045",
+          "name": "Borgrum",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "great.046",
+          "name": "Kazgor",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "great.047",
+          "name": "Tholdran",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "great.048",
+          "name": "Fargrum",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "great.049",
+          "name": "Durneth",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "great.050",
+          "name": "Odrak",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.dwarf.family.lesser_stone",
+      "name": "Dwarf Clans — Lesser Stone",
+      "description": "50 distinct inherited clan names. Each name covers two faces of d100. The 50 Great Clans are more common per individual clan than the 150 lesser clans.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "lesser_stone.001",
+          "name": "Boulderwatch",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "lesser_stone.002",
+          "name": "Bronzebeard",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "lesser_stone.003",
+          "name": "Coalward",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "lesser_stone.004",
+          "name": "Coppervein",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "lesser_stone.005",
+          "name": "Deepcairn",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "lesser_stone.006",
+          "name": "Embergrip",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "lesser_stone.007",
+          "name": "Flintcairn",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "lesser_stone.008",
+          "name": "Forgemantle",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "lesser_stone.009",
+          "name": "Frostquarry",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "lesser_stone.010",
+          "name": "Garnetmark",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "lesser_stone.011",
+          "name": "Goldquarry",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "lesser_stone.012",
+          "name": "Gravelheart",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "lesser_stone.013",
+          "name": "Greyquoin",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "lesser_stone.014",
+          "name": "Hammerdeep",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "lesser_stone.015",
+          "name": "Hearthshield",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "lesser_stone.016",
+          "name": "Ironbell",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "lesser_stone.017",
+          "name": "Ironspar",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "lesser_stone.018",
+          "name": "Keghelm",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "lesser_stone.019",
+          "name": "Kilnward",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "lesser_stone.020",
+          "name": "Leadward",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "lesser_stone.021",
+          "name": "Marrowstone",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "lesser_stone.022",
+          "name": "Mossanvil",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "lesser_stone.023",
+          "name": "Oathcairn",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "lesser_stone.024",
+          "name": "Orebraid",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "lesser_stone.025",
+          "name": "Pyrebarrel",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "lesser_stone.026",
+          "name": "Quenchhelm",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "lesser_stone.027",
+          "name": "Redgarnet",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "lesser_stone.028",
+          "name": "Rockwarden",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "lesser_stone.029",
+          "name": "Runehammer",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "lesser_stone.030",
+          "name": "Saltvein",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "lesser_stone.031",
+          "name": "Slatehammer",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "lesser_stone.032",
+          "name": "Smokemantle",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "lesser_stone.033",
+          "name": "Starcairn",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "lesser_stone.034",
+          "name": "Stonebell",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "lesser_stone.035",
+          "name": "Stonebraid",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "lesser_stone.036",
+          "name": "Stonecroft",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "lesser_stone.037",
+          "name": "Stonemarch",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "lesser_stone.038",
+          "name": "Stormanvil",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "lesser_stone.039",
+          "name": "Sulfurhold",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "lesser_stone.040",
+          "name": "Tarnpick",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "lesser_stone.041",
+          "name": "Thistleforge",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "lesser_stone.042",
+          "name": "Thundercairn",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "lesser_stone.043",
+          "name": "Undershield",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "lesser_stone.044",
+          "name": "Veinwarden",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "lesser_stone.045",
+          "name": "Warmforge",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "lesser_stone.046",
+          "name": "Whitequartz",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "lesser_stone.047",
+          "name": "Wroughthelm",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "lesser_stone.048",
+          "name": "Yewcairn",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "lesser_stone.049",
+          "name": "Zirconmark",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "lesser_stone.050",
+          "name": "Quartzward",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.dwarf.family.lesser_runic",
+      "name": "Dwarf Clans — Lesser Runic",
+      "description": "50 distinct inherited clan names. Each name covers two faces of d100. The 50 Great Clans are more common per individual clan than the 150 lesser clans.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "lesser_runic.001",
+          "name": "Argrum",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "lesser_runic.002",
+          "name": "Baldrek",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "lesser_runic.003",
+          "name": "Bargrin",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "lesser_runic.004",
+          "name": "Barund",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "lesser_runic.005",
+          "name": "Brakvorn",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "lesser_runic.006",
+          "name": "Braldur",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "lesser_runic.007",
+          "name": "Brendak",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "lesser_runic.008",
+          "name": "Brokrim",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "lesser_runic.009",
+          "name": "Brundal",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "lesser_runic.010",
+          "name": "Dargunn",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "lesser_runic.011",
+          "name": "Darnok",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "lesser_runic.012",
+          "name": "Dazgrim",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "lesser_runic.013",
+          "name": "Deldrak",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "lesser_runic.014",
+          "name": "Dhorvak",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "lesser_runic.015",
+          "name": "Doldren",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "lesser_runic.016",
+          "name": "Dorgrim",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "lesser_runic.017",
+          "name": "Dravrik",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "lesser_runic.018",
+          "name": "Drekvar",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "lesser_runic.019",
+          "name": "Dronkar",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "lesser_runic.020",
+          "name": "Dungrim",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "lesser_runic.021",
+          "name": "Durkeld",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "lesser_runic.022",
+          "name": "Ergrin",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "lesser_runic.023",
+          "name": "Faldrok",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "lesser_runic.024",
+          "name": "Farndur",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "lesser_runic.025",
+          "name": "Ghalden",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "lesser_runic.026",
+          "name": "Ghorvak",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "lesser_runic.027",
+          "name": "Graldin",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "lesser_runic.028",
+          "name": "Granvek",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "lesser_runic.029",
+          "name": "Grendok",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "lesser_runic.030",
+          "name": "Grunthar",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "lesser_runic.031",
+          "name": "Hadrik",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "lesser_runic.032",
+          "name": "Hargund",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "lesser_runic.033",
+          "name": "Harvek",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "lesser_runic.034",
+          "name": "Khadrin",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "lesser_runic.035",
+          "name": "Khordun",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "lesser_runic.036",
+          "name": "Koldrak",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "lesser_runic.037",
+          "name": "Kraldrin",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "lesser_runic.038",
+          "name": "Kravdun",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "lesser_runic.039",
+          "name": "Krumvek",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "lesser_runic.040",
+          "name": "Mardrak",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "lesser_runic.041",
+          "name": "Mornak",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "lesser_runic.042",
+          "name": "Nargrim",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "lesser_runic.043",
+          "name": "Ordal",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "lesser_runic.044",
+          "name": "Ragrund",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "lesser_runic.045",
+          "name": "Skarvok",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "lesser_runic.046",
+          "name": "Thaldrik",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "lesser_runic.047",
+          "name": "Thordun",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "lesser_runic.048",
+          "name": "Uldrak",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "lesser_runic.049",
+          "name": "Varkrum",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "lesser_runic.050",
+          "name": "Vorgrim",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "id": "table.personName.dwarf.family.lesser_hearth",
+      "name": "Dwarf Clans — Lesser Hearth",
+      "description": "50 distinct inherited clan names. Each name covers two faces of d100. The 50 Great Clans are more common per individual clan than the 150 lesser clans.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "lesser_hearth.001",
+          "name": "Alebarrel",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "lesser_hearth.002",
+          "name": "Ashquoin",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "lesser_hearth.003",
+          "name": "Barrelguard",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "lesser_hearth.004",
+          "name": "Bellquarry",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "lesser_hearth.005",
+          "name": "Brassledger",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "lesser_hearth.006",
+          "name": "Broadtongs",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "lesser_hearth.007",
+          "name": "Caskwarden",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "lesser_hearth.008",
+          "name": "Cinderbell",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "lesser_hearth.009",
+          "name": "Coalbrook",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "lesser_hearth.010",
+          "name": "Copperflint",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "lesser_hearth.011",
+          "name": "Cragmill",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "lesser_hearth.012",
+          "name": "Deepmead",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "lesser_hearth.013",
+          "name": "Dustmantle",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "lesser_hearth.014",
+          "name": "Embercask",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "lesser_hearth.015",
+          "name": "Fairforge",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "lesser_hearth.016",
+          "name": "Flintledger",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "lesser_hearth.017",
+          "name": "Forgequill",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "lesser_hearth.018",
+          "name": "Gildengrain",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "lesser_hearth.019",
+          "name": "Grainward",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "lesser_hearth.020",
+          "name": "Hearthbarrel",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "lesser_hearth.021",
+          "name": "Hearthcairn",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "lesser_hearth.022",
+          "name": "Hearthglow",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "lesser_hearth.023",
+          "name": "Ironledger",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "lesser_hearth.024",
+          "name": "Kettleward",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "lesser_hearth.025",
+          "name": "Kilnbrook",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "lesser_hearth.026",
+          "name": "Lanternforge",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "lesser_hearth.027",
+          "name": "Malthammer",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "lesser_hearth.028",
+          "name": "Mossbeard",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "lesser_hearth.029",
+          "name": "Nutcask",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "lesser_hearth.030",
+          "name": "Oakforge",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "lesser_hearth.031",
+          "name": "Oldquarry",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "lesser_hearth.032",
+          "name": "Orewell",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "lesser_hearth.033",
+          "name": "Quillforge",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "lesser_hearth.034",
+          "name": "Redbarrel",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "lesser_hearth.035",
+          "name": "Runeledger",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "lesser_hearth.036",
+          "name": "Silverbraid",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "lesser_hearth.037",
+          "name": "Smeltward",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "lesser_hearth.038",
+          "name": "Stonegrain",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "lesser_hearth.039",
+          "name": "Stonekettle",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "lesser_hearth.040",
+          "name": "Strongbarrel",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "lesser_hearth.041",
+          "name": "Thimbleforge",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "lesser_hearth.042",
+          "name": "Tinmantle",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "lesser_hearth.043",
+          "name": "Tongsward",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "lesser_hearth.044",
+          "name": "Underbrook",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "lesser_hearth.045",
+          "name": "Warmlight",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "lesser_hearth.046",
+          "name": "Whetstone",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "lesser_hearth.047",
+          "name": "Wickbeard",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "lesser_hearth.048",
+          "name": "Willowhammer",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "lesser_hearth.049",
+          "name": "Wrenforge",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "lesser_hearth.050",
+          "name": "Yeasthelm",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

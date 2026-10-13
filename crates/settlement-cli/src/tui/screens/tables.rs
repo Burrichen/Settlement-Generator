@@ -10,8 +10,12 @@ use settlement_core::content::{
     Condition, FollowUpOutcome, FollowUpRoll, LabelVariant, RangeAssignment, SelectionMode, Table,
     TableResult, TableVariant,
 };
+use settlement_core::editor::NamingMethodDetail;
 use settlement_core::ids::{ResultId, TableId, TagId, VariantId};
 use settlement_core::layers::{Origin, new_user_id};
+use settlement_core::naming::{
+    APPROVED_NAMES_FIELD, Capitalisation, JoinStyle, OnMissing, Replacement, SpellingException,
+};
 use settlement_core::service::{AppService, ContentOverview, DraftCheck, TableDetail};
 
 use super::common::{coverage_lines, issue_lines, parse_range, percent};
@@ -223,6 +227,8 @@ enum Page {
     Result(usize),
     Variant(usize),
     FollowUp(usize),
+    /// A naming method driven by this (method) table.
+    Naming(usize),
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -259,6 +265,8 @@ enum Act {
     ResultUnique,
     ResultFallback,
     ResultVariants,
+    /// The approved name selected by a variant result's ID.
+    ApprovedName(ResultId),
     RemoveResult,
     // Variant page
     VariantName,
@@ -273,6 +281,25 @@ enum Act {
     Outcome(usize),
     AddOutcome,
     RemoveFollowUp,
+    // Naming method page
+    JoinStyle,
+    JoinSeparator,
+    JoinCase,
+    JoinReplacements,
+    JoinSuffix,
+    JoinBefore,
+    JoinAfterS,
+    JoinSourceField,
+    JoinSourceIndex,
+    JoinVariantIndex,
+    JoinNote,
+    Exception(usize),
+    ExceptionName(usize),
+    ExceptionNote(usize),
+    AddException,
+    SaveNaming,
+    RevertNaming,
+    ResetNaming,
     Done,
 }
 
@@ -284,6 +311,10 @@ enum Pending {
     OutcomeFaces(usize),
     OutcomeBecomes(usize, Vec<Option<ResultId>>),
     Fallback(Vec<Option<ResultId>>),
+    JoinStyle,
+    JoinCase,
+    ExceptionMenu(usize),
+    ExceptionPart(usize, usize, Vec<ResultId>),
     ConfirmDelete,
     ConfirmLeave,
 }
@@ -300,7 +331,14 @@ pub struct TableEditor {
     state: RowsState,
     modal: Option<(Modal, Pending)>,
     message: Option<(String, bool)>,
+    /// Drafts of the naming methods this table drives (when it is a
+    /// method table), saved separately from the table.
+    naming: Vec<NamingMethodDetail>,
+    naming_check: Option<DraftCheck>,
 }
+
+/// The join styles an editor can pick, as written in content.
+const JOIN_STYLES: [&str; 4] = ["compound", "space", "possessive", "curated_variant"];
 
 impl TableEditor {
     fn open(ctx: &mut Ctx, detail: Option<TableDetail>, new: Option<Table>) -> Self {
@@ -329,9 +367,97 @@ impl TableEditor {
             state: RowsState::default(),
             modal: None,
             message: None,
+            naming: Vec::new(),
+            naming_check: None,
         };
+        editor.naming = editor
+            .detail
+            .as_ref()
+            .map(|d| d.naming_methods.clone())
+            .unwrap_or_default();
         editor.recheck(ctx);
         editor
+    }
+
+    /// The saved version of naming method `k`.
+    fn naming_saved(&self, k: usize) -> Option<&NamingMethodDetail> {
+        self.detail.as_ref().and_then(|d| d.naming_methods.get(k))
+    }
+
+    fn naming_dirty(&self, k: usize) -> bool {
+        match (self.naming.get(k), self.naming_saved(k)) {
+            (Some(d), Some(saved)) => d.join != saved.join || d.exceptions != saved.exceptions,
+            _ => false,
+        }
+    }
+
+    fn recheck_naming(&mut self, ctx: &mut Ctx) {
+        let Page::Naming(k) = self.page else {
+            self.naming_check = None;
+            return;
+        };
+        let Some(d) = self.naming.get(k) else { return };
+        self.naming_check = ctx
+            .service
+            .check_naming_method(
+                &d.scheme.id,
+                &d.method.id,
+                d.join.clone(),
+                d.exceptions.clone(),
+            )
+            .map_err(|e| ctx.flash = Some(e))
+            .ok();
+    }
+
+    /// Takes a naming save or reset's result: the method table as stored.
+    fn naming_saved_as(&mut self, saved: Result<TableDetail, String>, done: &str) {
+        match saved {
+            Ok(detail) => {
+                self.naming = detail.naming_methods.clone();
+                if !self.dirty() {
+                    self.draft = detail.table.clone();
+                    self.original = detail.table.clone();
+                }
+                self.detail = Some(detail);
+                self.message = Some((done.into(), false));
+            }
+            Err(e) => self.message = Some((e, true)),
+        }
+    }
+
+    /// The variants a result needs approved names for, in table order,
+    /// across every naming method that reads this table.
+    fn approved_variants(&self) -> Vec<(ResultId, String)> {
+        let mut out: Vec<(ResultId, String)> = Vec::new();
+        for slots in self.detail.iter().flat_map(|d| &d.approved_names) {
+            for v in &slots.variants {
+                if !out.iter().any(|(id, _)| *id == v.id) {
+                    out.push((v.id.clone(), v.name.clone()));
+                }
+            }
+        }
+        out
+    }
+
+    /// "Ash + ham → Asham" for an exception of naming method `k`.
+    fn exception_label(&self, k: usize, e: &SpellingException) -> String {
+        let parts: Vec<String> = if e.results.is_empty() {
+            e.components.clone()
+        } else {
+            e.results
+                .iter()
+                .enumerate()
+                .map(|(i, id)| {
+                    self.naming[k]
+                        .components
+                        .get(i)
+                        .and_then(|c| c.results.iter().find(|r| r.id == *id))
+                        .map_or_else(|| id.to_string(), |r| r.name.clone())
+                })
+                .collect()
+        };
+        let name = if e.name.is_empty() { "—" } else { &e.name };
+        format!("{} → {name}", parts.join(" + "))
     }
 
     fn dirty(&self) -> bool {
@@ -473,6 +599,34 @@ impl TableEditor {
                     ),
                     Act::ResultVariants,
                 ));
+                let variants = self.approved_variants();
+                if !variants.is_empty() || !r.approved_names.is_empty() {
+                    rows.push(Row::blank());
+                    rows.push(Row::info(Line::styled(
+                        "APPROVED NAMES (used exactly as written)",
+                        s.dim(),
+                    )));
+                    for (id, name) in &variants {
+                        let value = r
+                            .approved_names
+                            .get(id)
+                            .filter(|n| !n.trim().is_empty())
+                            .cloned()
+                            .unwrap_or_else(|| "— missing".into());
+                        rows.push(Row::item(
+                            field(&format!("  Variant {name}"), value),
+                            Act::ApprovedName(id.clone()),
+                        ));
+                    }
+                    for (id, value) in &r.approved_names {
+                        if !variants.iter().any(|(v, _)| v == id) {
+                            rows.push(Row::item(
+                                field(&format!("  {id} (not a variant)"), value.clone()),
+                                Act::ApprovedName(id.clone()),
+                            ));
+                        }
+                    }
+                }
                 rows.push(Row::blank());
                 rows.push(Row::item(
                     Line::styled("Remove this result", s.error()),
@@ -588,6 +742,186 @@ impl TableEditor {
                 ));
                 rows.push(Row::item(Line::raw("‹ Done"), Act::Done));
             }
+            Page::Naming(k) => {
+                let d = &self.naming[k];
+                rows.push(Row::info(Line::styled(
+                    format!("NAMING METHOD · {} · {}", d.scheme.name, d.method.name),
+                    s.dim(),
+                )));
+                rows.push(Row::info(field(
+                    "Components",
+                    d.components
+                        .iter()
+                        .map(|c| c.table.name.clone())
+                        .collect::<Vec<_>>()
+                        .join(" + "),
+                )));
+                rows.push(Row::blank());
+                rows.push(Row::item(
+                    field("Join style", d.join.style.key().into()),
+                    Act::JoinStyle,
+                ));
+                let dash = |t: &str| {
+                    if t.is_empty() {
+                        "—".to_owned()
+                    } else {
+                        t.to_owned()
+                    }
+                };
+                match &d.join.style {
+                    JoinStyle::CuratedVariant {
+                        source_field,
+                        source_from_result_id,
+                        variant_from_result_id,
+                        ..
+                    } => {
+                        rows.push(Row::info(Line::styled(
+                            "  Reads the approved name of the source part, chosen by the variant part's ID.",
+                            s.dim(),
+                        )));
+                        rows.push(Row::item(
+                            field("Approved names in", source_field.clone()),
+                            Act::JoinSourceField,
+                        ));
+                        let part = |i: usize| {
+                            d.components
+                                .get(i)
+                                .map_or_else(|| "none".into(), |c| c.table.name.clone())
+                        };
+                        rows.push(Row::item(
+                            field(
+                                "Source part",
+                                format!(
+                                    "{} · {}",
+                                    source_from_result_id + 1,
+                                    part(*source_from_result_id)
+                                ),
+                            ),
+                            Act::JoinSourceIndex,
+                        ));
+                        rows.push(Row::item(
+                            field(
+                                "Variant part",
+                                format!(
+                                    "{} · {}",
+                                    variant_from_result_id + 1,
+                                    part(*variant_from_result_id)
+                                ),
+                            ),
+                            Act::JoinVariantIndex,
+                        ));
+                    }
+                    style => {
+                        rows.push(Row::item(
+                            field("Separator", format!("“{}”", d.join.separator)),
+                            Act::JoinSeparator,
+                        ));
+                        rows.push(Row::item(
+                            field("Capitalisation", case_label(d.join.case).into()),
+                            Act::JoinCase,
+                        ));
+                        rows.push(Row::item(
+                            field(
+                                "Replacements",
+                                dash(&replacements_text(&d.join.replacements)),
+                            ),
+                            Act::JoinReplacements,
+                        ));
+                        if let JoinStyle::Possessive {
+                            suffix,
+                            before,
+                            after_s,
+                        } = style
+                        {
+                            rows.push(Row::item(
+                                field("Suffix", format!("“{suffix}”")),
+                                Act::JoinSuffix,
+                            ));
+                            rows.push(Row::item(
+                                field(
+                                    "Before endings",
+                                    before.as_ref().map_or("every ending".into(), |b| {
+                                        b.iter()
+                                            .map(ToString::to_string)
+                                            .collect::<Vec<_>>()
+                                            .join(", ")
+                                    }),
+                                ),
+                                Act::JoinBefore,
+                            ));
+                            rows.push(Row::item(
+                                field(
+                                    "After a final s",
+                                    after_s.as_ref().map_or("—".into(), |a| format!("“{a}”")),
+                                ),
+                                Act::JoinAfterS,
+                            ));
+                        }
+                    }
+                }
+                rows.push(Row::item(
+                    field("Note", dash(&d.join.description)),
+                    Act::JoinNote,
+                ));
+                rows.push(Row::blank());
+                rows.push(Row::info(Line::styled(
+                    "SPELLING EXCEPTIONS (checked before the join)",
+                    s.dim(),
+                )));
+                for (i, e) in d.exceptions.iter().enumerate() {
+                    let mut spans = vec![Span::raw(format!("  {}", self.exception_label(k, e)))];
+                    if !e.note.is_empty() {
+                        spans.push(Span::styled(format!("   {}", e.note), s.dim()));
+                    }
+                    rows.push(Row::item(Line::from(spans), Act::Exception(i)));
+                }
+                rows.push(Row::item(Line::raw("  + Add exception"), Act::AddException));
+                rows.push(Row::blank());
+                rows.push(Row::info(Line::styled("VALIDATION", s.dim())));
+                let issues = self
+                    .naming_check
+                    .as_ref()
+                    .map(|c| c.issues.clone())
+                    .unwrap_or_default();
+                let error = self.naming_check.as_ref().and_then(|c| c.error.clone());
+                for line in issue_lines(&issues, error.as_deref(), s) {
+                    rows.push(Row::info(line));
+                }
+                rows.push(Row::blank());
+                let acceptable = self
+                    .naming_check
+                    .as_ref()
+                    .is_some_and(DraftCheck::is_acceptable);
+                if self.naming_dirty(k) && acceptable {
+                    rows.push(Row::item(
+                        Line::styled("Save naming method", s.heading()),
+                        Act::SaveNaming,
+                    ));
+                    rows.push(Row::item(Line::raw("Revert"), Act::RevertNaming));
+                } else {
+                    rows.push(Row::info(Line::styled(
+                        if self.naming_dirty(k) {
+                            "Save naming method (fix the problems above)"
+                        } else {
+                            "Save naming method (no changes)"
+                        },
+                        s.dim(),
+                    )));
+                    if self.naming_dirty(k) {
+                        rows.push(Row::item(Line::raw("Revert"), Act::RevertNaming));
+                    }
+                }
+                if d.built_in && d.modified {
+                    rows.push(Row::item(Line::raw("Reset to default"), Act::ResetNaming));
+                }
+                if let Some((m, error)) = &self.message {
+                    rows.push(Row::info(Line::styled(
+                        m.clone(),
+                        if *error { s.error() } else { s.good() },
+                    )));
+                }
+                rows.push(Row::item(Line::raw("‹ Done"), Act::Done));
+            }
             Page::Main => {
                 let origin = if self.is_new {
                     "new custom table (not saved)"
@@ -687,6 +1021,11 @@ impl TableEditor {
                     if r.eligibility.is_some() {
                         spans.push(Span::styled("   (conditional)", s.dim()));
                     }
+                    if !r.approved_names.is_empty() {
+                        let names: Vec<&str> =
+                            r.approved_names.values().map(String::as_str).collect();
+                        spans.push(Span::styled(format!("   → {}", names.join(" / ")), s.dim()));
+                    }
                     rows.push(Row::item(Line::from(spans), Act::Open(Page::Result(i))));
                 }
                 rows.push(Row::item(Line::raw("  + Add result"), Act::AddResult));
@@ -721,6 +1060,30 @@ impl TableEditor {
                         Line::raw("  + Add follow-up roll"),
                         Act::AddFollowUp,
                     ));
+                }
+                if !self.naming.is_empty() {
+                    rows.push(Row::blank());
+                    rows.push(Row::info(Line::styled(
+                        "NAMING METHODS (joining rules and spelling exceptions)",
+                        s.dim(),
+                    )));
+                    for (k, d) in self.naming.iter().enumerate() {
+                        let mut spans = vec![
+                            Span::raw(format!("  {}", d.method.name)),
+                            Span::styled(
+                                format!(
+                                    "   {} · {} exception(s)",
+                                    d.join.style.key(),
+                                    d.exceptions.len()
+                                ),
+                                s.dim(),
+                            ),
+                        ];
+                        if d.modified {
+                            spans.push(Span::styled("   (customised)", s.dim()));
+                        }
+                        rows.push(Row::item(Line::from(spans), Act::Open(Page::Naming(k))));
+                    }
                 }
                 rows.push(Row::blank());
                 rows.push(Row::info(Line::styled("VALIDATION", s.dim())));
@@ -863,7 +1226,67 @@ impl TableEditor {
                     self.draft.follow_ups[i].dice = t;
                 }
             }
-            _ => {}
+            Act::ApprovedName(variant) => {
+                if let Page::Result(i) = self.page {
+                    let names = &mut self.draft.results[i].approved_names;
+                    if t.is_empty() {
+                        names.remove(&variant);
+                    } else {
+                        names.insert(variant, t);
+                    }
+                }
+            }
+            act => {
+                let Page::Naming(k) = self.page else {
+                    return Ok(());
+                };
+                let join = &mut self.naming[k].join;
+                match (act, &mut join.style) {
+                    (Act::JoinSeparator, _) => join.separator = value,
+                    (Act::JoinReplacements, _) => join.replacements = parse_replacements(&t)?,
+                    (Act::JoinNote, _) => join.description = t,
+                    (Act::JoinSuffix, JoinStyle::Possessive { suffix, .. }) => *suffix = value,
+                    (Act::JoinBefore, JoinStyle::Possessive { before, .. }) => {
+                        *before = (!t.is_empty()).then(|| {
+                            t.split(',')
+                                .map(str::trim)
+                                .filter(|x| !x.is_empty())
+                                .map(ResultId::new)
+                                .collect()
+                        });
+                    }
+                    (Act::JoinAfterS, JoinStyle::Possessive { after_s, .. }) => {
+                        *after_s = (!value.is_empty()).then_some(value);
+                    }
+                    (Act::JoinSourceField, JoinStyle::CuratedVariant { source_field, .. }) => {
+                        *source_field = t;
+                    }
+                    (
+                        Act::JoinSourceIndex,
+                        JoinStyle::CuratedVariant {
+                            source_from_result_id: index,
+                            ..
+                        },
+                    )
+                    | (
+                        Act::JoinVariantIndex,
+                        JoinStyle::CuratedVariant {
+                            variant_from_result_id: index,
+                            ..
+                        },
+                    ) => {
+                        let n: usize = t
+                            .parse()
+                            .ok()
+                            .filter(|n| *n >= 1)
+                            .ok_or_else(|| format!("“{t}” is not a part number (1, 2, …)."))?;
+                        *index = n - 1;
+                    }
+                    (Act::ExceptionName(e), _) => self.naming[k].exceptions[e].name = t,
+                    (Act::ExceptionNote(e), _) => self.naming[k].exceptions[e].note = t,
+                    _ => {}
+                }
+            }
         }
         Ok(())
     }
@@ -885,6 +1308,7 @@ impl TableEditor {
             }
             self.modal = None;
             self.recheck(ctx);
+            self.recheck_naming(ctx);
             return Some(Nav::Stay);
         }
         let pending = std::mem::replace(pending, Pending::ConfirmLeave);
@@ -952,6 +1376,91 @@ impl TableEditor {
                     self.draft.results[i].fallback = ids[choice].clone();
                 }
             }
+            (ModalResult::Picked(choice), Pending::JoinStyle) => {
+                if let Page::Naming(k) = self.page {
+                    let style = &mut self.naming[k].join.style;
+                    if style.key() != JOIN_STYLES[choice] {
+                        *style = match JOIN_STYLES[choice] {
+                            "space" => JoinStyle::Space,
+                            "possessive" => JoinStyle::Possessive {
+                                suffix: "s".into(),
+                                before: None,
+                                after_s: None,
+                            },
+                            "curated_variant" => JoinStyle::CuratedVariant {
+                                source_field: APPROVED_NAMES_FIELD.into(),
+                                source_from_result_id: 0,
+                                variant_from_result_id: 1,
+                                on_missing: OnMissing::Error,
+                            },
+                            _ => JoinStyle::Compound,
+                        };
+                    }
+                }
+            }
+            (ModalResult::Picked(choice), Pending::JoinCase) => {
+                if let Page::Naming(k) = self.page {
+                    self.naming[k].join.case = CASES[choice];
+                }
+            }
+            (ModalResult::Picked(choice), Pending::ExceptionMenu(e)) => {
+                if let Page::Naming(k) = self.page {
+                    let parts = self.naming[k].components.len();
+                    let exception = self.naming[k].exceptions[e].clone();
+                    match choice {
+                        0 => self.text(
+                            "Exception name",
+                            "The settlement name, used exactly as written.",
+                            &exception.name,
+                            Act::ExceptionName(e),
+                        ),
+                        1 => self.text(
+                            "Exception note",
+                            "Why it exists (optional).",
+                            &exception.note,
+                            Act::ExceptionNote(e),
+                        ),
+                        c if c < 2 + parts => {
+                            let part = c - 2;
+                            let component = &self.naming[k].components[part];
+                            let ids: Vec<ResultId> =
+                                component.results.iter().map(|r| r.id.clone()).collect();
+                            let items = component
+                                .results
+                                .iter()
+                                .map(|r| PickItem::new(r.name.clone()).hint(r.id.to_string()))
+                                .collect();
+                            let current = self.exception_ids(k, &exception);
+                            let at = current
+                                .get(part)
+                                .and_then(|c| ids.iter().position(|id| id == c))
+                                .unwrap_or(0);
+                            self.modal = Some((
+                                Modal::pick(
+                                    &format!("Exception · {}", component.table.name),
+                                    items,
+                                    at,
+                                ),
+                                Pending::ExceptionPart(e, part, ids),
+                            ));
+                        }
+                        _ => {
+                            self.naming[k].exceptions.remove(e);
+                        }
+                    }
+                }
+            }
+            (ModalResult::Picked(choice), Pending::ExceptionPart(e, part, ids)) => {
+                if let Page::Naming(k) = self.page {
+                    // Exceptions written by name are stored by result ID once
+                    // edited, so renaming a result never breaks them.
+                    let mut results = self.exception_ids(k, &self.naming[k].exceptions[e]);
+                    results[part] = ids[choice].clone();
+                    let exception = &mut self.naming[k].exceptions[e];
+                    exception.results = results;
+                    exception.components.clear();
+                }
+            }
             (ModalResult::Picked(choice), Pending::OutcomeBecomes(k, ids)) => {
                 if let Page::FollowUp(i) = self.page {
                     self.draft.follow_ups[i].outcomes[k].becomes = ids[choice].clone();
@@ -973,7 +1482,29 @@ impl TableEditor {
             _ => {}
         }
         self.recheck(ctx);
+        self.recheck_naming(ctx);
         Some(Nav::Stay)
+    }
+
+    /// An exception's components as result IDs (by-name components are
+    /// looked up; unknown names keep the first result).
+    fn exception_ids(&self, k: usize, e: &SpellingException) -> Vec<ResultId> {
+        let components = &self.naming[k].components;
+        if !e.results.is_empty() && e.results.len() == components.len() {
+            return e.results.clone();
+        }
+        components
+            .iter()
+            .enumerate()
+            .map(|(i, c)| {
+                e.components
+                    .get(i)
+                    .and_then(|name| c.results.iter().find(|r| r.name.trim() == name.trim()))
+                    .or(c.results.first())
+                    .map(|r| r.id.clone())
+                    .unwrap_or_else(|| ResultId::new(""))
+            })
+            .collect()
     }
 
     fn follow_up_outcome(&self, k: usize) -> Option<&FollowUpOutcome> {
@@ -1040,6 +1571,7 @@ impl TableEditor {
             Act::Open(page) => {
                 self.page = page;
                 self.state = RowsState::default();
+                self.recheck_naming(ctx);
                 return Nav::Stay;
             }
             Act::AddResult => {
@@ -1056,6 +1588,7 @@ impl TableEditor {
                     unique: false,
                     fallback: None,
                     label_variants: Vec::new(),
+                    approved_names: Default::default(),
                 });
                 self.page = Page::Result(self.draft.results.len() - 1);
                 self.state = RowsState::default();
@@ -1327,12 +1860,215 @@ impl TableEditor {
                     self.state = RowsState::default();
                 }
             }
+            Act::ApprovedName(variant) => {
+                if let Page::Result(i) = self.page {
+                    let current = self.draft.results[i]
+                        .approved_names
+                        .get(&variant)
+                        .cloned()
+                        .unwrap_or_default();
+                    let label = self
+                        .approved_variants()
+                        .into_iter()
+                        .find(|(id, _)| *id == variant)
+                        .map_or_else(|| variant.to_string(), |(_, n)| n);
+                    self.text(
+                        &format!("Approved name · variant {label}"),
+                        "The settlement name, used exactly as written. Empty removes it.",
+                        &current,
+                        act,
+                    );
+                }
+            }
+            Act::JoinStyle => {
+                if let Page::Naming(k) = self.page {
+                    let at = JOIN_STYLES
+                        .iter()
+                        .position(|st| *st == self.naming[k].join.style.key())
+                        .unwrap_or(0);
+                    let items = vec![
+                        PickItem::new("compound").hint("parts joined directly: Alderwick"),
+                        PickItem::new("space").hint("one space, words capitalised: Khar Well"),
+                        PickItem::new("possessive").hint("a suffix before endings: Godwinsbury"),
+                        PickItem::new("curated_variant")
+                            .hint("an approved name picked by the variant: Oswaldwick"),
+                    ];
+                    self.modal = Some((Modal::pick("Join style", items, at), Pending::JoinStyle));
+                }
+                return Nav::Stay;
+            }
+            Act::JoinCase => {
+                if let Page::Naming(k) = self.page {
+                    let at = CASES
+                        .iter()
+                        .position(|c| *c == self.naming[k].join.case)
+                        .unwrap_or(0);
+                    let items = CASES
+                        .iter()
+                        .map(|c| PickItem::new(case_label(*c)))
+                        .collect();
+                    self.modal =
+                        Some((Modal::pick("Capitalisation", items, at), Pending::JoinCase));
+                }
+                return Nav::Stay;
+            }
+            Act::JoinSeparator
+            | Act::JoinReplacements
+            | Act::JoinSuffix
+            | Act::JoinBefore
+            | Act::JoinAfterS
+            | Act::JoinSourceField
+            | Act::JoinSourceIndex
+            | Act::JoinVariantIndex
+            | Act::JoinNote => {
+                if let Page::Naming(k) = self.page {
+                    let join = &self.naming[k].join;
+                    let (title, help, value) = match (&act, &join.style) {
+                        (Act::JoinSeparator, _) => (
+                            "Separator",
+                            "Written between parts; empty for none, a space for two words.",
+                            join.separator.clone(),
+                        ),
+                        (Act::JoinReplacements, _) => (
+                            "Replacements",
+                            "from=to pairs separated by ;, applied in order, e.g. aa=a; qm=km",
+                            replacements_text(&join.replacements),
+                        ),
+                        (Act::JoinNote, _) => (
+                            "Note",
+                            "Why the method joins as it does.",
+                            join.description.clone(),
+                        ),
+                        (Act::JoinSuffix, JoinStyle::Possessive { suffix, .. }) => {
+                            ("Possessive suffix", "e.g. s or 's", suffix.clone())
+                        }
+                        (Act::JoinBefore, JoinStyle::Possessive { before, .. }) => (
+                            "Before endings",
+                            "Ending result IDs separated by commas; empty for every ending.",
+                            before.as_ref().map_or(String::new(), |b| {
+                                b.iter()
+                                    .map(ToString::to_string)
+                                    .collect::<Vec<_>>()
+                                    .join(", ")
+                            }),
+                        ),
+                        (Act::JoinAfterS, JoinStyle::Possessive { after_s, .. }) => (
+                            "After a final s",
+                            "Written instead of the suffix after a final s, e.g. '; empty for none.",
+                            after_s.clone().unwrap_or_default(),
+                        ),
+                        (Act::JoinSourceField, JoinStyle::CuratedVariant { source_field, .. }) => (
+                            "Approved names in",
+                            "The result field holding approved names: approved_names.",
+                            source_field.clone(),
+                        ),
+                        (
+                            Act::JoinSourceIndex,
+                            JoinStyle::CuratedVariant {
+                                source_from_result_id: i,
+                                ..
+                            },
+                        ) => (
+                            "Source part",
+                            "The part (1, 2, …) whose result holds the names.",
+                            (i + 1).to_string(),
+                        ),
+                        (
+                            Act::JoinVariantIndex,
+                            JoinStyle::CuratedVariant {
+                                variant_from_result_id: i,
+                                ..
+                            },
+                        ) => (
+                            "Variant part",
+                            "The part (1, 2, …) whose result ID picks the name.",
+                            (i + 1).to_string(),
+                        ),
+                        _ => return Nav::Stay,
+                    };
+                    self.text(title, help, &value, act);
+                }
+                return Nav::Stay;
+            }
+            Act::Exception(e) => {
+                if let Page::Naming(k) = self.page {
+                    let exception = &self.naming[k].exceptions[e];
+                    let ids = self.exception_ids(k, exception);
+                    let mut items = vec![
+                        PickItem::new("Name").hint(exception.name.clone()),
+                        PickItem::new("Note").hint(exception.note.clone()),
+                    ];
+                    for (i, c) in self.naming[k].components.iter().enumerate() {
+                        let current = ids
+                            .get(i)
+                            .and_then(|id| c.results.iter().find(|r| r.id == *id))
+                            .map_or_else(String::new, |r| r.name.clone());
+                        items.push(PickItem::new(c.table.name.clone()).hint(current));
+                    }
+                    items.push(PickItem::new("Remove exception"));
+                    self.modal = Some((
+                        Modal::pick("Spelling exception", items, 0),
+                        Pending::ExceptionMenu(e),
+                    ));
+                }
+                return Nav::Stay;
+            }
+            Act::AddException => {
+                if let Page::Naming(k) = self.page {
+                    let results = self.naming[k]
+                        .components
+                        .iter()
+                        .map(|c| {
+                            c.results
+                                .first()
+                                .map_or_else(|| ResultId::new(""), |r| r.id.clone())
+                        })
+                        .collect();
+                    self.naming[k].exceptions.push(SpellingException {
+                        results,
+                        components: Vec::new(),
+                        name: String::new(),
+                        note: String::new(),
+                    });
+                    let e = self.naming[k].exceptions.len() - 1;
+                    self.recheck_naming(ctx);
+                    return self.act(Act::Exception(e), ctx);
+                }
+            }
+            Act::SaveNaming => {
+                if let Page::Naming(k) = self.page {
+                    let d = self.naming[k].clone();
+                    let saved = ctx.service.save_naming_method(
+                        &d.scheme.id,
+                        &d.method.id,
+                        d.join,
+                        d.exceptions,
+                    );
+                    self.naming_saved_as(saved, "Naming method saved");
+                }
+            }
+            Act::RevertNaming => {
+                if let Page::Naming(k) = self.page
+                    && let Some(saved) = self.naming_saved(k).cloned()
+                {
+                    self.naming[k] = saved;
+                }
+            }
+            Act::ResetNaming => {
+                if let Page::Naming(k) = self.page {
+                    let d = self.naming[k].clone();
+                    let reset = ctx.service.reset_naming_method(&d.scheme.id, &d.method.id);
+                    self.naming_saved_as(reset, "Naming method reset to default");
+                }
+            }
+            Act::ExceptionName(_) | Act::ExceptionNote(_) => {}
             Act::Done => {
                 self.page = Page::Main;
                 self.state = RowsState::default();
             }
         }
         self.recheck(ctx);
+        self.recheck_naming(ctx);
         Nav::Stay
     }
 }
@@ -1425,6 +2161,47 @@ impl Screen for TableEditor {
             vec![("↑↓", "move"), ("Enter", "edit"), ("Esc", "back to table")]
         }
     }
+}
+
+/// The capitalisations an editor can pick, in menu order.
+const CASES: [Capitalisation; 3] = [
+    Capitalisation::Sentence,
+    Capitalisation::Words,
+    Capitalisation::AsWritten,
+];
+
+fn case_label(case: Capitalisation) -> &'static str {
+    match case {
+        Capitalisation::Sentence => "sentence (Alderwick)",
+        Capitalisation::Words => "words (Khar Well)",
+        Capitalisation::AsWritten => "as written",
+    }
+}
+
+/// "aa=a; qm=km".
+fn replacements_text(replacements: &[Replacement]) -> String {
+    replacements
+        .iter()
+        .map(|r| format!("{}={}", r.from, r.to))
+        .collect::<Vec<_>>()
+        .join("; ")
+}
+
+/// Reads `from=to` pairs separated by `;`. Empty means none.
+fn parse_replacements(text: &str) -> Result<Vec<Replacement>, String> {
+    text.split(';')
+        .map(str::trim)
+        .filter(|p| !p.is_empty())
+        .map(|pair| {
+            let (from, to) = pair
+                .split_once('=')
+                .ok_or_else(|| format!("“{pair}” needs the form from=to."))?;
+            Ok(Replacement {
+                from: from.trim().to_owned(),
+                to: to.trim().to_owned(),
+            })
+        })
+        .collect()
 }
 
 /// "gender.man=Lord; gender.woman=Lady".

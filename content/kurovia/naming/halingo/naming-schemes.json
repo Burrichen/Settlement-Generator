@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.halingo",
       "name": "Halingo",
-      "description": "Names for settlements in the Kurovian region of Halingo. Provisional sample data, not official Kurovian lore.",
+      "description": "Nine frontier, scarce-water, mining/Ichor, overland transport, fused-boomtown, old-language and very rare single-word naming traditions. The real historical naming processes are inspirations; examples are fictional. Heresy is an established place name and is deliberately excluded from generated candidates.",
       "when": {
         "all": [
           {
@@ -19,23 +19,99 @@
       "methods": [
         {
           "result": "geographic",
-          "components": ["table.naming.halingo.firstElement", "table.naming.halingo.secondElement"],
+          "components": [
+            "table.naming.halingo.firstElement",
+            "table.naming.halingo.secondElement"
+          ],
           "join": {
-            "style": "compound",
-            "separator": " ",
-            "case": "words"
-          }
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "water",
+          "components": [
+            "table.naming.halingo.waterFirst",
+            "table.naming.halingo.waterSecond"
+          ],
+          "join": {
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "industry",
+          "components": [
+            "table.naming.halingo.industryFirst",
+            "table.naming.halingo.industrySecond"
+          ],
+          "join": {
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "route",
+          "components": [
+            "table.naming.halingo.routeFirst",
+            "table.naming.halingo.routeSecond"
+          ],
+          "join": {
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "fused",
+          "components": [
+            "table.naming.halingo.fusedBoomtown"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         },
         {
           "result": "founder",
-          "components": ["table.naming.halingo.founder", "table.naming.halingo.founderEnding"],
+          "components": [
+            "table.naming.halingo.founder",
+            "table.naming.halingo.founderEnding"
+          ],
           "join": {
-            "style": "possessive",
-            "suffix": "'s",
-            "after_s": "'",
-            "separator": " ",
-            "case": "words"
-          }
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "archaic",
+          "components": [
+            "table.naming.halingo.inheritedName"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "warning",
+          "components": [
+            "table.naming.halingo.warningFirst",
+            "table.naming.halingo.warningSecond"
+          ],
+          "join": {
+            "style": "space"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "single",
+          "components": [
+            "table.naming.halingo.singleWord"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         }
       ]
     }

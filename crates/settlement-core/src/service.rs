@@ -15,13 +15,14 @@ use crate::content::{ContentSet, ContentStatus, FaceRange, Table, TableResult, T
 use crate::db::Database;
 use crate::editor::{self, Coverage, TagUsage};
 use crate::engine::GenerationError;
-use crate::ids::{ResultId, TableId, TagId};
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
 use crate::layers::{ContentLayers, EditError, Origin, new_user_id};
+use crate::naming::{JoinRule, SpellingException};
 use crate::session::{GenerationMode, GenerationSession, SessionView, ViewOptions};
 use crate::settings::Settings;
 use crate::settlements::{Settlement, SettlementId, SettlementSummary, SnapshotStage};
 use crate::storage;
-use crate::validation::ValidationIssue;
+use crate::validation::{ValidationIssue, ValidationReport};
 
 /// Errors are plain, user-facing messages.
 pub type ServiceResult<T> = Result<T, String>;
@@ -70,6 +71,14 @@ pub struct TableDetail {
     pub built_in: bool,
     pub coverage: Vec<Coverage>,
     pub issues: Vec<ValidationIssue>,
+    /// Naming methods that read approved names from this table's results:
+    /// each result needs one name per listed variant.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub approved_names: Vec<editor::ApprovedNameSlots>,
+    /// When this is a naming scheme's method table: each method's joining
+    /// rule and spelling exceptions.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub naming_methods: Vec<editor::NamingMethodDetail>,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -357,6 +366,57 @@ impl AppService {
         Ok(overview(&layers))
     }
 
+    /// Checks a naming method's joining rule and spelling exceptions
+    /// without storing them.
+    pub fn check_naming_method(
+        &self,
+        scheme: &NamingSchemeId,
+        method: &ResultId,
+        join: JoinRule,
+        exceptions: Vec<SpellingException>,
+    ) -> ServiceResult<DraftCheck> {
+        let layers = self.layers()?;
+        Ok(
+            match layers.preview(|l| l.put_naming_method(scheme, method, join, exceptions)) {
+                Ok((trial, ())) => DraftCheck {
+                    coverage: Vec::new(),
+                    issues: naming_issues(&layers.merged().report, &trial.merged().report, scheme),
+                    error: None,
+                },
+                Err(e) => DraftCheck {
+                    coverage: Vec::new(),
+                    issues: Vec::new(),
+                    error: Some(e.to_string()),
+                },
+            },
+        )
+    }
+
+    /// Stores a naming method's joining rule and spelling exceptions, and
+    /// returns its method table.
+    pub fn save_naming_method(
+        &mut self,
+        scheme: &NamingSchemeId,
+        method: &ResultId,
+        join: JoinRule,
+        exceptions: Vec<SpellingException>,
+    ) -> ServiceResult<TableDetail> {
+        let (layers, ()) =
+            self.edit_content(|l| l.put_naming_method(scheme, method, join, exceptions))?;
+        method_table_detail(&layers, scheme)
+    }
+
+    /// Restores a naming method's joining rule and exceptions to the
+    /// default, and returns its method table.
+    pub fn reset_naming_method(
+        &mut self,
+        scheme: &NamingSchemeId,
+        method: &ResultId,
+    ) -> ServiceResult<TableDetail> {
+        let (layers, ()) = self.edit_content(|l| l.reset_naming_method(scheme, method))?;
+        method_table_detail(&layers, scheme)
+    }
+
     /// Restores all generator content to the installed defaults.
     pub fn reset_all(&mut self) -> ServiceResult<ContentOverview> {
         let mut layers = self.layers()?;
@@ -391,6 +451,7 @@ impl AppService {
                 unique: false,
                 fallback: None,
                 label_variants: Vec::new(),
+                approved_names: Default::default(),
             }],
             variants: Vec::new(),
             follow_ups: Vec::new(),
@@ -602,8 +663,50 @@ fn table_detail(layers: &ContentLayers, id: &TableId) -> ServiceResult<TableDeta
         issues: editor::relevant_issues(&merged.report, &merged.report, Some(id), None),
         origin: merged.origins.tables.get(id).copied(),
         built_in: layers.bundled().table(id).is_some(),
+        approved_names: editor::approved_name_slots(&merged.content, id),
+        naming_methods: editor::naming_methods(
+            &merged.content,
+            layers.bundled(),
+            &merged.origins.modified_naming_methods,
+            id,
+        ),
         table,
     })
+}
+
+/// The method table of a naming scheme, as the table editor shows it.
+fn method_table_detail(
+    layers: &ContentLayers,
+    scheme: &NamingSchemeId,
+) -> ServiceResult<TableDetail> {
+    let table = layers
+        .merged()
+        .content
+        .naming_scheme(scheme)
+        .map(|s| s.method_table.clone())
+        .ok_or_else(|| format!("Naming scheme `{scheme}` is not part of the current content."))?;
+    table_detail(layers, &table)
+}
+
+/// Issues of a naming scheme in `preview`, plus errors an edit would newly
+/// cause elsewhere.
+fn naming_issues(
+    current: &ValidationReport,
+    preview: &ValidationReport,
+    scheme: &NamingSchemeId,
+) -> Vec<ValidationIssue> {
+    let existing: std::collections::HashSet<&str> =
+        current.errors().map(|i| i.message.as_str()).collect();
+    preview
+        .issues
+        .iter()
+        .filter(|i| {
+            i.location.naming_scheme.as_ref() == Some(scheme)
+                || (i.severity == crate::validation::Severity::Error
+                    && !existing.contains(i.message.as_str()))
+        })
+        .cloned()
+        .collect()
 }
 
 fn tag_detail(layers: &ContentLayers, id: &TagId) -> ServiceResult<TagDetail> {

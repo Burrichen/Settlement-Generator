@@ -1,0 +1,141 @@
+﻿method,name,method_roll,first_roll,second_roll,source,variant
+geographic,Hartgate,14,24,16,Hart,gate
+industrial,Glassford,68,53,1,Glass,A
+geographic,Mosswick,32,96,5,Moss,wick
+geographic,Langthorpe,31,30,20,Lang,thorpe
+industrial,Steelbank,76,19,1,Steel,A
+inherited,Eversham,95,8,,Eversham,
+geographic,Beechwick,20,65,5,Beech,wick
+founder,Alfriston,45,4,1,Aelfric,A
+founder,Nerysbury,50,95,2,Nerys,A
+founder,Wulwenford,49,60,3,Wulwyn,B
+inherited,Faircastle,97,88,,Faircastle,
+founder,Wulston,57,57,2,Wulfstan,A
+founder,Wulfgate,44,59,2,Wulfgard,A
+geographic,Blackbrook,40,7,12,Black,brook
+industrial,Ironbridge,66,7,1,Iron,A
+founder,Wulfsbury,58,57,4,Wulfstan,B
+geographic,Thornham,28,38,2,Thorn,ham
+inherited,Wrenmere,94,15,,Wrenmere,
+geographic,Fenwood,18,52,18,Fen,wood
+route,Stonegate,86,75,4,Stone,D
+geographic,Mereford,41,56,4,Mere,ford
+geographic,Coldwick,32,72,5,Cold,wick
+route,Canal End,83,92,4,Central,D
+geographic,Claybrook,41,48,12,Clay,brook
+founder,Wynstead,62,62,3,Wynstan,B
+founder,Reynardton,43,36,1,Reynard,A
+geographic,Redley,42,34,3,Red,ley
+geographic,Westwell,25,60,11,West,well
+route,Crown Quay,90,48,2,Crown,B
+founder,Leofridge,58,86,3,Leofric,B
+route,Hazel Quay,83,82,3,Hazel,C
+inherited,Mereford,98,11,,Mereford,
+inherited,Amberleigh,93,31,,Amberleigh,
+inherited,Farleigh,93,22,,Farleigh,
+industrial,Forgeford,80,39,1,Forge,A
+geographic,Oakford,24,32,4,Oak,ford
+industrial,Irondale,68,9,4,Iron,D
+founder,Harrowwick,51,100,3,Hereward,B
+geographic,Hazelwick,34,26,5,Hazel,wick
+geographic,Burnwell,34,6,11,Burn,well
+industrial,Furnesswick,78,78,2,Furnace,B
+industrial,Pitchbank,74,97,2,Pitch,B
+geographic,Eastwick,2,49,5,East,wick
+industrial,Cokeford,67,56,2,Coke,B
+route,Mill Junction,83,97,3,Mill,C
+route,Black Gate,85,72,3,Black,C
+geographic,Chalkhurst,10,69,10,Chalk,hurst
+geographic,Foxbank,42,80,19,Fox,bank
+geographic,Birchholt,28,44,17,Birch,holt
+geographic,Downley,18,73,3,Down,ley
+inherited,Bellwick,94,25,,Bellwick,
+inherited,High Marrow,100,73,,High Marrow,
+geographic,Barrowley,12,62,3,Barrow,ley
+industrial,Smeltwick,68,64,3,Soot,C
+founder,Berington,54,14,1,Berengar,A
+geographic,Wrenbridge,13,39,13,Wren,bridge
+geographic,Merewick,14,56,5,Mere,wick
+route,Southbridge,91,13,2,South,B
+geographic,Claybury,6,48,6,Clay,bury
+industrial,Loomfield,73,66,3,Loom,C
+geographic,Fernwick,36,78,5,Fern,wick
+founder,Berrington,46,13,1,Beric,A
+founder,Cuthberton,60,19,2,Cuthbert,A
+geographic,Beckthorpe,18,42,20,Beck,thorpe
+route,Churchford,81,58,3,Church,C
+industrial,Ironbank,69,8,3,Iron,C
+founder,Wymondham,49,63,2,Wymond,A
+geographic,Foxwell,24,79,11,Fox,well
+geographic,Dunfield,29,16,7,Dun,field
+geographic,Mosscombe,9,96,9,Moss,combe
+geographic,Beckbury,32,41,6,Beck,bury
+geographic,Larkton,36,86,1,Lark,ton
+geographic,Downdale,34,74,15,Down,dale
+route,Little Bridge,87,37,1,Little,A
+geographic,Dunwell,4,16,11,Dun,well
+inherited,Lower Veyne,97,72,,Lower Veyne,
+industrial,Weaverham,77,95,3,Weaver,C
+inherited,Rooksmere,94,99,,Rooksmere,
+founder,Godricsbury,54,99,4,Godric,B
+founder,Sigmorton,56,42,3,Sigmund,B
+founder,Elswick,57,72,4,Elswyth,B
+geographic,Thornden,3,38,8,Thorn,den
+industrial,Kilnwick,69,36,2,Kiln,B
+industrial,Leadford,67,82,1,Lead,A
+geographic,Ashbank,35,3,19,Ash,bank
+industrial,Smithwick,76,72,2,Smith,B
+geographic,Burnfield,2,5,7,Burn,field
+inherited,Regent's Vale,94,47,,Regent's Vale,
+route,Northbridge,88,11,2,North,B
+industrial,Roperham,80,68,3,Rope,C
+founder,Maudsley,57,92,3,Maud,B
+geographic,Claycombe,11,47,9,Clay,combe
+founder,Rowenbury,52,38,4,Rowena,B
+geographic,Broombury,26,67,6,Broom,bury
+geographic,Foxholt,40,79,17,Fox,holt
+geographic,Hartcroft,38,23,14,Hart,croft
+inherited,Oldcross,98,83,,Oldcross,
+geographic,Barleywick,11,63,5,Barley,wick
+industrial,Weaverbank,68,95,2,Weaver,B
+industrial,Flintbridge,78,27,4,Flint,D
+geographic,Mossbank,12,96,19,Moss,bank
+industrial,Tinfield,78,13,2,Tin,B
+geographic,Chalkham,22,70,2,Chalk,ham
+route,Lower Wharf,87,21,2,Lower,B
+geographic,Blackcombe,15,8,9,Black,combe
+geographic,Holton,29,27,1,Hol,ton
+geographic,Barrowholt,23,61,17,Barrow,holt
+founder,Cuthberton,43,19,1,Cuthbert,A
+route,Morrow Crossing,82,86,4,Morrow,D
+route,Crown Bridge,92,47,3,Crown,C
+route,Brackenford,86,84,2,Bracken,B
+geographic,Chalkgate,30,69,16,Chalk,gate
+industrial,Pitchwell,80,98,4,Pitch,D
+industrial,Limeford,72,91,1,Lime,A
+geographic,Barrowholt,11,62,17,Barrow,holt
+founder,Randalton,47,33,1,Ranald,A
+geographic,Barleyford,14,64,4,Barley,ford
+inherited,Fallowdene,95,33,,Fallowdene,
+route,South Junction,81,16,1,South,A
+industrial,Smithfield,72,72,1,Smith,A
+founder,Wulwynham,44,60,1,Wulwyn,A
+geographic,Duncroft,36,16,14,Dun,croft
+route,Upper Wharf,82,17,2,Upper,B
+geographic,Farnhurst,29,19,10,Farn,hurst
+industrial,Pitchwell,67,97,4,Pitch,D
+industrial,Copperbank,75,10,1,Copper,A
+founder,Savenham,43,44,1,Saewyn,A
+geographic,Fernwood,32,78,18,Fern,wood
+geographic,Southley,8,100,3,South,ley
+founder,Tostwick,50,48,3,Tostig,B
+founder,Ismerwick,50,81,4,Ismere,B
+geographic,Burnwood,28,5,18,Burn,wood
+geographic,Coldbrook,5,71,12,Cold,brook
+route,Highbridge,86,59,1,High,A
+geographic,Farncroft,9,20,14,Farn,croft
+geographic,Crowdale,12,14,15,Crow,dale
+geographic,Rushbridge,17,98,13,Rush,bridge
+industrial,Quarryton,63,76,4,Quarry,D
+founder,Oswaldwick,49,28,4,Oswald,B
+founder,Wulfwick,47,56,3,Wulfric,B

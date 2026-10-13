@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.waterSecond",
+      "name": "Halingo Water & Survival: Feature",
+      "description": "Wells, springs, cisterns, tank settlements, oases and other sources/refuges; 20 equally weighted entries.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "well",
+          "name": "Well",
+          "range": 1
+        },
+        {
+          "id": "wells",
+          "name": "Wells",
+          "range": 2
+        },
+        {
+          "id": "spring",
+          "name": "Spring",
+          "range": 3
+        },
+        {
+          "id": "springs",
+          "name": "Springs",
+          "range": 4
+        },
+        {
+          "id": "seep",
+          "name": "Seep",
+          "range": 5
+        },
+        {
+          "id": "seepage",
+          "name": "Seepage",
+          "range": 6
+        },
+        {
+          "id": "cistern",
+          "name": "Cistern",
+          "range": 7
+        },
+        {
+          "id": "tank",
+          "name": "Tank",
+          "range": 8
+        },
+        {
+          "id": "pool",
+          "name": "Pool",
+          "range": 9
+        },
+        {
+          "id": "pools",
+          "name": "Pools",
+          "range": 10
+        },
+        {
+          "id": "oasis",
+          "name": "Oasis",
+          "range": 11
+        },
+        {
+          "id": "reservoir",
+          "name": "Reservoir",
+          "range": 12
+        },
+        {
+          "id": "basin",
+          "name": "Basin",
+          "range": 13
+        },
+        {
+          "id": "water",
+          "name": "Water",
+          "range": 14
+        },
+        {
+          "id": "waters",
+          "name": "Waters",
+          "range": 15
+        },
+        {
+          "id": "refuge",
+          "name": "Refuge",
+          "range": 16
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "range": 17
+        },
+        {
+          "id": "hollow",
+          "name": "Hollow",
+          "range": 18
+        },
+        {
+          "id": "ford",
+          "name": "Ford",
+          "range": 19
+        },
+        {
+          "id": "draw",
+          "name": "Draw",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

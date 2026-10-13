@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.warningSecond",
+      "name": "Halingo Warning: Landmark",
+      "description": "Warning markers, roads, cairns, wells, watchposts, signals and failed camps.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "beacon",
+          "name": "Beacon",
+          "range": 1
+        },
+        {
+          "id": "crossing",
+          "name": "Crossing",
+          "range": 2
+        },
+        {
+          "id": "marker",
+          "name": "Marker",
+          "range": 3
+        },
+        {
+          "id": "pass",
+          "name": "Pass",
+          "range": 4
+        },
+        {
+          "id": "watch",
+          "name": "Watch",
+          "range": 5
+        },
+        {
+          "id": "well",
+          "name": "Well",
+          "range": 6
+        },
+        {
+          "id": "mile",
+          "name": "Mile",
+          "range": 7
+        },
+        {
+          "id": "ridge",
+          "name": "Ridge",
+          "range": 8
+        },
+        {
+          "id": "gate",
+          "name": "Gate",
+          "range": 9
+        },
+        {
+          "id": "road",
+          "name": "Road",
+          "range": 10
+        },
+        {
+          "id": "cairn",
+          "name": "Cairn",
+          "range": 11
+        },
+        {
+          "id": "camp",
+          "name": "Camp",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

@@ -4,20 +4,53 @@
     {
       "id": "table.naming.bratislor.method",
       "name": "Bratislor Naming Method",
-      "description": "Which naming method a Bratislor settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Sombre old-settlement style; a fictional, language-inspired set, not a claim of accurate Slavic morphology.",
-      "dice": "1d10",
+      "description": "Five naming traditions for Bratislor: inherited geography (40%), family/landholder (25%), old service or trade site (15%), Carpathian-influenced border names (10%), and Haze-era folk renaming (10%). Each method remains a physically rollable pair of component tables.",
+      "dice": "1d20",
       "results": [
         {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "First element + second element as one word, e.g. Drevgrad, Morava, Vranova.",
-          "range": [1, 7]
+          "name": "Inherited Geographic Place Name",
+          "description": "Historical landscape/settlement roots with inherited suffixes.",
+          "range": [
+            1,
+            8
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "A founder's name joined directly to a settlement element, without an English possessive, e.g. Vorelgrad, Radanov.",
-          "range": [8, 10]
+          "name": "Family or Landholder Name",
+          "description": "An old personal/family name with a settlement ending, not necessarily a celebrated founder.",
+          "range": [
+            9,
+            13
+          ]
+        },
+        {
+          "id": "service",
+          "name": "Service or Occupation Name",
+          "description": "Former settlement trade, craft, service or administrative function.",
+          "range": [
+            14,
+            16
+          ]
+        },
+        {
+          "id": "borderland",
+          "name": "Carpathian Borderland Name",
+          "description": "A smaller, loosely Romanian/Moldovan-influenced naming layer reflecting border communities.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "haze",
+          "name": "Haze-Era Folk Name",
+          "description": "Subdued landscape or hazard-related names, some arising after contamination or abandonment.",
+          "range": [
+            19,
+            20
+          ]
         }
       ]
     }

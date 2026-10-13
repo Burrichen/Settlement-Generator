@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.shelterSecond",
+      "name": "Hjartheland Shelter: Shelter or Route Ending",
+      "description": "Mountain inns, huts, houses, halls, ferries, bridges, roads and guarded passages. The warm cultural side of northern survival.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stua",
+          "name": "stua",
+          "range": 1
+        },
+        {
+          "id": "bu",
+          "name": "bu",
+          "range": 2
+        },
+        {
+          "id": "seter",
+          "name": "seter",
+          "range": 3
+        },
+        {
+          "id": "herberge",
+          "name": "herberge",
+          "range": 4
+        },
+        {
+          "id": "havn",
+          "name": "havn",
+          "range": 5
+        },
+        {
+          "id": "vik",
+          "name": "vik",
+          "range": 6
+        },
+        {
+          "id": "eid",
+          "name": "eid",
+          "range": 7
+        },
+        {
+          "id": "pass",
+          "name": "pass",
+          "range": 8
+        },
+        {
+          "id": "bru",
+          "name": "bru",
+          "range": 9
+        },
+        {
+          "id": "veg",
+          "name": "veg",
+          "range": 10
+        },
+        {
+          "id": "kro",
+          "name": "kro",
+          "range": 11
+        },
+        {
+          "id": "tun",
+          "name": "tun",
+          "range": 12
+        },
+        {
+          "id": "hus",
+          "name": "hus",
+          "range": 13
+        },
+        {
+          "id": "hytte",
+          "name": "hytte",
+          "range": 14
+        },
+        {
+          "id": "port",
+          "name": "port",
+          "range": 15
+        },
+        {
+          "id": "lys",
+          "name": "lys",
+          "range": 16
+        },
+        {
+          "id": "hall",
+          "name": "hall",
+          "range": 17
+        },
+        {
+          "id": "heim",
+          "name": "heim",
+          "range": 18
+        },
+        {
+          "id": "sund",
+          "name": "sund",
+          "range": 19
+        },
+        {
+          "id": "gard",
+          "name": "gard",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

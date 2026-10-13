@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.serviceRoot",
+      "name": "Bratislor Name: Service Root",
+      "description": "Names evoking former crafts, guard functions, mills, mines, fields and trade. Fictionalised Slavic-inspired roots, not direct dictionary forms.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "mlin",
+          "name": "Mlin",
+          "range": 1
+        },
+        {
+          "id": "kov",
+          "name": "Kov",
+          "range": 2
+        },
+        {
+          "id": "rud",
+          "name": "Rud",
+          "range": 3
+        },
+        {
+          "id": "pek",
+          "name": "Pek",
+          "range": 4
+        },
+        {
+          "id": "pisar",
+          "name": "Pisar",
+          "range": 5
+        },
+        {
+          "id": "kolar",
+          "name": "Kolar",
+          "range": 6
+        },
+        {
+          "id": "vinar",
+          "name": "Vinar",
+          "range": 7
+        },
+        {
+          "id": "straz",
+          "name": "Straz",
+          "range": 8
+        },
+        {
+          "id": "voden",
+          "name": "Voden",
+          "range": 9
+        },
+        {
+          "id": "lod",
+          "name": "Lod",
+          "range": 10
+        },
+        {
+          "id": "sol",
+          "name": "Sol",
+          "range": 11
+        },
+        {
+          "id": "ugl",
+          "name": "Ugl",
+          "range": 12
+        },
+        {
+          "id": "kamen",
+          "name": "Kamen",
+          "range": 13
+        },
+        {
+          "id": "koz",
+          "name": "Koz",
+          "range": 14
+        },
+        {
+          "id": "zit",
+          "name": "Zit",
+          "range": 15
+        },
+        {
+          "id": "tkal",
+          "name": "Tkal",
+          "range": 16
+        },
+        {
+          "id": "sok",
+          "name": "Sok",
+          "range": 17
+        },
+        {
+          "id": "kop",
+          "name": "Kop",
+          "range": 18
+        },
+        {
+          "id": "voz",
+          "name": "Voz",
+          "range": 19
+        },
+        {
+          "id": "zelez",
+          "name": "Zelez",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

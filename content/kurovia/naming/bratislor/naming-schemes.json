@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.bratislor",
       "name": "Bratislor",
-      "description": "Names for settlements in the Kurovian region of Bratislor. Provisional sample data, not official Kurovian lore.",
+      "description": "Five editable naming traditions for Bratislor. Primarily Slavic/Central-European-inspired historical settlements, with smaller Carpathian and post-Haze layers. Fictional creative data; no claim of authentic morphology.",
       "when": {
         "all": [
           {
@@ -30,7 +30,43 @@
         },
         {
           "result": "founder",
-          "components": ["table.naming.bratislor.founder", "table.naming.bratislor.founderEnding"],
+          "components": [
+            "table.naming.bratislor.founder",
+            "table.naming.bratislor.founderEnding"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "service",
+          "components": [
+            "table.naming.bratislor.serviceRoot",
+            "table.naming.bratislor.serviceEnding"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "borderland",
+          "components": [
+            "table.naming.bratislor.borderlandRoot",
+            "table.naming.bratislor.borderlandEnding"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "haze",
+          "components": [
+            "table.naming.bratislor.hazeRoot",
+            "table.naming.bratislor.hazeEnding"
+          ],
           "join": {
             "style": "compound"
           },

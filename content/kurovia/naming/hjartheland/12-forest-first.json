@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.forestFirst",
+      "name": "Hjartheland Forest: First Element",
+      "description": "Cold forest, moor, winter pasture, wildlife and boreal vegetation descriptors.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "gran",
+          "name": "Gran",
+          "range": [
+            1,
+            4
+          ]
+        },
+        {
+          "id": "furu",
+          "name": "Furu",
+          "range": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "eik",
+          "name": "Eik",
+          "range": [
+            9,
+            12
+          ]
+        },
+        {
+          "id": "birk",
+          "name": "Birk",
+          "range": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "rogn",
+          "name": "Rogn",
+          "range": [
+            17,
+            20
+          ]
+        },
+        {
+          "id": "lind",
+          "name": "Lind",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "hegg",
+          "name": "Hegg",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "ask",
+          "name": "Ask",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "hassel",
+          "name": "Hassel",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "lyng",
+          "name": "Lyng",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "tjern",
+          "name": "Tjern",
+          "range": [
+            41,
+            43
+          ]
+        },
+        {
+          "id": "mose",
+          "name": "Mose",
+          "range": [
+            44,
+            46
+          ]
+        },
+        {
+          "id": "torv",
+          "name": "Torv",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "fjell",
+          "name": "Fjell",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "stein",
+          "name": "Stein",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "hald",
+          "name": "Hald",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "elg",
+          "name": "Elg",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "rein",
+          "name": "Rein",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "ulv",
+          "name": "Ulv",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "hare",
+          "name": "Hare",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "hjort",
+          "name": "Hjort",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "hauk",
+          "name": "Hauk",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "vind",
+          "name": "Vind",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "kald",
+          "name": "Kald",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "nord",
+          "name": "Nord",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "lys",
+          "name": "Lys",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "mork",
+          "name": "Mørk",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "gra",
+          "name": "Grå",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "lang",
+          "name": "Lang",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

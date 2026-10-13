@@ -4,7 +4,7 @@
     {
       "id": "naming.kurovia.ordon",
       "name": "Ordon",
-      "description": "Names for settlements in the Kurovian region of Ordon.",
+      "description": "Quality-reviewed Old English and Victorian Ordon naming. Rural compounds plus preapproved personal, industrial and transport names: fewer combinations, far fewer unnatural joins.",
       "when": {
         "all": [
           {
@@ -26,11 +26,88 @@
           "exceptions": [
             {
               "results": ["ash", "ham"],
-              "name": "Asham"
+              "name": "Asham",
+              "note": "Historical-looking contraction"
             },
             {
               "results": ["ash", "hurst"],
-              "name": "Ashurst"
+              "name": "Ashurst",
+              "note": "Avoid doubled h"
+            },
+            {
+              "results": ["hol", "holt"],
+              "name": "Holstead",
+              "note": "Avoid awkward Holholt repetition"
+            },
+            {
+              "results": ["beck", "brook"],
+              "name": "Beckstead",
+              "note": "Avoid redundant beck + brook"
+            },
+            {
+              "results": ["burn", "brook"],
+              "name": "Burnstead",
+              "note": "Avoid two similar water nouns"
+            },
+            {
+              "results": ["broom", "brook"],
+              "name": "Brombrook",
+              "note": "Contract repeated sound"
+            },
+            {
+              "results": ["hill", "dale"],
+              "name": "Hilden",
+              "note": "Prefer inherited-looking contraction"
+            },
+            {
+              "results": ["dun", "den"],
+              "name": "Dunden",
+              "note": "Retain double syllable as plausible local form"
+            },
+            {
+              "results": ["elm", "ham"],
+              "name": "Elham",
+              "note": "Contract final consonant"
+            },
+            {
+              "results": ["wren", "well"],
+              "name": "Wrenwell",
+              "note": "Retain explicit"
+            },
+            {
+              "results": ["hill", "ley"],
+              "name": "Hildley",
+              "note": "Avoid Hillley triple-l syllable"
+            },
+            {
+              "results": ["mill", "ley"],
+              "name": "Milnley",
+              "note": "Avoid Millley triple-l syllable"
+            },
+            {
+              "results": ["birch", "brook"],
+              "name": "Birkbrook",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "results": ["birch", "bridge"],
+              "name": "Birkbridge",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "results": ["birch", "croft"],
+              "name": "Birkcroft",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "results": ["birch", "thorpe"],
+              "name": "Birkthorpe",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "results": ["fair", "well"],
+              "name": "Fairbourne",
+              "note": "Avoid homophone with farewell"
             }
           ]
         },
@@ -38,10 +115,43 @@
           "result": "founder",
           "components": ["table.naming.ordon.founder", "table.naming.ordon.founderEnding"],
           "join": {
-            "style": "possessive",
-            "suffix": "s",
-            "before": ["bury", "stead", "worth"]
-          }
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error",
+            "description": "Two historically styled, individually approved settlement forms per founder. Some use possessive-s where appropriate, others are contracted. Never blindly append -worth."
+          },
+          "exceptions": []
+        },
+        {
+          "result": "industrial",
+          "components": ["table.naming.ordon.industryFirst", "table.naming.ordon.industrySecond"],
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "route",
+          "components": ["table.naming.ordon.routeFirst", "table.naming.ordon.routeSecond"],
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "inherited",
+          "components": ["table.naming.ordon.inheritedName"],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
         }
       ]
     }

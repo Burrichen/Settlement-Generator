@@ -3,7 +3,7 @@
   "naming_schemes": [
     {
       "id": "naming.person.dragonborn.masculine",
-      "name": "Dragonborn names (masculine)",
+      "name": "Dragonborn names (masculine; formal clan-first)",
       "subject": "person",
       "when": {
         "all": [
@@ -18,31 +18,9 @@
       "method_table": "table.personName.dragonborn.method",
       "methods": [
         {
-          "result": "givenClan",
+          "result": "givenSurname",
           "components": [
-            "table.personName.dragonborn.given.masculine",
-            "table.personName.dragonborn.clan"
-          ],
-          "join": {
-            "style": "compound",
-            "separator": " ",
-            "case": "as_written"
-          },
-          "parts": [
-            {
-              "id": "given",
-              "label": "Given name"
-            },
-            {
-              "id": "clan",
-              "label": "Clan name"
-            }
-          ]
-        },
-        {
-          "result": "clanGiven",
-          "components": [
-            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.family",
             "table.personName.dragonborn.given.masculine"
           ],
           "join": {
@@ -52,7 +30,1085 @@
           },
           "parts": [
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.02",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.02",
+            "table.personName.dragonborn.given.masculine.ancestral.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.03",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.03",
+            "table.personName.dragonborn.given.masculine.ancestral.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.04",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.04",
+            "table.personName.dragonborn.given.masculine.ancestral.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.05",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.05",
+            "table.personName.dragonborn.given.masculine.ancestral.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.06",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.06",
+            "table.personName.dragonborn.given.masculine.ancestral.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.07",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.07",
+            "table.personName.dragonborn.given.masculine.ancestral.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.08",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.08",
+            "table.personName.dragonborn.given.masculine.ancestral.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.09",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.09",
+            "table.personName.dragonborn.given.masculine.ancestral.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.10",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.10",
+            "table.personName.dragonborn.given.masculine.ancestral.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.11",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.11",
+            "table.personName.dragonborn.given.masculine.ancestral.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.12",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.12",
+            "table.personName.dragonborn.given.masculine.ancestral.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.13",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.13",
+            "table.personName.dragonborn.given.masculine.ancestral.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.14",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.14",
+            "table.personName.dragonborn.given.masculine.ancestral.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.15",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.15",
+            "table.personName.dragonborn.given.masculine.ancestral.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.16",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.16",
+            "table.personName.dragonborn.given.masculine.ancestral.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.17",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.17",
+            "table.personName.dragonborn.given.masculine.ancestral.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.18",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.18",
+            "table.personName.dragonborn.given.masculine.ancestral.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.19",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.19",
+            "table.personName.dragonborn.given.masculine.ancestral.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.01",
+          "components": [
+            "table.personName.dragonborn.family.clan.01",
+            "table.personName.dragonborn.given.masculine.clan.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.02",
+          "components": [
+            "table.personName.dragonborn.family.clan.02",
+            "table.personName.dragonborn.given.masculine.clan.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.03",
+          "components": [
+            "table.personName.dragonborn.family.clan.03",
+            "table.personName.dragonborn.given.masculine.clan.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.04",
+          "components": [
+            "table.personName.dragonborn.family.clan.04",
+            "table.personName.dragonborn.given.masculine.clan.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.05",
+          "components": [
+            "table.personName.dragonborn.family.clan.05",
+            "table.personName.dragonborn.given.masculine.clan.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.06",
+          "components": [
+            "table.personName.dragonborn.family.clan.06",
+            "table.personName.dragonborn.given.masculine.clan.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.07",
+          "components": [
+            "table.personName.dragonborn.family.clan.07",
+            "table.personName.dragonborn.given.masculine.clan.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.08",
+          "components": [
+            "table.personName.dragonborn.family.clan.08",
+            "table.personName.dragonborn.given.masculine.clan.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.09",
+          "components": [
+            "table.personName.dragonborn.family.clan.09",
+            "table.personName.dragonborn.given.masculine.clan.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.10",
+          "components": [
+            "table.personName.dragonborn.family.clan.10",
+            "table.personName.dragonborn.given.masculine.clan.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.11",
+          "components": [
+            "table.personName.dragonborn.family.clan.11",
+            "table.personName.dragonborn.given.masculine.clan.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.12",
+          "components": [
+            "table.personName.dragonborn.family.clan.12",
+            "table.personName.dragonborn.given.masculine.clan.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.13",
+          "components": [
+            "table.personName.dragonborn.family.clan.13",
+            "table.personName.dragonborn.given.masculine.clan.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.14",
+          "components": [
+            "table.personName.dragonborn.family.clan.14",
+            "table.personName.dragonborn.given.masculine.clan.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.15",
+          "components": [
+            "table.personName.dragonborn.family.clan.15",
+            "table.personName.dragonborn.given.masculine.clan.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.01",
+          "components": [
+            "table.personName.dragonborn.family.honour.01",
+            "table.personName.dragonborn.given.masculine.honour.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.02",
+          "components": [
+            "table.personName.dragonborn.family.honour.02",
+            "table.personName.dragonborn.given.masculine.honour.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.03",
+          "components": [
+            "table.personName.dragonborn.family.honour.03",
+            "table.personName.dragonborn.given.masculine.honour.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.04",
+          "components": [
+            "table.personName.dragonborn.family.honour.04",
+            "table.personName.dragonborn.given.masculine.honour.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.05",
+          "components": [
+            "table.personName.dragonborn.family.honour.05",
+            "table.personName.dragonborn.given.masculine.honour.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.06",
+          "components": [
+            "table.personName.dragonborn.family.honour.06",
+            "table.personName.dragonborn.given.masculine.honour.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.07",
+          "components": [
+            "table.personName.dragonborn.family.honour.07",
+            "table.personName.dragonborn.given.masculine.honour.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.08",
+          "components": [
+            "table.personName.dragonborn.family.honour.08",
+            "table.personName.dragonborn.given.masculine.honour.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.09",
+          "components": [
+            "table.personName.dragonborn.family.honour.09",
+            "table.personName.dragonborn.given.masculine.honour.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.10",
+          "components": [
+            "table.personName.dragonborn.family.honour.10",
+            "table.personName.dragonborn.given.masculine.honour.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.01",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.01",
+            "table.personName.dragonborn.given.masculine.wyrm.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.02",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.02",
+            "table.personName.dragonborn.given.masculine.wyrm.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.03",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.03",
+            "table.personName.dragonborn.given.masculine.wyrm.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.04",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.04",
+            "table.personName.dragonborn.given.masculine.wyrm.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.05",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.05",
+            "table.personName.dragonborn.given.masculine.wyrm.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.dragonborn.family.mortal.01",
+            "table.personName.dragonborn.given.masculine.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
               "label": "Clan name"
             },
             {
@@ -65,7 +1121,7 @@
     },
     {
       "id": "naming.person.dragonborn.feminine",
-      "name": "Dragonborn names (feminine)",
+      "name": "Dragonborn names (feminine; formal clan-first)",
       "subject": "person",
       "when": {
         "all": [
@@ -80,31 +1136,9 @@
       "method_table": "table.personName.dragonborn.method",
       "methods": [
         {
-          "result": "givenClan",
+          "result": "givenSurname",
           "components": [
-            "table.personName.dragonborn.given.feminine",
-            "table.personName.dragonborn.clan"
-          ],
-          "join": {
-            "style": "compound",
-            "separator": " ",
-            "case": "as_written"
-          },
-          "parts": [
-            {
-              "id": "given",
-              "label": "Given name"
-            },
-            {
-              "id": "clan",
-              "label": "Clan name"
-            }
-          ]
-        },
-        {
-          "result": "clanGiven",
-          "components": [
-            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.family",
             "table.personName.dragonborn.given.feminine"
           ],
           "join": {
@@ -114,7 +1148,1085 @@
           },
           "parts": [
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.02",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.02",
+            "table.personName.dragonborn.given.feminine.ancestral.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.03",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.03",
+            "table.personName.dragonborn.given.feminine.ancestral.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.04",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.04",
+            "table.personName.dragonborn.given.feminine.ancestral.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.05",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.05",
+            "table.personName.dragonborn.given.feminine.ancestral.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.06",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.06",
+            "table.personName.dragonborn.given.feminine.ancestral.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.07",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.07",
+            "table.personName.dragonborn.given.feminine.ancestral.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.08",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.08",
+            "table.personName.dragonborn.given.feminine.ancestral.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.09",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.09",
+            "table.personName.dragonborn.given.feminine.ancestral.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.10",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.10",
+            "table.personName.dragonborn.given.feminine.ancestral.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.11",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.11",
+            "table.personName.dragonborn.given.feminine.ancestral.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.12",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.12",
+            "table.personName.dragonborn.given.feminine.ancestral.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.13",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.13",
+            "table.personName.dragonborn.given.feminine.ancestral.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.14",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.14",
+            "table.personName.dragonborn.given.feminine.ancestral.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.15",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.15",
+            "table.personName.dragonborn.given.feminine.ancestral.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.16",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.16",
+            "table.personName.dragonborn.given.feminine.ancestral.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.17",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.17",
+            "table.personName.dragonborn.given.feminine.ancestral.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.18",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.18",
+            "table.personName.dragonborn.given.feminine.ancestral.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.19",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.19",
+            "table.personName.dragonborn.given.feminine.ancestral.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.01",
+          "components": [
+            "table.personName.dragonborn.family.clan.01",
+            "table.personName.dragonborn.given.feminine.clan.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.02",
+          "components": [
+            "table.personName.dragonborn.family.clan.02",
+            "table.personName.dragonborn.given.feminine.clan.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.03",
+          "components": [
+            "table.personName.dragonborn.family.clan.03",
+            "table.personName.dragonborn.given.feminine.clan.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.04",
+          "components": [
+            "table.personName.dragonborn.family.clan.04",
+            "table.personName.dragonborn.given.feminine.clan.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.05",
+          "components": [
+            "table.personName.dragonborn.family.clan.05",
+            "table.personName.dragonborn.given.feminine.clan.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.06",
+          "components": [
+            "table.personName.dragonborn.family.clan.06",
+            "table.personName.dragonborn.given.feminine.clan.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.07",
+          "components": [
+            "table.personName.dragonborn.family.clan.07",
+            "table.personName.dragonborn.given.feminine.clan.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.08",
+          "components": [
+            "table.personName.dragonborn.family.clan.08",
+            "table.personName.dragonborn.given.feminine.clan.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.09",
+          "components": [
+            "table.personName.dragonborn.family.clan.09",
+            "table.personName.dragonborn.given.feminine.clan.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.10",
+          "components": [
+            "table.personName.dragonborn.family.clan.10",
+            "table.personName.dragonborn.given.feminine.clan.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.11",
+          "components": [
+            "table.personName.dragonborn.family.clan.11",
+            "table.personName.dragonborn.given.feminine.clan.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.12",
+          "components": [
+            "table.personName.dragonborn.family.clan.12",
+            "table.personName.dragonborn.given.feminine.clan.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.13",
+          "components": [
+            "table.personName.dragonborn.family.clan.13",
+            "table.personName.dragonborn.given.feminine.clan.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.14",
+          "components": [
+            "table.personName.dragonborn.family.clan.14",
+            "table.personName.dragonborn.given.feminine.clan.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.15",
+          "components": [
+            "table.personName.dragonborn.family.clan.15",
+            "table.personName.dragonborn.given.feminine.clan.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.01",
+          "components": [
+            "table.personName.dragonborn.family.honour.01",
+            "table.personName.dragonborn.given.feminine.honour.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.02",
+          "components": [
+            "table.personName.dragonborn.family.honour.02",
+            "table.personName.dragonborn.given.feminine.honour.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.03",
+          "components": [
+            "table.personName.dragonborn.family.honour.03",
+            "table.personName.dragonborn.given.feminine.honour.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.04",
+          "components": [
+            "table.personName.dragonborn.family.honour.04",
+            "table.personName.dragonborn.given.feminine.honour.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.05",
+          "components": [
+            "table.personName.dragonborn.family.honour.05",
+            "table.personName.dragonborn.given.feminine.honour.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.06",
+          "components": [
+            "table.personName.dragonborn.family.honour.06",
+            "table.personName.dragonborn.given.feminine.honour.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.07",
+          "components": [
+            "table.personName.dragonborn.family.honour.07",
+            "table.personName.dragonborn.given.feminine.honour.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.08",
+          "components": [
+            "table.personName.dragonborn.family.honour.08",
+            "table.personName.dragonborn.given.feminine.honour.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.09",
+          "components": [
+            "table.personName.dragonborn.family.honour.09",
+            "table.personName.dragonborn.given.feminine.honour.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.10",
+          "components": [
+            "table.personName.dragonborn.family.honour.10",
+            "table.personName.dragonborn.given.feminine.honour.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.01",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.01",
+            "table.personName.dragonborn.given.feminine.wyrm.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.02",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.02",
+            "table.personName.dragonborn.given.feminine.wyrm.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.03",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.03",
+            "table.personName.dragonborn.given.feminine.wyrm.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.04",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.04",
+            "table.personName.dragonborn.given.feminine.wyrm.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.05",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.05",
+            "table.personName.dragonborn.given.feminine.wyrm.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.dragonborn.family.mortal.01",
+            "table.personName.dragonborn.given.feminine.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
               "label": "Clan name"
             },
             {
@@ -127,7 +2239,7 @@
     },
     {
       "id": "naming.person.dragonborn.neutral",
-      "name": "Dragonborn names (neutral)",
+      "name": "Dragonborn names (neutral; formal clan-first)",
       "subject": "person",
       "when": {
         "has_tag": "species.dragonborn"
@@ -135,31 +2247,9 @@
       "method_table": "table.personName.dragonborn.method",
       "methods": [
         {
-          "result": "givenClan",
+          "result": "givenSurname",
           "components": [
-            "table.personName.dragonborn.given.neutral",
-            "table.personName.dragonborn.clan"
-          ],
-          "join": {
-            "style": "compound",
-            "separator": " ",
-            "case": "as_written"
-          },
-          "parts": [
-            {
-              "id": "given",
-              "label": "Given name"
-            },
-            {
-              "id": "clan",
-              "label": "Clan name"
-            }
-          ]
-        },
-        {
-          "result": "clanGiven",
-          "components": [
-            "table.personName.dragonborn.clan",
+            "table.personName.dragonborn.family",
             "table.personName.dragonborn.given.neutral"
           ],
           "join": {
@@ -169,7 +2259,1085 @@
           },
           "parts": [
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.02",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.02",
+            "table.personName.dragonborn.given.neutral.ancestral.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.03",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.03",
+            "table.personName.dragonborn.given.neutral.ancestral.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.04",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.04",
+            "table.personName.dragonborn.given.neutral.ancestral.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.05",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.05",
+            "table.personName.dragonborn.given.neutral.ancestral.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.06",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.06",
+            "table.personName.dragonborn.given.neutral.ancestral.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.07",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.07",
+            "table.personName.dragonborn.given.neutral.ancestral.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.08",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.08",
+            "table.personName.dragonborn.given.neutral.ancestral.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.09",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.09",
+            "table.personName.dragonborn.given.neutral.ancestral.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.10",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.10",
+            "table.personName.dragonborn.given.neutral.ancestral.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.11",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.11",
+            "table.personName.dragonborn.given.neutral.ancestral.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.12",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.12",
+            "table.personName.dragonborn.given.neutral.ancestral.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.13",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.13",
+            "table.personName.dragonborn.given.neutral.ancestral.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.14",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.14",
+            "table.personName.dragonborn.given.neutral.ancestral.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.15",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.15",
+            "table.personName.dragonborn.given.neutral.ancestral.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.16",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.16",
+            "table.personName.dragonborn.given.neutral.ancestral.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.17",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.17",
+            "table.personName.dragonborn.given.neutral.ancestral.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.18",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.18",
+            "table.personName.dragonborn.given.neutral.ancestral.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ancestral.19",
+          "components": [
+            "table.personName.dragonborn.family.ancestral.19",
+            "table.personName.dragonborn.given.neutral.ancestral.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.01",
+          "components": [
+            "table.personName.dragonborn.family.clan.01",
+            "table.personName.dragonborn.given.neutral.clan.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.02",
+          "components": [
+            "table.personName.dragonborn.family.clan.02",
+            "table.personName.dragonborn.given.neutral.clan.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.03",
+          "components": [
+            "table.personName.dragonborn.family.clan.03",
+            "table.personName.dragonborn.given.neutral.clan.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.04",
+          "components": [
+            "table.personName.dragonborn.family.clan.04",
+            "table.personName.dragonborn.given.neutral.clan.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.05",
+          "components": [
+            "table.personName.dragonborn.family.clan.05",
+            "table.personName.dragonborn.given.neutral.clan.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.06",
+          "components": [
+            "table.personName.dragonborn.family.clan.06",
+            "table.personName.dragonborn.given.neutral.clan.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.07",
+          "components": [
+            "table.personName.dragonborn.family.clan.07",
+            "table.personName.dragonborn.given.neutral.clan.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.08",
+          "components": [
+            "table.personName.dragonborn.family.clan.08",
+            "table.personName.dragonborn.given.neutral.clan.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.09",
+          "components": [
+            "table.personName.dragonborn.family.clan.09",
+            "table.personName.dragonborn.given.neutral.clan.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.10",
+          "components": [
+            "table.personName.dragonborn.family.clan.10",
+            "table.personName.dragonborn.given.neutral.clan.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.11",
+          "components": [
+            "table.personName.dragonborn.family.clan.11",
+            "table.personName.dragonborn.given.neutral.clan.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.12",
+          "components": [
+            "table.personName.dragonborn.family.clan.12",
+            "table.personName.dragonborn.given.neutral.clan.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.13",
+          "components": [
+            "table.personName.dragonborn.family.clan.13",
+            "table.personName.dragonborn.given.neutral.clan.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.14",
+          "components": [
+            "table.personName.dragonborn.family.clan.14",
+            "table.personName.dragonborn.given.neutral.clan.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.clan.15",
+          "components": [
+            "table.personName.dragonborn.family.clan.15",
+            "table.personName.dragonborn.given.neutral.clan.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.01",
+          "components": [
+            "table.personName.dragonborn.family.honour.01",
+            "table.personName.dragonborn.given.neutral.honour.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.02",
+          "components": [
+            "table.personName.dragonborn.family.honour.02",
+            "table.personName.dragonborn.given.neutral.honour.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.03",
+          "components": [
+            "table.personName.dragonborn.family.honour.03",
+            "table.personName.dragonborn.given.neutral.honour.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.04",
+          "components": [
+            "table.personName.dragonborn.family.honour.04",
+            "table.personName.dragonborn.given.neutral.honour.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.05",
+          "components": [
+            "table.personName.dragonborn.family.honour.05",
+            "table.personName.dragonborn.given.neutral.honour.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.06",
+          "components": [
+            "table.personName.dragonborn.family.honour.06",
+            "table.personName.dragonborn.given.neutral.honour.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.07",
+          "components": [
+            "table.personName.dragonborn.family.honour.07",
+            "table.personName.dragonborn.given.neutral.honour.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.08",
+          "components": [
+            "table.personName.dragonborn.family.honour.08",
+            "table.personName.dragonborn.given.neutral.honour.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.09",
+          "components": [
+            "table.personName.dragonborn.family.honour.09",
+            "table.personName.dragonborn.given.neutral.honour.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.honour.10",
+          "components": [
+            "table.personName.dragonborn.family.honour.10",
+            "table.personName.dragonborn.given.neutral.honour.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.01",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.01",
+            "table.personName.dragonborn.given.neutral.wyrm.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.02",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.02",
+            "table.personName.dragonborn.given.neutral.wyrm.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.03",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.03",
+            "table.personName.dragonborn.given.neutral.wyrm.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.04",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.04",
+            "table.personName.dragonborn.given.neutral.wyrm.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wyrm.05",
+          "components": [
+            "table.personName.dragonborn.family.wyrm.05",
+            "table.personName.dragonborn.given.neutral.wyrm.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
+              "label": "Clan name"
+            },
+            {
+              "id": "given",
+              "label": "Given name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.dragonborn.family.mortal.01",
+            "table.personName.dragonborn.given.neutral.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "family",
               "label": "Clan name"
             },
             {

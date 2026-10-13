@@ -312,6 +312,7 @@ function StagePanel({
           onRoll={onRoll}
           onChoose={onChoose}
           onCustom={onCustomName}
+          onAct={onAct}
         />
       ) : (
         <TableStageControls stage={stage} busy={busy} onRoll={onRoll} onChoose={onChoose} />

@@ -3,69 +3,209 @@
   "tables": [
     {
       "id": "table.naming.targoth.firstElement",
-      "name": "Targoth Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Targoth Name: Highland Root",
+      "description": "25 fictional/legacy roots: names of peaks, passes, slopes, ravines, old villages. A Himalayan-inspired sound, not genuine Nepali or Tibetan morphology. Each root occupies 4 faces on 1d100.",
+      "dice": "1d100",
       "results": [
         {
           "id": "kar",
           "name": "Kar",
-          "range": 1
+          "range": [
+            1,
+            4
+          ]
         },
         {
           "id": "tor",
           "name": "Tor",
-          "range": 2
+          "range": [
+            5,
+            8
+          ]
         },
         {
           "id": "varn",
           "name": "Varn",
-          "range": 3
-        },
-        {
-          "id": "drel",
-          "name": "Drel",
-          "range": 4
-        },
-        {
-          "id": "or",
-          "name": "Or",
-          "range": 5
+          "range": [
+            9,
+            12
+          ]
         },
         {
           "id": "kel",
           "name": "Kel",
-          "range": 6
+          "range": [
+            13,
+            16
+          ]
         },
         {
           "id": "mor",
           "name": "Mor",
-          "range": 7
-        },
-        {
-          "id": "vath",
-          "name": "Vath",
-          "range": 8
-        },
-        {
-          "id": "bren",
-          "name": "Bren",
-          "range": 9
-        },
-        {
-          "id": "skarn",
-          "name": "Skarn",
-          "range": 10
-        },
-        {
-          "id": "dru",
-          "name": "Dru",
-          "range": 11
+          "range": [
+            17,
+            20
+          ]
         },
         {
           "id": "thar",
           "name": "Thar",
-          "range": 12
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "tara",
+          "name": "Tara",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "nima",
+          "name": "Nima",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "lharen",
+          "name": "Lharen",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "suren",
+          "name": "Suren",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "dorun",
+          "name": "Dorun",
+          "range": [
+            41,
+            44
+          ]
+        },
+        {
+          "id": "veyra",
+          "name": "Veyra",
+          "range": [
+            45,
+            48
+          ]
+        },
+        {
+          "id": "soma",
+          "name": "Soma",
+          "range": [
+            49,
+            52
+          ]
+        },
+        {
+          "id": "seren",
+          "name": "Seren",
+          "range": [
+            53,
+            56
+          ]
+        },
+        {
+          "id": "orun",
+          "name": "Orun",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "meren",
+          "name": "Meren",
+          "range": [
+            61,
+            64
+          ]
+        },
+        {
+          "id": "kora",
+          "name": "Kora",
+          "range": [
+            65,
+            68
+          ]
+        },
+        {
+          "id": "lharo",
+          "name": "Lharo",
+          "range": [
+            69,
+            72
+          ]
+        },
+        {
+          "id": "seyra",
+          "name": "Seyra",
+          "range": [
+            73,
+            76
+          ]
+        },
+        {
+          "id": "neru",
+          "name": "Neru",
+          "range": [
+            77,
+            80
+          ]
+        },
+        {
+          "id": "yorin",
+          "name": "Yorin",
+          "range": [
+            81,
+            84
+          ]
+        },
+        {
+          "id": "shara",
+          "name": "Shara",
+          "range": [
+            85,
+            88
+          ]
+        },
+        {
+          "id": "rin",
+          "name": "Rin",
+          "range": [
+            89,
+            92
+          ]
+        },
+        {
+          "id": "zeru",
+          "name": "Zeru",
+          "range": [
+            93,
+            96
+          ]
+        },
+        {
+          "id": "ulan",
+          "name": "Ulan",
+          "range": [
+            97,
+            100
+          ]
         }
       ]
     }

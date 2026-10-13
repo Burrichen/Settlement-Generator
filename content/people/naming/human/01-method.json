@@ -5,12 +5,526 @@
       "id": "table.personName.human.method",
       "name": "Human Naming Method",
       "description": "How a Human Authority Figure's name is put together.",
-      "dice": "1d4",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
           "name": "Given name + family name",
-          "range": [1, 4]
+          "description": "The original twenty names in each table plus eighty mixed historical and contemporary additions.",
+          "range": [
+            1,
+            15
+          ]
+        },
+        {
+          "id": "givenSurname.akan-ghanaian.01",
+          "name": "Akan/Ghanaian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 16
+        },
+        {
+          "id": "givenSurname.akan-ghanaian.02",
+          "name": "Akan/Ghanaian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 17
+        },
+        {
+          "id": "givenSurname.ancient-hellenic-byzantine.01",
+          "name": "Ancient Hellenic / Byzantine",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 18
+        },
+        {
+          "id": "givenSurname.ancient-roman-latin.01",
+          "name": "Ancient Roman / Latin",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 19
+        },
+        {
+          "id": "givenSurname.anglo-norman-medieval-britain.01",
+          "name": "Anglo-Norman / medieval Britain",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 20
+        },
+        {
+          "id": "givenSurname.anglo-saxon-early-medieval.01",
+          "name": "Anglo-Saxon (early medieval)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 21
+        },
+        {
+          "id": "givenSurname.arabic-romanised-examples-broad-historical-modern.01",
+          "name": "Arabic (romanised examples; broad historical & modern)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 22
+        },
+        {
+          "id": "givenSurname.armenian.01",
+          "name": "Armenian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 23
+        },
+        {
+          "id": "givenSurname.armenian.02",
+          "name": "Armenian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 24
+        },
+        {
+          "id": "givenSurname.austrian-german.01",
+          "name": "Austrian German (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 25
+        },
+        {
+          "id": "givenSurname.austrian-german.02",
+          "name": "Austrian German (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 26
+        },
+        {
+          "id": "givenSurname.azerbaijani.01",
+          "name": "Azerbaijani (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 27
+        },
+        {
+          "id": "givenSurname.azerbaijani.02",
+          "name": "Azerbaijani (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 28
+        },
+        {
+          "id": "givenSurname.british-english.01",
+          "name": "British English (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 29
+        },
+        {
+          "id": "givenSurname.british-english.02",
+          "name": "British English (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 30
+        },
+        {
+          "id": "givenSurname.bulgarian.01",
+          "name": "Bulgarian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 31
+        },
+        {
+          "id": "givenSurname.bulgarian.02",
+          "name": "Bulgarian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 32
+        },
+        {
+          "id": "givenSurname.croatian.01",
+          "name": "Croatian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 33
+        },
+        {
+          "id": "givenSurname.croatian.02",
+          "name": "Croatian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 34
+        },
+        {
+          "id": "givenSurname.czech.01",
+          "name": "Czech (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 35
+        },
+        {
+          "id": "givenSurname.czech.02",
+          "name": "Czech (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 36
+        },
+        {
+          "id": "givenSurname.danish.01",
+          "name": "Danish (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 37
+        },
+        {
+          "id": "givenSurname.danish.02",
+          "name": "Danish (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 38
+        },
+        {
+          "id": "givenSurname.dutch.01",
+          "name": "Dutch (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 39
+        },
+        {
+          "id": "givenSurname.dutch.02",
+          "name": "Dutch (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 40
+        },
+        {
+          "id": "givenSurname.french-belgian.01",
+          "name": "French/Belgian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 41
+        },
+        {
+          "id": "givenSurname.french-belgian.02",
+          "name": "French/Belgian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 42
+        },
+        {
+          "id": "givenSurname.gender-flexible-names.01",
+          "name": "Gender-flexible names",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 43
+        },
+        {
+          "id": "givenSurname.georgian.01",
+          "name": "Georgian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 44
+        },
+        {
+          "id": "givenSurname.georgian.02",
+          "name": "Georgian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 45
+        },
+        {
+          "id": "givenSurname.german.01",
+          "name": "German (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 46
+        },
+        {
+          "id": "givenSurname.german.02",
+          "name": "German (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 47
+        },
+        {
+          "id": "givenSurname.greek.01",
+          "name": "Greek (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 48
+        },
+        {
+          "id": "givenSurname.greek.02",
+          "name": "Greek (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 49
+        },
+        {
+          "id": "givenSurname.hebrew-jewish-romanised-examples.01",
+          "name": "Hebrew / Jewish (romanised examples)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 50
+        },
+        {
+          "id": "givenSurname.hungarian.01",
+          "name": "Hungarian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 51
+        },
+        {
+          "id": "givenSurname.hungarian.02",
+          "name": "Hungarian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 52
+        },
+        {
+          "id": "givenSurname.icelandic.01",
+          "name": "Icelandic (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 53
+        },
+        {
+          "id": "givenSurname.icelandic.02",
+          "name": "Icelandic (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 54
+        },
+        {
+          "id": "givenSurname.indonesian.01",
+          "name": "Indonesian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 55
+        },
+        {
+          "id": "givenSurname.indonesian.02",
+          "name": "Indonesian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 56
+        },
+        {
+          "id": "givenSurname.irish-gaelic.01",
+          "name": "Irish Gaelic (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 57
+        },
+        {
+          "id": "givenSurname.irish-gaelic.02",
+          "name": "Irish Gaelic (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 58
+        },
+        {
+          "id": "givenSurname.italian.01",
+          "name": "Italian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 59
+        },
+        {
+          "id": "givenSurname.italian.02",
+          "name": "Italian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 60
+        },
+        {
+          "id": "givenSurname.japanese-romanised-name-examples-mixed-periods.01",
+          "name": "Japanese (romanised name examples; mixed periods) (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 61
+        },
+        {
+          "id": "givenSurname.japanese-romanised-name-examples-mixed-periods.02",
+          "name": "Japanese (romanised name examples; mixed periods) (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 62
+        },
+        {
+          "id": "givenSurname.kenyan-multicultural.01",
+          "name": "Kenyan multicultural (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 63
+        },
+        {
+          "id": "givenSurname.kenyan-multicultural.02",
+          "name": "Kenyan multicultural (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 64
+        },
+        {
+          "id": "givenSurname.korean.01",
+          "name": "Korean",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 65
+        },
+        {
+          "id": "givenSurname.mandarin-chinese.01",
+          "name": "Mandarin Chinese (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 66
+        },
+        {
+          "id": "givenSurname.mandarin-chinese.02",
+          "name": "Mandarin Chinese (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 67
+        },
+        {
+          "id": "givenSurname.north-indian-sanskrit-derived-romanised-examples.01",
+          "name": "North Indian / Sanskrit-derived (romanised examples) (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 68
+        },
+        {
+          "id": "givenSurname.north-indian-sanskrit-derived-romanised-examples.02",
+          "name": "North Indian / Sanskrit-derived (romanised examples) (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 69
+        },
+        {
+          "id": "givenSurname.norwegian.01",
+          "name": "Norwegian",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 70
+        },
+        {
+          "id": "givenSurname.old-norse-viking-age-inspired.01",
+          "name": "Old Norse / Viking Age inspired",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 71
+        },
+        {
+          "id": "givenSurname.persian-iranian-romanised-examples.01",
+          "name": "Persian / Iranian (romanised examples)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 72
+        },
+        {
+          "id": "givenSurname.portuguese.01",
+          "name": "Portuguese",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 73
+        },
+        {
+          "id": "givenSurname.romanian.01",
+          "name": "Romanian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 74
+        },
+        {
+          "id": "givenSurname.romanian.02",
+          "name": "Romanian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 75
+        },
+        {
+          "id": "givenSurname.russian.01",
+          "name": "Russian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 76
+        },
+        {
+          "id": "givenSurname.russian.02",
+          "name": "Russian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.slovak.01",
+          "name": "Slovak (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.slovak.02",
+          "name": "Slovak (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.slovenian.01",
+          "name": "Slovenian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.slovenian.02",
+          "name": "Slovenian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.spanish.01",
+          "name": "Spanish (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.spanish.02",
+          "name": "Spanish (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.swahili-speaking-east-africa.01",
+          "name": "Swahili-speaking East Africa (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.swahili-speaking-east-africa.02",
+          "name": "Swahili-speaking East Africa (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.swedish.01",
+          "name": "Swedish (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.swedish.02",
+          "name": "Swedish (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.tamil-south-indian-romanised-given-examples.01",
+          "name": "Tamil / South Indian (romanised given examples) (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.tamil-south-indian-romanised-given-examples.02",
+          "name": "Tamil / South Indian (romanised given examples) (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.turkish.01",
+          "name": "Turkish (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.turkish.02",
+          "name": "Turkish (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.ukrainian.01",
+          "name": "Ukrainian (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.ukrainian.02",
+          "name": "Ukrainian (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.uzbek.01",
+          "name": "Uzbek (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.uzbek.02",
+          "name": "Uzbek (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.victorian-edwardian-britain-inspired.01",
+          "name": "Victorian / Edwardian Britain inspired",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.yoruba.01",
+          "name": "Yoruba (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.yoruba.02",
+          "name": "Yoruba (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.zulu.01",
+          "name": "Zulu (1/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.zulu.02",
+          "name": "Zulu (2/2)",
+          "description": "A standard given-name + family-name result using this tradition/era vocabulary; adaptation for a fictional world, not guaranteed historically authentic.",
+          "range": 100
         }
       ]
     }

@@ -21,7 +21,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.darkElf.given.masculine",
-            "table.personName.darkElf.house"
+            "table.personName.darkElf.family"
           ],
           "join": {
             "style": "compound",
@@ -34,8 +34,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.02",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.02",
+            "table.personName.darkElf.family.court.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.03",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.03",
+            "table.personName.darkElf.family.court.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.04",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.04",
+            "table.personName.darkElf.family.court.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.05",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.05",
+            "table.personName.darkElf.family.court.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.06",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.06",
+            "table.personName.darkElf.family.court.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.07",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.07",
+            "table.personName.darkElf.family.court.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.08",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.08",
+            "table.personName.darkElf.family.court.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.09",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.09",
+            "table.personName.darkElf.family.court.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.10",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.10",
+            "table.personName.darkElf.family.court.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.11",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.11",
+            "table.personName.darkElf.family.court.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.12",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.12",
+            "table.personName.darkElf.family.court.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.13",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.13",
+            "table.personName.darkElf.family.court.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.14",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.14",
+            "table.personName.darkElf.family.court.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.15",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.15",
+            "table.personName.darkElf.family.court.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.16",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.16",
+            "table.personName.darkElf.family.court.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.17",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.17",
+            "table.personName.darkElf.family.court.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.18",
+          "components": [
+            "table.personName.darkElf.given.masculine.court.18",
+            "table.personName.darkElf.family.court.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.01",
+            "table.personName.darkElf.family.deep.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.02",
+            "table.personName.darkElf.family.deep.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.03",
+            "table.personName.darkElf.family.deep.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.04",
+            "table.personName.darkElf.family.deep.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.05",
+            "table.personName.darkElf.family.deep.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.06",
+            "table.personName.darkElf.family.deep.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.07",
+            "table.personName.darkElf.family.deep.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.08",
+            "table.personName.darkElf.family.deep.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.09",
+            "table.personName.darkElf.family.deep.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.10",
+            "table.personName.darkElf.family.deep.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.11",
+            "table.personName.darkElf.family.deep.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.darkElf.given.masculine.deep.12",
+            "table.personName.darkElf.family.deep.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.01",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.01",
+            "table.personName.darkElf.family.twilight.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.02",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.02",
+            "table.personName.darkElf.family.twilight.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.03",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.03",
+            "table.personName.darkElf.family.twilight.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.04",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.04",
+            "table.personName.darkElf.family.twilight.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.05",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.05",
+            "table.personName.darkElf.family.twilight.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.06",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.06",
+            "table.personName.darkElf.family.twilight.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.07",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.07",
+            "table.personName.darkElf.family.twilight.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.08",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.08",
+            "table.personName.darkElf.family.twilight.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.09",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.09",
+            "table.personName.darkElf.family.twilight.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.10",
+          "components": [
+            "table.personName.darkElf.given.masculine.twilight.10",
+            "table.personName.darkElf.family.twilight.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.01",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.01",
+            "table.personName.darkElf.family.moon.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.02",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.02",
+            "table.personName.darkElf.family.moon.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.03",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.03",
+            "table.personName.darkElf.family.moon.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.04",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.04",
+            "table.personName.darkElf.family.moon.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.05",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.05",
+            "table.personName.darkElf.family.moon.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.06",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.06",
+            "table.personName.darkElf.family.moon.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.07",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.07",
+            "table.personName.darkElf.family.moon.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.08",
+          "components": [
+            "table.personName.darkElf.given.masculine.moon.08",
+            "table.personName.darkElf.family.moon.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.darkElf.given.masculine.mortal.01",
+            "table.personName.darkElf.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.darkElf.given.masculine.mortal.02",
+            "table.personName.darkElf.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
             }
           ]
         }
@@ -61,7 +1139,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.darkElf.given.feminine",
-            "table.personName.darkElf.house"
+            "table.personName.darkElf.family"
           ],
           "join": {
             "style": "compound",
@@ -74,8 +1152,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.02",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.02",
+            "table.personName.darkElf.family.court.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.03",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.03",
+            "table.personName.darkElf.family.court.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.04",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.04",
+            "table.personName.darkElf.family.court.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.05",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.05",
+            "table.personName.darkElf.family.court.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.06",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.06",
+            "table.personName.darkElf.family.court.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.07",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.07",
+            "table.personName.darkElf.family.court.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.08",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.08",
+            "table.personName.darkElf.family.court.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.09",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.09",
+            "table.personName.darkElf.family.court.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.10",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.10",
+            "table.personName.darkElf.family.court.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.11",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.11",
+            "table.personName.darkElf.family.court.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.12",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.12",
+            "table.personName.darkElf.family.court.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.13",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.13",
+            "table.personName.darkElf.family.court.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.14",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.14",
+            "table.personName.darkElf.family.court.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.15",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.15",
+            "table.personName.darkElf.family.court.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.16",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.16",
+            "table.personName.darkElf.family.court.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.17",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.17",
+            "table.personName.darkElf.family.court.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.18",
+          "components": [
+            "table.personName.darkElf.given.feminine.court.18",
+            "table.personName.darkElf.family.court.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.01",
+            "table.personName.darkElf.family.deep.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.02",
+            "table.personName.darkElf.family.deep.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.03",
+            "table.personName.darkElf.family.deep.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.04",
+            "table.personName.darkElf.family.deep.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.05",
+            "table.personName.darkElf.family.deep.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.06",
+            "table.personName.darkElf.family.deep.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.07",
+            "table.personName.darkElf.family.deep.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.08",
+            "table.personName.darkElf.family.deep.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.09",
+            "table.personName.darkElf.family.deep.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.10",
+            "table.personName.darkElf.family.deep.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.11",
+            "table.personName.darkElf.family.deep.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.darkElf.given.feminine.deep.12",
+            "table.personName.darkElf.family.deep.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.01",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.01",
+            "table.personName.darkElf.family.twilight.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.02",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.02",
+            "table.personName.darkElf.family.twilight.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.03",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.03",
+            "table.personName.darkElf.family.twilight.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.04",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.04",
+            "table.personName.darkElf.family.twilight.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.05",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.05",
+            "table.personName.darkElf.family.twilight.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.06",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.06",
+            "table.personName.darkElf.family.twilight.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.07",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.07",
+            "table.personName.darkElf.family.twilight.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.08",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.08",
+            "table.personName.darkElf.family.twilight.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.09",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.09",
+            "table.personName.darkElf.family.twilight.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.10",
+          "components": [
+            "table.personName.darkElf.given.feminine.twilight.10",
+            "table.personName.darkElf.family.twilight.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.01",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.01",
+            "table.personName.darkElf.family.moon.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.02",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.02",
+            "table.personName.darkElf.family.moon.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.03",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.03",
+            "table.personName.darkElf.family.moon.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.04",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.04",
+            "table.personName.darkElf.family.moon.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.05",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.05",
+            "table.personName.darkElf.family.moon.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.06",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.06",
+            "table.personName.darkElf.family.moon.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.07",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.07",
+            "table.personName.darkElf.family.moon.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.08",
+          "components": [
+            "table.personName.darkElf.given.feminine.moon.08",
+            "table.personName.darkElf.family.moon.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.darkElf.given.feminine.mortal.01",
+            "table.personName.darkElf.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.darkElf.given.feminine.mortal.02",
+            "table.personName.darkElf.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
             }
           ]
         }
@@ -94,7 +2250,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.darkElf.given.neutral",
-            "table.personName.darkElf.house"
+            "table.personName.darkElf.family"
           ],
           "join": {
             "style": "compound",
@@ -107,8 +2263,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.02",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.02",
+            "table.personName.darkElf.family.court.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.03",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.03",
+            "table.personName.darkElf.family.court.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.04",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.04",
+            "table.personName.darkElf.family.court.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.05",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.05",
+            "table.personName.darkElf.family.court.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.06",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.06",
+            "table.personName.darkElf.family.court.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.07",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.07",
+            "table.personName.darkElf.family.court.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.08",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.08",
+            "table.personName.darkElf.family.court.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.09",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.09",
+            "table.personName.darkElf.family.court.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.10",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.10",
+            "table.personName.darkElf.family.court.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.11",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.11",
+            "table.personName.darkElf.family.court.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.12",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.12",
+            "table.personName.darkElf.family.court.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.13",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.13",
+            "table.personName.darkElf.family.court.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.14",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.14",
+            "table.personName.darkElf.family.court.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.15",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.15",
+            "table.personName.darkElf.family.court.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.16",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.16",
+            "table.personName.darkElf.family.court.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.17",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.17",
+            "table.personName.darkElf.family.court.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.court.18",
+          "components": [
+            "table.personName.darkElf.given.neutral.court.18",
+            "table.personName.darkElf.family.court.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.01",
+            "table.personName.darkElf.family.deep.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.02",
+            "table.personName.darkElf.family.deep.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.03",
+            "table.personName.darkElf.family.deep.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.04",
+            "table.personName.darkElf.family.deep.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.05",
+            "table.personName.darkElf.family.deep.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.06",
+            "table.personName.darkElf.family.deep.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.07",
+            "table.personName.darkElf.family.deep.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.08",
+            "table.personName.darkElf.family.deep.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.09",
+            "table.personName.darkElf.family.deep.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.10",
+            "table.personName.darkElf.family.deep.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.11",
+            "table.personName.darkElf.family.deep.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.darkElf.given.neutral.deep.12",
+            "table.personName.darkElf.family.deep.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.01",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.01",
+            "table.personName.darkElf.family.twilight.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.02",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.02",
+            "table.personName.darkElf.family.twilight.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.03",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.03",
+            "table.personName.darkElf.family.twilight.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.04",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.04",
+            "table.personName.darkElf.family.twilight.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.05",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.05",
+            "table.personName.darkElf.family.twilight.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.06",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.06",
+            "table.personName.darkElf.family.twilight.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.07",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.07",
+            "table.personName.darkElf.family.twilight.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.08",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.08",
+            "table.personName.darkElf.family.twilight.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.09",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.09",
+            "table.personName.darkElf.family.twilight.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.twilight.10",
+          "components": [
+            "table.personName.darkElf.given.neutral.twilight.10",
+            "table.personName.darkElf.family.twilight.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.01",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.01",
+            "table.personName.darkElf.family.moon.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.02",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.02",
+            "table.personName.darkElf.family.moon.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.03",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.03",
+            "table.personName.darkElf.family.moon.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.04",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.04",
+            "table.personName.darkElf.family.moon.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.05",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.05",
+            "table.personName.darkElf.family.moon.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.06",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.06",
+            "table.personName.darkElf.family.moon.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.07",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.07",
+            "table.personName.darkElf.family.moon.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.moon.08",
+          "components": [
+            "table.personName.darkElf.given.neutral.moon.08",
+            "table.personName.darkElf.family.moon.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.darkElf.given.neutral.mortal.01",
+            "table.personName.darkElf.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.darkElf.given.neutral.mortal.02",
+            "table.personName.darkElf.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
             }
           ]
         }

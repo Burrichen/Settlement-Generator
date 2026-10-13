@@ -4,13 +4,458 @@
     {
       "id": "table.personName.dwarf.method",
       "name": "Dwarf Naming Method",
-      "description": "How a Dwarf Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "Fifty equally weighted name-bank routes. 40% Ancestral Runic, 26% Deep Hall, 18% Forge & Guild, 12% Hearth & Highland, 4% Surface-influenced. Uses only ordinary given-name + clan-name joins. Clan pool has 50 great and 150 lesser names.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + clan name",
-          "range": [1, 4]
+          "name": "Ancestral Runic — name collection 1/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.runic.02",
+          "name": "Ancestral Runic — name collection 2/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.runic.03",
+          "name": "Ancestral Runic — name collection 3/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.runic.04",
+          "name": "Ancestral Runic — name collection 4/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.runic.05",
+          "name": "Ancestral Runic — name collection 5/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.runic.06",
+          "name": "Ancestral Runic — name collection 6/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.runic.07",
+          "name": "Ancestral Runic — name collection 7/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.runic.08",
+          "name": "Ancestral Runic — name collection 8/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.runic.09",
+          "name": "Ancestral Runic — name collection 9/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.runic.10",
+          "name": "Ancestral Runic — name collection 10/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.runic.11",
+          "name": "Ancestral Runic — name collection 11/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.runic.12",
+          "name": "Ancestral Runic — name collection 12/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.runic.13",
+          "name": "Ancestral Runic — name collection 13/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.runic.14",
+          "name": "Ancestral Runic — name collection 14/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.runic.15",
+          "name": "Ancestral Runic — name collection 15/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.runic.16",
+          "name": "Ancestral Runic — name collection 16/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.runic.17",
+          "name": "Ancestral Runic — name collection 17/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.runic.18",
+          "name": "Ancestral Runic — name collection 18/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.runic.19",
+          "name": "Ancestral Runic — name collection 19/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.runic.20",
+          "name": "Ancestral Runic — name collection 20/20",
+          "description": "Given name + Clan name. Ancestral Runic; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.deep.01",
+          "name": "Deep-Hall & Stone — name collection 1/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.deep.02",
+          "name": "Deep-Hall & Stone — name collection 2/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.deep.03",
+          "name": "Deep-Hall & Stone — name collection 3/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.deep.04",
+          "name": "Deep-Hall & Stone — name collection 4/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.deep.05",
+          "name": "Deep-Hall & Stone — name collection 5/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.deep.06",
+          "name": "Deep-Hall & Stone — name collection 6/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.deep.07",
+          "name": "Deep-Hall & Stone — name collection 7/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.deep.08",
+          "name": "Deep-Hall & Stone — name collection 8/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.deep.09",
+          "name": "Deep-Hall & Stone — name collection 9/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.deep.10",
+          "name": "Deep-Hall & Stone — name collection 10/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.deep.11",
+          "name": "Deep-Hall & Stone — name collection 11/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.deep.12",
+          "name": "Deep-Hall & Stone — name collection 12/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.deep.13",
+          "name": "Deep-Hall & Stone — name collection 13/13",
+          "description": "Given name + Clan name. Deep-Hall & Stone; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.forge.01",
+          "name": "Forge & Guild — name collection 1/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.forge.02",
+          "name": "Forge & Guild — name collection 2/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.forge.03",
+          "name": "Forge & Guild — name collection 3/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.forge.04",
+          "name": "Forge & Guild — name collection 4/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.forge.05",
+          "name": "Forge & Guild — name collection 5/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.forge.06",
+          "name": "Forge & Guild — name collection 6/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.forge.07",
+          "name": "Forge & Guild — name collection 7/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.forge.08",
+          "name": "Forge & Guild — name collection 8/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.forge.09",
+          "name": "Forge & Guild — name collection 9/9",
+          "description": "Given name + Clan name. Forge & Guild; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.01",
+          "name": "Hearth & Highland — name collection 1/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.02",
+          "name": "Hearth & Highland — name collection 2/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Great Clan. Both components are complete names.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.03",
+          "name": "Hearth & Highland — name collection 3/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.04",
+          "name": "Hearth & Highland — name collection 4/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.05",
+          "name": "Hearth & Highland — name collection 5/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.06",
+          "name": "Hearth & Highland — name collection 6/6",
+          "description": "Given name + Clan name. Hearth & Highland; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.surface.01",
+          "name": "Surface-influenced — name collection 1/2",
+          "description": "Given name + Clan name. Surface-influenced; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.surface.02",
+          "name": "Surface-influenced — name collection 2/2",
+          "description": "Given name + Clan name. Surface-influenced; clan group: Lesser Clan. Both components are complete names.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

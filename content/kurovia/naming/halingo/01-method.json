@@ -4,20 +4,89 @@
     {
       "id": "table.naming.halingo.method",
       "name": "Halingo Naming Method",
-      "description": "Which naming method a Halingo settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Arid frontier style: dry, understated and slightly harsh.",
-      "dice": "1d10",
+      "description": "9 methods. Fused Frontier (26%) and Inherited Desert (24%) are the two most common; Single-Word remains rare on d100 rolls 99-00 (2%).",
+      "dice": "1d100",
       "results": [
         {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "First element + second element as two words, e.g. Khar Well, Cinder Ridge.",
-          "range": [1, 7]
+          "name": "Geographic & Landmark",
+          "description": "Terrain, local colour and stable topographic markers.",
+          "range": [
+            1,
+            15
+          ]
+        },
+        {
+          "id": "water",
+          "name": "Water & Survival",
+          "description": "Water, shelter and risk: names that tell travellers where they might endure.",
+          "range": [
+            16,
+            27
+          ]
+        },
+        {
+          "id": "industry",
+          "name": "Prospecting & Industry",
+          "description": "Resource, mining, workshop and Ichor extraction settlements.",
+          "range": [
+            28,
+            37
+          ]
+        },
+        {
+          "id": "route",
+          "name": "Roads, Rails & Commerce",
+          "description": "Junctions, sidings, trade hubs, relays and transport-linked sites.",
+          "range": [
+            38,
+            43
+          ]
+        },
+        {
+          "id": "fused",
+          "name": "Fused Frontier Name",
+          "description": "A curated single-word place-name formed from ordinary landscape and mining words.",
+          "range": [
+            44,
+            69
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "Founder's name + a settlement feature, e.g. Varesh's Well. A founder ending in s takes an apostrophe only.",
-          "range": [8, 10]
+          "name": "Landholder & Claim",
+          "description": "Former proprietors, claim-holders and private operators, not necessarily honoured ancestors.",
+          "range": [
+            70,
+            72
+          ]
+        },
+        {
+          "id": "archaic",
+          "name": "Inherited Desert Name",
+          "description": "An inherited one-piece proper toponym from an older regional language layer.",
+          "range": [
+            73,
+            96
+          ]
+        },
+        {
+          "id": "warning",
+          "name": "Disaster & Warning",
+          "description": "Rare place names remembered because of ruin, danger or a warning.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "single",
+          "name": "Single-Word Name",
+          "description": "Very rare abstract or ordinary one-word name: Malice, Mercy, Dissent and similar; Heresy is reserved.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

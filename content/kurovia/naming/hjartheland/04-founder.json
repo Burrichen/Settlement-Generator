@@ -3,69 +3,329 @@
   "tables": [
     {
       "id": "table.naming.hjartheland.founder",
-      "name": "Hjartheland Name: Founder",
-      "description": "The founder or family a Historical Founder name is taken from. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Hjartheland Historical: Genitive Founder Stem",
+      "description": "40 personal-name stems shown in simplified possessive forms (Eiriks, Astrids, Leifs). IDs preserve dictionary-form founder names where present in original starter pack.",
+      "dice": "1d100",
       "results": [
         {
           "id": "eirik",
-          "name": "Eirik",
-          "range": 1
+          "name": "Eiriks",
+          "range": [
+            1,
+            3
+          ]
         },
         {
           "id": "signe",
-          "name": "Signe",
-          "range": 2
+          "name": "Signes",
+          "range": [
+            4,
+            6
+          ]
         },
         {
           "id": "astrid",
-          "name": "Astrid",
-          "range": 3
+          "name": "Astrids",
+          "range": [
+            7,
+            9
+          ]
         },
         {
           "id": "torvald",
-          "name": "Torvald",
-          "range": 4
+          "name": "Torvalds",
+          "range": [
+            10,
+            12
+          ]
         },
         {
           "id": "hakon",
-          "name": "Hakon",
-          "range": 5
+          "name": "Hakons",
+          "range": [
+            13,
+            15
+          ]
         },
         {
           "id": "runa",
-          "name": "Runa",
-          "range": 6
+          "name": "Runas",
+          "range": [
+            16,
+            18
+          ]
         },
         {
           "id": "halvor",
-          "name": "Halvor",
-          "range": 7
+          "name": "Halvors",
+          "range": [
+            19,
+            21
+          ]
         },
         {
           "id": "yrsa",
-          "name": "Yrsa",
-          "range": 8
+          "name": "Yrsas",
+          "range": [
+            22,
+            24
+          ]
         },
         {
           "id": "sigrun",
-          "name": "Sigrun",
-          "range": 9
+          "name": "Sigruns",
+          "range": [
+            25,
+            27
+          ]
         },
         {
           "id": "alva",
-          "name": "Alva",
-          "range": 10
+          "name": "Alvas",
+          "range": [
+            28,
+            30
+          ]
         },
         {
           "id": "jorund",
-          "name": "Jorund",
-          "range": 11
+          "name": "Jorunds",
+          "range": [
+            31,
+            33
+          ]
         },
         {
           "id": "leif",
-          "name": "Leif",
-          "range": 12
+          "name": "Leifs",
+          "range": [
+            34,
+            36
+          ]
+        },
+        {
+          "id": "ingrid",
+          "name": "Ingrids",
+          "range": [
+            37,
+            39
+          ]
+        },
+        {
+          "id": "sven",
+          "name": "Svens",
+          "range": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "kari",
+          "name": "Karis",
+          "range": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "tore",
+          "name": "Tores",
+          "range": [
+            46,
+            48
+          ]
+        },
+        {
+          "id": "arne",
+          "name": "Arnes",
+          "range": [
+            49,
+            51
+          ]
+        },
+        {
+          "id": "gudrun",
+          "name": "Gudruns",
+          "range": [
+            52,
+            54
+          ]
+        },
+        {
+          "id": "bjarne",
+          "name": "Bjarnes",
+          "range": [
+            55,
+            57
+          ]
+        },
+        {
+          "id": "hilda",
+          "name": "Hildas",
+          "range": [
+            58,
+            60
+          ]
+        },
+        {
+          "id": "asmund",
+          "name": "Asmunds",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "sigrid",
+          "name": "Sigrids",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "ragnvald",
+          "name": "Ragnvalds",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "eldrid",
+          "name": "Eldrids",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "orm",
+          "name": "Orms",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "ragnhild",
+          "name": "Ragnhilds",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "torunn",
+          "name": "Torunns",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "kjell",
+          "name": "Kjells",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "hedda",
+          "name": "Heddas",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "einar",
+          "name": "Einars",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "haldor",
+          "name": "Haldors",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "jorunn",
+          "name": "Jorunns",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "hrafn",
+          "name": "Hrafns",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "vidar",
+          "name": "Vidars",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "ragn",
+          "name": "Ragns",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "solveig",
+          "name": "Solveigs",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "tyr",
+          "name": "Tyrs",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "svala",
+          "name": "Svalas",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "ulvar",
+          "name": "Ulvars",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "vigdis",
+          "name": "Vigdis",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

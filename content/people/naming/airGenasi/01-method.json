@@ -4,13 +4,557 @@
     {
       "id": "table.personName.airGenasi.method",
       "name": "Air Genasi Naming Method",
-      "description": "How a Air Genasi Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "All methods use the existing Given name + family name format. Range 1-10 core, 11-40 mortal-raised, 41-65 skyborn, 66-90 djinn lineage, 91-100 wind-names. This is a routing table, NOT a new joining rule.",
+      "dice": "1d100",
       "results": [
         {
-          "id": "given",
-          "name": "Given name only",
-          "range": [1, 4]
+          "id": "givenSurname",
+          "name": "Air Genasi core (given + family)",
+          "description": "Baseline mixed Air Genasi vocabulary: 10% of name generations.",
+          "range": [
+            1,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.01",
+          "name": "Mortal-raised: Arabic and Levantine",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 11
+        },
+        {
+          "id": "givenSurname.mortal.02",
+          "name": "Mortal-raised: Persian and Iranian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 12
+        },
+        {
+          "id": "givenSurname.mortal.03",
+          "name": "Mortal-raised: Turkish",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 13
+        },
+        {
+          "id": "givenSurname.mortal.04",
+          "name": "Mortal-raised: Azerbaijani",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 14
+        },
+        {
+          "id": "givenSurname.mortal.05",
+          "name": "Mortal-raised: Uzbek",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 15
+        },
+        {
+          "id": "givenSurname.mortal.06",
+          "name": "Mortal-raised: Armenian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 16
+        },
+        {
+          "id": "givenSurname.mortal.07",
+          "name": "Mortal-raised: Georgian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 17
+        },
+        {
+          "id": "givenSurname.mortal.08",
+          "name": "Mortal-raised: Greek",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 18
+        },
+        {
+          "id": "givenSurname.mortal.09",
+          "name": "Mortal-raised: North Indian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 19
+        },
+        {
+          "id": "givenSurname.mortal.10",
+          "name": "Mortal-raised: Japanese",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 20
+        },
+        {
+          "id": "givenSurname.mortal.11",
+          "name": "Mortal-raised: Korean",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 21
+        },
+        {
+          "id": "givenSurname.mortal.12",
+          "name": "Mortal-raised: Swahili",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 22
+        },
+        {
+          "id": "givenSurname.mortal.13",
+          "name": "Mortal-raised: Yoruba",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 23
+        },
+        {
+          "id": "givenSurname.mortal.14",
+          "name": "Mortal-raised: Kenyan",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 24
+        },
+        {
+          "id": "givenSurname.mortal.15",
+          "name": "Mortal-raised: Irish Gaelic",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 25
+        },
+        {
+          "id": "givenSurname.mortal.16",
+          "name": "Mortal-raised: Icelandic",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 26
+        },
+        {
+          "id": "givenSurname.mortal.17",
+          "name": "Mortal-raised: Swedish",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 27
+        },
+        {
+          "id": "givenSurname.mortal.18",
+          "name": "Mortal-raised: Danish",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 28
+        },
+        {
+          "id": "givenSurname.mortal.19",
+          "name": "Mortal-raised: British",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 29
+        },
+        {
+          "id": "givenSurname.mortal.20",
+          "name": "Mortal-raised: French",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 30
+        },
+        {
+          "id": "givenSurname.mortal.21",
+          "name": "Mortal-raised: Italian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 31
+        },
+        {
+          "id": "givenSurname.mortal.22",
+          "name": "Mortal-raised: Spanish",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 32
+        },
+        {
+          "id": "givenSurname.mortal.23",
+          "name": "Mortal-raised: Dutch",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 33
+        },
+        {
+          "id": "givenSurname.mortal.24",
+          "name": "Mortal-raised: German",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 34
+        },
+        {
+          "id": "givenSurname.mortal.25",
+          "name": "Mortal-raised: Czech",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 35
+        },
+        {
+          "id": "givenSurname.mortal.26",
+          "name": "Mortal-raised: Slovak",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 36
+        },
+        {
+          "id": "givenSurname.mortal.27",
+          "name": "Mortal-raised: Romanian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 37
+        },
+        {
+          "id": "givenSurname.mortal.28",
+          "name": "Mortal-raised: Bulgarian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 38
+        },
+        {
+          "id": "givenSurname.mortal.29",
+          "name": "Mortal-raised: Hungarian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 39
+        },
+        {
+          "id": "givenSurname.mortal.30",
+          "name": "Mortal-raised: Indonesian",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 40
+        },
+        {
+          "id": "givenSurname.sky.31",
+          "name": "Skyborn: aether 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 41
+        },
+        {
+          "id": "givenSurname.sky.32",
+          "name": "Skyborn: aether 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 42
+        },
+        {
+          "id": "givenSurname.sky.33",
+          "name": "Skyborn: aether 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 43
+        },
+        {
+          "id": "givenSurname.sky.34",
+          "name": "Skyborn: aether 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 44
+        },
+        {
+          "id": "givenSurname.sky.35",
+          "name": "Skyborn: aether 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 45
+        },
+        {
+          "id": "givenSurname.sky.36",
+          "name": "Skyborn: cloud 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 46
+        },
+        {
+          "id": "givenSurname.sky.37",
+          "name": "Skyborn: cloud 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 47
+        },
+        {
+          "id": "givenSurname.sky.38",
+          "name": "Skyborn: cloud 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 48
+        },
+        {
+          "id": "givenSurname.sky.39",
+          "name": "Skyborn: cloud 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 49
+        },
+        {
+          "id": "givenSurname.sky.40",
+          "name": "Skyborn: cloud 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 50
+        },
+        {
+          "id": "givenSurname.sky.41",
+          "name": "Skyborn: storm 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 51
+        },
+        {
+          "id": "givenSurname.sky.42",
+          "name": "Skyborn: storm 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 52
+        },
+        {
+          "id": "givenSurname.sky.43",
+          "name": "Skyborn: storm 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 53
+        },
+        {
+          "id": "givenSurname.sky.44",
+          "name": "Skyborn: storm 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 54
+        },
+        {
+          "id": "givenSurname.sky.45",
+          "name": "Skyborn: storm 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 55
+        },
+        {
+          "id": "givenSurname.sky.46",
+          "name": "Skyborn: highcourt 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 56
+        },
+        {
+          "id": "givenSurname.sky.47",
+          "name": "Skyborn: highcourt 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 57
+        },
+        {
+          "id": "givenSurname.sky.48",
+          "name": "Skyborn: highcourt 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 58
+        },
+        {
+          "id": "givenSurname.sky.49",
+          "name": "Skyborn: highcourt 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 59
+        },
+        {
+          "id": "givenSurname.sky.50",
+          "name": "Skyborn: highcourt 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 60
+        },
+        {
+          "id": "givenSurname.sky.51",
+          "name": "Skyborn: dawn 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 61
+        },
+        {
+          "id": "givenSurname.sky.52",
+          "name": "Skyborn: dawn 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 62
+        },
+        {
+          "id": "givenSurname.sky.53",
+          "name": "Skyborn: dawn 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 63
+        },
+        {
+          "id": "givenSurname.sky.54",
+          "name": "Skyborn: dawn 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 64
+        },
+        {
+          "id": "givenSurname.sky.55",
+          "name": "Skyborn: dawn 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 65
+        },
+        {
+          "id": "givenSurname.djinn.56",
+          "name": "Djinn lineages: high-djinn 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 66
+        },
+        {
+          "id": "givenSurname.djinn.57",
+          "name": "Djinn lineages: high-djinn 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 67
+        },
+        {
+          "id": "givenSurname.djinn.58",
+          "name": "Djinn lineages: high-djinn 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 68
+        },
+        {
+          "id": "givenSurname.djinn.59",
+          "name": "Djinn lineages: high-djinn 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 69
+        },
+        {
+          "id": "givenSurname.djinn.60",
+          "name": "Djinn lineages: high-djinn 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 70
+        },
+        {
+          "id": "givenSurname.djinn.61",
+          "name": "Djinn lineages: monsoon 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 71
+        },
+        {
+          "id": "givenSurname.djinn.62",
+          "name": "Djinn lineages: monsoon 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 72
+        },
+        {
+          "id": "givenSurname.djinn.63",
+          "name": "Djinn lineages: monsoon 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 73
+        },
+        {
+          "id": "givenSurname.djinn.64",
+          "name": "Djinn lineages: monsoon 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 74
+        },
+        {
+          "id": "givenSurname.djinn.65",
+          "name": "Djinn lineages: monsoon 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 75
+        },
+        {
+          "id": "givenSurname.djinn.66",
+          "name": "Djinn lineages: desert-cloud 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 76
+        },
+        {
+          "id": "givenSurname.djinn.67",
+          "name": "Djinn lineages: desert-cloud 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.djinn.68",
+          "name": "Djinn lineages: desert-cloud 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.djinn.69",
+          "name": "Djinn lineages: desert-cloud 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.djinn.70",
+          "name": "Djinn lineages: desert-cloud 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.djinn.71",
+          "name": "Djinn lineages: far-wanderer 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.djinn.72",
+          "name": "Djinn lineages: far-wanderer 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.djinn.73",
+          "name": "Djinn lineages: far-wanderer 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.djinn.74",
+          "name": "Djinn lineages: far-wanderer 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.djinn.75",
+          "name": "Djinn lineages: far-wanderer 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.djinn.76",
+          "name": "Djinn lineages: twilight 1/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.djinn.77",
+          "name": "Djinn lineages: twilight 2/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.djinn.78",
+          "name": "Djinn lineages: twilight 3/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.djinn.79",
+          "name": "Djinn lineages: twilight 4/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.djinn.80",
+          "name": "Djinn lineages: twilight 5/5",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.wind.81",
+          "name": "Wind-name / chosen epithet 1/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.wind.82",
+          "name": "Wind-name / chosen epithet 2/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.wind.83",
+          "name": "Wind-name / chosen epithet 3/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.wind.84",
+          "name": "Wind-name / chosen epithet 4/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.wind.85",
+          "name": "Wind-name / chosen epithet 5/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.wind.86",
+          "name": "Wind-name / chosen epithet 6/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.wind.87",
+          "name": "Wind-name / chosen epithet 7/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.wind.88",
+          "name": "Wind-name / chosen epithet 8/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.wind.89",
+          "name": "Wind-name / chosen epithet 9/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.wind.90",
+          "name": "Wind-name / chosen epithet 10/10",
+          "description": "Given name + family name, selected from a matching Air Genasi naming tradition.",
+          "range": 100
         }
       ]
     }

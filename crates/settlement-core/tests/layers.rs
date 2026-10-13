@@ -73,6 +73,7 @@ fn user_result(id: &str, range: Option<FaceRange>) -> TableResult {
         unique: false,
         fallback: None,
         label_variants: Vec::new(),
+        approved_names: Default::default(),
     }
 }
 

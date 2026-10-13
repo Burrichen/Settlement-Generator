@@ -96,6 +96,8 @@ vi.mock("./api", async (importOriginal) => {
       roll: vi.fn(),
       choose: vi.fn(),
       customName: vi.fn(),
+      rollNamePart: vi.fn(),
+      chooseNamePart: vi.fn(),
       advance: vi.fn(),
       back: vi.fn(),
       rollRemaining: vi.fn(),
@@ -324,5 +326,119 @@ describe("saving", () => {
     await user.type(input, "Godwin's Rest");
     await user.click(screen.getByRole("button", { name: "Save" }));
     expect(g.save).toHaveBeenCalledWith("Godwin's Rest");
+  });
+});
+
+describe("name parts and approved variants", () => {
+  const curated = founder;
+  const parts = (name: string, form: "a" | "b"): NamingView => ({
+    scheme: ordon,
+    name,
+    source: "generated",
+    method: curated,
+    part_options: [
+      {
+        part: 0,
+        id: "part1",
+        label: "Ordon Manorial: Historical Person or Landholder",
+        table: { id: "table.naming.ordon.founder", name: "Founder" },
+        options: [
+          { result: { id: "oswald", name: "Oswald" }, tags: [], legal: true, range: 28 },
+          { result: { id: "godwin", name: "Godwin" }, tags: [], legal: true, range: 74 },
+        ],
+        previews: [name, form === "a" ? "Godwinsbury" : "Godwinham"],
+        current: "oswald",
+      },
+      {
+        part: 1,
+        id: "part2",
+        label: "Approved form",
+        table: { id: "table.naming.ordon.founderEnding", name: "Approved form" },
+        options: [
+          { result: { id: "a", name: "A" }, tags: [], legal: true, range: [1, 2] },
+          { result: { id: "b", name: "B" }, tags: [], legal: true, range: [3, 4] },
+        ],
+        previews: ["Oswalden", "Oswaldwick"],
+        current: form,
+      },
+    ],
+  });
+
+  it("shows each variant's approved name and chooses or rolls one part", async () => {
+    const user = await openStart(session("incremental", nameStage(parts("Oswaldwick", "b"))));
+    const form = (await screen.findByLabelText("Approved form")) as HTMLSelectElement;
+    expect(form.value).toBe("b");
+    const labels = within(form)
+      .getAllByRole("option")
+      .map((o) => o.textContent);
+    expect(labels).toContain("A → Oswalden (1–2)");
+    expect(labels).toContain("B → Oswaldwick (3–4)");
+
+    g.chooseNamePart.mockResolvedValueOnce(
+      ok(session("incremental", nameStage(parts("Oswalden", "a")))),
+    );
+    await user.selectOptions(form, "a");
+    expect(g.chooseNamePart).toHaveBeenCalledWith(2, 1, "a");
+    expect(await screen.findByText("Oswalden", { selector: ".name-value" })).toBeTruthy();
+
+    g.rollNamePart.mockResolvedValueOnce(
+      ok(session("incremental", nameStage(parts("Oswaldwick", "b")))),
+    );
+    await user.click(screen.getByRole("button", { name: "Roll Approved form" }));
+    expect(g.rollNamePart).toHaveBeenCalledWith(2, 1);
+    expect(await screen.findByText("Oswaldwick", { selector: ".name-value" })).toBeTruthy();
+  });
+
+  it("offers part controls in the one-table grid too", async () => {
+    settings.generation_presentation = "one_table";
+    const user = await openStart(session("one_table", nameStage(parts("Oswaldwick", "b"))));
+    const founderSelect = await screen.findByLabelText(
+      "Ordon Manorial: Historical Person or Landholder",
+    );
+    g.chooseNamePart.mockResolvedValueOnce(
+      ok(session("one_table", nameStage(parts("Godwinham", "b")))),
+    );
+    await user.selectOptions(founderSelect, "godwin");
+    expect(g.chooseNamePart).toHaveBeenCalledWith(2, 0, "godwin");
+  });
+
+  it("shows stable IDs, chosen parts and the assembly with Tag View", async () => {
+    settings.tag_view = true;
+    const detailed = nameStage({
+      ...parts("Oswaldwick", "b"),
+      routing: [
+        { id: "world.kurovia", name: "Kurovia" },
+        { id: "region.ordon", name: "Ordon" },
+      ],
+      parts: [
+        {
+          table: { id: "table.naming.ordon.founder", name: "Ordon Manorial" },
+          result: { id: "oswald", name: "Oswald" },
+          dice: "1d100",
+          roll: "28",
+        },
+        {
+          table: { id: "table.naming.ordon.founderEnding", name: "Approved form table" },
+          result: { id: "b", name: "B" },
+          chosen: true,
+        },
+      ],
+      assembly: {
+        join: "curated_variant",
+        curated: {
+          table: "table.naming.ordon.founder",
+          source: "oswald",
+          field: "approved_names",
+          variant: "b",
+        },
+      },
+    });
+    await openStart(session("incremental", detailed));
+    expect(await screen.findByText(/rolled 28 on 1d100/)).toBeTruthy();
+    expect(screen.getByText("oswald")).toBeTruthy();
+    expect(screen.getByText(/— chosen$/)).toBeTruthy();
+    expect(
+      screen.getByText("Approved name of oswald (table.naming.ordon.founder) chosen by variant b"),
+    ).toBeTruthy();
   });
 });

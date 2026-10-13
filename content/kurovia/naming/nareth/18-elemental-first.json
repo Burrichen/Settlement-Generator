@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.elementalFirst",
+      "name": "Nareth Veiled: First Element",
+      "description": "Entirely fictional high-culture or elemental-sounding roots inspired by Ixtal atmosphere, not copied from Runeterra or Quechua.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "xara",
+          "name": "Xara",
+          "range": [
+            1,
+            3
+          ]
+        },
+        {
+          "id": "xalun",
+          "name": "Xalun",
+          "range": [
+            4,
+            6
+          ]
+        },
+        {
+          "id": "tzari",
+          "name": "Tzari",
+          "range": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": "ixera",
+          "name": "Ixera",
+          "range": [
+            10,
+            12
+          ]
+        },
+        {
+          "id": "quera",
+          "name": "Quera",
+          "range": [
+            13,
+            15
+          ]
+        },
+        {
+          "id": "teyaru",
+          "name": "Teyaru",
+          "range": [
+            16,
+            18
+          ]
+        },
+        {
+          "id": "seyal",
+          "name": "Seyal",
+          "range": [
+            19,
+            21
+          ]
+        },
+        {
+          "id": "athari",
+          "name": "Athari",
+          "range": [
+            22,
+            24
+          ]
+        },
+        {
+          "id": "veyra",
+          "name": "Veyra",
+          "range": [
+            25,
+            27
+          ]
+        },
+        {
+          "id": "calixa",
+          "name": "Calixa",
+          "range": [
+            28,
+            30
+          ]
+        },
+        {
+          "id": "ilexa",
+          "name": "Ilexa",
+          "range": [
+            31,
+            33
+          ]
+        },
+        {
+          "id": "orayen",
+          "name": "Orayen",
+          "range": [
+            34,
+            36
+          ]
+        },
+        {
+          "id": "lazari",
+          "name": "Lazari",
+          "range": [
+            37,
+            39
+          ]
+        },
+        {
+          "id": "vixara",
+          "name": "Vixara",
+          "range": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "axuri",
+          "name": "Axuri",
+          "range": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "rheya",
+          "name": "Rheya",
+          "range": [
+            46,
+            48
+          ]
+        },
+        {
+          "id": "eshali",
+          "name": "Eshali",
+          "range": [
+            49,
+            51
+          ]
+        },
+        {
+          "id": "xenara",
+          "name": "Xenara",
+          "range": [
+            52,
+            54
+          ]
+        },
+        {
+          "id": "orya",
+          "name": "Orya",
+          "range": [
+            55,
+            57
+          ]
+        },
+        {
+          "id": "vezali",
+          "name": "Vezali",
+          "range": [
+            58,
+            60
+          ]
+        },
+        {
+          "id": "tziren",
+          "name": "Tziren",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "kavexa",
+          "name": "Kavexa",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "yulani",
+          "name": "Yulani",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "therya",
+          "name": "Therya",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "valexa",
+          "name": "Valexa",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "xirayu",
+          "name": "Xirayu",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "zelari",
+          "name": "Zelari",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "rayexa",
+          "name": "Rayexa",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "aruxen",
+          "name": "Aruxen",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "tzalen",
+          "name": "Tzalen",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "velashi",
+          "name": "Velashi",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "yaxari",
+          "name": "Yaxari",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "kirexa",
+          "name": "Kirexa",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "salex",
+          "name": "Salex",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "vayen",
+          "name": "Vayen",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "xirel",
+          "name": "Xirel",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "quenara",
+          "name": "Quenara",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "tarixa",
+          "name": "Tarixa",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "serexa",
+          "name": "Serexa",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "miraxi",
+          "name": "Miraxi",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.shinkira.founderEnding",
-      "name": "Shinkira Name: Founder Element",
-      "description": "Founder Element added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "name": "Shinkira Name: Historic Settlement Ending",
+      "description": "20 historical town, estate and topographical endings; first six endings retained from original Shinkira set. Direct joining, with no special rules.",
+      "dice": "1d20",
       "results": [
         {
           "id": "mura",
@@ -36,6 +36,76 @@
           "id": "shiro",
           "name": "shiro",
           "range": 6
+        },
+        {
+          "id": "hara",
+          "name": "hara",
+          "range": 7
+        },
+        {
+          "id": "zawa",
+          "name": "zawa",
+          "range": 8
+        },
+        {
+          "id": "oka",
+          "name": "oka",
+          "range": 9
+        },
+        {
+          "id": "dai",
+          "name": "dai",
+          "range": 10
+        },
+        {
+          "id": "juku",
+          "name": "juku",
+          "range": 11
+        },
+        {
+          "id": "moto",
+          "name": "moto",
+          "range": 12
+        },
+        {
+          "id": "no",
+          "name": "no",
+          "range": 13
+        },
+        {
+          "id": "kawa",
+          "name": "kawa",
+          "range": 14
+        },
+        {
+          "id": "tani",
+          "name": "tani",
+          "range": 15
+        },
+        {
+          "id": "mori",
+          "name": "mori",
+          "range": 16
+        },
+        {
+          "id": "ura",
+          "name": "ura",
+          "range": 17
+        },
+        {
+          "id": "gaoka",
+          "name": "gaoka",
+          "range": 18
+        },
+        {
+          "id": "hama",
+          "name": "hama",
+          "range": 19
+        },
+        {
+          "id": "zaki",
+          "name": "zaki",
+          "range": 20
         }
       ]
     }

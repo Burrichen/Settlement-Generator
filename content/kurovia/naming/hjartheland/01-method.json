@@ -4,20 +4,80 @@
     {
       "id": "table.naming.hjartheland.method",
       "name": "Hjartheland Naming Method",
-      "description": "Which naming method a Hjartheland settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Scandinavian / Old Norse inspired: traditional, sturdy and geographically meaningful.",
-      "dice": "1d10",
+      "description": "Eight editable Nordic/winter-inspired methods, using d100 with explicit 22/20/21/10/9/11/4/3 percent allocation. All data is provisional and editable; not historical linguistic reconstruction.",
+      "dice": "1d100",
       "results": [
         {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "First element + second element as one word, e.g. Nordvik, Eirheim, Steindal.",
-          "range": [1, 7]
+          "name": "Traditional Settlement Compound",
+          "description": "Old farmstead, hamlet and settlement place-name elements, with a broad inherited geographic vocabulary.",
+          "range": [
+            1,
+            22
+          ]
+        },
+        {
+          "id": "mountain",
+          "name": "Mountains, Ridges & Valleys",
+          "description": "Landforms and elevated locations, including steep climbs, exposed highland valleys and ridge communities.",
+          "range": [
+            23,
+            42
+          ]
+        },
+        {
+          "id": "winter",
+          "name": "Snow, Glaciers & Winter",
+          "description": "Seasonal and permanent ice, glaciers, snowfields and weathered winter geography.",
+          "range": [
+            43,
+            63
+          ]
+        },
+        {
+          "id": "water",
+          "name": "Rivers, Lakes & Fjords",
+          "description": "Lakes, frozen channels, waterways and older fjord/coastal naming traditions.",
+          "range": [
+            64,
+            73
+          ]
+        },
+        {
+          "id": "forest",
+          "name": "Forest, Moor & Pasture",
+          "description": "Boreal forest settlements, heath, mossland and seasonal upland farm clearings.",
+          "range": [
+            74,
+            82
+          ]
+        },
+        {
+          "id": "shelter",
+          "name": "Shelter & Winter Routes",
+          "description": "Shelters, mountain roads, ferries, halls and dependable resting sites important to hospitality.",
+          "range": [
+            83,
+            93
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "A founder's name joined directly to an ending, without a possessive s, e.g. Eirikheim, Signevik.",
-          "range": [8, 10]
+          "name": "Historical Homestead",
+          "description": "Older landholding/farm names using simplified genitive founder stems; only a small proportion of the final mix.",
+          "range": [
+            94,
+            97
+          ]
+        },
+        {
+          "id": "inherited",
+          "name": "Ancient Inherited Name",
+          "description": "A complete place name of uncertain or archaic origin: not assembled from modern component tables.",
+          "range": [
+            98,
+            100
+          ]
         }
       ]
     }

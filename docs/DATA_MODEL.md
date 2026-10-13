@@ -166,6 +166,7 @@ follow-up roll and the change.
 | `fallback` †       | Required for, and only for, a unique result: the repeatable result in the same table it becomes when already held                                                                      |
 | `label_variants` † | `[{ tag, name }]`: display labels by a tag of the holder, first match first (e.g. `gender.woman` → "Lady"). Otherwise `name`                                                           |
 | `generator` †      | Reserved: the ID of a future subordinate generator for this result (e.g. `authorityNpcs.council`). Only the ID format is validated; it is not resolved and has no effect on generation |
+| `approved_names` † | `{ "<variant result id>": "Exact Name" }`: individually approved final names, read by a naming method whose join is `curated_variant` (see [ORDON_NAMING.md](ORDON_NAMING.md))         |
 
 ### Variant (tag-driven alternative layout)
 
@@ -298,42 +299,49 @@ result: Prosperous
 and effect index), a machine-readable `code` with data, and a `message`. Both
 interfaces show the message as it is.
 
-| Code                         | Severity | Detects                                                                                       |
-| ---------------------------- | -------- | --------------------------------------------------------------------------------------------- |
-| `unsupported_schema_version` | error    | A content or override file this build cannot read                                             |
-| `invalid_id`                 | error    | An ID that does not match the ID format                                                       |
-| `duplicate_id`               | error    | A duplicate table, tag, result, variant, or variant range assignment                          |
-| `invalid_dice`               | error    | A bad expression in a table, variant, `modify_dice` or `secondary_roll`                       |
-| `impossible_range`           | error    | A range with `min > max`, or faces the dice cannot produce                                    |
-| `overlapping_ranges`         | error    | Two results claiming the same face                                                            |
-| `uncovered_outcomes`         | error    | Possible totals with no result                                                                |
-| `missing_tag`                | error    | A reference from result tags, conditions or `add_tag`                                         |
-| `missing_table`              | error    | An effect targeting a table that does not exist                                               |
-| `missing_variant`            | error    | `use_variant`, or a `route_to` variant, that does not exist                                   |
-| `broken_result_reference`    | error    | Variant ranges or `restrict_results` naming an unknown result                                 |
-| `routing_cycle`              | error    | Tables that route into each other through **every** rollable result, so generation never ends |
-| `routing_cycle`              | warning  | Tables that **can** route into each other (bounded by the step limit)                         |
-| `unreachable_result`         | warning  | A result with no faces in any layout                                                          |
-| `scale_out_of_order`         | warning  | A result of an `ordered` table whose base faces are not above those of the results before it  |
-| `invalid_value`              | error    | A result `value` that is not a positive whole number                                          |
-| `missing_value`              | error    | A result without a `value` in a table whose other results have one                            |
-| `sub_stage_without_parent`   | error    | A first sequence step marked as a sub-stage                                                   |
-| `unique_without_fallback`    | error    | A unique result without a fallback                                                            |
-| `fallback_without_unique`    | error    | A fallback on a result that is not unique                                                     |
-| `fallback_not_repeatable`    | error    | A fallback that is itself unique                                                              |
-| `role_scheme_incomplete`     | error    | A role scheme with neither a single table nor both lead and member tables                     |
-| `not_user_id`                | error    | A user-created item outside the `user.` namespace                                             |
-| `override_target_missing`    | warning  | A customisation of a default that no longer exists. It is ignored                             |
-| `default_changed`            | warning  | A default that was updated after the user customised it                                       |
-| `missing_dice`               | error    | A rolled, final table with no dice expression                                                 |
-| `incomplete_content`         | warning  | A table marked `incomplete`, shown with its `status_note`. It must be resolved before release |
-| `intent_not_planned`         | error    | An `intent` effect marked active                                                              |
-| `redirect_cycle`             | error    | Tables that redirect into each other                                                          |
-| `naming_method_missing`      | error    | A naming scheme's method-table result with no method, so rolling it could not produce a name  |
-| `naming_method_empty`        | error    | A naming method without component tables                                                      |
-| `naming_exception_length`    | error    | A spelling exception listing a different number of results than the method has components     |
-| `naming_parts_length`        | error    | A naming method whose `parts` list a different number of parts than it has components         |
-| `naming_replacement_empty`   | error    | A naming join replacement with an empty `from`                                                |
+| Code                            | Severity | Detects                                                                                       |
+| ------------------------------- | -------- | --------------------------------------------------------------------------------------------- |
+| `unsupported_schema_version`    | error    | A content or override file this build cannot read                                             |
+| `invalid_id`                    | error    | An ID that does not match the ID format                                                       |
+| `duplicate_id`                  | error    | A duplicate table, tag, result, variant, or variant range assignment                          |
+| `invalid_dice`                  | error    | A bad expression in a table, variant, `modify_dice` or `secondary_roll`                       |
+| `impossible_range`              | error    | A range with `min > max`, or faces the dice cannot produce                                    |
+| `overlapping_ranges`            | error    | Two results claiming the same face                                                            |
+| `uncovered_outcomes`            | error    | Possible totals with no result                                                                |
+| `missing_tag`                   | error    | A reference from result tags, conditions or `add_tag`                                         |
+| `missing_table`                 | error    | An effect targeting a table that does not exist                                               |
+| `missing_variant`               | error    | `use_variant`, or a `route_to` variant, that does not exist                                   |
+| `broken_result_reference`       | error    | Variant ranges or `restrict_results` naming an unknown result                                 |
+| `routing_cycle`                 | error    | Tables that route into each other through **every** rollable result, so generation never ends |
+| `routing_cycle`                 | warning  | Tables that **can** route into each other (bounded by the step limit)                         |
+| `unreachable_result`            | warning  | A result with no faces in any layout                                                          |
+| `scale_out_of_order`            | warning  | A result of an `ordered` table whose base faces are not above those of the results before it  |
+| `invalid_value`                 | error    | A result `value` that is not a positive whole number                                          |
+| `missing_value`                 | error    | A result without a `value` in a table whose other results have one                            |
+| `sub_stage_without_parent`      | error    | A first sequence step marked as a sub-stage                                                   |
+| `unique_without_fallback`       | error    | A unique result without a fallback                                                            |
+| `fallback_without_unique`       | error    | A fallback on a result that is not unique                                                     |
+| `fallback_not_repeatable`       | error    | A fallback that is itself unique                                                              |
+| `role_scheme_incomplete`        | error    | A role scheme with neither a single table nor both lead and member tables                     |
+| `not_user_id`                   | error    | A user-created item outside the `user.` namespace                                             |
+| `override_target_missing`       | warning  | A customisation of a default that no longer exists. It is ignored                             |
+| `default_changed`               | warning  | A default that was updated after the user customised it                                       |
+| `missing_dice`                  | error    | A rolled, final table with no dice expression                                                 |
+| `incomplete_content`            | warning  | A table marked `incomplete`, shown with its `status_note`. It must be resolved before release |
+| `intent_not_planned`            | error    | An `intent` effect marked active                                                              |
+| `redirect_cycle`                | error    | Tables that redirect into each other                                                          |
+| `naming_method_missing`         | error    | A naming scheme's method-table result with no method, so rolling it could not produce a name  |
+| `naming_method_empty`           | error    | A naming method without component tables                                                      |
+| `naming_exception_length`       | error    | A spelling exception listing a different number of results than the method has components     |
+| `naming_parts_length`           | error    | A naming method whose `parts` list a different number of parts than it has components         |
+| `naming_replacement_empty`      | error    | A naming join replacement with an empty `from`                                                |
+| `naming_exception_form`         | error    | A spelling exception listing both result IDs and component names, or neither                  |
+| `naming_exception_empty`        | error    | A spelling exception with no name                                                             |
+| `naming_exception_name`         | error    | A by-name spelling exception whose name matches no result (or several) of its component table |
+| `curated_variant_components`    | error    | A `curated_variant` join reading a missing component, or source and variant from the same one |
+| `curated_variant_field`         | error    | A `curated_variant` join reading approved names from a field other than `approved_names`      |
+| `approved_name_missing`         | error    | A source result with no (or an empty) approved name for a variant; located at the result      |
+| `approved_name_unknown_variant` | error    | An approved name keyed by an ID that is not a result of the variant table                     |
 
 Naming schemes are also checked for:
 
@@ -384,9 +392,15 @@ gives a clear error.
     "user.…":       { "action": "custom", …full Table… }
   },
   "tags": { "<bundled id>": { "action": "modify", … } | { "action": "delete" },
-            "user.…": { "action": "custom", …full Tag… } }
+            "user.…": { "action": "custom", …full Tag… } },
+  "naming_methods": { "<scheme id>": { "<method result id>":
+                      { "base": "<fingerprint>", "join"?, "exceptions"? } } }
 }
 ```
+
+A result patch may also carry `approved_names` (the whole map). A naming
+method patch replaces only its `join` and/or `exceptions`; components and
+routing are not customisable.
 
 - **Field-level patches.** A customised table only overrides the fields the
   user changed. Everything else, including new bundled results, still comes
@@ -455,7 +469,7 @@ A saved settlement is a self-contained **snapshot**:
 | `snapshot.stages[].roles`     | Role Allocation stage only (stage table `stage.authorityRoles`): the request, the scheme, and each role (allocation, roll record, the result rolled, the fallback given if any, the final role and its display variants, app version)                                                                                                                                                                                                                                                                                                              |
 | `snapshot.stages[].figures`   | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                        |
 | `snapshot.stages[].locations` | Notable Locations stage only (stage table `stage.notableLocations`): the Size and scheme used, the District Count roll (Cities and Capitals), each area's count roll (`areas`, one per district or one for the settlement), every location (stable ID `notable-location-NN`, `source` `rolled` or `bareMinimumBuildings`, district, `type`, its Type roll, and for the guaranteed Tavern `subtype` and `spare_rooms`), the highest ID number `issued` (IDs are never reused) and the app version. These rolls are kept here, not in `snapshot.log` |
-| `snapshot.stages[].name`      | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                                                                                                                                           |
+| `snapshot.stages[].name`      | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, `assembly` (join style, and any exception or approved name used; absent for typed and older names), app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                                       |
 
 The generation log holds the table results, the labels visible at generation
 time, the tags (with names at that time), the recorded dice, routing, applied

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.forestSecond",
+      "name": "Hjartheland Forest: Rural Ending",
+      "description": "Woodlands, clearings, meadows, moors and upland pasture or scattered rural habitation.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "skog",
+          "name": "skog",
+          "range": 1
+        },
+        {
+          "id": "lund",
+          "name": "lund",
+          "range": 2
+        },
+        {
+          "id": "holt",
+          "name": "holt",
+          "range": 3
+        },
+        {
+          "id": "mark",
+          "name": "mark",
+          "range": 4
+        },
+        {
+          "id": "mo",
+          "name": "mo",
+          "range": 5
+        },
+        {
+          "id": "myr",
+          "name": "myr",
+          "range": 6
+        },
+        {
+          "id": "li",
+          "name": "li",
+          "range": 7
+        },
+        {
+          "id": "seter",
+          "name": "seter",
+          "range": 8
+        },
+        {
+          "id": "stol",
+          "name": "støl",
+          "range": 9
+        },
+        {
+          "id": "vang",
+          "name": "vang",
+          "range": 10
+        },
+        {
+          "id": "voll",
+          "name": "voll",
+          "range": 11
+        },
+        {
+          "id": "eng",
+          "name": "eng",
+          "range": 12
+        },
+        {
+          "id": "hede",
+          "name": "hede",
+          "range": 13
+        },
+        {
+          "id": "heia",
+          "name": "heia",
+          "range": 14
+        },
+        {
+          "id": "tun",
+          "name": "tun",
+          "range": 15
+        },
+        {
+          "id": "dal",
+          "name": "dal",
+          "range": 16
+        },
+        {
+          "id": "as",
+          "name": "ås",
+          "range": 17
+        },
+        {
+          "id": "haug",
+          "name": "haug",
+          "range": 18
+        },
+        {
+          "id": "ryd",
+          "name": "ryd",
+          "range": 19
+        },
+        {
+          "id": "tveit",
+          "name": "tveit",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

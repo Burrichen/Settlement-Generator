@@ -3,9 +3,9 @@
   "tables": [
     {
       "id": "table.naming.hjartheland.founderEnding",
-      "name": "Hjartheland Name: Founder Ending",
-      "description": "Founder Ending added after the founder's name. Equal starter weights.",
-      "dice": "1d6",
+      "name": "Hjartheland Historical: Holding Ending",
+      "description": "Traditional house, holding and farm endings paired directly with a genitive founder stem. The initial six entries are preserved.",
+      "dice": "1d12",
       "results": [
         {
           "id": "heim",
@@ -36,6 +36,36 @@
           "id": "nes",
           "name": "nes",
           "range": 6
+        },
+        {
+          "id": "stad",
+          "name": "stad",
+          "range": 7
+        },
+        {
+          "id": "by",
+          "name": "by",
+          "range": 8
+        },
+        {
+          "id": "lund",
+          "name": "lund",
+          "range": 9
+        },
+        {
+          "id": "hus",
+          "name": "hus",
+          "range": 10
+        },
+        {
+          "id": "tun",
+          "name": "tun",
+          "range": 11
+        },
+        {
+          "id": "torp",
+          "name": "torp",
+          "range": 12
         }
       ]
     }

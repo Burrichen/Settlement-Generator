@@ -3,159 +3,259 @@
   "tables": [
     {
       "id": "table.naming.ordon.firstElement",
-      "name": "Ordon Name: First Element",
-      "description": "First part of a Geographic Compound name. Provisional editorial weights.",
+      "name": "Ordon Geographic: First Element",
+      "description": "50 historically inspired landscape/animal/plant/location stems. The next roll selects one of 20 editorially selected, broadly compatible endings.",
       "dice": "1d100",
       "results": [
         {
           "id": "alder",
           "name": "Alder",
-          "range": [1, 4]
+          "range": [1, 2]
         },
         {
           "id": "ash",
           "name": "Ash",
-          "range": [5, 8]
+          "range": [3, 4]
         },
         {
           "id": "burn",
           "name": "Burn",
-          "range": [9, 11]
+          "range": [5, 6]
         },
         {
           "id": "black",
           "name": "Black",
-          "range": [12, 14]
+          "range": [7, 8]
         },
         {
           "id": "bram",
           "name": "Bram",
-          "range": [15, 17]
+          "range": [9, 10]
         },
         {
           "id": "bracken",
           "name": "Bracken",
-          "range": [18, 21]
+          "range": [11, 12]
         },
         {
           "id": "crow",
           "name": "Crow",
-          "range": [22, 24]
+          "range": [13, 14]
         },
         {
           "id": "dun",
           "name": "Dun",
-          "range": [25, 27]
+          "range": [15, 16]
         },
         {
           "id": "elm",
           "name": "Elm",
-          "range": [28, 31]
+          "range": [17, 18]
         },
         {
           "id": "farn",
           "name": "Farn",
-          "range": [32, 34]
+          "range": [19, 20]
         },
         {
           "id": "green",
           "name": "Green",
-          "range": [35, 37]
+          "range": [21, 22]
         },
         {
           "id": "hart",
           "name": "Hart",
-          "range": [38, 41]
+          "range": [23, 24]
         },
         {
           "id": "hazel",
           "name": "Hazel",
-          "range": [42, 45]
+          "range": [25, 26]
         },
         {
           "id": "hol",
           "name": "Hol",
-          "range": [46, 48]
+          "range": [27, 28]
         },
         {
           "id": "lang",
           "name": "Lang",
-          "range": [49, 51]
+          "range": [29, 30]
         },
         {
           "id": "oak",
           "name": "Oak",
-          "range": [52, 55]
+          "range": [31, 32]
         },
         {
           "id": "red",
           "name": "Red",
-          "range": [56, 58]
+          "range": [33, 34]
         },
         {
           "id": "stan",
           "name": "Stan",
-          "range": [59, 61]
+          "range": [35, 36]
         },
         {
           "id": "thorn",
           "name": "Thorn",
-          "range": [62, 65]
+          "range": [37, 38]
         },
         {
           "id": "wren",
           "name": "Wren",
-          "range": [66, 68]
+          "range": [39, 40]
         },
         {
           "id": "beck",
           "name": "Beck",
-          "range": [69, 72]
+          "range": [41, 42]
         },
         {
           "id": "birch",
           "name": "Birch",
-          "range": [73, 76]
+          "range": [43, 44]
         },
         {
           "id": "broad",
           "name": "Broad",
-          "range": [77, 79]
+          "range": [45, 46]
         },
         {
           "id": "clay",
           "name": "Clay",
-          "range": [80, 82]
+          "range": [47, 48]
         },
         {
           "id": "east",
           "name": "East",
-          "range": [83, 85]
+          "range": [49, 50]
         },
         {
           "id": "fen",
           "name": "Fen",
-          "range": [86, 88]
+          "range": [51, 52]
         },
         {
           "id": "high",
           "name": "High",
-          "range": [89, 91]
+          "range": [53, 54]
         },
         {
           "id": "mere",
           "name": "Mere",
-          "range": [92, 94]
+          "range": [55, 56]
         },
         {
           "id": "north",
           "name": "North",
-          "range": [95, 97]
+          "range": [57, 58]
         },
         {
           "id": "west",
           "name": "West",
-          "range": [98, 100]
+          "range": [59, 60]
+        },
+        {
+          "id": "barrow",
+          "name": "Barrow",
+          "range": [61, 62]
+        },
+        {
+          "id": "barley",
+          "name": "Barley",
+          "range": [63, 64]
+        },
+        {
+          "id": "beech",
+          "name": "Beech",
+          "range": [65, 66]
+        },
+        {
+          "id": "broom",
+          "name": "Broom",
+          "range": [67, 68]
+        },
+        {
+          "id": "chalk",
+          "name": "Chalk",
+          "range": [69, 70]
+        },
+        {
+          "id": "cold",
+          "name": "Cold",
+          "range": [71, 72]
+        },
+        {
+          "id": "down",
+          "name": "Down",
+          "range": [73, 74]
+        },
+        {
+          "id": "fair",
+          "name": "Fair",
+          "range": [75, 76]
+        },
+        {
+          "id": "fern",
+          "name": "Fern",
+          "range": [77, 78]
+        },
+        {
+          "id": "fox",
+          "name": "Fox",
+          "range": [79, 80]
+        },
+        {
+          "id": "hare",
+          "name": "Hare",
+          "range": [81, 82]
+        },
+        {
+          "id": "hill",
+          "name": "Hill",
+          "range": [83, 84]
+        },
+        {
+          "id": "lark",
+          "name": "Lark",
+          "range": [85, 86]
+        },
+        {
+          "id": "long",
+          "name": "Long",
+          "range": [87, 88]
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "range": [89, 90]
+        },
+        {
+          "id": "marsh",
+          "name": "Marsh",
+          "range": [91, 92]
+        },
+        {
+          "id": "mill",
+          "name": "Mill",
+          "range": [93, 94]
+        },
+        {
+          "id": "moss",
+          "name": "Moss",
+          "range": [95, 96]
+        },
+        {
+          "id": "rush",
+          "name": "Rush",
+          "range": [97, 98]
+        },
+        {
+          "id": "south",
+          "name": "South",
+          "range": [99, 100]
         }
       ]
     }

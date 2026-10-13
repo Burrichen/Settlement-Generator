@@ -3,119 +3,109 @@
   "tables": [
     {
       "id": "table.naming.ordon.secondElement",
-      "name": "Ordon Name: Second Element",
-      "description": "Second part of a Geographic Compound name. Provisional editorial weights.",
-      "dice": "1d100",
+      "name": "Ordon Geographic: Second Element",
+      "description": "20 broadly compatible rural endings; one d20 face each. Reduced from the old unrestricted d100 table to avoid implausible constructions. Earlier suffix vocabulary retained in LEGACY_SUFFIX_VOCABULARY.json.",
+      "dice": "1d20",
       "results": [
         {
           "id": "ton",
           "name": "ton",
-          "range": [1, 14]
+          "range": 1
         },
         {
           "id": "ham",
           "name": "ham",
-          "range": [15, 27]
+          "range": 2
         },
         {
           "id": "ley",
           "name": "ley",
-          "range": [28, 40]
+          "range": 3
         },
         {
           "id": "ford",
           "name": "ford",
-          "range": [41, 48]
+          "range": 4
         },
         {
           "id": "wick",
           "name": "wick",
-          "range": [49, 56]
+          "range": 5
         },
         {
           "id": "bury",
           "name": "bury",
-          "range": [57, 59]
+          "range": 6
         },
         {
           "id": "field",
           "name": "field",
-          "range": [60, 62]
+          "range": 7
         },
         {
           "id": "den",
           "name": "den",
-          "range": [63, 65]
+          "range": 8
         },
         {
           "id": "combe",
           "name": "combe",
-          "range": [66, 68]
+          "range": 9
         },
         {
           "id": "hurst",
           "name": "hurst",
-          "range": [69, 71]
+          "range": 10
         },
         {
           "id": "well",
           "name": "well",
-          "range": [72, 74]
-        },
-        {
-          "id": "worth",
-          "name": "worth",
-          "range": [75, 77]
+          "range": 11
         },
         {
           "id": "brook",
           "name": "brook",
-          "range": [78, 80]
+          "range": 12
         },
         {
           "id": "bridge",
           "name": "bridge",
-          "range": [81, 83]
-        },
-        {
-          "id": "dale",
-          "name": "dale",
-          "range": [84, 86]
-        },
-        {
-          "id": "cliff",
-          "name": "cliff",
-          "range": [87, 88]
+          "range": 13
         },
         {
           "id": "croft",
           "name": "croft",
-          "range": [89, 90]
+          "range": 14
+        },
+        {
+          "id": "dale",
+          "name": "dale",
+          "range": 15
         },
         {
           "id": "gate",
           "name": "gate",
-          "range": [91, 92]
+          "range": 16
         },
         {
           "id": "holt",
           "name": "holt",
-          "range": [93, 94]
-        },
-        {
-          "id": "moor",
-          "name": "moor",
-          "range": [95, 96]
-        },
-        {
-          "id": "stead",
-          "name": "stead",
-          "range": [97, 98]
+          "range": 17
         },
         {
           "id": "wood",
           "name": "wood",
-          "range": [99, 100]
+          "range": 18
+        },
+        {
+          "id": "bank",
+          "name": "bank",
+          "range": 19
+        },
+        {
+          "id": "thorpe",
+          "name": "thorpe",
+          "range": 20
         }
       ]
     }

@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.inheritedName",
+      "name": "Hjartheland Ancient: Complete Inherited Name",
+      "description": "60 intentionally edited old-sounding fictional Nordic-style place names; not copied from a named real town or a source setting. This is the rare (3%) old-name layer.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "eldrun",
+          "name": "Eldrun",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "hjervik",
+          "name": "Hjervik",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "ormstad",
+          "name": "Ormstad",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "vestrun",
+          "name": "Vestrun",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "haldren",
+          "name": "Haldren",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "skjeld",
+          "name": "Skjeld",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "eidvara",
+          "name": "Eidvara",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "ravald",
+          "name": "Ravald",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "svalen",
+          "name": "Svalen",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "lindvik",
+          "name": "Lindvik",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "jornes",
+          "name": "Jornes",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "hjorn",
+          "name": "Hjorn",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "nordren",
+          "name": "Nordren",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "varald",
+          "name": "Varald",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "brynja",
+          "name": "Brynja",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "skelund",
+          "name": "Skelund",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "orvik",
+          "name": "Orvik",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "tyrden",
+          "name": "Tyrden",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "svarven",
+          "name": "Svarven",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "eirnes",
+          "name": "Eirnes",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "hovgard",
+          "name": "Hovgard",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "skarnes",
+          "name": "Skarnes",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "fjold",
+          "name": "Fjold",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "lyrstad",
+          "name": "Lyrstad",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "vardun",
+          "name": "Vardun",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "elnes",
+          "name": "Elnes",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "hjorva",
+          "name": "Hjorva",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "rundal",
+          "name": "Rundal",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "stenvik",
+          "name": "Stenvik",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "hjellund",
+          "name": "Hjellund",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "arveng",
+          "name": "Arveng",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "solren",
+          "name": "Solren",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "hravik",
+          "name": "Hravik",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "ulven",
+          "name": "Ulven",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "thoren",
+          "name": "Thoren",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "elvorn",
+          "name": "Elvorn",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "skriva",
+          "name": "Skriva",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "borund",
+          "name": "Borund",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "fjeldra",
+          "name": "Fjeldra",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "veyren",
+          "name": "Veyren",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "vordal",
+          "name": "Vordal",
+          "range": 81
+        },
+        {
+          "id": "svalder",
+          "name": "Svalder",
+          "range": 82
+        },
+        {
+          "id": "ildvar",
+          "name": "Ildvar",
+          "range": 83
+        },
+        {
+          "id": "ravna",
+          "name": "Ravna",
+          "range": 84
+        },
+        {
+          "id": "orhel",
+          "name": "Orhel",
+          "range": 85
+        },
+        {
+          "id": "skolda",
+          "name": "Skolda",
+          "range": 86
+        },
+        {
+          "id": "fjerren",
+          "name": "Fjerren",
+          "range": 87
+        },
+        {
+          "id": "hjorland",
+          "name": "Hjorland",
+          "range": 88
+        },
+        {
+          "id": "grenden",
+          "name": "Grenden",
+          "range": 89
+        },
+        {
+          "id": "elnar",
+          "name": "Elnar",
+          "range": 90
+        },
+        {
+          "id": "brenvik",
+          "name": "Brenvik",
+          "range": 91
+        },
+        {
+          "id": "rimeid",
+          "name": "Rimeid",
+          "range": 92
+        },
+        {
+          "id": "holvar",
+          "name": "Holvar",
+          "range": 93
+        },
+        {
+          "id": "skjern",
+          "name": "Skjern",
+          "range": 94
+        },
+        {
+          "id": "uldren",
+          "name": "Uldren",
+          "range": 95
+        },
+        {
+          "id": "hjorte",
+          "name": "Hjorte",
+          "range": 96
+        },
+        {
+          "id": "varne",
+          "name": "Varne",
+          "range": 97
+        },
+        {
+          "id": "alvaren",
+          "name": "Alvaren",
+          "range": 98
+        },
+        {
+          "id": "eidren",
+          "name": "Eidren",
+          "range": 99
+        },
+        {
+          "id": "sjoren",
+          "name": "Sjoren",
+          "range": 100
+        }
+      ]
+    }
+  ]
+}

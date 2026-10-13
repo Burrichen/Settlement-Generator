@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.hazeRoot",
+      "name": "Bratislor Name: Haze-Era Root",
+      "description": "Subdued descriptors associated with abandonment, cold, ash, silence or changing terrain. Avoid overtly melodramatic evil names.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "siv",
+          "name": "Siv",
+          "range": 1
+        },
+        {
+          "id": "tih",
+          "name": "Tih",
+          "range": 2
+        },
+        {
+          "id": "pust",
+          "name": "Pust",
+          "range": 3
+        },
+        {
+          "id": "mraz",
+          "name": "Mraz",
+          "range": 4
+        },
+        {
+          "id": "prah",
+          "name": "Prah",
+          "range": 5
+        },
+        {
+          "id": "pepel",
+          "name": "Pepel",
+          "range": 6
+        },
+        {
+          "id": "mrak",
+          "name": "Mrak",
+          "range": 7
+        },
+        {
+          "id": "kamen",
+          "name": "Kamen",
+          "range": 8
+        },
+        {
+          "id": "bled",
+          "name": "Bled",
+          "range": 9
+        },
+        {
+          "id": "suh",
+          "name": "Suh",
+          "range": 10
+        },
+        {
+          "id": "mrtv",
+          "name": "Mrtv",
+          "range": 11
+        },
+        {
+          "id": "kriv",
+          "name": "Kriv",
+          "range": 12
+        },
+        {
+          "id": "glin",
+          "name": "Glin",
+          "range": 13
+        },
+        {
+          "id": "vran",
+          "name": "Vran",
+          "range": 14
+        },
+        {
+          "id": "sten",
+          "name": "Sten",
+          "range": 15
+        },
+        {
+          "id": "trn",
+          "name": "Trn",
+          "range": 16
+        },
+        {
+          "id": "zim",
+          "name": "Zim",
+          "range": 17
+        },
+        {
+          "id": "dol",
+          "name": "Dol",
+          "range": 18
+        },
+        {
+          "id": "rud",
+          "name": "Rud",
+          "range": 19
+        },
+        {
+          "id": "mor",
+          "name": "Mor",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.airGenasi",
-      "name": "Air Genasi names",
+      "id": "naming.person.airGenasi.masculine",
+      "name": "Air Genasi names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.airGenasi"
+        "all": [
+          {
+            "has_tag": "species.airGenasi"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.airGenasi.method",
       "methods": [
         {
-          "result": "given",
-          "components": ["table.personName.airGenasi.given"],
+          "result": "givenSurname",
+          "components": [
+            "table.personName.airGenasi.given.masculine",
+            "table.personName.airGenasi.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -22,11 +32,6027 @@
             {
               "id": "given",
               "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.01",
+            "table.personName.airGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.02",
+            "table.personName.airGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.03",
+            "table.personName.airGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.04",
+            "table.personName.airGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.05",
+            "table.personName.airGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.06",
+            "table.personName.airGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.07",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.07",
+            "table.personName.airGenasi.family.mortal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.08",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.08",
+            "table.personName.airGenasi.family.mortal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.09",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.09",
+            "table.personName.airGenasi.family.mortal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.10",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.10",
+            "table.personName.airGenasi.family.mortal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.11",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.11",
+            "table.personName.airGenasi.family.mortal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.12",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.12",
+            "table.personName.airGenasi.family.mortal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.13",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.13",
+            "table.personName.airGenasi.family.mortal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.14",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.14",
+            "table.personName.airGenasi.family.mortal.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.15",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.15",
+            "table.personName.airGenasi.family.mortal.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.16",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.16",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.17",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.17",
+            "table.personName.airGenasi.family.mortal.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.18",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.18",
+            "table.personName.airGenasi.family.mortal.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.19",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.19",
+            "table.personName.airGenasi.family.mortal.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.20",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.20",
+            "table.personName.airGenasi.family.mortal.20"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.21",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.21",
+            "table.personName.airGenasi.family.mortal.21"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.22",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.22",
+            "table.personName.airGenasi.family.mortal.22"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.23",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.23",
+            "table.personName.airGenasi.family.mortal.23"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.24",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.24",
+            "table.personName.airGenasi.family.mortal.24"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.25",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.25",
+            "table.personName.airGenasi.family.mortal.25"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.26",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.26",
+            "table.personName.airGenasi.family.mortal.26"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.27",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.27",
+            "table.personName.airGenasi.family.mortal.27"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.28",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.28",
+            "table.personName.airGenasi.family.mortal.28"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.29",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.29",
+            "table.personName.airGenasi.family.mortal.29"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.30",
+          "components": [
+            "table.personName.airGenasi.given.masculine.mortal.30",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.31",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.31",
+            "table.personName.airGenasi.family.sky.31"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.32",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.32",
+            "table.personName.airGenasi.family.sky.32"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.33",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.33",
+            "table.personName.airGenasi.family.sky.33"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.34",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.34",
+            "table.personName.airGenasi.family.sky.34"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.35",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.35",
+            "table.personName.airGenasi.family.sky.35"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.36",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.36",
+            "table.personName.airGenasi.family.sky.36"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.37",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.37",
+            "table.personName.airGenasi.family.sky.37"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.38",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.38",
+            "table.personName.airGenasi.family.sky.38"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.39",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.39",
+            "table.personName.airGenasi.family.sky.39"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.40",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.40",
+            "table.personName.airGenasi.family.sky.40"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.41",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.41",
+            "table.personName.airGenasi.family.sky.41"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.42",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.42",
+            "table.personName.airGenasi.family.sky.42"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.43",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.43",
+            "table.personName.airGenasi.family.sky.43"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.44",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.44",
+            "table.personName.airGenasi.family.sky.44"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.45",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.45",
+            "table.personName.airGenasi.family.sky.45"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.46",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.46",
+            "table.personName.airGenasi.family.sky.46"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.47",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.47",
+            "table.personName.airGenasi.family.sky.47"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.48",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.48",
+            "table.personName.airGenasi.family.sky.48"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.49",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.49",
+            "table.personName.airGenasi.family.sky.49"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.50",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.50",
+            "table.personName.airGenasi.family.sky.50"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.51",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.51",
+            "table.personName.airGenasi.family.sky.51"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.52",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.52",
+            "table.personName.airGenasi.family.sky.52"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.53",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.53",
+            "table.personName.airGenasi.family.sky.53"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.54",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.54",
+            "table.personName.airGenasi.family.sky.54"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.55",
+          "components": [
+            "table.personName.airGenasi.given.masculine.sky.55",
+            "table.personName.airGenasi.family.sky.55"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.56",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.56",
+            "table.personName.airGenasi.family.djinn.56"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.57",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.57",
+            "table.personName.airGenasi.family.djinn.57"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.58",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.58",
+            "table.personName.airGenasi.family.djinn.58"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.59",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.59",
+            "table.personName.airGenasi.family.djinn.59"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.60",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.60",
+            "table.personName.airGenasi.family.djinn.60"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.61",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.61",
+            "table.personName.airGenasi.family.djinn.61"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.62",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.62",
+            "table.personName.airGenasi.family.djinn.62"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.63",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.63",
+            "table.personName.airGenasi.family.djinn.63"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.64",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.64",
+            "table.personName.airGenasi.family.djinn.64"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.65",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.65",
+            "table.personName.airGenasi.family.djinn.65"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.66",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.66",
+            "table.personName.airGenasi.family.djinn.66"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.67",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.67",
+            "table.personName.airGenasi.family.djinn.67"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.68",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.68",
+            "table.personName.airGenasi.family.djinn.68"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.69",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.69",
+            "table.personName.airGenasi.family.djinn.69"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.70",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.70",
+            "table.personName.airGenasi.family.djinn.70"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.71",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.71",
+            "table.personName.airGenasi.family.djinn.71"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.72",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.72",
+            "table.personName.airGenasi.family.djinn.72"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.73",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.73",
+            "table.personName.airGenasi.family.djinn.73"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.74",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.74",
+            "table.personName.airGenasi.family.djinn.74"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.75",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.75",
+            "table.personName.airGenasi.family.djinn.75"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.76",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.76",
+            "table.personName.airGenasi.family.djinn.76"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.77",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.77",
+            "table.personName.airGenasi.family.djinn.77"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.78",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.78",
+            "table.personName.airGenasi.family.djinn.78"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.79",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.79",
+            "table.personName.airGenasi.family.djinn.79"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.80",
+          "components": [
+            "table.personName.airGenasi.given.masculine.djinn.80",
+            "table.personName.airGenasi.family.djinn.80"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.81",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.81",
+            "table.personName.airGenasi.family.wind.81"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.82",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.82",
+            "table.personName.airGenasi.family.wind.82"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.83",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.83",
+            "table.personName.airGenasi.family.wind.83"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.84",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.84",
+            "table.personName.airGenasi.family.wind.84"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.85",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.85",
+            "table.personName.airGenasi.family.wind.85"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.86",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.86",
+            "table.personName.airGenasi.family.wind.86"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.87",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.87",
+            "table.personName.airGenasi.family.wind.87"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.88",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.88",
+            "table.personName.airGenasi.family.wind.88"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.89",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.89",
+            "table.personName.airGenasi.family.wind.89"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.90",
+          "components": [
+            "table.personName.airGenasi.given.masculine.wind.90",
+            "table.personName.airGenasi.family.wind.90"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
             }
           ]
         }
-      ],
-      "description": "Air genasi go by a single, light given name."
+      ]
+    },
+    {
+      "id": "naming.person.airGenasi.feminine",
+      "name": "Air Genasi names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.airGenasi"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.airGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.airGenasi.given.feminine",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.01",
+            "table.personName.airGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.02",
+            "table.personName.airGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.03",
+            "table.personName.airGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.04",
+            "table.personName.airGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.05",
+            "table.personName.airGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.06",
+            "table.personName.airGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.07",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.07",
+            "table.personName.airGenasi.family.mortal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.08",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.08",
+            "table.personName.airGenasi.family.mortal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.09",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.09",
+            "table.personName.airGenasi.family.mortal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.10",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.10",
+            "table.personName.airGenasi.family.mortal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.11",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.11",
+            "table.personName.airGenasi.family.mortal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.12",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.12",
+            "table.personName.airGenasi.family.mortal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.13",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.13",
+            "table.personName.airGenasi.family.mortal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.14",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.14",
+            "table.personName.airGenasi.family.mortal.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.15",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.15",
+            "table.personName.airGenasi.family.mortal.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.16",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.16",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.17",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.17",
+            "table.personName.airGenasi.family.mortal.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.18",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.18",
+            "table.personName.airGenasi.family.mortal.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.19",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.19",
+            "table.personName.airGenasi.family.mortal.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.20",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.20",
+            "table.personName.airGenasi.family.mortal.20"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.21",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.21",
+            "table.personName.airGenasi.family.mortal.21"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.22",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.22",
+            "table.personName.airGenasi.family.mortal.22"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.23",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.23",
+            "table.personName.airGenasi.family.mortal.23"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.24",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.24",
+            "table.personName.airGenasi.family.mortal.24"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.25",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.25",
+            "table.personName.airGenasi.family.mortal.25"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.26",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.26",
+            "table.personName.airGenasi.family.mortal.26"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.27",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.27",
+            "table.personName.airGenasi.family.mortal.27"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.28",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.28",
+            "table.personName.airGenasi.family.mortal.28"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.29",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.29",
+            "table.personName.airGenasi.family.mortal.29"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.30",
+          "components": [
+            "table.personName.airGenasi.given.feminine.mortal.30",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.31",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.31",
+            "table.personName.airGenasi.family.sky.31"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.32",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.32",
+            "table.personName.airGenasi.family.sky.32"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.33",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.33",
+            "table.personName.airGenasi.family.sky.33"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.34",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.34",
+            "table.personName.airGenasi.family.sky.34"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.35",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.35",
+            "table.personName.airGenasi.family.sky.35"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.36",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.36",
+            "table.personName.airGenasi.family.sky.36"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.37",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.37",
+            "table.personName.airGenasi.family.sky.37"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.38",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.38",
+            "table.personName.airGenasi.family.sky.38"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.39",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.39",
+            "table.personName.airGenasi.family.sky.39"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.40",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.40",
+            "table.personName.airGenasi.family.sky.40"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.41",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.41",
+            "table.personName.airGenasi.family.sky.41"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.42",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.42",
+            "table.personName.airGenasi.family.sky.42"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.43",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.43",
+            "table.personName.airGenasi.family.sky.43"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.44",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.44",
+            "table.personName.airGenasi.family.sky.44"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.45",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.45",
+            "table.personName.airGenasi.family.sky.45"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.46",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.46",
+            "table.personName.airGenasi.family.sky.46"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.47",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.47",
+            "table.personName.airGenasi.family.sky.47"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.48",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.48",
+            "table.personName.airGenasi.family.sky.48"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.49",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.49",
+            "table.personName.airGenasi.family.sky.49"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.50",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.50",
+            "table.personName.airGenasi.family.sky.50"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.51",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.51",
+            "table.personName.airGenasi.family.sky.51"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.52",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.52",
+            "table.personName.airGenasi.family.sky.52"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.53",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.53",
+            "table.personName.airGenasi.family.sky.53"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.54",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.54",
+            "table.personName.airGenasi.family.sky.54"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.55",
+          "components": [
+            "table.personName.airGenasi.given.feminine.sky.55",
+            "table.personName.airGenasi.family.sky.55"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.56",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.56",
+            "table.personName.airGenasi.family.djinn.56"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.57",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.57",
+            "table.personName.airGenasi.family.djinn.57"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.58",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.58",
+            "table.personName.airGenasi.family.djinn.58"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.59",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.59",
+            "table.personName.airGenasi.family.djinn.59"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.60",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.60",
+            "table.personName.airGenasi.family.djinn.60"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.61",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.61",
+            "table.personName.airGenasi.family.djinn.61"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.62",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.62",
+            "table.personName.airGenasi.family.djinn.62"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.63",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.63",
+            "table.personName.airGenasi.family.djinn.63"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.64",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.64",
+            "table.personName.airGenasi.family.djinn.64"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.65",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.65",
+            "table.personName.airGenasi.family.djinn.65"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.66",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.66",
+            "table.personName.airGenasi.family.djinn.66"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.67",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.67",
+            "table.personName.airGenasi.family.djinn.67"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.68",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.68",
+            "table.personName.airGenasi.family.djinn.68"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.69",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.69",
+            "table.personName.airGenasi.family.djinn.69"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.70",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.70",
+            "table.personName.airGenasi.family.djinn.70"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.71",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.71",
+            "table.personName.airGenasi.family.djinn.71"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.72",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.72",
+            "table.personName.airGenasi.family.djinn.72"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.73",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.73",
+            "table.personName.airGenasi.family.djinn.73"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.74",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.74",
+            "table.personName.airGenasi.family.djinn.74"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.75",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.75",
+            "table.personName.airGenasi.family.djinn.75"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.76",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.76",
+            "table.personName.airGenasi.family.djinn.76"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.77",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.77",
+            "table.personName.airGenasi.family.djinn.77"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.78",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.78",
+            "table.personName.airGenasi.family.djinn.78"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.79",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.79",
+            "table.personName.airGenasi.family.djinn.79"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.80",
+          "components": [
+            "table.personName.airGenasi.given.feminine.djinn.80",
+            "table.personName.airGenasi.family.djinn.80"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.81",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.81",
+            "table.personName.airGenasi.family.wind.81"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.82",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.82",
+            "table.personName.airGenasi.family.wind.82"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.83",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.83",
+            "table.personName.airGenasi.family.wind.83"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.84",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.84",
+            "table.personName.airGenasi.family.wind.84"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.85",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.85",
+            "table.personName.airGenasi.family.wind.85"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.86",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.86",
+            "table.personName.airGenasi.family.wind.86"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.87",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.87",
+            "table.personName.airGenasi.family.wind.87"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.88",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.88",
+            "table.personName.airGenasi.family.wind.88"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.89",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.89",
+            "table.personName.airGenasi.family.wind.89"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.90",
+          "components": [
+            "table.personName.airGenasi.given.feminine.wind.90",
+            "table.personName.airGenasi.family.wind.90"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.airGenasi.neutral",
+      "name": "Air Genasi names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.airGenasi"
+      },
+      "method_table": "table.personName.airGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.01",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.02",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.03",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.04",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.05",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.06",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.07",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.08",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.09",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.10",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.11",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.12",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.13",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.14",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.15",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.16",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.17",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.18",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.18"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.19",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.19"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.20",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.20"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.21",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.21"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.22",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.22"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.23",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.23"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.24",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.24"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.25",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.25"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.26",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.26"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.27",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.27"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.28",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.28"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.29",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family.mortal.29"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.mortal.30",
+          "components": [
+            "table.personName.airGenasi.given.neutral",
+            "table.personName.airGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.31",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.31",
+            "table.personName.airGenasi.family.sky.31"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.32",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.32",
+            "table.personName.airGenasi.family.sky.32"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.33",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.33",
+            "table.personName.airGenasi.family.sky.33"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.34",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.34",
+            "table.personName.airGenasi.family.sky.34"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.35",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.35",
+            "table.personName.airGenasi.family.sky.35"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.36",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.36",
+            "table.personName.airGenasi.family.sky.36"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.37",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.37",
+            "table.personName.airGenasi.family.sky.37"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.38",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.38",
+            "table.personName.airGenasi.family.sky.38"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.39",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.39",
+            "table.personName.airGenasi.family.sky.39"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.40",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.40",
+            "table.personName.airGenasi.family.sky.40"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.41",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.41",
+            "table.personName.airGenasi.family.sky.41"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.42",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.42",
+            "table.personName.airGenasi.family.sky.42"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.43",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.43",
+            "table.personName.airGenasi.family.sky.43"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.44",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.44",
+            "table.personName.airGenasi.family.sky.44"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.45",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.45",
+            "table.personName.airGenasi.family.sky.45"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.46",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.46",
+            "table.personName.airGenasi.family.sky.46"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.47",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.47",
+            "table.personName.airGenasi.family.sky.47"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.48",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.48",
+            "table.personName.airGenasi.family.sky.48"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.49",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.49",
+            "table.personName.airGenasi.family.sky.49"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.50",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.50",
+            "table.personName.airGenasi.family.sky.50"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.51",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.51",
+            "table.personName.airGenasi.family.sky.51"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.52",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.52",
+            "table.personName.airGenasi.family.sky.52"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.53",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.53",
+            "table.personName.airGenasi.family.sky.53"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.54",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.54",
+            "table.personName.airGenasi.family.sky.54"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.sky.55",
+          "components": [
+            "table.personName.airGenasi.given.neutral.sky.55",
+            "table.personName.airGenasi.family.sky.55"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.56",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.56",
+            "table.personName.airGenasi.family.djinn.56"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.57",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.57",
+            "table.personName.airGenasi.family.djinn.57"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.58",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.58",
+            "table.personName.airGenasi.family.djinn.58"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.59",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.59",
+            "table.personName.airGenasi.family.djinn.59"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.60",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.60",
+            "table.personName.airGenasi.family.djinn.60"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.61",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.61",
+            "table.personName.airGenasi.family.djinn.61"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.62",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.62",
+            "table.personName.airGenasi.family.djinn.62"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.63",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.63",
+            "table.personName.airGenasi.family.djinn.63"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.64",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.64",
+            "table.personName.airGenasi.family.djinn.64"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.65",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.65",
+            "table.personName.airGenasi.family.djinn.65"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.66",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.66",
+            "table.personName.airGenasi.family.djinn.66"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.67",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.67",
+            "table.personName.airGenasi.family.djinn.67"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.68",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.68",
+            "table.personName.airGenasi.family.djinn.68"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.69",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.69",
+            "table.personName.airGenasi.family.djinn.69"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.70",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.70",
+            "table.personName.airGenasi.family.djinn.70"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.71",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.71",
+            "table.personName.airGenasi.family.djinn.71"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.72",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.72",
+            "table.personName.airGenasi.family.djinn.72"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.73",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.73",
+            "table.personName.airGenasi.family.djinn.73"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.74",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.74",
+            "table.personName.airGenasi.family.djinn.74"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.75",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.75",
+            "table.personName.airGenasi.family.djinn.75"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.76",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.76",
+            "table.personName.airGenasi.family.djinn.76"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.77",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.77",
+            "table.personName.airGenasi.family.djinn.77"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.78",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.78",
+            "table.personName.airGenasi.family.djinn.78"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.79",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.79",
+            "table.personName.airGenasi.family.djinn.79"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.djinn.80",
+          "components": [
+            "table.personName.airGenasi.given.neutral.djinn.80",
+            "table.personName.airGenasi.family.djinn.80"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.81",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.81",
+            "table.personName.airGenasi.family.wind.81"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.82",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.82",
+            "table.personName.airGenasi.family.wind.82"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.83",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.83",
+            "table.personName.airGenasi.family.wind.83"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.84",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.84",
+            "table.personName.airGenasi.family.wind.84"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.85",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.85",
+            "table.personName.airGenasi.family.wind.85"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.86",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.86",
+            "table.personName.airGenasi.family.wind.86"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.87",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.87",
+            "table.personName.airGenasi.family.wind.87"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.88",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.88",
+            "table.personName.airGenasi.family.wind.88"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.89",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.89",
+            "table.personName.airGenasi.family.wind.89"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.wind.90",
+          "components": [
+            "table.personName.airGenasi.given.neutral.wind.90",
+            "table.personName.airGenasi.family.wind.90"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

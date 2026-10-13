@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.elementalSecond",
+      "name": "Nareth Veiled: Second Element",
+      "description": "Entirely fictional endings producing old arcology / elemental-era place names. No assigned historical linguistic meanings.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "neth",
+          "name": "neth",
+          "range": 1
+        },
+        {
+          "id": "ra",
+          "name": "ra",
+          "range": 2
+        },
+        {
+          "id": "kan",
+          "name": "kan",
+          "range": 3
+        },
+        {
+          "id": "shi",
+          "name": "shi",
+          "range": 4
+        },
+        {
+          "id": "ven",
+          "name": "ven",
+          "range": 5
+        },
+        {
+          "id": "thal",
+          "name": "thal",
+          "range": 6
+        },
+        {
+          "id": "ira",
+          "name": "ira",
+          "range": 7
+        },
+        {
+          "id": "ena",
+          "name": "ena",
+          "range": 8
+        },
+        {
+          "id": "lai",
+          "name": "lai",
+          "range": 9
+        },
+        {
+          "id": "ari",
+          "name": "ari",
+          "range": 10
+        },
+        {
+          "id": "ora",
+          "name": "ora",
+          "range": 11
+        },
+        {
+          "id": "ranu",
+          "name": "ranu",
+          "range": 12
+        },
+        {
+          "id": "tal",
+          "name": "tal",
+          "range": 13
+        },
+        {
+          "id": "yen",
+          "name": "yen",
+          "range": 14
+        },
+        {
+          "id": "sha",
+          "name": "sha",
+          "range": 15
+        },
+        {
+          "id": "eth",
+          "name": "eth",
+          "range": 16
+        },
+        {
+          "id": "ula",
+          "name": "ula",
+          "range": 17
+        },
+        {
+          "id": "tari",
+          "name": "tari",
+          "range": 18
+        },
+        {
+          "id": "mir",
+          "name": "mir",
+          "range": 19
+        },
+        {
+          "id": "ana",
+          "name": "ana",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

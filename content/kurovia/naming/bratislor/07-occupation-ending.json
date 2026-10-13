@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.serviceEnding",
+      "name": "Bratislor Name: Service Ending",
+      "description": "Endings for occupational and service settlements.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "ov",
+          "name": "ov",
+          "range": 1
+        },
+        {
+          "id": "ice",
+          "name": "ice",
+          "range": 2
+        },
+        {
+          "id": "ovce",
+          "name": "ovce",
+          "range": 3
+        },
+        {
+          "id": "ari",
+          "name": "ari",
+          "range": 4
+        },
+        {
+          "id": "any",
+          "name": "any",
+          "range": 5
+        },
+        {
+          "id": "in",
+          "name": "in",
+          "range": 6
+        },
+        {
+          "id": "nik",
+          "name": "nik",
+          "range": 7
+        },
+        {
+          "id": "dol",
+          "name": "dol",
+          "range": 8
+        },
+        {
+          "id": "grad",
+          "name": "grad",
+          "range": 9
+        },
+        {
+          "id": "pol",
+          "name": "pol",
+          "range": 10
+        },
+        {
+          "id": "ka",
+          "name": "ka",
+          "range": 11
+        },
+        {
+          "id": "eni",
+          "name": "eni",
+          "range": 12
+        }
+      ]
+    }
+  ]
+}

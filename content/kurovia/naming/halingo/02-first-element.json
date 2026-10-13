@@ -3,69 +3,409 @@
   "tables": [
     {
       "id": "table.naming.halingo.firstElement",
-      "name": "Halingo Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Halingo Geographic: First Element",
+      "description": "Landscape, mineral, weather and inherited early naming roots. Keeps twelve initial Halingo components intact; 50 equally weighted d100 entries.",
+      "dice": "1d100",
       "results": [
         {
           "id": "khar",
           "name": "Khar",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "sere",
           "name": "Sere",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "varr",
           "name": "Varr",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "dun",
           "name": "Dun",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "tal",
           "name": "Tal",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "brine",
           "name": "Brine",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "cinder",
           "name": "Cinder",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "ash",
           "name": "Ash",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "red",
           "name": "Red",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "mara",
           "name": "Mara",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "silt",
           "name": "Silt",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "vek",
           "name": "Vek",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "bitter",
+          "name": "Bitter",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "bleached",
+          "name": "Bleached",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "white",
+          "name": "White",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "ochre",
+          "name": "Ochre",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "rust",
+          "name": "Rust",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "salt",
+          "name": "Salt",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "flint",
+          "name": "Flint",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "copper",
+          "name": "Copper",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "slate",
+          "name": "Slate",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "shale",
+          "name": "Shale",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "chalk",
+          "name": "Chalk",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "glass",
+          "name": "Glass",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "dust",
+          "name": "Dust",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "dry",
+          "name": "Dry",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "long",
+          "name": "Long",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "split",
+          "name": "Split",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "twin",
+          "name": "Twin",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "broken",
+          "name": "Broken",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "quiet",
+          "name": "Quiet",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "iron",
+          "name": "Iron",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "thorn",
+          "name": "Thorn",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "ember",
+          "name": "Ember",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "pale",
+          "name": "Pale",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "wind",
+          "name": "Wind",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "sun",
+          "name": "Sun",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "west",
+          "name": "West",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "east",
+          "name": "East",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "deep",
+          "name": "Deep",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "far",
+          "name": "Far",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "north",
+          "name": "North",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "south",
+          "name": "South",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "crow",
+          "name": "Crow",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "sand",
+          "name": "Sand",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

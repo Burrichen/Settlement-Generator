@@ -3,69 +3,101 @@
   "tables": [
     {
       "id": "table.naming.targoth.secondElement",
-      "name": "Targoth Name: Second Element",
-      "description": "Second part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Targoth Name: Mountain Ending",
+      "description": "16 landscape and settlement endings reflecting Himalayan toponyms. Tibetan-inspired la/ri/ling/thang/tse/rong/chu/gang/tso/phu; Nepali-inspired kot/gaun/danda/besi/pani/khola. Direct joining deliberately permits occasional rough names.",
+      "dice": "1d20",
       "results": [
         {
-          "id": "hold",
-          "name": "hold",
+          "id": "la",
+          "name": "la",
           "range": 1
         },
         {
-          "id": "gate",
-          "name": "gate",
+          "id": "ri",
+          "name": "ri",
           "range": 2
         },
         {
-          "id": "fell",
-          "name": "fell",
-          "range": 3
+          "id": "ling",
+          "name": "ling",
+          "range": [
+            3,
+            4
+          ]
         },
         {
-          "id": "watch",
-          "name": "watch",
-          "range": 4
+          "id": "thang",
+          "name": "thang",
+          "range": [
+            5,
+            6
+          ]
         },
         {
-          "id": "stone",
-          "name": "stone",
-          "range": 5
-        },
-        {
-          "id": "deep",
-          "name": "deep",
-          "range": 6
-        },
-        {
-          "id": "rest",
-          "name": "rest",
+          "id": "tse",
+          "name": "tse",
           "range": 7
         },
         {
-          "id": "reach",
-          "name": "reach",
+          "id": "rong",
+          "name": "rong",
           "range": 8
         },
         {
-          "id": "spire",
-          "name": "spire",
+          "id": "chu",
+          "name": "chu",
           "range": 9
         },
         {
-          "id": "dun",
-          "name": "dun",
+          "id": "gang",
+          "name": "gang",
           "range": 10
         },
         {
-          "id": "vale",
-          "name": "vale",
+          "id": "tso",
+          "name": "tso",
           "range": 11
         },
         {
-          "id": "cairn",
-          "name": "cairn",
+          "id": "phu",
+          "name": "phu",
           "range": 12
+        },
+        {
+          "id": "kot",
+          "name": "kot",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "gaun",
+          "name": "gaun",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "danda",
+          "name": "danda",
+          "range": 17
+        },
+        {
+          "id": "besi",
+          "name": "besi",
+          "range": 18
+        },
+        {
+          "id": "pani",
+          "name": "pani",
+          "range": 19
+        },
+        {
+          "id": "khola",
+          "name": "khola",
+          "range": 20
         }
       ]
     }

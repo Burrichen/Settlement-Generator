@@ -287,6 +287,43 @@ pub enum IssueKind {
         components: usize,
         parts: usize,
     },
+    /// A spelling exception that lists both result IDs and display names,
+    /// or neither.
+    NamingExceptionForm,
+    /// A spelling exception with no name to use.
+    NamingExceptionEmpty,
+    /// A spelling exception written by display name whose name does not
+    /// pick out exactly one result of its component table.
+    NamingExceptionName {
+        table: TableId,
+        name: String,
+        matches: usize,
+    },
+    /// A `curated_variant` join that reads a component the method does not
+    /// have, or reads the source and the variant from the same component.
+    CuratedVariantComponents {
+        source: usize,
+        variant: usize,
+        components: usize,
+    },
+    /// A `curated_variant` join reading a result field that holds no
+    /// approved names.
+    CuratedVariantField {
+        field: String,
+    },
+    /// A source result with no approved name (or an empty one) for one of
+    /// the variant table's results.
+    ApprovedNameMissing {
+        variant_table: TableId,
+        variant: ResultId,
+        variant_name: String,
+    },
+    /// An approved name keyed by an ID that is not a result of the variant
+    /// table, so it can never be selected.
+    ApprovedNameUnknownVariant {
+        variant_table: TableId,
+        variant: ResultId,
+    },
 }
 
 impl fmt::Display for IssueKind {
@@ -404,6 +441,54 @@ impl fmt::Display for IssueKind {
             IssueKind::NamingPartsLength { components, parts } => write!(
                 f,
                 "naming method describes {parts} part(s) but has {components} component(s)"
+            ),
+            IssueKind::NamingExceptionEmpty => f.write_str("spelling exception has no name"),
+            IssueKind::NamingExceptionForm => f.write_str(
+                "spelling exception must list either component result IDs (\"results\") or component names (\"components\"), not both or neither",
+            ),
+            IssueKind::NamingExceptionName {
+                table,
+                name,
+                matches: 0,
+            } => write!(
+                f,
+                "spelling exception names \"{name}\", which is not a result of table `{table}`"
+            ),
+            IssueKind::NamingExceptionName {
+                table,
+                name,
+                matches,
+            } => write!(
+                f,
+                "spelling exception names \"{name}\", which matches {matches} results of table `{table}`; list result IDs instead"
+            ),
+            IssueKind::CuratedVariantComponents {
+                source,
+                variant,
+                components,
+            } => write!(
+                f,
+                "curated_variant reads its source from component {source} and its variant from component {variant} (counting from 0); they must be two different components of the method's {components}"
+            ),
+            IssueKind::CuratedVariantField { field } => write!(
+                f,
+                "curated_variant reads approved names from `{field}`, but results store them in `{}`",
+                crate::naming::APPROVED_NAMES_FIELD
+            ),
+            IssueKind::ApprovedNameMissing {
+                variant_table,
+                variant,
+                variant_name,
+            } => write!(
+                f,
+                "no approved name for variant \"{variant_name}\" (`{variant}` of table `{variant_table}`); add one before this table can generate names"
+            ),
+            IssueKind::ApprovedNameUnknownVariant {
+                variant_table,
+                variant,
+            } => write!(
+                f,
+                "approved name for `{variant}`, which is not a result of table `{variant_table}`, can never be selected"
             ),
             IssueKind::NamingExceptionLength {
                 components,
@@ -838,15 +923,41 @@ impl<'a> Validator<'a> {
                     );
                 }
                 for exception in &method.exceptions {
-                    if exception.results.len() != components.len() {
+                    if exception.results.is_empty() == exception.components.is_empty() {
+                        self.error(m_at.clone(), IssueKind::NamingExceptionForm);
+                        continue;
+                    }
+                    if exception.name.trim().is_empty() {
+                        self.error(m_at.clone(), IssueKind::NamingExceptionEmpty);
+                    }
+                    if exception.len() != components.len() {
                         self.error(
                             m_at.clone(),
                             IssueKind::NamingExceptionLength {
                                 components: components.len(),
-                                results: exception.results.len(),
+                                results: exception.len(),
                             },
                         );
                         continue;
+                    }
+                    for (name, table) in exception.components.iter().zip(&components) {
+                        if let Some(table) = table {
+                            let matches = table
+                                .results
+                                .iter()
+                                .filter(|r| r.name.trim() == name.trim())
+                                .count();
+                            if matches != 1 {
+                                self.error(
+                                    m_at.clone(),
+                                    IssueKind::NamingExceptionName {
+                                        table: table.id.clone(),
+                                        name: name.clone(),
+                                        matches,
+                                    },
+                                );
+                            }
+                        }
                     }
                     for (result, table) in exception.results.iter().zip(&components) {
                         if let Some(table) = table
@@ -861,6 +972,15 @@ impl<'a> Validator<'a> {
                             );
                         }
                     }
+                }
+                if let JoinStyle::CuratedVariant {
+                    source_field,
+                    source_from_result_id: source,
+                    variant_from_result_id: variant,
+                    ..
+                } = &method.join.style
+                {
+                    self.check_curated_variant(&m_at, &components, source_field, *source, *variant);
                 }
                 if let JoinStyle::Possessive {
                     before: Some(before),
@@ -888,6 +1008,78 @@ impl<'a> Validator<'a> {
                             );
                         }
                     }
+                }
+            }
+        }
+    }
+
+    /// A `curated_variant` join: two different components, the approved
+    /// names field, and for every source result a non-empty approved name
+    /// for every variant result (and none for IDs that are not variants).
+    /// Problems with names are reported at the source result, so its table
+    /// editor shows them.
+    fn check_curated_variant(
+        &mut self,
+        at: &Location,
+        components: &[Option<&'a Table>],
+        field: &str,
+        source: usize,
+        variant: usize,
+    ) {
+        if source == variant || source >= components.len() || variant >= components.len() {
+            self.error(
+                at.clone(),
+                IssueKind::CuratedVariantComponents {
+                    source,
+                    variant,
+                    components: components.len(),
+                },
+            );
+            return;
+        }
+        if field != crate::naming::APPROVED_NAMES_FIELD {
+            self.error(
+                at.clone(),
+                IssueKind::CuratedVariantField {
+                    field: field.to_owned(),
+                },
+            );
+            return;
+        }
+        let (Some(source), Some(variants)) = (components[source], components[variant]) else {
+            return;
+        };
+        for result in &source.results {
+            let r_at = Location {
+                table: Some(source.id.clone()),
+                result: Some(result.id.clone()),
+                ..at.clone()
+            };
+            for v in &variants.results {
+                let present = result
+                    .approved_names
+                    .get(&v.id)
+                    .is_some_and(|n| !n.trim().is_empty());
+                if !present {
+                    self.error(
+                        r_at.clone(),
+                        IssueKind::ApprovedNameMissing {
+                            variant_table: variants.id.clone(),
+                            variant: v.id.clone(),
+                            variant_name: v.name.clone(),
+                        },
+                    );
+                }
+            }
+            for key in result.approved_names.keys() {
+                if variants.result(key).is_none() {
+                    self.error(
+                        r_at.clone(),
+                        IssueKind::ApprovedNameUnknownVariant {
+                            variant_table: variants.id.clone(),
+                            variant: key.clone(),
+                        },
+                    );
                 }
             }
         }

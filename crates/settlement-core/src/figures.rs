@@ -484,6 +484,7 @@ impl FigureGenerator<'_, '_> {
             text,
             method,
             rolls,
+            ..
         } = generate_name(self.generator, scheme, &mut state, method, faces)?;
         let parts = scheme
             .method(&method.id)
@@ -551,14 +552,8 @@ impl FigureGenerator<'_, '_> {
             .get_mut(part + 1)
             .ok_or(GenerationError::NoSuchNamePart { index: part })?;
         *slot = record;
-        let named: Vec<NamePart> = rolls[1..]
-            .iter()
-            .map(|r| NamePart {
-                result: &r.result.id,
-                text: &r.result.name,
-            })
-            .collect();
-        *name = method.compose(&named);
+        let named: Vec<NamePart> = rolls[1..].iter().map(NamePart::of).collect();
+        *name = method.compose(self.content, &named)?.text;
         *parts = part_records(method, rolls);
         figure.label = label(figure, index);
         Ok(())
@@ -589,6 +584,8 @@ impl FigureGenerator<'_, '_> {
                     label,
                     table,
                     options,
+                    previews: Vec::new(),
+                    current: None,
                 })
             })
             .collect()
@@ -627,6 +624,14 @@ pub struct NamePartOptions {
     pub label: String,
     pub table: Named<TableId>,
     pub options: Vec<ResultOption>,
+    /// For a settlement name: the name each option would give, in option
+    /// order (`None` where it would give none, e.g. a missing approved
+    /// name). Empty when not computed.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub previews: Vec<Option<String>>,
+    /// For a settlement name: the result the part has now.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub current: Option<ResultId>,
 }
 
 /// What to call a figure: its name, else "Figure n" (1-based).

@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.ordon.inheritedName",
+      "name": "Ordon Inherited: Complete Settlement Name",
+      "description": "50 reviewed complete place names. A mix of inherited villages, parish foundations, a minority of planned Victorian places. No random word-pair joins.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "netherleigh",
+          "name": "Netherleigh",
+          "range": [1, 2]
+        },
+        {
+          "id": "wetherden",
+          "name": "Wetherden",
+          "range": [3, 4]
+        },
+        {
+          "id": "carrow",
+          "name": "Carrow",
+          "range": [5, 6]
+        },
+        {
+          "id": "eversham",
+          "name": "Eversham",
+          "range": [7, 8]
+        },
+        {
+          "id": "briarcombe",
+          "name": "Briarcombe",
+          "range": [9, 10]
+        },
+        {
+          "id": "mereford",
+          "name": "Mereford",
+          "range": [11, 12]
+        },
+        {
+          "id": "dunwold",
+          "name": "Dunwold",
+          "range": [13, 14]
+        },
+        {
+          "id": "wrenmere",
+          "name": "Wrenmere",
+          "range": [15, 16]
+        },
+        {
+          "id": "larkhill",
+          "name": "Larkhill",
+          "range": [17, 18]
+        },
+        {
+          "id": "ashenwell",
+          "name": "Ashenwell",
+          "range": [19, 20]
+        },
+        {
+          "id": "farleigh",
+          "name": "Farleigh",
+          "range": [21, 22]
+        },
+        {
+          "id": "undercombe",
+          "name": "Undercombe",
+          "range": [23, 24]
+        },
+        {
+          "id": "bellwick",
+          "name": "Bellwick",
+          "range": [25, 26]
+        },
+        {
+          "id": "harthorne",
+          "name": "Harthorne",
+          "range": [27, 28]
+        },
+        {
+          "id": "wychmere",
+          "name": "Wychmere",
+          "range": [29, 30]
+        },
+        {
+          "id": "amberleigh",
+          "name": "Amberleigh",
+          "range": [31, 32]
+        },
+        {
+          "id": "fallowdene",
+          "name": "Fallowdene",
+          "range": [33, 34]
+        },
+        {
+          "id": "greyminster",
+          "name": "Greyminster",
+          "range": [35, 36]
+        },
+        {
+          "id": "thistleford",
+          "name": "Thistleford",
+          "range": [37, 38]
+        },
+        {
+          "id": "westerholt",
+          "name": "Westerholt",
+          "range": [39, 40]
+        },
+        {
+          "id": "prospect-end",
+          "name": "Prospect End",
+          "range": [41, 42]
+        },
+        {
+          "id": "alder-court",
+          "name": "Alder Court",
+          "range": [43, 44]
+        },
+        {
+          "id": "crown-gardens",
+          "name": "Crownley",
+          "range": [45, 46]
+        },
+        {
+          "id": "regent-s-vale",
+          "name": "Regent's Vale",
+          "range": [47, 48]
+        },
+        {
+          "id": "st-cuthred",
+          "name": "St. Cuthred",
+          "range": [49, 50]
+        },
+        {
+          "id": "st-elswyth",
+          "name": "St. Elswyth",
+          "range": [51, 52]
+        },
+        {
+          "id": "st-aldric",
+          "name": "St. Aldric",
+          "range": [53, 54]
+        },
+        {
+          "id": "queen-s-prospect",
+          "name": "Queensford",
+          "range": [55, 56]
+        },
+        {
+          "id": "new-wetherham",
+          "name": "New Wetherham",
+          "range": [57, 58]
+        },
+        {
+          "id": "victoria-end",
+          "name": "Victoria Green",
+          "range": [59, 60]
+        },
+        {
+          "id": "elm-park",
+          "name": "Elm Park",
+          "range": [61, 62]
+        },
+        {
+          "id": "canal-green",
+          "name": "Canal Green",
+          "range": [63, 64]
+        },
+        {
+          "id": "garnet-row",
+          "name": "Garnet Row",
+          "range": [65, 66]
+        },
+        {
+          "id": "cinder-hall",
+          "name": "Cinderwell",
+          "range": [67, 68]
+        },
+        {
+          "id": "old-carrow",
+          "name": "Old Carrow",
+          "range": [69, 70]
+        },
+        {
+          "id": "lower-veyne",
+          "name": "Lower Veyne",
+          "range": [71, 72]
+        },
+        {
+          "id": "high-marrow",
+          "name": "High Marrow",
+          "range": [73, 74]
+        },
+        {
+          "id": "new-beldon",
+          "name": "New Beldon",
+          "range": [75, 76]
+        },
+        {
+          "id": "everswick",
+          "name": "Everswick",
+          "range": [77, 78]
+        },
+        {
+          "id": "little-bellcroft",
+          "name": "Little Bellcroft",
+          "range": [79, 80]
+        },
+        {
+          "id": "east-carrow",
+          "name": "East Carrow",
+          "range": [81, 82]
+        },
+        {
+          "id": "the-old-cross",
+          "name": "Oldcross",
+          "range": [83, 84]
+        },
+        {
+          "id": "st-beorn",
+          "name": "St. Beorn",
+          "range": [85, 86]
+        },
+        {
+          "id": "faircastle",
+          "name": "Faircastle",
+          "range": [87, 88]
+        },
+        {
+          "id": "wychford",
+          "name": "Wychford",
+          "range": [89, 90]
+        },
+        {
+          "id": "crown-s-reach",
+          "name": "Crownreach",
+          "range": [91, 92]
+        },
+        {
+          "id": "pennyhurst",
+          "name": "Pennyhurst",
+          "range": [93, 94]
+        },
+        {
+          "id": "new-ashcombe",
+          "name": "New Ashcombe",
+          "range": [95, 96]
+        },
+        {
+          "id": "holmstead",
+          "name": "Holmstead",
+          "range": [97, 98]
+        },
+        {
+          "id": "rooksmere",
+          "name": "Rooksmere",
+          "range": [99, 100]
+        }
+      ]
+    }
+  ]
+}

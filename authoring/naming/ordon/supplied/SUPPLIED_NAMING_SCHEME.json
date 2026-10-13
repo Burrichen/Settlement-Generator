@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "naming_schemes": [
+    {
+      "id": "naming.kurovia.ordon",
+      "name": "Ordon",
+      "description": "Quality-reviewed Old English and Victorian Ordon naming. Rural compounds plus preapproved personal, industrial and transport names: fewer combinations, far fewer unnatural joins.",
+      "when": {
+        "all": [
+          {
+            "has_tag": "world.kurovia"
+          },
+          {
+            "has_tag": "region.ordon"
+          }
+        ]
+      },
+      "method_table": "table.naming.ordon.method",
+      "methods": [
+        {
+          "result": "geographic",
+          "components": [
+            "table.naming.ordon.firstElement",
+            "table.naming.ordon.secondElement"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": [
+            {
+              "components": [
+                "Ash",
+                "ham"
+              ],
+              "output": "Asham",
+              "note": "Historical-looking contraction"
+            },
+            {
+              "components": [
+                "Ash",
+                "hurst"
+              ],
+              "output": "Ashurst",
+              "note": "Avoid doubled h"
+            },
+            {
+              "components": [
+                "Hol",
+                "holt"
+              ],
+              "output": "Holstead",
+              "note": "Avoid awkward Holholt repetition"
+            },
+            {
+              "components": [
+                "Beck",
+                "brook"
+              ],
+              "output": "Beckstead",
+              "note": "Avoid redundant beck + brook"
+            },
+            {
+              "components": [
+                "Burn",
+                "brook"
+              ],
+              "output": "Burnstead",
+              "note": "Avoid two similar water nouns"
+            },
+            {
+              "components": [
+                "Broom",
+                "brook"
+              ],
+              "output": "Brombrook",
+              "note": "Contract repeated sound"
+            },
+            {
+              "components": [
+                "Hill",
+                "dale"
+              ],
+              "output": "Hilden",
+              "note": "Prefer inherited-looking contraction"
+            },
+            {
+              "components": [
+                "Dun",
+                "den"
+              ],
+              "output": "Dunden",
+              "note": "Retain double syllable as plausible local form"
+            },
+            {
+              "components": [
+                "Elm",
+                "ham"
+              ],
+              "output": "Elham",
+              "note": "Contract final consonant"
+            },
+            {
+              "components": [
+                "Wren",
+                "well"
+              ],
+              "output": "Wrenwell",
+              "note": "Retain explicit"
+            },
+            {
+              "components": [
+                "Hill",
+                "ley"
+              ],
+              "output": "Hildley",
+              "note": "Avoid Hillley triple-l syllable"
+            },
+            {
+              "components": [
+                "Mill",
+                "ley"
+              ],
+              "output": "Milnley",
+              "note": "Avoid Millley triple-l syllable"
+            },
+            {
+              "components": [
+                "Birch",
+                "brook"
+              ],
+              "output": "Birkbrook",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "components": [
+                "Birch",
+                "bridge"
+              ],
+              "output": "Birkbridge",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "components": [
+                "Birch",
+                "croft"
+              ],
+              "output": "Birkcroft",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "components": [
+                "Birch",
+                "thorpe"
+              ],
+              "output": "Birkthorpe",
+              "note": "Simplify historical birch to birk stem"
+            },
+            {
+              "components": [
+                "Fair",
+                "well"
+              ],
+              "output": "Fairbourne",
+              "note": "Avoid homophone with farewell"
+            }
+          ]
+        },
+        {
+          "result": "founder",
+          "components": [
+            "table.naming.ordon.founder",
+            "table.naming.ordon.founderEnding"
+          ],
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error",
+            "description": "Two historically styled, individually approved settlement forms per founder. Some use possessive-s where appropriate, others are contracted. Never blindly append -worth."
+          },
+          "exceptions": []
+        },
+        {
+          "result": "industrial",
+          "components": [
+            "table.naming.ordon.industryFirst",
+            "table.naming.ordon.industrySecond"
+          ],
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "route",
+          "components": [
+            "table.naming.ordon.routeFirst",
+            "table.naming.ordon.routeSecond"
+          ],
+          "join": {
+            "style": "curated_variant",
+            "source_field": "approved_names",
+            "variant_from_result_id": 1,
+            "on_missing": "error"
+          },
+          "exceptions": []
+        },
+        {
+          "result": "inherited",
+          "components": [
+            "table.naming.ordon.inheritedName"
+          ],
+          "join": {
+            "style": "compound"
+          },
+          "exceptions": []
+        }
+      ]
+    }
+  ]
+}

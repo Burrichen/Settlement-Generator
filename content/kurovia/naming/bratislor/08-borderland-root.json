@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.bratislor.borderlandRoot",
+      "name": "Bratislor Name: Borderland Root",
+      "description": "Carpathian/Romanian-influenced name stems for a small neighbouring-language naming layer. Sample content only; not authentic Romanian morphology.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ardan",
+          "name": "Ardan",
+          "range": 1
+        },
+        {
+          "id": "baran",
+          "name": "Baran",
+          "range": 2
+        },
+        {
+          "id": "bran",
+          "name": "Bran",
+          "range": 3
+        },
+        {
+          "id": "codr",
+          "name": "Codr",
+          "range": 4
+        },
+        {
+          "id": "corvin",
+          "name": "Corvin",
+          "range": 5
+        },
+        {
+          "id": "costin",
+          "name": "Costin",
+          "range": 6
+        },
+        {
+          "id": "dorin",
+          "name": "Dorin",
+          "range": 7
+        },
+        {
+          "id": "drag",
+          "name": "Drag",
+          "range": 8
+        },
+        {
+          "id": "florin",
+          "name": "Florin",
+          "range": 9
+        },
+        {
+          "id": "ilar",
+          "name": "Ilar",
+          "range": 10
+        },
+        {
+          "id": "laz",
+          "name": "Laz",
+          "range": 11
+        },
+        {
+          "id": "marin",
+          "name": "Marin",
+          "range": 12
+        },
+        {
+          "id": "miron",
+          "name": "Miron",
+          "range": 13
+        },
+        {
+          "id": "petron",
+          "name": "Petron",
+          "range": 14
+        },
+        {
+          "id": "radan",
+          "name": "Radan",
+          "range": 15
+        },
+        {
+          "id": "sorin",
+          "name": "Sorin",
+          "range": 16
+        },
+        {
+          "id": "toman",
+          "name": "Toman",
+          "range": 17
+        },
+        {
+          "id": "valer",
+          "name": "Valer",
+          "range": 18
+        },
+        {
+          "id": "vlad",
+          "name": "Vlad",
+          "range": 19
+        },
+        {
+          "id": "zorin",
+          "name": "Zorin",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

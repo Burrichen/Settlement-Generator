@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.riverSecond",
+      "name": "Nareth River: Waterway Element",
+      "description": "Actual place-name vocabulary such as -mayu, -yaku, -qucha and -pukyu dominates; fictional local endings retain minority d100 faces.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "mayu",
+          "name": "mayu",
+          "range": [
+            1,
+            6
+          ],
+          "description": "Quechua reference element: river. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "yaku",
+          "name": "yaku",
+          "range": [
+            7,
+            12
+          ],
+          "description": "Quechua reference element: water. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "qucha",
+          "name": "qucha",
+          "range": [
+            13,
+            18
+          ],
+          "description": "Quechua reference element: lagoon / lake. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pukyu",
+          "name": "pukyu",
+          "range": [
+            19,
+            24
+          ],
+          "description": "Quechua reference element: spring. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wayqu",
+          "name": "wayqu",
+          "range": [
+            25,
+            30
+          ],
+          "description": "Quechua reference element: ravine / gully. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pallqa",
+          "name": "pallqa",
+          "range": [
+            31,
+            36
+          ],
+          "description": "Quechua reference element: fork / branching. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chaka",
+          "name": "chaka",
+          "range": [
+            37,
+            42
+          ],
+          "description": "Quechua reference element: bridge. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pata",
+          "name": "pata",
+          "range": [
+            43,
+            48
+          ],
+          "description": "Quechua reference element: upper place / terrace. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "kuchu",
+          "name": "kuchu",
+          "range": [
+            49,
+            54
+          ],
+          "description": "Quechua reference element: corner / edge. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "marka",
+          "name": "marka",
+          "range": [
+            55,
+            60
+          ],
+          "description": "Quechua reference element: town / region (varies). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "llaqta",
+          "name": "llaqta",
+          "range": [
+            61,
+            66
+          ],
+          "description": "Quechua reference element: town / inhabited place. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "suyu",
+          "name": "suyu",
+          "range": [
+            67,
+            72
+          ],
+          "description": "Quechua reference element: region / quarter. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "naya",
+          "name": "naya",
+          "range": [
+            73,
+            75
+          ]
+        },
+        {
+          "id": "liya",
+          "name": "liya",
+          "range": [
+            76,
+            78
+          ]
+        },
+        {
+          "id": "vara",
+          "name": "vara",
+          "range": [
+            79,
+            81
+          ]
+        },
+        {
+          "id": "shara",
+          "name": "shara",
+          "range": [
+            82,
+            84
+          ]
+        },
+        {
+          "id": "talu",
+          "name": "talu",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "sira",
+          "name": "sira",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "rin",
+          "name": "rin",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "ya",
+          "name": "ya",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "nen",
+          "name": "nen",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "ra",
+          "name": "ra",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "ven",
+          "name": "ven",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "kai",
+          "name": "kai",
+          "range": [
+            99,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

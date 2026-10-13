@@ -4,20 +4,26 @@
     {
       "id": "table.naming.targoth.method",
       "name": "Targoth Naming Method",
-      "description": "Which naming method a Targoth settlement name uses. Each result is a naming method; its faces are its weight (starter weights 70% / 30%). Old, austere and durable names of high, remote and partly abandoned mountain country.",
+      "description": "Two original engine-compatible methods. 80% remote mountain geography; 20% ancient sites/lineages. Inspired by Himalayan naming and the mystical remote mountain mood of Mount Targon. No special join rules.",
       "dice": "1d10",
       "results": [
         {
           "id": "geographic",
-          "name": "Geographic Compound",
-          "description": "First element + second element as one word, e.g. Karhold, Skarnwatch.",
-          "range": [1, 7]
+          "name": "Highland and Sacred Geography",
+          "description": "An inherited place name based on passes, mountains, river valleys, old lookouts and mountain settlements. Direct compound joining.",
+          "range": [
+            1,
+            8
+          ]
         },
         {
           "id": "founder",
-          "name": "Historical Founder",
-          "description": "Founder's name + 's + a settlement feature, e.g. Varok's Gate, Thren's Watch.",
-          "range": [8, 10]
+          "name": "Ancient Lineages and Sanctuaries",
+          "description": "Names associated with long-forgotten watchers, hermits and older mountain lineages, joined to a landmark or sanctuary ending. Uses the original founder method key for compatibility.",
+          "range": [
+            9,
+            10
+          ]
         }
       ]
     }

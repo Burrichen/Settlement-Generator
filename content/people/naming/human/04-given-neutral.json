@@ -4,7 +4,7 @@
     {
       "id": "table.personName.human.given.neutral",
       "name": "Human Neutral Given Names",
-      "dice": "1d20",
+      "dice": "1d100",
       "results": [
         {
           "id": "arden",
@@ -105,6 +105,406 @@
           "id": "teague",
           "name": "Teague",
           "range": 20
+        },
+        {
+          "id": "neutral.021",
+          "name": "Alex",
+          "range": 21
+        },
+        {
+          "id": "neutral.022",
+          "name": "Ari",
+          "range": 22
+        },
+        {
+          "id": "neutral.023",
+          "name": "Ariel",
+          "range": 23
+        },
+        {
+          "id": "neutral.024",
+          "name": "Asa",
+          "range": 24
+        },
+        {
+          "id": "neutral.025",
+          "name": "Ashley",
+          "range": 25
+        },
+        {
+          "id": "neutral.026",
+          "name": "Blair",
+          "range": 26
+        },
+        {
+          "id": "neutral.027",
+          "name": "Bo",
+          "range": 27
+        },
+        {
+          "id": "neutral.028",
+          "name": "Cameron",
+          "range": 28
+        },
+        {
+          "id": "neutral.029",
+          "name": "Casey",
+          "range": 29
+        },
+        {
+          "id": "neutral.030",
+          "name": "Charlie",
+          "range": 30
+        },
+        {
+          "id": "neutral.031",
+          "name": "Dakota",
+          "range": 31
+        },
+        {
+          "id": "neutral.032",
+          "name": "Darcy",
+          "range": 32
+        },
+        {
+          "id": "neutral.033",
+          "name": "Drew",
+          "range": 33
+        },
+        {
+          "id": "neutral.034",
+          "name": "Eden",
+          "range": 34
+        },
+        {
+          "id": "neutral.035",
+          "name": "Eli",
+          "range": 35
+        },
+        {
+          "id": "neutral.036",
+          "name": "Emery",
+          "range": 36
+        },
+        {
+          "id": "neutral.037",
+          "name": "Finley",
+          "range": 37
+        },
+        {
+          "id": "neutral.038",
+          "name": "Harper",
+          "range": 38
+        },
+        {
+          "id": "neutral.039",
+          "name": "Hayden",
+          "range": 39
+        },
+        {
+          "id": "neutral.040",
+          "name": "Iman",
+          "range": 40
+        },
+        {
+          "id": "neutral.041",
+          "name": "Ira",
+          "range": 41
+        },
+        {
+          "id": "neutral.042",
+          "name": "Jamie",
+          "range": 42
+        },
+        {
+          "id": "neutral.043",
+          "name": "Jean",
+          "range": 43
+        },
+        {
+          "id": "neutral.044",
+          "name": "Jesse",
+          "range": 44
+        },
+        {
+          "id": "neutral.045",
+          "name": "Jia",
+          "range": 45
+        },
+        {
+          "id": "neutral.046",
+          "name": "Jordan",
+          "range": 46
+        },
+        {
+          "id": "neutral.047",
+          "name": "Jules",
+          "range": 47
+        },
+        {
+          "id": "neutral.048",
+          "name": "Kai",
+          "range": 48
+        },
+        {
+          "id": "neutral.049",
+          "name": "Kelly",
+          "range": 49
+        },
+        {
+          "id": "neutral.050",
+          "name": "Kendall",
+          "range": 50
+        },
+        {
+          "id": "neutral.051",
+          "name": "Kiran",
+          "range": 51
+        },
+        {
+          "id": "neutral.052",
+          "name": "Lane",
+          "range": 52
+        },
+        {
+          "id": "neutral.053",
+          "name": "Lee",
+          "range": 53
+        },
+        {
+          "id": "neutral.054",
+          "name": "Leslie",
+          "range": 54
+        },
+        {
+          "id": "neutral.055",
+          "name": "Li",
+          "range": 55
+        },
+        {
+          "id": "neutral.056",
+          "name": "Lin",
+          "range": 56
+        },
+        {
+          "id": "neutral.057",
+          "name": "Linden",
+          "range": 57
+        },
+        {
+          "id": "neutral.058",
+          "name": "Logan",
+          "range": 58
+        },
+        {
+          "id": "neutral.059",
+          "name": "Luca",
+          "range": 59
+        },
+        {
+          "id": "neutral.060",
+          "name": "Mika",
+          "range": 60
+        },
+        {
+          "id": "neutral.061",
+          "name": "Morgan",
+          "range": 61
+        },
+        {
+          "id": "neutral.062",
+          "name": "Nika",
+          "range": 62
+        },
+        {
+          "id": "neutral.063",
+          "name": "Noa",
+          "range": 63
+        },
+        {
+          "id": "neutral.064",
+          "name": "Paris",
+          "range": 64
+        },
+        {
+          "id": "neutral.065",
+          "name": "Parker",
+          "range": 65
+        },
+        {
+          "id": "neutral.066",
+          "name": "Quinn",
+          "range": 66
+        },
+        {
+          "id": "neutral.067",
+          "name": "Reese",
+          "range": 67
+        },
+        {
+          "id": "neutral.068",
+          "name": "Remy",
+          "range": 68
+        },
+        {
+          "id": "neutral.069",
+          "name": "Riley",
+          "range": 69
+        },
+        {
+          "id": "neutral.070",
+          "name": "River",
+          "range": 70
+        },
+        {
+          "id": "neutral.071",
+          "name": "Robin",
+          "range": 71
+        },
+        {
+          "id": "neutral.072",
+          "name": "Rosario",
+          "range": 72
+        },
+        {
+          "id": "neutral.073",
+          "name": "Sage",
+          "range": 73
+        },
+        {
+          "id": "neutral.074",
+          "name": "Sam",
+          "range": 74
+        },
+        {
+          "id": "neutral.075",
+          "name": "Sasha",
+          "range": 75
+        },
+        {
+          "id": "neutral.076",
+          "name": "Sidney",
+          "range": 76
+        },
+        {
+          "id": "neutral.077",
+          "name": "Simone",
+          "range": 77
+        },
+        {
+          "id": "neutral.078",
+          "name": "Skylar",
+          "range": 78
+        },
+        {
+          "id": "neutral.079",
+          "name": "Tal",
+          "range": 79
+        },
+        {
+          "id": "neutral.080",
+          "name": "Taylor",
+          "range": 80
+        },
+        {
+          "id": "neutral.081",
+          "name": "Terry",
+          "range": 81
+        },
+        {
+          "id": "neutral.082",
+          "name": "Toni",
+          "range": 82
+        },
+        {
+          "id": "neutral.083",
+          "name": "Valentine",
+          "range": 83
+        },
+        {
+          "id": "neutral.084",
+          "name": "Wren",
+          "range": 84
+        },
+        {
+          "id": "neutral.085",
+          "name": "Yan",
+          "range": 85
+        },
+        {
+          "id": "neutral.086",
+          "name": "Yu",
+          "range": 86
+        },
+        {
+          "id": "neutral.087",
+          "name": "Yuki",
+          "range": 87
+        },
+        {
+          "id": "neutral.088",
+          "name": "Zohar",
+          "range": 88
+        },
+        {
+          "id": "neutral.089",
+          "name": "Andrea",
+          "range": 89
+        },
+        {
+          "id": "neutral.090",
+          "name": "Camille",
+          "range": 90
+        },
+        {
+          "id": "neutral.091",
+          "name": "Kim",
+          "range": 91
+        },
+        {
+          "id": "neutral.092",
+          "name": "Marion",
+          "range": 92
+        },
+        {
+          "id": "neutral.093",
+          "name": "Ren",
+          "range": 93
+        },
+        {
+          "id": "neutral.094",
+          "name": "Haruka",
+          "range": 94
+        },
+        {
+          "id": "neutral.095",
+          "name": "Sora",
+          "range": 95
+        },
+        {
+          "id": "neutral.096",
+          "name": "Hikaru",
+          "range": 96
+        },
+        {
+          "id": "neutral.097",
+          "name": "Nao",
+          "range": 97
+        },
+        {
+          "id": "neutral.098",
+          "name": "Rui",
+          "range": 98
+        },
+        {
+          "id": "neutral.099",
+          "name": "Akira",
+          "range": 99
+        },
+        {
+          "id": "neutral.100",
+          "name": "Izumi",
+          "range": 100
         }
       ]
     }

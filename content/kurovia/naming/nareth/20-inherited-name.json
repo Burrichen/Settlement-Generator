@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.inheritedName",
+      "name": "Nareth Inherited: Complete Place Name",
+      "description": "100 individually entered fictional names, including 30 space-separated forms reflecting the two-word shape of Uru Taal. Excludes known established place names.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "yuranei",
+          "name": "Yuranei",
+          "range": 1
+        },
+        {
+          "id": "talanqui",
+          "name": "Talanqui",
+          "range": 2
+        },
+        {
+          "id": "vilara",
+          "name": "Vilara",
+          "range": 3
+        },
+        {
+          "id": "qenura",
+          "name": "Qenura",
+          "range": 4
+        },
+        {
+          "id": "kairun",
+          "name": "Kairun",
+          "range": 5
+        },
+        {
+          "id": "peraya",
+          "name": "Peraya",
+          "range": 6
+        },
+        {
+          "id": "marashi",
+          "name": "Marashi",
+          "range": 7
+        },
+        {
+          "id": "kaniru",
+          "name": "Kaniru",
+          "range": 8
+        },
+        {
+          "id": "osiraya",
+          "name": "Osiraya",
+          "range": 9
+        },
+        {
+          "id": "sarenya",
+          "name": "Sarenya",
+          "range": 10
+        },
+        {
+          "id": "yaluri",
+          "name": "Yaluri",
+          "range": 11
+        },
+        {
+          "id": "tariven",
+          "name": "Tariven",
+          "range": 12
+        },
+        {
+          "id": "verunai",
+          "name": "Verunai",
+          "range": 13
+        },
+        {
+          "id": "illara",
+          "name": "Illara",
+          "range": 14
+        },
+        {
+          "id": "lurashi",
+          "name": "Lurashi",
+          "range": 15
+        },
+        {
+          "id": "arikari",
+          "name": "Arikari",
+          "range": 16
+        },
+        {
+          "id": "quinara",
+          "name": "Quinara",
+          "range": 17
+        },
+        {
+          "id": "paviren",
+          "name": "Paviren",
+          "range": 18
+        },
+        {
+          "id": "keshari",
+          "name": "Keshari",
+          "range": 19
+        },
+        {
+          "id": "serali",
+          "name": "Serali",
+          "range": 20
+        },
+        {
+          "id": "ameya",
+          "name": "Ameya",
+          "range": 21
+        },
+        {
+          "id": "ilanari",
+          "name": "Ilanari",
+          "range": 22
+        },
+        {
+          "id": "tavarun",
+          "name": "Tavarun",
+          "range": 23
+        },
+        {
+          "id": "nelaya",
+          "name": "Nelaya",
+          "range": 24
+        },
+        {
+          "id": "mayaru",
+          "name": "Mayaru",
+          "range": 25
+        },
+        {
+          "id": "kiranai",
+          "name": "Kiranai",
+          "range": 26
+        },
+        {
+          "id": "sureni",
+          "name": "Sureni",
+          "range": 27
+        },
+        {
+          "id": "lorayu",
+          "name": "Lorayu",
+          "range": 28
+        },
+        {
+          "id": "yaveri",
+          "name": "Yaveri",
+          "range": 29
+        },
+        {
+          "id": "karumai",
+          "name": "Karumai",
+          "range": 30
+        },
+        {
+          "id": "talenya",
+          "name": "Talenya",
+          "range": 31
+        },
+        {
+          "id": "vareku",
+          "name": "Vareku",
+          "range": 32
+        },
+        {
+          "id": "oruvai",
+          "name": "Oruvai",
+          "range": 33
+        },
+        {
+          "id": "sairun",
+          "name": "Sairun",
+          "range": 34
+        },
+        {
+          "id": "larethi",
+          "name": "Larethi",
+          "range": 35
+        },
+        {
+          "id": "velanai",
+          "name": "Velanai",
+          "range": 36
+        },
+        {
+          "id": "chireya",
+          "name": "Chireya",
+          "range": 37
+        },
+        {
+          "id": "nakarun",
+          "name": "Nakarun",
+          "range": 38
+        },
+        {
+          "id": "sariven",
+          "name": "Sariven",
+          "range": 39
+        },
+        {
+          "id": "yaluma",
+          "name": "Yaluma",
+          "range": 40
+        },
+        {
+          "id": "isharai",
+          "name": "Isharai",
+          "range": 41
+        },
+        {
+          "id": "kureva",
+          "name": "Kureva",
+          "range": 42
+        },
+        {
+          "id": "pavarin",
+          "name": "Pavarin",
+          "range": 43
+        },
+        {
+          "id": "velari",
+          "name": "Velari",
+          "range": 44
+        },
+        {
+          "id": "nimaya",
+          "name": "Nimaya",
+          "range": 45
+        },
+        {
+          "id": "tavarai",
+          "name": "Tavarai",
+          "range": 46
+        },
+        {
+          "id": "rulena",
+          "name": "Rulena",
+          "range": 47
+        },
+        {
+          "id": "arenkai",
+          "name": "Arenkai",
+          "range": 48
+        },
+        {
+          "id": "mariven",
+          "name": "Mariven",
+          "range": 49
+        },
+        {
+          "id": "toraya",
+          "name": "Toraya",
+          "range": 50
+        },
+        {
+          "id": "ulenya",
+          "name": "Ulenya",
+          "range": 51
+        },
+        {
+          "id": "narevi",
+          "name": "Narevi",
+          "range": 52
+        },
+        {
+          "id": "suralen",
+          "name": "Suralen",
+          "range": 53
+        },
+        {
+          "id": "kairava",
+          "name": "Kairava",
+          "range": 54
+        },
+        {
+          "id": "veshani",
+          "name": "Veshani",
+          "range": 55
+        },
+        {
+          "id": "lunara",
+          "name": "Lunara",
+          "range": 56
+        },
+        {
+          "id": "verikai",
+          "name": "Verikai",
+          "range": 57
+        },
+        {
+          "id": "tilani",
+          "name": "Tilani",
+          "range": 58
+        },
+        {
+          "id": "quenari",
+          "name": "Quenari",
+          "range": 59
+        },
+        {
+          "id": "aruvel",
+          "name": "Aruvel",
+          "range": 60
+        },
+        {
+          "id": "tirama",
+          "name": "Tirama",
+          "range": 61
+        },
+        {
+          "id": "kuravi",
+          "name": "Kuravi",
+          "range": 62
+        },
+        {
+          "id": "elunai",
+          "name": "Elunai",
+          "range": 63
+        },
+        {
+          "id": "varenya",
+          "name": "Varenya",
+          "range": 64
+        },
+        {
+          "id": "kashuren",
+          "name": "Kashuren",
+          "range": 65
+        },
+        {
+          "id": "talorin",
+          "name": "Talorin",
+          "range": 66
+        },
+        {
+          "id": "mirayu",
+          "name": "Mirayu",
+          "range": 67
+        },
+        {
+          "id": "sonari",
+          "name": "Sonari",
+          "range": 68
+        },
+        {
+          "id": "varena",
+          "name": "Varena",
+          "range": 69
+        },
+        {
+          "id": "luravai",
+          "name": "Luravai",
+          "range": 70
+        },
+        {
+          "id": "varatalen",
+          "name": "Vara Talen",
+          "range": 71
+        },
+        {
+          "id": "iruvasha",
+          "name": "Iru Vasha",
+          "range": 72
+        },
+        {
+          "id": "tumakeri",
+          "name": "Tuma Keri",
+          "range": 73
+        },
+        {
+          "id": "sarinalu",
+          "name": "Sari Nalu",
+          "range": 74
+        },
+        {
+          "id": "kesharan",
+          "name": "Kesh Aran",
+          "range": 75
+        },
+        {
+          "id": "lumatavir",
+          "name": "Luma Tavir",
+          "range": 76
+        },
+        {
+          "id": "karusaya",
+          "name": "Karu Saya",
+          "range": 77
+        },
+        {
+          "id": "yarivel",
+          "name": "Yari Vel",
+          "range": 78
+        },
+        {
+          "id": "nematuri",
+          "name": "Nema Turi",
+          "range": 79
+        },
+        {
+          "id": "orayapava",
+          "name": "Oraya Pava",
+          "range": 80
+        },
+        {
+          "id": "taluvesh",
+          "name": "Talu Vesh",
+          "range": 81
+        },
+        {
+          "id": "kiramena",
+          "name": "Kira Mena",
+          "range": 82
+        },
+        {
+          "id": "arusoren",
+          "name": "Aru Soren",
+          "range": 83
+        },
+        {
+          "id": "veyanari",
+          "name": "Veya Nari",
+          "range": 84
+        },
+        {
+          "id": "surakalun",
+          "name": "Sura Kalun",
+          "range": 85
+        },
+        {
+          "id": "teralumai",
+          "name": "Tera Lumai",
+          "range": 86
+        },
+        {
+          "id": "naruvarin",
+          "name": "Naru Varin",
+          "range": 87
+        },
+        {
+          "id": "palurisha",
+          "name": "Palu Risha",
+          "range": 88
+        },
+        {
+          "id": "marasair",
+          "name": "Mara Sair",
+          "range": 89
+        },
+        {
+          "id": "varentalu",
+          "name": "Varen Talu",
+          "range": 90
+        },
+        {
+          "id": "larivema",
+          "name": "Lari Vema",
+          "range": 91
+        },
+        {
+          "id": "tavaruen",
+          "name": "Tava Ruen",
+          "range": 92
+        },
+        {
+          "id": "ishakalu",
+          "name": "Isha Kalu",
+          "range": 93
+        },
+        {
+          "id": "orunlari",
+          "name": "Orun Lari",
+          "range": 94
+        },
+        {
+          "id": "korivaen",
+          "name": "Kori Vaen",
+          "range": 95
+        },
+        {
+          "id": "luratenai",
+          "name": "Lura Tenai",
+          "range": 96
+        },
+        {
+          "id": "seyravash",
+          "name": "Seyra Vash",
+          "range": 97
+        },
+        {
+          "id": "ivaratun",
+          "name": "Ivara Tun",
+          "range": 98
+        },
+        {
+          "id": "pavarulen",
+          "name": "Pava Rulen",
+          "range": 99
+        },
+        {
+          "id": "nalikesh",
+          "name": "Nali Kesh",
+          "range": 100
+        }
+      ]
+    }
+  ]
+}

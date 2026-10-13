@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.fusedBoomtown",
+      "name": "Halingo Fused Frontier: Curated Place Name",
+      "description": "100 hand-selected one-word frontier compounds, preserving natural English joins (e.g. Cinderford, Ichorfield). Distinct from the rare abstract-word names.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "cinderford",
+          "name": "Cinderford",
+          "range": 1
+        },
+        {
+          "id": "cinderbank",
+          "name": "Cinderbank",
+          "range": 2
+        },
+        {
+          "id": "cinderwell",
+          "name": "Cinderwell",
+          "range": 3
+        },
+        {
+          "id": "cinderfield",
+          "name": "Cinderfield",
+          "range": 4
+        },
+        {
+          "id": "cindergate",
+          "name": "Cindergate",
+          "range": 5
+        },
+        {
+          "id": "cinderwick",
+          "name": "Cinderwick",
+          "range": 6
+        },
+        {
+          "id": "ashford",
+          "name": "Ashford",
+          "range": 7
+        },
+        {
+          "id": "ashbank",
+          "name": "Ashbank",
+          "range": 8
+        },
+        {
+          "id": "ashwell",
+          "name": "Ashwell",
+          "range": 9
+        },
+        {
+          "id": "ashridge",
+          "name": "Ashridge",
+          "range": 10
+        },
+        {
+          "id": "ashvale",
+          "name": "Ashvale",
+          "range": 11
+        },
+        {
+          "id": "ashwick",
+          "name": "Ashwick",
+          "range": 12
+        },
+        {
+          "id": "brinewell",
+          "name": "Brinewell",
+          "range": 13
+        },
+        {
+          "id": "brineford",
+          "name": "Brineford",
+          "range": 14
+        },
+        {
+          "id": "brinebank",
+          "name": "Brinebank",
+          "range": 15
+        },
+        {
+          "id": "brinefield",
+          "name": "Brinefield",
+          "range": 16
+        },
+        {
+          "id": "brinewick",
+          "name": "Brinewick",
+          "range": 17
+        },
+        {
+          "id": "siltwell",
+          "name": "Siltwell",
+          "range": 18
+        },
+        {
+          "id": "siltford",
+          "name": "Siltford",
+          "range": 19
+        },
+        {
+          "id": "siltbank",
+          "name": "Siltbank",
+          "range": 20
+        },
+        {
+          "id": "siltfield",
+          "name": "Siltfield",
+          "range": 21
+        },
+        {
+          "id": "saltford",
+          "name": "Saltford",
+          "range": 22
+        },
+        {
+          "id": "saltbank",
+          "name": "Saltbank",
+          "range": 23
+        },
+        {
+          "id": "saltwick",
+          "name": "Saltwick",
+          "range": 24
+        },
+        {
+          "id": "saltfield",
+          "name": "Saltfield",
+          "range": 25
+        },
+        {
+          "id": "saltwell",
+          "name": "Saltwell",
+          "range": 26
+        },
+        {
+          "id": "flintford",
+          "name": "Flintford",
+          "range": 27
+        },
+        {
+          "id": "flintwell",
+          "name": "Flintwell",
+          "range": 28
+        },
+        {
+          "id": "flintbank",
+          "name": "Flintbank",
+          "range": 29
+        },
+        {
+          "id": "flintgate",
+          "name": "Flintgate",
+          "range": 30
+        },
+        {
+          "id": "flintfield",
+          "name": "Flintfield",
+          "range": 31
+        },
+        {
+          "id": "flintwick",
+          "name": "Flintwick",
+          "range": 32
+        },
+        {
+          "id": "copperfield",
+          "name": "Copperfield",
+          "range": 33
+        },
+        {
+          "id": "copperwell",
+          "name": "Copperwell",
+          "range": 34
+        },
+        {
+          "id": "copperford",
+          "name": "Copperford",
+          "range": 35
+        },
+        {
+          "id": "copperbank",
+          "name": "Copperbank",
+          "range": 36
+        },
+        {
+          "id": "coppergate",
+          "name": "Coppergate",
+          "range": 37
+        },
+        {
+          "id": "ironfield",
+          "name": "Ironfield",
+          "range": 38
+        },
+        {
+          "id": "ironbank",
+          "name": "Ironbank",
+          "range": 39
+        },
+        {
+          "id": "ironford",
+          "name": "Ironford",
+          "range": 40
+        },
+        {
+          "id": "ironwell",
+          "name": "Ironwell",
+          "range": 41
+        },
+        {
+          "id": "ironridge",
+          "name": "Ironridge",
+          "range": 42
+        },
+        {
+          "id": "irongate",
+          "name": "Irongate",
+          "range": 43
+        },
+        {
+          "id": "slagfield",
+          "name": "Slagfield",
+          "range": 44
+        },
+        {
+          "id": "slagbank",
+          "name": "Slagbank",
+          "range": 45
+        },
+        {
+          "id": "slagford",
+          "name": "Slagford",
+          "range": 46
+        },
+        {
+          "id": "slagwell",
+          "name": "Slagwell",
+          "range": 47
+        },
+        {
+          "id": "pitchfield",
+          "name": "Pitchfield",
+          "range": 48
+        },
+        {
+          "id": "pitchbank",
+          "name": "Pitchbank",
+          "range": 49
+        },
+        {
+          "id": "pitchford",
+          "name": "Pitchford",
+          "range": 50
+        },
+        {
+          "id": "pitchwell",
+          "name": "Pitchwell",
+          "range": 51
+        },
+        {
+          "id": "pitchgate",
+          "name": "Pitchgate",
+          "range": 52
+        },
+        {
+          "id": "tarfield",
+          "name": "Tarfield",
+          "range": 53
+        },
+        {
+          "id": "tarbank",
+          "name": "Tarbank",
+          "range": 54
+        },
+        {
+          "id": "tarwell",
+          "name": "Tarwell",
+          "range": 55
+        },
+        {
+          "id": "tarford",
+          "name": "Tarford",
+          "range": 56
+        },
+        {
+          "id": "shalefield",
+          "name": "Shalefield",
+          "range": 57
+        },
+        {
+          "id": "shalebank",
+          "name": "Shalebank",
+          "range": 58
+        },
+        {
+          "id": "shalewell",
+          "name": "Shalewell",
+          "range": 59
+        },
+        {
+          "id": "shaleridge",
+          "name": "Shaleridge",
+          "range": 60
+        },
+        {
+          "id": "shaleford",
+          "name": "Shaleford",
+          "range": 61
+        },
+        {
+          "id": "chalkfield",
+          "name": "Chalkfield",
+          "range": 62
+        },
+        {
+          "id": "chalkwell",
+          "name": "Chalkwell",
+          "range": 63
+        },
+        {
+          "id": "chalkbank",
+          "name": "Chalkbank",
+          "range": 64
+        },
+        {
+          "id": "dustwell",
+          "name": "Dustwell",
+          "range": 65
+        },
+        {
+          "id": "dustford",
+          "name": "Dustford",
+          "range": 66
+        },
+        {
+          "id": "dustbank",
+          "name": "Dustbank",
+          "range": 67
+        },
+        {
+          "id": "dustfield",
+          "name": "Dustfield",
+          "range": 68
+        },
+        {
+          "id": "dustwick",
+          "name": "Dustwick",
+          "range": 69
+        },
+        {
+          "id": "redwell",
+          "name": "Redwell",
+          "range": 70
+        },
+        {
+          "id": "redgate",
+          "name": "Redgate",
+          "range": 71
+        },
+        {
+          "id": "redbank",
+          "name": "Redbank",
+          "range": 72
+        },
+        {
+          "id": "redford",
+          "name": "Redford",
+          "range": 73
+        },
+        {
+          "id": "redridge",
+          "name": "Redridge",
+          "range": 74
+        },
+        {
+          "id": "greywell",
+          "name": "Greywell",
+          "range": 75
+        },
+        {
+          "id": "greyford",
+          "name": "Greyford",
+          "range": 76
+        },
+        {
+          "id": "greybank",
+          "name": "Greybank",
+          "range": 77
+        },
+        {
+          "id": "greyfield",
+          "name": "Greyfield",
+          "range": 78
+        },
+        {
+          "id": "greywick",
+          "name": "Greywick",
+          "range": 79
+        },
+        {
+          "id": "blackford",
+          "name": "Blackford",
+          "range": 80
+        },
+        {
+          "id": "blackwell",
+          "name": "Blackwell",
+          "range": 81
+        },
+        {
+          "id": "blackfield",
+          "name": "Blackfield",
+          "range": 82
+        },
+        {
+          "id": "blackridge",
+          "name": "Blackridge",
+          "range": 83
+        },
+        {
+          "id": "blackgate",
+          "name": "Blackgate",
+          "range": 84
+        },
+        {
+          "id": "rustridge",
+          "name": "Rustridge",
+          "range": 85
+        },
+        {
+          "id": "rustwell",
+          "name": "Rustwell",
+          "range": 86
+        },
+        {
+          "id": "rustbank",
+          "name": "Rustbank",
+          "range": 87
+        },
+        {
+          "id": "ichorfield",
+          "name": "Ichorfield",
+          "range": 88
+        },
+        {
+          "id": "ichorwell",
+          "name": "Ichorwell",
+          "range": 89
+        },
+        {
+          "id": "ichorbank",
+          "name": "Ichorbank",
+          "range": 90
+        },
+        {
+          "id": "ichorgate",
+          "name": "Ichorgate",
+          "range": 91
+        },
+        {
+          "id": "ichorwick",
+          "name": "Ichorwick",
+          "range": 92
+        },
+        {
+          "id": "sunwell",
+          "name": "Sunwell",
+          "range": 93
+        },
+        {
+          "id": "sunford",
+          "name": "Sunford",
+          "range": 94
+        },
+        {
+          "id": "sunridge",
+          "name": "Sunridge",
+          "range": 95
+        },
+        {
+          "id": "kharwell",
+          "name": "Kharwell",
+          "range": 96
+        },
+        {
+          "id": "varrfield",
+          "name": "Varrfield",
+          "range": 97
+        },
+        {
+          "id": "talwick",
+          "name": "Talwick",
+          "range": 98
+        },
+        {
+          "id": "vekford",
+          "name": "Vekford",
+          "range": 99
+        },
+        {
+          "id": "serebank",
+          "name": "Serebank",
+          "range": 100
+        }
+      ]
+    }
+  ]
+}

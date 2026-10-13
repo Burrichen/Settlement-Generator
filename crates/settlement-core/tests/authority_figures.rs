@@ -451,9 +451,9 @@ fn figures_are_reproducible_with_physical_dice() {
     assert_eq!(
         dice,
         [
-            ("table.personName.human.method", "1d4", 1),
-            ("table.personName.human.given.feminine", "1d20", 13),
-            ("table.personName.human.family", "1d20", 1),
+            ("table.personName.human.method", "1d100", 1),
+            ("table.personName.human.given.feminine", "1d100", 13),
+            ("table.personName.human.family", "1d100", 1),
         ]
     );
 }
@@ -573,9 +573,14 @@ fn name_parts_can_be_chosen_from_the_species_own_tables() {
                 "given",
                 "Given name",
                 "table.personName.human.given.feminine",
-                20
+                100
             ),
-            ("family", "Family name", "table.personName.human.family", 20),
+            (
+                "family",
+                "Family name",
+                "table.personName.human.family",
+                100
+            ),
         ]
     );
     // Choose another family name; the given name stays.

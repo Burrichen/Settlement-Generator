@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.nareth.trailFirst",
+      "name": "Nareth Crossing: First Element",
+      "description": "Descriptive and inherited roots used for crossings, river-port villages and jungle route stops.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "rumi",
+          "name": "Rumi",
+          "range": [
+            1,
+            4
+          ],
+          "description": "Quechua reference element: stone. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chawpi",
+          "name": "Chawpi",
+          "range": [
+            5,
+            8
+          ],
+          "description": "Quechua reference element: middle / centre. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "puka",
+          "name": "Puka",
+          "range": [
+            9,
+            12
+          ],
+          "description": "Quechua reference element: red. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "yana",
+          "name": "Yana",
+          "range": [
+            13,
+            16
+          ],
+          "description": "Quechua reference element: dark / black. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "hatun",
+          "name": "Hatun",
+          "range": [
+            17,
+            20
+          ],
+          "description": "Quechua reference element: large / great. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "wayra",
+          "name": "Wayra",
+          "range": [
+            21,
+            24
+          ],
+          "description": "Quechua reference element: wind. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "pacha",
+          "name": "Pacha",
+          "range": [
+            25,
+            28
+          ],
+          "description": "Quechua reference element: earth / world / time (contextual). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "sacha",
+          "name": "Sacha",
+          "range": [
+            29,
+            32
+          ],
+          "description": "Quechua reference element: tree / wooded wilderness (usage varies). Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "allpa",
+          "name": "Allpa",
+          "range": [
+            33,
+            36
+          ],
+          "description": "Quechua reference element: earth / soil. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "chiri",
+          "name": "Chiri",
+          "range": [
+            37,
+            40
+          ],
+          "description": "Quechua reference element: cold. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "miski",
+          "name": "Miski",
+          "range": [
+            41,
+            43
+          ],
+          "description": "Quechua reference element: sweet. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "quri",
+          "name": "Quri",
+          "range": [
+            44,
+            46
+          ],
+          "description": "Quechua reference element: gold. Use here is fictional and not a verified grammatical place name."
+        },
+        {
+          "id": "taren",
+          "name": "Taren",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "arun",
+          "name": "Arun",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "karu",
+          "name": "Karu",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "vela",
+          "name": "Vela",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "serun",
+          "name": "Serun",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "oraya",
+          "name": "Oraya",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "tavari",
+          "name": "Tavari",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "luma",
+          "name": "Luma",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "kori",
+          "name": "Kori",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "ilaya",
+          "name": "Ilaya",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "naru",
+          "name": "Naru",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "varu",
+          "name": "Varu",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "kesh",
+          "name": "Kesh",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "kari",
+          "name": "Kari",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "sarena",
+          "name": "Sarena",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "uren",
+          "name": "Uren",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "chaya",
+          "name": "Chaya",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "mayra",
+          "name": "Mayra",
+          "range": [
+            98,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

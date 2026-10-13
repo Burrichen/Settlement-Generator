@@ -1,0 +1,271 @@
+{
+  "purpose": "Older Ordon suffix index retained for reference; not used in quality-reviewed production rolls. Reintroduce only after editorial approval.",
+  "entries": [
+    {
+      "id": "ton",
+      "name": "ton",
+      "range": [
+        1,
+        10
+      ]
+    },
+    {
+      "id": "ham",
+      "name": "ham",
+      "range": [
+        11,
+        18
+      ]
+    },
+    {
+      "id": "ley",
+      "name": "ley",
+      "range": [
+        19,
+        26
+      ]
+    },
+    {
+      "id": "ford",
+      "name": "ford",
+      "range": [
+        27,
+        32
+      ]
+    },
+    {
+      "id": "wick",
+      "name": "wick",
+      "range": [
+        33,
+        37
+      ]
+    },
+    {
+      "id": "bury",
+      "name": "bury",
+      "range": [
+        38,
+        41
+      ]
+    },
+    {
+      "id": "field",
+      "name": "field",
+      "range": [
+        42,
+        45
+      ]
+    },
+    {
+      "id": "den",
+      "name": "den",
+      "range": [
+        46,
+        48
+      ]
+    },
+    {
+      "id": "combe",
+      "name": "combe",
+      "range": [
+        49,
+        51
+      ]
+    },
+    {
+      "id": "hurst",
+      "name": "hurst",
+      "range": [
+        52,
+        54
+      ]
+    },
+    {
+      "id": "well",
+      "name": "well",
+      "range": [
+        55,
+        57
+      ]
+    },
+    {
+      "id": "worth",
+      "name": "worth",
+      "range": [
+        58,
+        60
+      ]
+    },
+    {
+      "id": "brook",
+      "name": "brook",
+      "range": [
+        61,
+        63
+      ]
+    },
+    {
+      "id": "bridge",
+      "name": "bridge",
+      "range": [
+        64,
+        66
+      ]
+    },
+    {
+      "id": "cliff",
+      "name": "cliff",
+      "range": [
+        67,
+        68
+      ]
+    },
+    {
+      "id": "croft",
+      "name": "croft",
+      "range": [
+        69,
+        70
+      ]
+    },
+    {
+      "id": "dale",
+      "name": "dale",
+      "range": [
+        71,
+        72
+      ]
+    },
+    {
+      "id": "gate",
+      "name": "gate",
+      "range": [
+        73,
+        74
+      ]
+    },
+    {
+      "id": "holt",
+      "name": "holt",
+      "range": [
+        75,
+        76
+      ]
+    },
+    {
+      "id": "moor",
+      "name": "moor",
+      "range": [
+        77,
+        78
+      ]
+    },
+    {
+      "id": "stead",
+      "name": "stead",
+      "range": [
+        79,
+        80
+      ]
+    },
+    {
+      "id": "wood",
+      "name": "wood",
+      "range": [
+        81,
+        82
+      ]
+    },
+    {
+      "id": "bank",
+      "name": "bank",
+      "range": 83
+    },
+    {
+      "id": "beck",
+      "name": "beck",
+      "range": 84
+    },
+    {
+      "id": "bottom",
+      "name": "bottom",
+      "range": 85
+    },
+    {
+      "id": "bourne",
+      "name": "bourne",
+      "range": 86
+    },
+    {
+      "id": "by",
+      "name": "by",
+      "range": 87
+    },
+    {
+      "id": "cross",
+      "name": "cross",
+      "range": 88
+    },
+    {
+      "id": "end",
+      "name": "end",
+      "range": 89
+    },
+    {
+      "id": "green",
+      "name": "green",
+      "range": 90
+    },
+    {
+      "id": "heath",
+      "name": "heath",
+      "range": 91
+    },
+    {
+      "id": "hill",
+      "name": "hill",
+      "range": 92
+    },
+    {
+      "id": "land",
+      "name": "land",
+      "range": 93
+    },
+    {
+      "id": "marsh",
+      "name": "marsh",
+      "range": 94
+    },
+    {
+      "id": "mead",
+      "name": "mead",
+      "range": 95
+    },
+    {
+      "id": "mere",
+      "name": "mere",
+      "range": 96
+    },
+    {
+      "id": "pool",
+      "name": "pool",
+      "range": 97
+    },
+    {
+      "id": "ridge",
+      "name": "ridge",
+      "range": 98
+    },
+    {
+      "id": "side",
+      "name": "side",
+      "range": 99
+    },
+    {
+      "id": "thorpe",
+      "name": "thorpe",
+      "range": 100
+    }
+  ]
+}

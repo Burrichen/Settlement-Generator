@@ -4,18 +4,458 @@
     {
       "id": "table.personName.dragonborn.method",
       "name": "Dragonborn Naming Method",
-      "description": "How a Dragonborn Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "Formal Clan + Given name. Ancestral 38%, Great Clans 30%, Honour 20%, Wyrmblood 10%, Mortal-influenced 2%. 50 ordinary weighted bank routes, each selecting two 1d100 tables.",
+      "dice": "1d100",
       "results": [
         {
-          "id": "givenClan",
-          "name": "Given name + clan name",
-          "range": [1, 3]
+          "id": "givenSurname",
+          "name": "Ancestral Draconic — collection 1/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            1,
+            2
+          ]
         },
         {
-          "id": "clanGiven",
-          "name": "Clan name first (formal address)",
-          "range": 4
+          "id": "givenSurname.ancestral.02",
+          "name": "Ancestral Draconic — collection 2/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.03",
+          "name": "Ancestral Draconic — collection 3/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.04",
+          "name": "Ancestral Draconic — collection 4/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.05",
+          "name": "Ancestral Draconic — collection 5/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.06",
+          "name": "Ancestral Draconic — collection 6/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.07",
+          "name": "Ancestral Draconic — collection 7/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.08",
+          "name": "Ancestral Draconic — collection 8/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.09",
+          "name": "Ancestral Draconic — collection 9/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.10",
+          "name": "Ancestral Draconic — collection 10/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.11",
+          "name": "Ancestral Draconic — collection 11/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.12",
+          "name": "Ancestral Draconic — collection 12/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.13",
+          "name": "Ancestral Draconic — collection 13/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.14",
+          "name": "Ancestral Draconic — collection 14/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.15",
+          "name": "Ancestral Draconic — collection 15/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.16",
+          "name": "Ancestral Draconic — collection 16/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.17",
+          "name": "Ancestral Draconic — collection 17/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.18",
+          "name": "Ancestral Draconic — collection 18/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.ancestral.19",
+          "name": "Ancestral Draconic — collection 19/19",
+          "description": "Formal Clan name + Given name. Ancestral Draconic. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.clan.01",
+          "name": "Great Clans & Bloodlines — collection 1/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.clan.02",
+          "name": "Great Clans & Bloodlines — collection 2/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.clan.03",
+          "name": "Great Clans & Bloodlines — collection 3/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.clan.04",
+          "name": "Great Clans & Bloodlines — collection 4/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.clan.05",
+          "name": "Great Clans & Bloodlines — collection 5/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.clan.06",
+          "name": "Great Clans & Bloodlines — collection 6/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.clan.07",
+          "name": "Great Clans & Bloodlines — collection 7/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.clan.08",
+          "name": "Great Clans & Bloodlines — collection 8/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.clan.09",
+          "name": "Great Clans & Bloodlines — collection 9/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.clan.10",
+          "name": "Great Clans & Bloodlines — collection 10/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.clan.11",
+          "name": "Great Clans & Bloodlines — collection 11/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.clan.12",
+          "name": "Great Clans & Bloodlines — collection 12/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.clan.13",
+          "name": "Great Clans & Bloodlines — collection 13/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.clan.14",
+          "name": "Great Clans & Bloodlines — collection 14/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.clan.15",
+          "name": "Great Clans & Bloodlines — collection 15/15",
+          "description": "Formal Clan name + Given name. Great Clans & Bloodlines. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.honour.01",
+          "name": "Oaths, War & Honour — collection 1/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.honour.02",
+          "name": "Oaths, War & Honour — collection 2/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.honour.03",
+          "name": "Oaths, War & Honour — collection 3/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.honour.04",
+          "name": "Oaths, War & Honour — collection 4/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.honour.05",
+          "name": "Oaths, War & Honour — collection 5/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.honour.06",
+          "name": "Oaths, War & Honour — collection 6/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.honour.07",
+          "name": "Oaths, War & Honour — collection 7/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.honour.08",
+          "name": "Oaths, War & Honour — collection 8/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.honour.09",
+          "name": "Oaths, War & Honour — collection 9/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.honour.10",
+          "name": "Oaths, War & Honour — collection 10/10",
+          "description": "Formal Clan name + Given name. Oaths, War & Honour. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.wyrm.01",
+          "name": "Elemental & Wyrmblood — collection 1/5",
+          "description": "Formal Clan name + Given name. Elemental & Wyrmblood. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.wyrm.02",
+          "name": "Elemental & Wyrmblood — collection 2/5",
+          "description": "Formal Clan name + Given name. Elemental & Wyrmblood. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.wyrm.03",
+          "name": "Elemental & Wyrmblood — collection 3/5",
+          "description": "Formal Clan name + Given name. Elemental & Wyrmblood. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.wyrm.04",
+          "name": "Elemental & Wyrmblood — collection 4/5",
+          "description": "Formal Clan name + Given name. Elemental & Wyrmblood. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.wyrm.05",
+          "name": "Elemental & Wyrmblood — collection 5/5",
+          "description": "Formal Clan name + Given name. Elemental & Wyrmblood. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.mortal.01",
+          "name": "Mortal-influenced — collection 1/1",
+          "description": "Formal Clan name + Given name. Mortal-influenced. Both parts are complete names; joined with a space, no runtime syllable rules.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

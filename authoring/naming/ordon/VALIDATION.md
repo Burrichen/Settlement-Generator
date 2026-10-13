@@ -1,0 +1,13 @@
+# Validation report
+- 10 JSON tables, all parse at schema v1; all declared physical dice faces covered once with no gaps or overlap.
+- All five original naming method IDs and weights unchanged.
+- Total generation paths: 1530.
+- Distinct name spellings: 1497.
+- Duplicate output spellings: 33 (see COLLISIONS.csv).
+- Remaining heuristic editorial flags: 33 (see EDITORIAL_FLAGS.csv).
+- Source founder names: 100, each with two approved outputs.
+- Industry source concepts: 40, each with four approved outputs.
+- Transport source concepts: 30, each with four approved outputs.
+- Confirmed Oswaldsworth absent; Oswalden and Oswaldwick present.
+- Confirmed Godwinsbury, Nerysbury and Foulden present.
+- Runtime not tested: original application source not available. The `curated_variant` join needs implementation if not already supported.

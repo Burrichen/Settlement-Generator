@@ -4,68 +4,408 @@
     {
       "id": "table.naming.shinkira.firstElement",
       "name": "Shinkira Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "description": "50 Japanese-inspired landscape, forest, river, agrarian and rare Utsuro-related roots. Old 12 starter roots preserved first. Each appears twice on 1d100.",
+      "dice": "1d100",
       "results": [
         {
           "id": "aki",
           "name": "Aki",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "asa",
           "name": "Asa",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "fuyu",
           "name": "Fuyu",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "hana",
           "name": "Hana",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "hira",
           "name": "Hira",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "hoshi",
           "name": "Hoshi",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "kiri",
           "name": "Kiri",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "kuro",
           "name": "Kuro",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "mizu",
           "name": "Mizu",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "sugi",
           "name": "Sugi",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "taki",
           "name": "Taki",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "tsuki",
           "name": "Tsuki",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "momiji",
+          "name": "Momiji",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "kashi",
+          "name": "Kashi",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "nara",
+          "name": "Nara",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "matsu",
+          "name": "Matsu",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "ume",
+          "name": "Ume",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "sasa",
+          "name": "Sasa",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "take",
+          "name": "Take",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "hinoki",
+          "name": "Hinoki",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "kuri",
+          "name": "Kuri",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "shimo",
+          "name": "Shimo",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "oku",
+          "name": "Oku",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "naka",
+          "name": "Naka",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "kita",
+          "name": "Kita",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "minami",
+          "name": "Minami",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "higashi",
+          "name": "Higashi",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "nishi",
+          "name": "Nishi",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "taka",
+          "name": "Taka",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "fuka",
+          "name": "Fuka",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "kage",
+          "name": "Kage",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "haru",
+          "name": "Haru",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "nami",
+          "name": "Nami",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "umi",
+          "name": "Umi",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "iso",
+          "name": "Iso",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "shio",
+          "name": "Shio",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "suna",
+          "name": "Suna",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "haya",
+          "name": "Haya",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "sora",
+          "name": "Sora",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "shin",
+          "name": "Shin",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "furu",
+          "name": "Furu",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "kami",
+          "name": "Kami",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "hiro",
+          "name": "Hiro",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "kiyo",
+          "name": "Kiyo",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "kasumi",
+          "name": "Kasumi",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "suisho",
+          "name": "Suisho",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "kagami",
+          "name": "Kagami",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "kohaku",
+          "name": "Kohaku",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "hisui",
+          "name": "Hisui",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "utsuro",
+          "name": "Utsuro",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

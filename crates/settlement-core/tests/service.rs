@@ -114,7 +114,7 @@ fn both_interfaces_name_settlements_through_the_same_service() {
     active.session.roll(1, &mut faces).unwrap();
     active
         .session
-        .roll(2, &mut ScriptedFaces::new([8, 74, 6]))
+        .roll(2, &mut ScriptedFaces::new([43, 74, 1])) // Founder: Godwin, form A
         .unwrap();
     let view = active.view().unwrap();
     assert_eq!(view.suggested_name.as_deref(), Some("Godwinsbury"));

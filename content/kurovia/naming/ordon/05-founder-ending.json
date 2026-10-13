@@ -3,44 +3,19 @@
   "tables": [
     {
       "id": "table.naming.ordon.founderEnding",
-      "name": "Ordon Name: Founder Ending",
-      "description": "Settlement ending added to a founder's name.",
-      "dice": "1d12",
+      "name": "Ordon Manorial: Approved Name Form",
+      "description": "Roll 1d4: 1–2 = founder-approved A, 3–4 = founder-approved B. Name variants live in 04-founder.json. This preserves genuine dice without allowing Oswaldsworth-type joins.",
+      "dice": "1d4",
       "results": [
         {
-          "id": "ton",
-          "name": "ton",
-          "range": [1, 3]
+          "id": "a",
+          "name": "A",
+          "range": [1, 2]
         },
         {
-          "id": "ham",
-          "name": "ham",
-          "range": [4, 5]
-        },
-        {
-          "id": "bury",
-          "name": "bury",
-          "range": [6, 7]
-        },
-        {
-          "id": "stead",
-          "name": "stead",
-          "range": [8, 9]
-        },
-        {
-          "id": "wick",
-          "name": "wick",
-          "range": 10
-        },
-        {
-          "id": "worth",
-          "name": "worth",
-          "range": 11
-        },
-        {
-          "id": "ley",
-          "name": "ley",
-          "range": 12
+          "id": "b",
+          "name": "B",
+          "range": [3, 4]
         }
       ]
     }

@@ -8,8 +8,10 @@ use settlement_core::content::{Table, Tag};
 use settlement_core::dice::RandomFaces;
 use settlement_core::editor::{self, EffectKindSchema};
 use settlement_core::engine::{GenerationError, Selections};
+use settlement_core::ids::NamingSchemeId;
 use settlement_core::ids::{ResultId, TableId, TagId};
 use settlement_core::layers::new_user_id;
+use settlement_core::naming::{JoinRule, SpellingException};
 use settlement_core::roadmap::RoadmapEntry;
 use settlement_core::service::{
     ActiveGeneration, AppService, ContentOverview, DraftCheck, GenerationResponse,
@@ -271,6 +273,37 @@ fn generation_choose_figure_field(
             stage,
             figure,
             &field,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Rolls one part of the settlement's generated name again.
+#[tauri::command]
+fn generation_roll_name_part(
+    state: State<'_, AppState>,
+    stage: usize,
+    part: usize,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_name_part(stage, part, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one part of the settlement's generated name.
+#[tauri::command]
+fn generation_choose_name_part(
+    state: State<'_, AppState>,
+    stage: usize,
+    part: usize,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_name_part(
+            stage,
+            part,
             ResultId::new(result),
             &mut RandomFaces::from_entropy(),
         )
@@ -539,6 +572,51 @@ fn content_reset_all(state: State<'_, AppState>) -> ServiceResult<ContentOvervie
 }
 
 #[tauri::command]
+fn content_check_naming_method(
+    state: State<'_, AppState>,
+    scheme: String,
+    method: String,
+    join: JoinRule,
+    exceptions: Vec<SpellingException>,
+) -> ServiceResult<DraftCheck> {
+    state.with(|s| {
+        s.check_naming_method(
+            &NamingSchemeId::new(scheme),
+            &ResultId::new(method),
+            join,
+            exceptions,
+        )
+    })
+}
+
+#[tauri::command]
+fn content_save_naming_method(
+    state: State<'_, AppState>,
+    scheme: String,
+    method: String,
+    join: JoinRule,
+    exceptions: Vec<SpellingException>,
+) -> ServiceResult<TableDetail> {
+    state.with(|s| {
+        s.save_naming_method(
+            &NamingSchemeId::new(scheme),
+            &ResultId::new(method),
+            join,
+            exceptions,
+        )
+    })
+}
+
+#[tauri::command]
+fn content_reset_naming_method(
+    state: State<'_, AppState>,
+    scheme: String,
+    method: String,
+) -> ServiceResult<TableDetail> {
+    state.with(|s| s.reset_naming_method(&NamingSchemeId::new(scheme), &ResultId::new(method)))
+}
+
+#[tauri::command]
 fn effect_schema() -> Vec<EffectKindSchema> {
     editor::effect_schema()
 }
@@ -566,6 +644,8 @@ pub fn run() {
             generation_roll,
             generation_choose,
             generation_custom_name,
+            generation_roll_name_part,
+            generation_choose_name_part,
             generation_roll_district_count,
             generation_choose_district_count,
             generation_roll_location_count,
@@ -610,6 +690,9 @@ pub fn run() {
             content_reset_table,
             content_reset_tag,
             content_reset_all,
+            content_check_naming_method,
+            content_save_naming_method,
+            content_reset_naming_method,
             effect_schema,
             exit_app,
             updates::update_check,

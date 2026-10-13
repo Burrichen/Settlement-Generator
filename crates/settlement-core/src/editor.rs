@@ -9,8 +9,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::content::{Condition, ContentSet, Effect, FaceRange, SelectionMode, Table};
 use crate::dice::DiceExpr;
-use crate::ids::{ResultId, TableId, TagId, VariantId};
+use crate::engine::Named;
+use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, VariantId};
 use crate::layout::Layout;
+use crate::naming::{JoinRule, JoinStyle, NamingMethod, NamingScheme, SpellingException};
 use crate::validation::{Location, ValidationIssue, ValidationReport};
 
 // ----- coverage --------------------------------------------------------------
@@ -550,6 +552,140 @@ pub fn result_ids(table: &Table) -> Vec<ResultId> {
     table.results.iter().map(|r| r.id.clone()).collect()
 }
 
+// ----- naming ----------------------------------------------------------------
+
+/// A naming method whose `curated_variant` join reads approved names from
+/// this table's results: each result needs one approved name per variant.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ApprovedNameSlots {
+    pub scheme: Named<NamingSchemeId>,
+    pub method: Named<ResultId>,
+    /// The table whose result IDs select between the approved names.
+    pub variant_table: Named<TableId>,
+    /// One approved name is needed for each of these, in table order.
+    pub variants: Vec<Named<ResultId>>,
+}
+
+/// The `curated_variant` methods whose approved names live in `table`.
+pub fn approved_name_slots(content: &ContentSet, table: &TableId) -> Vec<ApprovedNameSlots> {
+    let mut out = Vec::new();
+    for scheme in &content.naming_schemes {
+        for method in &scheme.methods {
+            let JoinStyle::CuratedVariant {
+                source_from_result_id: source,
+                variant_from_result_id: variant,
+                ..
+            } = &method.join.style
+            else {
+                continue;
+            };
+            if method.components.get(*source) != Some(table) {
+                continue;
+            }
+            let Some(variants) = method
+                .components
+                .get(*variant)
+                .and_then(|t| content.table(t))
+            else {
+                continue;
+            };
+            out.push(ApprovedNameSlots {
+                scheme: Named::new(&scheme.id, &scheme.name),
+                method: Named::new(&method.result, &method_name(content, scheme, method)),
+                variant_table: Named::new(&variants.id, &variants.name),
+                variants: variants
+                    .results
+                    .iter()
+                    .map(|r| Named::new(&r.id, &r.name))
+                    .collect(),
+            });
+        }
+    }
+    out
+}
+
+/// One component of a naming method, with its results (for exception
+/// pickers).
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct NamingComponent {
+    pub table: Named<TableId>,
+    pub results: Vec<Named<ResultId>>,
+}
+
+/// A naming method of a scheme whose method table is the edited table: its
+/// joining rule and spelling exceptions, which an editor can change.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct NamingMethodDetail {
+    pub scheme: Named<NamingSchemeId>,
+    pub method: Named<ResultId>,
+    pub join: JoinRule,
+    pub exceptions: Vec<SpellingException>,
+    pub components: Vec<NamingComponent>,
+    /// The user changed the join or exceptions of the bundled method.
+    pub modified: bool,
+    /// The method is part of the bundled content (so it can be reset).
+    pub built_in: bool,
+}
+
+/// The naming methods driven by `table`, when it is a scheme's method
+/// table. `modified` says which the user changed, by scheme.
+pub fn naming_methods(
+    content: &ContentSet,
+    bundled: &ContentSet,
+    modified: &std::collections::BTreeMap<NamingSchemeId, std::collections::BTreeSet<ResultId>>,
+    table: &TableId,
+) -> Vec<NamingMethodDetail> {
+    content
+        .naming_schemes
+        .iter()
+        .filter(|s| &s.method_table == table)
+        .flat_map(|scheme| {
+            scheme.methods.iter().map(move |method| NamingMethodDetail {
+                scheme: Named::new(&scheme.id, &scheme.name),
+                method: Named::new(&method.result, &method_name(content, scheme, method)),
+                join: method.join.clone(),
+                exceptions: method.exceptions.clone(),
+                components: method
+                    .components
+                    .iter()
+                    .map(|id| NamingComponent {
+                        table: Named::new(
+                            id,
+                            &content
+                                .table(id)
+                                .map_or_else(|| id.to_string(), |t| t.name.clone()),
+                        ),
+                        results: content
+                            .table(id)
+                            .map(|t| {
+                                t.results
+                                    .iter()
+                                    .map(|r| Named::new(&r.id, &r.name))
+                                    .collect()
+                            })
+                            .unwrap_or_default(),
+                    })
+                    .collect(),
+                modified: modified
+                    .get(&scheme.id)
+                    .is_some_and(|m| m.contains(&method.result)),
+                built_in: bundled
+                    .naming_scheme(&scheme.id)
+                    .and_then(|s| s.method(&method.result))
+                    .is_some(),
+            })
+        })
+        .collect()
+}
+
+/// A method's display name: its method-table result's name.
+fn method_name(content: &ContentSet, scheme: &NamingScheme, method: &NamingMethod) -> String {
+    content
+        .table(&scheme.method_table)
+        .and_then(|t| t.result(&method.result))
+        .map_or_else(|| method.result.to_string(), |r| r.name.clone())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -583,6 +719,7 @@ mod tests {
                     unique: false,
                     fallback: None,
                     label_variants: Vec::new(),
+                    approved_names: Default::default(),
                 })
                 .collect(),
             variants: vec![],

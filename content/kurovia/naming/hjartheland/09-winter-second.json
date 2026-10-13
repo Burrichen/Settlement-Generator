@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.hjartheland.winterSecond",
+      "name": "Hjartheland Winter: Landform Ending",
+      "description": "Glaciers and snowfields alongside everyday inhabited landscape features. 24 endings with 4-5 d100 faces each.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "bre",
+          "name": "bre",
+          "range": [
+            1,
+            5
+          ]
+        },
+        {
+          "id": "fonn",
+          "name": "fonn",
+          "range": [
+            6,
+            10
+          ]
+        },
+        {
+          "id": "jokel",
+          "name": "jøkel",
+          "range": [
+            11,
+            15
+          ]
+        },
+        {
+          "id": "dal",
+          "name": "dal",
+          "range": [
+            16,
+            20
+          ]
+        },
+        {
+          "id": "heim",
+          "name": "heim",
+          "range": [
+            21,
+            24
+          ]
+        },
+        {
+          "id": "vik",
+          "name": "vik",
+          "range": [
+            25,
+            28
+          ]
+        },
+        {
+          "id": "fell",
+          "name": "fell",
+          "range": [
+            29,
+            32
+          ]
+        },
+        {
+          "id": "nes",
+          "name": "nes",
+          "range": [
+            33,
+            36
+          ]
+        },
+        {
+          "id": "botn",
+          "name": "botn",
+          "range": [
+            37,
+            40
+          ]
+        },
+        {
+          "id": "skar",
+          "name": "skar",
+          "range": [
+            41,
+            44
+          ]
+        },
+        {
+          "id": "tind",
+          "name": "tind",
+          "range": [
+            45,
+            48
+          ]
+        },
+        {
+          "id": "haug",
+          "name": "haug",
+          "range": [
+            49,
+            52
+          ]
+        },
+        {
+          "id": "li",
+          "name": "li",
+          "range": [
+            53,
+            56
+          ]
+        },
+        {
+          "id": "mo",
+          "name": "mo",
+          "range": [
+            57,
+            60
+          ]
+        },
+        {
+          "id": "holt",
+          "name": "holt",
+          "range": [
+            61,
+            64
+          ]
+        },
+        {
+          "id": "mark",
+          "name": "mark",
+          "range": [
+            65,
+            68
+          ]
+        },
+        {
+          "id": "sund",
+          "name": "sund",
+          "range": [
+            69,
+            72
+          ]
+        },
+        {
+          "id": "skjaer",
+          "name": "skjær",
+          "range": [
+            73,
+            76
+          ]
+        },
+        {
+          "id": "vatn",
+          "name": "vatn",
+          "range": [
+            77,
+            80
+          ]
+        },
+        {
+          "id": "skarv",
+          "name": "skarv",
+          "range": [
+            81,
+            84
+          ]
+        },
+        {
+          "id": "berg",
+          "name": "berg",
+          "range": [
+            85,
+            88
+          ]
+        },
+        {
+          "id": "slette",
+          "name": "slette",
+          "range": [
+            89,
+            92
+          ]
+        },
+        {
+          "id": "varde",
+          "name": "varde",
+          "range": [
+            93,
+            96
+          ]
+        },
+        {
+          "id": "set",
+          "name": "set",
+          "range": [
+            97,
+            100
+          ]
+        }
+      ]
+    }
+  ]
+}

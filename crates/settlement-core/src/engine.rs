@@ -293,6 +293,10 @@ pub enum GenerationError {
     NoNamingScheme,
     #[error("no name was generated: table `{table}` could not be rolled")]
     NamingIncomplete { table: TableId },
+    #[error("the settlement's name was not generated from naming tables; roll a name first")]
+    NameNotGenerated,
+    #[error("no name was generated: {0}")]
+    NameComposition(#[from] crate::naming::ComposeError),
     #[error("stage {} is not the name stage", stage + 1)]
     NotNamingStage { stage: usize },
     #[error("stage {} is not the Notable Locations stage", stage + 1)]
@@ -527,6 +531,11 @@ impl<'c> Generator<'c> {
 
     pub fn options(&self) -> GenerationOptions {
         self.options
+    }
+
+    /// The content this generator rolls.
+    pub(crate) fn content(&self) -> &'c ContentSet {
+        self.content
     }
 
     /// Generates a settlement: runs the content's `sequence`.

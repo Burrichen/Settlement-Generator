@@ -3,69 +3,249 @@
   "tables": [
     {
       "id": "table.naming.hjartheland.secondElement",
-      "name": "Hjartheland Name: Second Element",
-      "description": "Second part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "name": "Hjartheland Traditional: Settlement Ending",
+      "description": "Historic settlement, farm, landscape and waterway endings. First twelve preserve earlier starter endings; 30 entries with explicit d100 weights.",
+      "dice": "1d100",
       "results": [
         {
           "id": "vik",
           "name": "vik",
-          "range": 1
+          "range": [
+            1,
+            4
+          ]
         },
         {
           "id": "heim",
           "name": "heim",
-          "range": 2
+          "range": [
+            5,
+            8
+          ]
         },
         {
           "id": "dal",
           "name": "dal",
-          "range": 3
+          "range": [
+            9,
+            12
+          ]
         },
         {
           "id": "berg",
           "name": "berg",
-          "range": 4
+          "range": [
+            13,
+            16
+          ]
         },
         {
           "id": "nes",
           "name": "nes",
-          "range": 5
+          "range": [
+            17,
+            20
+          ]
         },
         {
           "id": "gard",
           "name": "gard",
-          "range": 6
+          "range": [
+            21,
+            24
+          ]
         },
         {
           "id": "havn",
           "name": "havn",
-          "range": 7
+          "range": [
+            25,
+            28
+          ]
         },
         {
           "id": "lund",
           "name": "lund",
-          "range": 8
+          "range": [
+            29,
+            32
+          ]
         },
         {
           "id": "fjord",
           "name": "fjord",
-          "range": 9
+          "range": [
+            33,
+            36
+          ]
         },
         {
           "id": "set",
           "name": "set",
-          "range": 10
+          "range": [
+            37,
+            40
+          ]
         },
         {
           "id": "holt",
           "name": "holt",
-          "range": 11
+          "range": [
+            41,
+            43
+          ]
         },
         {
           "id": "fell",
           "name": "fell",
-          "range": 12
+          "range": [
+            44,
+            46
+          ]
+        },
+        {
+          "id": "stad",
+          "name": "stad",
+          "range": [
+            47,
+            49
+          ]
+        },
+        {
+          "id": "by",
+          "name": "by",
+          "range": [
+            50,
+            52
+          ]
+        },
+        {
+          "id": "tun",
+          "name": "tun",
+          "range": [
+            53,
+            55
+          ]
+        },
+        {
+          "id": "torp",
+          "name": "torp",
+          "range": [
+            56,
+            58
+          ]
+        },
+        {
+          "id": "seter",
+          "name": "seter",
+          "range": [
+            59,
+            61
+          ]
+        },
+        {
+          "id": "stol",
+          "name": "støl",
+          "range": [
+            62,
+            64
+          ]
+        },
+        {
+          "id": "hus",
+          "name": "hus",
+          "range": [
+            65,
+            67
+          ]
+        },
+        {
+          "id": "voll",
+          "name": "voll",
+          "range": [
+            68,
+            70
+          ]
+        },
+        {
+          "id": "haug",
+          "name": "haug",
+          "range": [
+            71,
+            73
+          ]
+        },
+        {
+          "id": "mark",
+          "name": "mark",
+          "range": [
+            74,
+            76
+          ]
+        },
+        {
+          "id": "land",
+          "name": "land",
+          "range": [
+            77,
+            79
+          ]
+        },
+        {
+          "id": "strand",
+          "name": "strand",
+          "range": [
+            80,
+            82
+          ]
+        },
+        {
+          "id": "eid",
+          "name": "eid",
+          "range": [
+            83,
+            85
+          ]
+        },
+        {
+          "id": "sund",
+          "name": "sund",
+          "range": [
+            86,
+            88
+          ]
+        },
+        {
+          "id": "rud",
+          "name": "rud",
+          "range": [
+            89,
+            91
+          ]
+        },
+        {
+          "id": "vang",
+          "name": "vang",
+          "range": [
+            92,
+            94
+          ]
+        },
+        {
+          "id": "bo",
+          "name": "bø",
+          "range": [
+            95,
+            97
+          ]
+        },
+        {
+          "id": "tveit",
+          "name": "tveit",
+          "range": [
+            98,
+            100
+          ]
         }
       ]
     }

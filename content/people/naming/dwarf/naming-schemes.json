@@ -19,7 +19,10 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.dwarf.given.masculine", "table.personName.dwarf.clan"],
+          "components": [
+            "table.personName.dwarf.given.masculine",
+            "table.personName.dwarf.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -31,7 +34,1085 @@
               "label": "Given name"
             },
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.02",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.03",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.04",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.05",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.06",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.06",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.07",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.07",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.08",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.09",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.10",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.11",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.12",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.13",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.14",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.14",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.15",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.15",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.16",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.16",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.17",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.17",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.18",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.18",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.19",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.19",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.20",
+          "components": [
+            "table.personName.dwarf.given.masculine.runic.20",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.06",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.07",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.13",
+          "components": [
+            "table.personName.dwarf.given.masculine.deep.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.01",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.02",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.03",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.04",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.04",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.05",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.05",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.06",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.06",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.07",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.07",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.08",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.08",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.09",
+          "components": [
+            "table.personName.dwarf.given.masculine.forge.09",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.03",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.04",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.05",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.dwarf.given.masculine.hearth.06",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.01",
+          "components": [
+            "table.personName.dwarf.given.masculine.surface.01",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.02",
+          "components": [
+            "table.personName.dwarf.given.masculine.surface.02",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
               "label": "Clan name"
             }
           ]
@@ -56,7 +1137,10 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.dwarf.given.feminine", "table.personName.dwarf.clan"],
+          "components": [
+            "table.personName.dwarf.given.feminine",
+            "table.personName.dwarf.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -68,7 +1152,1085 @@
               "label": "Given name"
             },
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.02",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.03",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.04",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.05",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.06",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.06",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.07",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.07",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.08",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.09",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.10",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.11",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.12",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.13",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.14",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.14",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.15",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.15",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.16",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.16",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.17",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.17",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.18",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.18",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.19",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.19",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.20",
+          "components": [
+            "table.personName.dwarf.given.feminine.runic.20",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.06",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.07",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.13",
+          "components": [
+            "table.personName.dwarf.given.feminine.deep.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.01",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.02",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.03",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.04",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.04",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.05",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.05",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.06",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.06",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.07",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.07",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.08",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.08",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.09",
+          "components": [
+            "table.personName.dwarf.given.feminine.forge.09",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.03",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.04",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.05",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.dwarf.given.feminine.hearth.06",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.01",
+          "components": [
+            "table.personName.dwarf.given.feminine.surface.01",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.02",
+          "components": [
+            "table.personName.dwarf.given.feminine.surface.02",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
               "label": "Clan name"
             }
           ]
@@ -86,7 +2248,10 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.dwarf.given.neutral", "table.personName.dwarf.clan"],
+          "components": [
+            "table.personName.dwarf.given.neutral",
+            "table.personName.dwarf.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -98,7 +2263,1085 @@
               "label": "Given name"
             },
             {
-              "id": "clan",
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.02",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.03",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.04",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.05",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.06",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.06",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.07",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.07",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.08",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.09",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.10",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.11",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.12",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.13",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.14",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.14",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.15",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.15",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.16",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.16",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.17",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.17",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.18",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.18",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.19",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.19",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.runic.20",
+          "components": [
+            "table.personName.dwarf.given.neutral.runic.20",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.01",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.02",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.03",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.04",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.04",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.05",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.05",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.06",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.06",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.07",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.07",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.08",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.08",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.09",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.09",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.10",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.10",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.11",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.11",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.12",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.12",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deep.13",
+          "components": [
+            "table.personName.dwarf.given.neutral.deep.13",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.01",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.02",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.03",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.03",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.04",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.04",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.05",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.05",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.06",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.06",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.07",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.07",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.08",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.08",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.forge.09",
+          "components": [
+            "table.personName.dwarf.given.neutral.forge.09",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.01",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.02",
+            "table.personName.dwarf.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.03",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.04",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.05",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.dwarf.given.neutral.hearth.06",
+            "table.personName.dwarf.family.lesser_stone"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.01",
+          "components": [
+            "table.personName.dwarf.given.neutral.surface.01",
+            "table.personName.dwarf.family.lesser_runic"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Clan name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.surface.02",
+          "components": [
+            "table.personName.dwarf.given.neutral.surface.02",
+            "table.personName.dwarf.family.lesser_hearth"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
               "label": "Clan name"
             }
           ]

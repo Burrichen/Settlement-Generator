@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.naming.halingo.industrySecond",
+      "name": "Halingo Mining & Ichor: Site",
+      "description": "Prospecting, mining camp, smelter, claim and industrial-site names; 20 equally weighted d20 entries.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "gulch",
+          "name": "Gulch",
+          "range": 1
+        },
+        {
+          "id": "claim",
+          "name": "Claim",
+          "range": 2
+        },
+        {
+          "id": "lode",
+          "name": "Lode",
+          "range": 3
+        },
+        {
+          "id": "mine",
+          "name": "Mine",
+          "range": 4
+        },
+        {
+          "id": "pit",
+          "name": "Pit",
+          "range": 5
+        },
+        {
+          "id": "works",
+          "name": "Works",
+          "range": 6
+        },
+        {
+          "id": "camp",
+          "name": "Camp",
+          "range": 7
+        },
+        {
+          "id": "field",
+          "name": "Field",
+          "range": 8
+        },
+        {
+          "id": "cut",
+          "name": "Cut",
+          "range": 9
+        },
+        {
+          "id": "ridge",
+          "name": "Ridge",
+          "range": 10
+        },
+        {
+          "id": "flats",
+          "name": "Flats",
+          "range": 11
+        },
+        {
+          "id": "creek",
+          "name": "Creek",
+          "range": 12
+        },
+        {
+          "id": "hollow",
+          "name": "Hollow",
+          "range": 13
+        },
+        {
+          "id": "quarry",
+          "name": "Quarry",
+          "range": 14
+        },
+        {
+          "id": "shaft",
+          "name": "Shaft",
+          "range": 15
+        },
+        {
+          "id": "smelter",
+          "name": "Smelter",
+          "range": 16
+        },
+        {
+          "id": "run",
+          "name": "Run",
+          "range": 17
+        },
+        {
+          "id": "point",
+          "name": "Point",
+          "range": 18
+        },
+        {
+          "id": "diggings",
+          "name": "Diggings",
+          "range": 19
+        },
+        {
+          "id": "forge",
+          "name": "Forge",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

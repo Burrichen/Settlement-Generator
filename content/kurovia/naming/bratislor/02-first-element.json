@@ -4,68 +4,408 @@
     {
       "id": "table.naming.bratislor.firstElement",
       "name": "Bratislor Name: First Element",
-      "description": "First part of a Geographic Compound name. Equal starter weights.",
-      "dice": "1d12",
+      "description": "Landscape and inherited geographical roots, mostly Slavic-inspired. 50 roots with 2 faces each. Romanised fictional names, not a historical language model.",
+      "dice": "1d100",
       "results": [
         {
           "id": "bel",
           "name": "Bel",
-          "range": 1
+          "range": [
+            1,
+            2
+          ]
         },
         {
           "id": "bor",
           "name": "Bor",
-          "range": 2
+          "range": [
+            3,
+            4
+          ]
         },
         {
           "id": "drev",
           "name": "Drev",
-          "range": 3
+          "range": [
+            5,
+            6
+          ]
         },
         {
           "id": "kras",
           "name": "Kras",
-          "range": 4
+          "range": [
+            7,
+            8
+          ]
         },
         {
           "id": "luka",
           "name": "Luka",
-          "range": 5
+          "range": [
+            9,
+            10
+          ]
         },
         {
           "id": "mor",
           "name": "Mor",
-          "range": 6
+          "range": [
+            11,
+            12
+          ]
         },
         {
           "id": "novo",
           "name": "Novo",
-          "range": 7
+          "range": [
+            13,
+            14
+          ]
         },
         {
           "id": "staro",
           "name": "Staro",
-          "range": 8
+          "range": [
+            15,
+            16
+          ]
         },
         {
           "id": "vel",
           "name": "Vel",
-          "range": 9
+          "range": [
+            17,
+            18
+          ]
         },
         {
           "id": "ves",
           "name": "Ves",
-          "range": 10
+          "range": [
+            19,
+            20
+          ]
         },
         {
           "id": "vran",
           "name": "Vran",
-          "range": 11
+          "range": [
+            21,
+            22
+          ]
         },
         {
           "id": "zor",
           "name": "Zor",
-          "range": 12
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "breg",
+          "name": "Breg",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "brin",
+          "name": "Brin",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "brez",
+          "name": "Brez",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "cern",
+          "name": "Cern",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "dobr",
+          "name": "Dobr",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "dol",
+          "name": "Dol",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "drav",
+          "name": "Drav",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "dub",
+          "name": "Dub",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "glin",
+          "name": "Glin",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "gor",
+          "name": "Gor",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "hrad",
+          "name": "Hrad",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "hrast",
+          "name": "Hrast",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "javor",
+          "name": "Javor",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "kamen",
+          "name": "Kamen",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "klen",
+          "name": "Klen",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "kor",
+          "name": "Kor",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "kriv",
+          "name": "Kriv",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "les",
+          "name": "Les",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "lip",
+          "name": "Lip",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "lisk",
+          "name": "Lisk",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "mlin",
+          "name": "Mlin",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "mraz",
+          "name": "Mraz",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "ores",
+          "name": "Ores",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "ostr",
+          "name": "Ostr",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "pol",
+          "name": "Pol",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "rad",
+          "name": "Rad",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "ravn",
+          "name": "Ravn",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "rud",
+          "name": "Rud",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "ruz",
+          "name": "Ruz",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "siv",
+          "name": "Siv",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "sokol",
+          "name": "Sokol",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "sten",
+          "name": "Sten",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "tarn",
+          "name": "Tarn",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "trn",
+          "name": "Trn",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "var",
+          "name": "Var",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "voj",
+          "name": "Voj",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "zelen",
+          "name": "Zelen",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "zim",
+          "name": "Zim",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }
