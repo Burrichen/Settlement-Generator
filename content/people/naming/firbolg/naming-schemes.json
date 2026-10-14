@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.firbolg",
-      "name": "Firbolg names",
+      "id": "naming.person.firbolg.masculine",
+      "name": "Firbolg names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.firbolg"
+        "all": [
+          {
+            "has_tag": "species.firbolg"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.firbolg.method",
       "methods": [
         {
-          "result": "given",
-          "components": ["table.personName.firbolg.given"],
+          "result": "givenSurname",
+          "components": [
+            "table.personName.firbolg.given.masculine",
+            "table.personName.firbolg.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -21,12 +31,6622 @@
           "parts": [
             {
               "id": "given",
-              "label": "Given name"
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.02",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.03",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.04",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.05",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.06",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.07",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.08",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.09",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.10",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.11",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.12",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.13",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.14",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.14",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.15",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.15",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.16",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.16",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.17",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.17",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.18",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.18",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.19",
+          "components": [
+            "table.personName.firbolg.given.masculine",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.20",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.21",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.22",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.23",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.24",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.25",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.26",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.27",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.28",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.29",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.30",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.31",
+          "components": [
+            "table.personName.firbolg.given.masculine.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.01",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.01",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.02",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.02",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.03",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.03",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.04",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.04",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.05",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.05",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.06",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.06",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.07",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.07",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.08",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.08",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.09",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.09",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.10",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.10",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.11",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.11",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.12",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.12",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.13",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.13",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.14",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.01",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.15",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.02",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.16",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.03",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.17",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.04",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.18",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.05",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.19",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.06",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.20",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.07",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.21",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.08",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.22",
+          "components": [
+            "table.personName.firbolg.given.masculine.feywood.09",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.01",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.02",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.03",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.04",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.05",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.06",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.07",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.08",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.09",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.10",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.11",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.01",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.02",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.14",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.03",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.15",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.04",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.16",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.05",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.17",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.06",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.18",
+          "components": [
+            "table.personName.firbolg.given.masculine.hearth.07",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.01",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.02",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.03",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.04",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.05",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.06",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.07",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.07",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.08",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.08",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.09",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.10",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.11",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.12",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.13",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.14",
+          "components": [
+            "table.personName.firbolg.given.masculine.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.masculine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.masculine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.masculine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.masculine.old-norse-viking-age-inspired.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.masculine.french-belgian.01",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.masculine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.masculine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.masculine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.masculine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.masculine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.masculine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.masculine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.13",
+          "components": [
+            "table.personName.human.given.masculine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.14",
+          "components": [
+            "table.personName.human.given.masculine.russian.01",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.15",
+          "components": [
+            "table.personName.human.given.masculine.victorian-edwardian-britain-inspired.01",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
             }
           ]
         }
-      ],
-      "description": "Firbolgs go by a single name."
+      ]
+    },
+    {
+      "id": "naming.person.firbolg.feminine",
+      "name": "Firbolg names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.firbolg"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.firbolg.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.firbolg.given.feminine",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.02",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.03",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.04",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.05",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.06",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.07",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.08",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.09",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.10",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.11",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.12",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.13",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.14",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.14",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.15",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.15",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.16",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.16",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.17",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.17",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.18",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.18",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.19",
+          "components": [
+            "table.personName.firbolg.given.feminine",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.20",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.21",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.22",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.23",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.24",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.25",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.26",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.27",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.28",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.29",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.30",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.31",
+          "components": [
+            "table.personName.firbolg.given.feminine.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.01",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.01",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.02",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.02",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.03",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.03",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.04",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.04",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.05",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.05",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.06",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.06",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.07",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.07",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.08",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.08",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.09",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.09",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.10",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.10",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.11",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.11",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.12",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.12",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.13",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.13",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.14",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.01",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.15",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.02",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.16",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.03",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.17",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.04",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.18",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.05",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.19",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.06",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.20",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.07",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.21",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.08",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.22",
+          "components": [
+            "table.personName.firbolg.given.feminine.feywood.09",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.01",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.02",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.03",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.04",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.05",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.06",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.07",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.08",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.09",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.10",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.11",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.01",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.02",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.14",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.03",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.15",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.04",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.16",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.05",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.17",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.06",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.18",
+          "components": [
+            "table.personName.firbolg.given.feminine.hearth.07",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.01",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.02",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.03",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.04",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.05",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.06",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.07",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.07",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.08",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.08",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.09",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.10",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.11",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.12",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.13",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.14",
+          "components": [
+            "table.personName.firbolg.given.feminine.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.feminine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.feminine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.feminine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.feminine.old-norse-viking-age-inspired.01",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.feminine.french-belgian.01",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.feminine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.feminine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.feminine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.feminine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.feminine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.feminine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.feminine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.13",
+          "components": [
+            "table.personName.human.given.feminine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.14",
+          "components": [
+            "table.personName.human.given.feminine.russian.01",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.15",
+          "components": [
+            "table.personName.human.given.feminine.victorian-edwardian-britain-inspired.01",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.firbolg.neutral",
+      "name": "Firbolg names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.firbolg"
+      },
+      "method_table": "table.personName.firbolg.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.firbolg.given.neutral",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.02",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.03",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.04",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.05",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.06",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.07",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.08",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.09",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.10",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.11",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.12",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.13",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.14",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.14",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.15",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.15",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.16",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.16",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.17",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.17",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.18",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.18",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.19",
+          "components": [
+            "table.personName.firbolg.given.neutral",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.20",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.02",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.21",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.03",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.22",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.04",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.23",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.05",
+            "table.personName.firbolg.family.deepwood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.24",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.06",
+            "table.personName.firbolg.family.deepwood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.25",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.07",
+            "table.personName.firbolg.family.deepwood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.26",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.08",
+            "table.personName.firbolg.family.deepwood.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.27",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.09",
+            "table.personName.firbolg.family.deepwood.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.28",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.10",
+            "table.personName.firbolg.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.29",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.11",
+            "table.personName.firbolg.family.deepwood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.30",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.12",
+            "table.personName.firbolg.family.deepwood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.deepwood.31",
+          "components": [
+            "table.personName.firbolg.given.neutral.deepwood.13",
+            "table.personName.firbolg.family.deepwood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.01",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.01",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.02",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.02",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.03",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.03",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.04",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.04",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.05",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.05",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.06",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.06",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.07",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.07",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.08",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.08",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.09",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.09",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.10",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.10",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.11",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.11",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.12",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.12",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.13",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.13",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.14",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.01",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.15",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.02",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.16",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.03",
+            "table.personName.firbolg.family.feywood.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.17",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.04",
+            "table.personName.firbolg.family.feywood.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.18",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.05",
+            "table.personName.firbolg.family.feywood.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.19",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.06",
+            "table.personName.firbolg.family.feywood.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.20",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.07",
+            "table.personName.firbolg.family.feywood.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.21",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.08",
+            "table.personName.firbolg.family.feywood.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.feywood.22",
+          "components": [
+            "table.personName.firbolg.given.neutral.feywood.09",
+            "table.personName.firbolg.family.feywood.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.01",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.02",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.03",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.04",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.05",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.06",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.07",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.08",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.09",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.10",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.11",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.01",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.02",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.14",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.03",
+            "table.personName.firbolg.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.15",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.04",
+            "table.personName.firbolg.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.16",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.05",
+            "table.personName.firbolg.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.17",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.06",
+            "table.personName.firbolg.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.18",
+          "components": [
+            "table.personName.firbolg.given.neutral.hearth.07",
+            "table.personName.firbolg.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.01",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.02",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.03",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.04",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.05",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.06",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.07",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.07",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.08",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.08",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.09",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.01",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.10",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.02",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.11",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.03",
+            "table.personName.firbolg.family.oldroot.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.12",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.04",
+            "table.personName.firbolg.family.oldroot.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.13",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.05",
+            "table.personName.firbolg.family.oldroot.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.oldroot.14",
+          "components": [
+            "table.personName.firbolg.given.neutral.oldroot.06",
+            "table.personName.firbolg.family.oldroot.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Used name / nickname"
+            },
+            {
+              "id": "family",
+              "label": "Home-name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.norwegian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.french-belgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.13",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.14",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.russian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.15",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.victorian-edwardian-britain-inspired.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Borrowed Human given name"
+            },
+            {
+              "id": "family",
+              "label": "Borrowed Human family name"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

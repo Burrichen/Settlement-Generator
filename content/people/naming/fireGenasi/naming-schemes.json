@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.fireGenasi",
-      "name": "Fire Genasi names",
+      "id": "naming.person.fireGenasi.masculine",
+      "name": "Fire Genasi names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.fireGenasi"
+        "all": [
+          {
+            "has_tag": "species.fireGenasi"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.fireGenasi.method",
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.fireGenasi.given", "table.personName.fireGenasi.byname"],
+          "components": [
+            "table.personName.fireGenasi.given.masculine",
+            "table.personName.fireGenasi.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -24,13 +34,4111 @@
               "label": "Given name"
             },
             {
-              "id": "byname",
-              "label": "Byname"
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.02",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.02",
+            "table.personName.fireGenasi.family.efreet.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.03",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.03",
+            "table.personName.fireGenasi.family.efreet.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.04",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.04",
+            "table.personName.fireGenasi.family.efreet.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.05",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.05",
+            "table.personName.fireGenasi.family.efreet.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.06",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.06",
+            "table.personName.fireGenasi.family.efreet.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.07",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.07",
+            "table.personName.fireGenasi.family.efreet.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.08",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.08",
+            "table.personName.fireGenasi.family.efreet.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.09",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.09",
+            "table.personName.fireGenasi.family.efreet.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.10",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.10",
+            "table.personName.fireGenasi.family.efreet.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.11",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.11",
+            "table.personName.fireGenasi.family.efreet.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.12",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.12",
+            "table.personName.fireGenasi.family.efreet.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.13",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.13",
+            "table.personName.fireGenasi.family.efreet.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.14",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.14",
+            "table.personName.fireGenasi.family.efreet.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.15",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.efreet.15",
+            "table.personName.fireGenasi.family.efreet.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.01",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.01",
+            "table.personName.fireGenasi.family.ember.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.02",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.02",
+            "table.personName.fireGenasi.family.ember.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.03",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.03",
+            "table.personName.fireGenasi.family.ember.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.04",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.04",
+            "table.personName.fireGenasi.family.ember.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.05",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.05",
+            "table.personName.fireGenasi.family.ember.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.06",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.06",
+            "table.personName.fireGenasi.family.ember.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.07",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.07",
+            "table.personName.fireGenasi.family.ember.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.08",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.08",
+            "table.personName.fireGenasi.family.ember.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.09",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.09",
+            "table.personName.fireGenasi.family.ember.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.10",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.10",
+            "table.personName.fireGenasi.family.ember.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.11",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.11",
+            "table.personName.fireGenasi.family.ember.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.12",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.12",
+            "table.personName.fireGenasi.family.ember.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.13",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.ember.13",
+            "table.personName.fireGenasi.family.ember.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.01",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.01",
+            "table.personName.fireGenasi.family.volcanic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.02",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.02",
+            "table.personName.fireGenasi.family.volcanic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.03",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.03",
+            "table.personName.fireGenasi.family.volcanic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.04",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.04",
+            "table.personName.fireGenasi.family.volcanic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.05",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.05",
+            "table.personName.fireGenasi.family.volcanic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.06",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.06",
+            "table.personName.fireGenasi.family.volcanic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.07",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.07",
+            "table.personName.fireGenasi.family.volcanic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.08",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.08",
+            "table.personName.fireGenasi.family.volcanic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.09",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.volcanic.09",
+            "table.personName.fireGenasi.family.volcanic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.01",
+            "table.personName.fireGenasi.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.02",
+            "table.personName.fireGenasi.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.03",
+            "table.personName.fireGenasi.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.04",
+            "table.personName.fireGenasi.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.05",
+            "table.personName.fireGenasi.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.06",
+            "table.personName.fireGenasi.family.hearth.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.07",
+            "table.personName.fireGenasi.family.hearth.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.08",
+            "table.personName.fireGenasi.family.hearth.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.09",
+            "table.personName.fireGenasi.family.hearth.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.10",
+            "table.personName.fireGenasi.family.hearth.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.11",
+            "table.personName.fireGenasi.family.hearth.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.12",
+            "table.personName.fireGenasi.family.hearth.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.fireGenasi.given.masculine.hearth.13",
+            "table.personName.fireGenasi.family.hearth.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.masculine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.masculine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.masculine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.masculine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.masculine.ancient-hellenic-byzantine.01",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.masculine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.masculine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.masculine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.masculine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.masculine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.masculine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.masculine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
             }
           ]
         }
-      ],
-      "description": "Fire genasi pair a given name with a byname drawn from flame and heat."
+      ]
+    },
+    {
+      "id": "naming.person.fireGenasi.feminine",
+      "name": "Fire Genasi names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.fireGenasi"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.fireGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.fireGenasi.given.feminine",
+            "table.personName.fireGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.02",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.02",
+            "table.personName.fireGenasi.family.efreet.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.03",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.03",
+            "table.personName.fireGenasi.family.efreet.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.04",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.04",
+            "table.personName.fireGenasi.family.efreet.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.05",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.05",
+            "table.personName.fireGenasi.family.efreet.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.06",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.06",
+            "table.personName.fireGenasi.family.efreet.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.07",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.07",
+            "table.personName.fireGenasi.family.efreet.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.08",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.08",
+            "table.personName.fireGenasi.family.efreet.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.09",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.09",
+            "table.personName.fireGenasi.family.efreet.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.10",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.10",
+            "table.personName.fireGenasi.family.efreet.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.11",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.11",
+            "table.personName.fireGenasi.family.efreet.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.12",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.12",
+            "table.personName.fireGenasi.family.efreet.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.13",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.13",
+            "table.personName.fireGenasi.family.efreet.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.14",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.14",
+            "table.personName.fireGenasi.family.efreet.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.15",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.efreet.15",
+            "table.personName.fireGenasi.family.efreet.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.01",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.01",
+            "table.personName.fireGenasi.family.ember.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.02",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.02",
+            "table.personName.fireGenasi.family.ember.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.03",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.03",
+            "table.personName.fireGenasi.family.ember.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.04",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.04",
+            "table.personName.fireGenasi.family.ember.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.05",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.05",
+            "table.personName.fireGenasi.family.ember.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.06",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.06",
+            "table.personName.fireGenasi.family.ember.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.07",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.07",
+            "table.personName.fireGenasi.family.ember.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.08",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.08",
+            "table.personName.fireGenasi.family.ember.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.09",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.09",
+            "table.personName.fireGenasi.family.ember.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.10",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.10",
+            "table.personName.fireGenasi.family.ember.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.11",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.11",
+            "table.personName.fireGenasi.family.ember.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.12",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.12",
+            "table.personName.fireGenasi.family.ember.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.13",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.ember.13",
+            "table.personName.fireGenasi.family.ember.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.01",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.01",
+            "table.personName.fireGenasi.family.volcanic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.02",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.02",
+            "table.personName.fireGenasi.family.volcanic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.03",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.03",
+            "table.personName.fireGenasi.family.volcanic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.04",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.04",
+            "table.personName.fireGenasi.family.volcanic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.05",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.05",
+            "table.personName.fireGenasi.family.volcanic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.06",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.06",
+            "table.personName.fireGenasi.family.volcanic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.07",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.07",
+            "table.personName.fireGenasi.family.volcanic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.08",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.08",
+            "table.personName.fireGenasi.family.volcanic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.09",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.volcanic.09",
+            "table.personName.fireGenasi.family.volcanic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.01",
+            "table.personName.fireGenasi.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.02",
+            "table.personName.fireGenasi.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.03",
+            "table.personName.fireGenasi.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.04",
+            "table.personName.fireGenasi.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.05",
+            "table.personName.fireGenasi.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.06",
+            "table.personName.fireGenasi.family.hearth.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.07",
+            "table.personName.fireGenasi.family.hearth.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.08",
+            "table.personName.fireGenasi.family.hearth.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.09",
+            "table.personName.fireGenasi.family.hearth.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.10",
+            "table.personName.fireGenasi.family.hearth.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.11",
+            "table.personName.fireGenasi.family.hearth.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.12",
+            "table.personName.fireGenasi.family.hearth.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.fireGenasi.given.feminine.hearth.13",
+            "table.personName.fireGenasi.family.hearth.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.feminine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.feminine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.feminine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.feminine.ancient-roman-latin.01",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.feminine.ancient-hellenic-byzantine.01",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.feminine.anglo-saxon-early-medieval.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.feminine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.feminine.georgian.01",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.feminine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.feminine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.feminine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.feminine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.fireGenasi.neutral",
+      "name": "Fire Genasi names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.fireGenasi"
+      },
+      "method_table": "table.personName.fireGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.fireGenasi.given.neutral",
+            "table.personName.fireGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.02",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.02",
+            "table.personName.fireGenasi.family.efreet.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.03",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.03",
+            "table.personName.fireGenasi.family.efreet.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.04",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.04",
+            "table.personName.fireGenasi.family.efreet.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.05",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.05",
+            "table.personName.fireGenasi.family.efreet.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.06",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.06",
+            "table.personName.fireGenasi.family.efreet.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.07",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.07",
+            "table.personName.fireGenasi.family.efreet.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.08",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.08",
+            "table.personName.fireGenasi.family.efreet.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.09",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.09",
+            "table.personName.fireGenasi.family.efreet.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.10",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.10",
+            "table.personName.fireGenasi.family.efreet.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.11",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.11",
+            "table.personName.fireGenasi.family.efreet.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.12",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.12",
+            "table.personName.fireGenasi.family.efreet.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.13",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.13",
+            "table.personName.fireGenasi.family.efreet.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.14",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.14",
+            "table.personName.fireGenasi.family.efreet.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.efreet.15",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.efreet.15",
+            "table.personName.fireGenasi.family.efreet.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.01",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.01",
+            "table.personName.fireGenasi.family.ember.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.02",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.02",
+            "table.personName.fireGenasi.family.ember.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.03",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.03",
+            "table.personName.fireGenasi.family.ember.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.04",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.04",
+            "table.personName.fireGenasi.family.ember.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.05",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.05",
+            "table.personName.fireGenasi.family.ember.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.06",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.06",
+            "table.personName.fireGenasi.family.ember.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.07",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.07",
+            "table.personName.fireGenasi.family.ember.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.08",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.08",
+            "table.personName.fireGenasi.family.ember.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.09",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.09",
+            "table.personName.fireGenasi.family.ember.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.10",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.10",
+            "table.personName.fireGenasi.family.ember.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.11",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.11",
+            "table.personName.fireGenasi.family.ember.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.12",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.12",
+            "table.personName.fireGenasi.family.ember.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.ember.13",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.ember.13",
+            "table.personName.fireGenasi.family.ember.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.01",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.01",
+            "table.personName.fireGenasi.family.volcanic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.02",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.02",
+            "table.personName.fireGenasi.family.volcanic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.03",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.03",
+            "table.personName.fireGenasi.family.volcanic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.04",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.04",
+            "table.personName.fireGenasi.family.volcanic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.05",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.05",
+            "table.personName.fireGenasi.family.volcanic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.06",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.06",
+            "table.personName.fireGenasi.family.volcanic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.07",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.07",
+            "table.personName.fireGenasi.family.volcanic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.08",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.08",
+            "table.personName.fireGenasi.family.volcanic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.volcanic.09",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.volcanic.09",
+            "table.personName.fireGenasi.family.volcanic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.01",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.01",
+            "table.personName.fireGenasi.family.hearth.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.02",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.02",
+            "table.personName.fireGenasi.family.hearth.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.03",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.03",
+            "table.personName.fireGenasi.family.hearth.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.04",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.04",
+            "table.personName.fireGenasi.family.hearth.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.05",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.05",
+            "table.personName.fireGenasi.family.hearth.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.06",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.06",
+            "table.personName.fireGenasi.family.hearth.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.07",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.07",
+            "table.personName.fireGenasi.family.hearth.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.08",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.08",
+            "table.personName.fireGenasi.family.hearth.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.09",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.09",
+            "table.personName.fireGenasi.family.hearth.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.10",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.10",
+            "table.personName.fireGenasi.family.hearth.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.11",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.11",
+            "table.personName.fireGenasi.family.hearth.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.12",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.12",
+            "table.personName.fireGenasi.family.hearth.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.hearth.13",
+          "components": [
+            "table.personName.fireGenasi.given.neutral.hearth.13",
+            "table.personName.fireGenasi.family.hearth.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.ancient-roman-latin.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.greek.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.georgian.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / elemental byname"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

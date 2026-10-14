@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.waterGenasi",
-      "name": "Water Genasi names",
+      "id": "naming.person.waterGenasi.masculine",
+      "name": "Water Genasi names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.waterGenasi"
+        "all": [
+          {
+            "has_tag": "species.waterGenasi"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.waterGenasi.method",
       "methods": [
         {
-          "result": "given",
-          "components": ["table.personName.waterGenasi.given"],
+          "result": "givenSurname",
+          "components": [
+            "table.personName.waterGenasi.given.masculine",
+            "table.personName.waterGenasi.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -22,11 +32,4113 @@
             {
               "id": "given",
               "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.02",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.02",
+            "table.personName.waterGenasi.family.marid.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.03",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.03",
+            "table.personName.waterGenasi.family.marid.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.04",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.04",
+            "table.personName.waterGenasi.family.marid.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.05",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.05",
+            "table.personName.waterGenasi.family.marid.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.06",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.06",
+            "table.personName.waterGenasi.family.marid.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.07",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.07",
+            "table.personName.waterGenasi.family.marid.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.08",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.08",
+            "table.personName.waterGenasi.family.marid.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.09",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.09",
+            "table.personName.waterGenasi.family.marid.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.10",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.10",
+            "table.personName.waterGenasi.family.marid.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.11",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.11",
+            "table.personName.waterGenasi.family.marid.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.12",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.12",
+            "table.personName.waterGenasi.family.marid.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.13",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.13",
+            "table.personName.waterGenasi.family.marid.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.14",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.14",
+            "table.personName.waterGenasi.family.marid.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.15",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.marid.15",
+            "table.personName.waterGenasi.family.marid.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.01",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.01",
+            "table.personName.waterGenasi.family.tidal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.02",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.02",
+            "table.personName.waterGenasi.family.tidal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.03",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.03",
+            "table.personName.waterGenasi.family.tidal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.04",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.04",
+            "table.personName.waterGenasi.family.tidal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.05",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.05",
+            "table.personName.waterGenasi.family.tidal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.06",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.06",
+            "table.personName.waterGenasi.family.tidal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.07",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.07",
+            "table.personName.waterGenasi.family.tidal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.08",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.08",
+            "table.personName.waterGenasi.family.tidal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.09",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.09",
+            "table.personName.waterGenasi.family.tidal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.10",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.10",
+            "table.personName.waterGenasi.family.tidal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.11",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.11",
+            "table.personName.waterGenasi.family.tidal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.12",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.12",
+            "table.personName.waterGenasi.family.tidal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.13",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.tidal.13",
+            "table.personName.waterGenasi.family.tidal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.01",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.01",
+            "table.personName.waterGenasi.family.depths.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.02",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.02",
+            "table.personName.waterGenasi.family.depths.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.03",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.03",
+            "table.personName.waterGenasi.family.depths.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.04",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.04",
+            "table.personName.waterGenasi.family.depths.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.05",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.05",
+            "table.personName.waterGenasi.family.depths.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.06",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.06",
+            "table.personName.waterGenasi.family.depths.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.07",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.07",
+            "table.personName.waterGenasi.family.depths.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.08",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.08",
+            "table.personName.waterGenasi.family.depths.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.09",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.depths.09",
+            "table.personName.waterGenasi.family.depths.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.01",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.01",
+            "table.personName.waterGenasi.family.freshwater.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.02",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.02",
+            "table.personName.waterGenasi.family.freshwater.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.03",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.03",
+            "table.personName.waterGenasi.family.freshwater.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.04",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.04",
+            "table.personName.waterGenasi.family.freshwater.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.05",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.05",
+            "table.personName.waterGenasi.family.freshwater.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.06",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.06",
+            "table.personName.waterGenasi.family.freshwater.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.07",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.07",
+            "table.personName.waterGenasi.family.freshwater.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.08",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.08",
+            "table.personName.waterGenasi.family.freshwater.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.09",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.09",
+            "table.personName.waterGenasi.family.freshwater.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.10",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.10",
+            "table.personName.waterGenasi.family.freshwater.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.11",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.11",
+            "table.personName.waterGenasi.family.freshwater.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.12",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.12",
+            "table.personName.waterGenasi.family.freshwater.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.13",
+          "components": [
+            "table.personName.waterGenasi.given.masculine.freshwater.13",
+            "table.personName.waterGenasi.family.freshwater.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.masculine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.masculine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.masculine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.masculine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.masculine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.masculine.portuguese.01",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.masculine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.masculine.greek.01",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.masculine.indonesian.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.masculine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.masculine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.masculine.anglo-norman-medieval-britain.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
             }
           ]
         }
-      ],
-      "description": "Water genasi go by a single, flowing given name."
+      ]
+    },
+    {
+      "id": "naming.person.waterGenasi.feminine",
+      "name": "Water Genasi names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.waterGenasi"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.waterGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.waterGenasi.given.feminine",
+            "table.personName.waterGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.02",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.02",
+            "table.personName.waterGenasi.family.marid.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.03",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.03",
+            "table.personName.waterGenasi.family.marid.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.04",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.04",
+            "table.personName.waterGenasi.family.marid.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.05",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.05",
+            "table.personName.waterGenasi.family.marid.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.06",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.06",
+            "table.personName.waterGenasi.family.marid.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.07",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.07",
+            "table.personName.waterGenasi.family.marid.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.08",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.08",
+            "table.personName.waterGenasi.family.marid.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.09",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.09",
+            "table.personName.waterGenasi.family.marid.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.10",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.10",
+            "table.personName.waterGenasi.family.marid.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.11",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.11",
+            "table.personName.waterGenasi.family.marid.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.12",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.12",
+            "table.personName.waterGenasi.family.marid.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.13",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.13",
+            "table.personName.waterGenasi.family.marid.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.14",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.14",
+            "table.personName.waterGenasi.family.marid.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.15",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.marid.15",
+            "table.personName.waterGenasi.family.marid.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.01",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.01",
+            "table.personName.waterGenasi.family.tidal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.02",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.02",
+            "table.personName.waterGenasi.family.tidal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.03",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.03",
+            "table.personName.waterGenasi.family.tidal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.04",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.04",
+            "table.personName.waterGenasi.family.tidal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.05",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.05",
+            "table.personName.waterGenasi.family.tidal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.06",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.06",
+            "table.personName.waterGenasi.family.tidal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.07",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.07",
+            "table.personName.waterGenasi.family.tidal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.08",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.08",
+            "table.personName.waterGenasi.family.tidal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.09",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.09",
+            "table.personName.waterGenasi.family.tidal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.10",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.10",
+            "table.personName.waterGenasi.family.tidal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.11",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.11",
+            "table.personName.waterGenasi.family.tidal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.12",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.12",
+            "table.personName.waterGenasi.family.tidal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.13",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.tidal.13",
+            "table.personName.waterGenasi.family.tidal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.01",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.01",
+            "table.personName.waterGenasi.family.depths.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.02",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.02",
+            "table.personName.waterGenasi.family.depths.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.03",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.03",
+            "table.personName.waterGenasi.family.depths.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.04",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.04",
+            "table.personName.waterGenasi.family.depths.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.05",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.05",
+            "table.personName.waterGenasi.family.depths.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.06",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.06",
+            "table.personName.waterGenasi.family.depths.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.07",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.07",
+            "table.personName.waterGenasi.family.depths.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.08",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.08",
+            "table.personName.waterGenasi.family.depths.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.09",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.depths.09",
+            "table.personName.waterGenasi.family.depths.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.01",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.01",
+            "table.personName.waterGenasi.family.freshwater.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.02",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.02",
+            "table.personName.waterGenasi.family.freshwater.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.03",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.03",
+            "table.personName.waterGenasi.family.freshwater.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.04",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.04",
+            "table.personName.waterGenasi.family.freshwater.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.05",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.05",
+            "table.personName.waterGenasi.family.freshwater.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.06",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.06",
+            "table.personName.waterGenasi.family.freshwater.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.07",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.07",
+            "table.personName.waterGenasi.family.freshwater.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.08",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.08",
+            "table.personName.waterGenasi.family.freshwater.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.09",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.09",
+            "table.personName.waterGenasi.family.freshwater.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.10",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.10",
+            "table.personName.waterGenasi.family.freshwater.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.11",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.11",
+            "table.personName.waterGenasi.family.freshwater.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.12",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.12",
+            "table.personName.waterGenasi.family.freshwater.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.13",
+          "components": [
+            "table.personName.waterGenasi.given.feminine.freshwater.13",
+            "table.personName.waterGenasi.family.freshwater.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.feminine",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.feminine.arabic-romanised-examples-broad-historical-modern.01",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.feminine.persian-iranian-romanised-examples.01",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.feminine.swahili-speaking-east-africa.01",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.feminine.japanese-romanised-name-examples-mixed-periods.01",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.feminine.portuguese.01",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.feminine.irish-gaelic.01",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.feminine.greek.01",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.feminine.indonesian.01",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.feminine.north-indian-sanskrit-derived-romanised-examples.01",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.feminine.yoruba.01",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.feminine.anglo-norman-medieval-britain.01",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.waterGenasi.neutral",
+      "name": "Water Genasi names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.waterGenasi"
+      },
+      "method_table": "table.personName.waterGenasi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.waterGenasi.given.neutral",
+            "table.personName.waterGenasi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.02",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.02",
+            "table.personName.waterGenasi.family.marid.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.03",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.03",
+            "table.personName.waterGenasi.family.marid.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.04",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.04",
+            "table.personName.waterGenasi.family.marid.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.05",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.05",
+            "table.personName.waterGenasi.family.marid.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.06",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.06",
+            "table.personName.waterGenasi.family.marid.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.07",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.07",
+            "table.personName.waterGenasi.family.marid.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.08",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.08",
+            "table.personName.waterGenasi.family.marid.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.09",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.09",
+            "table.personName.waterGenasi.family.marid.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.10",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.10",
+            "table.personName.waterGenasi.family.marid.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.11",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.11",
+            "table.personName.waterGenasi.family.marid.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.12",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.12",
+            "table.personName.waterGenasi.family.marid.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.13",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.13",
+            "table.personName.waterGenasi.family.marid.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.14",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.14",
+            "table.personName.waterGenasi.family.marid.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.marid.15",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.marid.15",
+            "table.personName.waterGenasi.family.marid.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.01",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.01",
+            "table.personName.waterGenasi.family.tidal.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.02",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.02",
+            "table.personName.waterGenasi.family.tidal.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.03",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.03",
+            "table.personName.waterGenasi.family.tidal.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.04",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.04",
+            "table.personName.waterGenasi.family.tidal.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.05",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.05",
+            "table.personName.waterGenasi.family.tidal.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.06",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.06",
+            "table.personName.waterGenasi.family.tidal.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.07",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.07",
+            "table.personName.waterGenasi.family.tidal.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.08",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.08",
+            "table.personName.waterGenasi.family.tidal.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.09",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.09",
+            "table.personName.waterGenasi.family.tidal.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.10",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.10",
+            "table.personName.waterGenasi.family.tidal.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.11",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.11",
+            "table.personName.waterGenasi.family.tidal.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.12",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.12",
+            "table.personName.waterGenasi.family.tidal.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.tidal.13",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.tidal.13",
+            "table.personName.waterGenasi.family.tidal.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.01",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.01",
+            "table.personName.waterGenasi.family.depths.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.02",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.02",
+            "table.personName.waterGenasi.family.depths.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.03",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.03",
+            "table.personName.waterGenasi.family.depths.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.04",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.04",
+            "table.personName.waterGenasi.family.depths.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.05",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.05",
+            "table.personName.waterGenasi.family.depths.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.06",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.06",
+            "table.personName.waterGenasi.family.depths.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.07",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.07",
+            "table.personName.waterGenasi.family.depths.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.08",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.08",
+            "table.personName.waterGenasi.family.depths.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.depths.09",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.depths.09",
+            "table.personName.waterGenasi.family.depths.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.01",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.01",
+            "table.personName.waterGenasi.family.freshwater.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.02",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.02",
+            "table.personName.waterGenasi.family.freshwater.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.03",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.03",
+            "table.personName.waterGenasi.family.freshwater.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.04",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.04",
+            "table.personName.waterGenasi.family.freshwater.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.05",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.05",
+            "table.personName.waterGenasi.family.freshwater.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.06",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.06",
+            "table.personName.waterGenasi.family.freshwater.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.07",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.07",
+            "table.personName.waterGenasi.family.freshwater.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.08",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.08",
+            "table.personName.waterGenasi.family.freshwater.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.09",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.09",
+            "table.personName.waterGenasi.family.freshwater.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.10",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.10",
+            "table.personName.waterGenasi.family.freshwater.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.11",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.11",
+            "table.personName.waterGenasi.family.freshwater.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.12",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.12",
+            "table.personName.waterGenasi.family.freshwater.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.freshwater.13",
+          "components": [
+            "table.personName.waterGenasi.given.neutral.freshwater.13",
+            "table.personName.waterGenasi.family.freshwater.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.arabic-romanised-examples-broad-historical-modern.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.persian-iranian-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.swahili-speaking-east-africa.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.japanese-romanised-name-examples-mixed-periods.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.06",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.portuguese.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.07",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.irish-gaelic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.08",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.greek.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.09",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.10",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.north-indian-sanskrit-derived-romanised-examples.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.11",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.yoruba.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.12",
+          "components": [
+            "table.personName.human.given.neutral",
+            "table.personName.human.family.british-english.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family name / byname"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

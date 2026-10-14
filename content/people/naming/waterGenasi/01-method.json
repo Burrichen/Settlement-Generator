@@ -4,13 +4,494 @@
     {
       "id": "table.personName.waterGenasi.method",
       "name": "Water Genasi Naming Method",
-      "description": "How a Water Genasi Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "1d100: 30% Marid Courts, 26% Tides/Rain/Storms, 18% Deep Seas, 14% Rivers/Springs, 12% direct Human-table references.",
+      "dice": "1d100",
       "results": [
         {
-          "id": "given",
-          "name": "Given name only",
-          "range": [1, 4]
+          "id": "givenSurname",
+          "name": "Marid Courts & Living Waters - bank 1/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.marid.02",
+          "name": "Marid Courts & Living Waters - bank 2/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.marid.03",
+          "name": "Marid Courts & Living Waters - bank 3/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.marid.04",
+          "name": "Marid Courts & Living Waters - bank 4/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.marid.05",
+          "name": "Marid Courts & Living Waters - bank 5/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.marid.06",
+          "name": "Marid Courts & Living Waters - bank 6/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.marid.07",
+          "name": "Marid Courts & Living Waters - bank 7/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.marid.08",
+          "name": "Marid Courts & Living Waters - bank 8/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.marid.09",
+          "name": "Marid Courts & Living Waters - bank 9/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.marid.10",
+          "name": "Marid Courts & Living Waters - bank 10/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.marid.11",
+          "name": "Marid Courts & Living Waters - bank 11/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.marid.12",
+          "name": "Marid Courts & Living Waters - bank 12/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.marid.13",
+          "name": "Marid Courts & Living Waters - bank 13/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.marid.14",
+          "name": "Marid Courts & Living Waters - bank 14/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.marid.15",
+          "name": "Marid Courts & Living Waters - bank 15/15",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.01",
+          "name": "Tides, Rain & Storms - bank 1/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.02",
+          "name": "Tides, Rain & Storms - bank 2/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.03",
+          "name": "Tides, Rain & Storms - bank 3/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.04",
+          "name": "Tides, Rain & Storms - bank 4/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.05",
+          "name": "Tides, Rain & Storms - bank 5/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.06",
+          "name": "Tides, Rain & Storms - bank 6/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.07",
+          "name": "Tides, Rain & Storms - bank 7/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.08",
+          "name": "Tides, Rain & Storms - bank 8/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.09",
+          "name": "Tides, Rain & Storms - bank 9/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.10",
+          "name": "Tides, Rain & Storms - bank 10/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.11",
+          "name": "Tides, Rain & Storms - bank 11/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.12",
+          "name": "Tides, Rain & Storms - bank 12/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.tidal.13",
+          "name": "Tides, Rain & Storms - bank 13/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.depths.01",
+          "name": "Deep Seas, Pearls & Reefs - bank 1/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.depths.02",
+          "name": "Deep Seas, Pearls & Reefs - bank 2/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.depths.03",
+          "name": "Deep Seas, Pearls & Reefs - bank 3/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.depths.04",
+          "name": "Deep Seas, Pearls & Reefs - bank 4/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.depths.05",
+          "name": "Deep Seas, Pearls & Reefs - bank 5/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.depths.06",
+          "name": "Deep Seas, Pearls & Reefs - bank 6/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.depths.07",
+          "name": "Deep Seas, Pearls & Reefs - bank 7/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.depths.08",
+          "name": "Deep Seas, Pearls & Reefs - bank 8/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.depths.09",
+          "name": "Deep Seas, Pearls & Reefs - bank 9/9",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.freshwater.01",
+          "name": "Rivers, Springs & Quiet Shores - bank 1/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.freshwater.02",
+          "name": "Rivers, Springs & Quiet Shores - bank 2/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.freshwater.03",
+          "name": "Rivers, Springs & Quiet Shores - bank 3/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.freshwater.04",
+          "name": "Rivers, Springs & Quiet Shores - bank 4/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.freshwater.05",
+          "name": "Rivers, Springs & Quiet Shores - bank 5/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.freshwater.06",
+          "name": "Rivers, Springs & Quiet Shores - bank 6/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.freshwater.07",
+          "name": "Rivers, Springs & Quiet Shores - bank 7/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.freshwater.08",
+          "name": "Rivers, Springs & Quiet Shores - bank 8/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.freshwater.09",
+          "name": "Rivers, Springs & Quiet Shores - bank 9/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.freshwater.10",
+          "name": "Rivers, Springs & Quiet Shores - bank 10/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.freshwater.11",
+          "name": "Rivers, Springs & Quiet Shores - bank 11/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.freshwater.12",
+          "name": "Rivers, Springs & Quiet Shores - bank 12/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.freshwater.13",
+          "name": "Rivers, Springs & Quiet Shores - bank 13/13",
+          "description": "Ordinary given name + surname from paired Water Genasi tables.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.human.01",
+          "name": "Borrowed Human name - Original Human naming table",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.human.02",
+          "name": "Borrowed Human name - Arabic / historical",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.human.03",
+          "name": "Borrowed Human name - Persian / Iranian",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.human.04",
+          "name": "Borrowed Human name - Swahili-speaking East Africa",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.human.05",
+          "name": "Borrowed Human name - Japanese",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.human.06",
+          "name": "Borrowed Human name - Portuguese",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.human.07",
+          "name": "Borrowed Human name - Irish Gaelic",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.human.08",
+          "name": "Borrowed Human name - Greek",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.human.09",
+          "name": "Borrowed Human name - Indonesian",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.human.10",
+          "name": "Borrowed Human name - North Indian",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.human.11",
+          "name": "Borrowed Human name - Yoruba",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.human.12",
+          "name": "Borrowed Human name - Medieval Britain",
+          "description": "Use existing Human given and family tables directly; do not copy names.",
+          "range": 100
         }
       ]
     }

@@ -2,17 +2,27 @@
   "schema_version": 1,
   "naming_schemes": [
     {
-      "id": "naming.person.yuanTi",
-      "name": "Yuan-Ti names",
+      "id": "naming.person.yuanTi.masculine",
+      "name": "Yuan-ti names (masculine)",
       "subject": "person",
       "when": {
-        "has_tag": "species.yuanTi"
+        "all": [
+          {
+            "has_tag": "species.yuanTi"
+          },
+          {
+            "has_tag": "gender.man"
+          }
+        ]
       },
       "method_table": "table.personName.yuanTi.method",
       "methods": [
         {
           "result": "givenSurname",
-          "components": ["table.personName.yuanTi.given", "table.personName.yuanTi.lineage"],
+          "components": [
+            "table.personName.yuanTi.given.masculine",
+            "table.personName.yuanTi.family"
+          ],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -21,11 +31,3318 @@
           "parts": [
             {
               "id": "given",
-              "label": "Given name"
+              "label": "Birth / adopted name"
             },
             {
-              "id": "lineage",
-              "label": "Lineage name"
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.02",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.02",
+            "table.personName.yuanTi.family.serpent.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.03",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.03",
+            "table.personName.yuanTi.family.serpent.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.04",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.04",
+            "table.personName.yuanTi.family.serpent.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.05",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.05",
+            "table.personName.yuanTi.family.serpent.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.06",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.06",
+            "table.personName.yuanTi.family.serpent.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.07",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.07",
+            "table.personName.yuanTi.family.serpent.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.08",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.08",
+            "table.personName.yuanTi.family.serpent.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.09",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.09",
+            "table.personName.yuanTi.family.serpent.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.10",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.10",
+            "table.personName.yuanTi.family.serpent.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.11",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.11",
+            "table.personName.yuanTi.family.serpent.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.12",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.12",
+            "table.personName.yuanTi.family.serpent.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.13",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.13",
+            "table.personName.yuanTi.family.serpent.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.14",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.14",
+            "table.personName.yuanTi.family.serpent.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.15",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.15",
+            "table.personName.yuanTi.family.serpent.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.16",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.16",
+            "table.personName.yuanTi.family.serpent.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.17",
+          "components": [
+            "table.personName.yuanTi.given.masculine.serpent.17",
+            "table.personName.yuanTi.family.serpent.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.01",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.01",
+            "table.personName.yuanTi.family.temple.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.02",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.02",
+            "table.personName.yuanTi.family.temple.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.03",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.03",
+            "table.personName.yuanTi.family.temple.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.04",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.04",
+            "table.personName.yuanTi.family.temple.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.05",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.05",
+            "table.personName.yuanTi.family.temple.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.06",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.06",
+            "table.personName.yuanTi.family.temple.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.07",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.07",
+            "table.personName.yuanTi.family.temple.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.08",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.08",
+            "table.personName.yuanTi.family.temple.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.09",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.09",
+            "table.personName.yuanTi.family.temple.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.10",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.10",
+            "table.personName.yuanTi.family.temple.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.11",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.11",
+            "table.personName.yuanTi.family.temple.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.12",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.12",
+            "table.personName.yuanTi.family.temple.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.13",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.13",
+            "table.personName.yuanTi.family.temple.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.14",
+          "components": [
+            "table.personName.yuanTi.given.masculine.temple.14",
+            "table.personName.yuanTi.family.temple.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.01",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.01",
+            "table.personName.yuanTi.family.dynasty.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.02",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.02",
+            "table.personName.yuanTi.family.dynasty.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.03",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.03",
+            "table.personName.yuanTi.family.dynasty.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.04",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.04",
+            "table.personName.yuanTi.family.dynasty.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.05",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.05",
+            "table.personName.yuanTi.family.dynasty.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.06",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.06",
+            "table.personName.yuanTi.family.dynasty.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.07",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.07",
+            "table.personName.yuanTi.family.dynasty.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.08",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.08",
+            "table.personName.yuanTi.family.dynasty.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.09",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.09",
+            "table.personName.yuanTi.family.dynasty.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.10",
+          "components": [
+            "table.personName.yuanTi.given.masculine.dynasty.10",
+            "table.personName.yuanTi.family.dynasty.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.01",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.01",
+            "table.personName.yuanTi.family.river.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.02",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.02",
+            "table.personName.yuanTi.family.river.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.03",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.03",
+            "table.personName.yuanTi.family.river.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.04",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.04",
+            "table.personName.yuanTi.family.river.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.05",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.05",
+            "table.personName.yuanTi.family.river.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.06",
+          "components": [
+            "table.personName.yuanTi.given.masculine.river.06",
+            "table.personName.yuanTi.family.river.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.01",
+          "components": [
+            "table.personName.yuanTi.given.masculine.alias.01",
+            "table.personName.yuanTi.family.alias.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.02",
+          "components": [
+            "table.personName.yuanTi.given.masculine.alias.02",
+            "table.personName.yuanTi.family.alias.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.03",
+          "components": [
+            "table.personName.yuanTi.given.masculine.alias.03",
+            "table.personName.yuanTi.family.alias.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.yuanTi.feminine",
+      "name": "Yuan-ti names (feminine)",
+      "subject": "person",
+      "when": {
+        "all": [
+          {
+            "has_tag": "species.yuanTi"
+          },
+          {
+            "has_tag": "gender.woman"
+          }
+        ]
+      },
+      "method_table": "table.personName.yuanTi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.yuanTi.given.feminine",
+            "table.personName.yuanTi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.02",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.02",
+            "table.personName.yuanTi.family.serpent.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.03",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.03",
+            "table.personName.yuanTi.family.serpent.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.04",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.04",
+            "table.personName.yuanTi.family.serpent.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.05",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.05",
+            "table.personName.yuanTi.family.serpent.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.06",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.06",
+            "table.personName.yuanTi.family.serpent.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.07",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.07",
+            "table.personName.yuanTi.family.serpent.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.08",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.08",
+            "table.personName.yuanTi.family.serpent.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.09",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.09",
+            "table.personName.yuanTi.family.serpent.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.10",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.10",
+            "table.personName.yuanTi.family.serpent.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.11",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.11",
+            "table.personName.yuanTi.family.serpent.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.12",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.12",
+            "table.personName.yuanTi.family.serpent.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.13",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.13",
+            "table.personName.yuanTi.family.serpent.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.14",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.14",
+            "table.personName.yuanTi.family.serpent.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.15",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.15",
+            "table.personName.yuanTi.family.serpent.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.16",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.16",
+            "table.personName.yuanTi.family.serpent.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.17",
+          "components": [
+            "table.personName.yuanTi.given.feminine.serpent.17",
+            "table.personName.yuanTi.family.serpent.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.01",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.01",
+            "table.personName.yuanTi.family.temple.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.02",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.02",
+            "table.personName.yuanTi.family.temple.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.03",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.03",
+            "table.personName.yuanTi.family.temple.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.04",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.04",
+            "table.personName.yuanTi.family.temple.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.05",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.05",
+            "table.personName.yuanTi.family.temple.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.06",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.06",
+            "table.personName.yuanTi.family.temple.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.07",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.07",
+            "table.personName.yuanTi.family.temple.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.08",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.08",
+            "table.personName.yuanTi.family.temple.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.09",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.09",
+            "table.personName.yuanTi.family.temple.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.10",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.10",
+            "table.personName.yuanTi.family.temple.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.11",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.11",
+            "table.personName.yuanTi.family.temple.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.12",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.12",
+            "table.personName.yuanTi.family.temple.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.13",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.13",
+            "table.personName.yuanTi.family.temple.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.14",
+          "components": [
+            "table.personName.yuanTi.given.feminine.temple.14",
+            "table.personName.yuanTi.family.temple.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.01",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.01",
+            "table.personName.yuanTi.family.dynasty.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.02",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.02",
+            "table.personName.yuanTi.family.dynasty.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.03",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.03",
+            "table.personName.yuanTi.family.dynasty.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.04",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.04",
+            "table.personName.yuanTi.family.dynasty.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.05",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.05",
+            "table.personName.yuanTi.family.dynasty.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.06",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.06",
+            "table.personName.yuanTi.family.dynasty.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.07",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.07",
+            "table.personName.yuanTi.family.dynasty.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.08",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.08",
+            "table.personName.yuanTi.family.dynasty.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.09",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.09",
+            "table.personName.yuanTi.family.dynasty.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.10",
+          "components": [
+            "table.personName.yuanTi.given.feminine.dynasty.10",
+            "table.personName.yuanTi.family.dynasty.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.01",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.01",
+            "table.personName.yuanTi.family.river.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.02",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.02",
+            "table.personName.yuanTi.family.river.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.03",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.03",
+            "table.personName.yuanTi.family.river.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.04",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.04",
+            "table.personName.yuanTi.family.river.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.05",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.05",
+            "table.personName.yuanTi.family.river.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.06",
+          "components": [
+            "table.personName.yuanTi.given.feminine.river.06",
+            "table.personName.yuanTi.family.river.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.01",
+          "components": [
+            "table.personName.yuanTi.given.feminine.alias.01",
+            "table.personName.yuanTi.family.alias.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.02",
+          "components": [
+            "table.personName.yuanTi.given.feminine.alias.02",
+            "table.personName.yuanTi.family.alias.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.03",
+          "components": [
+            "table.personName.yuanTi.given.feminine.alias.03",
+            "table.personName.yuanTi.family.alias.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naming.person.yuanTi.neutral",
+      "name": "Yuan-ti names (neutral)",
+      "subject": "person",
+      "when": {
+        "has_tag": "species.yuanTi"
+      },
+      "method_table": "table.personName.yuanTi.method",
+      "methods": [
+        {
+          "result": "givenSurname",
+          "components": [
+            "table.personName.yuanTi.given.neutral",
+            "table.personName.yuanTi.family"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.02",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.02",
+            "table.personName.yuanTi.family.serpent.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.03",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.03",
+            "table.personName.yuanTi.family.serpent.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.04",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.04",
+            "table.personName.yuanTi.family.serpent.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.05",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.05",
+            "table.personName.yuanTi.family.serpent.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.06",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.06",
+            "table.personName.yuanTi.family.serpent.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.07",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.07",
+            "table.personName.yuanTi.family.serpent.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.08",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.08",
+            "table.personName.yuanTi.family.serpent.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.09",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.09",
+            "table.personName.yuanTi.family.serpent.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.10",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.10",
+            "table.personName.yuanTi.family.serpent.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.11",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.11",
+            "table.personName.yuanTi.family.serpent.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.12",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.12",
+            "table.personName.yuanTi.family.serpent.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.13",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.13",
+            "table.personName.yuanTi.family.serpent.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.14",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.14",
+            "table.personName.yuanTi.family.serpent.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.15",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.15",
+            "table.personName.yuanTi.family.serpent.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.16",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.16",
+            "table.personName.yuanTi.family.serpent.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.serpent.17",
+          "components": [
+            "table.personName.yuanTi.given.neutral.serpent.17",
+            "table.personName.yuanTi.family.serpent.17"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.01",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.01",
+            "table.personName.yuanTi.family.temple.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.02",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.02",
+            "table.personName.yuanTi.family.temple.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.03",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.03",
+            "table.personName.yuanTi.family.temple.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.04",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.04",
+            "table.personName.yuanTi.family.temple.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.05",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.05",
+            "table.personName.yuanTi.family.temple.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.06",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.06",
+            "table.personName.yuanTi.family.temple.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.07",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.07",
+            "table.personName.yuanTi.family.temple.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.08",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.08",
+            "table.personName.yuanTi.family.temple.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.09",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.09",
+            "table.personName.yuanTi.family.temple.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.10",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.10",
+            "table.personName.yuanTi.family.temple.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.11",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.11",
+            "table.personName.yuanTi.family.temple.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.12",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.12",
+            "table.personName.yuanTi.family.temple.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.13",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.13",
+            "table.personName.yuanTi.family.temple.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.temple.14",
+          "components": [
+            "table.personName.yuanTi.given.neutral.temple.14",
+            "table.personName.yuanTi.family.temple.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.01",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.01",
+            "table.personName.yuanTi.family.dynasty.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.02",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.02",
+            "table.personName.yuanTi.family.dynasty.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.03",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.03",
+            "table.personName.yuanTi.family.dynasty.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.04",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.04",
+            "table.personName.yuanTi.family.dynasty.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.05",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.05",
+            "table.personName.yuanTi.family.dynasty.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.06",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.06",
+            "table.personName.yuanTi.family.dynasty.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.07",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.07",
+            "table.personName.yuanTi.family.dynasty.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.08",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.08",
+            "table.personName.yuanTi.family.dynasty.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.09",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.09",
+            "table.personName.yuanTi.family.dynasty.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dynasty.10",
+          "components": [
+            "table.personName.yuanTi.given.neutral.dynasty.10",
+            "table.personName.yuanTi.family.dynasty.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.01",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.01",
+            "table.personName.yuanTi.family.river.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.02",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.02",
+            "table.personName.yuanTi.family.river.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.03",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.03",
+            "table.personName.yuanTi.family.river.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.04",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.04",
+            "table.personName.yuanTi.family.river.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.05",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.05",
+            "table.personName.yuanTi.family.river.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.river.06",
+          "components": [
+            "table.personName.yuanTi.given.neutral.river.06",
+            "table.personName.yuanTi.family.river.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.01",
+          "components": [
+            "table.personName.yuanTi.given.neutral.alias.01",
+            "table.personName.yuanTi.family.alias.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.02",
+          "components": [
+            "table.personName.yuanTi.given.neutral.alias.02",
+            "table.personName.yuanTi.family.alias.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.alias.03",
+          "components": [
+            "table.personName.yuanTi.given.neutral.alias.03",
+            "table.personName.yuanTi.family.alias.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Birth / adopted name"
+            },
+            {
+              "id": "family",
+              "label": "Temple / lineage / public byname"
             }
           ]
         }

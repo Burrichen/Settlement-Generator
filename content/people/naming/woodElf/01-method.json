@@ -4,13 +4,458 @@
     {
       "id": "table.personName.woodElf.method",
       "name": "Wood Elf Naming Method",
-      "description": "How a Wood Elf Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "Ancient Silvan & Greenwood Speech: 32%; Sacred Groves & Woodland Kin: 26%; Wardens, Hunters & Old Paths: 20%; Rivers, Seasons & Wild Bloom: 16%; Borderland & Human-Influenced: 6%. Standard compound join only.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + kin name",
-          "range": [1, 4]
+          "name": "Ancient Silvan & Greenwood Speech - name bank 1/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.02",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 2/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.03",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 3/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.04",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 4/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.05",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 5/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.06",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 6/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.07",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 7/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.08",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 8/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.09",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 9/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.10",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 10/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.11",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 11/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.12",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 12/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.13",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 13/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.14",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 14/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.15",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 15/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.silvan.16",
+          "name": "Ancient Silvan & Greenwood Speech - name bank 16/16",
+          "description": "Old woodland-inspired speech: a little shorter, earthier, and less courtly than High Elven names. Standard given name + family name.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.grove.01",
+          "name": "Sacred Groves & Woodland Kin - name bank 1/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.grove.02",
+          "name": "Sacred Groves & Woodland Kin - name bank 2/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.grove.03",
+          "name": "Sacred Groves & Woodland Kin - name bank 3/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.grove.04",
+          "name": "Sacred Groves & Woodland Kin - name bank 4/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.grove.05",
+          "name": "Sacred Groves & Woodland Kin - name bank 5/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.grove.06",
+          "name": "Sacred Groves & Woodland Kin - name bank 6/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.grove.07",
+          "name": "Sacred Groves & Woodland Kin - name bank 7/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.grove.08",
+          "name": "Sacred Groves & Woodland Kin - name bank 8/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.grove.09",
+          "name": "Sacred Groves & Woodland Kin - name bank 9/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.grove.10",
+          "name": "Sacred Groves & Woodland Kin - name bank 10/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.grove.11",
+          "name": "Sacred Groves & Woodland Kin - name bank 11/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.grove.12",
+          "name": "Sacred Groves & Woodland Kin - name bank 12/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.grove.13",
+          "name": "Sacred Groves & Woodland Kin - name bank 13/13",
+          "description": "Grove communities, tree-kinship, local forests, and inherited home-places. Standard given name + family name.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.warden.01",
+          "name": "Wardens, Hunters & Old Paths - name bank 1/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.warden.02",
+          "name": "Wardens, Hunters & Old Paths - name bank 2/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.warden.03",
+          "name": "Wardens, Hunters & Old Paths - name bank 3/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.warden.04",
+          "name": "Wardens, Hunters & Old Paths - name bank 4/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.warden.05",
+          "name": "Wardens, Hunters & Old Paths - name bank 5/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.warden.06",
+          "name": "Wardens, Hunters & Old Paths - name bank 6/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.warden.07",
+          "name": "Wardens, Hunters & Old Paths - name bank 7/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.warden.08",
+          "name": "Wardens, Hunters & Old Paths - name bank 8/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.warden.09",
+          "name": "Wardens, Hunters & Old Paths - name bank 9/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.warden.10",
+          "name": "Wardens, Hunters & Old Paths - name bank 10/10",
+          "description": "Forest guardians, trail-keepers, scouts, rangers, and border families. Standard given name + family name.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.river.01",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 1/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.river.02",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 2/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.river.03",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 3/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.river.04",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 4/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.river.05",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 5/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.river.06",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 6/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.river.07",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 7/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.river.08",
+          "name": "Rivers, Seasons & Wild Bloom - name bank 8/8",
+          "description": "Rain, streams, spring bloom, autumn woods and the passage of seasons. Standard given name + family name.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.border.01",
+          "name": "Borderland & Human-Influenced - name bank 1/3",
+          "description": "Complete familiar names borrowed from Human naming traditions of nearby peoples, not fabricated hybrids. Standard given name + family name.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.border.02",
+          "name": "Borderland & Human-Influenced - name bank 2/3",
+          "description": "Complete familiar names borrowed from Human naming traditions of nearby peoples, not fabricated hybrids. Standard given name + family name.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.border.03",
+          "name": "Borderland & Human-Influenced - name bank 3/3",
+          "description": "Complete familiar names borrowed from Human naming traditions of nearby peoples, not fabricated hybrids. Standard given name + family name.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

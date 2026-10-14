@@ -40,15 +40,22 @@ const SPECIES: [(&str, u32, bool); 13] = [
     ("dragonborn", 10, false),
     ("earthGenasi", 11, false),
     ("airGenasi", 12, false),
-    ("fireGenasi", 13, true),
-    ("waterGenasi", 14, true),
-    ("yuanTi", 15, true),
+    ("fireGenasi", 13, false),
+    ("waterGenasi", 14, false),
+    ("yuanTi", 15, false),
     ("dwarf", 16, false),
     ("eladrin", 18, true),
-    ("firbolg", 19, true),
+    ("firbolg", 19, false),
 ];
 
 const GENDERS: [&str; 3] = ["man", "woman", "nonBinary"];
+
+/// Species whose packs also borrow whole human names (raised among humans).
+const BORROWS_HUMAN_NAMES: [&str; 3] = ["firbolg", "fireGenasi", "waterGenasi"];
+
+fn is_human(t: &str) -> bool {
+    t.starts_with("table.personName.human.")
+}
 
 fn content() -> ContentSet {
     bundled_content().unwrap()
@@ -93,7 +100,19 @@ fn every_species_and_gender_routes_to_its_own_species_tables() {
             );
             let prefix = format!("table.personName.{species}.");
             for t in tables(s) {
-                assert!(t.starts_with(&prefix), "{species} ({gender}) uses {t}");
+                // A borrowed human given name comes from the same gender's pool.
+                let pool = match gender {
+                    "man" => "masculine",
+                    "woman" => "feminine",
+                    _ => "neutral",
+                };
+                let borrowed = BORROWS_HUMAN_NAMES.contains(&species)
+                    && is_human(&t)
+                    && (!t.contains(".given.") || t.contains(&format!(".given.{pool}")));
+                assert!(
+                    t.starts_with(&prefix) || borrowed,
+                    "{species} ({gender}) uses {t}"
+                );
             }
         }
     }
@@ -125,9 +144,13 @@ fn each_genasi_ancestry_has_its_own_route() {
         .collect();
     let ids: HashSet<_> = schemes.iter().map(|s| s.id.as_str()).collect();
     assert_eq!(ids.len(), 4);
+    // Borrowed human names may be shared; their own tables never are.
+    let own = |s: &NamingScheme| -> HashSet<String> {
+        tables(s).into_iter().filter(|t| !is_human(t)).collect()
+    };
     for (i, a) in schemes.iter().enumerate() {
         for b in &schemes[i + 1..] {
-            assert!(tables(a).is_disjoint(&tables(b)), "{} / {}", a.id, b.id);
+            assert!(own(a).is_disjoint(&own(b)), "{} / {}", a.id, b.id);
         }
     }
 }
@@ -341,9 +364,17 @@ fn each_species_puts_its_name_together_its_own_way() {
             vec![("family", family.as_str()), ("given", given.as_str())]
         )
     );
-    // Firbolg (any gender): a single name from a d100 pool.
-    let (_, f) = noble(&[19, 19, 1, 1, 1, 1, 1, 1, 3]);
-    assert_eq!(generated(&f), ("Bannoch", vec![("given", "Bannoch")]));
+    // Firbolg man, method 1: given name + family name.
+    let (_, f) = noble(&[19, 1, 1, 1, 1, 1, 1, 1, 3, 4]);
+    let given = at("table.personName.firbolg.given.masculine", 3);
+    let family = at("table.personName.firbolg.family", 4);
+    assert_eq!(
+        generated(&f),
+        (
+            format!("{given} {family}").as_str(),
+            vec![("given", given.as_str()), ("family", family.as_str())]
+        )
+    );
     // Earth Genasi man: given name + family name.
     let (_, f) = noble(&[11, 1, 1, 1, 1, 1, 1, 1, 100, 20]);
     let given = at("table.personName.earthGenasi.given.masculine", 100);
@@ -366,13 +397,15 @@ fn each_species_puts_its_name_together_its_own_way() {
             vec![("given", given.as_str()), ("family", family.as_str())]
         )
     );
-    // High Elf non-binary: the neutral pool + house name.
+    // High Elf non-binary: the neutral pool + family name.
     let (_, f) = noble(&[5, 19, 1, 1, 1, 1, 1, 1, 1, 1]);
+    let given = at("table.personName.highElf.given.neutral", 1);
+    let family = at("table.personName.highElf.family", 1);
     assert_eq!(
         generated(&f),
         (
-            "Aethis Aranvelis",
-            vec![("given", "Aethis"), ("house", "Aranvelis")]
+            format!("{given} {family}").as_str(),
+            vec![("given", given.as_str()), ("family", family.as_str())]
         )
     );
 }

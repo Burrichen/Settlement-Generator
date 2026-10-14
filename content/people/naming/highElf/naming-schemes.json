@@ -21,7 +21,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.highElf.given.masculine",
-            "table.personName.highElf.house"
+            "table.personName.highElf.family"
           ],
           "join": {
             "style": "compound",
@@ -34,8 +34,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.02",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.02",
+            "table.personName.highElf.family.old_high.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.03",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.03",
+            "table.personName.highElf.family.old_high.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.04",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.04",
+            "table.personName.highElf.family.old_high.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.05",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.05",
+            "table.personName.highElf.family.old_high.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.06",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.06",
+            "table.personName.highElf.family.old_high.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.07",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.07",
+            "table.personName.highElf.family.old_high.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.08",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.08",
+            "table.personName.highElf.family.old_high.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.09",
+          "components": [
+            "table.personName.highElf.given.masculine.old_high.09",
+            "table.personName.highElf.family.old_high.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.01",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.01",
+            "table.personName.highElf.family.silver.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.02",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.02",
+            "table.personName.highElf.family.silver.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.03",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.03",
+            "table.personName.highElf.family.silver.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.04",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.04",
+            "table.personName.highElf.family.silver.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.05",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.05",
+            "table.personName.highElf.family.silver.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.06",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.06",
+            "table.personName.highElf.family.silver.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.07",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.07",
+            "table.personName.highElf.family.silver.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.08",
+          "components": [
+            "table.personName.highElf.given.masculine.silver.08",
+            "table.personName.highElf.family.silver.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.01",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.01",
+            "table.personName.highElf.family.dnd.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.02",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.02",
+            "table.personName.highElf.family.dnd.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.03",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.03",
+            "table.personName.highElf.family.dnd.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.04",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.04",
+            "table.personName.highElf.family.dnd.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.05",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.05",
+            "table.personName.highElf.family.dnd.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.06",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.06",
+            "table.personName.highElf.family.dnd.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.07",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.07",
+            "table.personName.highElf.family.dnd.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.08",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.08",
+            "table.personName.highElf.family.dnd.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.09",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.09",
+            "table.personName.highElf.family.dnd.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.10",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.10",
+            "table.personName.highElf.family.dnd.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.11",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.11",
+            "table.personName.highElf.family.dnd.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.12",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.12",
+            "table.personName.highElf.family.dnd.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.13",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.13",
+            "table.personName.highElf.family.dnd.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.14",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.14",
+            "table.personName.highElf.family.dnd.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.15",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.15",
+            "table.personName.highElf.family.dnd.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.16",
+          "components": [
+            "table.personName.highElf.given.masculine.dnd.16",
+            "table.personName.highElf.family.dnd.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.01",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.01",
+            "table.personName.highElf.family.classic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.02",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.02",
+            "table.personName.highElf.family.classic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.03",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.03",
+            "table.personName.highElf.family.classic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.04",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.04",
+            "table.personName.highElf.family.classic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.05",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.05",
+            "table.personName.highElf.family.classic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.06",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.06",
+            "table.personName.highElf.family.classic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.07",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.07",
+            "table.personName.highElf.family.classic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.08",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.08",
+            "table.personName.highElf.family.classic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.09",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.09",
+            "table.personName.highElf.family.classic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.10",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.10",
+            "table.personName.highElf.family.classic.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.11",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.11",
+            "table.personName.highElf.family.classic.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.12",
+          "components": [
+            "table.personName.highElf.given.masculine.classic.12",
+            "table.personName.highElf.family.classic.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.highElf.given.masculine.human.01",
+            "table.personName.highElf.family.human.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.highElf.given.masculine.human.02",
+            "table.personName.highElf.family.human.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.highElf.given.masculine.human.03",
+            "table.personName.highElf.family.human.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.highElf.given.masculine.human.04",
+            "table.personName.highElf.family.human.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.highElf.given.masculine.human.05",
+            "table.personName.highElf.family.human.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
             }
           ]
         }
@@ -61,7 +1139,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.highElf.given.feminine",
-            "table.personName.highElf.house"
+            "table.personName.highElf.family"
           ],
           "join": {
             "style": "compound",
@@ -74,8 +1152,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.02",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.02",
+            "table.personName.highElf.family.old_high.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.03",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.03",
+            "table.personName.highElf.family.old_high.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.04",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.04",
+            "table.personName.highElf.family.old_high.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.05",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.05",
+            "table.personName.highElf.family.old_high.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.06",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.06",
+            "table.personName.highElf.family.old_high.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.07",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.07",
+            "table.personName.highElf.family.old_high.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.08",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.08",
+            "table.personName.highElf.family.old_high.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.09",
+          "components": [
+            "table.personName.highElf.given.feminine.old_high.09",
+            "table.personName.highElf.family.old_high.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.01",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.01",
+            "table.personName.highElf.family.silver.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.02",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.02",
+            "table.personName.highElf.family.silver.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.03",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.03",
+            "table.personName.highElf.family.silver.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.04",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.04",
+            "table.personName.highElf.family.silver.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.05",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.05",
+            "table.personName.highElf.family.silver.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.06",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.06",
+            "table.personName.highElf.family.silver.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.07",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.07",
+            "table.personName.highElf.family.silver.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.08",
+          "components": [
+            "table.personName.highElf.given.feminine.silver.08",
+            "table.personName.highElf.family.silver.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.01",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.01",
+            "table.personName.highElf.family.dnd.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.02",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.02",
+            "table.personName.highElf.family.dnd.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.03",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.03",
+            "table.personName.highElf.family.dnd.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.04",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.04",
+            "table.personName.highElf.family.dnd.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.05",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.05",
+            "table.personName.highElf.family.dnd.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.06",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.06",
+            "table.personName.highElf.family.dnd.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.07",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.07",
+            "table.personName.highElf.family.dnd.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.08",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.08",
+            "table.personName.highElf.family.dnd.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.09",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.09",
+            "table.personName.highElf.family.dnd.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.10",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.10",
+            "table.personName.highElf.family.dnd.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.11",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.11",
+            "table.personName.highElf.family.dnd.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.12",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.12",
+            "table.personName.highElf.family.dnd.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.13",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.13",
+            "table.personName.highElf.family.dnd.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.14",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.14",
+            "table.personName.highElf.family.dnd.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.15",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.15",
+            "table.personName.highElf.family.dnd.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.16",
+          "components": [
+            "table.personName.highElf.given.feminine.dnd.16",
+            "table.personName.highElf.family.dnd.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.01",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.01",
+            "table.personName.highElf.family.classic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.02",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.02",
+            "table.personName.highElf.family.classic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.03",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.03",
+            "table.personName.highElf.family.classic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.04",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.04",
+            "table.personName.highElf.family.classic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.05",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.05",
+            "table.personName.highElf.family.classic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.06",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.06",
+            "table.personName.highElf.family.classic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.07",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.07",
+            "table.personName.highElf.family.classic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.08",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.08",
+            "table.personName.highElf.family.classic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.09",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.09",
+            "table.personName.highElf.family.classic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.10",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.10",
+            "table.personName.highElf.family.classic.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.11",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.11",
+            "table.personName.highElf.family.classic.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.12",
+          "components": [
+            "table.personName.highElf.given.feminine.classic.12",
+            "table.personName.highElf.family.classic.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.highElf.given.feminine.human.01",
+            "table.personName.highElf.family.human.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.highElf.given.feminine.human.02",
+            "table.personName.highElf.family.human.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.highElf.given.feminine.human.03",
+            "table.personName.highElf.family.human.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.highElf.given.feminine.human.04",
+            "table.personName.highElf.family.human.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.highElf.given.feminine.human.05",
+            "table.personName.highElf.family.human.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
             }
           ]
         }
@@ -94,7 +2250,7 @@
           "result": "givenSurname",
           "components": [
             "table.personName.highElf.given.neutral",
-            "table.personName.highElf.house"
+            "table.personName.highElf.family"
           ],
           "join": {
             "style": "compound",
@@ -107,8 +2263,1086 @@
               "label": "Given name"
             },
             {
-              "id": "house",
-              "label": "House name"
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.02",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.02",
+            "table.personName.highElf.family.old_high.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.03",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.03",
+            "table.personName.highElf.family.old_high.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.04",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.04",
+            "table.personName.highElf.family.old_high.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.05",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.05",
+            "table.personName.highElf.family.old_high.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.06",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.06",
+            "table.personName.highElf.family.old_high.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.07",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.07",
+            "table.personName.highElf.family.old_high.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.08",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.08",
+            "table.personName.highElf.family.old_high.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.old_high.09",
+          "components": [
+            "table.personName.highElf.given.neutral.old_high.09",
+            "table.personName.highElf.family.old_high.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.01",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.01",
+            "table.personName.highElf.family.silver.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.02",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.02",
+            "table.personName.highElf.family.silver.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.03",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.03",
+            "table.personName.highElf.family.silver.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.04",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.04",
+            "table.personName.highElf.family.silver.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.05",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.05",
+            "table.personName.highElf.family.silver.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.06",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.06",
+            "table.personName.highElf.family.silver.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.07",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.07",
+            "table.personName.highElf.family.silver.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.silver.08",
+          "components": [
+            "table.personName.highElf.given.neutral.silver.08",
+            "table.personName.highElf.family.silver.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.01",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.01",
+            "table.personName.highElf.family.dnd.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.02",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.02",
+            "table.personName.highElf.family.dnd.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.03",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.03",
+            "table.personName.highElf.family.dnd.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.04",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.04",
+            "table.personName.highElf.family.dnd.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.05",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.05",
+            "table.personName.highElf.family.dnd.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.06",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.06",
+            "table.personName.highElf.family.dnd.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.07",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.07",
+            "table.personName.highElf.family.dnd.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.08",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.08",
+            "table.personName.highElf.family.dnd.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.09",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.09",
+            "table.personName.highElf.family.dnd.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.10",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.10",
+            "table.personName.highElf.family.dnd.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.11",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.11",
+            "table.personName.highElf.family.dnd.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.12",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.12",
+            "table.personName.highElf.family.dnd.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.13",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.13",
+            "table.personName.highElf.family.dnd.13"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.14",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.14",
+            "table.personName.highElf.family.dnd.14"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.15",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.15",
+            "table.personName.highElf.family.dnd.15"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.dnd.16",
+          "components": [
+            "table.personName.highElf.given.neutral.dnd.16",
+            "table.personName.highElf.family.dnd.16"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.01",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.01",
+            "table.personName.highElf.family.classic.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.02",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.02",
+            "table.personName.highElf.family.classic.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.03",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.03",
+            "table.personName.highElf.family.classic.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.04",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.04",
+            "table.personName.highElf.family.classic.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.05",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.05",
+            "table.personName.highElf.family.classic.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.06",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.06",
+            "table.personName.highElf.family.classic.06"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.07",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.07",
+            "table.personName.highElf.family.classic.07"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.08",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.08",
+            "table.personName.highElf.family.classic.08"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.09",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.09",
+            "table.personName.highElf.family.classic.09"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.10",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.10",
+            "table.personName.highElf.family.classic.10"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.11",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.11",
+            "table.personName.highElf.family.classic.11"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.classic.12",
+          "components": [
+            "table.personName.highElf.given.neutral.classic.12",
+            "table.personName.highElf.family.classic.12"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.01",
+          "components": [
+            "table.personName.highElf.given.neutral.human.01",
+            "table.personName.highElf.family.human.01"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.02",
+          "components": [
+            "table.personName.highElf.given.neutral.human.02",
+            "table.personName.highElf.family.human.02"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.03",
+          "components": [
+            "table.personName.highElf.given.neutral.human.03",
+            "table.personName.highElf.family.human.03"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.04",
+          "components": [
+            "table.personName.highElf.given.neutral.human.04",
+            "table.personName.highElf.family.human.04"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
+            }
+          ]
+        },
+        {
+          "result": "givenSurname.human.05",
+          "components": [
+            "table.personName.highElf.given.neutral.human.05",
+            "table.personName.highElf.family.human.05"
+          ],
+          "join": {
+            "style": "compound",
+            "separator": " ",
+            "case": "as_written"
+          },
+          "parts": [
+            {
+              "id": "given",
+              "label": "Given name"
+            },
+            {
+              "id": "family",
+              "label": "Family / lineage name"
             }
           ]
         }

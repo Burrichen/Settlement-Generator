@@ -4,13 +4,608 @@
     {
       "id": "table.personName.firbolg.method",
       "name": "Firbolg Naming Method",
-      "description": "How a Firbolg Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "01-85 (85%): Firbolg woodland and home names. 86-100 (15%): existing Human name tables by live references; requires loaded Human pack.",
+      "dice": "1d100",
       "results": [
         {
-          "id": "given",
-          "name": "Given name only",
-          "range": [1, 4]
+          "id": "givenSurname",
+          "name": "Old Groves & Deepwood — collection 1/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 1
+        },
+        {
+          "id": "givenSurname.deepwood.02",
+          "name": "Old Groves & Deepwood — collection 2/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 2
+        },
+        {
+          "id": "givenSurname.deepwood.03",
+          "name": "Old Groves & Deepwood — collection 3/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 3
+        },
+        {
+          "id": "givenSurname.deepwood.04",
+          "name": "Old Groves & Deepwood — collection 4/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 4
+        },
+        {
+          "id": "givenSurname.deepwood.05",
+          "name": "Old Groves & Deepwood — collection 5/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 5
+        },
+        {
+          "id": "givenSurname.deepwood.06",
+          "name": "Old Groves & Deepwood — collection 6/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 6
+        },
+        {
+          "id": "givenSurname.deepwood.07",
+          "name": "Old Groves & Deepwood — collection 7/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 7
+        },
+        {
+          "id": "givenSurname.deepwood.08",
+          "name": "Old Groves & Deepwood — collection 8/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 8
+        },
+        {
+          "id": "givenSurname.deepwood.09",
+          "name": "Old Groves & Deepwood — collection 9/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 9
+        },
+        {
+          "id": "givenSurname.deepwood.10",
+          "name": "Old Groves & Deepwood — collection 10/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 10
+        },
+        {
+          "id": "givenSurname.deepwood.11",
+          "name": "Old Groves & Deepwood — collection 11/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 11
+        },
+        {
+          "id": "givenSurname.deepwood.12",
+          "name": "Old Groves & Deepwood — collection 12/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 12
+        },
+        {
+          "id": "givenSurname.deepwood.13",
+          "name": "Old Groves & Deepwood — collection 13/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 13
+        },
+        {
+          "id": "givenSurname.deepwood.14",
+          "name": "Old Groves & Deepwood — collection 14/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 14
+        },
+        {
+          "id": "givenSurname.deepwood.15",
+          "name": "Old Groves & Deepwood — collection 15/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 15
+        },
+        {
+          "id": "givenSurname.deepwood.16",
+          "name": "Old Groves & Deepwood — collection 16/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 16
+        },
+        {
+          "id": "givenSurname.deepwood.17",
+          "name": "Old Groves & Deepwood — collection 17/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 17
+        },
+        {
+          "id": "givenSurname.deepwood.18",
+          "name": "Old Groves & Deepwood — collection 18/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 18
+        },
+        {
+          "id": "givenSurname.deepwood.19",
+          "name": "Old Groves & Deepwood — collection 19/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 19
+        },
+        {
+          "id": "givenSurname.deepwood.20",
+          "name": "Old Groves & Deepwood — collection 20/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 20
+        },
+        {
+          "id": "givenSurname.deepwood.21",
+          "name": "Old Groves & Deepwood — collection 21/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 21
+        },
+        {
+          "id": "givenSurname.deepwood.22",
+          "name": "Old Groves & Deepwood — collection 22/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 22
+        },
+        {
+          "id": "givenSurname.deepwood.23",
+          "name": "Old Groves & Deepwood — collection 23/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 23
+        },
+        {
+          "id": "givenSurname.deepwood.24",
+          "name": "Old Groves & Deepwood — collection 24/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 24
+        },
+        {
+          "id": "givenSurname.deepwood.25",
+          "name": "Old Groves & Deepwood — collection 25/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 25
+        },
+        {
+          "id": "givenSurname.deepwood.26",
+          "name": "Old Groves & Deepwood — collection 26/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 26
+        },
+        {
+          "id": "givenSurname.deepwood.27",
+          "name": "Old Groves & Deepwood — collection 27/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 27
+        },
+        {
+          "id": "givenSurname.deepwood.28",
+          "name": "Old Groves & Deepwood — collection 28/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 28
+        },
+        {
+          "id": "givenSurname.deepwood.29",
+          "name": "Old Groves & Deepwood — collection 29/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 29
+        },
+        {
+          "id": "givenSurname.deepwood.30",
+          "name": "Old Groves & Deepwood — collection 30/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 30
+        },
+        {
+          "id": "givenSurname.deepwood.31",
+          "name": "Old Groves & Deepwood — collection 31/31",
+          "description": "Firbolg woodland given name plus home-name or byname (Old Groves & Deepwood).",
+          "range": 31
+        },
+        {
+          "id": "givenSurname.feywood.01",
+          "name": "Fey-Touched Woodland — collection 1/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 32
+        },
+        {
+          "id": "givenSurname.feywood.02",
+          "name": "Fey-Touched Woodland — collection 2/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 33
+        },
+        {
+          "id": "givenSurname.feywood.03",
+          "name": "Fey-Touched Woodland — collection 3/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 34
+        },
+        {
+          "id": "givenSurname.feywood.04",
+          "name": "Fey-Touched Woodland — collection 4/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 35
+        },
+        {
+          "id": "givenSurname.feywood.05",
+          "name": "Fey-Touched Woodland — collection 5/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 36
+        },
+        {
+          "id": "givenSurname.feywood.06",
+          "name": "Fey-Touched Woodland — collection 6/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 37
+        },
+        {
+          "id": "givenSurname.feywood.07",
+          "name": "Fey-Touched Woodland — collection 7/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 38
+        },
+        {
+          "id": "givenSurname.feywood.08",
+          "name": "Fey-Touched Woodland — collection 8/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 39
+        },
+        {
+          "id": "givenSurname.feywood.09",
+          "name": "Fey-Touched Woodland — collection 9/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 40
+        },
+        {
+          "id": "givenSurname.feywood.10",
+          "name": "Fey-Touched Woodland — collection 10/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 41
+        },
+        {
+          "id": "givenSurname.feywood.11",
+          "name": "Fey-Touched Woodland — collection 11/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 42
+        },
+        {
+          "id": "givenSurname.feywood.12",
+          "name": "Fey-Touched Woodland — collection 12/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 43
+        },
+        {
+          "id": "givenSurname.feywood.13",
+          "name": "Fey-Touched Woodland — collection 13/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 44
+        },
+        {
+          "id": "givenSurname.feywood.14",
+          "name": "Fey-Touched Woodland — collection 14/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 45
+        },
+        {
+          "id": "givenSurname.feywood.15",
+          "name": "Fey-Touched Woodland — collection 15/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 46
+        },
+        {
+          "id": "givenSurname.feywood.16",
+          "name": "Fey-Touched Woodland — collection 16/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 47
+        },
+        {
+          "id": "givenSurname.feywood.17",
+          "name": "Fey-Touched Woodland — collection 17/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 48
+        },
+        {
+          "id": "givenSurname.feywood.18",
+          "name": "Fey-Touched Woodland — collection 18/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 49
+        },
+        {
+          "id": "givenSurname.feywood.19",
+          "name": "Fey-Touched Woodland — collection 19/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 50
+        },
+        {
+          "id": "givenSurname.feywood.20",
+          "name": "Fey-Touched Woodland — collection 20/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 51
+        },
+        {
+          "id": "givenSurname.feywood.21",
+          "name": "Fey-Touched Woodland — collection 21/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 52
+        },
+        {
+          "id": "givenSurname.feywood.22",
+          "name": "Fey-Touched Woodland — collection 22/22",
+          "description": "Firbolg woodland given name plus home-name or byname (Fey-Touched Woodland).",
+          "range": 53
+        },
+        {
+          "id": "givenSurname.hearth.01",
+          "name": "Hearth, Herb & Kinship — collection 1/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 54
+        },
+        {
+          "id": "givenSurname.hearth.02",
+          "name": "Hearth, Herb & Kinship — collection 2/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 55
+        },
+        {
+          "id": "givenSurname.hearth.03",
+          "name": "Hearth, Herb & Kinship — collection 3/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 56
+        },
+        {
+          "id": "givenSurname.hearth.04",
+          "name": "Hearth, Herb & Kinship — collection 4/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 57
+        },
+        {
+          "id": "givenSurname.hearth.05",
+          "name": "Hearth, Herb & Kinship — collection 5/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 58
+        },
+        {
+          "id": "givenSurname.hearth.06",
+          "name": "Hearth, Herb & Kinship — collection 6/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 59
+        },
+        {
+          "id": "givenSurname.hearth.07",
+          "name": "Hearth, Herb & Kinship — collection 7/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 60
+        },
+        {
+          "id": "givenSurname.hearth.08",
+          "name": "Hearth, Herb & Kinship — collection 8/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 61
+        },
+        {
+          "id": "givenSurname.hearth.09",
+          "name": "Hearth, Herb & Kinship — collection 9/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 62
+        },
+        {
+          "id": "givenSurname.hearth.10",
+          "name": "Hearth, Herb & Kinship — collection 10/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 63
+        },
+        {
+          "id": "givenSurname.hearth.11",
+          "name": "Hearth, Herb & Kinship — collection 11/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 64
+        },
+        {
+          "id": "givenSurname.hearth.12",
+          "name": "Hearth, Herb & Kinship — collection 12/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 65
+        },
+        {
+          "id": "givenSurname.hearth.13",
+          "name": "Hearth, Herb & Kinship — collection 13/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 66
+        },
+        {
+          "id": "givenSurname.hearth.14",
+          "name": "Hearth, Herb & Kinship — collection 14/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 67
+        },
+        {
+          "id": "givenSurname.hearth.15",
+          "name": "Hearth, Herb & Kinship — collection 15/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 68
+        },
+        {
+          "id": "givenSurname.hearth.16",
+          "name": "Hearth, Herb & Kinship — collection 16/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 69
+        },
+        {
+          "id": "givenSurname.hearth.17",
+          "name": "Hearth, Herb & Kinship — collection 17/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 70
+        },
+        {
+          "id": "givenSurname.hearth.18",
+          "name": "Hearth, Herb & Kinship — collection 18/18",
+          "description": "Firbolg woodland given name plus home-name or byname (Hearth, Herb & Kinship).",
+          "range": 71
+        },
+        {
+          "id": "givenSurname.oldroot.01",
+          "name": "Elder Roots & Giantkin — collection 1/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 72
+        },
+        {
+          "id": "givenSurname.oldroot.02",
+          "name": "Elder Roots & Giantkin — collection 2/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 73
+        },
+        {
+          "id": "givenSurname.oldroot.03",
+          "name": "Elder Roots & Giantkin — collection 3/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 74
+        },
+        {
+          "id": "givenSurname.oldroot.04",
+          "name": "Elder Roots & Giantkin — collection 4/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 75
+        },
+        {
+          "id": "givenSurname.oldroot.05",
+          "name": "Elder Roots & Giantkin — collection 5/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 76
+        },
+        {
+          "id": "givenSurname.oldroot.06",
+          "name": "Elder Roots & Giantkin — collection 6/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.oldroot.07",
+          "name": "Elder Roots & Giantkin — collection 7/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.oldroot.08",
+          "name": "Elder Roots & Giantkin — collection 8/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.oldroot.09",
+          "name": "Elder Roots & Giantkin — collection 9/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.oldroot.10",
+          "name": "Elder Roots & Giantkin — collection 10/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.oldroot.11",
+          "name": "Elder Roots & Giantkin — collection 11/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.oldroot.12",
+          "name": "Elder Roots & Giantkin — collection 12/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.oldroot.13",
+          "name": "Elder Roots & Giantkin — collection 13/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.oldroot.14",
+          "name": "Elder Roots & Giantkin — collection 14/14",
+          "description": "Firbolg woodland given name plus home-name or byname (Elder Roots & Giantkin).",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.human.01",
+          "name": "Borrowed Human Names — Original mixed-name pool",
+          "description": "Uses the existing Human given-name and family-name tables for Original mixed-name pool, by direct stable table references; no copied names.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.human.02",
+          "name": "Borrowed Human Names — Early medieval Britain",
+          "description": "Uses the existing Human given-name and family-name tables for Early medieval Britain, by direct stable table references; no copied names.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.human.03",
+          "name": "Borrowed Human Names — Irish Gaelic",
+          "description": "Uses the existing Human given-name and family-name tables for Irish Gaelic, by direct stable table references; no copied names.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.human.04",
+          "name": "Borrowed Human Names — Old Norse",
+          "description": "Uses the existing Human given-name and family-name tables for Old Norse, by direct stable table references; no copied names.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.human.05",
+          "name": "Borrowed Human Names — French / Belgian",
+          "description": "Uses the existing Human given-name and family-name tables for French / Belgian, by direct stable table references; no copied names.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.human.06",
+          "name": "Borrowed Human Names — Georgian",
+          "description": "Uses the existing Human given-name and family-name tables for Georgian, by direct stable table references; no copied names.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.human.07",
+          "name": "Borrowed Human Names — Ancient Roman",
+          "description": "Uses the existing Human given-name and family-name tables for Ancient Roman, by direct stable table references; no copied names.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.human.08",
+          "name": "Borrowed Human Names — Persian",
+          "description": "Uses the existing Human given-name and family-name tables for Persian, by direct stable table references; no copied names.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.human.09",
+          "name": "Borrowed Human Names — Arabic",
+          "description": "Uses the existing Human given-name and family-name tables for Arabic, by direct stable table references; no copied names.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.human.10",
+          "name": "Borrowed Human Names — Japanese",
+          "description": "Uses the existing Human given-name and family-name tables for Japanese, by direct stable table references; no copied names.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.human.11",
+          "name": "Borrowed Human Names — Sanskrit-influenced",
+          "description": "Uses the existing Human given-name and family-name tables for Sanskrit-influenced, by direct stable table references; no copied names.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.human.12",
+          "name": "Borrowed Human Names — Yoruba",
+          "description": "Uses the existing Human given-name and family-name tables for Yoruba, by direct stable table references; no copied names.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.human.13",
+          "name": "Borrowed Human Names — Swahili-speaking East Africa",
+          "description": "Uses the existing Human given-name and family-name tables for Swahili-speaking East Africa, by direct stable table references; no copied names.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.human.14",
+          "name": "Borrowed Human Names — Russian",
+          "description": "Uses the existing Human given-name and family-name tables for Russian, by direct stable table references; no copied names.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.human.15",
+          "name": "Borrowed Human Names — Victorian / Edwardian Britain",
+          "description": "Uses the existing Human given-name and family-name tables for Victorian / Edwardian Britain, by direct stable table references; no copied names.",
+          "range": 100
         }
       ]
     }

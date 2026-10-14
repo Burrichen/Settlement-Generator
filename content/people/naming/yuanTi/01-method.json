@@ -3,14 +3,459 @@
   "tables": [
     {
       "id": "table.personName.yuanTi.method",
-      "name": "Yuan-Ti Naming Method",
-      "description": "How a Yuan-Ti Authority Figure's name is put together.",
-      "dice": "1d4",
+      "name": "Yuan-ti Naming Method",
+      "description": "Ancestral Serpent Speech: 34%. Temple Orders & Oracles: 28%. Dynasties & Serpent Courts: 20%. River Kingdoms & Forgotten Cities: 12%. Surface-World Adopted Names: 6%. Two-part house/temple name is an app-friendly worldbuilding convention; canonical yuan-ti often use birth names alone.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + lineage name",
-          "range": [1, 4]
+          "name": "Ancestral Serpent Speech - bank 1/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.02",
+          "name": "Ancestral Serpent Speech - bank 2/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.03",
+          "name": "Ancestral Serpent Speech - bank 3/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.04",
+          "name": "Ancestral Serpent Speech - bank 4/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.05",
+          "name": "Ancestral Serpent Speech - bank 5/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.06",
+          "name": "Ancestral Serpent Speech - bank 6/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.07",
+          "name": "Ancestral Serpent Speech - bank 7/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.08",
+          "name": "Ancestral Serpent Speech - bank 8/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.09",
+          "name": "Ancestral Serpent Speech - bank 9/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.10",
+          "name": "Ancestral Serpent Speech - bank 10/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.11",
+          "name": "Ancestral Serpent Speech - bank 11/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.12",
+          "name": "Ancestral Serpent Speech - bank 12/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.13",
+          "name": "Ancestral Serpent Speech - bank 13/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.14",
+          "name": "Ancestral Serpent Speech - bank 14/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.15",
+          "name": "Ancestral Serpent Speech - bank 15/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.16",
+          "name": "Ancestral Serpent Speech - bank 16/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.serpent.17",
+          "name": "Ancestral Serpent Speech - bank 17/17",
+          "description": "Old inherited sibilant names: sinuous, often short, sometimes ceremonial. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.temple.01",
+          "name": "Temple Orders & Oracles - bank 1/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.temple.02",
+          "name": "Temple Orders & Oracles - bank 2/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.temple.03",
+          "name": "Temple Orders & Oracles - bank 3/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.temple.04",
+          "name": "Temple Orders & Oracles - bank 4/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.temple.05",
+          "name": "Temple Orders & Oracles - bank 5/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.temple.06",
+          "name": "Temple Orders & Oracles - bank 6/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.temple.07",
+          "name": "Temple Orders & Oracles - bank 7/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.temple.08",
+          "name": "Temple Orders & Oracles - bank 8/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.temple.09",
+          "name": "Temple Orders & Oracles - bank 9/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.temple.10",
+          "name": "Temple Orders & Oracles - bank 10/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.temple.11",
+          "name": "Temple Orders & Oracles - bank 11/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.temple.12",
+          "name": "Temple Orders & Oracles - bank 12/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.temple.13",
+          "name": "Temple Orders & Oracles - bank 13/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.temple.14",
+          "name": "Temple Orders & Oracles - bank 14/14",
+          "description": "Temple wardens, priesthoods, ritual scholars and ancestral sanctuaries. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.01",
+          "name": "Dynasties & Serpent Courts - bank 1/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.02",
+          "name": "Dynasties & Serpent Courts - bank 2/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.03",
+          "name": "Dynasties & Serpent Courts - bank 3/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.04",
+          "name": "Dynasties & Serpent Courts - bank 4/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.05",
+          "name": "Dynasties & Serpent Courts - bank 5/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.06",
+          "name": "Dynasties & Serpent Courts - bank 6/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.07",
+          "name": "Dynasties & Serpent Courts - bank 7/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.08",
+          "name": "Dynasties & Serpent Courts - bank 8/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.09",
+          "name": "Dynasties & Serpent Courts - bank 9/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.dynasty.10",
+          "name": "Dynasties & Serpent Courts - bank 10/10",
+          "description": "Imperial court dialects, ancient houses and formidable family lineages. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.river.01",
+          "name": "River Kingdoms & Forgotten Cities - bank 1/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.river.02",
+          "name": "River Kingdoms & Forgotten Cities - bank 2/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.river.03",
+          "name": "River Kingdoms & Forgotten Cities - bank 3/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.river.04",
+          "name": "River Kingdoms & Forgotten Cities - bank 4/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.river.05",
+          "name": "River Kingdoms & Forgotten Cities - bank 5/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.river.06",
+          "name": "River Kingdoms & Forgotten Cities - bank 6/6",
+          "description": "Names from vanished canal cities, wetlands, river valleys and old stone ruins. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.alias.01",
+          "name": "Surface-World Adopted Names - bank 1/3",
+          "description": "Names used in public or by families living among humans; borrowed from the existing Human authoring data. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.alias.02",
+          "name": "Surface-World Adopted Names - bank 2/3",
+          "description": "Names used in public or by families living among humans; borrowed from the existing Human authoring data. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.alias.03",
+          "name": "Surface-World Adopted Names - bank 3/3",
+          "description": "Names used in public or by families living among humans; borrowed from the existing Human authoring data. Standard Given Name + House/Temple Byname join.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

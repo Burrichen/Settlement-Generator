@@ -4,13 +4,458 @@
     {
       "id": "table.personName.highElf.method",
       "name": "High Elf Naming Method",
-      "description": "How a High Elf Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "Old High Speech 18%; Silver Tongue 16%; Traditional D&D Elven 32%; Classical High Fantasy 24%; Human-Influenced 10%. Only standard compound given + family joining.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + house name",
-          "range": [1, 4]
+          "name": "Old High Speech (Quenya-inspired) — name bank 1/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.02",
+          "name": "Old High Speech (Quenya-inspired) — name bank 2/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.03",
+          "name": "Old High Speech (Quenya-inspired) — name bank 3/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.04",
+          "name": "Old High Speech (Quenya-inspired) — name bank 4/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.05",
+          "name": "Old High Speech (Quenya-inspired) — name bank 5/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.06",
+          "name": "Old High Speech (Quenya-inspired) — name bank 6/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.07",
+          "name": "Old High Speech (Quenya-inspired) — name bank 7/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.08",
+          "name": "Old High Speech (Quenya-inspired) — name bank 8/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.old_high.09",
+          "name": "Old High Speech (Quenya-inspired) — name bank 9/9",
+          "description": "Flowing, ceremonial, vowel-rich original fantasy names; not Quenya vocabulary or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.silver.01",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 1/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.silver.02",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 2/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.silver.03",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 3/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.silver.04",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 4/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.silver.05",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 5/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.silver.06",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 6/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.silver.07",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 7/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.silver.08",
+          "name": "Silver Tongue (Sindarin-inspired) — name bank 8/8",
+          "description": "Soft consonants, lyrical woodland cadence; not authentic Sindarin or canon. Given name plus family name, standard space-separated compound.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.01",
+          "name": "Traditional D&D Elven — name bank 1/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.02",
+          "name": "Traditional D&D Elven — name bank 2/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.03",
+          "name": "Traditional D&D Elven — name bank 3/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.04",
+          "name": "Traditional D&D Elven — name bank 4/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.05",
+          "name": "Traditional D&D Elven — name bank 5/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.06",
+          "name": "Traditional D&D Elven — name bank 6/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.07",
+          "name": "Traditional D&D Elven — name bank 7/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.08",
+          "name": "Traditional D&D Elven — name bank 8/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.09",
+          "name": "Traditional D&D Elven — name bank 9/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.10",
+          "name": "Traditional D&D Elven — name bank 10/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.11",
+          "name": "Traditional D&D Elven — name bank 11/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.12",
+          "name": "Traditional D&D Elven — name bank 12/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.13",
+          "name": "Traditional D&D Elven — name bank 13/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.14",
+          "name": "Traditional D&D Elven — name bank 14/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.15",
+          "name": "Traditional D&D Elven — name bank 15/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.dnd.16",
+          "name": "Traditional D&D Elven — name bank 16/16",
+          "description": "Self-chosen mature personal names; inherited elven and translated poetic family names. Given name plus family name, standard space-separated compound.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.classic.01",
+          "name": "Classical High Fantasy — name bank 1/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.classic.02",
+          "name": "Classical High Fantasy — name bank 2/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.classic.03",
+          "name": "Classical High Fantasy — name bank 3/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.classic.04",
+          "name": "Classical High Fantasy — name bank 4/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.classic.05",
+          "name": "Classical High Fantasy — name bank 5/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.classic.06",
+          "name": "Classical High Fantasy — name bank 6/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            77,
+            78
+          ]
+        },
+        {
+          "id": "givenSurname.classic.07",
+          "name": "Classical High Fantasy — name bank 7/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            79,
+            80
+          ]
+        },
+        {
+          "id": "givenSurname.classic.08",
+          "name": "Classical High Fantasy — name bank 8/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            81,
+            82
+          ]
+        },
+        {
+          "id": "givenSurname.classic.09",
+          "name": "Classical High Fantasy — name bank 9/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            83,
+            84
+          ]
+        },
+        {
+          "id": "givenSurname.classic.10",
+          "name": "Classical High Fantasy — name bank 10/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            85,
+            86
+          ]
+        },
+        {
+          "id": "givenSurname.classic.11",
+          "name": "Classical High Fantasy — name bank 11/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            87,
+            88
+          ]
+        },
+        {
+          "id": "givenSurname.classic.12",
+          "name": "Classical High Fantasy — name bank 12/12",
+          "description": "Arcane scholarship, ancient cities, courtly lineages, astronomy and magic. Given name plus family name, standard space-separated compound.",
+          "range": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "givenSurname.human.01",
+          "name": "Human-Influenced High Elves — name bank 1/5",
+          "description": "Familiar classical, medieval and Renaissance-like names adapted for elven society. Given name plus family name, standard space-separated compound.",
+          "range": [
+            91,
+            92
+          ]
+        },
+        {
+          "id": "givenSurname.human.02",
+          "name": "Human-Influenced High Elves — name bank 2/5",
+          "description": "Familiar classical, medieval and Renaissance-like names adapted for elven society. Given name plus family name, standard space-separated compound.",
+          "range": [
+            93,
+            94
+          ]
+        },
+        {
+          "id": "givenSurname.human.03",
+          "name": "Human-Influenced High Elves — name bank 3/5",
+          "description": "Familiar classical, medieval and Renaissance-like names adapted for elven society. Given name plus family name, standard space-separated compound.",
+          "range": [
+            95,
+            96
+          ]
+        },
+        {
+          "id": "givenSurname.human.04",
+          "name": "Human-Influenced High Elves — name bank 4/5",
+          "description": "Familiar classical, medieval and Renaissance-like names adapted for elven society. Given name plus family name, standard space-separated compound.",
+          "range": [
+            97,
+            98
+          ]
+        },
+        {
+          "id": "givenSurname.human.05",
+          "name": "Human-Influenced High Elves — name bank 5/5",
+          "description": "Familiar classical, medieval and Renaissance-like names adapted for elven society. Given name plus family name, standard space-separated compound.",
+          "range": [
+            99,
+            100
+          ]
         }
       ]
     }

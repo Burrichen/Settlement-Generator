@@ -4,13 +4,494 @@
     {
       "id": "table.personName.fireGenasi.method",
       "name": "Fire Genasi Naming Method",
-      "description": "How a Fire Genasi Authority Figure's name is put together.",
-      "dice": "1d4",
+      "description": "1d100: 30% Efreeti Courts, 26% Ember/Wildfire, 18% Volcanic, 14% Hearth/Forge, 12% direct reference to existing Human names.",
+      "dice": "1d100",
       "results": [
         {
           "id": "givenSurname",
-          "name": "Given name + byname",
-          "range": [1, 4]
+          "name": "Efreeti Courts & Ember Nobility — bank 1/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            1,
+            2
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.02",
+          "name": "Efreeti Courts & Ember Nobility — bank 2/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.03",
+          "name": "Efreeti Courts & Ember Nobility — bank 3/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.04",
+          "name": "Efreeti Courts & Ember Nobility — bank 4/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.05",
+          "name": "Efreeti Courts & Ember Nobility — bank 5/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.06",
+          "name": "Efreeti Courts & Ember Nobility — bank 6/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.07",
+          "name": "Efreeti Courts & Ember Nobility — bank 7/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.08",
+          "name": "Efreeti Courts & Ember Nobility — bank 8/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.09",
+          "name": "Efreeti Courts & Ember Nobility — bank 9/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.10",
+          "name": "Efreeti Courts & Ember Nobility — bank 10/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.11",
+          "name": "Efreeti Courts & Ember Nobility — bank 11/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.12",
+          "name": "Efreeti Courts & Ember Nobility — bank 12/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            23,
+            24
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.13",
+          "name": "Efreeti Courts & Ember Nobility — bank 13/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.14",
+          "name": "Efreeti Courts & Ember Nobility — bank 14/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "givenSurname.efreet.15",
+          "name": "Efreeti Courts & Ember Nobility — bank 15/15",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "givenSurname.ember.01",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 1/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "givenSurname.ember.02",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 2/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            33,
+            34
+          ]
+        },
+        {
+          "id": "givenSurname.ember.03",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 3/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            35,
+            36
+          ]
+        },
+        {
+          "id": "givenSurname.ember.04",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 4/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            37,
+            38
+          ]
+        },
+        {
+          "id": "givenSurname.ember.05",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 5/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "givenSurname.ember.06",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 6/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            41,
+            42
+          ]
+        },
+        {
+          "id": "givenSurname.ember.07",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 7/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "givenSurname.ember.08",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 8/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "givenSurname.ember.09",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 9/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "givenSurname.ember.10",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 10/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            49,
+            50
+          ]
+        },
+        {
+          "id": "givenSurname.ember.11",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 11/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            51,
+            52
+          ]
+        },
+        {
+          "id": "givenSurname.ember.12",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 12/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            53,
+            54
+          ]
+        },
+        {
+          "id": "givenSurname.ember.13",
+          "name": "Cinders, Wildfire & Dancing Flame — bank 13/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.01",
+          "name": "Volcano, Smoke & Blackened Stone — bank 1/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            57,
+            58
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.02",
+          "name": "Volcano, Smoke & Blackened Stone — bank 2/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            59,
+            60
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.03",
+          "name": "Volcano, Smoke & Blackened Stone — bank 3/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            61,
+            62
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.04",
+          "name": "Volcano, Smoke & Blackened Stone — bank 4/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            63,
+            64
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.05",
+          "name": "Volcano, Smoke & Blackened Stone — bank 5/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            65,
+            66
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.06",
+          "name": "Volcano, Smoke & Blackened Stone — bank 6/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            67,
+            68
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.07",
+          "name": "Volcano, Smoke & Blackened Stone — bank 7/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            69,
+            70
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.08",
+          "name": "Volcano, Smoke & Blackened Stone — bank 8/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            71,
+            72
+          ]
+        },
+        {
+          "id": "givenSurname.volcanic.09",
+          "name": "Volcano, Smoke & Blackened Stone — bank 9/9",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            73,
+            74
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.01",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 1/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": [
+            75,
+            76
+          ]
+        },
+        {
+          "id": "givenSurname.hearth.02",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 2/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 77
+        },
+        {
+          "id": "givenSurname.hearth.03",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 3/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 78
+        },
+        {
+          "id": "givenSurname.hearth.04",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 4/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 79
+        },
+        {
+          "id": "givenSurname.hearth.05",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 5/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 80
+        },
+        {
+          "id": "givenSurname.hearth.06",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 6/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 81
+        },
+        {
+          "id": "givenSurname.hearth.07",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 7/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 82
+        },
+        {
+          "id": "givenSurname.hearth.08",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 8/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 83
+        },
+        {
+          "id": "givenSurname.hearth.09",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 9/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 84
+        },
+        {
+          "id": "givenSurname.hearth.10",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 10/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 85
+        },
+        {
+          "id": "givenSurname.hearth.11",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 11/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 86
+        },
+        {
+          "id": "givenSurname.hearth.12",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 12/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 87
+        },
+        {
+          "id": "givenSurname.hearth.13",
+          "name": "Hearthfire, Lanterns & Forgelight — bank 13/13",
+          "description": "Selects complete Fire Genasi given and family names from paired, editable name tables.",
+          "range": 88
+        },
+        {
+          "id": "givenSurname.human.01",
+          "name": "Borrowed Human name — Original Human mixed-name table",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 89
+        },
+        {
+          "id": "givenSurname.human.02",
+          "name": "Borrowed Human name — Arabic-influenced historical / modern",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 90
+        },
+        {
+          "id": "givenSurname.human.03",
+          "name": "Borrowed Human name — Persian / Iranian",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 91
+        },
+        {
+          "id": "givenSurname.human.04",
+          "name": "Borrowed Human name — Classical Roman",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 92
+        },
+        {
+          "id": "givenSurname.human.05",
+          "name": "Borrowed Human name — Classical / Byzantine Greek",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 93
+        },
+        {
+          "id": "givenSurname.human.06",
+          "name": "Borrowed Human name — Early medieval Britain",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 94
+        },
+        {
+          "id": "givenSurname.human.07",
+          "name": "Borrowed Human name — Irish Gaelic",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 95
+        },
+        {
+          "id": "givenSurname.human.08",
+          "name": "Borrowed Human name — Georgian",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 96
+        },
+        {
+          "id": "givenSurname.human.09",
+          "name": "Borrowed Human name — North Indian / Sanskrit-influenced",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 97
+        },
+        {
+          "id": "givenSurname.human.10",
+          "name": "Borrowed Human name — Japanese",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 98
+        },
+        {
+          "id": "givenSurname.human.11",
+          "name": "Borrowed Human name — Yoruba",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 99
+        },
+        {
+          "id": "givenSurname.human.12",
+          "name": "Borrowed Human name — Swahili-speaking East Africa",
+          "description": "Directly references live Human given and family tables, no names copied.",
+          "range": 100
         }
       ]
     }
