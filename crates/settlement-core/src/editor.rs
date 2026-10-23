@@ -552,6 +552,99 @@ pub fn result_ids(table: &Table) -> Vec<ResultId> {
     table.results.iter().map(|r| r.id.clone()).collect()
 }
 
+// ----- Notable Location subtypes ---------------------------------------------
+
+/// Another table listing the same canonical subtype, with its label there.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SubtypeLabel {
+    pub table: Named<TableId>,
+    pub label: String,
+}
+
+/// A result of a subtype (or split) table that is a canonical Notable
+/// Location subtype. It has this one ID in every table that lists it, so
+/// renaming the result changes only its label in this table.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SubtypeUse {
+    pub result: ResultId,
+    /// The canonical subtype, with its canonical name.
+    pub subtype: Named<ResultId>,
+    /// The other tables that list it.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub also_in: Vec<SubtypeLabel>,
+    /// What rolling it leads to, e.g. "Rolls Magic Store Speciality".
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub notes: Vec<String>,
+}
+
+/// For a subtype or split table: each result that is a canonical subtype.
+/// Empty for any other table.
+pub fn subtype_uses(content: &ContentSet, table: &TableId) -> Vec<SubtypeUse> {
+    use crate::locations::{SubtypeResolution, subtype};
+    let splits: Vec<&TableId> = content
+        .location_subtypes
+        .iter()
+        .filter_map(|s| match &s.resolve {
+            Some(SubtypeResolution::Split { table }) => Some(table),
+            _ => None,
+        })
+        .collect();
+    let lists: Vec<&Table> = content
+        .location_subtype_tables
+        .iter()
+        .map(|l| &l.table)
+        .chain(splits)
+        .filter_map(|t| content.table(t))
+        .collect();
+    let Some(this) = lists.iter().find(|t| &t.id == table) else {
+        return Vec::new();
+    };
+    let table_name = |id: &TableId| {
+        content
+            .table(id)
+            .map_or_else(|| id.to_string(), |t| t.name.clone())
+    };
+    this.results
+        .iter()
+        .filter_map(|result| {
+            let s = subtype(content, &result.id)?;
+            let mut also_in: Vec<SubtypeLabel> = Vec::new();
+            for other in lists.iter().filter(|t| t.id != this.id) {
+                if let Some(r) = other.result(&s.id)
+                    && !also_in.iter().any(|a| a.table.id == other.id)
+                {
+                    also_in.push(SubtypeLabel {
+                        table: Named::new(&other.id, &other.name),
+                        label: r.name.clone(),
+                    });
+                }
+            }
+            let mut notes = Vec::new();
+            match &s.resolve {
+                Some(SubtypeResolution::Split { table }) => {
+                    notes.push(format!("Rolls {} to decide the subtype.", table_name(table)));
+                }
+                Some(SubtypeResolution::Reroll { quality_shift }) => notes.push(format!(
+                    "Rolls this table again until another result, which becomes the subtype; Quality +{quality_shift} step, once."
+                )),
+                None => {}
+            }
+            if let Some(t) = &s.speciality {
+                notes.push(format!("Rolls {} once.", table_name(t)));
+            }
+            for c in &s.capabilities {
+                notes.push(format!("Future: {}.", c.name));
+            }
+            Some(SubtypeUse {
+                result: result.id.clone(),
+                subtype: Named::new(&s.id, &s.name),
+                also_in,
+                notes,
+            })
+        })
+        .collect()
+}
+
 // ----- naming ----------------------------------------------------------------
 
 /// A naming method whose `curated_variant` join reads approved names from

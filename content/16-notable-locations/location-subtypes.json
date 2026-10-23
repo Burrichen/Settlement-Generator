@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "location_subtype_tables": [
+    {
+      "type": "locationType.hospitality",
+      "table": "table.notableLocationSubtype.hospitality"
+    },
+    {
+      "type": "locationType.trade",
+      "table": "table.notableLocationSubtype.trade"
+    },
+    {
+      "type": "locationType.craft",
+      "table": "table.notableLocationSubtype.craft"
+    }
+  ],
+  "location_subtypes": [
+    {
+      "id": "locationSubtype.tavernInn",
+      "name": "Tavern / Inn",
+      "description": "Food, drink and rooms. Tavern and Inn are one subtype. The Bare Minimum Buildings Tavern / Inn is this subtype with 4 spare rooms."
+    },
+    {
+      "id": "locationSubtype.eatingHouse",
+      "name": "Eating House"
+    },
+    {
+      "id": "locationSubtype.bathhouse",
+      "name": "Bathhouse"
+    },
+    {
+      "id": "locationSubtype.generalSmithy",
+      "name": "General Smithy",
+      "description": "Useful mundane metalwork: basic weapons and armour, tools, repairs, metal fittings and ordinary smithing. Not a specialist Weaponsmith or Armoursmith."
+    },
+    {
+      "id": "locationSubtype.weaponsmithArmoursmith",
+      "name": "Weaponsmith / Armoursmith",
+      "description": "Not a subtype in its own right: an even 1d4 split decides Weaponsmith or Armoursmith.",
+      "resolve": {
+        "kind": "split",
+        "table": "table.notableLocationSubtype.weaponsmithArmoursmith"
+      }
+    },
+    {
+      "id": "locationSubtype.weaponsmith",
+      "name": "Weaponsmith"
+    },
+    {
+      "id": "locationSubtype.armoursmith",
+      "name": "Armoursmith"
+    },
+    {
+      "id": "locationSubtype.alchemistApothecary",
+      "name": "Alchemist / Apothecary",
+      "description": "One subtype for now."
+    },
+    {
+      "id": "locationSubtype.magicStore",
+      "name": "Magic Store",
+      "description": "A specialist dealer in one category of magic item, never every category: its speciality is rolled once.",
+      "speciality": "table.magicStoreSpeciality"
+    },
+    {
+      "id": "locationSubtype.bowyerFletcher",
+      "name": "Bowyer / Fletcher"
+    },
+    {
+      "id": "locationSubtype.rareGoods",
+      "name": "Rare Goods / Curiosities"
+    },
+    {
+      "id": "locationSubtype.jeweller",
+      "name": "Jeweller",
+      "description": "Jewellery, goldsmithing and precious goods. Trade / Shop labels it Jeweller / Precious Goods, Craft / Workshop Jeweller / Goldsmith."
+    },
+    {
+      "id": "locationSubtype.builderMason",
+      "name": "Builder / Mason",
+      "description": "A specialist who can take on major building work.",
+      "capabilities": [
+        {
+          "id": "keepUpgrade.structural",
+          "name": "Keep upgrades: structural work",
+          "description": "Structural expansion, rooms or wings, walls, towers, gates, fortification, courtyards and major repairs."
+        }
+      ]
+    },
+    {
+      "id": "locationSubtype.engineerMechanist",
+      "name": "Engineer / Mechanist",
+      "description": "A rarer, advanced workshop.",
+      "capabilities": [
+        {
+          "id": "keepUpgrade.mechanical",
+          "name": "Keep upgrades: mechanisms and complex works",
+          "description": "Defensive mechanisms, hoists, lifts, reinforced gates, machinery, mechanical traps, complex fortification improvements and specialised facilities."
+        }
+      ]
+    },
+    {
+      "id": "locationSubtype.tailorWeaver",
+      "name": "Tailor / Weaver"
+    },
+    {
+      "id": "locationSubtype.specialistArtisan",
+      "name": "Specialist Artisan",
+      "description": "Not a subtype in its own right: the same table is rolled again (and again on every further Specialist Artisan) for what the artisan makes. The location's Quality will be one step higher, once.",
+      "resolve": {
+        "kind": "reroll",
+        "quality_shift": 1
+      }
+    }
+  ]
+}

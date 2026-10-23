@@ -25,7 +25,7 @@ export interface Settings {
   god_mode: boolean;
   tag_view: boolean;
   theme: Theme;
-  /** Every settlement gets one extra Notable Location: a Tavern. */
+  /** Every settlement gets one extra Notable Location: a Tavern / Inn. */
   bare_minimum_buildings: boolean;
 }
 
@@ -263,22 +263,52 @@ export interface LocationArea {
   count: CountRoll;
 }
 
+/** How a rolled location's subtype was found: every roll is kept. */
+export interface SubtypeRolls {
+  /** The roll on the Type's subtype table, e.g. Craft / Workshop 20. */
+  roll: RollRecord;
+  /** The same table again after a reroll result (Specialist Artisan). */
+  rerolls?: RollRecord[];
+  /** The roll that split the result (Weaponsmith / Armoursmith, 1d4). */
+  split?: RollRecord;
+}
+
+/** A shift of the location's future Quality (never past Excellent). */
+export interface QualityShift {
+  steps: number;
+  /** The result that gave it, e.g. Specialist Artisan. */
+  source: Named;
+}
+
 export interface NotableLocation {
   id: string;
   source: LocationSource;
   district?: string;
+  /** The parent Type. */
   type: Named;
   type_roll?: RollRecord;
+  /** The canonical subtype, labelled as the table that gave it labels it. */
   subtype?: Named;
+  subtype_rolls?: SubtypeRolls;
+  /** e.g. a Magic Store's speciality. */
+  speciality?: Named;
+  speciality_roll?: RollRecord;
+  /** Waiting for Quality to be generated. */
+  quality_shift?: QualityShift;
+  /** Planned capabilities, e.g. Keep upgrades. Nothing uses them yet. */
+  capabilities?: Named[];
   spare_rooms?: number;
 }
+
+/** What can be rolled or chosen again on a rolled location. */
+export type LocationDetail = "type" | "subtype" | "reroll" | "split" | "speciality";
 
 export interface NotableLocations {
   size: Named;
   scheme: Named;
   districts?: CountRoll;
   areas: LocationArea[];
-  /** The guaranteed Tavern first (if any), then the rolled locations. */
+  /** The guaranteed Tavern / Inn first (if any), then the rolled locations. */
   locations: NotableLocation[];
   /** The highest rolled-location number issued (IDs are never reused). */
   issued: number;
@@ -290,9 +320,24 @@ export interface TableOptions {
   options: ResultOption[];
 }
 
+/** The tables of one location's details: only those that apply to it. */
+export interface LocationDetailOptions {
+  subtype?: TableOptions;
+  /** What a Specialist Artisan becomes (never Specialist Artisan again). */
+  reroll?: TableOptions;
+  split?: TableOptions;
+  speciality?: TableOptions;
+}
+
 export interface LocationsView {
   record?: NotableLocations;
-  options: { districts?: TableOptions; count?: TableOptions; types?: TableOptions };
+  options: {
+    districts?: TableOptions;
+    count?: TableOptions;
+    types?: TableOptions;
+    /** One per location of the record, in order. */
+    details?: LocationDetailOptions[];
+  };
   bare_minimum_buildings: boolean;
 }
 
@@ -460,6 +505,15 @@ export const generation = {
     invoke<GenerationResponse>("generation_roll_location_type", { stage, location }),
   chooseLocationType: (stage: number, location: number, result: string) =>
     invoke<GenerationResponse>("generation_choose_location_type", { stage, location, result }),
+  rollLocationDetail: (stage: number, location: number, detail: LocationDetail) =>
+    invoke<GenerationResponse>("generation_roll_location_detail", { stage, location, detail }),
+  chooseLocationDetail: (stage: number, location: number, detail: LocationDetail, result: string) =>
+    invoke<GenerationResponse>("generation_choose_location_detail", {
+      stage,
+      location,
+      detail,
+      result,
+    }),
   rollRole: (stage: number, slot: number) =>
     invoke<GenerationResponse>("generation_roll_role", { stage, slot }),
   chooseRole: (stage: number, slot: number, result: string) =>
@@ -740,6 +794,20 @@ export interface TableDetail {
   approved_names?: ApprovedNameSlots[];
   /** When this is a naming method table: each method's join and exceptions. */
   naming_methods?: NamingMethodDetail[];
+  /** When this is a Notable Location subtype table: its canonical subtypes. */
+  subtypes?: SubtypeUse[];
+}
+
+/**
+ * A result that is a canonical Notable Location subtype: one ID in every
+ * table that lists it, so renaming it only changes its label here.
+ */
+export interface SubtypeUse {
+  result: string;
+  /** The canonical subtype and its canonical name. */
+  subtype: Named;
+  also_in?: { table: Named; label: string }[];
+  notes?: string[];
 }
 
 export interface ApprovedNameSlots {

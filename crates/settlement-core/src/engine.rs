@@ -224,8 +224,9 @@ pub struct GenerationOptions {
     /// the chosen result still emits its tags.
     #[serde(default)]
     pub god_mode: bool,
-    /// Bare Minimum Buildings: add one guaranteed Tavern with 4 spare rooms
-    /// to the settlement's Notable Locations, in addition to the rolled ones.
+    /// Bare Minimum Buildings: add one guaranteed Tavern / Inn with 4 spare
+    /// rooms to the settlement's Notable Locations, in addition to the
+    /// rolled ones.
     #[serde(default)]
     pub bare_minimum_buildings: bool,
 }
@@ -313,8 +314,21 @@ pub enum GenerationError {
     NoSuchArea { index: usize },
     #[error("there is no Notable Location {}", index + 1)]
     NoSuchLocation { index: usize },
-    #[error("the Bare Minimum Buildings Tavern is not rolled; turn the setting off to remove it")]
+    #[error(
+        "the Bare Minimum Buildings Tavern / Inn is not rolled; turn the setting off to remove it"
+    )]
     GuaranteedLocationNotRolled,
+    #[error("Notable Location {} has no {detail} to roll", index + 1)]
+    NoLocationDetail {
+        index: usize,
+        detail: crate::locations::LocationDetail,
+    },
+    #[error(
+        "result `{result}` of table `{table}` rolls the table again, so it cannot be what it becomes; choose another result"
+    )]
+    RerollChoice { table: TableId, result: ResultId },
+    #[error("`{subtype}` is not a Notable Location subtype")]
+    UnknownLocationSubtype { subtype: ResultId },
     #[error("count table `{table}` gave a result without a count value")]
     CountWithoutValue { table: TableId },
     #[error("stage {} is not the Role Allocation stage", stage + 1)]

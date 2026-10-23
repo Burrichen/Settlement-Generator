@@ -27,7 +27,9 @@ use crate::figures::{
     RELATIONSHIP_TABLE, apply_roles,
 };
 use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
-use crate::locations::{LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, NotableLocations};
+use crate::locations::{
+    LOCATIONS_STAGE_ID, LocationDetail, LocationGenerator, LocationOptions, NotableLocations,
+};
 use crate::naming::{
     GeneratedName, NAME_STAGE_ID, NameAssembly, NamePart, NameRecord, NameSource, NamingMethod,
     NamingScheme, generate_name, scheme_for, sole_method,
@@ -2616,8 +2618,8 @@ fn retrace(events: &mut [GenerationEvent], old: &[TagId], upstream: &[Named<TagI
 
 impl GenerationSession {
     /// Turns Bare Minimum Buildings on or off for this settlement. On adds
-    /// the guaranteed Tavern to generated Notable Locations if it is absent;
-    /// off removes that Tavern only, never a rolled location.
+    /// the guaranteed Tavern / Inn to generated Notable Locations if it is
+    /// absent; off removes that Tavern / Inn only, never a rolled location.
     pub fn set_bare_minimum_buildings(&mut self, enabled: bool) -> Result<(), GenerationError> {
         self.options.bare_minimum_buildings = enabled;
         for index in 0..self.stages.len() {
@@ -2688,14 +2690,15 @@ impl GenerationSession {
         self.change_locations(index, |g, r| g.set_count(r, area, Some(result), faces))
     }
 
-    /// Rolls one rolled location's Type again (by position in the list).
+    /// Rolls one rolled location's Type again (by position in the list),
+    /// then its subtype.
     pub fn roll_location_type(
         &mut self,
         index: usize,
         location: usize,
         faces: &mut dyn FaceSource,
     ) -> Result<StageChange, GenerationError> {
-        self.change_locations(index, |g, r| g.set_type(r, location, None, faces))
+        self.roll_location_detail(index, location, LocationDetail::Type, faces)
     }
 
     pub fn choose_location_type(
@@ -2705,7 +2708,34 @@ impl GenerationSession {
         result: ResultId,
         faces: &mut dyn FaceSource,
     ) -> Result<StageChange, GenerationError> {
-        self.change_locations(index, |g, r| g.set_type(r, location, Some(result), faces))
+        self.choose_location_detail(index, location, LocationDetail::Type, result, faces)
+    }
+
+    /// Rolls one detail of a rolled location again (its Type, subtype,
+    /// reroll, split or speciality), with everything that follows from it.
+    pub fn roll_location_detail(
+        &mut self,
+        index: usize,
+        location: usize,
+        detail: LocationDetail,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| g.set_detail(r, location, detail, None, faces))
+    }
+
+    /// Chooses one detail of a rolled location; what follows from it is
+    /// rolled.
+    pub fn choose_location_detail(
+        &mut self,
+        index: usize,
+        location: usize,
+        detail: LocationDetail,
+        result: ResultId,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        self.change_locations(index, |g, r| {
+            g.set_detail(r, location, detail, Some(result), faces)
+        })
     }
 
     fn change_locations(
@@ -2851,24 +2881,6 @@ impl GenerationSession {
         let before = self.tags_before(index);
         let generator = self.generator();
         let size = self.size_before(index);
-        let mut options = LocationGenerator {
-            generator: &generator,
-            content: &self.content,
-            settlement_tags: &before,
-        }
-        .options(size.as_ref());
-        if !view.show_tags {
-            for t in [
-                &mut options.districts,
-                &mut options.count,
-                &mut options.types,
-            ]
-            .into_iter()
-            .flatten()
-            {
-                t.options.iter_mut().for_each(|o| o.tags.clear());
-            }
-        }
         let (status, result, skipped, resolution) = match &stage.state {
             StageState::Pending => (StageStatus::Pending, None, None, None),
             StageState::Skipped(reason) => (StageStatus::Skipped, None, Some(*reason), None),
@@ -2876,6 +2888,34 @@ impl GenerationSession {
                 (StageStatus::Resolved, res.main_result(), None, Some(res))
             }
         };
+        let record = resolution.and_then(|r| r.locations.as_deref());
+        let mut options = LocationGenerator {
+            generator: &generator,
+            content: &self.content,
+            settlement_tags: &before,
+        }
+        .options(size.as_ref(), record);
+        if !view.show_tags {
+            let details = options.details.iter_mut().flat_map(|d| {
+                [
+                    &mut d.subtype,
+                    &mut d.reroll,
+                    &mut d.split,
+                    &mut d.speciality,
+                ]
+            });
+            for t in [
+                &mut options.districts,
+                &mut options.count,
+                &mut options.types,
+            ]
+            .into_iter()
+            .chain(details)
+            .flatten()
+            {
+                t.options.iter_mut().for_each(|o| o.tags.clear());
+            }
+        }
         let table = Named {
             id: TableId::new(LOCATIONS_STAGE_ID),
             name: stage.label.clone(),
@@ -2902,7 +2942,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: Some(LocationsView {
-                record: resolution.and_then(|r| r.locations.as_deref()).cloned(),
+                record: record.cloned(),
                 options,
                 bare_minimum_buildings: self.options.bare_minimum_buildings,
             }),

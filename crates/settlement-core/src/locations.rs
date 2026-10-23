@@ -11,12 +11,32 @@
 //! Each rolled location then rolls the Notable Location Type table. Counts
 //! are the results' `value`s, recorded with each roll.
 //!
+//! **Subtypes.** A Type with a subtype table (`location_subtype_tables`)
+//! rolls it next. Every subtype has **one canonical ID** across the whole
+//! system, listed once in the content's `location_subtypes`: a subtype table
+//! lists it as a result with that ID, and the result's name is its label in
+//! that table (Trade's "Jeweller / Precious Goods" and Craft's "Jeweller /
+//! Goldsmith" are both `locationSubtype.jeweller`). The location keeps its
+//! Type separately, so the same subtype can come from different Types.
+//!
+//! A subtype may need more dice before it is final ([`SubtypeResolution`]):
+//!
+//! - **split**: roll another table to decide between subtypes (Weaponsmith /
+//!   Armoursmith, 1d4);
+//! - **reroll**: roll the same table again, as often as the result comes up,
+//!   and give the location a Quality shift once (Specialist Artisan).
+//!
+//! A subtype with a `speciality` table then rolls it once; the result is
+//! child data of the location (a Magic Store's speciality), never a location
+//! of its own. Every roll is kept.
+//!
 //! **Bare Minimum Buildings** (a setting) adds exactly one more location to
-//! the whole settlement, never one per district: a Tavern with 4 spare
-//! rooms. It is additive (it never takes a rolled location's place), its
-//! type is not rolled, and its [`LocationSource`] tells it apart from a
-//! rolled Hospitality location. Subtypes are future work; the Tavern's is
-//! fixed by this rule.
+//! the whole settlement, never one per district: a Tavern / Inn with 4 spare
+//! rooms. It is additive (it never takes a rolled location's place), neither
+//! its Type nor its subtype is rolled, and its [`LocationSource`] tells it
+//! apart from a rolled Hospitality location.
+
+use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
@@ -24,24 +44,94 @@ use crate::VERSION;
 use crate::content::{Condition, ContentSet};
 use crate::dice::FaceSource;
 use crate::engine::{
-    GenerationError, GenerationEvent, Generator, Named, Request, ResultOption, Selections, State,
-    TableRollRecord,
+    GenerationError, GenerationEvent, Generator, MAX_REROLLS, Named, Request, ResultOption,
+    Selections, State, TableRollRecord,
 };
 use crate::ids::{LocationSchemeId, ResultId, TableId, TagId};
+use crate::quality::QualityShift;
 
 /// The stage table recorded in snapshots for the Notable Locations stage.
 pub const LOCATIONS_STAGE_ID: &str = "stage.notableLocations";
 /// Rolled once for each rolled Notable Location.
 pub const TYPE_TABLE: &str = "table.notableLocationType";
-/// The Bare Minimum Buildings Tavern's type, which must exist in the type
-/// table.
+/// The Bare Minimum Buildings Tavern / Inn's type, which must exist in the
+/// type table.
 pub const HOSPITALITY_TYPE: &str = "locationType.hospitality";
-/// The Bare Minimum Buildings Tavern's fixed subtype.
-pub const TAVERN_SUBTYPE: &str = "locationSubtype.tavern";
-/// The Bare Minimum Buildings Tavern's stable location ID.
+/// The Bare Minimum Buildings Tavern / Inn's fixed subtype, which must be a
+/// canonical subtype.
+pub const TAVERN_INN_SUBTYPE: &str = "locationSubtype.tavernInn";
+/// The Bare Minimum Buildings Tavern / Inn's stable location ID.
 pub const GUARANTEED_TAVERN_ID: &str = "notable-location-guaranteed-tavern";
-/// The Bare Minimum Buildings Tavern always has exactly this many.
+/// The Bare Minimum Buildings Tavern / Inn always has exactly this many.
 pub const TAVERN_SPARE_ROOMS: u32 = 4;
+
+/// One canonical Notable Location subtype. It has this one ID in every
+/// subtype table that lists it; the tables only label and weight it.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct LocationSubtype {
+    pub id: ResultId,
+    /// The canonical name; a table may label the subtype differently.
+    pub name: String,
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub description: String,
+    /// More dice needed before the subtype is final, if any.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub resolve: Option<SubtypeResolution>,
+    /// Rolled once for each location of this subtype; its result is the
+    /// location's speciality (e.g. a Magic Store's).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speciality: Option<TableId>,
+    /// What the subtype will offer systems that do not exist yet (e.g. Keep
+    /// upgrades). Design metadata: generation only copies it to the
+    /// location.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub capabilities: Vec<PlannedCapability>,
+}
+
+/// How a subtype table result that is not final is resolved.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(tag = "kind", rename_all = "snake_case")]
+pub enum SubtypeResolution {
+    /// Roll `table`; its result (a canonical subtype) is the subtype.
+    Split { table: TableId },
+    /// Roll the same subtype table again until another result comes up, and
+    /// shift the location's future Quality by `quality_shift` steps once,
+    /// however often this result repeats.
+    Reroll { quality_shift: u8 },
+}
+
+/// Something a subtype will make possible once a future system exists.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct PlannedCapability {
+    /// Stable, e.g. `keepUpgrade.structural`.
+    pub id: String,
+    pub name: String,
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub description: String,
+}
+
+/// The subtype table rolled for locations of one Type.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SubtypeTable {
+    /// A result of the Notable Location Type table.
+    #[serde(rename = "type")]
+    pub location_type: ResultId,
+    pub table: TableId,
+}
+
+/// The canonical subtype `id`, if there is one.
+pub fn subtype<'c>(content: &'c ContentSet, id: &ResultId) -> Option<&'c LocationSubtype> {
+    content.location_subtypes.iter().find(|s| &s.id == id)
+}
+
+/// The subtype table of `location_type`, if it has one.
+pub fn subtype_table<'c>(content: &'c ContentSet, location_type: &ResultId) -> Option<&'c TableId> {
+    content
+        .location_subtype_tables
+        .iter()
+        .find(|s| &s.location_type == location_type)
+        .map(|s| &s.table)
+}
 
 /// The Notable Location tables of one Size.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -111,15 +201,97 @@ pub struct NotableLocation {
     /// none (not yet placed) for the settlement-level guaranteed Tavern.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub district: Option<String>,
+    /// The parent Type: what generated the subtype.
     #[serde(rename = "type")]
     pub location_type: Named<ResultId>,
     /// The Type roll; absent for the guaranteed Tavern, which is not rolled.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub type_roll: Option<TableRollRecord>,
+    /// The canonical subtype (e.g. `locationSubtype.jeweller`), named with
+    /// its label, at the time, in the table that gave it (e.g. "Jeweller /
+    /// Goldsmith"). None for a Type without subtypes.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub subtype: Option<Named<ResultId>>,
+    /// Every roll that found the subtype. Absent for the guaranteed Tavern,
+    /// whose subtype is not rolled.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subtype_rolls: Option<SubtypeRolls>,
+    /// The subtype's speciality, e.g. a Magic Store's "Weapons".
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speciality: Option<Named<ResultId>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speciality_roll: Option<TableRollRecord>,
+    /// A shift of the location's Quality, waiting for Quality to be
+    /// generated (e.g. +1 step for a Specialist Artisan).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub quality_shift: Option<QualityShift>,
+    /// The subtype's planned capabilities when it was generated (e.g.
+    /// structural Keep upgrades). Nothing uses them yet.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub capabilities: Vec<Named<String>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub spare_rooms: Option<u32>,
+}
+
+impl NotableLocation {
+    fn clear_subtype(&mut self) {
+        self.subtype = None;
+        self.subtype_rolls = None;
+        self.speciality = None;
+        self.speciality_roll = None;
+        self.quality_shift = None;
+        self.capabilities.clear();
+    }
+}
+
+/// How a rolled location's subtype was found.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SubtypeRolls {
+    /// The roll (or choice) on the Type's subtype table, e.g. Craft /
+    /// Workshop 20: Specialist Artisan.
+    pub roll: TableRollRecord,
+    /// The same table rolled again because `roll` was a reroll result, in
+    /// order. Each but the last is that result again.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub rerolls: Vec<TableRollRecord>,
+    /// The roll that split the result, e.g. Weaponsmith / Armoursmith 1d4.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub split: Option<TableRollRecord>,
+}
+
+impl SubtypeRolls {
+    /// The subtype table roll the subtype comes from: the last reroll, if
+    /// any, else the first roll.
+    pub fn resolved(&self) -> &TableRollRecord {
+        self.rerolls.last().unwrap_or(&self.roll)
+    }
+}
+
+/// What can be rolled or chosen again on a rolled location. Each detail
+/// re-rolls everything that follows from it.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LocationDetail {
+    Type,
+    /// The roll on the Type's subtype table.
+    Subtype,
+    /// What a reroll result (Specialist Artisan) becomes.
+    Reroll,
+    /// The roll deciding a split result (Weaponsmith / Armoursmith).
+    Split,
+    Speciality,
+}
+
+impl fmt::Display for LocationDetail {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(match self {
+            LocationDetail::Type => "Type",
+            LocationDetail::Subtype => "subtype",
+            LocationDetail::Reroll => "subtype reroll",
+            LocationDetail::Split => "subtype split",
+            LocationDetail::Speciality => "speciality",
+        })
+    }
 }
 
 /// The settlement's Notable Locations, with every roll: the record saved
@@ -199,7 +371,8 @@ impl LocationGenerator<'_, '_> {
         })
     }
 
-    /// Every count and type, then the guaranteed Tavern if enabled.
+    /// Every count, Type and subtype, then (once, after every district) the
+    /// guaranteed Tavern / Inn if enabled.
     pub fn generate(
         &self,
         size: &Named<ResultId>,
@@ -293,31 +466,47 @@ impl LocationGenerator<'_, '_> {
         Ok(())
     }
 
-    /// Rolls (or chooses) one rolled location's Type again.
-    pub fn set_type(
+    /// Rolls (or chooses) one detail of a rolled location again, then
+    /// everything that follows from it: a new Type rolls a new subtype, a
+    /// new subtype its rerolls, split and speciality, and so on. A detail
+    /// that does not apply to the location (a speciality for a General
+    /// Smithy) is an error.
+    pub fn set_detail(
         &self,
         record: &mut NotableLocations,
         index: usize,
+        detail: LocationDetail,
         choice: Option<ResultId>,
         faces: &mut dyn FaceSource,
     ) -> Result<(), GenerationError> {
         let location = record
             .locations
-            .get(index)
+            .get_mut(index)
             .ok_or(GenerationError::NoSuchLocation { index })?;
         if location.source != LocationSource::Rolled {
             return Err(GenerationError::GuaranteedLocationNotRolled);
         }
-        let roll = self.roll(&TableId::new(TYPE_TABLE), choice, faces)?;
-        let location = &mut record.locations[index];
-        location.location_type = roll.result.clone();
-        location.type_roll = Some(roll);
+        if !self.applies(location, detail) {
+            return Err(GenerationError::NoLocationDetail { index, detail });
+        }
+        match detail {
+            LocationDetail::Type => {
+                let roll = self.roll(&TableId::new(TYPE_TABLE), choice, faces)?;
+                location.location_type = roll.result.clone();
+                location.type_roll = Some(roll);
+                self.roll_subtype(location, None, faces)?;
+            }
+            LocationDetail::Subtype => self.roll_subtype(location, choice, faces)?,
+            LocationDetail::Reroll => self.roll_rerolls(location, choice, faces)?,
+            LocationDetail::Split => self.roll_split(location, choice, faces)?,
+            LocationDetail::Speciality => self.roll_speciality(location, choice, faces)?,
+        }
         record.app_version = VERSION.to_owned();
         Ok(())
     }
 
-    /// Adds the guaranteed Tavern if enabled and absent; removes it (and
-    /// only it) if disabled. Rolled locations are never touched.
+    /// Adds the guaranteed Tavern / Inn if enabled and absent; removes it
+    /// (and only it) if disabled. Rolled locations are never touched.
     pub fn set_bare_minimum(
         &self,
         record: &mut NotableLocations,
@@ -330,6 +519,17 @@ impl LocationGenerator<'_, '_> {
                 .table(&TableId::new(TYPE_TABLE))
                 .and_then(|t| t.result(&ResultId::new(HOSPITALITY_TYPE)))
                 .ok_or_else(|| GenerationError::UnknownTable(TableId::new(TYPE_TABLE)))?;
+            // Assigned, not rolled: labelled as the Hospitality table labels
+            // it, else by its canonical name.
+            let tavern = ResultId::new(TAVERN_INN_SUBTYPE);
+            let label = subtype_table(self.content, &hospitality.id)
+                .and_then(|t| self.content.table(t))
+                .and_then(|t| t.result(&tavern))
+                .map(|r| r.name.clone())
+                .or_else(|| subtype(self.content, &tavern).map(|s| s.name.clone()))
+                .ok_or_else(|| GenerationError::UnknownLocationSubtype {
+                    subtype: tavern.clone(),
+                })?;
             record.locations.insert(
                 0,
                 NotableLocation {
@@ -338,7 +538,12 @@ impl LocationGenerator<'_, '_> {
                     district: None,
                     location_type: Named::new(&hospitality.id, &hospitality.name),
                     type_roll: None,
-                    subtype: Some(Named::new(&ResultId::new(TAVERN_SUBTYPE), "Tavern")),
+                    capabilities: self.capabilities(&tavern),
+                    subtype: Some(Named::new(&tavern, &label)),
+                    subtype_rolls: None,
+                    speciality: None,
+                    speciality_roll: None,
+                    quality_shift: None,
                     spare_rooms: Some(TAVERN_SPARE_ROOMS),
                 },
             );
@@ -351,22 +556,236 @@ impl LocationGenerator<'_, '_> {
     }
 
     /// For the view: the District Count, count and Type tables with their
-    /// results under the current tags.
-    pub fn options(&self, size: Option<&Named<ResultId>>) -> LocationOptions {
+    /// results under the current tags, and for each location of `record`
+    /// the tables of the details that apply to it.
+    pub fn options(
+        &self,
+        size: Option<&Named<ResultId>>,
+        record: Option<&NotableLocations>,
+    ) -> LocationOptions {
         let state = State::with_tags(self.settlement_tags);
-        let table = |id: &TableId| self.generator.options_for(id, &state).ok();
+        let table = |id: &TableId| {
+            self.generator
+                .options_for(id, &state)
+                .ok()
+                .map(|(table, options)| TableOptions { table, options })
+        };
         let scheme = size.and_then(|s| self.scheme(s).ok());
+        let details = record
+            .map(|r| {
+                r.locations
+                    .iter()
+                    .map(|l| self.detail_options(l, &table))
+                    .collect()
+            })
+            .unwrap_or_default();
         LocationOptions {
-            districts: scheme
-                .and_then(|s| s.districts.as_ref())
-                .and_then(table)
-                .map(|(table, options)| TableOptions { table, options }),
-            count: scheme
-                .and_then(|s| table(&s.count))
-                .map(|(table, options)| TableOptions { table, options }),
-            types: table(&TableId::new(TYPE_TABLE))
-                .map(|(table, options)| TableOptions { table, options }),
+            districts: scheme.and_then(|s| s.districts.as_ref()).and_then(table),
+            count: scheme.and_then(|s| table(&s.count)),
+            types: table(&TableId::new(TYPE_TABLE)),
+            details,
         }
+    }
+
+    /// The tables of the details that apply to `location` now.
+    fn detail_options(
+        &self,
+        location: &NotableLocation,
+        table: &dyn Fn(&TableId) -> Option<TableOptions>,
+    ) -> LocationDetailOptions {
+        if location.source != LocationSource::Rolled {
+            return LocationDetailOptions::default();
+        }
+        let applies = |detail| self.applies(location, detail);
+        let rolls = location.subtype_rolls.as_ref();
+        LocationDetailOptions {
+            subtype: subtype_table(self.content, &location.location_type.id).and_then(table),
+            // What the reroll becomes: never the reroll result again.
+            reroll: rolls
+                .filter(|_| applies(LocationDetail::Reroll))
+                .and_then(|r| table(&r.roll.table.id))
+                .map(|mut t| {
+                    t.options
+                        .retain(|o| self.reroll_shift(&o.result.id).is_none());
+                    t
+                }),
+            split: rolls
+                .filter(|_| applies(LocationDetail::Split))
+                .and_then(|r| self.split_table(&r.resolved().result.id))
+                .and_then(table),
+            speciality: location
+                .subtype
+                .as_ref()
+                .filter(|_| applies(LocationDetail::Speciality))
+                .and_then(|s| self.speciality_table(&s.id))
+                .and_then(table),
+        }
+    }
+
+    /// Whether `detail` can be rolled for the rolled `location` now.
+    fn applies(&self, location: &NotableLocation, detail: LocationDetail) -> bool {
+        let rolls = location.subtype_rolls.as_ref();
+        match detail {
+            LocationDetail::Type => true,
+            LocationDetail::Subtype => {
+                subtype_table(self.content, &location.location_type.id).is_some()
+            }
+            LocationDetail::Reroll => {
+                rolls.is_some_and(|r| self.reroll_shift(&r.roll.result.id).is_some())
+            }
+            LocationDetail::Split => {
+                rolls.is_some_and(|r| self.split_table(&r.resolved().result.id).is_some())
+            }
+            LocationDetail::Speciality => location
+                .subtype
+                .as_ref()
+                .is_some_and(|s| self.speciality_table(&s.id).is_some()),
+        }
+    }
+
+    /// Rolls (or chooses) the location's subtype on its Type's subtype
+    /// table, then everything that follows. A Type without a subtype table
+    /// has no subtype.
+    fn roll_subtype(
+        &self,
+        location: &mut NotableLocation,
+        choice: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<(), GenerationError> {
+        location.clear_subtype();
+        let Some(table) = subtype_table(self.content, &location.location_type.id) else {
+            return Ok(());
+        };
+        location.subtype_rolls = Some(SubtypeRolls {
+            roll: self.roll(table, choice, faces)?,
+            rerolls: Vec::new(),
+            split: None,
+        });
+        self.roll_rerolls(location, None, faces)
+    }
+
+    /// After the first subtype roll: while a reroll result (Specialist
+    /// Artisan) comes up, rolls the same table again, recording every roll.
+    /// Its Quality shift is given once, however often it repeats. A chosen
+    /// result replaces the rolls and cannot be the reroll result itself.
+    /// Then the split and speciality.
+    fn roll_rerolls(
+        &self,
+        location: &mut NotableLocation,
+        choice: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<(), GenerationError> {
+        let rolls = location
+            .subtype_rolls
+            .as_mut()
+            .expect("the subtype was rolled");
+        rolls.rerolls.clear();
+        location.quality_shift = None;
+        let first = rolls.roll.result.clone();
+        if let Some(steps) = self.reroll_shift(&first.id) {
+            let table = rolls.roll.table.id.clone();
+            match choice {
+                Some(choice) if self.reroll_shift(&choice).is_some() => {
+                    return Err(GenerationError::RerollChoice {
+                        table,
+                        result: choice,
+                    });
+                }
+                Some(choice) => rolls.rerolls.push(self.roll(&table, Some(choice), faces)?),
+                None => loop {
+                    if rolls.rerolls.len() >= MAX_REROLLS {
+                        return Err(GenerationError::RerollLimit { table });
+                    }
+                    let roll = self.roll(&table, None, faces)?;
+                    let again = self.reroll_shift(&roll.result.id).is_some();
+                    rolls.rerolls.push(roll);
+                    if !again {
+                        break;
+                    }
+                },
+            }
+            location.quality_shift = Some(QualityShift {
+                steps,
+                source: first,
+            });
+        }
+        self.roll_split(location, None, faces)
+    }
+
+    /// Splits the subtype table's result if it needs it (Weaponsmith /
+    /// Armoursmith → Weaponsmith or Armoursmith), sets the final subtype,
+    /// then rolls its speciality.
+    fn roll_split(
+        &self,
+        location: &mut NotableLocation,
+        choice: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<(), GenerationError> {
+        let rolls = location
+            .subtype_rolls
+            .as_mut()
+            .expect("the subtype was rolled");
+        rolls.split = None;
+        let resolved = rolls.resolved().result.clone();
+        if let Some(table) = self.split_table(&resolved.id) {
+            rolls.split = Some(self.roll(table, choice, faces)?);
+        }
+        let subtype = rolls.split.as_ref().map_or(resolved, |s| s.result.clone());
+        location.capabilities = self.capabilities(&subtype.id);
+        location.subtype = Some(subtype);
+        self.roll_speciality(location, None, faces)
+    }
+
+    /// Rolls (or chooses) the subtype's speciality, if it has one.
+    fn roll_speciality(
+        &self,
+        location: &mut NotableLocation,
+        choice: Option<ResultId>,
+        faces: &mut dyn FaceSource,
+    ) -> Result<(), GenerationError> {
+        location.speciality = None;
+        location.speciality_roll = None;
+        let table = location
+            .subtype
+            .as_ref()
+            .and_then(|s| self.speciality_table(&s.id));
+        if let Some(table) = table {
+            let roll = self.roll(table, choice, faces)?;
+            location.speciality = Some(roll.result.clone());
+            location.speciality_roll = Some(roll);
+        }
+        Ok(())
+    }
+
+    /// The Quality shift of `id`, if it is a reroll result.
+    fn reroll_shift(&self, id: &ResultId) -> Option<u8> {
+        match subtype(self.content, id)?.resolve.as_ref()? {
+            SubtypeResolution::Reroll { quality_shift } => Some(*quality_shift),
+            SubtypeResolution::Split { .. } => None,
+        }
+    }
+
+    /// The table that splits `id`, if it is a split result.
+    fn split_table(&self, id: &ResultId) -> Option<&TableId> {
+        match subtype(self.content, id)?.resolve.as_ref()? {
+            SubtypeResolution::Split { table } => Some(table),
+            SubtypeResolution::Reroll { .. } => None,
+        }
+    }
+
+    fn speciality_table(&self, id: &ResultId) -> Option<&TableId> {
+        subtype(self.content, id)?.speciality.as_ref()
+    }
+
+    fn capabilities(&self, id: &ResultId) -> Vec<Named<String>> {
+        subtype(self.content, id)
+            .map(|s| {
+                s.capabilities
+                    .iter()
+                    .map(|c| Named::new(&c.id, &c.name))
+                    .collect()
+            })
+            .unwrap_or_default()
     }
 
     /// Rolls the count for a new area (district `index`, or the whole
@@ -400,15 +819,22 @@ impl LocationGenerator<'_, '_> {
         faces: &mut dyn FaceSource,
     ) -> Result<NotableLocation, GenerationError> {
         let roll = self.roll(&TableId::new(TYPE_TABLE), None, faces)?;
-        Ok(NotableLocation {
+        let mut location = NotableLocation {
             id: format!("notable-location-{:02}", record.next_number()),
             source: LocationSource::Rolled,
             district,
             location_type: roll.result.clone(),
             type_roll: Some(roll),
             subtype: None,
+            subtype_rolls: None,
+            speciality: None,
+            speciality_roll: None,
+            quality_shift: None,
+            capabilities: Vec::new(),
             spare_rooms: None,
-        })
+        };
+        self.roll_subtype(&mut location, None, faces)?;
+        Ok(location)
     }
 
     /// A count: the rolled result's value.
@@ -474,4 +900,25 @@ pub struct LocationOptions {
     pub count: Option<TableOptions>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub types: Option<TableOptions>,
+    /// For each location, in order, the details that apply to it.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub details: Vec<LocationDetailOptions>,
+}
+
+/// The tables of one location's details, only those that apply to it: a
+/// Magic Store Speciality only for a Magic Store, a reroll only after a
+/// Specialist Artisan. Empty for the guaranteed Tavern / Inn.
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LocationDetailOptions {
+    /// The Type's subtype table.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subtype: Option<TableOptions>,
+    /// The subtype table again, without the results that roll again: what
+    /// a reroll result (Specialist Artisan) becomes.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reroll: Option<TableOptions>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub split: Option<TableOptions>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub speciality: Option<TableOptions>,
 }

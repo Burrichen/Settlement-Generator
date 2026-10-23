@@ -10,7 +10,7 @@ use std::fmt;
 use serde::{Deserialize, Serialize};
 
 use crate::ids::{GeneratorId, NamingSchemeId, ResultId, TableId, TagId, VariantId};
-use crate::locations::LocationScheme;
+use crate::locations::{LocationScheme, LocationSubtype, SubtypeTable};
 use crate::naming::NamingScheme;
 use crate::roles::RoleScheme;
 
@@ -56,6 +56,13 @@ pub struct ContentSet {
     /// `locations.rs`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub location_schemes: Vec<LocationScheme>,
+    /// The canonical Notable Location subtypes, each listed once however
+    /// many subtype tables list it (see `locations.rs`).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub location_subtypes: Vec<LocationSubtype>,
+    /// The subtype table each Notable Location Type rolls, if any.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub location_subtype_tables: Vec<SubtypeTable>,
 }
 
 impl Default for ContentSet {
@@ -68,6 +75,8 @@ impl Default for ContentSet {
             naming_schemes: Vec::new(),
             role_schemes: Vec::new(),
             location_schemes: Vec::new(),
+            location_subtypes: Vec::new(),
+            location_subtype_tables: Vec::new(),
         }
     }
 }

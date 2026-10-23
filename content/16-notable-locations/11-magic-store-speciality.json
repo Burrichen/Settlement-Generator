@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.magicStoreSpeciality",
+      "name": "Magic Store Speciality",
+      "description": "What a Magic Store deals in, rolled once for each Magic Store. A Magic Store is a specialist dealer, not a store of every kind of magic item.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "magicStoreSpeciality.armourProtection",
+          "name": "Armour & Protection",
+          "range": 1
+        },
+        {
+          "id": "magicStoreSpeciality.booksScrollsLore",
+          "name": "Books, Scrolls & Lore",
+          "range": 2
+        },
+        {
+          "id": "magicStoreSpeciality.clothing",
+          "name": "Clothing",
+          "range": 3
+        },
+        {
+          "id": "magicStoreSpeciality.jewellery",
+          "name": "Jewellery",
+          "range": 4
+        },
+        {
+          "id": "magicStoreSpeciality.weapons",
+          "name": "Weapons",
+          "range": 5
+        },
+        {
+          "id": "magicStoreSpeciality.curiositiesWondrous",
+          "name": "Curiosities & Wondrous Items",
+          "range": 6
+        }
+      ]
+    }
+  ]
+}

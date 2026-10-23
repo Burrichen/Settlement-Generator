@@ -41,7 +41,7 @@ pub struct Settings {
     pub god_mode: bool,
     /// Show applied tags during generation and in saved settlements.
     pub tag_view: bool,
-    /// Every settlement gets one extra Notable Location: a Tavern with 4
+    /// Every settlement gets one extra Notable Location: a Tavern / Inn with 4
     /// spare rooms. See [`GenerationOptions`].
     #[serde(default)]
     pub bare_minimum_buildings: bool,

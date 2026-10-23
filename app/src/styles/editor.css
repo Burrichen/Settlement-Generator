@@ -204,6 +204,18 @@ legend code {
   margin-top: 3px;
 }
 
+.subtype-list {
+  display: grid;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding-left: 1.2em;
+  font-size: 13.5px;
+}
+
+.subtype-list .cell-sub {
+  color: var(--text-muted);
+}
+
 .chance {
   font-variant-numeric: tabular-nums;
   color: var(--text-muted);

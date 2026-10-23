@@ -83,7 +83,8 @@ This crate owns, or will own:
 | `naming`      | Naming schemes and methods as data; deterministic name joining (compound, space, possessive, curated variants, exceptions)     | Implemented |
 | `layers`      | Merge bundled defaults with user overrides; edit, delete and reset operations                                                  | Implemented |
 | `bundled`     | Bundled default content (`content/*.json`, embedded by `build.rs`)                                                             | Implemented |
-| `locations`   | Notable Locations: count by Size (per district for Cities and Capitals), 1d20 Type, the guaranteed Tavern                      | Implemented |
+| `locations`   | Notable Locations: count by Size and district, 1d20 Type, canonical subtypes, the guaranteed Tavern / Inn                      | Implemented |
+| `quality`     | The ordered Quality scale (Poor → Excellent) and pending Quality shifts; no distribution yet                                   | Implemented |
 | `settings`    | Settings model: generation method/presentation, God Mode, Tag View, Bare Minimum Buildings, theme                              | Implemented |
 | `settlements` | Saved settlement snapshots and summaries                                                                                       | Implemented |
 | `db`          | SQLite database: transactional migrations, settings, overrides, settlements                                                    | Implemented |

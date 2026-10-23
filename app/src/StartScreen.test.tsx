@@ -123,6 +123,8 @@ vi.mock("./api", async (importOriginal) => {
       chooseLocationCount: vi.fn(),
       rollLocationType: vi.fn(),
       chooseLocationType: vi.fn(),
+      rollLocationDetail: vi.fn(),
+      chooseLocationDetail: vi.fn(),
       chooseFigureNamePart: vi.fn(),
       figureName: vi.fn(),
       chooseRelationship: vi.fn(),
@@ -712,9 +714,10 @@ describe("authority figures", () => {
 
 describe("notable locations", () => {
   const named = (id: string, name: string) => ({ id, name });
-  const roll = (table: string, id: string, name: string) => ({
+  const roll = (table: string, id: string, name: string, faces: number[] = [1]) => ({
     table: named(table, table),
     dice: "1d6",
+    attempts: faces.map((total) => ({ roll: { total } })),
     result: named(id, name),
   });
   const record: NotableLocations = {
@@ -732,8 +735,8 @@ describe("notable locations", () => {
       {
         district: { id: "district-2", label: "District 2" },
         count: {
-          roll: roll("City District Notable Location Count", "one", "1 Notable Location"),
-          count: 1,
+          roll: roll("City District Notable Location Count", "two", "2 Notable Locations"),
+          count: 2,
         },
       },
     ],
@@ -742,7 +745,7 @@ describe("notable locations", () => {
         id: "notable-location-guaranteed-tavern",
         source: "bareMinimumBuildings",
         type: named("locationType.hospitality", "Hospitality"),
-        subtype: named("locationSubtype.tavern", "Tavern"),
+        subtype: named("locationSubtype.tavernInn", "Tavern / Inn"),
         spare_rooms: 4,
       },
       {
@@ -750,12 +753,27 @@ describe("notable locations", () => {
         source: "rolled",
         district: "district-1",
         type: named("locationType.hospitality", "Hospitality"),
+        subtype: named("locationSubtype.eatingHouse", "Eating House"),
+        subtype_rolls: {
+          roll: roll("Hospitality", "locationSubtype.eatingHouse", "Eating House", [7]),
+        },
       },
       {
         id: "notable-location-02",
         source: "rolled",
         district: "district-1",
         type: named("locationType.trade", "Trade / Shop"),
+        subtype: named("locationSubtype.magicStore", "Magic Store"),
+        subtype_rolls: {
+          roll: roll("Trade / Shop", "locationSubtype.magicStore", "Magic Store", [15]),
+        },
+        speciality: named("magicStoreSpeciality.weapons", "Weapons"),
+        speciality_roll: roll(
+          "Magic Store Speciality",
+          "magicStoreSpeciality.weapons",
+          "Weapons",
+          [5],
+        ),
       },
       {
         id: "notable-location-03",
@@ -763,14 +781,70 @@ describe("notable locations", () => {
         district: "district-2",
         type: named("locationType.criminal", "Criminal"),
       },
+      {
+        id: "notable-location-04",
+        source: "rolled",
+        district: "district-2",
+        type: named("locationType.craft", "Craft / Workshop"),
+        subtype: named("locationSubtype.armoursmith", "Armoursmith"),
+        subtype_rolls: {
+          roll: roll(
+            "Craft / Workshop",
+            "locationSubtype.specialistArtisan",
+            "Specialist Artisan",
+            [20],
+          ),
+          rerolls: [
+            roll(
+              "Craft / Workshop",
+              "locationSubtype.specialistArtisan",
+              "Specialist Artisan",
+              [20],
+            ),
+            roll(
+              "Craft / Workshop",
+              "locationSubtype.weaponsmithArmoursmith",
+              "Weaponsmith / Armoursmith",
+              [6],
+            ),
+          ],
+          split: {
+            ...roll("Weaponsmith / Armoursmith", "locationSubtype.armoursmith", "Armoursmith", [3]),
+            dice: "1d4",
+          },
+        },
+        quality_shift: {
+          steps: 1,
+          source: named("locationSubtype.specialistArtisan", "Specialist Artisan"),
+        },
+      },
     ],
-    issued: 3,
+    issued: 4,
     app_version: "0.1.1",
   };
   const options = (table: string, ids: [string, string][]) => ({
     table: named(table, table),
     options: ids.map(([id, name]) => ({ result: named(id, name), tags: [], legal: true })),
   });
+  const hospitality: [string, string][] = [
+    ["locationSubtype.tavernInn", "Tavern / Inn"],
+    ["locationSubtype.eatingHouse", "Eating House"],
+    ["locationSubtype.bathhouse", "Bathhouse"],
+  ];
+  const trade: [string, string][] = [
+    ["locationSubtype.generalSmithy", "General Smithy"],
+    ["locationSubtype.magicStore", "Magic Store"],
+  ];
+  const specialities: [string, string][] = [
+    ["magicStoreSpeciality.weapons", "Weapons"],
+    ["magicStoreSpeciality.clothing", "Clothing"],
+  ];
+  const craft: [string, string][] = [
+    ["locationSubtype.generalSmithy", "General Smithy"],
+    ["locationSubtype.weaponsmithArmoursmith", "Weaponsmith / Armoursmith"],
+    ["locationSubtype.bowyerFletcher", "Bowyer / Fletcher"],
+    ["locationSubtype.specialistArtisan", "Specialist Artisan"],
+  ];
 
   function withLocations(mode: SessionView["mode"]): SessionView {
     const v = view(mode, STAGES.length);
@@ -782,11 +856,31 @@ describe("notable locations", () => {
       table: named("stage.notableLocations", "Notable Locations"),
       options: [],
       can_roll: true,
-      result: named("notableLocations", "4 Notable Locations"),
+      result: named("notableLocations", "5 Notable Locations"),
       locations: {
         record,
         bare_minimum_buildings: true,
         options: {
+          details: [
+            {},
+            { subtype: options("Hospitality", hospitality) },
+            {
+              subtype: options("Trade / Shop", trade),
+              speciality: options("Magic Store Speciality", specialities),
+            },
+            {},
+            {
+              subtype: options("Craft / Workshop", craft),
+              reroll: options(
+                "Craft / Workshop",
+                craft.filter(([id]) => id !== "locationSubtype.specialistArtisan"),
+              ),
+              split: options("Weaponsmith / Armoursmith", [
+                ["locationSubtype.weaponsmith", "Weaponsmith"],
+                ["locationSubtype.armoursmith", "Armoursmith"],
+              ]),
+            },
+          ],
           districts: options("City District Count", [
             ["two", "2 Districts"],
             ["three", "3 Districts"],
@@ -816,10 +910,11 @@ describe("notable locations", () => {
       .getAllByRole("listitem")
       .map((li) => li.textContent);
     expect(items).toEqual([
-      "Tavern · Hospitality · 4 spare rooms",
-      "Hospitality · District 1",
-      "Trade / Shop · District 1",
+      "Tavern / Inn · Hospitality · 4 spare rooms",
+      "Eating House · Hospitality · District 1",
+      "Magic Store (Weapons) · Trade / Shop · District 1",
       "Criminal · District 2",
+      "Armoursmith · Craft / Workshop · Specialist Artisan (Quality +1 step) · District 2",
     ]);
     expect(within(row).getByText("2 Districts")).toBeTruthy();
   });
@@ -840,17 +935,77 @@ describe("notable locations", () => {
     expect(g.chooseDistrictCount).toHaveBeenCalledWith(i, "three");
 
     const second = screen.getByLabelText("District 2: Notable Location Count") as HTMLSelectElement;
-    // The current result is kept even though it is not offered.
-    expect(second.value).toBe("one");
+    expect(second.value).toBe("two");
     await user.selectOptions(second, "three");
     expect(g.chooseLocationCount).toHaveBeenCalledWith(i, 1, "three");
 
     await user.selectOptions(screen.getByLabelText("Location 4: type"), "locationType.trade");
     expect(g.chooseLocationType).toHaveBeenCalledWith(i, 3, "locationType.trade");
 
-    // The guaranteed Tavern has no type to choose.
+    // The guaranteed Tavern / Inn has no type or subtype to choose.
     expect(screen.queryByLabelText("Location 1: type")).toBeNull();
+    expect(screen.queryByLabelText("Location 1: subtype")).toBeNull();
     expect(screen.getByText("Added by Bare Minimum Buildings.")).toBeTruthy();
-    expect(screen.getByText("Bare Minimum Buildings: one extra Tavern is added.")).toBeTruthy();
+    expect(
+      screen.getByText("Bare Minimum Buildings: one extra Tavern / Inn is added."),
+    ).toBeTruthy();
+  });
+
+  it("offers each location's subtype, and only the child rolls that apply", async () => {
+    settings.generation_method = "manual";
+    settings.generation_presentation = "one_table";
+    const v = withLocations("one_table");
+    g.start.mockResolvedValue(ok(v));
+    g.chooseLocationDetail.mockResolvedValue(ok(v));
+    g.rollLocationDetail.mockResolvedValue(ok(v));
+    const user = await openStart();
+    const i = STAGES.length;
+
+    // Hospitality: its subtype, nothing more.
+    const eating = (await screen.findByLabelText("Location 2: subtype")) as HTMLSelectElement;
+    expect(eating.value).toBe("locationSubtype.eatingHouse");
+    expect(screen.queryByLabelText("Location 2: speciality")).toBeNull();
+    await user.selectOptions(eating, "locationSubtype.bathhouse");
+    expect(g.chooseLocationDetail).toHaveBeenCalledWith(
+      i,
+      1,
+      "subtype",
+      "locationSubtype.bathhouse",
+    );
+
+    // The Magic Store: its speciality too.
+    const speciality = screen.getByLabelText("Location 3: speciality") as HTMLSelectElement;
+    expect(speciality.value).toBe("magicStoreSpeciality.weapons");
+    expect(screen.getByText("Location 3: Magic Store Speciality")).toBeTruthy();
+    await user.selectOptions(speciality, "magicStoreSpeciality.clothing");
+    expect(g.chooseLocationDetail).toHaveBeenCalledWith(
+      i,
+      2,
+      "speciality",
+      "magicStoreSpeciality.clothing",
+    );
+    expect(screen.queryByLabelText("Location 3: reroll")).toBeNull();
+
+    // Criminal has no subtype table.
+    expect(screen.queryByLabelText("Location 4: subtype")).toBeNull();
+
+    // The Specialist Artisan: its reroll (never itself) and the d4 split,
+    // with every roll shown.
+    const artisan = screen.getByLabelText("Location 5: subtype") as HTMLSelectElement;
+    expect(artisan.value).toBe("locationSubtype.specialistArtisan");
+    expect(screen.getByText("Location 5: Specialist Artisan rolls again")).toBeTruthy();
+    const reroll = screen.getByLabelText("Location 5: reroll") as HTMLSelectElement;
+    expect(reroll.value).toBe("locationSubtype.weaponsmithArmoursmith");
+    expect(within(reroll).queryByText("Specialist Artisan")).toBeNull();
+    expect(screen.getByText("Craft / Workshop: 20 → 20 → 6.")).toBeTruthy();
+    expect(screen.getByText("Quality +1 step, once Quality is generated.")).toBeTruthy();
+    const split = screen.getByLabelText("Location 5: split") as HTMLSelectElement;
+    expect(split.value).toBe("locationSubtype.armoursmith");
+    expect(screen.getByText("1d4: 3.")).toBeTruthy();
+    expect(screen.queryByLabelText("Location 5: speciality")).toBeNull();
+
+    const row = reroll.closest("label") as HTMLElement;
+    await user.click(within(row).getByRole("button", { name: "Re-roll" }));
+    expect(g.rollLocationDetail).toHaveBeenCalledWith(i, 4, "reroll");
   });
 });

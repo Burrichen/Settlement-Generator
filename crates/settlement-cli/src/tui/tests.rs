@@ -1212,21 +1212,22 @@ fn one_table_changes_a_location_type_but_not_the_tavern() {
     select_row(&mut app, "Notable Locations");
     let screen = text_at(&mut app, 140, 60);
     assert!(
-        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        screen.contains(" 1. Tavern / Inn · Hospitality · 4 spare rooms"),
         "{screen}"
     );
     assert!(
-        screen.contains("change a count or a location's type"),
+        screen.contains("change a count, or a location's type or subtype"),
         "{screen}"
     );
     key(&mut app, KeyCode::Enter);
     let screen = text_at(&mut app, 140, 60);
     assert!(screen.contains("Change Notable Locations"), "{screen}");
     assert!(screen.contains("Notable Location Count"), "{screen}");
-    // The Tavern is location 1 and is not offered.
+    // The Tavern / Inn is location 1 and is not offered.
     assert!(!screen.contains("Location 1 "), "{screen}");
+    assert!(!screen.contains("Location 1:"), "{screen}");
     assert!(screen.contains("Location 2"), "{screen}");
-    key(&mut app, KeyCode::End); // the last rolled location
+    type_text(&mut app, "Location 2"); // the first rolled location's Type
     key(&mut app, KeyCode::Enter);
     let screen = text_at(&mut app, 140, 60);
     assert!(screen.contains("Choose Notable Location Type"), "{screen}");
@@ -1237,7 +1238,106 @@ fn one_table_changes_a_location_type_but_not_the_tavern() {
     let screen = text_at(&mut app, 140, 60);
     assert!(!screen.contains("Choose Notable Location Type"), "{screen}");
     assert!(
-        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        screen.contains(" 1. Tavern / Inn · Hospitality · 4 spare rooms"),
+        "{screen}"
+    );
+}
+
+/// Opens the Notable Locations picker and picks the first row matching
+/// `filter`, then the first result matching `result`.
+fn change_location(app: &mut App, filter: &str, result: &str) {
+    key(app, KeyCode::Enter);
+    type_text(app, filter);
+    key(app, KeyCode::Enter);
+    type_text(app, result);
+    key(app, KeyCode::Enter);
+}
+
+#[test]
+fn one_table_changes_subtypes_and_only_the_child_rolls_that_apply() {
+    use settlement_core::dice::ScriptedFaces;
+    let mut app = app();
+    let mut s = app.ctx.settings;
+    s.bare_minimum_buildings = true;
+    app.ctx.save_settings(s).unwrap();
+    set_manual(&mut app, GenerationPresentation::OneTable);
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a'));
+    select_row(&mut app, "Notable Locations");
+
+    // Location 2 becomes Trade / Shop: 14 is a Magic Store, 5 its
+    // speciality (Weapons).
+    app.ctx.dice = Box::new(ScriptedFaces::new([14, 5]));
+    change_location(&mut app, "Location 2", "Trade / Shop");
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen.contains(" 2. Magic Store (Weapons) · Trade / Shop"),
+        "{screen}"
+    );
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(screen.contains("Location 2: Trade / Shop"), "{screen}");
+    assert!(
+        screen.contains("Location 2: Magic Store Speciality  Weapons"),
+        "{screen}"
+    );
+    assert!(!screen.contains("Location 2: Weaponsmith"), "{screen}");
+    key(&mut app, KeyCode::Esc);
+    change_location(&mut app, "Speciality", "Clothing");
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen.contains(" 2. Magic Store (Clothing) · Trade / Shop"),
+        "{screen}"
+    );
+
+    // Craft / Workshop: Specialist Artisan (20), again (20), Weaponsmith /
+    // Armoursmith (6), then the d4 (3): an Armoursmith, one step better.
+    app.ctx.dice = Box::new(ScriptedFaces::new([20, 20, 6, 3]));
+    change_location(&mut app, "Location 2", "Craft / Workshop");
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen
+            .contains(" 2. Armoursmith · Craft / Workshop · Specialist Artisan (Quality +1 step)"),
+        "{screen}"
+    );
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen.contains("Location 2: Craft / Workshop  Specialist Artisan (20)"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("Location 2: Specialist Artisan rolls again"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("Location 2: Weaponsmith / Armoursmith  Armoursmith (3)"),
+        "{screen}"
+    );
+    assert!(!screen.contains("Location 2: Magic Store"), "{screen}");
+    // Every roll is shown (the filter also reads the hints): what the
+    // artisan makes, rolled 20, 20 then 6.
+    type_text(&mut app, "(20 → 20 → 6)");
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen.contains("Location 2: Specialist Artisan rolls again"),
+        "{screen}"
+    );
+    assert!(!screen.contains("Location 2: Craft / Workshop"), "{screen}");
+    // It can be chosen, but never as Specialist Artisan again.
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(screen.contains("Choose Craft / Workshop"), "{screen}");
+    assert!(screen.contains("Bowyer / Fletcher  13-14"), "{screen}");
+    assert!(!screen.contains("Specialist Artisan  20"), "{screen}");
+    type_text(&mut app, "Bowyer");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 80);
+    assert!(
+        screen.contains(
+            " 2. Bowyer / Fletcher · Craft / Workshop · Specialist Artisan (Quality +1 step)"
+        ),
         "{screen}"
     );
 }
@@ -1259,7 +1359,7 @@ fn view_lists_notable_locations_with_their_districts() {
     let screen = text_at(&mut app, 160, 120);
     assert!(screen.contains("NOTABLE LOCATIONS"), "{screen}");
     assert!(
-        screen.contains(" 1. Tavern · Hospitality · 4 spare rooms"),
+        screen.contains(" 1. Tavern / Inn · Hospitality · 4 spare rooms"),
         "{screen}"
     );
     assert!(screen.contains("· District 1"), "{screen}");
@@ -1436,4 +1536,25 @@ fn naming_methods_and_exceptions_are_edited_from_the_method_table() {
     key(&mut app, KeyCode::Enter);
     let screen = text_at(&mut app, 160, 80);
     assert!(!screen.contains("Ockton"), "{screen}");
+}
+
+#[test]
+fn table_editor_shows_a_shared_subtype_with_its_other_labels() {
+    let mut app = app();
+    open_table(&mut app, "table.notableLocationSubtype.craft");
+    down_to(&mut app, "Jeweller / Goldsmith");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 60);
+    assert!(
+        screen.contains("RESULT · locationSubtype.jeweller"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("Canonical subtype Jeweller: the same ID in every table"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("Also in Trade / Shop as “Jeweller / Precious Goods”"),
+        "{screen}"
+    );
 }

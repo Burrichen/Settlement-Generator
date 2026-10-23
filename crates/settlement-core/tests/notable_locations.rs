@@ -1,6 +1,10 @@
 //! Notable Locations: the count by Size (per district for Cities and
-//! Capitals), the 1d20 Type, and the guaranteed Tavern added by the Bare
-//! Minimum Buildings setting.
+//! Capitals), the 1d20 Type, and the guaranteed Tavern / Inn added by the
+//! Bare Minimum Buildings setting. Subtypes are in `location_subtypes.rs`.
+//!
+//! In scripted dice, Type 9 (Religious) and up roll no subtype; Types 1–8
+//! (Hospitality, Trade / Shop, Craft / Workshop) are followed by their
+//! subtype die.
 
 use std::sync::Arc;
 
@@ -169,13 +173,13 @@ fn t02_trading_post_produces_only_one_or_two() {
     assert_eq!(values, [1, 1, 2, 2]);
     // And through generation: 1 → one location, 4 → two.
     assert_eq!(
-        record(&settlement("tradingPost", false, &[1, 5]))
+        record(&settlement("tradingPost", false, &[1, 9]))
             .locations
             .len(),
         1
     );
     assert_eq!(
-        record(&settlement("tradingPost", false, &[4, 5, 5]))
+        record(&settlement("tradingPost", false, &[4, 9, 10]))
             .locations
             .len(),
         2
@@ -226,8 +230,9 @@ fn t07_every_face_is_covered_exactly_once() {
 
 #[test]
 fn villages_and_towns_roll_one_count_for_the_whole_settlement() {
-    // Village 5 → 3 locations; Town 1 → 2.
-    let village = record(&settlement("village", false, &[5, 1, 4, 7]));
+    // Village 5 → 3 locations (Hospitality, Trade and Craft, each with its
+    // subtype die); Town 1 → 2.
+    let village = record(&settlement("village", false, &[5, 1, 1, 4, 1, 7, 1]));
     assert_eq!(village.districts, None);
     assert_eq!(village.areas.len(), 1);
     assert_eq!(village.rolled_count(), 3);
@@ -246,7 +251,7 @@ fn cities_and_capitals_roll_a_count_per_district() {
     let city = record(&settlement(
         "city",
         false,
-        &[5, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1],
+        &[5, 1, 9, 9, 3, 9, 9, 9, 1, 9, 9, 7, 9, 9, 9, 9, 9],
     ));
     assert_eq!(city.districts.as_ref().unwrap().count, 4);
     let per: Vec<u32> = city.areas.iter().map(|a| a.count.count).collect();
@@ -266,7 +271,7 @@ fn cities_and_capitals_roll_a_count_per_district() {
     let capital = record(&settlement(
         "capital",
         false,
-        &[1, 1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1, 1, 1],
+        &[1, 1, 9, 9, 1, 9, 9, 10, 9, 9, 9, 9, 9, 9],
     ));
     assert_eq!(capital.districts.as_ref().unwrap().count, 3);
     let per: Vec<u32> = capital.areas.iter().map(|a| a.count.count).collect();
@@ -275,7 +280,7 @@ fn cities_and_capitals_roll_a_count_per_district() {
 
 #[test]
 fn changing_the_district_count_keeps_the_districts_that_remain() {
-    let mut s = settlement("city", false, &[5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    let mut s = settlement("city", false, &[5, 1, 9, 9, 1, 9, 9, 1, 9, 9, 1, 9, 9]);
     let before = record(&s);
     assert_eq!(before.areas.len(), 4);
     s.choose_district_count(LOCATIONS, "two".into(), &mut RandomFaces::seeded(1))
@@ -295,7 +300,7 @@ fn changing_the_district_count_keeps_the_districts_that_remain() {
     assert_eq!(again.areas[..2], before.areas[..2]);
     assert_eq!(again.areas.len(), 4);
     // Towns are not mapped by district.
-    let mut town = settlement("town", false, &[1, 1, 1]);
+    let mut town = settlement("town", false, &[1, 9, 9]);
     assert!(
         town.roll_district_count(LOCATIONS, &mut RandomFaces::seeded(1))
             .is_err()
@@ -304,7 +309,7 @@ fn changing_the_district_count_keeps_the_districts_that_remain() {
 
 #[test]
 fn changing_one_area_count_keeps_its_other_locations() {
-    let mut s = settlement("village", false, &[5, 1, 4, 7]);
+    let mut s = settlement("village", false, &[5, 9, 10, 11]);
     let before = record(&s);
     s.choose_location_count(LOCATIONS, 0, "one".into(), &mut RandomFaces::seeded(1))
         .unwrap();
@@ -352,7 +357,7 @@ fn t08_the_setting_persists_between_sessions() {
 
 #[test]
 fn t09_disabled_creates_no_guaranteed_tavern() {
-    let r = record(&settlement("tradingPost", false, &[1, 1]));
+    let r = record(&settlement("tradingPost", false, &[1, 1, 1]));
     assert_eq!(guaranteed(&r), 0);
     assert_eq!(r.locations.len(), 1);
 }
@@ -360,9 +365,9 @@ fn t09_disabled_creates_no_guaranteed_tavern() {
 #[test]
 fn t10_t11_enabled_creates_exactly_one_tavern_with_four_spare_rooms() {
     for (size, faces) in [
-        ("tradingPost", vec![1, 5]),
-        ("village", vec![1, 5]),
-        ("town", vec![1, 5, 5]),
+        ("tradingPost", vec![1, 5, 1]),
+        ("village", vec![1, 5, 1]),
+        ("town", vec![1, 5, 1, 5, 1]),
     ] {
         let r = record(&settlement(size, true, &faces));
         assert_eq!(guaranteed(&r), 1, "{size}");
@@ -372,18 +377,20 @@ fn t10_t11_enabled_creates_exactly_one_tavern_with_four_spare_rooms() {
         assert_eq!(tavern.location_type.name, "Hospitality");
         assert_eq!(
             tavern.subtype.as_ref().unwrap().id.as_str(),
-            "locationSubtype.tavern"
+            "locationSubtype.tavernInn"
         );
-        assert_eq!(tavern.subtype.as_ref().unwrap().name, "Tavern");
+        assert_eq!(tavern.subtype.as_ref().unwrap().name, "Tavern / Inn");
         assert_eq!(tavern.spare_rooms, Some(4));
         assert_eq!(tavern.district, None);
+        // Assigned, not rolled: no Hospitality subtype roll.
+        assert_eq!(tavern.subtype_rolls, None);
     }
 }
 
 #[test]
 fn t12_t13_the_tavern_is_added_to_the_rolled_count() {
     // A Trading Post rolling 1 has one rolled location, plus the Tavern.
-    let r = record(&settlement("tradingPost", true, &[1, 5]));
+    let r = record(&settlement("tradingPost", true, &[1, 5, 1]));
     assert_eq!(r.rolled_count(), 1);
     assert_eq!(r.locations.len(), 2);
     assert_eq!(
@@ -398,7 +405,7 @@ fn t12_t13_the_tavern_is_added_to_the_rolled_count() {
 
 #[test]
 fn t14_the_tavern_does_not_roll_the_type_table() {
-    let mut s = settlement("tradingPost", true, &[1, 5]);
+    let mut s = settlement("tradingPost", true, &[1, 5, 1]);
     let r = record(&s);
     assert_eq!(r.guaranteed().unwrap().type_roll, None);
     // Exactly one Type roll (the rolled location's), none for the Tavern.
@@ -423,7 +430,7 @@ fn t14_the_tavern_does_not_roll_the_type_table() {
 
 #[test]
 fn t15_disabling_removes_only_the_setting_tavern() {
-    let mut s = settlement("village", true, &[5, 4, 9, 19]);
+    let mut s = settlement("village", true, &[5, 4, 1, 9, 19]);
     let on = record(&s);
     assert_eq!(on.locations.len(), 4);
     s.set_bare_minimum_buildings(false).unwrap();
@@ -439,8 +446,8 @@ fn t15_disabling_removes_only_the_setting_tavern() {
 
 #[test]
 fn t16_a_rolled_hospitality_is_not_the_guaranteed_tavern() {
-    // The rolled location is Hospitality (face 1) too.
-    let mut s = settlement("tradingPost", true, &[1, 1]);
+    // The rolled location is a Hospitality Tavern / Inn (faces 1, 1) too.
+    let mut s = settlement("tradingPost", true, &[1, 1, 1]);
     let r = record(&s);
     assert_eq!(
         types(&r),
@@ -449,14 +456,18 @@ fn t16_a_rolled_hospitality_is_not_the_guaranteed_tavern() {
     assert_eq!(guaranteed(&r), 1);
     let rolled = &r.locations[1];
     assert_eq!(rolled.source, LocationSource::Rolled);
-    assert_eq!(rolled.subtype, None);
+    assert_eq!(
+        rolled.subtype.as_ref().unwrap().id.as_str(),
+        "locationSubtype.tavernInn"
+    );
+    assert!(rolled.subtype_rolls.is_some());
     assert_eq!(rolled.spare_rooms, None);
     assert_ne!(rolled.id, r.guaranteed().unwrap().id);
     s.set_bare_minimum_buildings(false).unwrap();
     let off = record(&s);
     assert_eq!(off.locations, std::slice::from_ref(rolled));
     // Without the setting, a rolled Hospitality stays rolled.
-    let plain = record(&settlement("tradingPost", false, &[1, 1]));
+    let plain = record(&settlement("tradingPost", false, &[1, 1, 1]));
     assert_eq!(guaranteed(&plain), 0);
     assert_eq!(plain.guaranteed(), None);
 }
@@ -466,7 +477,7 @@ fn t17_cities_and_capitals_get_one_tavern_not_one_per_district() {
     let city = record(&settlement(
         "city",
         true,
-        &[5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        &[5, 1, 9, 9, 1, 9, 9, 1, 9, 9, 1, 9, 9],
     ));
     assert_eq!(city.areas.len(), 4);
     assert_eq!(guaranteed(&city), 1);
@@ -474,12 +485,12 @@ fn t17_cities_and_capitals_get_one_tavern_not_one_per_district() {
     let capital = record(&settlement(
         "capital",
         true,
-        &[5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        &[5, 1, 9, 9, 1, 9, 9, 1, 9, 9, 1, 9, 9, 1, 9, 9],
     ));
     assert_eq!(capital.areas.len(), 5);
     assert_eq!(guaranteed(&capital), 1);
     // Changing the districts never adds another.
-    let mut s = settlement("city", true, &[1, 1, 1, 1, 1, 1, 1]);
+    let mut s = settlement("city", true, &[1, 1, 9, 9, 1, 9, 9]);
     s.choose_district_count(LOCATIONS, "four".into(), &mut RandomFaces::seeded(1))
         .unwrap();
     s.roll_location_count(LOCATIONS, 3, &mut RandomFaces::seeded(2))
@@ -511,10 +522,16 @@ fn t19_to_t30_every_face_gives_its_type() {
             .unwrap();
         assert_eq!(name, *expected, "face {face}");
     }
-    // And through generation, with the type's stable ID.
+    // And through generation, with the type's stable ID (Types 1–8 then
+    // roll their subtype die).
     for (min, max, id, _) in TYPES {
         for face in [min, max] {
-            let r = record(&settlement("tradingPost", false, &[1, face as u32]));
+            let faces: &[u32] = if face <= 8 {
+                &[1, face as u32, 1]
+            } else {
+                &[1, face as u32]
+            };
+            let r = record(&settlement("tradingPost", false, faces));
             assert_eq!(types(&r), [id], "face {face}");
         }
     }
@@ -652,7 +669,9 @@ fn t33_modifier_intentions_are_direction_only() {
 
 #[test]
 fn t34_locations_persist_in_snapshots() {
-    let s = settlement("city", true, &[1, 1, 3, 4, 1, 2, 9]);
+    // 2 districts: Hospitality (d10 1) and Trade (d20 1); Hospitality
+    // (d10 9) and Religious.
+    let s = settlement("city", true, &[1, 1, 3, 1, 4, 1, 1, 2, 9, 9]);
     let snapshot = s.to_snapshot();
     let stored = snapshot.notable_locations().unwrap();
     assert_eq!(*stored, record(&s));
@@ -688,10 +707,12 @@ fn t34_locations_persist_in_snapshots() {
 
 #[test]
 fn t35_snapshots_ignore_later_table_edits() {
-    let snapshot = settlement("town", true, &[3, 4, 12, 16]).to_snapshot();
+    let snapshot = settlement("town", true, &[3, 4, 1, 12, 16]).to_snapshot();
     let mut changed = content();
     for t in changed.tables.iter_mut().filter(|t| {
-        t.id.as_str() == TYPE || t.id.as_str().starts_with("table.notableLocationCount")
+        t.id.as_str() == TYPE
+            || t.id.as_str().starts_with("table.notableLocationCount")
+            || t.id.as_str().starts_with("table.notableLocationSubtype")
     }) {
         for r in &mut t.results {
             r.name = format!("{} (edited)", r.name);
@@ -721,7 +742,7 @@ fn t35_snapshots_ignore_later_table_edits() {
 
 #[test]
 fn settlements_saved_before_notable_locations_load_with_it_pending() {
-    let s = settlement("village", false, &[1, 1]);
+    let s = settlement("village", false, &[1, 1, 1]);
     let mut old = s.to_snapshot();
     old.stages.retain(|st| st.locations.is_none());
     old.log.events.retain(|e| match e {
@@ -749,7 +770,7 @@ fn settlements_saved_before_notable_locations_load_with_it_pending() {
 
 #[test]
 fn changing_the_size_redoes_the_locations() {
-    let mut s = settlement("village", true, &[1, 1]);
+    let mut s = settlement("village", true, &[1, 1, 1]);
     let before = record(&s);
     s.choose(SIZE, "capital".into(), &mut RandomFaces::seeded(9))
         .unwrap();

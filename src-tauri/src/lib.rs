@@ -11,6 +11,7 @@ use settlement_core::engine::{GenerationError, Selections};
 use settlement_core::ids::NamingSchemeId;
 use settlement_core::ids::{ResultId, TableId, TagId};
 use settlement_core::layers::new_user_id;
+use settlement_core::locations::LocationDetail;
 use settlement_core::naming::{JoinRule, SpellingException};
 use settlement_core::roadmap::RoadmapEntry;
 use settlement_core::service::{
@@ -208,6 +209,42 @@ fn generation_choose_location_type(
         a.session.choose_location_type(
             stage,
             location,
+            ResultId::new(result),
+            &mut RandomFaces::from_entropy(),
+        )
+    })
+}
+
+/// Rolls one detail of a Notable Location again (its subtype, the
+/// Specialist Artisan reroll, the Weaponsmith / Armoursmith split or its
+/// speciality), with everything that follows from it.
+#[tauri::command]
+fn generation_roll_location_detail(
+    state: State<'_, AppState>,
+    stage: usize,
+    location: usize,
+    detail: LocationDetail,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session
+            .roll_location_detail(stage, location, detail, &mut RandomFaces::from_entropy())
+    })
+}
+
+/// Chooses one detail of a Notable Location; what follows is rolled.
+#[tauri::command]
+fn generation_choose_location_detail(
+    state: State<'_, AppState>,
+    stage: usize,
+    location: usize,
+    detail: LocationDetail,
+    result: String,
+) -> ServiceResult<GenerationResponse> {
+    state.act(|a| {
+        a.session.choose_location_detail(
+            stage,
+            location,
+            detail,
             ResultId::new(result),
             &mut RandomFaces::from_entropy(),
         )
@@ -652,6 +689,8 @@ pub fn run() {
             generation_choose_location_count,
             generation_roll_location_type,
             generation_choose_location_type,
+            generation_roll_location_detail,
+            generation_choose_location_detail,
             generation_roll_role,
             generation_choose_role,
             generation_roll_figure_field,

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationSubtype.trade",
+      "name": "Trade / Shop",
+      "description": "The subtype of a Trade / Shop Notable Location: a specialist place where players are likely to buy useful goods. It is not all the commerce of the settlement: a General Store is baseline in every settlement, and Markets will be a separate roll.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "locationSubtype.generalSmithy",
+          "name": "General Smithy",
+          "range": [1, 8]
+        },
+        {
+          "id": "locationSubtype.alchemistApothecary",
+          "name": "Alchemist / Apothecary",
+          "range": [9, 13]
+        },
+        {
+          "id": "locationSubtype.magicStore",
+          "name": "Magic Store",
+          "range": [14, 16]
+        },
+        {
+          "id": "locationSubtype.bowyerFletcher",
+          "name": "Bowyer / Fletcher",
+          "range": [17, 18]
+        },
+        {
+          "id": "locationSubtype.rareGoods",
+          "name": "Rare Goods / Curiosities",
+          "range": 19
+        },
+        {
+          "id": "locationSubtype.jeweller",
+          "name": "Jeweller / Precious Goods",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

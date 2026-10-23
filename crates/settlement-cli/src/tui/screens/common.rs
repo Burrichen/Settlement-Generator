@@ -28,15 +28,28 @@ pub struct SheetRow {
     pub locations: Option<NotableLocations>,
 }
 
-/// One Notable Location: "Tavern · Hospitality · 4 spare rooms · District 1".
+/// One Notable Location, e.g. "Tavern / Inn · Hospitality · 4 spare rooms"
+/// or "Magic Store (Weapons) · Trade / Shop · District 1".
 pub fn location_label(record: &NotableLocations, location: &NotableLocation) -> String {
     let mut parts: Vec<String> = Vec::new();
-    if let Some(subtype) = &location.subtype {
-        parts.push(subtype.name.clone());
+    match (&location.subtype, &location.speciality) {
+        (Some(subtype), Some(speciality)) => {
+            parts.push(format!("{} ({})", subtype.name, speciality.name));
+        }
+        (Some(subtype), None) => parts.push(subtype.name.clone()),
+        _ => {}
     }
     parts.push(location.location_type.name.clone());
     if let Some(rooms) = location.spare_rooms {
         parts.push(format!("{rooms} spare rooms"));
+    }
+    if let Some(shift) = &location.quality_shift {
+        parts.push(format!(
+            "{} (Quality +{} step{})",
+            shift.source.name,
+            shift.steps,
+            if shift.steps == 1 { "" } else { "s" }
+        ));
     }
     if let Some(district) = record
         .areas

@@ -4,25 +4,25 @@
     {
       "id": "table.notableLocationType",
       "name": "Notable Location Type",
-      "description": "The broad kind of each rolled Notable Location. Subtypes are future work. Noble residences and estates belong to the future Noble system, not this table.",
+      "description": "The broad kind of each rolled Notable Location. Hospitality, Trade / Shop and Craft / Workshop then roll a subtype; the other Types' subtypes are future work. Noble residences and estates belong to the future Noble system, not this table.",
       "dice": "1d20",
       "results": [
         {
           "id": "locationType.hospitality",
           "name": "Hospitality",
-          "description": "Places to stay, eat and drink: e.g. tavern, inn, eating house, boarding house.",
+          "description": "Places to stay, eat, drink and bathe: Tavern / Inn, Eating House or Bathhouse.",
           "range": [1, 3]
         },
         {
           "id": "locationType.trade",
           "name": "Trade / Shop",
-          "description": "Places that sell: e.g. general store, market, specialist merchant, apothecary.",
+          "description": "Specialist places to buy useful goods: e.g. smithy, apothecary, magic store. Not a General Store (baseline in every settlement) or a Market (a separate roll).",
           "range": [4, 6]
         },
         {
           "id": "locationType.craft",
           "name": "Craft / Workshop",
-          "description": "Places that make: e.g. smithy, carpenter, tailor, potter.",
+          "description": "Places that make, repair, improve or take commissions: e.g. smithy, builder, tailor, specialist artisan.",
           "range": [7, 8]
         },
         {
@@ -58,7 +58,7 @@
         {
           "id": "locationType.entertainment",
           "name": "Entertainment",
-          "description": "e.g. theatre, arena, gambling hall, bathhouse.",
+          "description": "e.g. theatre, arena, gambling hall.",
           "range": 15
         },
         {

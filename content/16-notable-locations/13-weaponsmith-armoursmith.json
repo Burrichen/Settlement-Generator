@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationSubtype.weaponsmithArmoursmith",
+      "name": "Weaponsmith / Armoursmith",
+      "description": "Which a Craft / Workshop Weaponsmith / Armoursmith is: an even split.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "locationSubtype.weaponsmith",
+          "name": "Weaponsmith",
+          "range": [1, 2]
+        },
+        {
+          "id": "locationSubtype.armoursmith",
+          "name": "Armoursmith",
+          "range": [3, 4]
+        }
+      ]
+    }
+  ]
+}

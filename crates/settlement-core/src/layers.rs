@@ -430,6 +430,10 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         naming_schemes: bundled.naming_schemes.clone(),
         role_schemes: bundled.role_schemes.clone(),
         location_schemes: bundled.location_schemes.clone(),
+        // The subtype catalogue is content-file data too: the subtype tables
+        // are edited, the canonical subtypes they list are not.
+        location_subtypes: bundled.location_subtypes.clone(),
+        location_subtype_tables: bundled.location_subtype_tables.clone(),
     };
     if overrides.format_version != OVERRIDES_FORMAT_VERSION {
         issues.push(ValidationIssue::new(

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationSubtype.craft",
+      "name": "Craft / Workshop",
+      "description": "The subtype of a Craft / Workshop Notable Location: somewhere focused on making, repairing, improving, commissioning or specialised production. Weaponsmith / Armoursmith rolls 1d4 to decide which; Specialist Artisan rolls this table again.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "locationSubtype.generalSmithy",
+          "name": "General Smithy",
+          "range": [1, 4]
+        },
+        {
+          "id": "locationSubtype.weaponsmithArmoursmith",
+          "name": "Weaponsmith / Armoursmith",
+          "range": [5, 8]
+        },
+        {
+          "id": "locationSubtype.builderMason",
+          "name": "Builder / Mason",
+          "range": [9, 12]
+        },
+        {
+          "id": "locationSubtype.bowyerFletcher",
+          "name": "Bowyer / Fletcher",
+          "range": [13, 14]
+        },
+        {
+          "id": "locationSubtype.alchemistApothecary",
+          "name": "Alchemist / Apothecary",
+          "range": [15, 16]
+        },
+        {
+          "id": "locationSubtype.engineerMechanist",
+          "name": "Engineer / Mechanist",
+          "range": 17
+        },
+        {
+          "id": "locationSubtype.tailorWeaver",
+          "name": "Tailor / Weaver",
+          "range": 18
+        },
+        {
+          "id": "locationSubtype.jeweller",
+          "name": "Jeweller / Goldsmith",
+          "range": 19
+        },
+        {
+          "id": "locationSubtype.specialistArtisan",
+          "name": "Specialist Artisan",
+          "range": 20
+        }
+      ]
+    }
+  ]
+}

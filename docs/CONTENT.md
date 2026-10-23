@@ -449,8 +449,11 @@ first, then each district rolls its own Notable Location Count:
 | `table.districtCount.city`    | 1d6 | 1–2: 2, 3–4: 3, 5–6: 4 |
 | `table.districtCount.capital` | 1d6 | 1–2: 3, 3–4: 4, 5–6: 5 |
 
-Districts are labelled District 1, District 2, … (IDs `district-1`, …).
-Placing them on a map is future work.
+So a City has **2–4** districts and a Capital **3–5**. Trading Posts,
+Villages and Towns never roll a District Count: they roll one count for the
+whole settlement. Each district is a stable generation and map container with
+an ID (`district-1`, …) that does not depend on its label (District 1, …).
+District Types and placing districts on a map are future work.
 
 **Notable Location Type** (`table.notableLocationType`, a genuine 1d20), rolled
 once per rolled location. Result IDs are stable:
@@ -474,24 +477,198 @@ once per rolled location. Result IDs are stable:
 result: noble residences and estates belong to the future **Noble system**,
 which will generate them itself. The Type emits no settlement tags.
 
+### Subtypes: one canonical ID per subtype
+
+Hospitality, Trade / Shop and Craft / Workshop roll a **subtype** straight
+after the Type; the other Types have no subtype table yet.
+`location-subtypes.json` holds:
+
+- `location_subtype_tables`: the subtype table each Type rolls;
+- `location_subtypes`: the **canonical subtypes**, each listed **once**
+  however many tables use it.
+
+**The rule.** A Notable Location subtype has **one stable ID across the whole
+Notable Locations system**, even when several parent Type tables list it. A
+subtype table lists a subtype as a result whose ID _is_ the canonical ID. The
+result's name is only the subtype's **label in that table**, and its faces
+are its weight there. There are never per-table copies such as
+`shop.weaponsmith` and `workshop.weaponsmith`. The generated location keeps
+its parent Type separately:
+
+| Type                 | Subtype                         | Label at generation       |
+| -------------------- | ------------------------------- | ------------------------- |
+| `locationType.trade` | `locationSubtype.generalSmithy` | General Smithy            |
+| `locationType.craft` | `locationSubtype.generalSmithy` | General Smithy            |
+| `locationType.trade` | `locationSubtype.jeweller`      | Jeweller / Precious Goods |
+| `locationType.craft` | `locationSubtype.jeweller`      | Jeweller / Goldsmith      |
+
+The rule applies to every current and future Notable Location table, and
+validation enforces it:
+
+- every result of a subtype table is a canonical subtype
+  (`unknown_location_subtype`); a result added in the table editor is a
+  custom subtype of its own table;
+- no two canonical subtypes share a name (`duplicate_subtype_name`);
+- an added result named like a canonical subtype is flagged
+  (`looks_like_location_subtype`), because it would be a separate subtype.
+
+Renaming a result in the table editor only changes its label in that table:
+result IDs cannot be edited. The editor lists each table's canonical subtypes
+and the other tables that use them.
+
+Some results need more dice before the subtype is final. This is data on the
+canonical subtype (`resolve`):
+
+- `split`: roll another table; its result is the subtype (Weaponsmith /
+  Armoursmith);
+- `reroll`: roll the same table again, as often as the result comes up, and
+  give the location a future Quality shift **once** (Specialist Artisan).
+
+A subtype with a `speciality` table rolls it once. The result is child data of
+the location (a Magic Store's speciality), never a Notable Location of its
+own. Every roll is recorded with the location.
+
+**Hospitality** (`table.notableLocationSubtype.hospitality`, 1d10):
+
+| d10  | Subtype      | ID                            |
+| ---- | ------------ | ----------------------------- |
+| 1–6  | Tavern / Inn | `locationSubtype.tavernInn`   |
+| 7–8  | Eating House | `locationSubtype.eatingHouse` |
+| 9–10 | Bathhouse    | `locationSubtype.bathhouse`   |
+
+Tavern and Inn are deliberately **one** subtype.
+
+**Trade / Shop** (`table.notableLocationSubtype.trade`, 1d20) is the
+specialist, gameplay-relevant places where players are likely to buy useful
+goods. It does not try to represent all commerce in the settlement: a
+**General Store** is baseline functionality of every settlement, and
+**Markets** will be a separate future roll, so neither is on it.
+
+| d20   | Subtype                   | ID                                    |
+| ----- | ------------------------- | ------------------------------------- |
+| 1–8   | General Smithy            | `locationSubtype.generalSmithy`       |
+| 9–13  | Alchemist / Apothecary    | `locationSubtype.alchemistApothecary` |
+| 14–16 | Magic Store               | `locationSubtype.magicStore`          |
+| 17–18 | Bowyer / Fletcher         | `locationSubtype.bowyerFletcher`      |
+| 19    | Rare Goods / Curiosities  | `locationSubtype.rareGoods`           |
+| 20    | Jeweller / Precious Goods | `locationSubtype.jeweller`            |
+
+- **General Smithy** is useful mundane metalwork: basic weapons and armour,
+  tools, repairs, metal fittings and ordinary smithing. It is not a
+  specialist Weaponsmith or Armoursmith.
+- **Alchemist / Apothecary** stays one combined subtype.
+
+**Magic Store Speciality** (`table.magicStoreSpeciality`, 1d6) is rolled once
+for every Magic Store, and only for a Magic Store. A Magic Store is a
+specialist dealer, not a store of every kind of magic item.
+
+| d6  | Speciality                   | ID                                         |
+| --- | ---------------------------- | ------------------------------------------ |
+| 1   | Armour & Protection          | `magicStoreSpeciality.armourProtection`    |
+| 2   | Books, Scrolls & Lore        | `magicStoreSpeciality.booksScrollsLore`    |
+| 3   | Clothing                     | `magicStoreSpeciality.clothing`            |
+| 4   | Jewellery                    | `magicStoreSpeciality.jewellery`           |
+| 5   | Weapons                      | `magicStoreSpeciality.weapons`             |
+| 6   | Curiosities & Wondrous Items | `magicStoreSpeciality.curiositiesWondrous` |
+
+**Craft / Workshop** (`table.notableLocationSubtype.craft`, 1d20) is places
+focused on making, repairing, improving, commissioning and specialised
+production. It is distinct from Trade / Shop even where they share a subtype.
+
+| d20   | Subtype                   | ID                                                    |
+| ----- | ------------------------- | ----------------------------------------------------- |
+| 1–4   | General Smithy            | `locationSubtype.generalSmithy`                       |
+| 5–8   | Weaponsmith / Armoursmith | `locationSubtype.weaponsmithArmoursmith` (split, 1d4) |
+| 9–12  | Builder / Mason           | `locationSubtype.builderMason`                        |
+| 13–14 | Bowyer / Fletcher         | `locationSubtype.bowyerFletcher`                      |
+| 15–16 | Alchemist / Apothecary    | `locationSubtype.alchemistApothecary`                 |
+| 17    | Engineer / Mechanist      | `locationSubtype.engineerMechanist`                   |
+| 18    | Tailor / Weaver           | `locationSubtype.tailorWeaver`                        |
+| 19    | Jeweller / Goldsmith      | `locationSubtype.jeweller`                            |
+| 20    | Specialist Artisan        | `locationSubtype.specialistArtisan` (reroll)          |
+
+**Weaponsmith / Armoursmith**
+(`table.notableLocationSubtype.weaponsmithArmoursmith`, 1d4) is an exact
+50/50 split: 1–2 **Weaponsmith** (`locationSubtype.weaponsmith`), 3–4
+**Armoursmith** (`locationSubtype.armoursmith`). The location keeps both the
+Craft / Workshop roll and the d4.
+
+**Builder / Mason and Engineer / Mechanist** carry planned capabilities for
+the future player Keep upgrades. They are metadata only, copied to the
+location when it is generated; the Keep upgrade system does not exist yet.
+
+| Subtype              | Capability               | For                                                                                                                                        |
+| -------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Builder / Mason      | `keepUpgrade.structural` | Structural expansion, rooms or wings, walls, towers, gates, fortification, courtyards, major repairs                                       |
+| Engineer / Mechanist | `keepUpgrade.mechanical` | Defensive mechanisms, hoists, lifts, reinforced gates, machinery, mechanical traps, complex fortification improvements, special facilities |
+
+**Specialist Artisan** (Craft / Workshop 20) is not a final subtype. When it
+comes up:
+
+1. the original 20 is recorded;
+2. Craft / Workshop is rolled again for what the artisan makes, and again on
+   every further 20, each roll recorded;
+3. the first non-20 result is resolved normally (5–8 still rolls the d4);
+4. the location gets **one** future Quality +1 step (`quality_shift`), however
+   many 20s came up.
+
+Example: 20 → Specialist Artisan; reroll 13 → Bowyer / Fletcher. The subtype
+is Bowyer / Fletcher, with Quality +1 step.
+
+### Future Quality scale
+
+The approved Quality vocabulary, lowest first (`quality.rs`):
+
+| Quality       | ID                     |
+| ------------- | ---------------------- |
+| Poor          | `quality.poor`         |
+| Below Average | `quality.belowAverage` |
+| Average       | `quality.average`      |
+| Above Average | `quality.aboveAverage` |
+| Excellent     | `quality.excellent`    |
+
+**The Quality generation table is still pending.** No distribution has been
+designed, so none exists, and no location is given a Quality. Only a pending
+shift is recorded, such as the Specialist Artisan's +1 step. Once Quality is
+generated, a shift moves up the scale and stops at Excellent: there is
+nothing above it.
+
+### Bare Minimum Buildings
+
 **Bare Minimum Buildings** (a setting, off by default) gives every settlement
-exactly **one** extra Notable Location: a **Tavern** (type Hospitality,
-subtype `locationSubtype.tavern`) with **exactly 4 spare rooms**.
+exactly **one** extra Notable Location: Type **Hospitality**, subtype
+**Tavern / Inn** (`locationSubtype.tavernInn`), with **exactly 4 spare
+rooms**, source `bareMinimumBuildings`.
 
 - It is **additive**: it never uses up a rolled location. A Trading Post that
   rolls 1 has two Notable Locations with the setting on.
-- It is **one per settlement**, never one per district, and belongs to no
-  district.
-- The Type table is **not rolled** for it, and it cannot be re-rolled.
-- It is listed first and marked with its source (`bareMinimumBuildings`), so
-  a rolled Hospitality location is never mistaken for it.
-- Turning the setting off during generation removes only that Tavern; the
-  rolled locations stay. A saved settlement keeps what it was saved with.
+- It is **one per settlement**, generated once and never per district, and
+  belongs to no district.
+- Neither the Type table nor the Hospitality table is rolled for it: the
+  subtype is assigned. It cannot be re-rolled.
+- It is listed first and marked with its source, so a rolled Tavern / Inn is
+  never mistaken for it.
+- Turning the setting off during generation removes only that Tavern / Inn;
+  the rolled locations stay. A saved settlement keeps what it was saved with.
 
-**Future work.** Location subtypes (other than the guaranteed Tavern's),
-Tavern details beyond its 4 spare rooms, shops, criminal organisations, the
-Noble system, location NPCs, interiors, map placement and settlement layout
-are not generated yet.
+A rolled Tavern / Inn will later roll its own number of rooms; that table
+does not exist yet.
+
+### Manual and automatic generation
+
+Automatic generation follows the whole tree with physical dice: Type, subtype,
+then only what that subtype needs (reroll, split, speciality). In Manual
+generation each rolled location offers its Type, its subtype and only the
+child rolls that apply to it: a Magic Store Speciality for a Magic Store, the
+d4 for a Weaponsmith / Armoursmith, and the reroll for a Specialist Artisan.
+The reroll's choices never include Specialist Artisan itself. Changing a roll
+re-rolls everything that follows from it.
+
+**Future work.** Subtypes for the other Types (Religious, Civic, and so on),
+District Types, Market generation, General Store generation, the room count
+of rolled Tavern / Inns, Keep upgrades, Quality generation, shop stock and
+inventories, criminal organisations, the Noble system, location NPCs,
+interiors, map placement and settlement layout are not generated yet.
 
 ## Pending modifiers (planned intents)
 

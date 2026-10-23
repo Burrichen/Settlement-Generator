@@ -79,6 +79,10 @@ pub struct TableDetail {
     /// rule and spelling exceptions.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub naming_methods: Vec<editor::NamingMethodDetail>,
+    /// When this is a Notable Location subtype (or split) table: each
+    /// result that is a canonical subtype, and where else it is listed.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub subtypes: Vec<editor::SubtypeUse>,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -670,6 +674,7 @@ fn table_detail(layers: &ContentLayers, id: &TableId) -> ServiceResult<TableDeta
             &merged.origins.modified_naming_methods,
             id,
         ),
+        subtypes: editor::subtype_uses(&merged.content, id),
         table,
     })
 }

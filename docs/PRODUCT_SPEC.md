@@ -141,9 +141,9 @@ Settings are persistent and shared by both interfaces:
 - **Tag View** (on/off): shows applied tags during generation and when viewing
   saved settlements.
 - **Bare Minimum Buildings** (on/off, off by default): every settlement gets
-  exactly one extra Notable Location, a Tavern with 4 spare rooms. It is
-  added to the rolled Notable Locations, never instead of one, and is never
-  repeated per district.
+  exactly one extra Notable Location, a Hospitality Tavern / Inn with 4 spare
+  rooms. It is added to the rolled Notable Locations, never instead of one,
+  and is never repeated per district.
 - **Theme:** Modern Dark (the default) or Old-Timey Dark.
 
 ## 9. Saved settlements
@@ -182,15 +182,24 @@ other stages are inserted.
 
 ### Notable Locations
 
-- The count depends on the Size; Cities and Capitals first roll their number
-  of districts, then a count per district. Each rolled location rolls its
-  Type on a 1d20 (see [CONTENT.md](CONTENT.md)).
-- The settlement sheet lists them numbered, the Bare Minimum Buildings Tavern
-  first, each rolled location with its district.
-- In Manual generation the District Count, each count and each rolled
-  location's Type can be re-rolled or chosen. The guaranteed Tavern is fixed.
-- Subtypes, details, NPCs, map placement and the Noble system's residences
-  and estates are future work.
+- The count depends on the Size; Cities (2–4 districts) and Capitals (3–5)
+  first roll their number of districts, then a count per district. Each
+  rolled location rolls its Type on a 1d20 (see [CONTENT.md](CONTENT.md)).
+- Hospitality, Trade / Shop and Craft / Workshop locations then roll a
+  subtype. A subtype has one canonical ID in every table that lists it (a
+  General Smithy is the same subtype from Trade / Shop or Craft / Workshop).
+  Only the rolls a subtype needs follow it: a Magic Store's speciality, the
+  Weaponsmith / Armoursmith d4, and a Specialist Artisan's reroll, which also
+  marks the location for one future Quality step. The Quality table itself is
+  not designed yet.
+- The settlement sheet lists them numbered, the Bare Minimum Buildings
+  Tavern / Inn first, each rolled location with its subtype and district.
+- In Manual generation the District Count, each count, and each rolled
+  location's Type, subtype and the child rolls that apply to it can be
+  re-rolled or chosen. The guaranteed Tavern / Inn is fixed.
+- Subtypes for the other Types, District Types, markets, Quality, Keep
+  upgrades, NPCs, map placement and the Noble system's residences and estates
+  are future work.
 
 ### Name (v0.1.1)
 

@@ -279,6 +279,60 @@ describe("table editor", () => {
     );
   });
 
+  it("shows a subtype table's canonical subtypes, shared by ID with other tables", async () => {
+    const trade: Table = {
+      id: "table.notableLocationSubtype.trade",
+      name: "Trade / Shop",
+      dice: "1d20",
+      results: [
+        { id: "locationSubtype.generalSmithy", name: "Smith", range: [1, 10] },
+        { id: "locationSubtype.magicStore", name: "Magic Store", range: [11, 20] },
+      ],
+    };
+    const original = api.table.getMockImplementation();
+    api.table.mockImplementation(async () => ({
+      ...tableDetail(trade),
+      subtypes: [
+        {
+          result: "locationSubtype.generalSmithy",
+          subtype: { id: "locationSubtype.generalSmithy", name: "General Smithy" },
+          also_in: [
+            {
+              table: { id: "table.notableLocationSubtype.craft", name: "Craft / Workshop" },
+              label: "General Smithy",
+            },
+          ],
+        },
+        {
+          result: "locationSubtype.magicStore",
+          subtype: { id: "locationSubtype.magicStore", name: "Magic Store" },
+          notes: ["Rolls Magic Store Speciality once."],
+        },
+      ],
+    }));
+    onTestFinished(() => {
+      api.table.mockImplementation(original!);
+    });
+    await openEditor("View Tables");
+    const section = (await screen.findByRole("heading", { name: "Canonical subtypes" })).closest(
+      "section",
+    ) as HTMLElement;
+    const items = within(section).getAllByRole("listitem");
+    expect(items).toHaveLength(2);
+    expect(items[0].textContent).toContain("locationSubtype.generalSmithy");
+    expect(items[0].textContent).toContain("canonical name General Smithy");
+    expect(
+      within(items[0]).getByText("Also in Craft / Workshop as “General Smithy”."),
+    ).toBeTruthy();
+    expect(within(items[1]).getByText("Rolls Magic Store Speciality once.")).toBeTruthy();
+  });
+
+  it("shows no subtype section for other tables", async () => {
+    await openEditor("View Tables");
+    await screen.findByDisplayValue("Economy");
+    expect(screen.queryByRole("heading", { name: "Canonical subtypes" })).toBeNull();
+  });
+
   it("edits unique roles and their fallbacks in the result's role options", async () => {
     const user = await openEditor("View Tables");
     await screen.findByDisplayValue("Economy");

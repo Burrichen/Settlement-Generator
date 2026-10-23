@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.notableLocationSubtype.hospitality",
+      "name": "Hospitality",
+      "description": "The subtype of a Hospitality Notable Location. Tavern and Inn are one subtype.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "locationSubtype.tavernInn",
+          "name": "Tavern / Inn",
+          "range": [1, 6]
+        },
+        {
+          "id": "locationSubtype.eatingHouse",
+          "name": "Eating House",
+          "range": [7, 8]
+        },
+        {
+          "id": "locationSubtype.bathhouse",
+          "name": "Bathhouse",
+          "range": [9, 10]
+        }
+      ]
+    }
+  ]
+}

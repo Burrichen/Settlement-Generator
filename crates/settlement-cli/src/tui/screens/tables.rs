@@ -516,6 +516,31 @@ impl TableEditor {
                     format!("RESULT · {}", r.id),
                     s.dim(),
                 )));
+                // A canonical Notable Location subtype: one ID in every
+                // table, so the name here is only its label in this table.
+                if let Some(u) = self
+                    .detail
+                    .iter()
+                    .flat_map(|d| &d.subtypes)
+                    .find(|u| u.result == r.id)
+                {
+                    rows.push(Row::info(Line::styled(
+                        format!(
+                            "Canonical subtype {}: the same ID in every table; renaming relabels it here only",
+                            u.subtype.name
+                        ),
+                        s.dim(),
+                    )));
+                    for a in &u.also_in {
+                        rows.push(Row::info(Line::styled(
+                            format!("  Also in {} as “{}”", a.table.name, a.label),
+                            s.dim(),
+                        )));
+                    }
+                    for note in &u.notes {
+                        rows.push(Row::info(Line::styled(format!("  {note}"), s.dim())));
+                    }
+                }
                 rows.push(Row::item(field("Name", r.name.clone()), Act::ResultName));
                 rows.push(Row::item(
                     field(

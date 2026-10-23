@@ -54,6 +54,9 @@ pub struct Location {
     pub role_scheme: Option<RoleSchemeId>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub location_scheme: Option<LocationSchemeId>,
+    /// A canonical Notable Location subtype.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub location_subtype: Option<ResultId>,
 }
 
 impl Location {
@@ -105,6 +108,9 @@ impl fmt::Display for Location {
         if let Some(n) = &self.naming_scheme {
             parts.push(format!("naming scheme `{n}`"));
         }
+        if let Some(s) = &self.location_subtype {
+            parts.push(format!("location subtype `{s}`"));
+        }
         if let Some(t) = &self.table {
             parts.push(format!("table `{t}`"));
         }
@@ -148,6 +154,9 @@ pub enum IdScope {
     NamingMethod,
     RoleScheme,
     LocationScheme,
+    LocationSubtype,
+    /// A Notable Location Type given more than one subtype table.
+    LocationSubtypeTable,
 }
 
 impl fmt::Display for IdScope {
@@ -163,6 +172,8 @@ impl fmt::Display for IdScope {
             IdScope::NamingMethod => "naming method for result",
             IdScope::RoleScheme => "role scheme",
             IdScope::LocationScheme => "location scheme",
+            IdScope::LocationSubtype => "location subtype",
+            IdScope::LocationSubtypeTable => "subtype table for location type",
         })
     }
 }
@@ -323,6 +334,25 @@ pub enum IssueKind {
     ApprovedNameUnknownVariant {
         variant_table: TableId,
         variant: ResultId,
+    },
+    /// A result of a subtype (or split) table, or a subtype the generator
+    /// needs, that is not a canonical Notable Location subtype.
+    UnknownLocationSubtype {
+        subtype: ResultId,
+    },
+    /// Two canonical subtypes with the same name: one concept listed twice.
+    DuplicateSubtypeName {
+        name: String,
+        first: ResultId,
+    },
+    /// A split table result that splits or rolls again itself.
+    SplitResultNotFinal,
+    /// Every rollable result of a subtype table rolls the table again.
+    RerollNeverEnds,
+    /// A user-created result of a subtype table named like a canonical
+    /// subtype it is not.
+    LooksLikeLocationSubtype {
+        subtype: ResultId,
     },
 }
 
@@ -501,6 +531,24 @@ impl fmt::Display for IssueKind {
                 let path: Vec<&str> = tables.iter().map(TableId::as_str).collect();
                 write!(f, "tables redirect into each other: {}", path.join(" → "))
             }
+            IssueKind::UnknownLocationSubtype { subtype } => write!(
+                f,
+                "`{subtype}` is not a canonical Notable Location subtype (a subtype has one ID, listed once in `location_subtypes`, in every table)"
+            ),
+            IssueKind::DuplicateSubtypeName { name, first } => write!(
+                f,
+                "canonical subtype `{first}` is also named \"{name}\"; a subtype is listed once, however many tables use it"
+            ),
+            IssueKind::SplitResultNotFinal => f.write_str(
+                "a split table's results must be final subtypes, not results that split or roll again",
+            ),
+            IssueKind::RerollNeverEnds => f.write_str(
+                "every result that can be rolled rolls the table again, so no subtype could ever be found",
+            ),
+            IssueKind::LooksLikeLocationSubtype { subtype } => write!(
+                f,
+                "this added result is named like the canonical subtype `{subtype}` but is a separate subtype; rolling it never gives `{subtype}`"
+            ),
         }
     }
 }
@@ -647,6 +695,7 @@ impl<'a> Validator<'a> {
         self.check_naming_schemes();
         self.check_role_schemes();
         self.check_location_schemes();
+        self.check_location_subtypes();
         if content.sequence.first().is_some_and(|s| s.sub_stage) {
             self.error(
                 Location {
@@ -765,7 +814,7 @@ impl<'a> Validator<'a> {
                 }
             }
         }
-        // The Bare Minimum Buildings Tavern is a Hospitality location.
+        // The Bare Minimum Buildings Tavern / Inn is a Hospitality location.
         if content
             .sequence
             .iter()
@@ -792,6 +841,168 @@ impl<'a> Validator<'a> {
                     );
                 }
                 Some(_) => {}
+            }
+            // And its subtype is Tavern / Inn.
+            let tavern = ResultId::new(crate::locations::TAVERN_INN_SUBTYPE);
+            if crate::locations::subtype(content, &tavern).is_none() {
+                self.error(
+                    Location::default(),
+                    IssueKind::UnknownLocationSubtype { subtype: tavern },
+                );
+            }
+        }
+    }
+
+    /// Notable Location subtypes: each canonical subtype listed once (unique
+    /// ID and name), with tables that exist; at most one subtype table per
+    /// Type, for Types that exist; and every result of a subtype or split
+    /// table a canonical subtype, so a subtype has one ID in every table.
+    /// User-created results are custom subtypes of their own table.
+    fn check_location_subtypes(&mut self) {
+        use crate::locations::SubtypeResolution;
+        let content = self.content;
+        let mut ids = HashSet::new();
+        let mut names: HashMap<String, &ResultId> = HashMap::new();
+        let mut splits = Vec::new();
+        for subtype in &content.location_subtypes {
+            let at = Location {
+                location_subtype: Some(subtype.id.clone()),
+                ..Default::default()
+            };
+            self.check_id(subtype.id.as_str(), at.clone());
+            if !ids.insert(&subtype.id) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateId {
+                        scope: IdScope::LocationSubtype,
+                        id: subtype.id.to_string(),
+                    },
+                );
+            }
+            if let Some(first) = names.insert(subtype.name.trim().to_lowercase(), &subtype.id) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateSubtypeName {
+                        name: subtype.name.clone(),
+                        first: first.clone(),
+                    },
+                );
+            }
+            let split = match &subtype.resolve {
+                Some(SubtypeResolution::Split { table }) => Some(table),
+                _ => None,
+            };
+            splits.extend(split);
+            for table in split.into_iter().chain(subtype.speciality.as_ref()) {
+                if !self.tables.contains_key(table) {
+                    self.error(
+                        at.clone(),
+                        IssueKind::MissingTable {
+                            table: table.clone(),
+                        },
+                    );
+                }
+            }
+        }
+
+        let type_table = TableId::new(crate::locations::TYPE_TABLE);
+        let mut types = HashSet::new();
+        for link in &content.location_subtype_tables {
+            let at = Location::table(&link.table);
+            if !types.insert(&link.location_type) {
+                self.error(
+                    at.clone(),
+                    IssueKind::DuplicateId {
+                        scope: IdScope::LocationSubtypeTable,
+                        id: link.location_type.to_string(),
+                    },
+                );
+            }
+            let known = self
+                .tables
+                .get(&type_table)
+                .is_some_and(|t| t.result(&link.location_type).is_some());
+            if !known {
+                self.error(
+                    at.clone(),
+                    IssueKind::BrokenResultReference {
+                        table: type_table.clone(),
+                        result: link.location_type.clone(),
+                    },
+                );
+            }
+            if !self.tables.contains_key(&link.table) {
+                self.error(
+                    Location::default(),
+                    IssueKind::MissingTable {
+                        table: link.table.clone(),
+                    },
+                );
+            }
+        }
+
+        let lists = content
+            .location_subtype_tables
+            .iter()
+            .map(|l| (&l.table, false))
+            .chain(splits.into_iter().map(|t| (t, true)));
+        let mut seen = HashSet::new();
+        for (id, split) in lists {
+            let Some(table) = self.tables.get(id).copied() else {
+                continue;
+            };
+            if !seen.insert(id) {
+                continue;
+            }
+            for result in &table.results {
+                let at = Location::table(&table.id).with_result(&result.id);
+                match crate::locations::subtype(content, &result.id) {
+                    Some(s) if split && s.resolve.is_some() => {
+                        self.error(at, IssueKind::SplitResultNotFinal);
+                    }
+                    Some(_) => {}
+                    None if result.id.is_user() => {
+                        let name = result.name.trim().to_lowercase();
+                        let lookalike = names.get(&name).copied().or_else(|| {
+                            content
+                                .location_subtype_tables
+                                .iter()
+                                .filter_map(|l| content.table(&l.table))
+                                .flat_map(|t| &t.results)
+                                .find(|r| !r.id.is_user() && r.name.trim().to_lowercase() == name)
+                                .map(|r| &r.id)
+                        });
+                        if let Some(subtype) = lookalike {
+                            self.warning(
+                                at,
+                                IssueKind::LooksLikeLocationSubtype {
+                                    subtype: subtype.clone(),
+                                },
+                            );
+                        }
+                    }
+                    None => self.error(
+                        at,
+                        IssueKind::UnknownLocationSubtype {
+                            subtype: result.id.clone(),
+                        },
+                    ),
+                }
+            }
+            // A reroll result needs another result to end on.
+            let rerolls = |r: &&crate::content::TableResult| {
+                matches!(
+                    crate::locations::subtype(content, &r.id).and_then(|s| s.resolve.as_ref()),
+                    Some(SubtypeResolution::Reroll { .. })
+                )
+            };
+            let rollable: Vec<_> = table
+                .results
+                .iter()
+                .filter(|r| r.enabled && r.range.is_some())
+                .collect();
+            if !split && rollable.iter().any(rerolls) && rollable.iter().all(rerolls) {
+                self.error(Location::table(&table.id), IssueKind::RerollNeverEnds);
             }
         }
     }

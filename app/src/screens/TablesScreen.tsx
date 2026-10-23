@@ -6,6 +6,7 @@ import {
   type FollowUpRoll,
   type Named,
   type RangeAssignment,
+  type SubtypeUse,
   type Table,
   type TableDetail,
   type TableResult,
@@ -346,6 +347,10 @@ function TableForm({
         approved={approvedVariants(editor.detail)}
       />
 
+      {(editor.detail?.subtypes?.length ?? 0) > 0 && (
+        <SubtypesInfo subtypes={editor.detail?.subtypes ?? []} nameOf={nameOf} />
+      )}
+
       <section className="editor-section" aria-labelledby="table-eligibility">
         <h3 id="table-eligibility" className="label">
           When the table is rolled
@@ -397,6 +402,50 @@ function TableForm({
         noun="table"
       />
     </div>
+  );
+}
+
+// ----- Notable Location subtypes ----------------------------------------------
+
+/**
+ * For a subtype table: which results are canonical subtypes, shared by ID
+ * with other tables. Renaming a result here only relabels it in this table.
+ */
+function SubtypesInfo({
+  subtypes,
+  nameOf,
+}: {
+  subtypes: SubtypeUse[];
+  nameOf: (id: string) => string;
+}) {
+  return (
+    <section className="editor-section" aria-labelledby="table-subtypes">
+      <h3 id="table-subtypes" className="label">
+        Canonical subtypes
+      </h3>
+      <p className="field-help">
+        Each subtype has one ID in every table that lists it. A result's name is only its label in
+        this table, so renaming it never creates a second subtype.
+      </p>
+      <ul className="subtype-list">
+        {subtypes.map((u) => (
+          <li key={u.result}>
+            <strong>{nameOf(u.result)}</strong> <code>{u.subtype.id}</code>
+            {nameOf(u.result) !== u.subtype.name && <> · canonical name {u.subtype.name}</>}
+            {(u.also_in ?? []).map((a) => (
+              <span key={a.table.id} className="cell-sub">
+                Also in {a.table.name} as “{a.label}”.
+              </span>
+            ))}
+            {(u.notes ?? []).map((n) => (
+              <span key={n} className="cell-sub">
+                {n}
+              </span>
+            ))}
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 

@@ -7,10 +7,14 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent};
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::text::{Line, Span};
 use ratatui::widgets::{Paragraph, Wrap};
-use settlement_core::engine::{GenerationError, ResultOption, Selections, SkipReason};
+use settlement_core::engine::{
+    GenerationError, ResultOption, Selections, SkipReason, TableRollRecord,
+};
 use settlement_core::figures::{FIGURE_FIELDS, FigureName};
 use settlement_core::ids::ResultId;
-use settlement_core::locations::{LocationSource, TableOptions};
+use settlement_core::locations::{
+    LocationDetail, LocationDetailOptions, LocationSource, NotableLocation, TableOptions,
+};
 use settlement_core::naming::NameSource;
 use settlement_core::roles::Allocation;
 use settlement_core::service::ActiveGeneration;
@@ -72,14 +76,75 @@ enum FigureTarget {
 }
 
 /// Something on the Notable Locations stage that can be changed. The
-/// guaranteed Tavern is fixed.
+/// guaranteed Tavern / Inn is fixed.
 #[derive(Clone, Copy)]
 enum LocationTarget {
     Districts,
     /// One area's Notable Location Count.
     Count(usize),
-    /// One rolled location's Type (by position in the list).
-    Type(usize),
+    /// One rolled location's Type, or a detail that applies to it (by
+    /// position in the list).
+    Detail(usize, LocationDetail),
+}
+
+/// The faces of a roll ("20, 20, 13"), or "chosen".
+fn faces(roll: &TableRollRecord) -> String {
+    if roll.selected {
+        return "chosen".into();
+    }
+    roll.attempts
+        .iter()
+        .map(|a| a.roll.total.to_string())
+        .collect::<Vec<_>>()
+        .join(", ")
+}
+
+/// The details that apply to a rolled location, as `(detail, label, how it
+/// stands)`: its subtype, then only what that subtype needs.
+fn detail_rows(
+    location: &NotableLocation,
+    options: Option<&LocationDetailOptions>,
+) -> Vec<(LocationDetail, String, String)> {
+    let Some(options) = options else {
+        return Vec::new();
+    };
+    let rolls = location.subtype_rolls.as_ref();
+    let mut rows = Vec::new();
+    if let Some(table) = &options.subtype {
+        let now = rolls.map_or_else(
+            || "not rolled".to_owned(),
+            |r| format!("{} ({})", r.roll.result.name, faces(&r.roll)),
+        );
+        rows.push((LocationDetail::Subtype, table.table.name.clone(), now));
+    }
+    if let (Some(_), Some(r)) = (&options.reroll, rolls)
+        && let Some(last) = r.rerolls.last()
+    {
+        let chain: Vec<String> = std::iter::once(&r.roll)
+            .chain(&r.rerolls)
+            .map(faces)
+            .collect();
+        rows.push((
+            LocationDetail::Reroll,
+            format!("{} rolls again", r.roll.result.name),
+            format!("{} ({})", last.result.name, chain.join(" → ")),
+        ));
+    }
+    if let (Some(table), Some(split)) = (&options.split, rolls.and_then(|r| r.split.as_ref())) {
+        rows.push((
+            LocationDetail::Split,
+            table.table.name.clone(),
+            format!("{} ({})", split.result.name, faces(split)),
+        ));
+    }
+    if let Some(table) = &options.speciality {
+        let now = location
+            .speciality
+            .as_ref()
+            .map_or_else(|| "not rolled".to_owned(), |s| s.name.clone());
+        rows.push((LocationDetail::Speciality, table.table.name.clone(), now));
+    }
+    rows
 }
 
 /// How the name stage's name came about, and anything that explains it:
@@ -513,14 +578,14 @@ impl GenerateScreen {
             }
             if locations.bare_minimum_buildings {
                 top.push(Line::styled(
-                    "Bare Minimum Buildings: one extra Tavern is added.",
+                    "Bare Minimum Buildings: one extra Tavern / Inn is added.",
                     s.dim(),
                 ));
             }
             if let Some(record) = &locations.record {
                 top.push(Line::from(vec![
                     Span::styled("Enter", s.key()),
-                    Span::styled(" change a count or a location's type", s.dim()),
+                    Span::styled(" change a count, or a location's type or subtype", s.dim()),
                 ]));
                 top.push(Line::default());
                 top.extend(location_lines(record, s, 0));
@@ -768,9 +833,11 @@ impl GenerateScreen {
                     (LocationTarget::Count(area), Some(id)) => {
                         a.session.choose_location_count(stage, area, id, dice)
                     }
-                    (LocationTarget::Type(l), None) => a.session.roll_location_type(stage, l, dice),
-                    (LocationTarget::Type(l), Some(id)) => {
-                        a.session.choose_location_type(stage, l, id, dice)
+                    (LocationTarget::Detail(l, detail), None) => {
+                        a.session.roll_location_detail(stage, l, detail, dice)
+                    }
+                    (LocationTarget::Detail(l, detail), Some(id)) => {
+                        a.session.choose_location_detail(stage, l, detail, id, dice)
                     }
                 });
             }
@@ -871,7 +938,8 @@ impl GenerateScreen {
     }
 
     /// Opens the list of what can be changed on the Notable Locations stage:
-    /// the District Count, each area's count and each rolled location's Type.
+    /// the District Count, each area's count, and each rolled location's
+    /// Type and the details that apply to it.
     fn open_location_editor(&mut self, index: usize) {
         let Some(view) = self.view.stages[index].locations.as_ref() else {
             return;
@@ -895,12 +963,15 @@ impl GenerateScreen {
             targets.push(LocationTarget::Count(i));
         }
         for (i, location) in record.locations.iter().enumerate() {
-            if location.source == LocationSource::Rolled {
-                items.push(
-                    PickItem::new(format!("Location {}", i + 1))
-                        .hint(location_label(record, location)),
-                );
-                targets.push(LocationTarget::Type(i));
+            if location.source != LocationSource::Rolled {
+                continue;
+            }
+            let label = format!("Location {}", i + 1);
+            items.push(PickItem::new(label.clone()).hint(location_label(record, location)));
+            targets.push(LocationTarget::Detail(i, LocationDetail::Type));
+            for (detail, name, now) in detail_rows(location, view.options.details.get(i)) {
+                items.push(PickItem::new(format!("{label}: {name}")).hint(now));
+                targets.push(LocationTarget::Detail(i, detail));
             }
         }
         self.modal = Some((
@@ -929,10 +1000,39 @@ impl GenerateScreen {
                     .get(area)
                     .map(|a| a.count.roll.result.id.clone()),
             ),
-            LocationTarget::Type(l) => (
-                view.options.types.as_ref(),
-                record.locations.get(l).map(|l| l.location_type.id.clone()),
-            ),
+            LocationTarget::Detail(l, detail) => {
+                let location = record.locations.get(l);
+                let options = view.options.details.get(l);
+                let rolls = location.and_then(|l| l.subtype_rolls.as_ref());
+                match detail {
+                    LocationDetail::Type => (
+                        view.options.types.as_ref(),
+                        location.map(|l| l.location_type.id.clone()),
+                    ),
+                    LocationDetail::Subtype => (
+                        options.and_then(|o| o.subtype.as_ref()),
+                        rolls.map(|r| r.roll.result.id.clone()),
+                    ),
+                    LocationDetail::Reroll => (
+                        options.and_then(|o| o.reroll.as_ref()),
+                        rolls
+                            .and_then(|r| r.rerolls.last())
+                            .map(|r| r.result.id.clone()),
+                    ),
+                    LocationDetail::Split => (
+                        options.and_then(|o| o.split.as_ref()),
+                        rolls
+                            .and_then(|r| r.split.as_ref())
+                            .map(|r| r.result.id.clone()),
+                    ),
+                    LocationDetail::Speciality => (
+                        options.and_then(|o| o.speciality.as_ref()),
+                        location
+                            .and_then(|l| l.speciality.as_ref())
+                            .map(|s| s.id.clone()),
+                    ),
+                }
+            }
         };
         let Some(options) = options else {
             return;
@@ -1403,7 +1503,7 @@ impl Screen for GenerateScreen {
                 if let Some(record) = stage.locations.as_ref().and_then(|l| l.record.as_ref()) {
                     lines.push(Line::from(vec![
                         Span::styled("Enter", s.key()),
-                        Span::styled(" change a count or a location's type", s.dim()),
+                        Span::styled(" change a count, or a location's type or subtype", s.dim()),
                     ]));
                     lines.extend(location_lines(record, &s, 0));
                 }
