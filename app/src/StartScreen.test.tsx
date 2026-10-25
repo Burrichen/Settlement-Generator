@@ -216,6 +216,15 @@ describe("completed settlement actions", () => {
     return user;
   }
 
+  it("has a Map tab that explains maps need a saved settlement", async () => {
+    const user = await completed();
+    await user.click(screen.getByRole("tab", { name: "Map" }));
+    expect(screen.getByText(/Maps belong to saved settlements/)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /Generate/ })).toBeNull();
+    await user.click(screen.getByRole("tab", { name: "Settlement" }));
+    expect(screen.getByRole("article", { name: "Generated settlement" })).toBeTruthy();
+  });
+
   it("re-rolls the entire settlement", async () => {
     g.rerollAll.mockResolvedValue(ok(view("automatic", STAGES.length)));
     const user = await completed();

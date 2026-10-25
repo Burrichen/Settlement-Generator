@@ -1,6 +1,19 @@
 // Single typed entry point for calls into the shared Rust core.
 // Types mirror the serialised structs in `settlement-core`.
 import { Channel, invoke } from "@tauri-apps/api/core";
+import type {
+  AssignOptions,
+  ExportResult,
+  MapExportRequest,
+  BuildingDetailsView,
+  BuildingEdits,
+  LocationEdit,
+  MapGenerationOptions,
+  PlaceOn,
+  Point,
+  SavedView,
+  SettlementMapsView,
+} from "./maps/types";
 
 export interface AppInfo {
   name: string;
@@ -611,6 +624,82 @@ export const saved = {
   remove: (id: string) => invoke<void>("saved_delete", { id }),
   editStart: (id: string) => invoke<GenerationResponse>("saved_edit_start", { id }),
   editSave: (name: string) => invoke<SavedSettlementView>("saved_edit_save", { name }),
+  /** Writes the settlement and all its map records to one file; returns its path. */
+  exportSettlement: (id: string) => invoke<string>("settlement_export", { id }),
+  /** Imports a settlement export (the file's text) as a new settlement. */
+  importSettlement: (text: string) => invoke<SettlementSummary>("settlement_import", { text }),
+};
+
+/** A saved settlement's maps: generated and stored by the core. */
+export const maps = {
+  get: (id: string) => invoke<SettlementMapsView>("maps_get", { id }),
+  /** Draws every map, or none: a failure keeps the earlier maps. */
+  generate: (id: string, options: MapGenerationOptions = {}) =>
+    invoke<SettlementMapsView>("maps_generate", { id, options }),
+  remove: (id: string) => invoke<SettlementMapsView>("maps_delete", { id }),
+  /** A building's details: generated and stored the first time it is opened. */
+  building: (id: string, mapId: string, buildingId: string) =>
+    invoke<BuildingDetailsView>("maps_building", { id, mapId, buildingId }),
+  /** Replaces the user's changes; `version` is the version they were made from. */
+  editBuilding: (
+    id: string,
+    mapId: string,
+    buildingId: string,
+    version: number,
+    edits: BuildingEdits,
+  ) => invoke<BuildingDetailsView>("maps_building_edit", { id, mapId, buildingId, version, edits }),
+  /** Rerolls the generated details; the user's values are kept unless discarded. */
+  regenerateBuilding: (
+    id: string,
+    mapId: string,
+    buildingId: string,
+    version: number,
+    discardEdits: boolean,
+  ) =>
+    invoke<BuildingDetailsView>("maps_building_regenerate", {
+      id,
+      mapId,
+      buildingId,
+      version,
+      discardEdits,
+    }),
+  /** Gives back every generated value the user changed; notes are kept. */
+  resetBuilding: (id: string, mapId: string, buildingId: string, version: number) =>
+    invoke<BuildingDetailsView>("maps_building_reset", { id, mapId, buildingId, version }),
+  /** Places a Notable Location; moving or replacing needs `options`. */
+  assignLocation: (id: string, locationId: string, target: PlaceOn, options: AssignOptions) =>
+    invoke<SettlementMapsView>("maps_location_assign", { id, locationId, target, options }),
+  /** Takes a location off its building; the location and its number are kept. */
+  unassignLocation: (id: string, locationId: string) =>
+    invoke<SettlementMapsView>("maps_location_unassign", { id, locationId }),
+  updateLocation: (id: string, locationId: string, version: number, edit: LocationEdit) =>
+    invoke<SettlementMapsView>("maps_location_update", { id, locationId, version, edit }),
+  /** Adds a custom location, placed on `place` if given. */
+  createLocation: (id: string, edit: LocationEdit, place: PlaceOn | null, options: AssignOptions) =>
+    invoke<SettlementMapsView>("maps_location_create", { id, edit, place, options }),
+  deleteLocation: (id: string, locationId: string) =>
+    invoke<SettlementMapsView>("maps_location_delete", { id, locationId }),
+  /** Deletes one district's map and what is on it (see `annotations`). */
+  deleteMap: (id: string, mapId: string) =>
+    invoke<SettlementMapsView>("maps_delete_map", { id, mapId }),
+  /** Names a district; `null` or blank gives back its default name. */
+  renameDistrict: (id: string, districtId: string, name: string | null) =>
+    invoke<SettlementMapsView>("maps_district_rename", { id, districtId, name }),
+  addPoi: (id: string, mapId: string, position: Point, label: string, notes: string) =>
+    invoke<SettlementMapsView>("maps_poi_add", { id, mapId, position, label, notes }),
+  updatePoi: (id: string, poiId: string, label: string, notes: string) =>
+    invoke<SettlementMapsView>("maps_poi_update", { id, poiId, label, notes }),
+  movePoi: (id: string, poiId: string, position: Point) =>
+    invoke<SettlementMapsView>("maps_poi_move", { id, poiId, position }),
+  deletePoi: (id: string, poiId: string) =>
+    invoke<SettlementMapsView>("maps_poi_delete", { id, poiId }),
+  /** Writes SVG, PNG or JSON files to the export folder. */
+  export: (id: string, request: MapExportRequest) =>
+    invoke<ExportResult>("maps_export", { id, request }),
+  /** Deletes stored map data that could not be read. */
+  discardDamaged: (id: string) => invoke<SettlementMapsView>("maps_discard_damaged", { id }),
+  /** Remembers where a map was left; call once the view settles. */
+  saveView: (id: string, view: SavedView) => invoke<void>("maps_save_view", { id, view }),
 };
 
 /** Local date and time for a stored timestamp. */

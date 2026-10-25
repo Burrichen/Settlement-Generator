@@ -39,6 +39,28 @@
 
   --radius: 3px;
   --page-texture: none;
+
+  /* Maps: a muted night-time plan, buildings light against the ground. */
+  --map-ground-green: #1d2520;
+  --map-ground-arid: #29251e;
+  --map-ground-cold: #222930;
+  --map-ground-wet: #1a2521;
+  --map-ground-strange: #241e2b;
+  --map-field: #28311f;
+  --map-field-edge: #3a4630;
+  --map-water: #1c3a4e;
+  --map-tree: #2d4733;
+  --map-road: #50555d;
+  --map-street: #444950;
+  --map-lane: #393d43;
+  --map-square: #2c3036;
+  --map-building: #aaa49a;
+  --map-building-edge: #0e0f11;
+  --map-wall: #8b919a;
+  --map-bridge: #737a84;
+  --map-hover: #e8a33d;
+  --map-select: #e2735c;
+  --map-district: rgba(232, 163, 61, 0.55);
 }
 
 :root[data-theme="old-timey-dark"] {
@@ -73,4 +95,26 @@
   --radius: 2px;
   /* A barely-there vignette, like the edge of an old page. */
   --page-texture: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+
+  /* Maps: an old surveyor's plan in sepia. */
+  --map-ground-green: #29231a;
+  --map-ground-arid: #2f261a;
+  --map-ground-cold: #26262a;
+  --map-ground-wet: #22251a;
+  --map-ground-strange: #2a2128;
+  --map-field: #352c1c;
+  --map-field-edge: #4a3d27;
+  --map-water: #22343a;
+  --map-tree: #33361f;
+  --map-road: #5c4c35;
+  --map-street: #4e402e;
+  --map-lane: #43382a;
+  --map-square: #3a2f22;
+  --map-building: #cbb68b;
+  --map-building-edge: #130e0a;
+  --map-wall: #9e8661;
+  --map-bridge: #806c50;
+  --map-hover: #e9c87e;
+  --map-select: #d65a3c;
+  --map-district: rgba(233, 200, 126, 0.5);
 }

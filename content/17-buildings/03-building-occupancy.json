@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.building.occupancy",
+      "name": "Building Occupancy",
+      "description": "Whether an ordinary building on a settlement map is in use. Provisional content: review before release.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "occupied",
+          "name": "Occupied",
+          "description": "Someone lives or works here.",
+          "range": [1, 8],
+          "tags": ["buildingOccupancy.occupied"]
+        },
+        {
+          "id": "vacant",
+          "name": "Vacant",
+          "description": "Empty for now; it could be let or sold.",
+          "range": 9,
+          "tags": ["buildingOccupancy.vacant"]
+        },
+        {
+          "id": "abandoned",
+          "name": "Abandoned",
+          "description": "Left to decay; nobody openly claims it.",
+          "range": 10,
+          "tags": ["buildingOccupancy.abandoned"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "neglected",
+          "name": "Ruinous or Dilapidated building",
+          "when": {
+            "any": [
+              { "has_tag": "buildingCondition.ruinous" },
+              { "has_tag": "buildingCondition.dilapidated" }
+            ]
+          },
+          "ranges": [
+            { "result": "occupied", "range": [1, 5] },
+            { "result": "vacant", "range": [6, 7] },
+            { "result": "abandoned", "range": [8, 10] }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "buildingOccupancy.occupied", "name": "Occupied building" },
+    { "id": "buildingOccupancy.vacant", "name": "Vacant building" },
+    { "id": "buildingOccupancy.abandoned", "name": "Abandoned building" }
+  ]
+}

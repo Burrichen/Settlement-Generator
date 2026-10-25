@@ -85,6 +85,7 @@ This crate owns, or will own:
 | `bundled`     | Bundled default content (`content/*.json`, embedded by `build.rs`)                                                             | Implemented |
 | `locations`   | Notable Locations: count by Size and district, 1d20 Type, canonical subtypes, the guaranteed Tavern / Inn                      | Implemented |
 | `quality`     | The ordered Quality scale (Poor → Excellent) and pending Quality shifts; no distribution yet                                   | Implemented |
+| `maps`        | Settlement maps: inputs from snapshots, data-driven parameters, engine adapter, built-in engine, versioning (see MAPS.md)      | In progress |
 | `settings`    | Settings model: generation method/presentation, God Mode, Tag View, Bare Minimum Buildings, theme                              | Implemented |
 | `settlements` | Saved settlement snapshots and summaries                                                                                       | Implemented |
 | `db`          | SQLite database: transactional migrations, settings, overrides, settlements                                                    | Implemented |
@@ -124,6 +125,14 @@ Constraints:
   - `saved_*`: `list`, `get`, `set_favourite`, `delete` (refused by the core
     for favourites), `edit_start` (restores a snapshot into an editing
     session) and `edit_save` (saves an explicit revised snapshot).
+  - `maps_*`: `get`, `generate` and `delete`; and for building details
+    `building` (generated on first open), `building_edit`,
+    `building_regenerate` and `building_reset`; and for Notable Locations
+    `location_assign`, `location_unassign`, `location_update`,
+    `location_create` and `location_delete`; and `delete_map`,
+    `district_rename`, `poi_add`, `poi_update`, `poi_move`, `poi_delete` and
+    `save_view`, `export` and `discard_damaged`; and `settlement_export` /
+    `settlement_import` (see [MAPS.md](MAPS.md)).
   - `update_check` and `update_install` (`updates.rs`):
     - signed updates from GitHub Releases through the Tauri updater plugin;
     - only stable, newer versions are offered;
@@ -136,6 +145,10 @@ Constraints:
   defaults merged with the user's overrides from the database. Physical dice
   come from `RandomFaces::from_entropy()`.
 
+- **Maps:** saved settlements have a Map tab (`app/src/maps/`): district
+  tabs, a merged-layer SVG canvas with spatial-index hit testing, and the
+  Location Inspector, Legend and building directory. See
+  [MAPS.md](MAPS.md) §11.
 - **Content editors** (`TagsScreen`, `TablesScreen`) are generic: one form for
   every table, with effect forms built from the core's effect schema. They
   edit a whole draft, show the core's live validation and coverage, and save
@@ -181,7 +194,10 @@ Constraints:
   - View, split into list and detail when the terminal is at least 80 columns
     wide, and stacked otherwise;
   - stepped tag and table editors, including a condition-tree editor and
-    schema-driven effects.
+    schema-driven effects;
+  - Maps and Building screens for a saved settlement's maps (generate, list,
+    inspect, edit, Notable Locations, points of interest, export), and
+    settlement export and import (see [MAPS.md](MAPS.md) §15).
 - **Structure:** a stack of `Screen`s (`src/tui/screens/`) plus shared
   widgets: selectable row lists, a text input, and modals for pick,
   checklist, confirm and message.

@@ -115,12 +115,40 @@ vi.mock("./api", async (importOriginal) => {
         items = items.map((s) => (s.id === "a" ? { ...s, name } : s));
         return detailOf(items[0]);
       }),
+      exportSettlement: vi.fn(async (id: string) => `C:/Exports/${id}.settlement.json`),
+      importSettlement: vi.fn(async (text: string) => {
+        if (!text.includes("settlement-generator.settlement")) {
+          throw "This is not a Settlement Generator settlement export.";
+        }
+        const added = summary("z", "Ærøskøbing – Ōshū 城");
+        items = [...items, added];
+        return added;
+      }),
+    },
+    maps: {
+      get: vi.fn(async (id: string) => ({
+        settlement_id: id,
+        status: "not_generated",
+        layout: "single",
+        engine: { id: "builtin.medieval", version: "1.0.0", features: [] },
+        planned: [
+          {
+            id: "map-settlement",
+            label: "x",
+            scope: { kind: "settlement" },
+            generated: false,
+            stale: false,
+          },
+        ],
+      })),
+      generate: vi.fn(),
+      remove: vi.fn(),
     },
   };
 });
 
 import { App } from "./App";
-import { generation, saved } from "./api";
+import { generation, maps, saved } from "./api";
 
 const api = vi.mocked(saved);
 
@@ -224,14 +252,14 @@ describe("actions", () => {
 
   it("offers Edit, Favourite and Delete for a non-favourite", async () => {
     await openView();
-    expect(actionNames()).toEqual(["Edit", "Favourite", "Delete"]);
+    expect(actionNames()).toEqual(["Edit", "Export", "Favourite", "Delete"]);
   });
 
   it("never offers Delete for a favourite", async () => {
     const user = await openView();
     await user.click(screen.getByText("Brightwater"));
     await screen.findByText("Ordon of Brightwater");
-    expect(actionNames()).toEqual(["Edit", "Unfavourite"]);
+    expect(actionNames()).toEqual(["Edit", "Export", "Unfavourite"]);
   });
 
   it("Right moves into the actions and Left returns to the list", async () => {
@@ -240,8 +268,10 @@ describe("actions", () => {
     await user.keyboard("{ArrowRight}");
     expect(document.activeElement?.textContent).toBe("Edit");
     await user.keyboard("{ArrowRight}");
+    expect(document.activeElement?.textContent).toBe("Export");
+    await user.keyboard("{ArrowRight}");
     expect(document.activeElement?.textContent).toBe("Favourite");
-    await user.keyboard("{ArrowLeft}{ArrowLeft}");
+    await user.keyboard("{ArrowLeft}{ArrowLeft}{ArrowLeft}");
     expect(document.activeElement).toBe(screen.getAllByRole("option")[0]);
   });
 
@@ -325,5 +355,70 @@ describe("edit", () => {
     expect(
       screen.getByRole("navigation", { name: "Saved settlements" }).hasAttribute("inert"),
     ).toBe(true);
+  });
+});
+
+describe("map tab", () => {
+  it("opens the selected settlement's map without generating one", async () => {
+    const user = await openView();
+    const tabs = screen.getByRole("tablist", { name: "Settlement view" });
+    expect(
+      within(tabs).getByRole("tab", { name: "Settlement" }).getAttribute("aria-selected"),
+    ).toBe("true");
+    await user.click(within(tabs).getByRole("tab", { name: "Map" }));
+    expect(await screen.findByText("No map yet")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Generate map" })).toBeTruthy();
+    expect(maps.get).toHaveBeenCalledWith("a");
+    expect(maps.generate).not.toHaveBeenCalled();
+
+    // The tab stays open when another settlement is chosen.
+    await user.click(screen.getByText("Coldmere"));
+    await waitFor(() => expect(maps.get).toHaveBeenCalledWith("c"));
+
+    // Left/Right move between tabs.
+    within(tabs).getByRole("tab", { name: "Map" }).focus();
+    await user.keyboard("{ArrowLeft}");
+    expect(await screen.findByRole("article", { name: /snapshot/ })).toBeTruthy();
+  });
+
+  it("Escape on the map tab with nothing selected still goes back", async () => {
+    const user = await openView();
+    await user.click(screen.getByRole("tab", { name: "Map" }));
+    await screen.findByText("No map yet");
+    await user.keyboard("{Escape}");
+    expect(await screen.findByRole("navigation", { name: "Main menu" })).toBeTruthy();
+  });
+});
+
+describe("settlement export and import", () => {
+  it("exports the selected settlement with its maps and says where", async () => {
+    const user = await openView();
+    await user.click(screen.getByRole("button", { name: "Export" }));
+    expect(api.exportSettlement).toHaveBeenCalledWith("a");
+    expect(await screen.findByRole("status")).toHaveProperty(
+      "textContent",
+      "Exported with all its maps to C:/Exports/a.settlement.json",
+    );
+  });
+
+  it("imports an export file as a new settlement and selects it", async () => {
+    const user = await openView();
+    const text = JSON.stringify({ format: "settlement-generator.settlement" });
+    const file = new File([text], "x.settlement.json", { type: "application/json" });
+    await user.upload(screen.getByLabelText("Settlement export file"), file);
+    expect(api.importSettlement).toHaveBeenCalledWith(text);
+    expect(
+      await screen.findByText(/Imported “Ærøskøbing – Ōshū 城” as a new settlement/),
+    ).toBeTruthy();
+    const selected = screen.getByRole("option", { selected: true });
+    expect(selected.textContent).toContain("Ærøskøbing – Ōshū 城");
+
+    // A file that is not an export is refused with the reason.
+    await user.upload(
+      screen.getByLabelText("Settlement export file"),
+      new File(["nonsense"], "notes.json", { type: "application/json" }),
+    );
+    expect(await screen.findByText(/not a Settlement Generator settlement export/)).toBeTruthy();
+    expect(screen.getAllByRole("option")).toHaveLength(4);
   });
 });

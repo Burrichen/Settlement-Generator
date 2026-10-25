@@ -1,0 +1,109 @@
+{
+  "format_version": 1,
+  "description": "Map layout defaults. These are drawing choices, not settlement facts: every value can be overridden manually for a settlement or a single map. See docs/MAPS.md.",
+  "inputs": {
+    "size": "table.size",
+    "region": "table.genericRegion",
+    "environment": "table.environment",
+    "connections": "table.connections",
+    "origin": "table.origin",
+    "purpose": "table.purpose",
+    "age": "table.age"
+  },
+  "base": {
+    "building_count": 30,
+    "radius_m": 110,
+    "approaches": 2,
+    "walls": false,
+    "water": "none",
+    "ground": "grass",
+    "irregularity": 0.5,
+    "trees": 0.3,
+    "fields": false,
+    "square": false
+  },
+  "sizes": [
+    {
+      "when": { "has_tag": "size.tradingPost" },
+      "layout": "single",
+      "set": { "building_count": 8, "radius_m": 55 }
+    },
+    {
+      "when": { "has_tag": "size.village" },
+      "layout": "single",
+      "set": { "building_count": 32, "radius_m": 115, "fields": true }
+    },
+    {
+      "when": { "has_tag": "size.town" },
+      "layout": "single",
+      "set": { "building_count": 90, "radius_m": 175, "walls": true, "square": true }
+    },
+    {
+      "when": { "has_tag": "size.city" },
+      "layout": "per_district",
+      "set": { "building_count": 140, "radius_m": 195, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "size.capital" },
+      "layout": "per_district",
+      "set": { "building_count": 170, "radius_m": 215, "square": true, "trees": 0.1 }
+    }
+  ],
+  "rules": [
+    { "when": { "has_tag": "connection.isolated" }, "set": { "approaches": 1 } },
+    { "when": { "has_tag": "connection.localRoad" }, "set": { "approaches": 2 } },
+    { "when": { "has_tag": "connection.regionalRoad" }, "set": { "approaches": 3 } },
+    { "when": { "has_tag": "connection.majorRoute" }, "set": { "approaches": 4 } },
+
+    { "when": { "has_tag": "region.coastlands" }, "set": { "water": "coast" } },
+    { "when": { "has_tag": "region.mountains" }, "set": { "ground": "hills" } },
+    { "when": { "has_tag": "region.coldlands" }, "set": { "ground": "heath" } },
+
+    {
+      "when": { "has_tag": "env.farmlandOpenCountry" },
+      "set": { "ground": "farmland", "fields": true, "trees": 0.15 }
+    },
+    { "when": { "has_tag": "env.grasslandPlains" }, "set": { "ground": "grass", "trees": 0.1 } },
+    { "when": { "has_tag": "env.woodland" }, "set": { "ground": "woodland", "trees": 0.75 } },
+    { "when": { "has_tag": "env.moorlandHeath" }, "set": { "ground": "heath", "trees": 0.1 } },
+    { "when": { "has_tag": "env.hills" }, "set": { "ground": "hills" } },
+    { "when": { "has_tag": "env.mountains" }, "set": { "ground": "rock", "trees": 0.15 } },
+    { "when": { "has_tag": "env.wetlands" }, "set": { "ground": "marsh", "water": "lake" } },
+    { "when": { "has_tag": "env.coast" }, "set": { "water": "coast" } },
+    { "when": { "has_tag": "env.aridDesert" }, "set": { "ground": "sand", "trees": 0.0 } },
+    { "when": { "has_tag": "env.badlands" }, "set": { "ground": "rock", "trees": 0.05 } },
+    { "when": { "has_tag": "env.ichorFields" }, "set": { "ground": "ichor", "trees": 0.05 } },
+    { "when": { "has_tag": "env.crystallineWilds" }, "set": { "ground": "crystal", "trees": 0.2 } },
+    {
+      "when": { "has_tag": "env.wastelandBlightedLand" },
+      "set": { "ground": "wasteland", "trees": 0.05 }
+    },
+    { "when": { "has_tag": "env.coldTundra" }, "set": { "ground": "snow", "trees": 0.05 } },
+    { "when": { "has_tag": "env.glacial" }, "set": { "ground": "ice", "trees": 0.0 } },
+    { "when": { "has_tag": "env.foreverIce" }, "set": { "ground": "ice", "trees": 0.0 } },
+    { "when": { "has_tag": "env.tropicalJungle" }, "set": { "ground": "jungle", "trees": 0.85 } },
+    {
+      "when": { "has_tag": "env.subterranean" },
+      "set": { "ground": "cavern", "water": "none", "trees": 0.0, "fields": false }
+    },
+
+    { "when": { "has_tag": "age.new" }, "set": { "irregularity": 0.25 } },
+    { "when": { "has_tag": "age.established" }, "set": { "irregularity": 0.45 } },
+    { "when": { "has_tag": "age.old" }, "set": { "irregularity": 0.6 } },
+    { "when": { "has_tag": "age.ancient" }, "set": { "irregularity": 0.75 } },
+
+    { "when": { "has_tag": "origin.purposeBuilt" }, "set": { "irregularity": 0.2 } },
+    { "when": { "has_tag": "origin.organicGrowth" }, "set": { "irregularity": 0.7 } },
+    {
+      "when": {
+        "all": [
+          { "has_tag": "origin.militaryOutpost" },
+          { "not": { "any": [{ "has_tag": "size.city" }, { "has_tag": "size.capital" }] } }
+        ]
+      },
+      "set": { "walls": true }
+    },
+
+    { "when": { "has_tag": "purpose.agriculture" }, "set": { "fields": true } }
+  ]
+}

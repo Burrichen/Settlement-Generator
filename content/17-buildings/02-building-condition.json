@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.building.condition",
+      "name": "Building Condition",
+      "description": "The state of repair of an ordinary building on a settlement map, worst first. Provisional content: review before release.",
+      "dice": "1d10",
+      "ordered": true,
+      "results": [
+        {
+          "id": "ruinous",
+          "name": "Ruinous",
+          "description": "Barely standing, and unsafe in places.",
+          "range": 1,
+          "tags": ["buildingCondition.ruinous"]
+        },
+        {
+          "id": "dilapidated",
+          "name": "Dilapidated",
+          "description": "Run down, with damage left unrepaired.",
+          "range": [2, 3],
+          "tags": ["buildingCondition.dilapidated"]
+        },
+        {
+          "id": "worn",
+          "name": "Worn",
+          "description": "Showing its age, but sound.",
+          "range": [4, 6],
+          "tags": ["buildingCondition.worn"]
+        },
+        {
+          "id": "sound",
+          "name": "Sound",
+          "description": "In good repair.",
+          "range": [7, 9],
+          "tags": ["buildingCondition.sound"]
+        },
+        {
+          "id": "wellKept",
+          "name": "Well kept",
+          "description": "New, restored or carefully maintained.",
+          "range": 10,
+          "tags": ["buildingCondition.wellKept"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "hardTimes",
+          "name": "Failing or Struggling economy",
+          "when": {
+            "any": [{ "has_tag": "economy.failing" }, { "has_tag": "economy.struggling" }]
+          },
+          "ranges": [
+            { "result": "ruinous", "range": [1, 2] },
+            { "result": "dilapidated", "range": [3, 5] },
+            { "result": "worn", "range": [6, 8] },
+            { "result": "sound", "range": [9, 10] }
+          ]
+        },
+        {
+          "id": "goodTimes",
+          "name": "Prosperous or Wealthy economy",
+          "when": {
+            "any": [{ "has_tag": "economy.prosperous" }, { "has_tag": "economy.wealthy" }]
+          },
+          "ranges": [
+            { "result": "dilapidated", "range": 1 },
+            { "result": "worn", "range": [2, 4] },
+            { "result": "sound", "range": [5, 8] },
+            { "result": "wellKept", "range": [9, 10] }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "buildingCondition.ruinous", "name": "Ruinous building" },
+    { "id": "buildingCondition.dilapidated", "name": "Dilapidated building" },
+    { "id": "buildingCondition.worn", "name": "Worn building" },
+    { "id": "buildingCondition.sound", "name": "Sound building" },
+    { "id": "buildingCondition.wellKept", "name": "Well-kept building" }
+  ]
+}

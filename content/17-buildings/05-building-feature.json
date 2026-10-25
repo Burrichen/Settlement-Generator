@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.building.feature",
+      "name": "Building Feature",
+      "description": "One thing a passer-by notices about an ordinary building; used as its short description. Provisional content: review before release.",
+      "dice": "1d12",
+      "results": [
+        { "id": "whitewashed", "name": "Freshly whitewashed walls.", "range": 1 },
+        { "id": "flowerBoxes", "name": "Flower boxes beneath the windows.", "range": 2 },
+        { "id": "carvedSign", "name": "A carved sign or symbol above the door.", "range": 3 },
+        { "id": "crookedChimney", "name": "Smoke curls from a crooked chimney.", "range": 4 },
+        { "id": "paintedShutters", "name": "Shutters painted a bright colour.", "range": 5 },
+        { "id": "benchByDoor", "name": "A rain barrel and a bench by the door.", "range": 6 },
+        { "id": "ivy", "name": "Ivy climbs one wall.", "range": 7 },
+        { "id": "ironDoor", "name": "A heavy, iron-bound door.", "range": 8 },
+        { "id": "washing", "name": "Washing hung out to dry.", "range": 9 },
+        { "id": "walledYard", "name": "A small walled yard at the back.", "range": 10 },
+        { "id": "patchedRoof", "name": "A patched roof of mismatched tiles.", "range": 11 },
+        { "id": "boardedWindows", "name": "Boarded-up windows.", "range": 12 },
+        { "id": "saggingRoof", "name": "A sagging, half-fallen roof." },
+        { "id": "weeds", "name": "Weeds grow from the gutters." },
+        { "id": "proppedWalls", "name": "Cracked walls propped up with timber." },
+        { "id": "brokenDoor", "name": "A door hanging off its hinges." }
+      ],
+      "variants": [
+        {
+          "id": "neglected",
+          "name": "Ruinous or Dilapidated building",
+          "when": {
+            "any": [
+              { "has_tag": "buildingCondition.ruinous" },
+              { "has_tag": "buildingCondition.dilapidated" }
+            ]
+          },
+          "dice": "1d8",
+          "ranges": [
+            { "result": "saggingRoof", "range": [1, 2] },
+            { "result": "weeds", "range": 3 },
+            { "result": "proppedWalls", "range": [4, 5] },
+            { "result": "brokenDoor", "range": 6 },
+            { "result": "patchedRoof", "range": 7 },
+            { "result": "boardedWindows", "range": 8 }
+          ]
+        }
+      ]
+    }
+  ]
+}

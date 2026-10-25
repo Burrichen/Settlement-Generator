@@ -19,6 +19,8 @@ import { ConfirmBar, nameProblem, MAX_NAME_LENGTH } from "../components/generati
 import { ScreenFrame } from "../components/ScreenFrame";
 import { SettlementSheet, foldSubStages } from "../components/SettlementSheet";
 import { StageGrid } from "../components/StageGrid";
+import { SettlementTabs, type SettlementTab } from "../components/SettlementTabs";
+import { MapExplorer } from "../maps/MapExplorer";
 
 /**
  * Saved settlements: a list (left, ~25%) and the selected snapshot (right,
@@ -33,6 +35,42 @@ export function ViewScreen() {
   const [detail, setDetail] = useState<SavedSettlementView | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+  const importRef = useRef<HTMLInputElement>(null);
+
+  /** Imports a settlement export file as a new settlement. */
+  const importFile = async (file: File) => {
+    try {
+      const imported = await saved.importSettlement(await file.text());
+      await refreshList(imported.id);
+      setError(null);
+      setNotice(`Imported “${imported.name}” as a new settlement.`);
+    } catch (e) {
+      setNotice(null);
+      setError(String(e));
+    }
+  };
+
+  const importer = (
+    <>
+      <input
+        ref={importRef}
+        type="file"
+        accept=".json,application/json"
+        className="visually-hidden"
+        aria-label="Settlement export file"
+        tabIndex={-1}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          e.target.value = "";
+          if (file) void importFile(file);
+        }}
+      />
+      <button type="button" className="btn" onClick={() => importRef.current?.click()}>
+        Import settlement…
+      </button>
+    </>
+  );
   const optionRefs = useRef(new Map<string, HTMLLIElement>());
   const actionsRef = useRef<HTMLDivElement>(null);
 
@@ -121,6 +159,18 @@ export function ViewScreen() {
         error={error}
         onBackToList={() => selectedId && optionRefs.current.get(selectedId)?.focus()}
         onEdit={() => setEditing(true)}
+        notice={notice}
+        onExport={async () => {
+          if (!detail) return;
+          try {
+            const path = await saved.exportSettlement(detail.id);
+            setError(null);
+            setNotice(`Exported with all its maps to ${path}`);
+          } catch (e) {
+            setNotice(null);
+            setError(String(e));
+          }
+        }}
         onFavourite={async (favourite) => {
           if (!detail) return;
           try {
@@ -152,9 +202,22 @@ export function ViewScreen() {
       {list === null ? (
         <p className="muted">Loading…</p>
       ) : list.length === 0 ? (
-        <p className="empty-state">
-          No saved settlements yet. Generate one from Start and save it.
-        </p>
+        <>
+          <p className="empty-state">
+            No saved settlements yet. Generate one from Start and save it, or import one.
+          </p>
+          <div className="action-bar">{importer}</div>
+          {error && (
+            <p className="alert alert-inline" role="alert">
+              {error}
+            </p>
+          )}
+          {notice && (
+            <p className="saved-notice" role="status">
+              {notice}
+            </p>
+          )}
+        </>
       ) : (
         <div className="view-layout">
           <nav
@@ -163,6 +226,7 @@ export function ViewScreen() {
             // Another settlement cannot be picked mid-edit: Save or Cancel first.
             inert={editing}
           >
+            <div className="action-bar saved-list-actions">{importer}</div>
             <ul
               className="saved-list"
               role="listbox"
@@ -215,6 +279,8 @@ function DetailPane({
   onEdit,
   onFavourite,
   onDelete,
+  onExport,
+  notice,
 }: {
   detail: SavedSettlementView | null;
   tagView: boolean;
@@ -224,9 +290,12 @@ function DetailPane({
   onEdit: () => void;
   onFavourite: (favourite: boolean) => void;
   onDelete: () => void;
+  onExport: () => void;
+  notice: string | null;
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   useEffect(() => setConfirmDelete(false), [detail?.id]);
+  const [tab, setTab] = useState<SettlementTab>("details");
   if (!detail) return <p className="muted">Loading…</p>;
 
   // Toolbar: Left/Right move between actions; Left from the first returns
@@ -281,6 +350,14 @@ function DetailPane({
             <button type="button" className="btn" onClick={onEdit}>
               Edit
             </button>
+            <button
+              type="button"
+              className="btn"
+              title="Save this settlement and all its maps to one file"
+              onClick={onExport}
+            >
+              Export
+            </button>
             {detail.favourite ? (
               <button type="button" className="btn" onClick={() => onFavourite(false)}>
                 Unfavourite
@@ -301,30 +378,42 @@ function DetailPane({
             )}
           </div>
         )}
+        {notice && !error && (
+          <p className="saved-notice" role="status">
+            {notice}
+          </p>
+        )}
         {error && (
           <p className="alert alert-inline" role="alert">
             {error}
           </p>
         )}
       </header>
-      <SettlementSheet
-        label={`${detail.name} snapshot`}
-        rows={foldSubStages(
-          detail.stages.map((stage) => ({
-            key: stage.stage_table,
-            label: stage.label,
-            value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
-            source: stage.table && stage.table.name !== stage.label ? stage.table.name : undefined,
-            tags: tagView ? stage.tags : undefined,
-            subStage: stage.sub_stage,
-            // Roles are shown with each Authority Figure instead.
-            skipped: stage.skipped || !!stage.roles,
-            figures: stage.figures,
-            locations: stage.locations,
-          })),
+      <SettlementTabs active={tab} onChange={setTab}>
+        {tab === "map" ? (
+          <MapExplorer key={detail.id} settlementId={detail.id} settlementName={detail.name} />
+        ) : (
+          <SettlementSheet
+            label={`${detail.name} snapshot`}
+            rows={foldSubStages(
+              detail.stages.map((stage) => ({
+                key: stage.stage_table,
+                label: stage.label,
+                value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
+                source:
+                  stage.table && stage.table.name !== stage.label ? stage.table.name : undefined,
+                tags: tagView ? stage.tags : undefined,
+                subStage: stage.sub_stage,
+                // Roles are shown with each Authority Figure instead.
+                skipped: stage.skipped || !!stage.roles,
+                figures: stage.figures,
+                locations: stage.locations,
+              })),
+            )}
+            meta={`Snapshot saved with v${detail.app_version}. Later changes to tables do not alter it.`}
+          />
         )}
-        meta={`Snapshot saved with v${detail.app_version}. Later changes to tables do not alter it.`}
-      />
+      </SettlementTabs>
     </div>
   );
 }

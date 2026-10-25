@@ -744,6 +744,33 @@ The Opportunities, Building Quality, Economic Pressures, Shops / Services and
 Notable Buildings systems do not exist yet. Their intents use a free-text
 `concept` and can be pointed at the real tables once those are added.
 
+## Building details (provisional)
+
+`content/17-buildings/`, one table per file. These tables give an
+**ordinary map building** its details the first time it is opened in the
+Location Inspector (see [MAPS.md](MAPS.md) §12). They are not part of the
+settlement pipeline and never change a settlement.
+
+> **Provisional content.** No specification exists for these tables yet. The
+> results, ranges and wording were drafted with the feature so that it can be
+> used and tested. Review and replace them before release. Like every table,
+> they can be edited, disabled or reset in the Tables editor.
+
+Rolled in this order, each seeing the tags of the results before it, under
+the settlement's own tags:
+
+| Table                      | Die  | Gives                            | Varies with                                                                                         |
+| -------------------------- | ---- | -------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `table.building.type`      | 1d20 | Type, `buildingType.*` tags      | Size: Trading Post, Village, City or Capital variants; Town is base                                 |
+| `table.building.condition` | 1d10 | Condition (ordered, worst first) | Economy: Failing/Struggling and Prosperous/Wealthy variants                                         |
+| `table.building.occupancy` | 1d10 | Occupied / Vacant / Abandoned    | Ruinous or Dilapidated condition                                                                    |
+| `table.building.occupants` | 1d8  | Number of occupants (`value`)    | Tenement (1d6, 6–12) and shop or workshop (1d4) variants; only rolled when occupied and not storage |
+| `table.building.feature`   | 1d12 | The short description            | Ruinous or Dilapidated condition (1d8 of signs of neglect)                                          |
+
+The name or address is not rolled: it is inferred from the map ("No. 12,
+Lane 3"). No result is named "Residence", which stays reserved for the future
+Noble system.
+
 ## Incomplete content (release blockers)
 
 | Item                            | Missing                                           |

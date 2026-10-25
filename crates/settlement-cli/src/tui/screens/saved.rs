@@ -1,6 +1,7 @@
-//! View: saved settlements (list left, snapshot right), with Edit,
-//! Favourite/Unfavourite and Delete. A favourite never offers Delete, and
-//! the core refuses it anyway.
+//! View: saved settlements (list left, snapshot right), with Edit, Maps,
+//! Export, Favourite/Unfavourite and Delete, and `i` to import a settlement
+//! export file. A favourite never offers Delete, and the core refuses it
+//! anyway.
 
 use ratatui::Frame;
 use ratatui::crossterm::event::{KeyCode, KeyEvent};
@@ -12,12 +13,15 @@ use settlement_core::settlements::{SettlementId, SettlementSummary};
 
 use super::common::{SheetRow, sheet_lines};
 use super::generate::GenerateScreen;
+use super::maps::MapsScreen;
 use crate::tui::widgets::{Modal, ModalResult, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 enum Action {
     Edit,
+    Maps,
+    Export,
     Favourite,
     Unfavourite,
     Delete,
@@ -27,6 +31,8 @@ impl Action {
     fn label(self) -> &'static str {
         match self {
             Action::Edit => "Edit",
+            Action::Maps => "Maps",
+            Action::Export => "Export",
             Action::Favourite => "Favourite",
             Action::Unfavourite => "Unfavourite",
             Action::Delete => "Delete",
@@ -45,6 +51,8 @@ pub struct SavedScreen {
     action: usize,
     error: Option<String>,
     modal: Option<Modal>,
+    /// The open modal asks for a file to import (not a delete).
+    importing: bool,
 }
 
 impl SavedScreen {
@@ -58,6 +66,7 @@ impl SavedScreen {
             action: 0,
             error: None,
             modal: None,
+            importing: false,
         };
         screen.reload(ctx, None);
         screen
@@ -121,8 +130,21 @@ impl SavedScreen {
 
     fn actions(&self) -> Vec<Action> {
         match &self.detail {
-            Some(d) if d.summary.favourite => vec![Action::Edit, Action::Unfavourite],
-            Some(_) => vec![Action::Edit, Action::Favourite, Action::Delete],
+            Some(d) if d.summary.favourite => {
+                vec![
+                    Action::Edit,
+                    Action::Maps,
+                    Action::Export,
+                    Action::Unfavourite,
+                ]
+            }
+            Some(_) => vec![
+                Action::Edit,
+                Action::Maps,
+                Action::Export,
+                Action::Favourite,
+                Action::Delete,
+            ],
             None => vec![],
         }
     }
@@ -135,6 +157,20 @@ impl SavedScreen {
         match action {
             Action::Edit => match GenerateScreen::edit(ctx, &id, &detail.summary.name) {
                 Ok(screen) => return Nav::Push(Box::new(screen)),
+                Err(e) => self.error = Some(e),
+            },
+            Action::Maps => {
+                let name = detail.summary.name.clone();
+                return Nav::Push(Box::new(MapsScreen::new(ctx, &id, &name)));
+            }
+            Action::Export => match ctx
+                .service
+                .settlement_export(&id, ctx.export_dir.as_deref())
+            {
+                Ok(path) => {
+                    self.error = None;
+                    ctx.flash = Some(format!("Exported with all its maps to {}", path.display()));
+                }
                 Err(e) => self.error = Some(e),
             },
             Action::Favourite | Action::Unfavourite => {
@@ -271,13 +307,17 @@ impl Screen for SavedScreen {
         let s = &ctx.styles;
         if self.list.is_empty() {
             let mut lines = vec![Line::styled(
-                "No saved settlements yet. Generate one from Start and save it.",
+                "No saved settlements yet. Generate one from Start and save it, or press i to \
+                 import one.",
                 s.dim(),
             )];
             if let Some(e) = &self.error {
                 lines.push(Line::styled(e.clone(), s.error()));
             }
             f.render_widget(Paragraph::new(lines), area);
+            if let Some(modal) = &mut self.modal {
+                modal.render(f, area, s);
+            }
             return;
         }
         let rows = self.rows(ctx);
@@ -309,6 +349,37 @@ impl Screen for SavedScreen {
     }
 
     fn handle(&mut self, key: KeyEvent, ctx: &mut Ctx) -> Nav {
+        if self.importing {
+            if let Some(modal) = &mut self.modal {
+                match modal.handle(key, &ctx.styles) {
+                    ModalResult::Open => {}
+                    ModalResult::Text(path) => {
+                        let path = path.trim().trim_matches('"');
+                        match ctx
+                            .service
+                            .settlement_import_file(std::path::Path::new(path))
+                        {
+                            Ok(imported) => {
+                                self.modal = None;
+                                self.importing = false;
+                                self.error = None;
+                                self.reload(ctx, Some(imported.id));
+                                ctx.flash = Some(format!(
+                                    "Imported “{}” as a new settlement",
+                                    imported.name
+                                ));
+                            }
+                            Err(e) => modal.set_error(e),
+                        }
+                    }
+                    _ => {
+                        self.modal = None;
+                        self.importing = false;
+                    }
+                }
+                return Nav::Stay;
+            }
+        }
         if let Some(modal) = &mut self.modal {
             match modal.handle(key, &ctx.styles) {
                 ModalResult::Open => {}
@@ -371,6 +442,15 @@ impl Screen for SavedScreen {
                 self.action = 0;
                 Nav::Stay
             }
+            KeyCode::Char('i') => {
+                self.importing = true;
+                self.modal = Some(Modal::text(
+                    "Import a settlement",
+                    "Path to a .settlement.json file. It is added as a new settlement.",
+                    "",
+                ));
+                Nav::Stay
+            }
             KeyCode::Esc | KeyCode::Backspace | KeyCode::Left => Nav::Pop,
             _ => Nav::Stay,
         }
@@ -385,7 +465,12 @@ impl Screen for SavedScreen {
                 ("Esc", "back to list"),
             ]
         } else {
-            vec![("↑↓", "settlement"), ("→", "actions"), ("Esc", "back")]
+            vec![
+                ("↑↓", "settlement"),
+                ("→", "actions"),
+                ("i", "import"),
+                ("Esc", "back"),
+            ]
         }
     }
 

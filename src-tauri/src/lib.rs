@@ -8,15 +8,20 @@ use settlement_core::content::{Table, Tag};
 use settlement_core::dice::RandomFaces;
 use settlement_core::editor::{self, EffectKindSchema};
 use settlement_core::engine::{GenerationError, Selections};
-use settlement_core::ids::NamingSchemeId;
-use settlement_core::ids::{ResultId, TableId, TagId};
+use settlement_core::ids::{BuildingId, MapId, NamingSchemeId, ResultId, TableId, TagId};
 use settlement_core::layers::new_user_id;
 use settlement_core::locations::LocationDetail;
+use settlement_core::maps::geometry::Point;
+use settlement_core::maps::{
+    AssignOptions, BuildingDetailsView, BuildingEdits, LocationEdit, MapGenerationOptions, PlaceOn,
+    SavedView,
+};
 use settlement_core::naming::{JoinRule, SpellingException};
 use settlement_core::roadmap::RoadmapEntry;
 use settlement_core::service::{
-    ActiveGeneration, AppService, ContentOverview, DraftCheck, GenerationResponse,
-    SavedSettlementView, ServiceResult, TableDetail, TagDetail,
+    ActiveGeneration, AppService, ContentOverview, DraftCheck, ExportResult, GenerationResponse,
+    MapExportRequest, SavedSettlementView, ServiceResult, SettlementMapsView, TableDetail,
+    TagDetail,
 };
 use settlement_core::session::StageChange;
 use settlement_core::settings::Settings;
@@ -531,6 +536,290 @@ fn saved_edit_save(state: State<'_, AppState>, name: String) -> ServiceResult<Sa
     Ok(saved)
 }
 
+// ----- maps ------------------------------------------------------------------
+
+#[tauri::command]
+fn maps_get(state: State<'_, AppState>, id: String) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_get(&SettlementId::from(id.as_str())))
+}
+
+#[tauri::command]
+fn maps_generate(
+    state: State<'_, AppState>,
+    id: String,
+    options: MapGenerationOptions,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_generate(&SettlementId::from(id.as_str()), &options))
+}
+
+#[tauri::command]
+fn maps_delete(state: State<'_, AppState>, id: String) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_delete(&SettlementId::from(id.as_str())))
+}
+
+/// A building's details; generated and stored the first time it is opened.
+#[tauri::command]
+fn maps_building(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+    building_id: String,
+) -> ServiceResult<BuildingDetailsView> {
+    state.with(|s| {
+        s.maps_building(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+            &BuildingId::from(building_id.as_str()),
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_building_edit(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+    building_id: String,
+    version: u32,
+    edits: BuildingEdits,
+) -> ServiceResult<BuildingDetailsView> {
+    state.with(|s| {
+        s.maps_building_edit(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+            &BuildingId::from(building_id.as_str()),
+            version,
+            edits,
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_building_regenerate(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+    building_id: String,
+    version: u32,
+    discard_edits: bool,
+) -> ServiceResult<BuildingDetailsView> {
+    state.with(|s| {
+        s.maps_building_regenerate(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+            &BuildingId::from(building_id.as_str()),
+            version,
+            discard_edits,
+        )
+    })
+}
+
+/// Exports maps (SVG, PNG, JSON) to the export folder.
+#[tauri::command]
+fn maps_export(
+    state: State<'_, AppState>,
+    id: String,
+    request: MapExportRequest,
+) -> ServiceResult<ExportResult> {
+    state.with(|s| s.maps_export(&SettlementId::from(id.as_str()), &request))
+}
+
+/// Deletes stored map data that could not be read.
+#[tauri::command]
+fn maps_discard_damaged(
+    state: State<'_, AppState>,
+    id: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_discard_damaged(&SettlementId::from(id.as_str())))
+}
+
+/// Exports a saved settlement with all its map records; returns the file.
+#[tauri::command]
+fn settlement_export(state: State<'_, AppState>, id: String) -> ServiceResult<String> {
+    state.with(|s| {
+        s.settlement_export(&SettlementId::from(id.as_str()), None)
+            .map(|p| p.display().to_string())
+    })
+}
+
+/// Imports a settlement export (the file's text) as a new settlement.
+#[tauri::command]
+fn settlement_import(state: State<'_, AppState>, text: String) -> ServiceResult<SettlementSummary> {
+    state.with(|s| s.settlement_import_json(&text))
+}
+
+/// Deletes one district's map and what is on it.
+#[tauri::command]
+fn maps_delete_map(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| {
+        s.maps_delete_map(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_district_rename(
+    state: State<'_, AppState>,
+    id: String,
+    district_id: String,
+    name: Option<String>,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_district_rename(&SettlementId::from(id.as_str()), &district_id, name))
+}
+
+#[tauri::command]
+fn maps_poi_add(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+    position: Point,
+    label: String,
+    notes: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| {
+        s.maps_poi_add(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+            position,
+            label,
+            notes,
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_poi_update(
+    state: State<'_, AppState>,
+    id: String,
+    poi_id: String,
+    label: String,
+    notes: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_poi_update(&SettlementId::from(id.as_str()), &poi_id, label, notes))
+}
+
+#[tauri::command]
+fn maps_poi_move(
+    state: State<'_, AppState>,
+    id: String,
+    poi_id: String,
+    position: Point,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_poi_move(&SettlementId::from(id.as_str()), &poi_id, position))
+}
+
+#[tauri::command]
+fn maps_poi_delete(
+    state: State<'_, AppState>,
+    id: String,
+    poi_id: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_poi_delete(&SettlementId::from(id.as_str()), &poi_id))
+}
+
+/// Remembers where a map was left.
+#[tauri::command]
+fn maps_save_view(state: State<'_, AppState>, id: String, view: SavedView) -> ServiceResult<()> {
+    state.with(|s| s.maps_save_view(&SettlementId::from(id.as_str()), &view))
+}
+
+/// Places a Notable Location on a building.
+#[tauri::command]
+fn maps_location_assign(
+    state: State<'_, AppState>,
+    id: String,
+    location_id: String,
+    target: PlaceOn,
+    options: AssignOptions,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| {
+        s.maps_location_assign(
+            &SettlementId::from(id.as_str()),
+            &location_id,
+            &target,
+            options,
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_location_unassign(
+    state: State<'_, AppState>,
+    id: String,
+    location_id: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_location_unassign(&SettlementId::from(id.as_str()), &location_id))
+}
+
+#[tauri::command]
+fn maps_location_update(
+    state: State<'_, AppState>,
+    id: String,
+    location_id: String,
+    version: u32,
+    edit: LocationEdit,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| {
+        s.maps_location_update(
+            &SettlementId::from(id.as_str()),
+            &location_id,
+            version,
+            edit,
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_location_create(
+    state: State<'_, AppState>,
+    id: String,
+    edit: LocationEdit,
+    place: Option<PlaceOn>,
+    options: AssignOptions,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| {
+        s.maps_location_create(
+            &SettlementId::from(id.as_str()),
+            edit,
+            place.as_ref(),
+            options,
+        )
+    })
+}
+
+#[tauri::command]
+fn maps_location_delete(
+    state: State<'_, AppState>,
+    id: String,
+    location_id: String,
+) -> ServiceResult<SettlementMapsView> {
+    state.with(|s| s.maps_location_delete(&SettlementId::from(id.as_str()), &location_id))
+}
+
+#[tauri::command]
+fn maps_building_reset(
+    state: State<'_, AppState>,
+    id: String,
+    map_id: String,
+    building_id: String,
+    version: u32,
+) -> ServiceResult<BuildingDetailsView> {
+    state.with(|s| {
+        s.maps_building_reset(
+            &SettlementId::from(id.as_str()),
+            &MapId::from(map_id.as_str()),
+            &BuildingId::from(building_id.as_str()),
+            version,
+        )
+    })
+}
+
 // ----- content editors -------------------------------------------------------
 
 #[tauri::command]
@@ -714,6 +1003,29 @@ pub fn run() {
             saved_delete,
             saved_edit_start,
             saved_edit_save,
+            maps_get,
+            maps_generate,
+            maps_delete,
+            maps_building,
+            maps_building_edit,
+            maps_building_regenerate,
+            maps_building_reset,
+            maps_location_assign,
+            maps_location_unassign,
+            maps_location_update,
+            maps_location_create,
+            maps_location_delete,
+            maps_delete_map,
+            maps_export,
+            maps_discard_damaged,
+            settlement_export,
+            settlement_import,
+            maps_district_rename,
+            maps_poi_add,
+            maps_poi_update,
+            maps_poi_move,
+            maps_poi_delete,
+            maps_save_view,
             content_overview,
             content_table,
             content_tag,

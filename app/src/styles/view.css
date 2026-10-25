@@ -129,3 +129,14 @@
 .saved-list-pane[inert] {
   opacity: 0.55;
 }
+
+.saved-list-actions {
+  margin-bottom: 10px;
+}
+
+.saved-notice {
+  margin: 8px 0 0;
+  color: var(--success);
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}

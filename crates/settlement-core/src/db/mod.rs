@@ -21,6 +21,8 @@ use crate::settlements::{
     SettlementSummary, from_unix_millis, now, to_unix_millis,
 };
 
+mod maps;
+
 pub(crate) struct Migration {
     pub version: u32,
     pub name: &'static str,
@@ -28,11 +30,33 @@ pub(crate) struct Migration {
 }
 
 /// All migrations, in order. Never edit a released migration; add a new one.
-pub(crate) const MIGRATIONS: &[Migration] = &[Migration {
-    version: 1,
-    name: "initial",
-    sql: include_str!("migrations/0001_initial.sql"),
-}];
+pub(crate) const MIGRATIONS: &[Migration] = &[
+    Migration {
+        version: 1,
+        name: "initial",
+        sql: include_str!("migrations/0001_initial.sql"),
+    },
+    Migration {
+        version: 2,
+        name: "settlement_maps",
+        sql: include_str!("migrations/0002_settlement_maps.sql"),
+    },
+    Migration {
+        version: 3,
+        name: "map_building_details",
+        sql: include_str!("migrations/0003_map_building_details.sql"),
+    },
+    Migration {
+        version: 4,
+        name: "notable_location_directory",
+        sql: include_str!("migrations/0004_notable_location_directory.sql"),
+    },
+    Migration {
+        version: 5,
+        name: "districts_pois_views",
+        sql: include_str!("migrations/0005_districts_pois_views.sql"),
+    },
+];
 
 /// Schema version this build creates and understands.
 pub fn latest_schema_version() -> u32 {
@@ -663,8 +687,14 @@ mod tests {
     #[test]
     fn migrating_twice_is_a_no_op() {
         let mut conn = Connection::open_in_memory().unwrap();
-        assert_eq!(migrate(&mut conn, MIGRATIONS).unwrap(), 1);
-        assert_eq!(migrate(&mut conn, MIGRATIONS).unwrap(), 1);
+        assert_eq!(
+            migrate(&mut conn, MIGRATIONS).unwrap(),
+            latest_schema_version()
+        );
+        assert_eq!(
+            migrate(&mut conn, MIGRATIONS).unwrap(),
+            latest_schema_version()
+        );
     }
 
     #[test]

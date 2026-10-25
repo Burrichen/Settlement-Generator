@@ -110,6 +110,23 @@ define_id!(
     /// the NPCs who hold an Authority. Reserved: no generators exist yet.
     GeneratorId
 );
+define_id!(
+    /// Identifies one map of a settlement: `map-settlement` for a settlement
+    /// mapped whole, or `map-<district id>` (e.g. `map-district-2`). Unique
+    /// within its settlement. See `docs/MAPS.md`.
+    MapId
+);
+define_id!(
+    /// Identifies one building on a map, e.g. `bld-district-2-r1-0042`. It
+    /// includes the map set's revision, so a regenerated map never reuses
+    /// an ID for a different building. Unique within its settlement.
+    BuildingId
+);
+define_id!(
+    /// Identifies a user-placed point of interest token on a map. Reserved:
+    /// tokens are not implemented yet.
+    PoiId
+);
 
 #[cfg(test)]
 mod tests {
