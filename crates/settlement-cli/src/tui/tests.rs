@@ -239,16 +239,8 @@ fn theme_and_tag_view_are_shared_settings() {
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]);
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]); // Tag View
     assert!(app.ctx.service.settings().unwrap().tag_view);
-    keys(
-        &mut app,
-        &[
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Down,
-            KeyCode::Enter,
-        ],
-    ); // Theme (after Bare Minimum Buildings)
+    select_line(&mut app, "Theme");
+    key(&mut app, KeyCode::Enter);
     assert_eq!(
         app.ctx.service.settings().unwrap().theme,
         settlement_core::settings::Theme::OldTimeyDark
@@ -405,6 +397,42 @@ fn incremental_generation_one_stage_at_a_time() {
     assert!(screen.contains("Representatives"), "{screen}");
     assert!(screen.contains("Not saved yet"), "{screen}");
     assert!(text(&mut app).contains("Not saved yet"));
+}
+
+#[test]
+fn a_flow_stage_added_to_the_pipeline_is_generated_and_shown() {
+    use settlement_core::framework::layers::ItemKind;
+    let mut app = app();
+    // A user adds a stage to the pipeline: roll Motive twice.
+    let service = &mut app.ctx.service;
+    let mut flow = service
+        .framework_item(ItemKind::Flow, "flow.settlement")
+        .unwrap();
+    flow["steps"]
+        .as_array_mut()
+        .unwrap()
+        .push(serde_json::json!({
+            "id": "omens", "name": "Omens", "kind": "repeat", "count": { "times": 2 },
+            "steps": [{ "id": "omen", "kind": "roll", "table": "table.authorityFigure.motive" }]
+        }));
+    service.save_framework_item(ItemKind::Flow, flow).unwrap();
+    key(&mut app, KeyCode::Enter); // Start
+    key(&mut app, KeyCode::Enter); // Kurovia
+    // The sheet scrolls; a tall window shows the whole settlement.
+    let screen = text_at(&mut app, 120, 200);
+    let omens: Vec<&str> = screen
+        .lines()
+        .skip_while(|l| !l.contains("OMENS"))
+        .take(3)
+        .collect();
+    assert!(omens[0].contains("2 ×"), "{screen}");
+    // Each roll on its own line below the stage's result.
+    assert!(
+        omens[1..]
+            .iter()
+            .all(|l| l.contains("Authority Figure Motive: ")),
+        "{screen}"
+    );
 }
 
 #[test]
@@ -721,7 +749,7 @@ fn view_shows_the_stored_economy_and_its_tag_with_tag_view() {
         .into_iter()
         .find(|s| s.stage_table.as_str() == "table.economy")
         .unwrap();
-    let economy = stored.result.unwrap().name;
+    let economy = stored.result.clone().unwrap().name;
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
     let screen = text_at(&mut app, 140, 60);
     assert!(screen.contains("ECONOMY"), "{screen}");
@@ -748,7 +776,7 @@ fn view_shows_the_stored_authority_and_its_tag_with_tag_view() {
         .into_iter()
         .find(|s| s.stage_table.as_str() == "table.authority")
         .unwrap();
-    let authority = stored.result.unwrap().name;
+    let authority = stored.result.clone().unwrap().name;
     let tag = stored.tags[0].name.clone();
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
     let screen = text_at(&mut app, 160, 70);
@@ -904,26 +932,34 @@ fn table_editor_opens_authority_like_any_other_table() {
 
 #[test]
 fn table_editor_shows_uncovered_faces_and_refuses_to_save() {
-    let mut app = app();
-    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(&mut app, KeyCode::Down);
-    }
-    key(&mut app, KeyCode::Enter); // View Tables
-    key(&mut app, KeyCode::Char('/')); // filter by ID
-    type_text(&mut app, "table.age");
-    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
-    assert!(text(&mut app).contains("ID table.age"));
-    // Name, Description, Dice.
-    keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
+    let mut app = open_table("table.age");
+    // Changing the dice lays the results out on the new dice.
+    select_line(&mut app, "Dice");
+    key(&mut app, KeyCode::Enter);
     for _ in 0..3 {
         key(&mut app, KeyCode::Backspace);
     }
     type_text(&mut app, "1d20");
     key(&mut app, KeyCode::Enter);
-    let screen = text_at(&mut app, 140, 60);
-    assert!(screen.contains("uncovered 9-20"), "{screen}");
-    assert!(screen.contains("fix the problems above"));
+    let screen = text_at(&mut app, 140, 80);
+    assert!(
+        screen.contains("Every face is covered exactly once"),
+        "{screen}"
+    );
+    // Faces set by hand that leave a gap are flagged and block saving.
+    select_line(&mut app, "Ancient");
+    key(&mut app, KeyCode::Enter);
+    select_line(&mut app, "Faces");
+    key(&mut app, KeyCode::Enter);
+    for _ in 0..8 {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "20");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Esc);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("No result is on"), "{screen}");
+    assert!(screen.contains("fix the problems above"), "{screen}");
     key(&mut app, KeyCode::Char('s'));
     assert_eq!(
         app.ctx
@@ -936,6 +972,125 @@ fn table_editor_shows_uncovered_faces_and_refuses_to_save() {
         Some("1d8"),
         "nothing saved"
     );
+    // Undo steps back through both changes.
+    keys(&mut app, &[KeyCode::Char('u'), KeyCode::Char('u')]);
+    assert!(text_at(&mut app, 140, 80).contains("1d8"));
+    key(&mut app, KeyCode::Char('U'));
+    assert!(text_at(&mut app, 140, 80).contains("1d20"));
+}
+
+/// Opens the table editor on `id`.
+fn open_table(id: &str) -> App {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..5 {
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter); // View Tables
+    key(&mut app, KeyCode::Char('/')); // filter by ID
+    type_text(&mut app, id);
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    assert!(text(&mut app).contains(&format!("ID {id}")));
+    app
+}
+
+/// Moves the selection to the first selectable line containing `label`.
+fn select_line(app: &mut App, label: &str) {
+    key(app, KeyCode::Home);
+    for _ in 0..120 {
+        let screen = text_at(app, 140, 80);
+        if screen
+            .lines()
+            .any(|l| l.trim_start().starts_with('▸') && l.contains(label))
+        {
+            return;
+        }
+        key(app, KeyCode::Down);
+    }
+    panic!("no line {label}:\n{}", text_at(app, 140, 80));
+}
+
+#[test]
+fn the_dice_assistant_lays_out_equal_results() {
+    let mut app = open_table("table.age");
+    select_line(&mut app, "Chance mode");
+    key(&mut app, KeyCode::Enter); // Equal
+    let screen = text_at(&mut app, 140, 80);
+    assert!(
+        screen.contains("Equal (every result equally likely)"),
+        "{screen}"
+    );
+    assert!(
+        screen.contains("4 equal results fit 1d4 exactly"),
+        "{screen}"
+    );
+    // On 1d8, 4 equal results take 2 faces each.
+    assert!(screen.contains("    1-2"), "{screen}");
+    select_line(&mut app, "Use 1d4, 1 face each");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("1d4"), "{screen}");
+    // Kept as a draft until saved.
+    assert!(
+        app.ctx
+            .service
+            .table_draft(&"table.age".into())
+            .unwrap()
+            .is_some()
+    );
+    key(&mut app, KeyCode::Char('s'));
+    let saved = app
+        .ctx
+        .service
+        .table_detail(&"table.age".into())
+        .unwrap()
+        .table;
+    assert_eq!(saved.dice.as_deref(), Some("1d4"));
+    assert!(
+        app.ctx
+            .service
+            .table_draft(&"table.age".into())
+            .unwrap()
+            .is_none()
+    );
+}
+
+#[test]
+fn a_result_in_use_is_not_removed_and_tests_and_previews_work() {
+    let mut app = open_table("table.notableLocationType");
+    select_line(&mut app, "Hospitality");
+    key(&mut app, KeyCode::Enter);
+    select_line(&mut app, "Remove this result");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(
+        screen.contains("cannot be removed while it is used by"),
+        "{screen}"
+    );
+    key(&mut app, KeyCode::Esc);
+    select_line(&mut app, "Test a dice total");
+    key(&mut app, KeyCode::Enter);
+    type_text(&mut app, "1");
+    key(&mut app, KeyCode::Enter);
+    assert!(text_at(&mut app, 140, 80).contains("1 gives"));
+    select_line(&mut app, "Preview roll");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(
+        screen.contains("Notable Location Type: rolled 1d"),
+        "{screen}"
+    );
+    assert!(screen.contains("each die is rolled separately"), "{screen}");
+}
+
+#[test]
+fn a_table_can_be_copied_into_a_new_one() {
+    let mut app = open_table("table.age");
+    select_line(&mut app, "Copy to a new table");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("Copy of Age"), "{screen}");
+    assert!(screen.contains("new custom table (not saved)"), "{screen}");
 }
 
 // ----- release hardening ---------------------------------------------------------------
@@ -1240,4 +1395,340 @@ fn view_lists_notable_locations_with_their_districts() {
     );
     // One Tavern for the whole City, not one per district.
     assert_eq!(screen.matches("4 spare rooms").count(), 1, "{screen}");
+}
+
+// ----- flow editor ---------------------------------------------------------------------
+
+fn open_flows() -> App {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    for _ in 0..6 {
+        key(&mut app, KeyCode::Down);
+    }
+    key(&mut app, KeyCode::Enter); // View Flows
+    app
+}
+
+/// Picks item `index` of an open picker.
+fn pick(app: &mut App, index: usize) {
+    key(app, KeyCode::Home);
+    for _ in 0..index {
+        key(app, KeyCode::Down);
+    }
+    key(app, KeyCode::Enter);
+}
+
+#[test]
+fn flows_are_listed_and_the_pipeline_opens_as_a_tree() {
+    let mut app = open_flows();
+    let screen = text_at(&mut app, 140, 40);
+    assert!(screen.contains("Settlement"), "{screen}");
+    assert!(screen.contains("flow.settlement"), "{screen}");
+    key(&mut app, KeyCode::Char('/'));
+    type_text(&mut app, "flow.settlement");
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("ID flow.settlement"), "{screen}");
+    assert!(
+        screen.contains("Roll Table: Roll Setting Profile"),
+        "{screen}"
+    );
+    // Pseudocode is one Tab away, problems two.
+    key(&mut app, KeyCode::Tab);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("Roll Setting Profile."), "{screen}");
+    key(&mut app, KeyCode::Tab);
+    assert!(text_at(&mut app, 140, 80).contains("Problems ("));
+    for (w, h) in [(48, 14), (80, 24), (200, 60)] {
+        render(&mut app, w, h);
+    }
+}
+
+#[test]
+fn a_new_flow_is_built_from_steps_with_undo_and_saved() {
+    let mut app = open_flows();
+    key(&mut app, KeyCode::Char('n'));
+    select_line(&mut app, "+ add a step");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 4); // Repeat N Times
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("Repeat N Times: Repeat 1 time"), "{screen}");
+    assert!(screen.contains("Each time:"), "{screen}");
+    // Add a Stop inside the repeat: its empty body comes first.
+    select_line(&mut app, "+ add a step");
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("▸         + add a step"), "{screen}");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 11); // Stop / End
+    key(&mut app, KeyCode::Tab);
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("Repeat 1 time:"), "{screen}");
+    assert!(screen.contains("    Stop."), "{screen}");
+    // Undo takes the Stop away again; redo puts it back.
+    key(&mut app, KeyCode::Char('u'));
+    assert!(!text_at(&mut app, 140, 80).contains("    Stop."));
+    key(&mut app, KeyCode::Char('U'));
+    assert!(text_at(&mut app, 140, 80).contains("    Stop."));
+    key(&mut app, KeyCode::Char('s'));
+    let screen = text_at(&mut app, 140, 80);
+    assert!(screen.contains("Flow saved."), "{screen}");
+    keys(&mut app, &[KeyCode::Esc, KeyCode::Esc]);
+    assert!(text_at(&mut app, 140, 40).contains("New flow"));
+}
+
+#[test]
+fn a_condition_is_built_in_plain_words() {
+    let mut app = open_flows();
+    key(&mut app, KeyCode::Char('n'));
+    select_line(&mut app, "+ add a step");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 2); // If / Condition
+    select_line(&mut app, "If / Condition:");
+    key(&mut app, KeyCode::Enter); // its settings
+    select_line(&mut app, "If ");
+    key(&mut app, KeyCode::Enter); // the case's condition
+    // An empty case is "always": a single All of, with nothing in it.
+    select_line(&mut app, "All of:");
+    key(&mut app, KeyCode::Char('t'));
+    pick(&mut app, 5); // Earlier result is
+    pick(&mut app, 0); // the first earlier step (Setting Profile)
+    keys(&mut app, &[KeyCode::Char(' '), KeyCode::Enter]); // tick its first result
+    let screen = text_at(&mut app, 140, 40);
+    assert!(screen.contains("WHEN Setting Profile is "), "{screen}");
+    key(&mut app, KeyCode::Esc);
+    let screen = text_at(&mut app, 140, 40);
+    assert!(screen.contains("Setting Profile is "), "{screen}");
+    // Back in the tree, the case is labelled in words too.
+    key(&mut app, KeyCode::Esc);
+    assert!(text_at(&mut app, 140, 40).contains("IF Setting Profile is "));
+}
+
+#[test]
+fn steps_move_disconnect_and_reconnect() {
+    let mut app = open_flows();
+    key(&mut app, KeyCode::Char('n'));
+    select_line(&mut app, "+ add a step");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 11); // Stop / End
+    select_line(&mut app, "+ add a step here");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 7); // Add Tag
+    select_line(&mut app, "Add Tag:");
+    key(&mut app, KeyCode::Char('K')); // up, above the Stop
+    let screen = text_at(&mut app, 140, 40);
+    let tag = screen.find("Add Tag:").unwrap();
+    let stop = screen.find("Stop / End:").unwrap();
+    assert!(tag < stop, "{screen}");
+    key(&mut app, KeyCode::Char('d')); // disconnect it
+    let screen = text_at(&mut app, 140, 40);
+    assert!(screen.contains("NOT CONNECTED"), "{screen}");
+    select_line(&mut app, "Add Tag:");
+    key(&mut app, KeyCode::Char('m'));
+    select_line(&mut app, "↳ put it here");
+    key(&mut app, KeyCode::End);
+    select_line(&mut app, "↳ put it here");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 40);
+    assert!(!screen.contains("NOT CONNECTED"), "{screen}");
+}
+
+// ----- tags, settings and modifiers ----------------------------------------------------
+
+fn open_settings_row(label: &str) -> App {
+    let mut app = app();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    select_line(&mut app, label);
+    key(&mut app, KeyCode::Enter);
+    app
+}
+
+#[test]
+fn a_tag_explains_its_effects_and_lists_what_depends_on_it() {
+    let mut app = app();
+    let mut tag = AppService::new_tag();
+    tag.name = "Lucky".into();
+    tag.effects = serde_json::from_value(serde_json::json!([
+        { "kind": "plus", "table": "table.crime", "amount": 2 }
+    ]))
+    .unwrap();
+    let id = tag.id.clone();
+    app.ctx.service.save_tag(tag).unwrap();
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    select_line(&mut app, "View Tags");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Char('/'));
+    type_text(&mut app, id.as_str());
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(
+        screen.contains("While Lucky is active: adds 2 to the roll of Crime"),
+        "{screen}"
+    );
+    assert!(screen.contains("Nothing uses this tag"), "{screen}");
+    // The effect's own page shows the roll step by step.
+    select_line(&mut app, "1. Plus");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("IN PLAIN WORDS"), "{screen}");
+    assert!(
+        screen.contains("Roll 1d12 → add 2 → cap at 12 → resolve result."),
+        "{screen}"
+    );
+}
+
+#[test]
+fn bare_minimum_buildings_shows_its_dependencies_and_cannot_be_deleted() {
+    let mut app = open_settings_row("View Generation Settings");
+    let screen = text_at(&mut app, 140, 40);
+    assert!(screen.contains("setting.bareMinimumBuildings"), "{screen}");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("DEPENDENCIES"), "{screen}");
+    assert!(screen.contains("Notable Locations"), "{screen}");
+    select_line(&mut app, "Delete");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Left); // Delete, not Keep
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("still used"), "{screen}");
+}
+
+#[test]
+fn a_number_setting_is_created_and_offered_in_settings() {
+    let mut app = open_settings_row("View Generation Settings");
+    key(&mut app, KeyCode::Char('n'));
+    pick(&mut app, 1); // Number
+    select_line(&mut app, "Name");
+    key(&mut app, KeyCode::Enter);
+    keys(&mut app, &[KeyCode::End]);
+    for _ in 0.."New setting".len() {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "Districts");
+    key(&mut app, KeyCode::Enter);
+    key(&mut app, KeyCode::Char('s'));
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Saved"), "{screen}");
+    // Back to Settings: the new setting is offered and ←→ changes it.
+    keys(&mut app, &[KeyCode::Esc, KeyCode::Esc]);
+    select_line(&mut app, "Districts");
+    key(&mut app, KeyCode::Right);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("[ 2 ]"), "{screen}");
+}
+
+// ----- testing, tracing, sharing and dependencies --------------------------------------
+
+#[test]
+fn a_table_runs_many_times_from_its_editor() {
+    let mut app = open_table("table.crime");
+    select_line(&mut app, "Test this table");
+    key(&mut app, KeyCode::Enter);
+    assert!(text(&mut app).contains("Test › Crime"));
+    select_line(&mut app, "Run 1,000");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Crime: 1000 rolls"), "{screen}");
+    assert!(screen.contains("EXPECTED"), "{screen}");
+    // Step through reveals one line at a time.
+    select_line(&mut app, "Step through");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("Next step"), "{screen}");
+    assert!(!screen.contains("Result:"), "{screen}");
+    for _ in 0..12 {
+        key(&mut app, KeyCode::Enter);
+    }
+    assert!(text_at(&mut app, 140, 60).contains("Result:"));
+}
+
+#[test]
+fn roll_details_explain_generation_when_switched_on() {
+    let mut app = app();
+    let mut s = app.ctx.settings;
+    s.roll_details = true;
+    s.generation_method = GenerationMethod::Manual;
+    app.ctx.save_settings(s).unwrap();
+    let mut s = app.ctx.settings;
+    s.generation_presentation = GenerationPresentation::OneTable;
+    app.ctx.save_settings(s).unwrap();
+    key(&mut app, KeyCode::Enter); // Start
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]); // pick Kurovia
+    key(&mut app, KeyCode::Char('a')); // rolls every remaining stage
+    select_row(&mut app, "Crime");
+    let screen = text_at(&mut app, 140, 60);
+    assert!(screen.contains("ROLL DETAILS"), "{screen}");
+    assert!(screen.contains("Base roll:"), "{screen}");
+    assert!(screen.contains("Result:"), "{screen}");
+}
+
+fn temp_exports(name: &str) -> std::path::PathBuf {
+    let dir = std::env::temp_dir().join(format!("sg-tui-{name}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).unwrap();
+    dir
+}
+
+#[test]
+fn content_is_exported_and_imported_with_a_choice_for_taken_ids() {
+    let mut app = app();
+    let dir = temp_exports("transfer");
+    app.ctx.exports = Some(dir.clone());
+    let mut crime = app
+        .ctx
+        .service
+        .table_detail(&settlement_core::ids::TableId::new("table.crime"))
+        .unwrap()
+        .table;
+    crime.name = "Crime (shared)".into();
+    app.ctx.service.save_table(crime).unwrap();
+
+    keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
+    select_line(&mut app, "Import / Export");
+    key(&mut app, KeyCode::Enter);
+    select_line(&mut app, "Export everything I made or changed");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 40);
+    assert!(screen.contains("Saved to"), "{screen}");
+    assert!(dir.join("My content.json").exists());
+
+    // Back to the defaults, then bring the change back from the file.
+    app.ctx.service.reset_all().unwrap();
+    select_line(&mut app, "Import My content.json");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 40);
+    assert!(
+        screen.contains("add as a new copy") || screen.contains("Table “Crime (shared)”"),
+        "{screen}"
+    );
+    select_line(&mut app, "If an ID is already used");
+    key(&mut app, KeyCode::Enter);
+    pick(&mut app, 1); // Replace mine
+    select_line(&mut app, "Import");
+    key(&mut app, KeyCode::Enter);
+    let screen = text_at(&mut app, 160, 40);
+    assert!(screen.contains("Imported:"), "{screen}");
+    let name = app
+        .ctx
+        .service
+        .table_detail(&settlement_core::ids::TableId::new("table.crime"))
+        .unwrap()
+        .table
+        .name;
+    assert_eq!(name, "Crime (shared)");
+    let _ = std::fs::remove_dir_all(dir);
+}
+
+#[test]
+fn a_dependency_opens_the_item_that_uses_it() {
+    let mut app = open_table("table.size");
+    // Size is used by the pipeline (its Advanced section lists uses).
+    select_line(&mut app, "Advanced (show)");
+    key(&mut app, KeyCode::Enter);
+    select_line(&mut app, "Pipeline stage");
+    key(&mut app, KeyCode::Enter);
+    let screen = text(&mut app);
+    assert!(screen.contains("Flows › Settlement"), "{screen}");
+    key(&mut app, KeyCode::Esc);
+    assert!(text(&mut app).contains("ID table.size"));
 }

@@ -8,22 +8,22 @@
       "results": [
         {
           "id": "role.guild.guildmaster",
-          "name": "Guildmaster",
+          "shared": "role.guild.guildmaster",
           "range": [1, 3]
         },
         {
           "id": "role.guild.tradeMaster",
-          "name": "Trade Master",
+          "shared": "role.guild.tradeMaster",
           "range": 4
         },
         {
           "id": "role.guild.merchantPrincipal",
-          "name": "Merchant Principal",
+          "shared": "role.guild.merchantPrincipal",
           "range": 5
         },
         {
           "id": "role.guild.seniorFactor",
-          "name": "Senior Factor",
+          "shared": "role.guild.seniorFactor",
           "range": 6
         }
       ]

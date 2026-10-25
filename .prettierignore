@@ -4,3 +4,4 @@ node_modules
 src-tauri/gen
 package-lock.json
 src-tauri/binaries
+crates/settlement-core/tests/fixtures

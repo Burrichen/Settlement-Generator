@@ -67,28 +67,31 @@ Changes from the suggested layout, and why:
 
 This crate owns, or will own:
 
-| Area          | Responsibility                                                                                                                 | Status      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Module        | Responsibility                                                                                                                 | Status      |
-| ------------- | -------------------------------------------------------------------------------------                                          | ----------- |
-| `app_info`    | Name and version (`APP_NAME`, `VERSION`, `app_info()`)                                                                         | Implemented |
-| `ids`         | Stable ID newtypes, ID format, the reserved `user.` namespace                                                                  | Implemented |
-| `dice`        | Parse dice expressions and roll them die by die (`FaceSource`: RNG or physical entry)                                          | Implemented |
-| `content`     | Tables, results, variants, conditions, tags and effects as data                                                                | Implemented |
-| `validation`  | Content integrity checks with structured, located issues                                                                       | Implemented |
-| `engine`      | Roll tables, apply tag effects, follow routes, and record every die                                                            | Implemented |
-| `session`     | Stage-by-stage generation: Automatic, Incremental, One-table; dependency re-checks                                             | Implemented |
-| `editor`      | Editor support: dice coverage maps, tag usages, effect schema, relevant issues                                                 | Implemented |
-| `service`     | `AppService`: the application service both interfaces call (settings, content editing, generation sessions, saved settlements) | Implemented |
-| `naming`      | Naming schemes and methods as data; deterministic name joining (compound, possessive, exceptions)                              | Implemented |
-| `layers`      | Merge bundled defaults with user overrides; edit, delete and reset operations                                                  | Implemented |
-| `bundled`     | Bundled default content (`content/*.json`, embedded by `build.rs`)                                                             | Implemented |
-| `locations`   | Notable Locations: count by Size (per district for Cities and Capitals), 1d20 Type, the guaranteed Tavern                      | Implemented |
-| `settings`    | Settings model: generation method/presentation, God Mode, Tag View, Bare Minimum Buildings, theme                              | Implemented |
-| `settlements` | Saved settlement snapshots and summaries                                                                                       | Implemented |
-| `db`          | SQLite database: transactional migrations, settings, overrides, settlements                                                    | Implemented |
-| `backup`      | Verified database backups before migrations and before installing updates                                                      | Implemented |
-| `storage`     | User data directory and default database location                                                                              | Implemented |
+| Area           | Responsibility                                                                                                                 | Status      |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Module         | Responsibility                                                                                                                 | Status      |
+| -------------  | -------------------------------------------------------------------------------------                                          | ----------- |
+| `app_info`     | Name and version (`APP_NAME`, `VERSION`, `app_info()`)                                                                         | Implemented |
+| `ids`          | Stable ID newtypes, ID format, the reserved `user.` namespace                                                                  | Implemented |
+| `dice`         | Parse dice expressions and roll them die by die (`FaceSource`: RNG or physical entry)                                          | Implemented |
+| `content`      | Tables, results, variants, conditions, tags, effects and modifiers as data                                                     | Implemented |
+| `dice_assist`  | The Dice Assistant: suggests physical dice for result chances, with plain-English explanations                                 | Implemented |
+| `table_editor` | Table editor support: applying dice layouts, what depends on a table or result                                                 | Implemented |
+| `framework`    | Shared results, scales, settings, object types, flows; the flow runner; built-in step configs; framework overrides             | Implemented |
+| `validation`   | Content integrity checks with structured, located issues                                                                       | Implemented |
+| `engine`       | Roll tables, apply tag effects, follow routes, and record every die                                                            | Implemented |
+| `session`      | Stage-by-stage generation: Automatic, Incremental, One-table; dependency re-checks                                             | Implemented |
+| `editor`       | Editor support: dice coverage maps, tag usages, effect schema, relevant issues                                                 | Implemented |
+| `service`      | `AppService`: the application service both interfaces call (settings, content editing, generation sessions, saved settlements) | Implemented |
+| `naming`       | Naming schemes and methods as data; deterministic name joining (compound, possessive, exceptions)                              | Implemented |
+| `layers`       | Merge bundled defaults with user overrides; edit, delete and reset operations                                                  | Implemented |
+| `bundled`      | Bundled default content (`content/*.json`, embedded by `build.rs`)                                                             | Implemented |
+| `locations`    | Notable Locations: count by Size (per district for Cities and Capitals), 1d20 Type, the guaranteed Tavern                      | Implemented |
+| `settings`     | Settings model: generation method/presentation, God Mode, Tag View, Bare Minimum Buildings, theme                              | Implemented |
+| `settlements`  | Saved settlement snapshots and summaries                                                                                       | Implemented |
+| `db`           | SQLite database: transactional migrations, settings, overrides, settlements                                                    | Implemented |
+| `backup`       | Verified database backups before migrations and before installing updates                                                      | Implemented |
+| `storage`      | User data directory and default database location                                                                              | Implemented |
 
 Constraints:
 

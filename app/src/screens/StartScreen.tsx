@@ -1,5 +1,6 @@
 import { FiguresControls, RolesControls } from "../components/AuthorityFigures";
 import { LocationsControls } from "../components/NotableLocations";
+import { FlowControls } from "../components/FlowRecord";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { generation, type GenerationResponse, type SessionView, type StageView } from "../api";
 import { useApp } from "../app-state";
@@ -9,6 +10,7 @@ import {
   OutcomeLine,
   ResultList,
   StageRail,
+  RollDetails,
   TagList,
 } from "../components/generation";
 import { KeyHints } from "../components/ScreenFrame";
@@ -301,6 +303,8 @@ function StagePanel({
       </h2>
       {stage.locations ? (
         <LocationsControls stage={stage} busy={busy} onRoll={onRoll} onAct={onAct} />
+      ) : stage.flow ? (
+        <FlowControls stage={stage} busy={busy} onRoll={onRoll} />
       ) : stage.roles ? (
         <RolesControls stage={stage} busy={busy} onRoll={onRoll} onAct={onAct} />
       ) : stage.figures ? (
@@ -360,6 +364,7 @@ function TableStageControls({
       </span>
       <ResultList stage={stage} disabled={busy} onChoose={onChoose} />
       <TagList tags={stage.tags} label="Emits" />
+      <RollDetails traces={stage.trace} />
     </>
   );
 }

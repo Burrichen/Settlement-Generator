@@ -9,7 +9,7 @@
       "results": [
         {
           "id": "role.guild.representative",
-          "name": "Guild Representative",
+          "shared": "role.guild.representative",
           "range": [1, 2]
         },
         {

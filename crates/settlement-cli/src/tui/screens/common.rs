@@ -5,6 +5,7 @@ use ratatui::text::{Line, Span};
 use settlement_core::editor::Coverage;
 use settlement_core::engine::Named;
 use settlement_core::figures::{AuthorityFigure, AuthorityFigures, FigureName};
+use settlement_core::framework::StepRecord;
 use settlement_core::ids::TagId;
 use settlement_core::locations::{NotableLocation, NotableLocations};
 use settlement_core::session::{StageOutcome, StageStatus, StageView};
@@ -26,6 +27,28 @@ pub struct SheetRow {
     pub figures: Option<AuthorityFigures>,
     /// The Notable Locations, on that stage's row.
     pub locations: Option<NotableLocations>,
+    /// What a flow stage produced (objects, repeats and so on).
+    pub flow: Option<StepRecord>,
+}
+
+/// A flow stage's record, one indented line per roll, object or repeat.
+pub fn flow_lines(record: &StepRecord, styles: &Styles, indent: usize) -> Vec<Line<'static>> {
+    record
+        .outline_below()
+        .into_iter()
+        .map(|l| {
+            let pad = " ".repeat(indent + 2 * l.depth);
+            if l.value.is_empty() {
+                Line::from(vec![Span::raw(pad), Span::styled(l.label, styles.dim())])
+            } else {
+                Line::from(vec![
+                    Span::raw(pad),
+                    Span::styled(format!("{}: ", l.label), styles.dim()),
+                    Span::styled(l.value, styles.title()),
+                ])
+            }
+        })
+        .collect()
 }
 
 /// One Notable Location: "Tavern · Hospitality · 4 spare rooms · District 1".
@@ -224,6 +247,9 @@ pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
         if let Some(locations) = &row.locations {
             lines.extend(location_lines(locations, styles, 18));
         }
+        if let Some(flow) = &row.flow {
+            lines.extend(flow_lines(flow, styles, 18));
+        }
     }
     lines
 }
@@ -406,4 +432,24 @@ pub fn parse_range(text: &str) -> Result<Option<settlement_core::content::FaceRa
         ))),
         _ => Err("Use a number, or two numbers like 1-10.".into()),
     }
+}
+
+/// How each value of a stage was reached (the Roll details setting).
+pub fn trace_lines(
+    traces: Option<&Vec<settlement_core::trace::RollTrace>>,
+    styles: &Styles,
+) -> Vec<Line<'static>> {
+    let Some(traces) = traces.filter(|t| !t.is_empty()) else {
+        return Vec::new();
+    };
+    let mut lines = vec![Line::default(), Line::styled("ROLL DETAILS", styles.dim())];
+    for t in traces {
+        lines.push(Line::styled(t.title.clone(), styles.title()));
+        lines.extend(
+            t.lines
+                .iter()
+                .map(|l| Line::styled(format!("  {l}"), styles.dim())),
+        );
+    }
+    lines
 }

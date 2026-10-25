@@ -489,6 +489,18 @@
   color: var(--text-faint);
 }
 
+/* A flow stage's record: one indented line per roll, object or repeat. */
+.flow-outline {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+}
+
+.flow-outline li {
+  margin: 2px 0;
+}
+
 .sheet-meta {
   margin: 14px 0 0;
   text-align: center;

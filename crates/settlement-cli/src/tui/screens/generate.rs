@@ -8,7 +8,7 @@ use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::text::{Line, Span};
 use ratatui::widgets::{Paragraph, Wrap};
 use settlement_core::engine::{GenerationError, ResultOption, Selections, SkipReason};
-use settlement_core::figures::{FIGURE_FIELDS, FigureName};
+use settlement_core::figures::FigureName;
 use settlement_core::ids::ResultId;
 use settlement_core::locations::{LocationSource, TableOptions};
 use settlement_core::naming::NameSource;
@@ -18,8 +18,8 @@ use settlement_core::session::{GenerationMode, SessionView, StageStatus, StageVi
 use settlement_core::settlements::{MAX_NAME_LENGTH, SettlementId};
 
 use super::common::{
-    SheetRow, applies, figure_lines, location_label, location_lines, outcome_lines, sheet_lines,
-    tag_line,
+    SheetRow, applies, figure_lines, flow_lines, location_label, location_lines, outcome_lines,
+    sheet_lines, tag_line, trace_lines,
 };
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
@@ -496,6 +496,30 @@ impl GenerateScreen {
             f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), area);
             return;
         }
+        if let Some(flow) = &stage.flow {
+            top.extend(Self::stage_notes(&stage, ctx));
+            if let Some(e) = &self.error {
+                top.push(Line::styled(e.clone(), s.error()));
+            }
+            top.push(Line::from(vec![
+                Span::styled("r", s.key()),
+                Span::styled(
+                    if flow.record.is_some() {
+                        " roll this stage again"
+                    } else {
+                        " roll this stage"
+                    },
+                    s.dim(),
+                ),
+            ]));
+            if let Some(record) = &flow.record {
+                top.push(Line::default());
+                top.extend(flow_lines(record, s, 0));
+            }
+            top.extend(trace_lines(stage.trace.as_ref(), s));
+            f.render_widget(Paragraph::new(top).wrap(Wrap { trim: false }), area);
+            return;
+        }
         if let Some(roles) = &stage.roles {
             top.extend(Self::stage_notes(&stage, ctx));
             if let Some(e) = &self.error {
@@ -598,6 +622,7 @@ impl GenerateScreen {
                 top.push(tag_line(tags, s, 0));
             }
         }
+        top.extend(trace_lines(stage.trace.as_ref(), s));
         top.push(Line::default());
         top.push(Line::styled(
             match (naming, stage.can_roll) {
@@ -649,6 +674,7 @@ impl GenerateScreen {
                 skipped: stage.status == StageStatus::Skipped || stage.roles.is_some(),
                 figures: stage.figures.as_ref().and_then(|f| f.record.clone()),
                 locations: stage.locations.as_ref().and_then(|l| l.record.clone()),
+                flow: stage.flow.as_ref().and_then(|f| f.record.clone()),
             })
             .collect();
         let mut lines = vec![Line::styled("─── ◆ ───", s.border()), Line::default()];
@@ -995,13 +1021,13 @@ impl GenerateScreen {
                 );
                 targets.push(FigureTarget::NamePart(i, part.part));
             }
-            for def in &FIGURE_FIELDS {
+            for def in &view.fields {
                 let current = figure
-                    .field(def.id)
+                    .field(&def.field)
                     .map_or_else(String::new, |r| r.result.name.clone());
                 items
                     .push(PickItem::new(format!("{} · {}", figure.label, def.label)).hint(current));
-                targets.push(FigureTarget::Field(i, def.id.to_owned()));
+                targets.push(FigureTarget::Field(i, def.field.clone()));
             }
         }
         for (i, r) in record.relationships.iter().enumerate() {
@@ -1278,7 +1304,10 @@ impl Screen for GenerateScreen {
             // take the room the stage list does not need.
             let on_figures = self.rows.current(&rows).is_some_and(|&i| {
                 let stage = &self.view.stages[i];
-                stage.figures.is_some() || stage.roles.is_some() || stage.locations.is_some()
+                stage.figures.is_some()
+                    || stage.roles.is_some()
+                    || stage.locations.is_some()
+                    || stage.flow.is_some()
             });
             let constraints = if on_figures {
                 [
@@ -1315,10 +1344,14 @@ impl Screen for GenerateScreen {
                     ]));
                     lines.extend(figure_lines(record, &s, 0, stage.tags.is_some()));
                 }
+                if let Some(record) = stage.flow.as_ref().and_then(|f| f.record.as_ref()) {
+                    lines.extend(flow_lines(record, &s, 0));
+                }
                 lines.extend(outcome_lines(stage.outcome.as_ref(), &s));
                 if let Some(t) = stage.tags.as_ref().filter(|t| !t.is_empty()) {
                     lines.push(tag_line(t, &s, 0));
                 }
+                lines.extend(trace_lines(stage.trace.as_ref(), &s));
             }
             if let Some(e) = &self.error {
                 lines.push(Line::styled(e.clone(), s.error()));

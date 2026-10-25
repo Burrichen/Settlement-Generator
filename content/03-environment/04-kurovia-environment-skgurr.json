@@ -8,27 +8,23 @@
       "results": [
         {
           "id": "coast",
-          "name": "Coast",
-          "range": [1, 7],
-          "tags": ["env.coast"]
+          "shared": "environment.coast",
+          "range": [1, 7]
         },
         {
           "id": "hills",
-          "name": "Hills",
-          "range": [8, 13],
-          "tags": ["env.hills"]
+          "shared": "environment.hills",
+          "range": [8, 13]
         },
         {
           "id": "moorlandHeath",
-          "name": "Moorland / Heath",
-          "range": [14, 17],
-          "tags": ["env.moorlandHeath"]
+          "shared": "environment.moorlandHeath",
+          "range": [14, 17]
         },
         {
           "id": "wetlands",
-          "name": "Wetlands",
-          "range": [18, 20],
-          "tags": ["env.wetlands"]
+          "shared": "environment.wetlands",
+          "range": [18, 20]
         }
       ]
     }

@@ -73,12 +73,21 @@ Rolling:
 ## 3. Content (`content.rs`)
 
 A `ContentSet` is
-`{ schema_version, sequence, tables: [Table], tags: [Tag], naming_schemes }`.
-`naming_schemes` is optional; see [NAMING_SYSTEM.md](NAMING_SYSTEM.md).
-It is stored as JSON. `CONTENT_SCHEMA_VERSION` is currently `1`.
+`{ schema_version, start, flows, tables: [Table], tags: [Tag], shared_results,
+scales, settings, objects, naming_schemes, role_schemes, location_schemes }`
+(all but `tables` and `tags` optional). It is stored as JSON.
+`CONTENT_SCHEMA_VERSION` is currently `1`.
 
-`sequence` is the generation pipeline (see §10). It is an ordered list of
-steps. Each step is one of:
+The generation pipeline is the **start flow**: the flow `start` names, one
+stage per top-level step. Flows, shared results, scales, settings, objects,
+modifiers and built-in steps are described in [FRAMEWORK.md](FRAMEWORK.md);
+naming schemes in [NAMING_SYSTEM.md](NAMING_SYSTEM.md).
+
+**Legacy format.** Content without `start` may give the pipeline as a
+`sequence` instead; it is read as the steps of a start flow, and its
+built-in stages use the configuration the bundled content had when the
+format was current. `sequence` is an ordered list of steps. Each step is one
+of:
 
 - a bare table ID;
 - `{ "table": id, "name": "Region" }`, optionally with `"sub_stage": true`;
@@ -130,6 +139,7 @@ Fields marked † are optional, and their defaults are omitted when serialised.
 | `active` †      | Default `true`. Inactive tables are skipped                                                                                                                         |
 | `eligibility` † | `Condition`. If false, the table is skipped                                                                                                                         |
 | `ordered` †     | Default `false`. The results form an ordered scale, listed lowest first, and the base layout's faces ascend in that order. A customisation cannot change it         |
+| `scale` †       | A named scale the results lie on, for Shift and Cap modifiers (FRAMEWORK.md §3). Without it, an `ordered` table's results in listed order are its scale             |
 | `results`       | Ordered results. Each result's `range` forms the **base layout**                                                                                                    |
 | `variants` †    | Alternative layouts                                                                                                                                                 |
 | `follow_ups` †  | Conditional follow-up rolls (see below)                                                                                                                             |
@@ -156,6 +166,8 @@ follow-up roll and the change.
 | Field              | Meaning                                                                                                                                                                                |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`, `name`       | Identity and display text                                                                                                                                                              |
+| `shared` †         | A shared result this entry lists; it fills every field the entry leaves empty (FRAMEWORK.md §2). `name` may then be omitted                                                            |
+| `then_roll` †      | Tables rolled next whenever this result comes up, after any tables its tags route to. The record of each says which result it was rolled after (`rolled_after`)                        |
 | `description` †    |                                                                                                                                                                                        |
 | `range` †          | Faces in the base layout: `[min, max]`, or a bare number for one face. Omitted means the result only appears in variants                                                               |
 | `tags` †           | Tag IDs emitted when selected                                                                                                                                                          |
@@ -179,7 +191,10 @@ follow-up roll and the change.
 ### Condition
 
 A condition is a JSON object with one key: `{"has_tag": id}`, `{"all": [..]}`,
-`{"any": [..]}` or `{"not": cond}`.
+`{"any": [..]}`, `{"not": cond}`, `{"setting_on": id}` or
+`{"setting_is": {"setting": id, "value": option}}`. Inside flows,
+`{"result_is": …}` and `{"value_in": …}` also test what earlier steps
+stored; see [FRAMEWORK.md](FRAMEWORK.md) §4.
 
 ### Tag
 
@@ -194,16 +209,22 @@ A condition is a JSON object with one key: `{"has_tag": id}`, `{"all": [..]}`,
 
 An effect definition is `{ "kind": …, ...params, "status"†, "note"† }`.
 
-| `kind`             | Parameters                                 | Behaviour                                                                                                                                                                                            |
-| ------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `route_to`         | `table`, `variant`†                        | Each time the tag is emitted, roll `table` next (depth-first), optionally forcing a variant                                                                                                          |
-| `use_variant`      | `table`, `variant`                         | While the tag is active, `table` uses this variant                                                                                                                                                   |
-| `restrict_results` | `table`, `only`†, `exclude`†               | While the tag is active, only/excluded results of `table` are ineligible, so they are rerolled. `only` lists intersect and `exclude` lists combine                                                   |
-| `modify_dice`      | `table`, `dice`†, `modifier`†              | While the tag is active, `table` is rolled with replacement dice and/or a modifier. A total past either end of the layout is read as that end                                                        |
-| `secondary_roll`   | `label`, `dice`                            | Each time the tag is emitted, roll `dice` and record it under `label`                                                                                                                                |
-| `add_tag`          | `tag`                                      | Each time the tag is emitted, also emit `tag`                                                                                                                                                        |
-| `redirect_table`   | `table`, `to`                              | While the tag is active, rolling `table` rolls `to` instead (for example a setting-specific Region table). Redirects chain; cycles are rejected                                                      |
-| `intent`           | `table`†, `results`†, `concept`†, `change` | An approved design intention without approved numbers (`increase`, `strong_increase`, `decrease`, `strong_decrease` or `guarantee`). It is **never executable**: validation rejects an active intent |
+| `kind`                            | Parameters                                 | Behaviour                                                                                                                                                                                            |
+| --------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `route_to`                        | `table`, `variant`†                        | Each time the tag is emitted, roll `table` next (depth-first), optionally forcing a variant                                                                                                          |
+| `use_variant`                     | `table`, `variant`                         | While the tag is active, `table` uses this variant                                                                                                                                                   |
+| `restrict_results`                | `table`, `only`†, `exclude`†               | While the tag is active, only/excluded results of `table` are ineligible, so they are rerolled. `only` lists intersect and `exclude` lists combine                                                   |
+| `modify_dice`                     | `table`, `dice`†, `modifier`†              | While the tag is active, `table` is rolled with replacement dice and/or a modifier. A total past either end of the layout is read as that end                                                        |
+| `secondary_roll`                  | `label`, `dice`                            | Each time the tag is emitted, roll `dice` and record it under `label`                                                                                                                                |
+| `add_tag`                         | `tag`                                      | Each time the tag is emitted, also emit `tag`                                                                                                                                                        |
+| `redirect_table`                  | `table`, `to`                              | While the tag is active, rolling `table` rolls `to` instead (for example a setting-specific Region table). Redirects chain; cycles are rejected                                                      |
+| `intent`                          | `table`†, `results`†, `concept`†, `change` | An approved design intention without approved numbers (`increase`, `strong_increase`, `decrease`, `strong_decrease` or `guarantee`). It is **never executable**: validation rejects an active intent |
+| `shift`                           | `table`, `steps`                           | While the tag is active, a rolled result of `table` moves `steps` along its ordered scale (Shift +1, Shift −2 …). See [FRAMEWORK.md](FRAMEWORK.md) §3                                                |
+| `plus`, `minus`                   | `table`, `amount`                          | While the tag is active, `amount` is added to (taken from) `table`'s rolled total before it is read                                                                                                  |
+| `cap_at_highest`, `cap_at_lowest` | `table`                                    | While the tag is active, a rolled result of `table` is the highest (lowest) result on its scale that can be had                                                                                      |
+| `enable_results`                  | `table`, `results`                         | While the tag is active, these disabled results of `table` can come up (on the faces they already have) and be chosen                                                                                |
+| `weight`                          | `table`, `result`, `percent`               | While the tag is active, `result` is `percent`% as likely as usual (1–1000; 200 is twice as likely). The results are laid out again on the table's own dice, so the roll stays physical              |
+| `run_flow`                        | `flow`                                     | Each time the tag is emitted by a step inside a flow, `flow` runs right after that step (once per tag; a flow is never started inside itself). Warned if a top-level table stage can give the tag    |
 
 - **Future modifiers targeting later tables:** every effect that names a
   `table` applies whenever that table is rolled later in the same generation
@@ -216,6 +237,9 @@ An effect definition is `{ "kind": …, ...params, "status"†, "note"† }`.
   metadata. It is never executed, and its references (for example a table
   that does not exist yet) are not validated. Change it to `active` once the
   target exists.
+- **Plain English:** `explain::explain_effect` describes any effect, with a
+  step-by-step roll preview (e.g. “Roll 1d12 → add 2 → cap at 12 → resolve
+  result”). Both editors show it; see [RULES_EDITORS.md](RULES_EDITORS.md).
 - Unknown `kind` values are rejected when content is loaded.
 
 ## 4. Engine semantics (`engine.rs`)
@@ -361,7 +385,9 @@ effective content = merge(bundled defaults, user overrides)
 **Bundled defaults** come from every `content/*.json` file.
 
 - Each file is a partial `ContentSet`. The files are merged in file-name
-  order, and only one of them may define `sequence`.
+  order, and only one of them may define `sequence`, and only one `start`.
+- Table entries that list a shared result are filled from it once the files
+  are merged.
 - The build script compiles the files into every binary, so the defaults ship
   with, and change with, the application version.
 - They are never written at runtime.
@@ -409,8 +435,9 @@ gives a clear error.
   `override_target_missing` warning.
 - **Variants and follow-up rolls** of a bundled table can be customised. Each
   is overridden as a whole list (`variants` and `follow_ups` in the patch).
-  The selection mode, content status, `ordered` flag, result `generator`
-  references and bundled result order of a built-in table cannot be changed.
+  The selection mode, content status, `ordered` flag and result `generator`
+  references of a built-in table cannot be changed. Reordering its results
+  is kept as the patch's `order` (see [TABLE_EDITOR.md](TABLE_EDITOR.md)).
 - **Whole-item edits:** the editors send a complete draft.
   `put_table` and `put_tag` turn the draft into the smallest patch against
   the default. Unchanged fields stay default, removed bundled results become
@@ -456,6 +483,7 @@ A saved settlement is a self-contained **snapshot**:
 | `snapshot.stages[].figures`   | Authority Figures stage only (stage table `stage.authorityFigures`): the request it answered, every figure (NPC ID, label, role, each field's roll record, name and its rolls, own tags, app version) and every relationship (both NPC IDs and the roll). Figure rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                        |
 | `snapshot.stages[].locations` | Notable Locations stage only (stage table `stage.notableLocations`): the Size and scheme used, the District Count roll (Cities and Capitals), each area's count roll (`areas`, one per district or one for the settlement), every location (stable ID `notable-location-NN`, `source` `rolled` or `bareMinimumBuildings`, district, `type`, its Type roll, and for the guaranteed Tavern `subtype` and `spare_rooms`), the highest ID number `issued` (IDs are never reused) and the app version. These rolls are kept here, not in `snapshot.log` |
 | `snapshot.stages[].name`      | Name stage only (stage table `stage.name`): the name record (final name, generated or typed, scheme, method, every roll, app version). Naming rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                                                                                                                                           |
+| `snapshot.stages[].flow`      | Flow stages only (stage table `step.<step id>`): the step's record, with every roll, object, repeat and branch taken, and every label as generated. Its rolls are kept here, not in `snapshot.log`                                                                                                                                                                                                                                                                                                                                                 |
 
 The generation log holds the table results, the labels visible at generation
 time, the tags (with names at that time), the recorded dice, routing, applied
@@ -515,6 +543,9 @@ modifiers and the God Mode flag.
   Its saved value is kept, and switching back to Manual restores it.
 
 - `god_mode` and `bare_minimum_buildings` map to `GenerationOptions` (§4)
+- `bare_minimum_buildings` is kept in step with the content setting
+  `setting.bareMinimumBuildings`, which is how both interfaces now show it
+  (see [FRAMEWORK.md](FRAMEWORK.md) §5)
   through `generation_options()`.
 - `bare_minimum_buildings` adds one guaranteed Tavern (Hospitality, 4 spare
   rooms) to the Notable Locations, on top of the rolled count and never per
@@ -577,8 +608,11 @@ modifiers and the God Mode flag.
 
 ## 10. Generation sessions (`session.rs`)
 
-A `GenerationSession` walks the content's `sequence`. Each step is a
-**stage**, and the stage table may be redirected by tags.
+A `GenerationSession` walks the pipeline (the start flow's top-level
+steps; inactive and planned steps take no part). Each step is a **stage**,
+and a stage's table may be redirected by tags. Flow stages (repeats,
+branches, objects, subflows) are run as a whole by the flow runner; see
+[FRAMEWORK.md](FRAMEWORK.md) §6.
 
 | Mode          | Behaviour                                                                                                                                                                                                 |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

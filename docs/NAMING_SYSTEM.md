@@ -61,7 +61,7 @@ Every table has its own file. Each region's naming data is a folder:
 
 | Path                               | Contains                                                                                                            |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                                                         |
+| `content/00-pipeline.json`         | The pipeline (start flow), including the `{ "kind": "name" }` Name stage                                            |
 | `content/kurovia/naming/<region>/` | `01-method.json` … `05-founder-ending.json` (one table each) and `naming-schemes.json`. Skgurr has no founder files |
 
 The regions are Ordon (approved), and Halingo, Skgurr, Shinkira, Bratislor,

@@ -63,6 +63,7 @@ fn user_result(id: &str, range: Option<FaceRange>) -> TableResult {
     TableResult {
         id: id.into(),
         name: format!("Result {id}"),
+        shared: None,
         description: String::new(),
         range,
         tags: vec![],
@@ -73,6 +74,7 @@ fn user_result(id: &str, range: Option<FaceRange>) -> TableResult {
         unique: false,
         fallback: None,
         label_variants: Vec::new(),
+        then_roll: Vec::new(),
     }
 }
 
@@ -264,6 +266,7 @@ fn adding_tables_tags_and_results() {
         status: Default::default(),
         status_note: String::new(),
         ordered: false,
+        scale: None,
         follow_ups: vec![],
     })
     .unwrap();
@@ -433,6 +436,7 @@ fn deleting_custom_items_removes_them() {
         status: Default::default(),
         status_note: String::new(),
         ordered: false,
+        scale: None,
         follow_ups: vec![],
     })
     .unwrap();
@@ -852,6 +856,7 @@ fn putting_a_new_custom_table_creates_then_updates_it() {
         status: Default::default(),
         status_note: String::new(),
         ordered: false,
+        scale: None,
         active: true,
         eligibility: None,
         results: vec![user_result("user.a", Some(FaceRange::new(1, 4)))],

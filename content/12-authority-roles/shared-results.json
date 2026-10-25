@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "shared_results": [
+    {
+      "id": "role.guild.guildmaster",
+      "name": "Guildmaster"
+    },
+    {
+      "id": "role.guild.tradeMaster",
+      "name": "Trade Master"
+    },
+    {
+      "id": "role.guild.merchantPrincipal",
+      "name": "Merchant Principal"
+    },
+    {
+      "id": "role.guild.seniorFactor",
+      "name": "Senior Factor"
+    },
+    {
+      "id": "role.guild.representative",
+      "name": "Guild Representative"
+    },
+    {
+      "id": "role.military.commander",
+      "name": "Commander"
+    },
+    {
+      "id": "role.military.captain",
+      "name": "Captain"
+    },
+    {
+      "id": "role.military.marshal",
+      "name": "Marshal"
+    },
+    {
+      "id": "role.military.warden",
+      "name": "Warden"
+    },
+    {
+      "id": "role.military.commandant",
+      "name": "Commandant"
+    }
+  ]
+}

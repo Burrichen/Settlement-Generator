@@ -3,11 +3,11 @@
 //! validation issues concern the item being edited. Nothing here is specific
 //! to any particular table or tag.
 
-use std::collections::HashSet;
+use std::collections::{BTreeMap, HashSet};
 
 use serde::{Deserialize, Serialize};
 
-use crate::content::{Condition, ContentSet, Effect, FaceRange, SelectionMode, Table};
+use crate::content::{ContentSet, FaceRange, SelectionMode, Table};
 use crate::dice::DiceExpr;
 use crate::ids::{ResultId, TableId, TagId, VariantId};
 use crate::layout::Layout;
@@ -204,76 +204,23 @@ pub enum UsageKind {
     EmittedBy,
     /// A condition checks the tag.
     CheckedBy,
-    /// Another tag's `add_tag` effect adds it.
+    /// Another tag's `add_tag` effect, or a flow step, adds it.
     AddedBy,
+    /// A flow step removes it.
+    RemovedBy,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TagUsage {
     pub kind: UsageKind,
     pub location: Location,
-    /// e.g. "emitted by table `table.age` › result `old`".
+    /// e.g. "Given by Age › Old".
     pub description: String,
 }
 
-/// Everywhere `tag` is referenced in `content`.
+/// Everywhere `tag` is used (see [`crate::dependencies::tag_usages`]).
 pub fn tag_usages(content: &ContentSet, tag: &TagId) -> Vec<TagUsage> {
-    let mut out = Vec::new();
-    let mut push = |kind: UsageKind, location: Location| {
-        let verb = match kind {
-            UsageKind::EmittedBy => "emitted by",
-            UsageKind::CheckedBy => "checked by",
-            UsageKind::AddedBy => "added by",
-        };
-        out.push(TagUsage {
-            description: format!("{verb} {location}"),
-            kind,
-            location,
-        });
-    };
-    let mentions = |c: &Option<Condition>| c.as_ref().is_some_and(|c| c.tags().contains(&tag));
-    for table in &content.tables {
-        let loc = Location::table(&table.id);
-        if mentions(&table.eligibility) {
-            push(UsageKind::CheckedBy, loc.clone());
-        }
-        for result in &table.results {
-            let rloc = loc.clone().with_result(&result.id);
-            if result.tags.contains(tag) {
-                push(UsageKind::EmittedBy, rloc.clone());
-            }
-            if mentions(&result.eligibility) {
-                push(UsageKind::CheckedBy, rloc);
-            }
-        }
-        for variant in &table.variants {
-            if mentions(&variant.when) {
-                push(
-                    UsageKind::CheckedBy,
-                    loc.clone().with_variant(Some(&variant.id)),
-                );
-            }
-        }
-        for follow_up in &table.follow_ups {
-            if mentions(&follow_up.when) {
-                push(
-                    UsageKind::CheckedBy,
-                    loc.clone().with_follow_up(&follow_up.id),
-                );
-            }
-        }
-    }
-    for other in &content.tags {
-        for (index, def) in other.effects.iter().enumerate() {
-            if matches!(&def.effect, Effect::AddTag { tag: t } if t == tag) {
-                push(
-                    UsageKind::AddedBy,
-                    Location::tag(&other.id).with_effect(index),
-                );
-            }
-        }
-    }
-    out
+    crate::dependencies::tag_usages(content, tag)
 }
 
 // ----- issues ----------------------------------------------------------------
@@ -322,6 +269,7 @@ pub enum FieldKind {
         table_field: String,
     },
     Tag,
+    Flow,
     Dice,
     Text,
     Integer,
@@ -354,6 +302,26 @@ pub struct EffectKindSchema {
     /// False for kinds that can only be stored as planned (intents).
     pub executable: bool,
     pub fields: Vec<EffectField>,
+    /// Ready-made values editors offer as one-click choices (e.g.
+    /// "Shift +1"), each filling in some of the fields.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub presets: Vec<EffectPreset>,
+    /// The Modifier Builder's grouping, e.g. "Change the roll".
+    pub group: String,
+}
+
+/// A ready-made set of field values for an effect kind.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct EffectPreset {
+    pub label: String,
+    pub values: BTreeMap<String, serde_json::Value>,
+}
+
+fn preset(label: &str, field: &str, value: i64) -> EffectPreset {
+    EffectPreset {
+        label: label.into(),
+        values: BTreeMap::from([(field.to_owned(), serde_json::Value::from(value))]),
+    }
 }
 
 fn field(name: &str, label: &str, kind: FieldKind, required: bool, help: &str) -> EffectField {
@@ -370,6 +338,19 @@ fn of_table(f: fn(String) -> FieldKind) -> FieldKind {
     f("table".into())
 }
 
+/// Where the Modifier Builder lists an effect kind.
+fn group_of(kind: &str) -> &'static str {
+    match kind {
+        "shift" | "plus" | "minus" | "cap_at_highest" | "cap_at_lowest" | "modify_dice"
+        | "weight" => "Change the roll",
+        "restrict_results" | "enable_results" | "use_variant" | "redirect_table" => {
+            "Change which results can come up"
+        }
+        "route_to" | "run_flow" | "add_tag" | "secondary_roll" => "Trigger more generation",
+        _ => "Design notes",
+    }
+}
+
 /// Every effect kind and its fields. Editors render effect forms from this,
 /// so a new effect kind needs no interface-specific code.
 pub fn effect_schema() -> Vec<EffectKindSchema> {
@@ -381,6 +362,8 @@ pub fn effect_schema() -> Vec<EffectKindSchema> {
             description: description.into(),
             executable: kind != "intent",
             fields,
+            presets: Vec::new(),
+            group: group_of(kind).into(),
         };
     vec![
         kind(
@@ -493,6 +476,127 @@ pub fn effect_schema() -> Vec<EffectKindSchema> {
                 ),
             ],
         ),
+        EffectKindSchema {
+            presets: vec![
+                preset("Shift +1", "steps", 1),
+                preset("Shift +2", "steps", 2),
+                preset("Shift -1", "steps", -1),
+                preset("Shift -2", "steps", -2),
+            ],
+            ..kind(
+                "shift",
+                "Shift",
+                "While the tag is active, a rolled result of the table moves along its ordered scale: up for a positive number of steps, down for a negative one. It stops at either end.",
+                vec![
+                    table("A table with an ordered scale."),
+                    field(
+                        "steps",
+                        "Steps",
+                        FieldKind::Integer,
+                        true,
+                        "Any whole number except 0, e.g. 1 or -2.",
+                    ),
+                ],
+            )
+        },
+        kind(
+            "plus",
+            "Plus",
+            "While the tag is active, a number is added to the table's rolled total before it is read.",
+            vec![
+                table("A rolled table."),
+                field(
+                    "amount",
+                    "Amount",
+                    FieldKind::Integer,
+                    true,
+                    "A positive whole number.",
+                ),
+            ],
+        ),
+        kind(
+            "minus",
+            "Minus",
+            "While the tag is active, a number is taken from the table's rolled total before it is read.",
+            vec![
+                table("A rolled table."),
+                field(
+                    "amount",
+                    "Amount",
+                    FieldKind::Integer,
+                    true,
+                    "A positive whole number.",
+                ),
+            ],
+        ),
+        kind(
+            "cap_at_highest",
+            "Cap at Highest",
+            "While the tag is active, a rolled result of the table is the highest result on its scale that can be had.",
+            vec![table("A table with an ordered scale.")],
+        ),
+        kind(
+            "cap_at_lowest",
+            "Cap at Lowest",
+            "While the tag is active, a rolled result of the table is the lowest result on its scale that can be had.",
+            vec![table("A table with an ordered scale.")],
+        ),
+        kind(
+            "enable_results",
+            "Enable results",
+            "While the tag is active, results that are normally disabled can come up again, on the faces they already have.",
+            vec![
+                table("The table whose results are enabled."),
+                field(
+                    "results",
+                    "Results",
+                    of_table(|t| FieldKind::ResultList { table_field: t }),
+                    true,
+                    "Disabled results of the table.",
+                ),
+            ],
+        ),
+        EffectKindSchema {
+            presets: vec![
+                preset("Twice as likely", "percent", 200),
+                preset("Half as likely", "percent", 50),
+                preset("Three times as likely", "percent", 300),
+            ],
+            ..kind(
+                "weight",
+                "Change weighting",
+                "While the tag is active, one result is more or less likely. The table's results are laid out again on its own dice to match, so it is still a physical roll.",
+                vec![
+                    table("A rolled table."),
+                    field(
+                        "result",
+                        "Result",
+                        of_table(|t| FieldKind::Result { table_field: t }),
+                        true,
+                        "",
+                    ),
+                    field(
+                        "percent",
+                        "How likely (%)",
+                        FieldKind::Integer,
+                        true,
+                        "100 is unchanged, 200 twice as likely, 50 half as likely (1–1000).",
+                    ),
+                ],
+            )
+        },
+        kind(
+            "run_flow",
+            "Run subflow",
+            "Each time the tag is emitted by a step of a flow, run another flow right after that step.",
+            vec![field(
+                "flow",
+                "Flow",
+                FieldKind::Flow,
+                true,
+                "The flow to run.",
+            )],
+        ),
         kind(
             "intent",
             "Intent (no numbers yet)",
@@ -553,7 +657,7 @@ pub fn result_ids(table: &Table) -> Vec<ResultId> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::content::{EffectDef, FollowUpOutcome, FollowUpRoll, TableResult};
+    use crate::content::{Effect, EffectDef, FollowUpOutcome, FollowUpRoll, TableResult};
     use crate::content::{IntentChange, RangeAssignment, TableVariant};
 
     fn table(dice: &str, ranges: &[(&str, i32, i32)]) -> Table {
@@ -566,6 +670,7 @@ mod tests {
             status: Default::default(),
             status_note: String::new(),
             ordered: false,
+            scale: None,
             active: true,
             eligibility: None,
             results: ranges
@@ -573,6 +678,7 @@ mod tests {
                 .map(|(id, a, b)| TableResult {
                     id: (*id).into(),
                     name: id.to_uppercase(),
+                    shared: None,
                     description: String::new(),
                     range: Some(FaceRange::new(*a, *b)),
                     tags: vec![],
@@ -583,6 +689,7 @@ mod tests {
                     unique: false,
                     fallback: None,
                     label_variants: Vec::new(),
+                    then_roll: Vec::new(),
                 })
                 .collect(),
             variants: vec![],
@@ -707,6 +814,30 @@ mod tests {
                 concept: Some("c".into()),
                 change: IntentChange::Increase,
             },
+            Effect::Shift {
+                table: "t".into(),
+                steps: 1,
+            },
+            Effect::Plus {
+                table: "t".into(),
+                amount: 2,
+            },
+            Effect::Minus {
+                table: "t".into(),
+                amount: 2,
+            },
+            Effect::CapAtHighest { table: "t".into() },
+            Effect::CapAtLowest { table: "t".into() },
+            Effect::EnableResults {
+                table: "t".into(),
+                results: vec!["r".into()],
+            },
+            Effect::Weight {
+                table: "t".into(),
+                result: "r".into(),
+                percent: 200,
+            },
+            Effect::RunFlow { flow: "f".into() },
         ];
         let schema = effect_schema();
         assert_eq!(schema.len(), samples.len(), "every kind has a schema entry");
@@ -775,12 +906,21 @@ mod tests {
         assert_eq!(
             kinds,
             [
-                UsageKind::CheckedBy,
                 UsageKind::EmittedBy,
+                UsageKind::CheckedBy,
                 UsageKind::CheckedBy,
                 UsageKind::AddedBy
             ]
         );
-        assert_eq!(usages[1].description, "emitted by table `t` › result `r`");
+        let words: Vec<_> = usages.iter().map(|u| u.description.as_str()).collect();
+        assert_eq!(
+            words,
+            [
+                "Given by T › R",
+                "Checked by Table “T” (when it can be rolled)",
+                "Checked by T › R (when it can come up)",
+                "Added by tag “H”"
+            ]
+        );
     }
 }

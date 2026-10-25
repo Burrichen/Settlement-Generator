@@ -3,20 +3,26 @@
 //! editor for every table.
 
 use ratatui::Frame;
-use ratatui::crossterm::event::{KeyCode, KeyEvent};
+use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::layout::Rect;
 use ratatui::text::{Line, Span};
 use settlement_core::content::{
     Condition, FollowUpOutcome, FollowUpRoll, LabelVariant, RangeAssignment, SelectionMode, Table,
     TableResult, TableVariant,
 };
+use settlement_core::dice_assist::{DiceAdvice, DiceFit, EntryChangeKind, FitKind};
+use settlement_core::engine::GenerationEvent;
+use settlement_core::framework::layers::ItemKind;
 use settlement_core::ids::{ResultId, TableId, TagId, VariantId};
 use settlement_core::layers::{Origin, new_user_id};
 use settlement_core::service::{AppService, ContentOverview, DraftCheck, TableDetail};
+use settlement_core::table_editor::is_roll_again;
 
 use super::common::{coverage_lines, issue_lines, parse_range, percent};
 use super::condition::{ConditionEditor, Outcome, summary};
+use super::open::{ItemRef, of_usage, open};
 use super::tags::origin_label;
+use super::test::{Target, TestScreen};
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
@@ -170,6 +176,17 @@ impl Screen for TablesScreen {
                 None,
                 Some(AppService::new_table()),
             ))),
+            // Create from existing: a copy of the selected table.
+            KeyCode::Char('c') => match self.state.current(&rows).cloned() {
+                Some((id, false)) => match ctx.service.copy_table(&id) {
+                    Ok(copy) => Nav::Push(Box::new(TableEditor::open(ctx, None, Some(copy)))),
+                    Err(e) => {
+                        self.error = Some(e);
+                        Nav::Stay
+                    }
+                },
+                _ => Nav::Stay,
+            },
             KeyCode::Char('R') => {
                 self.modal = Some((
                     Modal::confirm(
@@ -201,6 +218,7 @@ impl Screen for TablesScreen {
             ("↑↓", "move"),
             ("Enter", "edit"),
             ("n", "new table"),
+            ("c", "copy"),
             ("R", "restore all defaults"),
             ("/", "filter"),
             ("Esc", "back"),
@@ -249,7 +267,26 @@ enum Act {
     Revert,
     Reset,
     Delete,
+    // Simple view
+    Mode,
+    UseFit(usize),
+    AddEntries(u32),
+    Preview,
+    Test,
+    /// Open a dependent item.
+    OpenItem(ItemRef),
+    TestTotal,
+    Advanced,
+    RestoreDraft,
+    DiscardDraft,
+    Copy,
     // Result page
+    ResultWeight,
+    ResultShared,
+    ResultThenRoll,
+    MoveUp,
+    MoveDown,
+    Duplicate,
     ResultName,
     ResultDescription,
     ResultFaces,
@@ -284,6 +321,8 @@ enum Pending {
     OutcomeFaces(usize),
     OutcomeBecomes(usize, Vec<Option<ResultId>>),
     Fallback(Vec<Option<ResultId>>),
+    Shared(Vec<Option<String>>),
+    ThenRoll(Vec<TableId>),
     ConfirmDelete,
     ConfirmLeave,
 }
@@ -300,10 +339,49 @@ pub struct TableEditor {
     state: RowsState,
     modal: Option<(Modal, Pending)>,
     message: Option<(String, bool)>,
+    /// Equal or custom chances (custom shows each result's relative chance).
+    equal: bool,
+    advanced: bool,
+    undo: Vec<Table>,
+    redo: Vec<Table>,
+    /// A draft kept from an earlier session, offered for restoring.
+    kept: Option<Table>,
+    /// The last preview roll, as lines.
+    preview: Vec<String>,
+    /// The key just handled was an undo or redo.
+    stepped: bool,
+}
+
+/// Sides of a single die (`1d10` → 10), or `None` for sums of dice.
+fn single_die(dice: Option<&str>) -> Option<u32> {
+    let d = dice?.trim().to_lowercase();
+    let rest = d.strip_prefix("1d").or_else(|| d.strip_prefix('d'))?;
+    rest.parse().ok()
+}
+
+/// The results that take part in the chances: enabled, not "Roll again".
+fn entries(table: &Table) -> Vec<&TableResult> {
+    table
+        .results
+        .iter()
+        .filter(|r| r.enabled && !is_roll_again(r))
+        .collect()
+}
+
+/// Each entry's relative chance: its faces on a single die (else 1).
+fn weights(table: &Table) -> Vec<u32> {
+    let single = single_die(table.dice.as_deref()).is_some();
+    entries(table)
+        .iter()
+        .map(|r| match (single, r.range) {
+            (true, Some(range)) => u32::try_from(range.max - range.min + 1).unwrap_or(1).max(1),
+            _ => 1,
+        })
+        .collect()
 }
 
 impl TableEditor {
-    fn open(ctx: &mut Ctx, detail: Option<TableDetail>, new: Option<Table>) -> Self {
+    pub(crate) fn open(ctx: &mut Ctx, detail: Option<TableDetail>, new: Option<Table>) -> Self {
         let is_new = new.is_some();
         let table = new.unwrap_or_else(|| detail.as_ref().expect("detail or new").table.clone());
         let tags = ctx
@@ -329,9 +407,176 @@ impl TableEditor {
             state: RowsState::default(),
             modal: None,
             message: None,
+            equal: false,
+            advanced: false,
+            undo: Vec::new(),
+            redo: Vec::new(),
+            kept: None,
+            preview: Vec::new(),
+            stepped: false,
         };
+        let w = weights(&editor.draft);
+        editor.equal = w.windows(2).all(|p| p[0] == p[1]);
+        editor.kept = ctx
+            .service
+            .table_draft(&editor.draft.id)
+            .ok()
+            .flatten()
+            .filter(|kept| kept != &editor.draft);
         editor.recheck(ctx);
         editor
+    }
+
+    /// Lays the entries out on the table's dice with `weights` (equal ones
+    /// in Equal mode), when the dice are one die.
+    fn relayout(&mut self, given: Option<Vec<u32>>) {
+        let Some(dice) = self.draft.dice.clone() else {
+            return;
+        };
+        if self.draft.selection != SelectionMode::Roll || single_die(Some(&dice)).is_none() {
+            return;
+        }
+        let w = given.unwrap_or_else(|| {
+            if self.equal {
+                vec![1; entries(&self.draft).len()]
+            } else {
+                weights(&self.draft)
+            }
+        });
+        if w.is_empty() {
+            return;
+        }
+        match AppService::dice_fit(&w, &dice) {
+            Ok(fit) => self.apply_fit(&fit),
+            Err(e) => {
+                self.message = Some((
+                    format!("{e} The Dice Assistant suggests dice that can."),
+                    true,
+                ))
+            }
+        }
+    }
+
+    fn apply_fit(&mut self, fit: &DiceFit) {
+        let ids: Vec<ResultId> = entries(&self.draft).iter().map(|r| r.id.clone()).collect();
+        match AppService::apply_dice_fit(&self.draft, &ids, fit) {
+            Ok(table) => {
+                self.draft = table;
+                if fit.kind == FitKind::Approximate {
+                    self.message = Some((fit.explanation.clone(), false));
+                }
+            }
+            Err(e) => self.message = Some((e, true)),
+        }
+    }
+
+    fn advice(&self) -> DiceAdvice {
+        let w = if self.equal {
+            vec![1; entries(&self.draft).len()]
+        } else {
+            weights(&self.draft)
+        };
+        AppService::dice_advice(&w)
+    }
+
+    /// Plain-English problems with the current faces.
+    fn face_problems(&self) -> Vec<String> {
+        let Some(base) = self.check.as_ref().and_then(|c| {
+            c.coverage
+                .iter()
+                .find(|c| c.variant.is_none() && c.follow_up.is_none())
+        }) else {
+            return Vec::new();
+        };
+        let faces = |r: &settlement_core::content::FaceRange| {
+            if r.min == r.max {
+                format!("face {}", r.min)
+            } else {
+                format!("faces {}–{}", r.min, r.max)
+            }
+        };
+        let mut out = Vec::new();
+        if let Some(e) = &base.dice_error {
+            out.push(format!("The dice cannot be read: {e}."));
+        }
+        for r in &base.uncovered {
+            out.push(format!("No result is on {}.", faces(r)));
+        }
+        for r in &base.overlapping {
+            out.push(format!("More than one result is on {}.", faces(r)));
+        }
+        for r in &base.impossible {
+            out.push(format!(
+                "{} is on {}, which {} cannot roll.",
+                self.result_name(&ResultId::new(r.result.as_str())),
+                faces(&r.range),
+                base.dice
+            ));
+        }
+        out
+    }
+
+    /// What a typed dice total gives, from the current faces.
+    fn test_total(&self, text: &str) -> String {
+        let Some(base) = self.check.as_ref().and_then(|c| {
+            c.coverage
+                .iter()
+                .find(|c| c.variant.is_none() && c.follow_up.is_none())
+        }) else {
+            return "The table has no dice to test.".into();
+        };
+        let Some(face) = text
+            .trim()
+            .parse::<i32>()
+            .ok()
+            .and_then(|t| base.faces.iter().find(|f| f.face == t))
+        else {
+            return format!("{} cannot roll {}.", base.dice, text.trim());
+        };
+        let name = |id: &String| self.result_name(&ResultId::new(id.as_str()));
+        match face.claimed_by.as_slice() {
+            [] => format!("No result is on {}.", face.face),
+            [one] => format!(
+                "{} gives {} ({} to roll exactly {}).",
+                face.face,
+                name(one),
+                percent(face.chance),
+                face.face
+            ),
+            many => format!(
+                "{} is claimed by {}: only one result can have a face.",
+                face.face,
+                many.iter().map(name).collect::<Vec<_>>().join(" and ")
+            ),
+        }
+    }
+
+    /// The preview roll as lines.
+    fn preview_lines(events: &[GenerationEvent]) -> Vec<String> {
+        events
+            .iter()
+            .map(|e| match e {
+                GenerationEvent::TableRolled(r) => {
+                    let mut line = format!(
+                        "{}: rolled {}",
+                        r.table.name,
+                        r.dice.clone().unwrap_or_default()
+                    );
+                    for a in r.attempts.iter().take(r.attempts.len().saturating_sub(1)) {
+                        line.push_str(&format!(" {} → {} (rolled again),", a.roll, a.result.name));
+                    }
+                    if let Some(a) = r.accepted() {
+                        line.push_str(&format!(" {} →", a.roll));
+                    }
+                    line.push_str(&format!(" {}", r.result.name));
+                    line
+                }
+                GenerationEvent::TableSkipped { table, .. } => format!("{}: skipped", table.name),
+                GenerationEvent::SecondaryRoll { label, roll, .. } => {
+                    format!("{label}: {}", roll.total)
+                }
+            })
+            .collect()
     }
 
     fn dirty(&self) -> bool {
@@ -411,7 +656,40 @@ impl TableEditor {
                         ),
                         Act::ResultFaces,
                     ));
+                    let index = entries(&self.draft).iter().position(|e| e.id == r.id);
+                    if let (false, Some(index), Some(_)) =
+                        (self.equal, index, single_die(self.draft.dice.as_deref()))
+                    {
+                        rows.push(Row::item(
+                            field("Relative chance", weights(&self.draft)[index].to_string()),
+                            Act::ResultWeight,
+                        ));
+                    }
                 }
+                rows.push(Row::item(
+                    field(
+                        "Shared result",
+                        r.shared
+                            .as_ref()
+                            .map_or("— its own —".into(), ToString::to_string),
+                    ),
+                    Act::ResultShared,
+                ));
+                rows.push(Row::item(
+                    field(
+                        "Then roll",
+                        if r.then_roll.is_empty() {
+                            "—".into()
+                        } else {
+                            r.then_roll
+                                .iter()
+                                .map(ToString::to_string)
+                                .collect::<Vec<_>>()
+                                .join(", ")
+                        },
+                    ),
+                    Act::ResultThenRoll,
+                ));
                 // Tables whose results stand for numbers (e.g. Authority
                 // Size) show them.
                 if self.draft.results.iter().any(|r| r.value.is_some()) {
@@ -474,10 +752,19 @@ impl TableEditor {
                     Act::ResultVariants,
                 ));
                 rows.push(Row::blank());
+                rows.push(Row::item(Line::raw("Move up"), Act::MoveUp));
+                rows.push(Row::item(Line::raw("Move down"), Act::MoveDown));
+                rows.push(Row::item(Line::raw("Duplicate"), Act::Duplicate));
                 rows.push(Row::item(
                     Line::styled("Remove this result", s.error()),
                     Act::RemoveResult,
                 ));
+                if let Some((m, error)) = &self.message {
+                    rows.push(Row::info(Line::styled(
+                        m.clone(),
+                        if *error { s.error() } else { s.good() },
+                    )));
+                }
                 rows.push(Row::item(Line::raw("‹ Done"), Act::Done));
             }
             Page::Variant(i) => {
@@ -598,7 +885,46 @@ impl TableEditor {
                     Span::styled("ID ", s.dim()),
                     Span::raw(self.draft.id.to_string()),
                     Span::styled(format!(" · {origin}"), s.dim()),
+                    Span::styled(
+                        if self.dirty() {
+                            " · unsaved changes kept as a draft"
+                        } else {
+                            ""
+                        },
+                        s.dim(),
+                    ),
                 ])));
+                if self.kept.is_some() {
+                    rows.push(Row::info(Line::styled(
+                        "You have unsaved changes to this table from earlier.",
+                        ratatui::style::Style::new().fg(s.accent),
+                    )));
+                    rows.push(Row::item(Line::raw("  Restore them"), Act::RestoreDraft));
+                    rows.push(Row::item(Line::raw("  Discard them"), Act::DiscardDraft));
+                }
+                let issues = self
+                    .check
+                    .as_ref()
+                    .map(|c| c.issues.as_slice())
+                    .unwrap_or_default();
+                let errors = issues
+                    .iter()
+                    .filter(|i| i.severity == settlement_core::validation::Severity::Error)
+                    .count()
+                    + usize::from(self.check.as_ref().is_some_and(|c| c.error.is_some()));
+                let warnings = issues.len()
+                    + usize::from(self.check.as_ref().is_some_and(|c| c.error.is_some()))
+                    - errors;
+                rows.push(Row::info(if errors == 0 && warnings == 0 {
+                    Line::styled("No problems: this table can be saved.", s.good())
+                } else {
+                    Line::styled(
+                        format!(
+                            "{errors} problem(s) to fix before saving · {warnings} warning(s) (see Validation)"
+                        ),
+                        if errors > 0 { s.error() } else { s.dim() },
+                    )
+                }));
                 if self.draft.status == settlement_core::content::ContentStatus::Incomplete {
                     rows.push(Row::info(Line::styled(
                         format!("Marked incomplete: {}", self.draft.status_note),
@@ -606,58 +932,131 @@ impl TableEditor {
                     )));
                 }
                 rows.push(Row::blank());
-                rows.push(Row::item(field("Name", self.draft.name.clone()), Act::Name));
                 rows.push(Row::item(
-                    field(
-                        "Description",
-                        if self.draft.description.is_empty() {
-                            "—".into()
-                        } else {
-                            self.draft.description.clone()
-                        },
-                    ),
-                    Act::Description,
+                    field("Table name", self.draft.name.clone()),
+                    Act::Name,
                 ));
                 if rolled {
+                    rows.push(Row::item(
+                        field(
+                            "Chance mode",
+                            if self.equal {
+                                "Equal (every result equally likely)".into()
+                            } else {
+                                "Custom (each result's relative chance)".into()
+                            },
+                        ),
+                        Act::Mode,
+                    ));
                     rows.push(Row::item(
                         field("Dice", self.draft.dice.clone().unwrap_or("—".into())),
                         Act::Dice,
                     ));
-                }
-                let selection = if rolled {
-                    "rolled with dice"
-                } else {
-                    "always chosen"
-                };
-                if self.built_in() {
-                    rows.push(Row::info(
-                        field("Results are", selection.into()).style(s.dim()),
-                    ));
-                } else {
-                    rows.push(Row::item(
-                        field("Results are", selection.into()),
-                        Act::Selection,
-                    ));
-                }
-                rows.push(Row::item(
-                    field(
-                        "Active",
-                        if self.draft.active {
-                            "On".into()
+                    rows.push(Row::blank());
+                    rows.push(Row::info(Line::styled("DICE ASSISTANT", s.dim())));
+                    let problems = self.face_problems();
+                    if problems.is_empty() && self.check.is_some() {
+                        rows.push(Row::info(Line::styled(
+                            "  Every face is covered exactly once",
+                            s.good(),
+                        )));
+                    }
+                    for p in problems {
+                        rows.push(Row::info(Line::styled(format!("  {p}"), s.error())));
+                    }
+                    let advice = self.advice();
+                    rows.push(Row::info(Line::raw(format!("  {}", advice.summary))));
+                    for (k, fit) in advice.suggestions.iter().take(4).enumerate() {
+                        rows.push(Row::item(
+                            Line::from(vec![
+                                Span::styled(format!("  • Use {}", fit.label), s.title()),
+                                Span::styled(format!("  {}", fit.explanation), s.dim()),
+                            ]),
+                            Act::UseFit(k),
+                        ));
+                    }
+                    for change in advice.entry_changes {
+                        let line = Line::styled(format!("  {}", change.explanation), s.dim());
+                        if change.kind == EntryChangeKind::Add {
+                            rows.push(Row::item(line, Act::AddEntries(change.count)));
                         } else {
-                            "Off".into()
-                        },
-                    ),
-                    Act::Active,
-                ));
-                rows.push(Row::item(
-                    field("Rolled when", summary(&self.draft.eligibility, &self.tags)),
-                    Act::Condition(CondTarget::Table),
-                ));
-                if rolled {
-                    self.push_coverage(&mut rows, ctx, width, |c| {
-                        c.variant.is_none() && c.follow_up.is_none()
-                    });
+                            rows.push(Row::info(line));
+                        }
+                    }
+                }
+                if self.advanced {
+                    rows.push(Row::blank());
+                    rows.push(Row::info(Line::styled("ADVANCED", s.dim())));
+                    rows.push(Row::item(
+                        field(
+                            "Description",
+                            if self.draft.description.is_empty() {
+                                "—".into()
+                            } else {
+                                self.draft.description.clone()
+                            },
+                        ),
+                        Act::Description,
+                    ));
+                    let selection = if rolled {
+                        "rolled with dice"
+                    } else {
+                        "always chosen"
+                    };
+                    if self.built_in() {
+                        rows.push(Row::info(
+                            field("Results are", selection.into()).style(s.dim()),
+                        ));
+                    } else {
+                        rows.push(Row::item(
+                            field("Results are", selection.into()),
+                            Act::Selection,
+                        ));
+                    }
+                    rows.push(Row::item(
+                        field(
+                            "Active",
+                            if self.draft.active {
+                                "On".into()
+                            } else {
+                                "Off".into()
+                            },
+                        ),
+                        Act::Active,
+                    ));
+                    rows.push(Row::item(
+                        field("Rolled when", summary(&self.draft.eligibility, &self.tags)),
+                        Act::Condition(CondTarget::Table),
+                    ));
+                    if rolled {
+                        self.push_coverage(&mut rows, ctx, width, |c| {
+                            c.variant.is_none() && c.follow_up.is_none()
+                        });
+                    }
+                    let usages = self
+                        .detail
+                        .as_ref()
+                        .map(|d| d.usages.clone())
+                        .unwrap_or_default();
+                    if usages.is_empty() {
+                        rows.push(Row::info(Line::styled(
+                            "Used by: nothing, so it can be deleted",
+                            s.dim(),
+                        )));
+                    } else {
+                        rows.push(Row::info(Line::styled("Used by:", s.dim())));
+                        for u in &usages {
+                            rows.push(match of_usage(u) {
+                                Some(item) => Row::item(
+                                    Line::raw(format!("  {}  ›", u.description)),
+                                    Act::OpenItem(item),
+                                ),
+                                None => {
+                                    Row::info(Line::styled(format!("  {}", u.description), s.dim()))
+                                }
+                            });
+                        }
+                    }
                 }
                 rows.push(Row::blank());
                 rows.push(Row::info(Line::styled("RESULTS", s.dim())));
@@ -691,6 +1090,30 @@ impl TableEditor {
                 }
                 rows.push(Row::item(Line::raw("  + Add result"), Act::AddResult));
                 if rolled {
+                    rows.push(Row::blank());
+                    rows.push(Row::item(Line::raw("Preview roll"), Act::Preview));
+                    rows.push(Row::item(
+                        Line::raw("Test this table (Run 100 / 1,000 / 10,000)  ›"),
+                        Act::Test,
+                    ));
+                    for line in &self.preview {
+                        rows.push(Row::info(Line::styled(format!("  {line}"), s.title())));
+                    }
+                    rows.push(Row::item(Line::raw("Test a dice total…"), Act::TestTotal));
+                }
+                rows.push(Row::blank());
+                rows.push(Row::item(
+                    Line::styled(
+                        if self.advanced {
+                            "Advanced (hide)"
+                        } else {
+                            "Advanced (show)"
+                        },
+                        s.heading(),
+                    ),
+                    Act::Advanced,
+                ));
+                if rolled && self.advanced {
                     rows.push(Row::blank());
                     rows.push(Row::info(Line::styled("TAG-DRIVEN VARIANTS", s.dim())));
                     for (i, v) in self.draft.variants.iter().enumerate() {
@@ -757,6 +1180,9 @@ impl TableEditor {
                 if self.built_in() && modified {
                     rows.push(Row::item(Line::raw("Reset to default"), Act::Reset));
                 }
+                if !self.is_new {
+                    rows.push(Row::item(Line::raw("Copy to a new table"), Act::Copy));
+                }
                 if !self.built_in() && !self.is_new {
                     rows.push(Row::item(Line::styled("Delete", s.error()), Act::Delete));
                 }
@@ -797,7 +1223,28 @@ impl TableEditor {
         match act {
             Act::Name => self.draft.name = value,
             Act::Description => self.draft.description = value,
-            Act::Dice => self.draft.dice = (!t.is_empty()).then_some(t),
+            Act::Dice => {
+                self.draft.dice = (!t.is_empty()).then_some(t);
+                self.relayout(None);
+            }
+            Act::TestTotal => {
+                self.message = Some((self.test_total(&t), false));
+            }
+            Act::ResultWeight => {
+                if let Page::Result(i) = self.page {
+                    let w: u32 = t
+                        .parse()
+                        .ok()
+                        .filter(|w| *w > 0)
+                        .ok_or_else(|| "Enter a whole number of 1 or more.".to_owned())?;
+                    let id = self.draft.results[i].id.clone();
+                    let mut all = weights(&self.draft);
+                    if let Some(index) = entries(&self.draft).iter().position(|e| e.id == id) {
+                        all[index] = w;
+                        self.relayout(Some(all));
+                    }
+                }
+            }
             Act::ResultName => {
                 if let Page::Result(i) = self.page {
                     self.draft.results[i].name = value;
@@ -947,6 +1394,30 @@ impl TableEditor {
                 }
                 _ => self.message = Some(("Enter faces like 4 or 1-3.".into(), true)),
             },
+            (ModalResult::Picked(choice), Pending::Shared(ids)) => {
+                if let Page::Result(i) = self.page {
+                    let r = &mut self.draft.results[i];
+                    match ids[choice].clone() {
+                        // Linking clears what the shared result supplies.
+                        Some(id) => {
+                            r.shared = Some(id.as_str().into());
+                            r.name.clear();
+                            r.tags.clear();
+                        }
+                        None => r.shared = None,
+                    }
+                }
+            }
+            (ModalResult::Checked(checked), Pending::ThenRoll(ids)) => {
+                if let Page::Result(i) = self.page {
+                    self.draft.results[i].then_roll = ids
+                        .into_iter()
+                        .zip(checked)
+                        .filter(|(_, c)| *c)
+                        .map(|(id, _)| id)
+                        .collect();
+                }
+            }
             (ModalResult::Picked(choice), Pending::Fallback(ids)) => {
                 if let Page::Result(i) = self.page {
                     self.draft.results[i].fallback = ids[choice].clone();
@@ -1022,6 +1493,152 @@ impl TableEditor {
                 &self.draft.dice.clone().unwrap_or_default(),
                 act,
             ),
+            Act::Mode => {
+                self.equal = !self.equal;
+                if self.equal {
+                    self.relayout(None);
+                }
+            }
+            Act::UseFit(k) => {
+                if let Some(fit) = self.advice().suggestions.get(k).cloned() {
+                    self.apply_fit(&fit);
+                }
+            }
+            Act::AddEntries(n) => {
+                for _ in 0..n {
+                    let mut r = blank_result();
+                    r.name = format!("New result {}", self.draft.results.len() + 1);
+                    self.draft.results.push(r);
+                }
+                self.relayout(None);
+            }
+            Act::Preview => match ctx.service.preview_roll(self.draft.clone()) {
+                Ok(p) => {
+                    self.preview = Self::preview_lines(&p.events);
+                    self.preview.push(p.note);
+                }
+                Err(e) => self.message = Some((e, true)),
+            },
+            Act::TestTotal => {
+                self.text(
+                    "Test a dice total",
+                    "Type what the dice showed to see which result it gives.",
+                    "",
+                    act,
+                );
+                return Nav::Stay;
+            }
+            Act::Advanced => self.advanced = !self.advanced,
+            Act::RestoreDraft => {
+                if let Some(kept) = self.kept.take() {
+                    self.draft = kept;
+                }
+            }
+            Act::DiscardDraft => {
+                self.kept = None;
+                let _ = ctx.service.discard_table_draft(&self.draft.id);
+            }
+            Act::OpenItem(item) => return open(ctx, &item),
+            Act::Test => {
+                return Nav::Push(Box::new(TestScreen::new(Target::Table(self.draft.clone()))));
+            }
+            Act::Copy => match ctx.service.copy_table(&self.draft.id) {
+                Ok(copy) => {
+                    *self = TableEditor::open(ctx, None, Some(copy));
+                    return Nav::Stay;
+                }
+                Err(e) => self.message = Some((e, true)),
+            },
+            Act::ResultWeight => {
+                if let Page::Result(i) = self.page {
+                    let id = self.draft.results[i].id.clone();
+                    let current = entries(&self.draft)
+                        .iter()
+                        .position(|e| e.id == id)
+                        .map(|k| weights(&self.draft)[k].to_string())
+                        .unwrap_or_default();
+                    self.text(
+                        "Relative chance",
+                        "2 is twice as likely as 1. The faces are laid out again.",
+                        &current,
+                        act,
+                    );
+                    return Nav::Stay;
+                }
+            }
+            Act::ResultShared => {
+                let shared: Vec<(String, String)> = ctx
+                    .service
+                    .framework_items()
+                    .unwrap_or_default()
+                    .into_iter()
+                    .filter(|i| i.kind == ItemKind::SharedResult && !i.deleted)
+                    .map(|i| (i.id, i.name))
+                    .collect();
+                let mut ids = vec![None];
+                let mut items = vec![PickItem::new("— its own —")];
+                for (id, name) in shared {
+                    items.push(PickItem::new(name).hint(id.clone()));
+                    ids.push(Some(id));
+                }
+                self.modal = Some((Modal::pick("Shared result", items, 0), Pending::Shared(ids)));
+                return Nav::Stay;
+            }
+            Act::ResultThenRoll => {
+                if let Page::Result(i) = self.page {
+                    let current = self.draft.results[i].then_roll.clone();
+                    let tables: Vec<(TableId, String)> = ctx
+                        .service
+                        .overview()
+                        .map(|o| {
+                            o.tables
+                                .into_iter()
+                                .filter(|t| !t.deleted && t.id != self.draft.id)
+                                .map(|t| (t.id, t.name))
+                                .collect()
+                        })
+                        .unwrap_or_default();
+                    let ids: Vec<TableId> = tables.iter().map(|(id, _)| id.clone()).collect();
+                    self.modal = Some((
+                        Modal::check(
+                            "Then roll these tables",
+                            tables
+                                .iter()
+                                .map(|(id, n)| format!("{n}  ({id})"))
+                                .collect(),
+                            ids.iter().map(|id| current.contains(id)).collect(),
+                        ),
+                        Pending::ThenRoll(ids),
+                    ));
+                    return Nav::Stay;
+                }
+            }
+            Act::MoveUp | Act::MoveDown => {
+                if let Page::Result(i) = self.page {
+                    let j = if act == Act::MoveUp {
+                        i.checked_sub(1)
+                    } else {
+                        Some(i + 1)
+                    };
+                    if let Some(j) = j.filter(|j| *j < self.draft.results.len()) {
+                        self.draft.results.swap(i, j);
+                        self.page = Page::Result(j);
+                        self.relayout(None);
+                    }
+                }
+            }
+            Act::Duplicate => {
+                if let Page::Result(i) = self.page {
+                    let mut copy = self.draft.results[i].clone();
+                    copy.id = ResultId::new(new_user_id("result"));
+                    copy.name = format!("Copy of {}", copy.name);
+                    copy.unique = false;
+                    copy.fallback = None;
+                    self.draft.results.insert(i + 1, copy);
+                    self.page = Page::Result(i + 1);
+                    self.relayout(None);
+                }
+            }
             Act::Selection => {
                 self.draft.selection = match self.draft.selection {
                     SelectionMode::Roll => SelectionMode::Choose,
@@ -1033,7 +1650,17 @@ impl TableEditor {
                 let value = self.condition_of(target).clone();
                 self.condition = Some((
                     target,
-                    ConditionEditor::new("Condition", value, self.tags.clone()),
+                    ConditionEditor::new(
+                        "Condition",
+                        value,
+                        self.tags.clone(),
+                        ctx.service
+                            .toggle_settings()
+                            .unwrap_or_default()
+                            .into_iter()
+                            .map(|s| (s.id, s.name))
+                            .collect(),
+                    ),
                 ));
                 return Nav::Stay;
             }
@@ -1043,20 +1670,8 @@ impl TableEditor {
                 return Nav::Stay;
             }
             Act::AddResult => {
-                self.draft.results.push(TableResult {
-                    id: ResultId::new(new_user_id("result")),
-                    name: "New result".into(),
-                    description: String::new(),
-                    range: None,
-                    tags: Vec::new(),
-                    eligibility: None,
-                    enabled: true,
-                    generator: None,
-                    value: None,
-                    unique: false,
-                    fallback: None,
-                    label_variants: Vec::new(),
-                });
+                self.draft.results.push(blank_result());
+                self.relayout(None);
                 self.page = Page::Result(self.draft.results.len() - 1);
                 self.state = RowsState::default();
             }
@@ -1165,6 +1780,7 @@ impl TableEditor {
             Act::ResultEnabled => {
                 if let Page::Result(i) = self.page {
                     self.draft.results[i].enabled = !self.draft.results[i].enabled;
+                    self.relayout(None);
                 }
             }
             Act::ResultUnique => {
@@ -1209,9 +1825,27 @@ impl TableEditor {
             }
             Act::RemoveResult => {
                 if let Page::Result(i) = self.page {
-                    self.draft.results.remove(i);
-                    self.page = Page::Main;
-                    self.state = RowsState::default();
+                    let id = self.draft.results[i].id.clone();
+                    let usages = ctx
+                        .service
+                        .result_usages(&self.draft, &id)
+                        .unwrap_or_default();
+                    if usages.is_empty() {
+                        self.draft.results.remove(i);
+                        self.relayout(None);
+                        self.page = Page::Main;
+                        self.state = RowsState::default();
+                    } else {
+                        let list: Vec<&str> =
+                            usages.iter().map(|u| u.description.as_str()).collect();
+                        self.message = Some((
+                            format!(
+                                "This result cannot be removed while it is used by: {}. Disable it instead, or remove those uses first.",
+                                list.join("; ")
+                            ),
+                            true,
+                        ));
+                    }
                 }
             }
             Act::VariantName | Act::VariantDice => {
@@ -1362,6 +1996,73 @@ impl Screen for TableEditor {
     }
 
     fn handle(&mut self, key: KeyEvent, ctx: &mut Ctx) -> Nav {
+        let before = self.draft.clone();
+        self.stepped = false;
+        let nav = self.handle_key(key, ctx);
+        // Undo and redo move along the history themselves.
+        if self.draft != before && !self.stepped {
+            self.undo.push(before);
+            self.redo.clear();
+            self.after_change(ctx);
+        }
+        nav
+    }
+
+    fn hints(&self) -> Vec<(&'static str, &'static str)> {
+        self.key_hints()
+    }
+}
+
+impl TableEditor {
+    /// After any change: check it again and keep it as a draft.
+    fn after_change(&mut self, ctx: &mut Ctx) {
+        self.recheck(ctx);
+        if self.dirty() {
+            let _ = ctx.service.save_table_draft(&self.draft);
+        }
+    }
+
+    fn step_history(&mut self, back: bool, ctx: &mut Ctx) {
+        let (from, to) = if back {
+            (&mut self.undo, &mut self.redo)
+        } else {
+            (&mut self.redo, &mut self.undo)
+        };
+        self.stepped = true;
+        if let Some(previous) = from.pop() {
+            to.push(std::mem::replace(&mut self.draft, previous));
+            if let Page::Result(i) = self.page
+                && i >= self.draft.results.len()
+            {
+                self.page = Page::Main;
+            }
+            self.after_change(ctx);
+        }
+    }
+
+    fn handle_key(&mut self, key: KeyEvent, ctx: &mut Ctx) -> Nav {
+        let ctrl = key.modifiers.contains(KeyModifiers::CONTROL);
+        if self.condition.is_none() && self.modal.is_none() {
+            match key.code {
+                KeyCode::Char('z') if ctrl => {
+                    self.step_history(true, ctx);
+                    return Nav::Stay;
+                }
+                KeyCode::Char('y') if ctrl => {
+                    self.step_history(false, ctx);
+                    return Nav::Stay;
+                }
+                KeyCode::Char('u') => {
+                    self.step_history(true, ctx);
+                    return Nav::Stay;
+                }
+                KeyCode::Char('U') => {
+                    self.step_history(false, ctx);
+                    return Nav::Stay;
+                }
+                _ => {}
+            }
+        }
         if let Some((target, editor)) = &mut self.condition {
             if let Outcome::Done = editor.handle(key, ctx) {
                 let (target, value) = (*target, editor.value.clone());
@@ -1405,7 +2106,7 @@ impl Screen for TableEditor {
         Nav::Stay
     }
 
-    fn hints(&self) -> Vec<(&'static str, &'static str)> {
+    fn key_hints(&self) -> Vec<(&'static str, &'static str)> {
         if self.condition.is_some() {
             vec![
                 ("Enter", "edit"),
@@ -1418,12 +2119,38 @@ impl Screen for TableEditor {
             vec![
                 ("↑↓", "move"),
                 ("Enter", "edit"),
+                ("u/U", "undo/redo"),
                 ("s", "save"),
                 ("Esc", "back"),
             ]
         } else {
-            vec![("↑↓", "move"), ("Enter", "edit"), ("Esc", "back to table")]
+            vec![
+                ("↑↓", "move"),
+                ("Enter", "edit"),
+                ("u/U", "undo/redo"),
+                ("Esc", "back to table"),
+            ]
         }
+    }
+}
+
+/// A new, enabled result with a fresh user ID.
+fn blank_result() -> TableResult {
+    TableResult {
+        id: ResultId::new(new_user_id("result")),
+        name: "New result".into(),
+        shared: None,
+        description: String::new(),
+        range: None,
+        tags: Vec::new(),
+        eligibility: None,
+        enabled: true,
+        generator: None,
+        value: None,
+        unique: false,
+        fallback: None,
+        label_variants: Vec::new(),
+        then_roll: Vec::new(),
     }
 }
 

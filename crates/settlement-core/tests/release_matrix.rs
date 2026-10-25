@@ -84,6 +84,7 @@ fn every_setting_survives_a_restart() {
             tag_view: true,
             theme: Theme::OldTimeyDark,
             bare_minimum_buildings: false,
+            roll_details: false,
         }
     );
 }
@@ -114,6 +115,7 @@ fn every_kind_of_content_edit_survives_a_restart() {
     let added = |id: &str, name: &str, range: FaceRange| TableResult {
         id: ResultId::new(id),
         name: name.into(),
+        shared: None,
         description: String::new(),
         range: Some(range),
         tags: Vec::new(),
@@ -124,6 +126,7 @@ fn every_kind_of_content_edit_survives_a_restart() {
         unique: false,
         fallback: None,
         label_variants: Vec::new(),
+        then_roll: Vec::new(),
     };
     custom
         .results

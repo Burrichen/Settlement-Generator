@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::content::{
     CONTENT_SCHEMA_VERSION, Condition, ContentSet, ContentStatus, Effect, FaceRange, SelectionMode,
-    StepTarget, Table,
+    Table,
 };
 use crate::dice::{DiceExpr, DiceParseError};
 use crate::ids::{
@@ -54,6 +54,19 @@ pub struct Location {
     pub role_scheme: Option<RoleSchemeId>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub location_scheme: Option<LocationSchemeId>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub shared_result: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scale: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub setting: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub object_type: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub flow: Option<String>,
+    /// A step of `flow`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub step: Option<String>,
 }
 
 impl Location {
@@ -97,6 +110,11 @@ impl Location {
         self.follow_up = Some(id.to_owned());
         self
     }
+
+    pub fn with_step(mut self, id: &crate::ids::StepId) -> Self {
+        self.step = Some(id.to_string());
+        self
+    }
 }
 
 impl fmt::Display for Location {
@@ -104,6 +122,18 @@ impl fmt::Display for Location {
         let mut parts = Vec::new();
         if let Some(n) = &self.naming_scheme {
             parts.push(format!("naming scheme `{n}`"));
+        }
+        for (label, value) in [
+            ("shared result", &self.shared_result),
+            ("scale", &self.scale),
+            ("setting", &self.setting),
+            ("object type", &self.object_type),
+            ("flow", &self.flow),
+            ("step", &self.step),
+        ] {
+            if let Some(v) = value {
+                parts.push(format!("{label} `{v}`"));
+            }
         }
         if let Some(t) = &self.table {
             parts.push(format!("table `{t}`"));
@@ -148,6 +178,14 @@ pub enum IdScope {
     NamingMethod,
     RoleScheme,
     LocationScheme,
+    SharedResult,
+    Scale,
+    Setting,
+    SettingOption,
+    ObjectType,
+    Field,
+    Flow,
+    Step,
 }
 
 impl fmt::Display for IdScope {
@@ -163,6 +201,14 @@ impl fmt::Display for IdScope {
             IdScope::NamingMethod => "naming method for result",
             IdScope::RoleScheme => "role scheme",
             IdScope::LocationScheme => "location scheme",
+            IdScope::SharedResult => "shared result",
+            IdScope::Scale => "scale",
+            IdScope::Setting => "setting",
+            IdScope::SettingOption => "setting option",
+            IdScope::ObjectType => "object type",
+            IdScope::Field => "object field",
+            IdScope::Flow => "flow",
+            IdScope::Step => "step",
         })
     }
 }
@@ -287,6 +333,106 @@ pub enum IssueKind {
         components: usize,
         parts: usize,
     },
+    /// A table result listing a shared result that does not exist.
+    MissingSharedResult {
+        shared: String,
+    },
+    MissingScale {
+        scale: String,
+    },
+    MissingSetting {
+        setting: String,
+    },
+    MissingFlow {
+        flow: String,
+    },
+    MissingObjectType {
+        object: String,
+    },
+    /// A condition or count reading a step that does not exist.
+    MissingStep {
+        step: String,
+    },
+    /// A step setting a field its object type does not have.
+    MissingField {
+        field: String,
+    },
+    /// A step setting an object field outside any object.
+    FieldOutsideObject,
+    /// Flows that run each other in a loop.
+    FlowCycle {
+        flows: Vec<String>,
+    },
+    /// A Shift, Plus or Minus with an unusable amount.
+    InvalidModifier {
+        reason: String,
+    },
+    /// A Shift or Cap on a table with no ordered scale.
+    ModifierNeedsScale,
+    /// A Plus or Minus on a table that is not rolled.
+    ModifierNeedsDice,
+    /// A Run Subflow effect on a tag a top-level table stage can give, where
+    /// it does not run (only steps inside flows run triggered subflows).
+    TriggerOutsideFlow {
+        stage: String,
+    },
+    /// A Weight effect whose percentage is not 1–1000.
+    InvalidWeight {
+        percent: u32,
+    },
+    InvalidCount {
+        reason: String,
+    },
+    UnknownBuiltin {
+        handler: String,
+    },
+    InvalidBuiltinConfig {
+        error: String,
+    },
+    /// A built-in step that is not a top-level step of the start flow.
+    BuiltinNotTopLevel,
+    /// A content setting using the reserved `app.` namespace.
+    ReservedSettingId,
+    /// A setting whose default it cannot take (not one of its options, out
+    /// of its range, or too long).
+    InvalidSettingDefault,
+    /// A dropdown or multi-select setting with no options.
+    SettingWithoutOptions,
+    /// A number setting whose lowest value is above its highest.
+    InvalidSettingRange,
+    /// A condition test that does not suit the setting's kind (e.g. "is on"
+    /// for a number).
+    SettingKindMismatch {
+        setting: String,
+        expected: String,
+        actual: String,
+    },
+    /// A result or value test outside a flow, where no step stores them.
+    ConditionNeedsFlow,
+    /// A condition on a step that cannot be skipped (a name or built-in
+    /// stage).
+    ConditionNotSupported,
+    /// A step that can never run (after a Stop, behind a case that always
+    /// applies, or taken out of the flow).
+    UnreachableStep {
+        reason: String,
+    },
+    /// A condition that can never hold.
+    ImpossibleCondition {
+        reason: String,
+    },
+    /// Flows that run each other, every time with a depth limit:
+    /// deliberate recursion, stopped after `depth` levels.
+    LimitedRecursion {
+        flows: Vec<String>,
+        depth: u32,
+    },
+    /// A loop that never runs its steps.
+    EmptyLoop {
+        reason: String,
+    },
+    /// A recursion limit of 0, or above the subflow nesting limit.
+    InvalidRecursionDepth,
 }
 
 impl fmt::Display for IssueKind {
@@ -412,6 +558,96 @@ impl fmt::Display for IssueKind {
                 f,
                 "spelling exception lists {results} result(s) but the method has {components} component(s)"
             ),
+            IssueKind::MissingSharedResult { shared } => {
+                write!(f, "lists missing shared result `{shared}`")
+            }
+            IssueKind::MissingScale { scale } => write!(f, "references missing scale `{scale}`"),
+            IssueKind::MissingSetting { setting } => {
+                write!(f, "references missing setting `{setting}`")
+            }
+            IssueKind::MissingFlow { flow } => write!(f, "references missing flow `{flow}`"),
+            IssueKind::MissingObjectType { object } => {
+                write!(f, "references missing object type `{object}`")
+            }
+            IssueKind::MissingStep { step } => write!(
+                f,
+                "reads step `{step}`, which is not a step of this flow or a stage"
+            ),
+            IssueKind::MissingField { field } => {
+                write!(f, "sets field `{field}`, which the object type does not have")
+            }
+            IssueKind::FieldOutsideObject => {
+                f.write_str("sets an object field but is not inside an object")
+            }
+            IssueKind::FlowCycle { flows } => write!(
+                f,
+                "flows run each other in a loop with no limit: {}. Give the Run Subflow step a maximum depth to allow deliberate recursion",
+                flows.join(" → ")
+            ),
+            IssueKind::UnreachableStep { reason } => write!(f, "step can never run: {reason}"),
+            IssueKind::ImpossibleCondition { reason } => {
+                write!(f, "condition can never hold: {reason}")
+            }
+            IssueKind::LimitedRecursion { flows, depth } => write!(
+                f,
+                "flows run each other ({}); each run stops after {depth} level(s)",
+                flows.join(" → ")
+            ),
+            IssueKind::EmptyLoop { reason } => write!(f, "loop never runs: {reason}"),
+            IssueKind::InvalidRecursionDepth => write!(
+                f,
+                "a maximum depth must be between 1 and {}",
+                crate::framework::MAX_FLOW_DEPTH
+            ),
+            IssueKind::InvalidModifier { reason } => write!(f, "invalid modifier: {reason}"),
+            IssueKind::ModifierNeedsScale => f.write_str(
+                "Shift and Cap need an ordered scale: mark the table ordered or give it a scale",
+            ),
+            IssueKind::TriggerOutsideFlow { stage } => write!(
+                f,
+                "the pipeline stage “{stage}” can give this tag, but subflows are only triggered inside flows; put that roll inside a flow step for the subflow to run"
+            ),
+            IssueKind::InvalidWeight { percent } => write!(
+                f,
+                "a weighting of {percent}% is not allowed; use 1 to {}",
+                crate::content::MAX_WEIGHT_PERCENT
+            ),
+            IssueKind::ModifierNeedsDice => {
+                f.write_str("Plus and Minus change a rolled total, but the table is not rolled")
+            }
+            IssueKind::InvalidCount { reason } => write!(f, "invalid repeat count: {reason}"),
+            IssueKind::UnknownBuiltin { handler } => {
+                write!(f, "there is no built-in step `{handler}`")
+            }
+            IssueKind::InvalidBuiltinConfig { error } => f.write_str(error),
+            IssueKind::BuiltinNotTopLevel => f.write_str(
+                "built-in steps can only be top-level steps of the start flow",
+            ),
+            IssueKind::ReservedSettingId => {
+                f.write_str("setting IDs starting with `app.` are reserved for the application")
+            }
+            IssueKind::InvalidSettingDefault => {
+                f.write_str("the default is not a value the setting can take")
+            }
+            IssueKind::SettingWithoutOptions => f.write_str("the setting needs at least one option"),
+            IssueKind::InvalidSettingRange => {
+                f.write_str("the lowest value is above the highest value")
+            }
+            IssueKind::SettingKindMismatch {
+                setting,
+                expected,
+                actual,
+            } => write!(
+                f,
+                "setting {setting} is a {} setting, but this test needs {expected}",
+                actual.to_lowercase()
+            ),
+            IssueKind::ConditionNeedsFlow => f.write_str(
+                "result and value tests can only be used in flows, where steps store them",
+            ),
+            IssueKind::ConditionNotSupported => {
+                f.write_str("name and built-in stages cannot have a condition")
+            }
             IssueKind::RedirectCycle { tables } => {
                 let path: Vec<&str> = tables.iter().map(TableId::as_str).collect();
                 write!(f, "tables redirect into each other: {}", path.join(" → "))
@@ -498,20 +734,20 @@ pub fn validate(content: &ContentSet) -> ValidationReport {
     ValidationReport { issues: v.issues }
 }
 
-struct Validator<'a> {
-    content: &'a ContentSet,
-    tables: HashMap<&'a TableId, &'a Table>,
+pub(crate) struct Validator<'a> {
+    pub(crate) content: &'a ContentSet,
+    pub(crate) tables: HashMap<&'a TableId, &'a Table>,
     tags: HashSet<&'a TagId>,
     issues: Vec<ValidationIssue>,
 }
 
 impl<'a> Validator<'a> {
-    fn error(&mut self, location: Location, kind: IssueKind) {
+    pub(crate) fn error(&mut self, location: Location, kind: IssueKind) {
         self.issues
             .push(ValidationIssue::new(Severity::Error, location, kind));
     }
 
-    fn warning(&mut self, location: Location, kind: IssueKind) {
+    pub(crate) fn warning(&mut self, location: Location, kind: IssueKind) {
         self.issues
             .push(ValidationIssue::new(Severity::Warning, location, kind));
     }
@@ -562,51 +798,7 @@ impl<'a> Validator<'a> {
         self.check_naming_schemes();
         self.check_role_schemes();
         self.check_location_schemes();
-        if content.sequence.first().is_some_and(|s| s.sub_stage) {
-            self.error(
-                Location {
-                    sequence_step: Some(0),
-                    ..Default::default()
-                },
-                IssueKind::SubStageWithoutParent,
-            );
-        }
-        for (step, id) in content
-            .sequence
-            .iter()
-            .enumerate()
-            .filter_map(|(i, s)| s.table().map(|t| (i, t)))
-        {
-            if !self.tables.contains_key(id) {
-                self.error(
-                    Location {
-                        sequence_step: Some(step),
-                        ..Default::default()
-                    },
-                    IssueKind::MissingTable { table: id.clone() },
-                );
-            }
-        }
-        // The Authority Figures stage rolls its fields and relationships
-        // on fixed tables; each must exist.
-        for (step, _) in content
-            .sequence
-            .iter()
-            .enumerate()
-            .filter(|(_, s)| s.target == StepTarget::AuthorityFigures)
-        {
-            for table in crate::figures::required_tables() {
-                if !self.tables.contains_key(&table) {
-                    self.error(
-                        Location {
-                            sequence_step: Some(step),
-                            ..Default::default()
-                        },
-                        IssueKind::MissingTable { table },
-                    );
-                }
-            }
-        }
+        self.check_framework();
         self.check_routing_cycles();
         self.check_redirect_cycles();
     }
@@ -678,35 +870,6 @@ impl<'a> Validator<'a> {
                         IssueKind::MissingValue,
                     );
                 }
-            }
-        }
-        // The Bare Minimum Buildings Tavern is a Hospitality location.
-        if content
-            .sequence
-            .iter()
-            .any(|s| s.target == StepTarget::NotableLocations)
-        {
-            let type_table = TableId::new(crate::locations::TYPE_TABLE);
-            match self.tables.get(&type_table).copied() {
-                None => self.error(
-                    Location::default(),
-                    IssueKind::MissingTable {
-                        table: type_table.clone(),
-                    },
-                ),
-                Some(t)
-                    if t.result(&crate::locations::HOSPITALITY_TYPE.into())
-                        .is_none() =>
-                {
-                    self.error(
-                        Location::table(&type_table),
-                        IssueKind::BrokenResultReference {
-                            table: type_table.clone(),
-                            result: crate::locations::HOSPITALITY_TYPE.into(),
-                        },
-                    );
-                }
-                Some(_) => {}
             }
         }
     }
@@ -893,21 +1056,28 @@ impl<'a> Validator<'a> {
         }
     }
 
-    fn check_id(&mut self, id: &str, location: Location) {
+    pub(crate) fn check_id(&mut self, id: &str, location: Location) {
         if !is_valid_id(id) {
             self.error(location, IssueKind::InvalidId { id: id.to_owned() });
         }
     }
 
-    fn check_tag_ref(&mut self, tag: &TagId, location: &Location) {
+    pub(crate) fn check_tag_ref(&mut self, tag: &TagId, location: &Location) {
         if !self.tags.contains(tag) {
             self.error(location.clone(), IssueKind::MissingTag { tag: tag.clone() });
         }
     }
 
-    fn check_condition(&mut self, condition: Option<&Condition>, location: &Location) {
-        for tag in condition.map(Condition::tags).unwrap_or_default() {
+    /// A condition outside a flow: its tags and settings must exist, and
+    /// it cannot read step results.
+    pub(crate) fn check_condition(&mut self, condition: Option<&Condition>, location: &Location) {
+        let Some(condition) = condition else { return };
+        for tag in condition.tags() {
             self.check_tag_ref(tag, location);
+        }
+        self.check_setting_refs(condition, location);
+        if !condition.steps().is_empty() {
+            self.error(location.clone(), IssueKind::ConditionNeedsFlow);
         }
     }
 
@@ -930,6 +1100,16 @@ impl<'a> Validator<'a> {
             }
             for tag in &result.tags {
                 self.check_tag_ref(tag, &rloc);
+            }
+            for next in &result.then_roll {
+                if !self.content.tables.iter().any(|t| &t.id == next) {
+                    self.error(
+                        rloc.clone(),
+                        IssueKind::MissingTable {
+                            table: next.clone(),
+                        },
+                    );
+                }
             }
             self.check_condition(result.eligibility.as_ref(), &rloc);
             // No generators exist yet, so a reference cannot be resolved;
@@ -1281,11 +1461,68 @@ impl<'a> Validator<'a> {
                     }
                 }
                 Effect::Intent { .. } => self.error(loc, IssueKind::IntentNotPlanned),
+                Effect::EnableResults { results, .. } => {
+                    let table = table.expect("enable targets a table");
+                    for result in results {
+                        if table.result(result).is_none() {
+                            self.error(
+                                loc.clone(),
+                                IssueKind::BrokenResultReference {
+                                    table: table.id.clone(),
+                                    result: result.clone(),
+                                },
+                            );
+                        }
+                    }
+                }
+                Effect::Weight {
+                    result, percent, ..
+                } => {
+                    let table = table.expect("weight targets a table");
+                    if table.result(result).is_none() {
+                        self.error(
+                            loc.clone(),
+                            IssueKind::BrokenResultReference {
+                                table: table.id.clone(),
+                                result: result.clone(),
+                            },
+                        );
+                    }
+                    if !(1..=crate::content::MAX_WEIGHT_PERCENT).contains(percent) {
+                        self.error(loc.clone(), IssueKind::InvalidWeight { percent: *percent });
+                    }
+                    if table.dice.is_none()
+                        || table.selection == crate::content::SelectionMode::Choose
+                    {
+                        self.error(loc, IssueKind::ModifierNeedsDice);
+                    }
+                }
+                Effect::RunFlow { flow } => {
+                    if self.content.flow(flow).is_none() {
+                        self.error(
+                            loc,
+                            IssueKind::MissingFlow {
+                                flow: flow.to_string(),
+                            },
+                        );
+                    } else if let Some(stage) = top_level_source(self.content, &tag.id) {
+                        self.warning(loc, IssueKind::TriggerOutsideFlow { stage });
+                    }
+                }
+                Effect::Shift { .. }
+                | Effect::Plus { .. }
+                | Effect::Minus { .. }
+                | Effect::CapAtHighest { .. }
+                | Effect::CapAtLowest { .. } => {
+                    let table = table.expect("modifiers target a table");
+                    let modifier = def.effect.modifier().expect("a modifier effect");
+                    self.check_modifier(modifier, table, &loc);
+                }
             }
         }
     }
 
-    fn check_dice(&mut self, dice: &str, loc: &Location) {
+    pub(crate) fn check_dice(&mut self, dice: &str, loc: &Location) {
         if let Err(error) = DiceExpr::parse(dice) {
             self.error(
                 loc.clone(),
@@ -1333,6 +1570,7 @@ impl<'a> Validator<'a> {
             for result in &rollable {
                 let targets: BTreeSet<usize> = route_targets(content, &result.tags)
                     .into_iter()
+                    .chain(&result.then_roll)
                     .filter_map(|t| index.get(t).copied())
                     .collect();
                 any[i].extend(targets.iter().copied());
@@ -1398,7 +1636,7 @@ pub(crate) fn route_targets<'a>(content: &'a ContentSet, tags: &[TagId]) -> Vec<
 
 /// Strongly connected components that contain a cycle (size > 1, or a
 /// self-loop), each sorted by table index. Tarjan's algorithm.
-fn cyclic_components(edges: &[BTreeSet<usize>]) -> Vec<Vec<usize>> {
+pub(crate) fn cyclic_components(edges: &[BTreeSet<usize>]) -> Vec<Vec<usize>> {
     struct State<'e> {
         edges: &'e [BTreeSet<usize>],
         index: Vec<Option<usize>>,
@@ -1459,4 +1697,21 @@ fn cyclic_components(edges: &[BTreeSet<usize>]) -> Vec<Vec<usize>> {
     }
     s.out.sort();
     s.out
+}
+
+/// A top-level table (or Add Tag) stage of the pipeline that gives `tag`
+/// directly, by label.
+fn top_level_source(content: &ContentSet, tag: &TagId) -> Option<String> {
+    use crate::framework::StepAction;
+    content.pipeline().into_iter().find_map(|step| {
+        let label = || step.name.clone().unwrap_or_else(|| step.id.to_string());
+        match &step.action {
+            StepAction::Roll { table, .. } => content
+                .table(table)
+                .filter(|t| t.results.iter().any(|r| r.tags.contains(tag)))
+                .map(|_| label()),
+            StepAction::AddTag { tag: t } if t == tag => Some(label()),
+            _ => None,
+        }
+    })
 }

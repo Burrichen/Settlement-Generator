@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "start": "flow.settlement",
+  "settings": [
+    {
+      "id": "setting.bareMinimumBuildings",
+      "name": "Bare Minimum Buildings",
+      "description": "Always add a Tavern with 4 spare rooms to the settlement's Notable Locations, in addition to the rolled ones.",
+      "kind": "toggle",
+      "default": false
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow.settlement",
+      "name": "Settlement",
+      "description": "The settlement generation pipeline: one stage per step.",
+      "steps": [
+        {
+          "id": "settingProfile",
+          "kind": "roll",
+          "table": "table.settingProfile",
+          "name": "Setting Profile"
+        },
+        { "id": "region", "kind": "roll", "table": "table.genericRegion", "name": "Region" },
+        { "id": "name", "kind": "name", "name": "Name" },
+        {
+          "id": "environment",
+          "kind": "roll",
+          "table": "table.environment",
+          "name": "Environment"
+        },
+        {
+          "id": "connections",
+          "kind": "roll",
+          "table": "table.connections",
+          "name": "Connections"
+        },
+        { "id": "size", "kind": "roll", "table": "table.size", "name": "Size" },
+        { "id": "origin", "kind": "roll", "table": "table.origin", "name": "Origin" },
+        { "id": "purpose", "kind": "roll", "table": "table.purpose", "name": "Purpose" },
+        { "id": "age", "kind": "roll", "table": "table.age", "name": "Age" },
+        { "id": "economy", "kind": "roll", "table": "table.economy", "name": "Economy" },
+        { "id": "authority", "kind": "roll", "table": "table.authority", "name": "Authority" },
+        {
+          "id": "representation",
+          "kind": "roll",
+          "table": "table.authorityRepresentation",
+          "name": "Representation",
+          "sub_stage": true
+        },
+        {
+          "id": "authoritySize",
+          "kind": "roll",
+          "table": "table.authoritySize",
+          "name": "Authority Size",
+          "sub_stage": true
+        },
+        {
+          "id": "roles",
+          "kind": "builtin",
+          "handler": "authority_roles",
+          "name": "Roles",
+          "sub_stage": true,
+          "config": {
+            "authority": {
+              "table": "table.authority",
+              "size_table": "table.authoritySize",
+              "single_tag": "authorityRepresentation.single",
+              "group_tag": "authorityRepresentation.group"
+            }
+          }
+        },
+        {
+          "id": "figures",
+          "kind": "builtin",
+          "handler": "authority_figures",
+          "name": "Authority Figures",
+          "config": {
+            "authority": {
+              "table": "table.authority",
+              "size_table": "table.authoritySize",
+              "single_tag": "authorityRepresentation.single",
+              "group_tag": "authorityRepresentation.group"
+            },
+            "fields": [
+              { "id": "species", "label": "Species", "table": "table.authorityFigure.species" },
+              { "id": "gender", "label": "Gender", "table": "table.authorityFigure.gender" },
+              { "id": "age", "label": "Age", "table": "table.authorityFigure.age" },
+              {
+                "id": "disposition",
+                "label": "Disposition",
+                "table": "table.authorityFigure.disposition"
+              },
+              { "id": "motive", "label": "Motive", "table": "table.authorityFigure.motive" },
+              {
+                "id": "reputation",
+                "label": "Reputation",
+                "table": "table.authorityFigure.reputation"
+              },
+              {
+                "id": "flaw",
+                "label": "Flaw / Complication",
+                "table": "table.authorityFigure.flaw"
+              }
+            ],
+            "relationship_table": "table.authorityRelationship"
+          }
+        },
+        { "id": "security", "kind": "roll", "table": "table.security", "name": "Security" },
+        { "id": "crime", "kind": "roll", "table": "table.crime", "name": "Crime" },
+        { "id": "stability", "kind": "roll", "table": "table.stability", "name": "Stability" },
+        {
+          "id": "notableLocations",
+          "kind": "builtin",
+          "handler": "notable_locations",
+          "name": "Notable Locations",
+          "config": {
+            "size_table": "table.size",
+            "type_table": "table.notableLocationType",
+            "guaranteed": {
+              "when": { "setting_on": "setting.bareMinimumBuildings" },
+              "id": "notable-location-guaranteed-tavern",
+              "type": "locationType.hospitality",
+              "subtype": { "id": "locationSubtype.tavern", "name": "Tavern" },
+              "spare_rooms": 4
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

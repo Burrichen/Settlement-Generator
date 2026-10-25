@@ -1,0 +1,480 @@
+automatic plain 0: 54fcbb75158b6fcf
+automatic god 0: 528031bf4f29c8fa
+automatic bmb 0: d0f1c900e16f1d21
+edited 0: 1e84406c5700309a | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 1: 8ae40f665b973275
+automatic god 1: 5996df14557b760c
+automatic bmb 1: cae99584de1ff41c
+edited 1: 88803110cadc160a
+automatic plain 2: a26c0ce2e5dcd0ce
+automatic god 2: 2b5a3fc53922a11b
+automatic bmb 2: 2c0acbeaf44d26b5
+edited 2: 83dedb3492d6debb
+automatic plain 3: a49691b16a23416e
+automatic god 3: fcfa71e20a74162f
+automatic bmb 3: 250e5787c62441c0
+edited 3: 9ec394c6fcece985 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 4: 600c16abd981767f
+automatic god 4: 1b3903f241830a50
+automatic bmb 4: 087919b07fc39749
+edited 4: e81252dcf806c813 | districts: this settlement is not mapped by district
+automatic plain 5: c21784d5c7cc0fdd
+automatic god 5: ac3dfa98c070c260
+automatic bmb 5: f53e566e5d3dca81
+edited 5: 4afa8c3bb1d19481 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 6: 1315522a968a4f51
+automatic god 6: 021d2836df45c53e
+automatic bmb 6: 0812d399132f0219
+edited 6: 0be8eedead8b12ae | districts: this settlement is not mapped by district
+automatic plain 7: 54a3336c64b9b673
+automatic god 7: 01b4d90bb7e7980c
+automatic bmb 7: 077ed662e8e91557
+edited 7: eebac08bf9adfa82 | districts: this settlement is not mapped by district
+automatic plain 8: 0dcb10f3767a440f
+automatic god 8: 7712e88b965488ca
+automatic bmb 8: dcc51546b6b000b1
+edited 8: a558382795f571dd | districts: this settlement is not mapped by district
+automatic plain 9: edb92183fc69373f
+automatic god 9: da6b77ba320390be
+automatic bmb 9: 598c9905f2ff86d1
+edited 9: 6ed7198f2305f6a2 | districts: this settlement is not mapped by district
+automatic plain 10: c4a7ebbfda0c9fac
+automatic god 10: 6a4bf7ab4bef3d71
+automatic bmb 10: c8d29301c70cc38a
+edited 10: 080c439b91bfd707 | relationship: there is no relationship 1
+automatic plain 11: 26f02e29fd419f56
+automatic god 11: 8b55dc61003442a7
+automatic bmb 11: 7089e3cf8ef5d830
+edited 11: ca5ca8d24a888811 | districts: this settlement is not mapped by district
+automatic plain 12: 25b652c1e7a658dc
+automatic god 12: 03ae1ce44465683d
+automatic bmb 12: 2968f9a5e7be8b94
+edited 12: 7bdff0e0dd8bf286 | districts: this settlement is not mapped by district
+automatic plain 13: a94ab54c5c8cf03c
+automatic god 13: a121f69b4d5c8815
+automatic bmb 13: 96b8b384ef877d59
+edited 13: 01922676b9346e3f | relationship: there is no relationship 1
+automatic plain 14: 49cf70ffb91e14b8
+automatic god 14: ac7332cc68390ec7
+automatic bmb 14: fe830ee1560aa91a
+edited 14: 8b6434bbd7d69f93 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 15: 4bef3c8f31d7b184
+automatic god 15: 84efec0874772bf3
+automatic bmb 15: f58b2ad9ae33f91c
+edited 15: b2b1737e5bb04814 | districts: this settlement is not mapped by district
+automatic plain 16: 967feab3ce6011ad
+automatic god 16: 02142f85af3a5884
+automatic bmb 16: 9d9640b808590ec5
+edited 16: b18bee481f9a1f05
+automatic plain 17: 7aa013014bb01796
+automatic god 17: 173708ac51a4df7b
+automatic bmb 17: 8435e269c0c49278
+edited 17: e62f16c3c28ee0e8
+automatic plain 18: 3990428033f3353b
+automatic god 18: 11c463ba870bacea
+automatic bmb 18: 92ce4f5a3fa1cfd9
+edited 18: 22f78ae62fd9e628 | relationship: there is no relationship 1
+automatic plain 19: 2e00c7774d11593d
+automatic god 19: a154bc323440f6ae
+automatic bmb 19: 1a3bbf51e7c33b2b
+edited 19: 21ecb0db9bb8a5fb | relationship: there is no relationship 1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 20: 1da0bc45c9143fe6
+automatic god 20: 2f3f4dd6163cee7f
+automatic bmb 20: 0a20b049cc3856ee
+edited 20: 56bccaf74e299e52 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 21: 8c19dcdb2d4a4f5c
+automatic god 21: b4a6db8a8b9cbc1b
+automatic bmb 21: 7b910a547e279442
+edited 21: f9064a6cea71a319 | relationship: there is no relationship 1
+automatic plain 22: a04b3e0e90e6864a
+automatic god 22: 65186aa44550c399
+automatic bmb 22: 72a1e56846b43666
+edited 22: 8aa583bf79f20012 | relationship: there is no relationship 1
+automatic plain 23: 86127cecb90441e2
+automatic god 23: 0b3930dffafed447
+automatic bmb 23: 92ca9c7971de5f1a
+edited 23: 8bc70ed929006636 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 24: 5150775d6cf63457
+automatic god 24: 617a012394db2d0c
+automatic bmb 24: ac723607a17ba70d
+edited 24: a7e294f49ff7c3af | districts: this settlement is not mapped by district
+automatic plain 25: e72294355a5a9f1b
+automatic god 25: 3a25326514fbf494
+automatic bmb 25: 6704185e3938d77d
+edited 25: c947c6452e8338af | relationship: there is no relationship 1
+automatic plain 26: 09278a0e96f34058
+automatic god 26: 08773ee7a033b743
+automatic bmb 26: 679c16762be25904
+edited 26: 02f4857754b4e87c | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 27: c89d5a2ac8391777
+automatic god 27: 501ded0fa5d93bb8
+automatic bmb 27: 787ce2a6f4493b03
+edited 27: 395f9062140c1a24
+automatic plain 28: 10280fba3bfb515d
+automatic god 28: dd816fe145fe88ba
+automatic bmb 28: 9d542a18d950d8eb
+edited 28: cac048cd808710b8 | districts: this settlement is not mapped by district
+automatic plain 29: f42bd5be3dc7c4ed
+automatic god 29: 2ace73e97fe1a8e2
+automatic bmb 29: 15d9d50e6497ad41
+edited 29: d7f7cfdb68103f21
+automatic plain 30: d7acb187140748f5
+automatic god 30: e31d25be60828c04
+automatic bmb 30: 44073368ce279a0d
+edited 30: 1a1f0aee35f45bf2 | districts: this settlement is not mapped by district
+automatic plain 31: 80ee5f570cdb1a79
+automatic god 31: 9db7421917f07d36
+automatic bmb 31: ac9ea7246ba8e9fe
+edited 31: 89ca53b606d97c16 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 32: 8ac23d2c2b17b033
+automatic god 32: 3c21e7c67552a2c6
+automatic bmb 32: 15e3038c22c60213
+edited 32: 224cc785e00c4e8b | relationship: there is no relationship 1
+automatic plain 33: 1f2f95bd1cd7ea11
+automatic god 33: 1ad7359d76f2772c
+automatic bmb 33: 1c1c9c57b092858e
+edited 33: 19d6f17b967624db | districts: this settlement is not mapped by district
+automatic plain 34: d67942c477b21e19
+automatic god 34: 86429cb1b09716e0
+automatic bmb 34: 1980d22a98474059
+edited 34: 60332913f16fe298 | districts: this settlement is not mapped by district
+automatic plain 35: fc1e153400098e11
+automatic god 35: a01f03fc32a7b6a8
+automatic bmb 35: 82aacd789713bdb3
+edited 35: 4aa49fead083cc61 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 36: 426447a956b8c9c2
+automatic god 36: befbf21ee81f40a7
+automatic bmb 36: 21f5dfc99a7a5fe6
+edited 36: f203fcbd6e8a5f33 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 37: d516396229f3770b
+automatic god 37: 2ee6c067441f88d6
+automatic bmb 37: 1ea9496406666885
+edited 37: 275bc0d3e85f42b5 | relationship: there is no relationship 1
+automatic plain 38: 1e9039c61c4b62df
+automatic god 38: 086406e30bd29a6e
+automatic bmb 38: c62e79d98aa9c5cd
+edited 38: 81514e9c2d2008ee | relationship: there is no relationship 1
+automatic plain 39: 838b4e54999b5cf8
+automatic god 39: dc2670f073f194df
+automatic bmb 39: 2947544e0f5e9008
+edited 39: ab23684faee48f01 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 40: 91d8d68837e4029c
+automatic god 40: 6e666f9d9caae9c3
+automatic bmb 40: 7f7fc357f6833fa0
+edited 40: c0730ab3a69c24c3
+automatic plain 41: 548e04ce141d19a4
+automatic god 41: fa2fee260482dba1
+automatic bmb 41: 477040ad12c4ea40
+edited 41: 50d6ac7dddb6350e | districts: this settlement is not mapped by district
+automatic plain 42: c6340919495d248d
+automatic god 42: e1b22f3f2e47294a
+automatic bmb 42: 058a459067fa742f
+edited 42: 3b0db73e533743fc | relationship: there is no relationship 1
+automatic plain 43: 7c579246dab3f5e4
+automatic god 43: b1dd5a46c2e78eaf
+automatic bmb 43: a016ad36a53a7945
+edited 43: 722af4c0af9f284b
+automatic plain 44: dedaaeca278be6ac
+automatic god 44: 19f51d34d8861b9f
+automatic bmb 44: ecd0a119a81a7e5c
+edited 44: 19b72c6a92d49980
+automatic plain 45: a8010a68afd1f9fc
+automatic god 45: 61eca81b5ce6870b
+automatic bmb 45: 713078514c6c1c86
+edited 45: c390645541e7906b | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 46: b1b3a15797cae58b
+automatic god 46: 0595d9a8d0d0b59e
+automatic bmb 46: 685e6e275ef2a83b
+edited 46: 2829ee45bda927fb | districts: this settlement is not mapped by district
+automatic plain 47: f8cfe71f0381135c
+automatic god 47: b4ec63519221f3ff
+automatic bmb 47: 9acc0f45a59b4378
+edited 47: 1e5d11a65e3f288c | relationship: there is no relationship 1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 48: 46a327dcb914ef97
+automatic god 48: 4f444b9d9f71fea2
+automatic bmb 48: 541b2f06a192e7d7
+edited 48: 94f0c5a4bdda7766 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 49: 29389050fd7fde4c
+automatic god 49: f6f6a643897ebe29
+automatic bmb 49: a692fda44770c9de
+edited 49: a05ec03a78a912c1 | districts: this settlement is not mapped by district
+automatic plain 50: 877a096b0f1cd3f4
+automatic god 50: f5b4343ac4a609b5
+automatic bmb 50: 8204e4977a3edbf2
+edited 50: 8c0f97a75bf21727 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 51: 713373cbeb24ad10
+automatic god 51: bad86f2ad4fa6923
+automatic bmb 51: dabd8ffd0c4adfd2
+edited 51: 3782e020ceeb714e | relationship: there is no relationship 1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 52: 0bed3bcb02b45b99
+automatic god 52: cc5405ab7724a74e
+automatic bmb 52: c9091525f0ec4133
+edited 52: eafc9a9edc9f22b2 | relationship: there is no relationship 1
+automatic plain 53: a81db39953fb2822
+automatic god 53: 06775f2049ea1859
+automatic bmb 53: 8fa6fbc587da99d0
+edited 53: b60bfaeb23552916 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 54: 8ff1278fdf5f2bef
+automatic god 54: 7e115b5f8fc2ae28
+automatic bmb 54: 43fe3f13dbb19975
+edited 54: c029aaebe0bc4155 | relationship: there is no relationship 1
+automatic plain 55: b31b2daeb6eb31c6
+automatic god 55: c6b1b4786860736f
+automatic bmb 55: 4bc6e808ffb1d0d4
+edited 55: 16b8311c11f89696 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 56: a1163fcabcb013c7
+automatic god 56: e0a564d1e68c4ef8
+automatic bmb 56: 9220afd9a56c849d
+edited 56: 5f65b57cde0a464f | districts: this settlement is not mapped by district
+automatic plain 57: f30bbedba078cf3b
+automatic god 57: a658cda0e5cf1f6e
+automatic bmb 57: 872be0958e70f7cb
+edited 57: f210210eefe6028a | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 58: 2a5184ee8bac4133
+automatic god 58: c9c83d2ee87b8a48
+automatic bmb 58: 8a039dece9239647
+edited 58: 36769115fa6e2802 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 59: a8a9ab8a6cba4201
+automatic god 59: 75d1fac14d83b6d4
+automatic bmb 59: 1cf3ed032d60db5f
+edited 59: afdb85563f16206a | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 60: 14322f255feede7a
+automatic god 60: f0e092834c52986b
+automatic bmb 60: 0319b1bcc770d377
+edited 60: e72cc416b5161700 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 61: 7911611d991e3c73
+automatic god 61: 9bd1075a88a6c2e6
+automatic bmb 61: 1741dfe1ae087d77
+edited 61: bbea883d39e3a9e8
+automatic plain 62: 5b6b2f0a52eea95b
+automatic god 62: 43730903fc837dce
+automatic bmb 62: 0cc3247afaa17bcd
+edited 62: 55b7547105cac04b | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 63: 85842034c0e3db98
+automatic god 63: bfa9fc143f9d15f3
+automatic bmb 63: 3972bff73897d848
+edited 63: 78fd5985add6475b | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 64: 62a05d8fcb17bf9f
+automatic god 64: bfee6e0421b23c70
+automatic bmb 64: 6e3474777c809007
+edited 64: 7becc63a070c8b65
+automatic plain 65: c20595103f432ede
+automatic god 65: 968c484fb3e1e425
+automatic bmb 65: 363e9d6d58cd1c74
+edited 65: 88a96f846a902703 | relationship: there is no relationship 1
+automatic plain 66: 22b243bb90b7a2aa
+automatic god 66: 2573ca45fb3cddbf
+automatic bmb 66: 686f13462baa7558
+edited 66: 6af9eac66a746f99 | districts: this settlement is not mapped by district
+automatic plain 67: 8b493a39044ad16b
+automatic god 67: 5cb17f3941907a34
+automatic bmb 67: af14136596cbbde2
+edited 67: 1a09c15552792d98 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 68: 67e526ac174dc77a
+automatic god 68: 07e2ea2a7b562229
+automatic bmb 68: f1f113fd9cdbbe2a
+edited 68: 302166a70bd0548f | relationship: there is no relationship 1
+automatic plain 69: af22b5a1d87c95cf
+automatic god 69: 9acadb543758c39e
+automatic bmb 69: b5b42a1b2b37f4cb
+edited 69: 8ebe5f4981ef162a | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 70: 60cef9af784d24b3
+automatic god 70: b0652c8e20f837b0
+automatic bmb 70: 49d0963a9970d99f
+edited 70: c5f7570ac3353468 | districts: this settlement is not mapped by district
+automatic plain 71: 59ea77d078b3a887
+automatic god 71: 828e392483e7eb5a
+automatic bmb 71: d537c5f7ae905102
+edited 71: be28b27e8b84454b | relationship: there is no relationship 1
+automatic plain 72: 9c428ac96b2bf6a6
+automatic god 72: ae61f6f925c98d75
+automatic bmb 72: 247cc6ac8cacccf1
+edited 72: c25b8319ff77c925
+automatic plain 73: a9de185632f82965
+automatic god 73: 9caff426e93e0d74
+automatic bmb 73: 4c79fbe0166fbbf1
+edited 73: 6437675486efd92a
+automatic plain 74: e9c0e9069e5be191
+automatic god 74: fc4d73d67d1aa4ca
+automatic bmb 74: 8bd1d0ce3bb83821
+edited 74: b5ca2dff6dbb6219 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 75: 8d33cc8b49c1da37
+automatic god 75: 805e0aa284b5a946
+automatic bmb 75: 1c131a0e1313841e
+edited 75: def1294a9ac1c69c | relationship: there is no relationship 1
+automatic plain 76: ecc9a7a14982a91e
+automatic god 76: 3b5a2ebe663eca57
+automatic bmb 76: 4a28ad4cc58f39ae
+edited 76: 3acf195510444cf2 | relationship: there is no relationship 1
+automatic plain 77: 39c8b1e25946e844
+automatic god 77: 8502a661a84962e3
+automatic bmb 77: f2ad17bdfb66f0b0
+edited 77: efe4c33f2d309b82 | relationship: there is no relationship 1
+automatic plain 78: 54096023d09b2597
+automatic god 78: 91b926350973c808
+automatic bmb 78: 16e164017a7cf4df
+edited 78: 607fd1fb6c65f62b | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 79: 7cc30d8b16375ec9
+automatic god 79: f551c54aea1d670a
+automatic bmb 79: fe0dbc7857e1ec5f
+edited 79: ceeef2b3557a49af
+automatic plain 80: ff146b179b22fa3b
+automatic god 80: 09b18ae2c1b5c554
+automatic bmb 80: 27a786a2a8232203
+edited 80: 060d74f44c20dd1b | districts: this settlement is not mapped by district
+automatic plain 81: 6f19a66701ceada6
+automatic god 81: 540bb5a50db33db3
+automatic bmb 81: 62447a121b7bec12
+edited 81: cc55bbc5dd804073 | districts: this settlement is not mapped by district
+automatic plain 82: 00b6b77336099afc
+automatic god 82: 5cd61f805ec11605
+automatic bmb 82: 142de2ef734594a7
+edited 82: 1f19759a855cecb2
+automatic plain 83: 8ba6c1d45f5b6335
+automatic god 83: ae49009a2139288c
+automatic bmb 83: c512963df00bd85f
+edited 83: 8837e5893b6f4f7a | relationship: there is no relationship 1
+automatic plain 84: 5f1fc54e5f6ad508
+automatic god 84: fd92dfae741b328f
+automatic bmb 84: 0307313433ea0901
+edited 84: 2ea923e27a97433d | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 85: 5bbdf91f573c66ff
+automatic god 85: dc13b16ecaf8ca6e
+automatic bmb 85: 19419bb64e712b2f
+edited 85: 2991fe9f18d66ab1 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 86: 11eb2b84bd8888ca
+automatic god 86: cd5b279061d9ac3b
+automatic bmb 86: 850098b24631aa5a
+edited 86: fb79cee7c537165b | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 87: b3eba61fcd61b87d
+automatic god 87: aa5c54fcd2eb7c8c
+automatic bmb 87: e45673e3d31f35f1
+edited 87: d486f759e128a32d | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 88: ce496f02b85f3a2e
+automatic god 88: 9897670522ee8617
+automatic bmb 88: 195aa4fad9ccb822
+edited 88: 534c072a84f90775 | relationship: there is no relationship 1
+automatic plain 89: 498b4fa55c8a0f50
+automatic god 89: 85c5c6db81bef94d
+automatic bmb 89: c6feaca00cf7d2b8
+edited 89: f962eb12050b548a | relationship: there is no relationship 1
+automatic plain 90: 433255141477f751
+automatic god 90: 0b98fd00e868bc32
+automatic bmb 90: bfb5d327817380fd
+edited 90: ca32fa7ab31bb738 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 91: 22b606f965269fda
+automatic god 91: 99c543cac3c586cb
+automatic bmb 91: 71f4e16af52af8b0
+edited 91: 098b02bb53d9ffa3
+automatic plain 92: 631b7a336c5be4aa
+automatic god 92: 417ade09e2d23d81
+automatic bmb 92: 639e6e5f6ecb6106
+edited 92: 4cf2d398df1dfe7f
+automatic plain 93: 75d7ddba5fdcb61f
+automatic god 93: 472f1bc43cf616fa
+automatic bmb 93: e40b1b65d5e1ec8b
+edited 93: 4ede7c5ed09753de | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 94: bf5d1a1b4eb354a5
+automatic god 94: f6a2b61499ebe19e
+automatic bmb 94: f32b81589f07198f
+edited 94: 409a9fcfc565fda1
+automatic plain 95: 747e4cecdbceff18
+automatic god 95: c36baaeaf99b2bfd
+automatic bmb 95: 4163147cfa2c4173
+edited 95: 167691c50c3c6944 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 96: a978c20d31cfb816
+automatic god 96: e5c40ef1f1b4b043
+automatic bmb 96: 2fa749ed9ebcaa5a
+edited 96: 7b031d137d8c138e | districts: this settlement is not mapped by district
+automatic plain 97: 2bf309f1b99fcbc1
+automatic god 97: 5263748e7683d5f6
+automatic bmb 97: e3b106e83cec9bf5
+edited 97: 0775774b47d29b2b
+automatic plain 98: 59ea22a7957d9eba
+automatic god 98: 419fd4693f8d3065
+automatic bmb 98: acdfd77304db783f
+edited 98: 6000887a3eede69d | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 99: c9ea675ae4ccb354
+automatic god 99: eca5b21c174a5c45
+automatic bmb 99: dffebc08f80f5e12
+edited 99: 56837fac2e8bf704 | districts: this settlement is not mapped by district
+automatic plain 100: 171795d00ed59e67
+automatic god 100: 7f2eb6ac7cdb81ce
+automatic bmb 100: 5772fd62b46800e1
+edited 100: 885a218c53d8c2e3 | districts: this settlement is not mapped by district
+automatic plain 101: 1e9ebc2ad24e6bc0
+automatic god 101: 1ccc52f65047f32b
+automatic bmb 101: 5ce7590becbb0751
+edited 101: a19975cec0fbf2d7 | districts: this settlement is not mapped by district
+automatic plain 102: 24fb7017f4150fcc
+automatic god 102: 9dbec74ebe77724d
+automatic bmb 102: 71906df1cae7a7a2
+edited 102: 003e95a8ba7276ed | districts: this settlement is not mapped by district
+automatic plain 103: 02b04e978fe33228
+automatic god 103: dc02ef9b8b722d1b
+automatic bmb 103: 88de3daf5b267476
+edited 103: 14140743c55b3ee2 | districts: this settlement is not mapped by district
+automatic plain 104: c78a19bd581bc915
+automatic god 104: aedacf518505fe66
+automatic bmb 104: e73cb1f9ababa76d
+edited 104: 34714500a5077fac | districts: this settlement is not mapped by district
+automatic plain 105: 30632e4a44525f01
+automatic god 105: 38d59e522da5cc1a
+automatic bmb 105: 03991f8d5ee7e89e
+edited 105: 7d6bf2281b15eeb8 | relationship: there is no relationship 1
+automatic plain 106: 0cda7ee1831a042c
+automatic god 106: 5a7a8efb14921403
+automatic bmb 106: 95da073c5e0456a5
+edited 106: e981d5ebb810cafb
+automatic plain 107: 69489fcd32690b06
+automatic god 107: 8e78ca978ff00e61
+automatic bmb 107: 651b267a0aee56be
+edited 107: efd432f6bb50a1d3 | districts: this settlement is not mapped by district
+automatic plain 108: 2961ac12c5151940
+automatic god 108: 9a13aa1f7b77da49
+automatic bmb 108: f13da8516b0530ea
+edited 108: 4e0bb7bae1203211 | relationship: there is no relationship 1
+automatic plain 109: dbaf3378337f652b
+automatic god 109: 0e4cbca5a7965060
+automatic bmb 109: 68d44ad40620fc1b
+edited 109: 6d52f778c0a45524 | relationship: there is no relationship 1
+automatic plain 110: 21f23c2c17c89cc0
+automatic god 110: 92969a625e831ff9
+automatic bmb 110: 834f081fd9b8700a
+edited 110: da4f6642adfb8be9 | districts: this settlement is not mapped by district
+automatic plain 111: 8813657f4db23c34
+automatic god 111: adcb1bc86651e027
+automatic bmb 111: b3db54c7fe4b10d8
+edited 111: a554e6655dee53a1
+automatic plain 112: d674c48249ec6f94
+automatic god 112: b03140dd10280ffb
+automatic bmb 112: e4e248512ddefa1e
+edited 112: 6bd9c310f1c060f3 | districts: this settlement is not mapped by district
+automatic plain 113: 141796e23b8a5278
+automatic god 113: 9c9ecc9111541e3d
+automatic bmb 113: bf6a9fbc17e95790
+edited 113: e4545d8807e1d021 | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 114: 8572a1ed9d2c2f75
+automatic god 114: 3c97bf1b5c5dd84c
+automatic bmb 114: 04d87764f5e20193
+edited 114: 4f9206e655d5c934
+automatic plain 115: 2075fa1eee70658b
+automatic god 115: cef3e36e8deb4f3c
+automatic bmb 115: 429409c4e039303b
+edited 115: 7e0368432c853742 | districts: this settlement is not mapped by district | type: there is no Notable Location 2
+automatic plain 116: 9b821e5f822f9aef
+automatic god 116: d2e930784e7c0984
+automatic bmb 116: 572d4854832e05d3
+edited 116: 66780f303e6eafe5 | districts: this settlement is not mapped by district
+automatic plain 117: d185b5bbf1a5a9c8
+automatic god 117: b05c447f3eef58dd
+automatic bmb 117: 36c7ce0ababb7e8a
+edited 117: f54ae9c053ee82ad | districts: this settlement is not mapped by district
+automatic plain 118: 3ab3976f7de8acf9
+automatic god 118: 77288ab28ff99e94
+automatic bmb 118: 565fcbd950d8654f
+edited 118: d90e8888ee721c3a | relationship: there is no relationship 1 | districts: this settlement is not mapped by district
+automatic plain 119: c047c78854a7cd1e
+automatic god 119: be2d7f3d6e4f534d
+automatic bmb 119: b69012dd5a452b18
+edited 119: 223f04ae6480ca63 | districts: this settlement is not mapped by district

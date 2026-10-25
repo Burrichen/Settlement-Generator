@@ -8,51 +8,43 @@
       "results": [
         {
           "id": "farmlandOpenCountry",
-          "name": "Farmland & Open Country",
-          "range": [1, 5],
-          "tags": ["env.farmlandOpenCountry"]
+          "shared": "environment.farmlandOpenCountry",
+          "range": [1, 5]
         },
         {
           "id": "grasslandPlains",
-          "name": "Grassland / Plains",
-          "range": [6, 8],
-          "tags": ["env.grasslandPlains"]
+          "shared": "environment.grasslandPlains",
+          "range": [6, 8]
         },
         {
           "id": "woodland",
-          "name": "Woodland",
-          "range": [9, 11],
-          "tags": ["env.woodland"]
+          "shared": "environment.woodland",
+          "range": [9, 11]
         },
         {
           "id": "moorlandHeath",
-          "name": "Moorland / Heath",
-          "range": 12,
-          "tags": ["env.moorlandHeath"]
+          "shared": "environment.moorlandHeath",
+          "range": 12
         },
         {
           "id": "hills",
-          "name": "Hills",
-          "range": [13, 14],
-          "tags": ["env.hills"]
+          "shared": "environment.hills",
+          "range": [13, 14]
         },
         {
           "id": "mountains",
-          "name": "Mountains",
-          "range": [15, 16],
-          "tags": ["env.mountains"]
+          "shared": "environment.mountains",
+          "range": [15, 16]
         },
         {
           "id": "wetlands",
-          "name": "Wetlands",
-          "range": [17, 18],
-          "tags": ["env.wetlands"]
+          "shared": "environment.wetlands",
+          "range": [17, 18]
         },
         {
           "id": "coast",
-          "name": "Coast",
-          "range": [19, 20],
-          "tags": ["env.coast"]
+          "shared": "environment.coast",
+          "range": [19, 20]
         }
       ]
     }

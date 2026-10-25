@@ -8,7 +8,11 @@ use std::fmt;
 
 use serde::{Deserialize, Serialize};
 
-use crate::ids::{GeneratorId, NamingSchemeId, ResultId, TableId, TagId, VariantId};
+use crate::framework::{Flow, ObjectType, Scale, SettingDef, SettingValue, SharedResult};
+use crate::ids::{
+    FlowId, GeneratorId, NamingSchemeId, ResultId, ScaleId, SettingId, SharedResultId, StepId,
+    TableId, TagId, VariantId,
+};
 use crate::locations::LocationScheme;
 use crate::naming::NamingScheme;
 use crate::roles::RoleScheme;
@@ -55,6 +59,27 @@ pub struct ContentSet {
     /// `locations.rs`).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub location_schemes: Vec<LocationScheme>,
+    /// Canonical results that tables can list by ID (see
+    /// [`TableResult::shared`]), so one outcome is defined once.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub shared_results: Vec<SharedResult>,
+    /// Ordered scales that Shift and Cap modifiers move along.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub scales: Vec<Scale>,
+    /// Generation settings that conditions can test.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub settings: Vec<SettingDef>,
+    /// Kinds of object that flows create (e.g. a person).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub objects: Vec<ObjectType>,
+    /// Ordered generation steps. The [`start`](Self::start) flow is the
+    /// pipeline; other flows run as subflows.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub flows: Vec<Flow>,
+    /// The flow a new generation runs. Without it, the legacy `sequence` is
+    /// the pipeline.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub start: Option<FlowId>,
 }
 
 impl Default for ContentSet {
@@ -67,6 +92,12 @@ impl Default for ContentSet {
             naming_schemes: Vec::new(),
             role_schemes: Vec::new(),
             location_schemes: Vec::new(),
+            shared_results: Vec::new(),
+            scales: Vec::new(),
+            settings: Vec::new(),
+            objects: Vec::new(),
+            flows: Vec::new(),
+            start: None,
         }
     }
 }
@@ -255,9 +286,13 @@ impl ContentSet {
     /// The tables of the generation pipeline, in order. Naming stages have
     /// no table of their own and are left out.
     pub fn sequence_tables(&self) -> Vec<TableId> {
-        self.sequence
-            .iter()
-            .filter_map(|s| s.table().cloned())
+        self.pipeline()
+            .into_iter()
+            .filter(|s| s.runs())
+            .filter_map(|s| match s.action {
+                crate::framework::StepAction::Roll { table, .. } => Some(table),
+                _ => None,
+            })
             .collect()
     }
 
@@ -317,6 +352,58 @@ impl ContentSet {
     pub fn tag(&self, id: &TagId) -> Option<&Tag> {
         self.tags.iter().find(|t| &t.id == id)
     }
+
+    pub fn shared_result(&self, id: &SharedResultId) -> Option<&SharedResult> {
+        self.shared_results.iter().find(|r| &r.id == id)
+    }
+
+    pub fn scale(&self, id: &ScaleId) -> Option<&Scale> {
+        self.scales.iter().find(|s| &s.id == id)
+    }
+
+    /// The setting `id` names (an alias names the setting it stands for).
+    pub fn setting(&self, id: &SettingId) -> Option<&SettingDef> {
+        let id = crate::framework::canonical_setting(id);
+        self.settings.iter().find(|s| s.id == id)
+    }
+
+    pub fn flow(&self, id: &FlowId) -> Option<&Flow> {
+        self.flows.iter().find(|f| &f.id == id)
+    }
+
+    pub fn object_type(&self, id: &crate::ids::ObjectTypeId) -> Option<&ObjectType> {
+        self.objects.iter().find(|o| &o.id == id)
+    }
+
+    /// The order of `table`'s results on its scale, lowest first: the
+    /// table's own `scale`, else (for an `ordered` table) its results in
+    /// listed order. `None` for a table without a scale.
+    pub fn scale_order<'t>(&self, table: &'t Table) -> Option<Vec<&'t ResultId>> {
+        match &table.scale {
+            Some(id) => {
+                let scale = self.scale(id)?;
+                Some(
+                    scale
+                        .steps
+                        .iter()
+                        .filter_map(|step| {
+                            table
+                                .results
+                                .iter()
+                                .find(|r| {
+                                    &r.id == step
+                                        || r.shared.as_ref().map(|s| s.as_str())
+                                            == Some(step.as_str())
+                                })
+                                .map(|r| &r.id)
+                        })
+                        .collect(),
+                )
+            }
+            None if table.ordered => Some(table.results.iter().map(|r| &r.id).collect()),
+            None => None,
+        }
+    }
 }
 
 /// A random table rolled with physical dice.
@@ -350,6 +437,11 @@ pub struct Table {
     /// Like `selection` and `status`, it cannot be changed by a customisation.
     #[serde(default, skip_serializing_if = "is_false")]
     pub ordered: bool,
+    /// The scale this table's results lie on, for Shift and Cap modifiers.
+    /// Without it, an `ordered` table's results in listed order are its
+    /// scale.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub scale: Option<ScaleId>,
     /// Ordered results. Each result's `range` forms the base layout.
     #[serde(default)]
     pub results: Vec<TableResult>,
@@ -396,13 +488,31 @@ impl Table {
     pub fn variant(&self, id: &VariantId) -> Option<&TableVariant> {
         self.variants.iter().find(|v| &v.id == id)
     }
+
+    /// The result given instead of `rolled` when it is unique and already
+    /// `held`: its fallback, so a unique result is never rerolled.
+    pub fn fallback_for(&self, rolled: &TableResult, held: &[ResultId]) -> Option<&TableResult> {
+        let fallback = rolled.fallback.as_ref()?;
+        (rolled.unique && held.contains(&rolled.id))
+            .then(|| self.result(fallback))
+            .flatten()
+    }
 }
 
 /// One outcome of a table.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct TableResult {
     pub id: ResultId,
+    /// May be left empty when the result lists a shared result, whose name
+    /// it then takes.
+    #[serde(default)]
     pub name: String,
+    /// The shared result this entry lists. Its name, description, tags,
+    /// eligibility, value, label variants and generator are used for every
+    /// field this entry leaves empty; faces, enabled and uniqueness belong
+    /// to the table.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub shared: Option<SharedResultId>,
     #[serde(default, skip_serializing_if = "String::is_empty")]
     pub description: String,
     /// Faces of the base layout that select this result. `None` means the
@@ -444,6 +554,10 @@ pub struct TableResult {
     /// first match first (e.g. `gender.woman` → "Lady"). Otherwise `name`.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub label_variants: Vec<LabelVariant>,
+    /// Tables rolled next whenever this result comes up (after any tables
+    /// its tags route to), e.g. a Hazard table after "Dangerous".
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub then_roll: Vec<TableId>,
 }
 
 /// A display label for a result, used when its holder has `tag`.
@@ -558,7 +672,9 @@ impl From<FaceRange> for FaceRangeRepr {
     }
 }
 
-/// A boolean test over the tags active during generation.
+/// A boolean test over what generation knows so far: the active tags, the
+/// generation settings and, inside flows, the results and values earlier
+/// steps stored. `all` is AND, `any` is OR.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum Condition {
@@ -566,32 +682,253 @@ pub enum Condition {
     All(Vec<Condition>),
     Any(Vec<Condition>),
     Not(Box<Condition>),
+    /// A toggle setting is on, e.g. `{ "setting_on": "app.godMode" }`.
+    SettingOn(SettingId),
+    /// A dropdown setting has the option `value` (or a text setting the
+    /// text `value`).
+    SettingIs {
+        setting: SettingId,
+        value: String,
+    },
+    /// A number setting lies within `min..=max`.
+    SettingBetween {
+        setting: SettingId,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        min: Option<i64>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        max: Option<i64>,
+    },
+    /// A multi-select setting has the option `value` ticked.
+    SettingHas {
+        setting: SettingId,
+        value: String,
+    },
+    /// Flows only: the result an earlier step stored is one of `results`.
+    ResultIs {
+        step: StepId,
+        results: Vec<ResultId>,
+    },
+    /// Flows only: the number an earlier step stored (a result's `value`
+    /// or a secondary roll's total) lies within `min..=max`.
+    ValueIn {
+        step: StepId,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        min: Option<i64>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        max: Option<i64>,
+    },
+}
+
+/// What conditions are evaluated against. Unknown settings, results and
+/// values make their tests false.
+pub trait Facts {
+    fn has_tag(&self, tag: &TagId) -> bool;
+
+    fn setting(&self, _id: &SettingId) -> Option<SettingValue> {
+        None
+    }
+
+    fn result_of(&self, _step: &StepId) -> Option<ResultId> {
+        None
+    }
+
+    fn value_of(&self, _step: &StepId) -> Option<i64> {
+        None
+    }
+}
+
+/// Facts that are only a set of tags.
+struct TagFacts<'a>(&'a dyn Fn(&TagId) -> bool);
+
+impl Facts for TagFacts<'_> {
+    fn has_tag(&self, tag: &TagId) -> bool {
+        (self.0)(tag)
+    }
 }
 
 impl Condition {
+    /// Evaluates against tags only; setting, result and value tests are
+    /// false.
     pub fn evaluate(&self, has_tag: &dyn Fn(&TagId) -> bool) -> bool {
+        self.evaluate_with(&TagFacts(has_tag))
+    }
+
+    pub fn evaluate_with(&self, facts: &dyn Facts) -> bool {
         match self {
-            Condition::HasTag(t) => has_tag(t),
-            Condition::All(cs) => cs.iter().all(|c| c.evaluate(has_tag)),
-            Condition::Any(cs) => cs.iter().any(|c| c.evaluate(has_tag)),
-            Condition::Not(c) => !c.evaluate(has_tag),
+            Condition::HasTag(t) => facts.has_tag(t),
+            Condition::All(cs) => cs.iter().all(|c| c.evaluate_with(facts)),
+            Condition::Any(cs) => cs.iter().any(|c| c.evaluate_with(facts)),
+            Condition::Not(c) => !c.evaluate_with(facts),
+            Condition::SettingOn(id) => facts.setting(id) == Some(SettingValue::Toggle(true)),
+            Condition::SettingIs { setting, value } => {
+                facts.setting(setting) == Some(SettingValue::Choice(value.clone()))
+            }
+            Condition::SettingBetween { setting, min, max } => match facts.setting(setting) {
+                Some(SettingValue::Number(n)) => {
+                    min.is_none_or(|min| n >= min) && max.is_none_or(|max| n <= max)
+                }
+                _ => false,
+            },
+            Condition::SettingHas { setting, value } => matches!(
+                facts.setting(setting),
+                Some(SettingValue::Many(v)) if v.contains(value)
+            ),
+            Condition::ResultIs { step, results } => {
+                facts.result_of(step).is_some_and(|r| results.contains(&r))
+            }
+            Condition::ValueIn { step, min, max } => facts
+                .value_of(step)
+                .is_some_and(|v| min.is_none_or(|min| v >= min) && max.is_none_or(|max| v <= max)),
         }
     }
 
     /// Every tag the condition refers to.
     pub fn tags(&self) -> Vec<&TagId> {
         let mut out = Vec::new();
-        self.collect_tags(&mut out);
+        self.visit(&mut |c| {
+            if let Condition::HasTag(t) = c {
+                out.push(t);
+            }
+        });
         out
     }
 
-    fn collect_tags<'a>(&'a self, out: &mut Vec<&'a TagId>) {
+    /// Every setting the condition refers to.
+    pub fn settings(&self) -> Vec<&SettingId> {
+        let mut out = Vec::new();
+        self.visit(&mut |c| match c {
+            Condition::SettingOn(id)
+            | Condition::SettingIs { setting: id, .. }
+            | Condition::SettingBetween { setting: id, .. }
+            | Condition::SettingHas { setting: id, .. } => out.push(id),
+            _ => {}
+        });
+        out
+    }
+
+    /// Every flow step whose stored result or value the condition reads.
+    pub fn steps(&self) -> Vec<&StepId> {
+        let mut out = Vec::new();
+        self.visit(&mut |c| match c {
+            Condition::ResultIs { step, .. } | Condition::ValueIn { step, .. } => out.push(step),
+            _ => {}
+        });
+        out
+    }
+
+    /// A plain-language account of a setting, result or value test (the
+    /// tests interfaces show as they are), e.g. "Setting Extras is on".
+    /// `None` for tag tests and for all / any / not.
+    pub fn describe_test(&self) -> Option<String> {
         match self {
-            Condition::HasTag(t) => out.push(t),
-            Condition::All(cs) | Condition::Any(cs) => {
-                cs.iter().for_each(|c| c.collect_tags(out));
+            Condition::SettingOn(id) => Some(format!("Setting {id} is on")),
+            Condition::SettingIs { setting, value } => {
+                Some(format!("Setting {setting} is {value}"))
             }
-            Condition::Not(c) => c.collect_tags(out),
+            Condition::SettingBetween { setting, min, max } => Some(match (min, max) {
+                (Some(a), Some(b)) => format!("Setting {setting} is {a} to {b}"),
+                (Some(a), None) => format!("Setting {setting} is at least {a}"),
+                (None, Some(b)) => format!("Setting {setting} is at most {b}"),
+                (None, None) => format!("Setting {setting} has a number"),
+            }),
+            Condition::SettingHas { setting, value } => {
+                Some(format!("Setting {setting} includes {value}"))
+            }
+            Condition::ResultIs { step, results } => {
+                let list: Vec<&str> = results.iter().map(ResultId::as_str).collect();
+                Some(format!("Step {step} gave {}", list.join(" or ")))
+            }
+            Condition::ValueIn { step, min, max } => Some(match (min, max) {
+                (Some(a), Some(b)) => format!("Step {step}'s number is {a} to {b}"),
+                (Some(a), None) => format!("Step {step}'s number is at least {a}"),
+                (None, Some(b)) => format!("Step {step}'s number is at most {b}"),
+                (None, None) => format!("Step {step} stored a number"),
+            }),
+            Condition::HasTag(_) | Condition::All(_) | Condition::Any(_) | Condition::Not(_) => {
+                None
+            }
+        }
+    }
+
+    /// Calls `f` on this condition and every condition inside it.
+    pub fn visit<'a>(&'a self, f: &mut dyn FnMut(&'a Condition)) {
+        f(self);
+        match self {
+            Condition::All(cs) | Condition::Any(cs) => cs.iter().for_each(|c| c.visit(f)),
+            Condition::Not(c) => c.visit(f),
+            _ => {}
+        }
+    }
+}
+
+/// A change to how a table's result comes out. **Shift** moves the result
+/// along the table's ordered scale (results, not faces); **Plus** and
+/// **Minus** change the rolled total before it is read; **Cap at Highest**
+/// and **Cap at Lowest** give the highest or lowest result on the scale.
+/// Serialised as `{ "shift": 1 }`, `{ "plus": 2 }`, `{ "minus": 1 }`,
+/// `"cap_at_highest"` or `"cap_at_lowest"`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Modifier {
+    /// Steps along the scale: positive is higher, negative is lower.
+    Shift(i32),
+    Plus(i32),
+    Minus(i32),
+    CapAtHighest,
+    CapAtLowest,
+}
+
+/// Largest shift, in steps, a modifier may make.
+pub const MAX_SHIFT: i32 = 100;
+/// Largest amount a Plus or Minus modifier may add or subtract.
+pub const MAX_PLUS_MINUS: i32 = 1000;
+/// Largest percentage a Weight effect may set (ten times as likely).
+pub const MAX_WEIGHT_PERCENT: u32 = 1000;
+
+impl Modifier {
+    /// The change to the rolled total (Plus and Minus only).
+    pub fn total_delta(&self) -> i32 {
+        match self {
+            Modifier::Plus(n) => *n,
+            Modifier::Minus(n) => -n,
+            _ => 0,
+        }
+    }
+
+    /// Whether the modifier moves the result along a scale.
+    pub fn needs_scale(&self) -> bool {
+        matches!(
+            self,
+            Modifier::Shift(_) | Modifier::CapAtHighest | Modifier::CapAtLowest
+        )
+    }
+
+    /// Why the modifier is not usable, if it is not.
+    pub fn problem(&self) -> Option<String> {
+        match *self {
+            Modifier::Shift(0) => Some("a shift must move at least one step".into()),
+            Modifier::Shift(n) if n.abs() > MAX_SHIFT => {
+                Some(format!("a shift can move at most {MAX_SHIFT} steps"))
+            }
+            Modifier::Plus(n) | Modifier::Minus(n) if n < 1 => {
+                Some("the amount must be a positive whole number".into())
+            }
+            Modifier::Plus(n) | Modifier::Minus(n) if n > MAX_PLUS_MINUS => {
+                Some(format!("the amount can be at most {MAX_PLUS_MINUS}"))
+            }
+            _ => None,
+        }
+    }
+}
+
+impl fmt::Display for Modifier {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Modifier::Shift(n) => write!(f, "Shift {n:+}"),
+            Modifier::Plus(n) => write!(f, "Plus {n}"),
+            Modifier::Minus(n) => write!(f, "Minus {n}"),
+            Modifier::CapAtHighest => f.write_str("Cap at Highest"),
+            Modifier::CapAtLowest => f.write_str("Cap at Lowest"),
         }
     }
 }
@@ -705,6 +1042,38 @@ pub enum Effect {
     /// While the tag is active, whenever `table` would be rolled, roll `to`
     /// instead (e.g. a setting-specific replacement for a generic table).
     RedirectTable { table: TableId, to: TableId },
+    /// While the tag is active, a rolled result of `table` moves `steps`
+    /// along the table's scale (Shift +1, Shift -2, ...).
+    Shift { table: TableId, steps: i32 },
+    /// While the tag is active, `amount` is added to `table`'s rolled total.
+    Plus { table: TableId, amount: i32 },
+    /// While the tag is active, `amount` is taken from `table`'s rolled
+    /// total.
+    Minus { table: TableId, amount: i32 },
+    /// While the tag is active, a rolled result of `table` is the highest
+    /// result on its scale that can be had.
+    CapAtHighest { table: TableId },
+    /// While the tag is active, a rolled result of `table` is the lowest
+    /// result on its scale that can be had.
+    CapAtLowest { table: TableId },
+    /// While the tag is active, these disabled results of `table` can be
+    /// rolled and chosen (on the faces they already have).
+    EnableResults {
+        table: TableId,
+        results: Vec<ResultId>,
+    },
+    /// While the tag is active, `result` of `table` is `percent`% as
+    /// likely as usual (200 is twice as likely, 50 half as likely). The
+    /// table's results are laid out again on its own dice to match, so the
+    /// roll stays a physical roll.
+    Weight {
+        table: TableId,
+        result: ResultId,
+        percent: u32,
+    },
+    /// Each time the tag is emitted by a step of a flow, run `flow` right
+    /// after that step.
+    RunFlow { flow: FlowId },
     /// An approved design intention whose exact numbers are not decided yet,
     /// e.g. "Coast increases Fishing". It records direction only and can
     /// never be executed, so it must stay `planned` until it is replaced by
@@ -747,9 +1116,39 @@ impl Effect {
             | Effect::UseVariant { table, .. }
             | Effect::RestrictResults { table, .. }
             | Effect::ModifyDice { table, .. }
-            | Effect::RedirectTable { table, .. } => Some(table),
+            | Effect::RedirectTable { table, .. }
+            | Effect::Shift { table, .. }
+            | Effect::Plus { table, .. }
+            | Effect::Minus { table, .. }
+            | Effect::CapAtHighest { table }
+            | Effect::CapAtLowest { table }
+            | Effect::EnableResults { table, .. }
+            | Effect::Weight { table, .. } => Some(table),
             Effect::Intent { table, .. } => table.as_ref(),
-            Effect::SecondaryRoll { .. } | Effect::AddTag { .. } => None,
+            Effect::SecondaryRoll { .. } | Effect::AddTag { .. } | Effect::RunFlow { .. } => None,
+        }
+    }
+
+    /// The modifier a Shift, Plus, Minus or Cap effect applies.
+    pub fn modifier(&self) -> Option<Modifier> {
+        match self {
+            Effect::Shift { steps, .. } => Some(Modifier::Shift(*steps)),
+            Effect::Plus { amount, .. } => Some(Modifier::Plus(*amount)),
+            Effect::Minus { amount, .. } => Some(Modifier::Minus(*amount)),
+            Effect::CapAtHighest { .. } => Some(Modifier::CapAtHighest),
+            Effect::CapAtLowest { .. } => Some(Modifier::CapAtLowest),
+            _ => None,
+        }
+    }
+
+    /// The effect that applies `modifier` to `table`.
+    pub fn from_modifier(table: TableId, modifier: Modifier) -> Self {
+        match modifier {
+            Modifier::Shift(steps) => Effect::Shift { table, steps },
+            Modifier::Plus(amount) => Effect::Plus { table, amount },
+            Modifier::Minus(amount) => Effect::Minus { table, amount },
+            Modifier::CapAtHighest => Effect::CapAtHighest { table },
+            Modifier::CapAtLowest => Effect::CapAtLowest { table },
         }
     }
 }

@@ -345,6 +345,13 @@ legend code {
   margin: 6px 0 8px;
 }
 
+.effect-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
 .effect-fields {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -514,4 +521,279 @@ legend code {
   gap: 6px;
   align-items: center;
   margin: 6px 0;
+}
+
+/* ----- no-code table editor ------------------------------------------------- */
+
+.title-input {
+  font-size: 18px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 4px;
+}
+
+.draft-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.validation-summary {
+  margin: 6px 0 0;
+}
+
+.assistant {
+  margin: 10px 0 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.assistant-problems {
+  margin: 4px 0 8px;
+  padding-left: 18px;
+  color: var(--danger);
+}
+
+.suggestions {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.suggestion {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  align-items: center;
+}
+
+.suggestion-label {
+  font-weight: 600;
+}
+
+.suggestion .muted {
+  grid-column: 1;
+}
+
+.suggestion .btn,
+.suggestion .badge {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--success);
+}
+
+.results-sheet tr.is-disabled input[type="text"],
+.results-sheet tr.is-disabled .chance {
+  color: var(--text-faint);
+}
+
+.order-cell,
+.row-actions {
+  white-space: nowrap;
+}
+
+.row-advanced {
+  display: grid;
+  gap: 6px;
+  padding: 6px 0;
+}
+
+.disclosure {
+  font-weight: 600;
+}
+
+.advanced {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.preview ul {
+  margin: 4px 0 8px;
+  padding-left: 18px;
+}
+
+/* ----- modifier builder: plain-English explanations ---------------------------- */
+
+.explanation {
+  margin: 6px 0 2px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+}
+
+.explanation.is-planned {
+  border-left-color: var(--border-control);
+  opacity: 0.85;
+}
+
+.explanation-summary {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+}
+
+.explanation-affects {
+  margin: 4px 0 0;
+}
+
+.roll-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.roll-preview-arrow {
+  color: var(--accent-strong);
+}
+
+.combined-previews {
+  margin-top: 10px;
+}
+
+.explanation .badge {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ----- test, trace and import/export ------------------------------------------ */
+
+.test-results {
+  margin-top: 10px;
+}
+
+.trace {
+  list-style: none;
+  margin: 6px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.trace-title {
+  margin-top: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.trace-line {
+  color: var(--text-muted);
+}
+
+.sim-table {
+  margin: 10px 0;
+}
+
+.sim-table caption {
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
+.sim-table tr.is-muted {
+  color: var(--text-faint);
+}
+
+.sim-off {
+  color: var(--focus);
+  font-weight: 600;
+}
+
+.sim-bar-cell {
+  position: relative;
+  min-width: 120px;
+}
+
+.sim-bar {
+  display: block;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.sim-expected {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  background: var(--text);
+}
+
+.roll-details {
+  margin: 4px 0;
+  font-size: 12.5px;
+}
+
+.roll-details summary {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.roll-trace {
+  margin: 4px 0 6px 12px;
+}
+
+.roll-trace-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.roll-trace ul {
+  margin: 0;
+  padding-left: 16px;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+.delete-blocked {
+  margin: 8px 0;
+}
+
+.usage-link {
+  margin-left: 0;
+  font-size: inherit;
+  text-align: left;
+}
+
+.check-column {
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 8px 0;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.import-plan {
+  margin-top: 10px;
 }

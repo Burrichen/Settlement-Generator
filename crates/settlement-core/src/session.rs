@@ -15,23 +15,31 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 
 use crate::VERSION;
-use crate::authority::AuthorityRepresentatives;
-use crate::content::{ContentSet, ContentStatus, SelectionMode, StepTarget};
+use crate::authority::{AuthorityConfig, AuthorityRepresentatives};
+use crate::content::{ContentSet, ContentStatus, Modifier, SelectionMode};
 use crate::dice::FaceSource;
 use crate::engine::{
     GenerationError, GenerationEvent, GenerationLog, GenerationOptions, Generator, Named, Request,
     ResultOption, Selections, SkipReason, StageContext, State, TableRollRecord,
 };
 use crate::figures::{
-    AuthorityFigures, FIGURE_FIELDS, FIGURES_STAGE_ID, FigureGenerator, NamePartOptions,
-    RELATIONSHIP_TABLE, apply_roles,
+    AuthorityFigures, FIGURES_STAGE_ID, FigureGenerator, FiguresConfig, NamePartOptions,
+    apply_roles,
 };
-use crate::ids::{NamingSchemeId, ResultId, TableId, TagId};
-use crate::locations::{LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, NotableLocations};
+use crate::framework::builtin::Builtin;
+use crate::framework::runner::{Carried, FlowFacts, FlowRunner, Memory, Stored, stored_values};
+use crate::framework::{
+    FlowStep, OutlineLine, SettingValue, SettingValues, StepAction, StepOutcome, StepRecord,
+};
+use crate::ids::{NamingSchemeId, ResultId, SettingId, StepId, TableId, TagId};
+use crate::locations::{
+    LOCATIONS_STAGE_ID, LocationGenerator, LocationOptions, LocationsConfig, NotableLocations,
+};
 use crate::naming::{
-    GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, generate_name, scheme_for, sole_method,
+    GeneratedName, NAME_STAGE_ID, NameRecord, NameSource, NamingSubject, generate_name, scheme_for,
+    sole_method,
 };
-use crate::roles::{ROLES_STAGE_ID, RoleAllocation, RoleAllocator, RoleSlotOptions};
+use crate::roles::{ROLES_STAGE_ID, RoleAllocation, RoleAllocator, RoleSlotOptions, RolesConfig};
 use crate::settings::{GenerationMethod, GenerationPresentation, Settings};
 use crate::settlements::{MAX_NAME_LENGTH, SettlementSnapshot, SnapshotStage};
 
@@ -74,7 +82,7 @@ impl ViewOptions {
     pub fn from_settings(settings: &Settings) -> Self {
         ViewOptions {
             show_tags: settings.tag_view,
-            debug: false,
+            debug: settings.roll_details,
         }
     }
 }
@@ -148,6 +156,25 @@ pub struct StageView {
     /// Present on the Notable Locations stage only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub locations: Option<LocationsView>,
+    /// Present on flow stages (repeats, branches, objects, subflows and
+    /// other generic steps) only.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub flow: Option<FlowStageView>,
+    /// Every roll of the stage explained (only in the Roll details view).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub trace: Option<Vec<crate::trace::RollTrace>>,
+}
+
+/// A flow stage as an interface should present it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FlowStageView {
+    /// What the step produced, once run: every roll, object and nested
+    /// step, with labels as generated.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub record: Option<StepRecord>,
+    /// The record as indented lines, for display.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub outline: Vec<OutlineLine>,
 }
 
 /// The Notable Locations stage as an interface should present it.
@@ -352,6 +379,17 @@ struct Resolution {
     /// The Notable Locations, on that stage. Their rolls are kept here, not
     /// in `events`.
     locations: Option<Box<NotableLocations>>,
+    /// What a flow stage produced. Its rolls are kept here, not in
+    /// `events`.
+    flow: Option<Box<FlowResolution>>,
+}
+
+/// A resolved flow stage.
+#[derive(Debug, Clone)]
+struct FlowResolution {
+    record: StepRecord,
+    /// What earlier stages had left when it ran; a change invalidates it.
+    memory: Carried,
 }
 
 /// A resolved name; its rolls are the resolution's events.
@@ -378,6 +416,12 @@ const LOCATIONS_RESULT_ID: &str = "notableLocations";
 
 impl Resolution {
     fn main_result(&self) -> Option<Named<ResultId>> {
+        if let Some(flow) = &self.flow {
+            return Some(Named {
+                id: ResultId::new(flow.record.step.as_str()),
+                name: flow.record.summary(),
+            });
+        }
         if let Some(locations) = &self.locations {
             let n = locations.locations.len();
             return Some(Named {
@@ -427,14 +471,18 @@ impl Resolution {
 enum StageKind {
     Table(TableId),
     Naming,
-    AuthorityFigures,
-    AuthorityRoles,
-    NotableLocations,
+    AuthorityFigures(Box<FiguresConfig>),
+    AuthorityRoles(Box<RolesConfig>),
+    NotableLocations(Box<LocationsConfig>),
+    /// Any other flow step, run by the flow runner.
+    Flow,
 }
 
 #[derive(Debug, Clone)]
 struct Stage {
     kind: StageKind,
+    /// The start flow's step this stage runs.
+    step: FlowStep,
     /// Display name of the pipeline stage (e.g. "Region").
     label: String,
     /// Elaborates the stage before it; see `SequenceStep::sub_stage`.
@@ -453,9 +501,10 @@ impl Stage {
         match &self.kind {
             StageKind::Table(t) => Some(t),
             StageKind::Naming
-            | StageKind::AuthorityFigures
-            | StageKind::AuthorityRoles
-            | StageKind::NotableLocations => None,
+            | StageKind::AuthorityFigures(_)
+            | StageKind::AuthorityRoles(_)
+            | StageKind::NotableLocations(_)
+            | StageKind::Flow => None,
         }
     }
 
@@ -464,15 +513,42 @@ impl Stage {
     }
 
     fn is_figures(&self) -> bool {
-        matches!(self.kind, StageKind::AuthorityFigures)
+        matches!(self.kind, StageKind::AuthorityFigures(_))
     }
 
     fn is_roles(&self) -> bool {
-        matches!(self.kind, StageKind::AuthorityRoles)
+        matches!(self.kind, StageKind::AuthorityRoles(_))
     }
 
     fn is_locations(&self) -> bool {
-        matches!(self.kind, StageKind::NotableLocations)
+        matches!(self.kind, StageKind::NotableLocations(_))
+    }
+
+    fn is_flow(&self) -> bool {
+        matches!(self.kind, StageKind::Flow)
+    }
+
+    fn figures_config(&self) -> Option<&FiguresConfig> {
+        match &self.kind {
+            StageKind::AuthorityFigures(c) => Some(c),
+            _ => None,
+        }
+    }
+
+    fn locations_config(&self) -> Option<&LocationsConfig> {
+        match &self.kind {
+            StageKind::NotableLocations(c) => Some(c),
+            _ => None,
+        }
+    }
+
+    /// Where the Authority is found, for stages that need it.
+    fn authority_config(&self) -> Option<&AuthorityConfig> {
+        match &self.kind {
+            StageKind::AuthorityFigures(c) => Some(&c.authority),
+            StageKind::AuthorityRoles(c) => Some(&c.authority),
+            _ => None,
+        }
     }
 
     /// The stage table recorded in snapshots.
@@ -480,17 +556,28 @@ impl Stage {
         match &self.kind {
             StageKind::Table(t) => t.clone(),
             StageKind::Naming => TableId::new(NAME_STAGE_ID),
-            StageKind::AuthorityFigures => TableId::new(FIGURES_STAGE_ID),
-            StageKind::AuthorityRoles => TableId::new(ROLES_STAGE_ID),
-            StageKind::NotableLocations => TableId::new(LOCATIONS_STAGE_ID),
+            StageKind::AuthorityFigures(_) => TableId::new(FIGURES_STAGE_ID),
+            StageKind::AuthorityRoles(_) => TableId::new(ROLES_STAGE_ID),
+            StageKind::NotableLocations(_) => TableId::new(LOCATIONS_STAGE_ID),
+            StageKind::Flow => flow_stage_id(&self.step.id),
         }
     }
 }
+
+/// The stage table recorded in snapshots for a flow stage.
+fn flow_stage_id(step: &StepId) -> TableId {
+    TableId::new(format!("{FLOW_STAGE_PREFIX}{step}"))
+}
+
+/// Prefix of the stage table recorded for a flow stage, e.g. `step.towers`.
+pub const FLOW_STAGE_PREFIX: &str = "step.";
 
 /// A settlement being generated, stage by stage.
 pub struct GenerationSession {
     content: Arc<ContentSet>,
     options: GenerationOptions,
+    /// Values of content-defined settings.
+    settings: Arc<SettingValues>,
     mode: GenerationMode,
     stages: Vec<Stage>,
     cursor: usize,
@@ -505,46 +592,94 @@ impl GenerationSession {
         mode: GenerationMode,
     ) -> Result<Self, GenerationError> {
         Generator::new(&content)?;
+        Self::from_validated(content, options, mode)
+    }
+
+    /// A session over content already validated (e.g. by a simulation that
+    /// runs many generations of the same content).
+    pub(crate) fn from_validated(
+        content: Arc<ContentSet>,
+        options: GenerationOptions,
+        mode: GenerationMode,
+    ) -> Result<Self, GenerationError> {
+        let generator = Generator::from_validated(&content, options);
+        let selections = Selections::new();
+        let runner = FlowRunner::new(&generator, &selections, Memory::default());
+        let mut stages = Vec::new();
+        // Inactive and planned steps take no part in generation.
+        for step in content.pipeline().into_iter().filter(FlowStep::runs) {
+            let (kind, fallback) = match &step.action {
+                StepAction::Roll { table, .. } => (StageKind::Table(table.clone()), None),
+                StepAction::Name {
+                    subject: NamingSubject::Settlement,
+                } => (StageKind::Naming, Some("Name")),
+                StepAction::Builtin { handler, config } => {
+                    let builtin = Builtin::parse(handler, config).map_err(|e| {
+                        GenerationError::InvalidBuiltin {
+                            handler: handler.clone(),
+                            error: e.to_string(),
+                        }
+                    })?;
+                    match builtin {
+                        Builtin::Figures(c) => (
+                            StageKind::AuthorityFigures(Box::new(c)),
+                            Some("Authority Figures"),
+                        ),
+                        Builtin::Roles(c) => {
+                            (StageKind::AuthorityRoles(Box::new(c)), Some("Roles"))
+                        }
+                        Builtin::Locations(c) => (
+                            StageKind::NotableLocations(Box::new(c)),
+                            Some("Notable Locations"),
+                        ),
+                    }
+                }
+                _ => (StageKind::Flow, None),
+            };
+            let label = match (&step.name, fallback) {
+                (Some(name), _) => name.clone(),
+                (None, Some(fallback)) => fallback.to_owned(),
+                (None, None) => runner.label(&step),
+            };
+            stages.push(Stage {
+                kind,
+                label,
+                sub_stage: step.sub_stage,
+                step,
+                state: StageState::Pending,
+                previous: None,
+            });
+        }
         // Every interface assumes at least one stage.
-        if content.sequence.is_empty() {
+        if stages.is_empty() {
             return Err(GenerationError::EmptySequence);
         }
-        let stages = content
-            .sequence
-            .iter()
-            .map(|step| {
-                let (kind, fallback) = match &step.target {
-                    StepTarget::Table(t) => (
-                        StageKind::Table(t.clone()),
-                        content
-                            .table(t)
-                            .map_or_else(|| t.to_string(), |t| t.name.clone()),
-                    ),
-                    StepTarget::Naming => (StageKind::Naming, "Name".to_owned()),
-                    StepTarget::AuthorityFigures => {
-                        (StageKind::AuthorityFigures, "Authority Figures".to_owned())
-                    }
-                    StepTarget::AuthorityRoles => (StageKind::AuthorityRoles, "Roles".to_owned()),
-                    StepTarget::NotableLocations => {
-                        (StageKind::NotableLocations, "Notable Locations".to_owned())
-                    }
-                };
-                Stage {
-                    kind,
-                    label: step.name.clone().unwrap_or(fallback),
-                    sub_stage: step.sub_stage,
-                    state: StageState::Pending,
-                    previous: None,
-                }
-            })
-            .collect();
         Ok(GenerationSession {
             options,
+            settings: Arc::default(),
             content,
             mode,
             stages,
             cursor: 0,
         })
+    }
+
+    /// Uses `settings` as the values of content-defined settings.
+    pub fn with_settings(mut self, settings: SettingValues) -> Self {
+        let mut settings = settings;
+        // Bare Minimum Buildings is an ordinary setting, but generations
+        // record its value in their options (see `engine::setting_value`).
+        let bare_minimum = SettingId::new(crate::framework::BARE_MINIMUM_BUILDINGS);
+        if let Some(value) = settings.remove(&bare_minimum) {
+            self.options.bare_minimum_buildings = value == SettingValue::Toggle(true);
+        }
+        self.settings = Arc::new(settings);
+        self
+    }
+
+    /// The values of content-defined settings this session uses.
+    pub fn settings(&self) -> &SettingValues {
+        &self.settings
     }
 
     /// Automatic generation: resolves every stage from beginning to end.
@@ -556,7 +691,20 @@ impl GenerationSession {
         selections: &Selections,
         faces: &mut dyn FaceSource,
     ) -> Result<Self, GenerationError> {
-        let mut session = Self::new(content, options, GenerationMode::Automatic)?;
+        Self::automatic_with(content, options, SettingValues::new(), selections, faces)
+    }
+
+    /// Like [`automatic`](Self::automatic), with the values of
+    /// content-defined settings.
+    pub fn automatic_with(
+        content: Arc<ContentSet>,
+        options: GenerationOptions,
+        settings: SettingValues,
+        selections: &Selections,
+        faces: &mut dyn FaceSource,
+    ) -> Result<Self, GenerationError> {
+        let mut session =
+            Self::new(content, options, GenerationMode::Automatic)?.with_settings(settings);
         session.run_automatic(selections, faces)?;
         Ok(session)
     }
@@ -675,12 +823,41 @@ impl GenerationSession {
 
     pub fn view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
         let stage = self.stage(index)?;
-        let requested = match &stage.kind {
-            StageKind::Table(t) => t,
-            StageKind::Naming => return self.naming_view(index, view),
-            StageKind::AuthorityFigures => return self.figures_view(index, view),
-            StageKind::AuthorityRoles => return self.roles_view(index, view),
-            StageKind::NotableLocations => return self.locations_view(index, view),
+        let mut out = match &stage.kind {
+            StageKind::Table(_) => self.table_view(index, view)?,
+            StageKind::Naming => self.naming_view(index, view)?,
+            StageKind::AuthorityFigures(_) => self.figures_view(index, view)?,
+            StageKind::AuthorityRoles(_) => self.roles_view(index, view)?,
+            StageKind::NotableLocations(_) => self.locations_view(index, view)?,
+            StageKind::Flow => self.flow_view(index, view)?,
+        };
+        if view.debug {
+            out.trace = self.stage_trace(index);
+        }
+        Ok(out)
+    }
+
+    /// Every roll of a resolved stage, explained (the Roll details view).
+    fn stage_trace(&self, index: usize) -> Option<Vec<crate::trace::RollTrace>> {
+        let StageState::Resolved(res) = &self.stages.get(index)?.state else {
+            return None;
+        };
+        let traces = match &res.flow {
+            Some(flow) => flow
+                .record
+                .table_rolls()
+                .into_iter()
+                .map(|r| crate::trace::trace_roll(&self.content, r))
+                .collect(),
+            None => crate::trace::trace_events(&self.content, &res.events),
+        };
+        (!traces.is_empty()).then_some(traces)
+    }
+
+    fn table_view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
+        let stage = self.stage(index)?;
+        let StageKind::Table(requested) = &stage.kind else {
+            unreachable!("a table stage");
         };
         let before = self.tags_before(index);
         let state = State::with_tags(&before);
@@ -707,6 +884,7 @@ impl GenerationSession {
             }
         };
         Ok(StageView {
+            trace: None,
             index,
             stage: Named {
                 id: stage_def.id.clone(),
@@ -738,6 +916,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: None,
+            flow: None,
         })
     }
 
@@ -801,7 +980,7 @@ impl GenerationSession {
                 Some(res) if view.show_tags => res
                     .records()
                     .skip(1)
-                    .filter(|r| r.routed_by.is_none())
+                    .filter(|r| !r.is_routed())
                     .map(|r| NamePartView {
                         table: r.table.clone(),
                         result: r.result.clone(),
@@ -827,6 +1006,7 @@ impl GenerationSession {
         };
         let generated = name.is_some_and(|n| n.source == NameSource::Generated);
         Ok(StageView {
+            trace: None,
             index,
             stage: Named {
                 id: TableId::new(NAME_STAGE_ID),
@@ -856,6 +1036,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: None,
+            flow: None,
         })
     }
 
@@ -945,6 +1126,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: None,
+            flow: None,
         }));
         stage.previous = None;
         let (invalidated, reopened) = self.refresh(index + 1)?;
@@ -1030,6 +1212,7 @@ impl GenerationSession {
             events,
             tags: self.recorded_names(&self.tags_before(self.stages.len())),
             options: self.options,
+            settings: (*self.settings).clone(),
         }
     }
 
@@ -1056,6 +1239,7 @@ impl GenerationSession {
                         figures: res.figures.as_deref().cloned(),
                         roles: res.roles.as_deref().cloned(),
                         locations: res.locations.as_deref().cloned(),
+                        flow: res.flow.as_ref().map(|f| f.record.clone()),
                         name: res.name.as_ref().map(|n| NameRecord {
                             name: n.text.clone(),
                             source: n.source,
@@ -1077,13 +1261,20 @@ impl GenerationSession {
                     figures: None,
                     roles: None,
                     locations: None,
+                    flow: None,
                     name: None,
                 }),
             })
             .collect();
         let log = self.log();
+        let authority = self
+            .stages
+            .iter()
+            .find_map(Stage::authority_config)
+            .cloned()
+            .unwrap_or_else(AuthorityConfig::legacy);
         SettlementSnapshot {
-            authority: AuthorityRepresentatives::from_log(&log),
+            authority: AuthorityRepresentatives::from_log_with(&log, &authority),
             log,
             stages,
         }
@@ -1099,7 +1290,19 @@ impl GenerationSession {
         mode: GenerationMode,
         snapshot: &SettlementSnapshot,
     ) -> Result<Self, GenerationError> {
-        let mut session = Self::new(content, options, mode)?;
+        Self::from_snapshot_with(content, options, SettingValues::new(), mode, snapshot)
+    }
+
+    /// Like [`from_snapshot`](Self::from_snapshot), with the values of
+    /// content-defined settings.
+    pub fn from_snapshot_with(
+        content: Arc<ContentSet>,
+        options: GenerationOptions,
+        settings: SettingValues,
+        mode: GenerationMode,
+        snapshot: &SettlementSnapshot,
+    ) -> Result<Self, GenerationError> {
+        let mut session = Self::new(content, options, mode)?.with_settings(settings);
         let groups = group_by_stage(&snapshot.log.events, &session.stages);
         // Saved stages are matched by their stage table, in order, so a
         // snapshot from before a stage was added (such as Name) still lines
@@ -1135,6 +1338,10 @@ impl GenerationSession {
                 session.stages[index].state = restored_locations(original);
                 continue;
             }
+            if session.stages[index].is_flow() {
+                session.stages[index].state = session.restored_flow(index, original);
+                continue;
+            }
             let Some(events) = events else { continue };
             let state = match events.first() {
                 Some(GenerationEvent::TableSkipped { reason, .. }) if events.len() == 1 => {
@@ -1155,7 +1362,7 @@ impl GenerationSession {
                         }
                     }
                     StageState::Resolved(Box::new(Resolution {
-                        contexts: session.contexts(&before, &events).ok(),
+                        contexts: session.stage_contexts(index, &before, &events).ok(),
                         input_tags: before,
                         events,
                         activated,
@@ -1164,6 +1371,7 @@ impl GenerationSession {
                         figures: None,
                         roles: None,
                         locations: None,
+                        flow: None,
                     }))
                 }
             };
@@ -1220,6 +1428,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: None,
+            flow: None,
         }))
     }
 
@@ -1271,6 +1480,7 @@ impl GenerationSession {
             figures: None,
             roles: None,
             locations: None,
+            flow: None,
         };
         let stage = &mut self.stages[index];
         stage.state = StageState::Resolved(Box::new(resolution));
@@ -1292,7 +1502,7 @@ impl GenerationSession {
 
     /// A generator over the session's content (validated in `new`).
     fn generator(&self) -> Generator<'_> {
-        Generator::from_validated(&self.content, self.options)
+        Generator::from_validated(&self.content, self.options).with_settings(self.settings.clone())
     }
 
     fn stage(&self, index: usize) -> Result<&Stage, GenerationError> {
@@ -1351,6 +1561,11 @@ impl GenerationSession {
         let mut tags: Vec<TagId> = Vec::new();
         for stage in &self.stages[..index] {
             if let StageState::Resolved(res) = &stage.state {
+                // A flow stage may have removed tags earlier stages added.
+                if let Some(flow) = &res.flow {
+                    let removed = flow.record.removed_tags();
+                    tags.retain(|t| !removed.contains(t));
+                }
                 for tag in &res.activated {
                     if !tags.contains(tag) {
                         tags.push(tag.clone());
@@ -1371,19 +1586,25 @@ impl GenerationSession {
         let requested = match &self.stage(index)?.kind {
             StageKind::Table(t) => t.clone(),
             StageKind::Naming => return self.resolve_name(index, choice, faces),
-            StageKind::AuthorityFigures => {
+            StageKind::Flow => {
+                if choice.is_some() {
+                    return Err(GenerationError::NotFlowStage { stage: index });
+                }
+                return self.resolve_flow(index, faces);
+            }
+            StageKind::AuthorityFigures(_) => {
                 if choice.is_some() {
                     return Err(GenerationError::NotFiguresStage { stage: index });
                 }
                 return self.resolve_figures(index, faces);
             }
-            StageKind::AuthorityRoles => {
+            StageKind::AuthorityRoles(_) => {
                 if choice.is_some() {
                     return Err(GenerationError::NotRolesStage { stage: index });
                 }
                 return self.resolve_roles(index, faces);
             }
-            StageKind::NotableLocations => {
+            StageKind::NotableLocations(_) => {
                 if choice.is_some() {
                     return Err(GenerationError::NotLocationsStage { stage: index });
                 }
@@ -1391,8 +1612,13 @@ impl GenerationSession {
             }
         };
         let before = self.tags_before(index);
+        if !self.when_holds(index, &before) {
+            return self.settle(index, StageState::Skipped(SkipReason::NotEligible));
+        }
         let mut state = State::with_tags(&before);
-        let request = Request::new(requested.clone()).with_choice(choice);
+        let request = Request::new(requested.clone())
+            .with_choice(choice)
+            .with_modifiers(self.step_modifiers(index, &before));
         // Nothing is changed unless the stage resolves successfully.
         self.generator()
             .process(&mut state, [request].into(), selections, faces)?;
@@ -1404,7 +1630,7 @@ impl GenerationSession {
                 StageState::Skipped(*reason)
             }
             _ => StageState::Resolved(Box::new(Resolution {
-                contexts: Some(self.contexts(&before, &events)?),
+                contexts: Some(self.stage_contexts(index, &before, &events)?),
                 input_tags: before,
                 events,
                 activated,
@@ -1413,6 +1639,7 @@ impl GenerationSession {
                 figures: None,
                 roles: None,
                 locations: None,
+                flow: None,
             })),
         };
         let stage = &mut self.stages[index];
@@ -1433,22 +1660,46 @@ impl GenerationSession {
         before: &[TagId],
         events: &[GenerationEvent],
     ) -> Result<Vec<StageContext>, GenerationError> {
+        self.contexts_with(before, events, &[])
+    }
+
+    /// The contexts of a table stage's records: its own roll also carries
+    /// the step's modifiers.
+    fn stage_contexts(
+        &self,
+        index: usize,
+        before: &[TagId],
+        events: &[GenerationEvent],
+    ) -> Result<Vec<StageContext>, GenerationError> {
+        self.contexts_with(before, events, &self.step_modifiers(index, before))
+    }
+
+    fn contexts_with(
+        &self,
+        before: &[TagId],
+        events: &[GenerationEvent],
+        step_modifiers: &[(StepId, Modifier)],
+    ) -> Result<Vec<StageContext>, GenerationError> {
         let mut tags = before.to_vec();
         let mut contexts = Vec::new();
         for event in events {
             if let GenerationEvent::TableRolled(record) = event {
                 let requested = record.redirected_from.as_ref().unwrap_or(&record.table);
                 let state = State::with_tags(&tags);
-                // The result before follow-ups: what was rolled or chosen.
-                let base = match (record.accepted(), record.follow_ups.first()) {
-                    (Some(attempt), _) => &attempt.result.id,
-                    (None, Some(follow_up)) => &follow_up.from.id,
-                    (None, None) => &record.result.id,
+                // The result before follow-ups: what was rolled (after any
+                // modifiers) or chosen.
+                let base = &record.determined().id;
+                let modifiers = if !record.is_routed() {
+                    step_modifiers
+                } else {
+                    &[]
                 };
-                contexts.push(
-                    self.generator()
-                        .context(&requested.id, &state, Some(base))?,
-                );
+                contexts.push(self.generator().context_with(
+                    &requested.id,
+                    &state,
+                    Some(base),
+                    modifiers,
+                )?);
                 let ids: Vec<TagId> = record.tags.iter().map(|t| t.id.clone()).collect();
                 for tag in self.generator().activation_closure(&ids) {
                     if !tags.contains(&tag) {
@@ -1467,6 +1718,14 @@ impl GenerationSession {
         for index in from..self.stages.len() {
             let before = self.tags_before(index);
             let state = State::with_tags(&before);
+            if self.stages[index].is_flow() {
+                match self.refresh_flow(index, &before) {
+                    Some(true) => invalidated.push(index),
+                    Some(false) => reopened.push(index),
+                    None => {}
+                }
+                continue;
+            }
             if self.stages[index].is_naming() {
                 match self.refresh_name(index, &before) {
                     Some(true) => invalidated.push(index),
@@ -1503,11 +1762,12 @@ impl GenerationSession {
                 StageState::Resolved(res) => {
                     // A restored stage that cannot be checked against the
                     // current content is kept as saved.
-                    let now = self.contexts(&before, &res.events).ok();
-                    let changed = match (&now, &res.contexts) {
-                        (Some(now), Some(then)) => now != then,
-                        _ => false,
-                    };
+                    let now = self.stage_contexts(index, &before, &res.events).ok();
+                    let changed = !self.when_holds(index, &before)
+                        || match (&now, &res.contexts) {
+                            (Some(now), Some(then)) => now != then,
+                            _ => false,
+                        };
                     if changed {
                         let previous = res.main_result();
                         let stage = &mut self.stages[index];
@@ -1533,8 +1793,15 @@ impl GenerationSession {
                 }
                 StageState::Skipped(reason) => {
                     let requested = self.stages[index].table().cloned().expect("table stage");
-                    let context = self.generator().context(&requested, &state, None).ok();
-                    if context.is_some_and(|c| c.skipped != Some(*reason)) {
+                    let skipped = if self.when_holds(index, &before) {
+                        self.generator()
+                            .context(&requested, &state, None)
+                            .ok()
+                            .map(|c| c.skipped)
+                    } else {
+                        Some(Some(SkipReason::NotEligible))
+                    };
+                    if skipped.is_some_and(|s| s != Some(*reason)) {
                         self.stages[index].state = StageState::Pending;
                         reopened.push(index);
                     }
@@ -1557,15 +1824,20 @@ impl GenerationSession {
         if !matches!(stage.state, StageState::Pending) || !self.settled_before(index) {
             return false;
         }
-        let Some(requested) = stage.table().cloned() else {
+        let before = self.tags_before(index);
+        let skipped = if !(stage.table().is_some() || stage.is_flow()) {
             return false;
+        } else if !self.when_holds(index, &before) {
+            Some(SkipReason::NotEligible)
+        } else if let Some(requested) = stage.table().cloned() {
+            let state = State::with_tags(&before);
+            self.generator()
+                .context(&requested, &state, None)
+                .ok()
+                .and_then(|c| c.skipped)
+        } else {
+            None
         };
-        let state = State::with_tags(&self.tags_before(index));
-        let skipped = self
-            .generator()
-            .context(&requested, &state, None)
-            .ok()
-            .and_then(|c| c.skipped);
         let Some(reason) = skipped else {
             return false;
         };
@@ -1634,7 +1906,7 @@ fn group_by_stage(
 ) -> Vec<Option<Vec<GenerationEvent>>> {
     let starts = |event: &GenerationEvent, table: &TableId| match event {
         GenerationEvent::TableRolled(r) => {
-            r.routed_by.is_none() && &r.redirected_from.as_ref().unwrap_or(&r.table).id == table
+            !r.is_routed() && &r.redirected_from.as_ref().unwrap_or(&r.table).id == table
         }
         GenerationEvent::TableSkipped { table: t, .. } => &t.id == table,
         GenerationEvent::SecondaryRoll { .. } => false,
@@ -1850,6 +2122,7 @@ impl GenerationSession {
             .as_deref()
             .cloned()
             .ok_or(GenerationError::FiguresNotGenerated)?;
+        let config = stage.figures_config().cloned().expect("figures stage");
         let before = self.tags_before(index);
         let generator = self.generator();
         change(
@@ -1857,6 +2130,7 @@ impl GenerationSession {
                 generator: &generator,
                 content: &self.content,
                 settlement_tags: &before,
+                config: &config,
             },
             &mut record,
         )?;
@@ -1891,10 +2165,15 @@ impl GenerationSession {
                     RolesBefore::None => Vec::new(),
                 };
                 let generator = self.generator();
+                let config = self.stages[index]
+                    .figures_config()
+                    .cloned()
+                    .expect("figures stage");
                 let record = FigureGenerator {
                     generator: &generator,
                     content: &self.content,
                     settlement_tags: &before,
+                    config: &config,
                 }
                 .generate(&request, &roles, faces)?;
                 StageState::Resolved(Box::new(Resolution {
@@ -1907,6 +2186,7 @@ impl GenerationSession {
                     figures: Some(Box::new(record)),
                     roles: None,
                     locations: None,
+                    flow: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -1935,8 +2215,13 @@ impl GenerationSession {
             events,
             tags: self.recorded_names(&self.tags_before(index)),
             options: self.options,
+            settings: SettingValues::new(),
         };
-        AuthorityRepresentatives::from_log(&log)
+        let config = self.stages[index]
+            .authority_config()
+            .cloned()
+            .unwrap_or_else(AuthorityConfig::legacy);
+        AuthorityRepresentatives::from_log_with(&log, &config)
     }
 
     /// Re-checks the Authority Figures stage. Generated figures stand while
@@ -2003,21 +2288,22 @@ impl GenerationSession {
         let before = self.tags_before(index);
         let state = State::with_tags(&before);
         let generator = self.generator();
+        let config = stage.figures_config().expect("figures stage");
         let mut fields = Vec::new();
-        for def in &FIGURE_FIELDS {
-            let (table, mut options) = generator.options_for(&TableId::new(def.table), &state)?;
+        for def in &config.fields {
+            let (table, mut options) = generator.options_for(&def.table, &state)?;
             if !view.show_tags {
                 options.iter_mut().for_each(|o| o.tags.clear());
             }
             fields.push(FigureFieldOptions {
-                field: def.id.to_owned(),
-                label: def.label.to_owned(),
+                field: def.id.clone(),
+                label: def.label.clone(),
                 table,
                 options,
             });
         }
         let (_, relationship_options) =
-            generator.options_for(&TableId::new(RELATIONSHIP_TABLE), &state)?;
+            generator.options_for(&config.relationship_table, &state)?;
         let (status, result, skipped, resolution) = match &stage.state {
             StageState::Pending => (StageStatus::Pending, None, None, None),
             StageState::Skipped(reason) => (StageStatus::Skipped, None, Some(*reason), None),
@@ -2029,6 +2315,7 @@ impl GenerationSession {
             generator: &generator,
             content: &self.content,
             settlement_tags: &before,
+            config,
         };
         let name_parts: Vec<Vec<NamePartOptions>> = resolution
             .and_then(|r| r.figures.as_deref())
@@ -2059,6 +2346,7 @@ impl GenerationSession {
             name: stage.label.clone(),
         };
         Ok(StageView {
+            trace: None,
             index,
             stage: table.clone(),
             table,
@@ -2080,6 +2368,7 @@ impl GenerationSession {
             sub_stage: stage.sub_stage,
             roles: None,
             locations: None,
+            flow: None,
             figures: Some(FiguresView {
                 record,
                 fields,
@@ -2108,6 +2397,7 @@ fn restored_figures(saved: Option<SnapshotStage>) -> StageState {
             figures: Some(Box::new(figures)),
             roles: None,
             locations: None,
+            flow: None,
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,
@@ -2219,6 +2509,7 @@ impl GenerationSession {
                     figures: None,
                     roles: Some(Box::new(record)),
                     locations: None,
+                    flow: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -2324,6 +2615,7 @@ impl GenerationSession {
             name: stage.label.clone(),
         };
         Ok(StageView {
+            trace: None,
             index,
             stage: table.clone(),
             table,
@@ -2345,6 +2637,7 @@ impl GenerationSession {
             sub_stage: stage.sub_stage,
             figures: None,
             locations: None,
+            flow: None,
             roles: Some(RolesView {
                 record: resolution.and_then(|r| r.roles.as_deref()).cloned(),
                 slots,
@@ -2371,6 +2664,7 @@ fn restored_roles(saved: Option<SnapshotStage>) -> StageState {
             figures: None,
             roles: Some(Box::new(roles)),
             locations: None,
+            flow: None,
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,
@@ -2414,12 +2708,18 @@ impl GenerationSession {
             };
             let before = self.tags_before(index);
             let generator = self.generator();
+            let config = self.stages[index]
+                .locations_config()
+                .cloned()
+                .expect("locations stage");
+            let guaranteed = self.guaranteed_on(&config, &before);
             LocationGenerator {
                 generator: &generator,
                 content: &self.content,
                 settlement_tags: &before,
+                config: &config,
             }
-            .set_bare_minimum(&mut record, enabled)?;
+            .set_bare_minimum(&mut record, guaranteed)?;
             if let StageState::Resolved(res) = &mut self.stages[index].state
                 && res.locations.as_deref() != Some(&record)
             {
@@ -2511,6 +2811,7 @@ impl GenerationSession {
             .as_deref()
             .cloned()
             .ok_or(GenerationError::LocationsNotGenerated)?;
+        let config = stage.locations_config().cloned().expect("locations stage");
         let before = self.tags_before(index);
         let generator = self.generator();
         change(
@@ -2518,6 +2819,7 @@ impl GenerationSession {
                 generator: &generator,
                 content: &self.content,
                 settlement_tags: &before,
+                config: &config,
             },
             &mut record,
         )?;
@@ -2543,12 +2845,18 @@ impl GenerationSession {
         let state = match self.size_before(index) {
             Some(size) => {
                 let generator = self.generator();
+                let config = self.stages[index]
+                    .locations_config()
+                    .cloned()
+                    .expect("locations stage");
+                let guaranteed = self.guaranteed_on(&config, &before);
                 let record = LocationGenerator {
                     generator: &generator,
                     content: &self.content,
                     settlement_tags: &before,
+                    config: &config,
                 }
-                .generate(&size, self.options.bare_minimum_buildings, faces)?;
+                .generate(&size, guaranteed, faces)?;
                 StageState::Resolved(Box::new(Resolution {
                     input_tags: before,
                     events: Vec::new(),
@@ -2559,6 +2867,7 @@ impl GenerationSession {
                     figures: None,
                     roles: None,
                     locations: Some(Box::new(record)),
+                    flow: None,
                 }))
             }
             None if self.settled_before(index) => StageState::Skipped(SkipReason::NotEligible),
@@ -2577,14 +2886,25 @@ impl GenerationSession {
 
     /// The settlement's Size, from the stages before `index`.
     fn size_before(&self, index: usize) -> Option<Named<ResultId>> {
+        let size_table = &self.stages[index].locations_config()?.size_table;
         self.stages[..index]
             .iter()
             .find_map(|stage| match &stage.state {
                 StageState::Resolved(res) => res
                     .records()
-                    .find_map(|r| (r.table.id.as_str() == "table.size").then(|| r.result.clone())),
+                    .find_map(|r| (&r.table.id == size_table).then(|| r.result.clone())),
                 _ => None,
             })
+    }
+
+    /// Whether the configured guaranteed location is present under the
+    /// settings and the tags before the stage.
+    fn guaranteed_on(&self, config: &LocationsConfig, before: &[TagId]) -> bool {
+        let Some(spec) = &config.guaranteed else {
+            return false;
+        };
+        self.generator()
+            .holds(&spec.when, &State::with_tags(before))
     }
 
     /// Re-checks the Notable Locations stage. They stand while the Size and
@@ -2633,10 +2953,12 @@ impl GenerationSession {
         let before = self.tags_before(index);
         let generator = self.generator();
         let size = self.size_before(index);
+        let config = stage.locations_config().expect("locations stage");
         let mut options = LocationGenerator {
             generator: &generator,
             content: &self.content,
             settlement_tags: &before,
+            config,
         }
         .options(size.as_ref());
         if !view.show_tags {
@@ -2663,6 +2985,7 @@ impl GenerationSession {
             name: stage.label.clone(),
         };
         Ok(StageView {
+            trace: None,
             index,
             stage: table.clone(),
             table,
@@ -2688,6 +3011,7 @@ impl GenerationSession {
                 options,
                 bare_minimum_buildings: self.options.bare_minimum_buildings,
             }),
+            flow: None,
         })
     }
 }
@@ -2710,8 +3034,283 @@ fn restored_locations(saved: Option<SnapshotStage>) -> StageState {
             figures: None,
             roles: None,
             locations: Some(Box::new(locations)),
+            flow: None,
         })),
         None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
         None => StageState::Pending,
+    }
+}
+
+// ----- Flow stages and step conditions -----------------------------------------------
+
+impl GenerationSession {
+    /// Sets a stage's state and re-checks the stages after it.
+    fn settle(&mut self, index: usize, state: StageState) -> Result<StageChange, GenerationError> {
+        let stage = &mut self.stages[index];
+        stage.state = state;
+        stage.previous = None;
+        let (invalidated, reopened) = self.refresh(index + 1)?;
+        Ok(StageChange {
+            stage: index,
+            invalidated,
+            reopened,
+        })
+    }
+
+    /// What the stages before `index` stored for later steps: each table
+    /// stage its result and value, each flow stage what its steps stored.
+    fn memory_before(&self, index: usize) -> Memory {
+        let mut stored: Vec<(StepId, Stored)> = Vec::new();
+        let mut flows: Vec<&StepRecord> = Vec::new();
+        for stage in &self.stages[..index] {
+            let StageState::Resolved(res) = &stage.state else {
+                continue;
+            };
+            if let Some(flow) = &res.flow {
+                flows.push(&flow.record);
+                for (id, value) in stored_values(&flow.record) {
+                    stored.retain(|(k, _)| k != &id);
+                    stored.push((id, value));
+                }
+            } else if stage.table().is_some()
+                && let Some(record) = res.records().find(|r| !r.is_routed())
+            {
+                stored.retain(|(k, _)| k != &stage.step.id);
+                stored.push((
+                    stage.step.id.clone(),
+                    Stored {
+                        result: Some(record.result.id.clone()),
+                        value: record.value,
+                    },
+                ));
+            }
+        }
+        let mut memory = Memory::with(stored);
+        for record in flows {
+            memory.carry(record);
+        }
+        memory
+    }
+
+    /// Whether the stage's step condition holds after the stages before it.
+    fn when_holds(&self, index: usize, before: &[TagId]) -> bool {
+        let Some(condition) = &self.stages[index].step.when else {
+            return true;
+        };
+        let generator = self.generator();
+        let state = State::with_tags(before);
+        let memory = self.memory_before(index);
+        condition.evaluate_with(&FlowFacts {
+            generator: &generator,
+            state: &state,
+            memory: &memory,
+        })
+    }
+
+    /// The modifiers a table stage's step applies now.
+    fn step_modifiers(&self, index: usize, before: &[TagId]) -> Vec<(StepId, Modifier)> {
+        let step = &self.stages[index].step;
+        let StepAction::Roll {
+            table, modifiers, ..
+        } = &step.action
+        else {
+            return Vec::new();
+        };
+        let memory = self.memory_before(index);
+        // Earlier Apply Modifier steps first, then the step's own.
+        let mut out = memory.applied_to(table);
+        if modifiers.is_empty() {
+            return out;
+        }
+        let generator = self.generator();
+        let state = State::with_tags(before);
+        let facts = FlowFacts {
+            generator: &generator,
+            state: &state,
+            memory: &memory,
+        };
+        out.extend(
+            modifiers
+                .iter()
+                .filter(|m| m.when.as_ref().is_none_or(|c| c.evaluate_with(&facts)))
+                .map(|m| (step.id.clone(), m.modifier)),
+        );
+        out
+    }
+
+    /// Runs a flow stage's step: branches, repeats, objects, subflows and
+    /// so on, every roll with physical dice.
+    fn resolve_flow(
+        &mut self,
+        index: usize,
+        faces: &mut dyn FaceSource,
+    ) -> Result<StageChange, GenerationError> {
+        let before = self.tags_before(index);
+        if !self.when_holds(index, &before) {
+            return self.settle(index, StageState::Skipped(SkipReason::NotEligible));
+        }
+        let memory = self.memory_before(index);
+        let generator = self.generator();
+        let selections = Selections::new();
+        let mut runner = FlowRunner::new(&generator, &selections, memory.clone());
+        let mut state = State::with_tags(&before);
+        let record = runner.run_step(&self.stages[index].step, &mut state, faces)?;
+        // Tags it added, and tags it removed then added again.
+        let removed = record.removed_tags();
+        let activated: Vec<TagId> = state
+            .active()
+            .iter()
+            .filter(|t| !before.contains(t) || removed.contains(t))
+            .cloned()
+            .collect();
+        let resolution = Resolution {
+            input_tags: before,
+            events: Vec::new(),
+            activated,
+            contexts: Some(Vec::new()),
+            original: None,
+            name: None,
+            figures: None,
+            roles: None,
+            locations: None,
+            flow: Some(Box::new(FlowResolution {
+                record,
+                memory: memory.outer(),
+            })),
+        };
+        self.settle(index, StageState::Resolved(Box::new(resolution)))
+    }
+
+    /// Re-checks a flow stage. It stands while the tags and stored results
+    /// it ran on are unchanged; otherwise it is invalidated (kept as
+    /// `previous`). Its condition skips or reopens it as for a table stage.
+    /// Returns `Some(true)` if invalidated, `Some(false)` if reopened.
+    fn refresh_flow(&mut self, index: usize, before: &[TagId]) -> Option<bool> {
+        let applies = self.when_holds(index, before);
+        let memory = self.memory_before(index).outer();
+        let mut outcome = None;
+        match &self.stages[index].state {
+            StageState::Resolved(res) => {
+                let same = applies
+                    && res.input_tags == before
+                    && res.flow.as_ref().is_some_and(|f| f.memory == memory);
+                if !same {
+                    let previous = res.main_result();
+                    let stage = &mut self.stages[index];
+                    stage.previous = previous;
+                    stage.state = StageState::Pending;
+                    outcome = Some(true);
+                }
+            }
+            StageState::Skipped(SkipReason::NotEligible) if applies => {
+                self.stages[index].state = StageState::Pending;
+                outcome = Some(false);
+            }
+            _ => {}
+        }
+        if self.skip_if_inapplicable(index) && outcome == Some(false) {
+            outcome = None;
+        }
+        outcome
+    }
+
+    fn flow_view(&self, index: usize, view: ViewOptions) -> Result<StageView, GenerationError> {
+        let stage = self.stage(index)?;
+        let (status, result, skipped, resolution) = match &stage.state {
+            StageState::Pending => (StageStatus::Pending, None, None, None),
+            StageState::Skipped(reason) => (StageStatus::Skipped, None, Some(*reason), None),
+            StageState::Resolved(res) => {
+                (StageStatus::Resolved, res.main_result(), None, Some(res))
+            }
+        };
+        let table = Named {
+            id: flow_stage_id(&stage.step.id),
+            name: stage.label.clone(),
+        };
+        let mut record = resolution
+            .and_then(|r| r.flow.as_ref())
+            .map(|f| f.record.clone());
+        if !view.show_tags
+            && let Some(record) = &mut record
+        {
+            hide_object_tags(record);
+        }
+        Ok(StageView {
+            trace: None,
+            index,
+            stage: table.clone(),
+            table,
+            status,
+            current: self.mode == GenerationMode::Incremental && index == self.cursor,
+            actionable: self.check_access(index).is_ok(),
+            can_roll: true,
+            dice: None,
+            incomplete: None,
+            options: Vec::new(),
+            result,
+            previous: stage.previous.clone(),
+            skipped,
+            outcome: None,
+            tags: resolution
+                .filter(|_| view.show_tags)
+                .map(|res| self.recorded_names(&res.activated)),
+            details: None,
+            naming: None,
+            sub_stage: stage.sub_stage,
+            figures: None,
+            roles: None,
+            locations: None,
+            flow: Some(FlowStageView {
+                outline: record
+                    .as_ref()
+                    .map(StepRecord::outline_below)
+                    .unwrap_or_default(),
+                record,
+            }),
+        })
+    }
+
+    /// A flow stage as saved: its record restored exactly, or skipped.
+    /// Nothing is rerun here.
+    fn restored_flow(&self, index: usize, saved: Option<SnapshotStage>) -> StageState {
+        let Some(saved) = saved else {
+            return StageState::Pending;
+        };
+        match saved.flow.clone() {
+            Some(record) => StageState::Resolved(Box::new(Resolution {
+                input_tags: self.tags_before(index),
+                events: Vec::new(),
+                activated: saved.tags.iter().map(|t| t.id.clone()).collect(),
+                contexts: Some(Vec::new()),
+                original: Some(saved),
+                name: None,
+                figures: None,
+                roles: None,
+                locations: None,
+                flow: Some(Box::new(FlowResolution {
+                    record,
+                    memory: self.memory_before(index).outer(),
+                })),
+            })),
+            None if saved.skipped => StageState::Skipped(SkipReason::NotEligible),
+            None => StageState::Pending,
+        }
+    }
+}
+
+/// Clears the objects' own tags, for views without Tag View.
+fn hide_object_tags(record: &mut StepRecord) {
+    match &mut record.outcome {
+        StepOutcome::Object { object } => {
+            object.tags.clear();
+            object.steps.iter_mut().for_each(hide_object_tags);
+        }
+        StepOutcome::Branch { steps, .. } | StepOutcome::Subflow { steps, .. } => {
+            steps.iter_mut().for_each(hide_object_tags);
+        }
+        StepOutcome::Repeat { iterations, .. } => {
+            iterations.iter_mut().flatten().for_each(hide_object_tags);
+        }
+        _ => {}
     }
 }

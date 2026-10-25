@@ -11,8 +11,11 @@ Profile is kept, but no non-Kurovia content has been invented.
 
 ## Pipeline
 
-`content/00-sequence.json`. Each stage carries its pipeline name, so the Region
-stage is labelled "Region" even when Kurovia redirects it to Kurovia Region:
+`content/00-pipeline.json`: the start flow `flow.settlement`, one stage per
+step (see [FRAMEWORK.md](FRAMEWORK.md)). Role Allocation, Authority Figures
+and Notable Locations are built-in steps whose tables, tags and fields are
+configured there. Each stage carries its pipeline name, so the Region stage
+is labelled "Region" even when Kurovia redirects it to Kurovia Region:
 
 | #   | Stage             | Table                                                    |
 | --- | ----------------- | -------------------------------------------------------- |

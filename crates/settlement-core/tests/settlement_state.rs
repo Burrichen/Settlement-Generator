@@ -121,9 +121,9 @@ fn every_face_gives_its_result_and_tag() {
 #[test]
 fn security_precedes_crime_which_precedes_stability_after_the_authority() {
     let names: Vec<_> = content()
-        .sequence
-        .iter()
-        .map(|s| s.name.clone().unwrap())
+        .pipeline()
+        .into_iter()
+        .map(|s| s.name.unwrap())
         .collect();
     let at = |n: &str| names.iter().position(|x| x == n).unwrap();
     assert_eq!(at("Security"), SECURITY);

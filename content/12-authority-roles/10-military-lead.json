@@ -8,22 +8,22 @@
       "results": [
         {
           "id": "role.military.commander",
-          "name": "Commander",
+          "shared": "role.military.commander",
           "range": [1, 3]
         },
         {
           "id": "role.military.marshal",
-          "name": "Marshal",
+          "shared": "role.military.marshal",
           "range": 4
         },
         {
           "id": "role.military.commandant",
-          "name": "Commandant",
+          "shared": "role.military.commandant",
           "range": 5
         },
         {
           "id": "role.military.warden",
-          "name": "Warden",
+          "shared": "role.military.warden",
           "range": 6
         }
       ]

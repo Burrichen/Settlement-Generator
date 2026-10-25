@@ -51,6 +51,41 @@ impl<'a> Layout<'a> {
             .map(|(id, _)| *id)
     }
 
+    /// This layout with each result's chance multiplied by its factors
+    /// (`percent` / 100 each), laid out again on `dice`. Results keep their
+    /// order. Unchanged if the dice cannot hold the results.
+    pub fn reweighted(self, dice: &str, factors: &[(&ResultId, u32)]) -> Self {
+        let ranges: Vec<FaceRange> = self.entries.iter().map(|(_, r)| *r).collect();
+        let Some(base) = crate::dice_assist::range_weights(&ranges, dice) else {
+            return self;
+        };
+        let weights: Vec<u32> = self
+            .entries
+            .iter()
+            .zip(base)
+            .map(|((id, _), w)| {
+                let factor: f64 = factors
+                    .iter()
+                    .filter(|(r, _)| r == id)
+                    .map(|(_, p)| f64::from(*p) / 100.0)
+                    .product();
+                ((w as f64) * factor * 100.0).round().max(1.0) as u32
+            })
+            .collect();
+        match crate::dice_assist::fit(&weights, dice) {
+            Ok(fit) => Layout {
+                entries: self
+                    .entries
+                    .iter()
+                    .zip(fit.ranges)
+                    .map(|((id, _), range)| (*id, range))
+                    .collect(),
+                ..self
+            },
+            Err(_) => self,
+        }
+    }
+
     /// Lowest and highest face assigned to any result.
     pub fn bounds(&self) -> Option<FaceRange> {
         let min = self.entries.iter().map(|(_, r)| r.min).min()?;

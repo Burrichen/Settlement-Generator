@@ -20,6 +20,14 @@ pub fn user_data_dir() -> Option<PathBuf> {
     dirs::data_dir().map(|d| d.join(APP_DIR_NAME))
 }
 
+/// Where exported content files are written (and offered for import):
+/// a folder in the user's Documents, else in the data directory.
+pub fn exports_dir() -> Option<PathBuf> {
+    dirs::document_dir()
+        .map(|d| d.join("Settlement Generator"))
+        .or_else(|| user_data_dir().map(|d| d.join("exports")))
+}
+
 pub fn default_database_path() -> Option<PathBuf> {
     user_data_dir().map(|d| d.join(DATABASE_FILE))
 }

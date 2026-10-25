@@ -6,6 +6,8 @@ import { afterEach, beforeEach, describe, expect, it, onTestFinished, vi } from 
 import type {
   ContentOverview,
   Coverage,
+  DiceAdvice,
+  DiceFit,
   DraftCheck,
   EffectKindSchema,
   Settings,
@@ -76,6 +78,7 @@ const schema: EffectKindSchema[] = [
     label: "Add tag",
     description: "Also emit another tag.",
     executable: true,
+    group: "Change the roll",
     fields: [{ name: "tag", label: "Tag", kind: { type: "tag" }, required: true, help: "" }],
   },
   {
@@ -83,6 +86,7 @@ const schema: EffectKindSchema[] = [
     label: "Secondary roll",
     description: "Roll extra dice.",
     executable: true,
+    group: "Change the roll",
     fields: [
       { name: "label", label: "Label", kind: { type: "text" }, required: true, help: "" },
       { name: "dice", label: "Dice", kind: { type: "dice" }, required: true, help: "" },
@@ -92,6 +96,37 @@ const schema: EffectKindSchema[] = [
 
 let overview: ContentOverview;
 let nextCheck: DraftCheck;
+let keptDraft: Table | null = null;
+
+const d10: DiceFit = {
+  dice: "1d10",
+  kind: "exact",
+  label: "1d10, 5 faces each",
+  explanation: "Roll 1d10. Each result has 5 faces, so each has exactly 50%.",
+  ranges: [
+    [1, 5],
+    [6, 10],
+  ],
+  chances: [0.5, 0.5],
+  max_error: 0,
+};
+
+const advice: DiceAdvice = {
+  targets: [0.5, 0.5],
+  suggestions: [
+    {
+      ...d10,
+      dice: "1d4",
+      label: "1d4, 2 faces each",
+      ranges: [
+        [1, 2],
+        [3, 4],
+      ],
+    },
+    d10,
+  ],
+  summary: "2 equal results fit 1d4 exactly: 1d4, 2 faces each.",
+};
 
 vi.mock("./api", async (importOriginal) => {
   const actual = await importOriginal<typeof import("./api")>();
@@ -139,6 +174,54 @@ vi.mock("./api", async (importOriginal) => {
       resetTag: vi.fn(async () => overview),
       resetAll: vi.fn(async () => overview),
       effectSchema: vi.fn(async () => schema),
+      diceAdvice: vi.fn(async () => advice),
+      diceFit: vi.fn(async () => d10),
+      applyDiceFit: vi.fn(async (t: Table, entries: string[], fit: DiceFit) => ({
+        ...t,
+        dice: fit.dice,
+        results: t.results.map((r) => {
+          const i = entries.indexOf(r.id);
+          return { ...r, range: i < 0 ? undefined : fit.ranges[i] };
+        }),
+      })),
+      previewRoll: vi.fn(async (t: Table) => ({
+        events: [
+          {
+            event: "table_rolled",
+            table: { id: t.id, name: t.name },
+            dice: t.dice,
+            attempts: [
+              {
+                roll: { total: 14, dice: [] },
+                face: 14,
+                result: { id: "rich", name: "Rich" },
+                outcome: "accepted",
+              },
+            ],
+            result: { id: "rich", name: "Rich" },
+          },
+        ],
+        traces: [{ title: t.name, lines: ["Base roll: 14 (1d20: 14)", "Result: Rich"] }],
+        note: "A trial roll: each die is rolled separately.",
+      })),
+      copyTable: vi.fn(async () => ({ ...d20, id: "user.table.copy", name: "Copy of Economy" })),
+      resultUsages: vi.fn(async (_t: Table, result: string) =>
+        result === "poor" ? [{ description: "A restriction of tag “Rich”" }] : [],
+      ),
+      saveTableDraft: vi.fn(async () => {}),
+      tableDraft: vi.fn(async () => keptDraft),
+      discardTableDraft: vi.fn(async () => {}),
+    },
+    framework: {
+      ...actual.framework,
+      items: vi.fn(async () => [
+        { kind: "shared_result", id: "env.wood", name: "Woodland", deleted: false },
+      ]),
+      saveItem: vi.fn(async () => [
+        { kind: "shared_result", id: "env.wood", name: "Woodland", deleted: false },
+      ]),
+      settings: vi.fn(async () => []),
+      toggleSettings: vi.fn(async () => []),
     },
   };
 });
@@ -159,6 +242,7 @@ async function openEditor(which: "View Tables" | "View Tags") {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  keptDraft = null;
   nextCheck = { coverage: [coverage(false)], issues: [], error: null };
   overview = {
     tables: [
@@ -228,6 +312,10 @@ describe("table editor", () => {
     };
     await user.clear(to);
     await user.type(to, "19");
+    // The Dice Assistant says so in plain English…
+    expect(await screen.findByText("No result is on face 20.")).toBeTruthy();
+    // …and every face is shown under Advanced.
+    await user.click(screen.getByRole("button", { name: /Advanced/ }));
     expect(await screen.findByText(/Uncovered: 20/)).toBeTruthy();
     const face20 = screen.getByTitle(/^20: no result/);
     expect(face20.className).toContain("face-uncovered");
@@ -282,8 +370,7 @@ describe("table editor", () => {
   it("edits unique roles and their fallbacks in the result's role options", async () => {
     const user = await openEditor("View Tables");
     await screen.findByDisplayValue("Economy");
-    const toggles = screen.getAllByRole("button", { name: "Role options" });
-    await user.click(toggles[1]); // Rich
+    await user.click(screen.getByRole("button", { name: "Rich: advanced options" }));
     await user.click(screen.getByLabelText("Rich: unique"));
     const fallback = screen.getByLabelText("Rich: fallback") as HTMLSelectElement;
     // Only other, repeatable results can be a fallback.
@@ -319,7 +406,10 @@ describe("table editor", () => {
     const user = await openEditor("View Tables");
     await screen.findByDisplayValue("Economy");
     await user.click(screen.getByRole("button", { name: "Add result" }));
-    expect(screen.getByDisplayValue("New result")).toBeTruthy();
+    expect(await screen.findByDisplayValue("New result")).toBeTruthy();
+    // Variants and follow-up rolls are advanced options, collapsed at first.
+    expect(screen.queryByRole("button", { name: "Add variant" })).toBeNull();
+    await user.click(screen.getByRole("button", { name: /Advanced/ }));
     await user.click(screen.getByRole("button", { name: "Add variant" }));
     expect(screen.getByDisplayValue("New variant")).toBeTruthy();
     await user.click(screen.getByRole("button", { name: "Add follow-up roll" }));
@@ -355,6 +445,124 @@ describe("table editor", () => {
     expect(screen.getByDisplayValue("Economy!")).toBeTruthy();
     await user.click(screen.getByRole("button", { name: "Discard changes" }));
     expect(await screen.findByDisplayValue("Mine")).toBeTruthy();
+  });
+
+  it("shows only the basics until Advanced is opened", async () => {
+    await openEditor("View Tables");
+    expect(await screen.findByLabelText("Table name")).toBeTruthy();
+    expect(screen.getByRole("radiogroup", { name: "Chance mode" })).toBeTruthy();
+    expect(screen.getByDisplayValue("1d20")).toBeTruthy();
+    expect(screen.getByRole("region", { name: "Dice Assistant" })).toBeTruthy();
+    expect(screen.queryByText("How results are found")).toBeNull();
+    expect(screen.queryByText("Emits tags")).toBeNull();
+  });
+
+  it("applies a Dice Assistant suggestion and can undo and redo it", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    expect(await screen.findByText(/2 equal results fit 1d4 exactly/)).toBeTruthy();
+    await user.click(screen.getByRole("button", { name: "Use 1d4, 2 faces each" }));
+    expect(await screen.findByDisplayValue("1d4")).toBeTruthy();
+    expect(api.applyDiceFit).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "table.econ" }),
+      ["poor", "rich"],
+      expect.objectContaining({ dice: "1d4" }),
+    );
+    await user.click(screen.getByRole("button", { name: "Undo" }));
+    expect(await screen.findByDisplayValue("1d20")).toBeTruthy();
+    await user.click(screen.getByRole("button", { name: "Redo" }));
+    expect(await screen.findByDisplayValue("1d4")).toBeTruthy();
+  });
+
+  it("lays results out again when a row is added in Equal mode", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    await user.click(screen.getByRole("button", { name: "Add result" }));
+    await waitFor(() => expect(api.diceFit).toHaveBeenCalledWith([1, 1, 1], "1d20"));
+  });
+
+  it("will not delete a result something depends on", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    await user.click(screen.getByRole("button", { name: "Remove Poor" }));
+    expect(await screen.findByRole("alert")).toBeTruthy();
+    expect(screen.getByText(/cannot be deleted while it is used by: A restriction/)).toBeTruthy();
+    expect(screen.getByDisplayValue("Poor")).toBeTruthy();
+    // Rich is unused, so it goes.
+    await user.click(screen.getByRole("button", { name: "Remove Rich" }));
+    await waitFor(() => expect(screen.queryByDisplayValue("Rich")).toBeNull());
+  });
+
+  it("duplicates and reorders rows", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    await user.click(screen.getByRole("button", { name: "Duplicate Poor" }));
+    expect(await screen.findByDisplayValue("Copy of Poor")).toBeTruthy();
+    await user.click(screen.getByRole("button", { name: "Move Rich up" }));
+    await waitFor(() => {
+      const names = screen
+        .getAllByRole("textbox", { name: /: name$/ })
+        .map((i) => (i as HTMLInputElement).value);
+      expect(names).toEqual(["Poor", "Rich", "Copy of Poor"]);
+    });
+  });
+
+  it("previews a roll and tests a dice total", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    // Roll once explains the roll; Step through reveals it line by line.
+    await user.click(screen.getByRole("button", { name: "Roll once" }));
+    const once = await screen.findByRole("list", { name: "Roll once" });
+    expect(within(once).getByText("Result: Rich")).toBeTruthy();
+    await user.click(screen.getByRole("button", { name: "Step through" }));
+    const steps = await screen.findByRole("list", { name: "Step through" });
+    expect(within(steps).getAllByRole("listitem")).toHaveLength(1);
+    await user.click(screen.getByRole("button", { name: "Next step" }));
+    expect(within(steps).getAllByRole("listitem")).toHaveLength(2);
+    await user.click(screen.getByRole("button", { name: "Show all" }));
+    expect(within(steps).getByText("Result: Rich")).toBeTruthy();
+    await user.type(screen.getByLabelText("Dice total to test"), "7");
+    expect(await screen.findByText("7 gives Poor (5% to roll exactly 7).")).toBeTruthy();
+    await user.clear(screen.getByLabelText("Dice total to test"));
+    await user.type(screen.getByLabelText("Dice total to test"), "25");
+    expect(await screen.findByText("1d20 cannot roll 25.")).toBeTruthy();
+  });
+
+  it("offers a draft kept from earlier and keeps new changes as a draft", async () => {
+    keptDraft = { ...d20, name: "Economy (draft)" };
+    const user = await openEditor("View Tables");
+    await screen.findByText(/unsaved changes to this table from earlier/);
+    await user.click(screen.getByRole("button", { name: "Restore them" }));
+    expect(await screen.findByDisplayValue("Economy (draft)")).toBeTruthy();
+    await waitFor(() => expect(api.saveTableDraft).toHaveBeenCalled(), { timeout: 2000 });
+  });
+
+  it("copies a table into a new one", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    await user.click(screen.getByRole("button", { name: "Copy to a new table" }));
+    expect(await screen.findByDisplayValue("Copy of Economy")).toBeTruthy();
+    expect(screen.getByText(/New custom table \(not saved\)/)).toBeTruthy();
+  });
+
+  it("links a result to a shared result", async () => {
+    const user = await openEditor("View Tables");
+    await screen.findByDisplayValue("1d20");
+    // The shared results load separately; wait for them.
+    await within(screen.getByLabelText("Poor: shared result")).findByRole("option", {
+      name: "Woodland",
+    });
+    await user.selectOptions(screen.getByLabelText("Poor: shared result"), "env.wood");
+    const save = screen.getByRole("button", { name: "Save changes" }) as HTMLButtonElement;
+    await waitFor(() => expect(save.disabled).toBe(false));
+    await user.click(save);
+    expect(api.saveTable).toHaveBeenCalledWith(
+      expect.objectContaining({
+        results: expect.arrayContaining([
+          expect.objectContaining({ id: "poor", shared: "env.wood", name: "" }),
+        ]),
+      }),
+    );
   });
 
   it("restores all defaults after confirmation", async () => {

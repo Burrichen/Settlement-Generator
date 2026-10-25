@@ -9,7 +9,7 @@
       "results": [
         {
           "id": "role.military.captain",
-          "name": "Captain",
+          "shared": "role.military.captain",
           "range": [1, 2]
         },
         {

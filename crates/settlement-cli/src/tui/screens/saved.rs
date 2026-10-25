@@ -241,6 +241,7 @@ impl SavedScreen {
                 skipped: st.skipped || st.roles.is_some(),
                 figures: st.figures.clone(),
                 locations: st.locations.clone(),
+                flow: st.flow.clone(),
             })
             .collect();
         lines.extend(sheet_lines(&rows, s));

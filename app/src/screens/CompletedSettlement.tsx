@@ -62,6 +62,7 @@ export function CompletedSettlement({
             skipped: stage.status === "skipped" || !!stage.roles,
             figures: stage.figures?.record,
             locations: stage.locations?.record,
+            outline: stage.flow?.outline,
           })),
         )}
         meta="Not saved yet"

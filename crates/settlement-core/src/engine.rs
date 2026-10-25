@@ -9,13 +9,17 @@
 
 use std::collections::{BTreeMap, HashSet, VecDeque};
 use std::fmt;
+use std::sync::Arc;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-use crate::content::{ContentSet, ContentStatus, Effect, FaceRange, SelectionMode, Table, Tag};
+use crate::content::{
+    ContentSet, ContentStatus, Effect, FaceRange, Facts, Modifier, SelectionMode, Table, Tag,
+};
 use crate::dice::{DiceExpr, DiceParseError, DiceRoll, FaceError, FaceSource};
-use crate::ids::{ResultId, TableId, TagId, VariantId};
+use crate::framework::{GOD_MODE_SETTING, SettingValue, SettingValues};
+use crate::ids::{ResultId, SettingId, StepId, TableId, TagId, VariantId};
 use crate::layout::Layout;
 use crate::validation::{ValidationReport, validate};
 
@@ -75,6 +79,9 @@ impl fmt::Display for AttemptOutcome {
     }
 }
 
+/// The table used (after redirects) and each result's chance (0–1).
+pub(crate) type ExpectedChances = (Named<TableId>, Vec<(ResultId, f64)>);
+
 /// One physical roll on a table.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RollAttempt {
@@ -109,6 +116,9 @@ pub struct TableRollRecord {
     /// The tag whose `route_to` effect caused this roll, if any.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub routed_by: Option<Named<TagId>>,
+    /// The result whose `then_roll` caused this roll, if any.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub rolled_after: Option<Named<ResultId>>,
     /// Tags active when the table was resolved (the input to its rules).
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub input_tags: Vec<Named<TagId>>,
@@ -124,9 +134,13 @@ pub struct TableRollRecord {
     /// Every roll made, the accepted one last. Empty when chosen.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub attempts: Vec<RollAttempt>,
+    /// The rolled result, when Shift or Cap modifiers moved it along the
+    /// table's scale (to the result the follow-ups started from).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub adjusted_from: Option<Named<ResultId>>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub follow_ups: Vec<FollowUpRecord>,
-    /// The final result (after follow-ups).
+    /// The final result (after modifiers and follow-ups).
     pub result: Named<ResultId>,
     /// Enabled tags emitted by the final result.
     pub tags: Vec<Named<TagId>>,
@@ -145,6 +159,18 @@ impl TableRollRecord {
     pub fn accepted(&self) -> Option<&RollAttempt> {
         self.attempts.last()
     }
+
+    /// Whether another roll caused this one (a tag's route or a result's
+    /// `then_roll`), rather than the stage or step itself.
+    pub fn is_routed(&self) -> bool {
+        self.routed_by.is_some() || self.rolled_after.is_some()
+    }
+
+    /// The result before follow-up rolls: what was rolled (after any
+    /// modifiers) or chosen.
+    pub fn determined(&self) -> &Named<ResultId> {
+        self.follow_ups.first().map_or(&self.result, |u| &u.from)
+    }
 }
 
 /// ```text
@@ -161,6 +187,9 @@ impl fmt::Display for TableRollRecord {
         }
         if let Some(tag) = &self.routed_by {
             writeln!(f, "routed by: {}", tag.name)?;
+        }
+        if let Some(result) = &self.rolled_after {
+            writeln!(f, "rolled after: {}", result.name)?;
         }
         if let Some(v) = &self.variant {
             writeln!(f, "variant: {}", v.name)?;
@@ -183,9 +212,11 @@ impl fmt::Display for TableRollRecord {
                 )?,
             }
         }
+        if let Some(from) = &self.adjusted_from {
+            writeln!(f, "adjusted: {} → {}", from.name, self.determined().name)?;
+        }
         if self.selected {
-            let chosen = self.follow_ups.first().map_or(&self.result, |u| &u.from);
-            writeln!(f, "chosen: {}", chosen.name)?;
+            writeln!(f, "chosen: {}", self.determined().name)?;
         }
         for follow_up in &self.follow_ups {
             match &follow_up.becomes {
@@ -209,7 +240,12 @@ impl fmt::Display for TableRollRecord {
 /// explain itself without the content that produced it.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct AppliedModifier {
-    pub tag: Named<TagId>,
+    /// The tag whose effect this is; absent for a flow step's modifier.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub tag: Option<Named<TagId>>,
+    /// The flow step whose modifier this is.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub step: Option<StepId>,
     pub effect: Effect,
     /// The effect was active but ignored (restrictions under God Mode).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
@@ -265,6 +301,9 @@ pub struct GenerationLog {
     /// Options the generation ran with.
     #[serde(default)]
     pub options: GenerationOptions,
+    /// Content-defined settings the generation ran with.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub settings: SettingValues,
 }
 
 impl GenerationLog {
@@ -396,20 +435,57 @@ pub enum GenerationError {
     },
     #[error(transparent)]
     Dice(#[from] FaceError),
+    #[error("flow `{0}` does not exist")]
+    UnknownFlow(crate::ids::FlowId),
+    #[error("object type `{0}` does not exist")]
+    UnknownObjectType(crate::ids::ObjectTypeId),
+    #[error(
+        "flows run inside each other more than {} deep at `{flow}`; check for a flow that runs itself",
+        crate::framework::MAX_FLOW_DEPTH
+    )]
+    FlowTooDeep { flow: crate::ids::FlowId },
+    #[error(
+        "generation took more than {} steps; check for runaway repeats",
+        crate::framework::MAX_FLOW_STEPS
+    )]
+    FlowStepLimit,
+    #[error("step `{step}` has stored no number to count with")]
+    NoStoredValue { step: StepId },
+    #[error(
+        "step `{step}` would repeat {count} times, more than the {} allowed",
+        crate::framework::MAX_REPEAT
+    )]
+    TooManyRepeats { step: StepId, count: i64 },
+    #[error("step `{step}` sets a field, but it is not inside an object")]
+    FieldOutsideObject { step: StepId },
+    #[error("stage {} is not a flow stage", stage + 1)]
+    NotFlowStage { stage: usize },
+    #[error("built-in step `{handler}` is not configured correctly: {error}")]
+    InvalidBuiltin { handler: String, error: String },
 }
+
+/// The values of content-defined settings, by setting ID.
+pub type SettingMap = SettingValues;
 
 /// Rolls tables from a validated [`ContentSet`].
 pub struct Generator<'c> {
     content: &'c ContentSet,
     options: GenerationOptions,
+    /// Values of content-defined settings; unset ones take their default.
+    settings: Arc<SettingValues>,
 }
 
 pub(crate) struct Request {
     table: TableId,
     variant: Option<VariantId>,
     via: Option<Named<TagId>>,
+    /// The result whose `then_roll` asked for this roll.
+    after: Option<Named<ResultId>>,
     /// A result chosen for this request instead of rolling.
     choice: Option<ResultId>,
+    /// Modifiers a flow step applies to this roll (their conditions already
+    /// hold).
+    modifiers: Vec<(StepId, Modifier)>,
 }
 
 impl Request {
@@ -418,7 +494,9 @@ impl Request {
             table,
             variant: None,
             via: None,
+            after: None,
             choice: None,
+            modifiers: Vec::new(),
         }
     }
 
@@ -426,6 +504,64 @@ impl Request {
         self.choice = choice;
         self
     }
+
+    pub(crate) fn with_modifiers(mut self, modifiers: Vec<(StepId, Modifier)>) -> Self {
+        self.modifiers = modifiers;
+        self
+    }
+}
+
+/// Conditions inside the engine see the active tags and the settings.
+pub(crate) struct EngineFacts<'a> {
+    pub tags: &'a dyn Fn(&TagId) -> bool,
+    pub content: &'a ContentSet,
+    pub options: GenerationOptions,
+    pub settings: &'a SettingValues,
+}
+
+impl Facts for EngineFacts<'_> {
+    fn has_tag(&self, tag: &TagId) -> bool {
+        (self.tags)(tag)
+    }
+
+    fn setting(&self, id: &SettingId) -> Option<SettingValue> {
+        setting_value(self.content, self.options, self.settings, id)
+    }
+}
+
+/// The value of setting `id`: God Mode from `options`, else the value
+/// chosen in `settings`, else the setting's default. A planned setting
+/// always has its default.
+pub(crate) fn setting_value(
+    content: &ContentSet,
+    options: GenerationOptions,
+    settings: &SettingValues,
+    id: &SettingId,
+) -> Option<SettingValue> {
+    if id.as_str() == GOD_MODE_SETTING {
+        return Some(SettingValue::Toggle(options.god_mode));
+    }
+    let canonical = crate::framework::canonical_setting(id);
+    let bare_minimum = canonical.as_str() == crate::framework::BARE_MINIMUM_BUILDINGS;
+    let Some(def) = content.setting(&canonical) else {
+        // Content that does not declare Bare Minimum Buildings (older
+        // content) still has it, as a plain on/off setting.
+        return bare_minimum.then_some(SettingValue::Toggle(options.bare_minimum_buildings));
+    };
+    if def.is_planned() {
+        return Some(def.default_value());
+    }
+    // Bare Minimum Buildings is defined like any setting, but its value is
+    // carried in the generation options, where saved generations have
+    // always recorded it.
+    if bare_minimum {
+        return Some(SettingValue::Toggle(options.bare_minimum_buildings));
+    }
+    settings
+        .get(&def.id)
+        .filter(|v| def.accepts(v))
+        .cloned()
+        .or_else(|| Some(def.default_value()))
 }
 
 /// The resolution context of one table; see [`Generator::context`].
@@ -437,6 +573,8 @@ pub(crate) struct StageContext {
     pub dice: Option<String>,
     pub legal: Vec<ResultId>,
     pub follow_ups: Vec<String>,
+    /// Shift and Cap modifiers that apply to a roll.
+    pub adjust: Vec<Modifier>,
 }
 
 /// One result of a table as it stands under the current tags.
@@ -486,8 +624,25 @@ impl State {
         &self.events
     }
 
-    fn has(&self, tag: &TagId) -> bool {
+    pub(crate) fn has(&self, tag: &TagId) -> bool {
         self.active_set.contains(tag)
+    }
+
+    /// Activates `tags` without running their effects (they already ran
+    /// elsewhere, e.g. in an object's own scope).
+    pub(crate) fn activate<'t>(&mut self, tags: impl IntoIterator<Item = &'t TagId>) {
+        for tag in tags {
+            if self.active_set.insert(tag.clone()) {
+                self.active.push(tag.clone());
+            }
+        }
+    }
+
+    /// Makes `tag` inactive (effects it already applied stay).
+    pub(crate) fn deactivate(&mut self, tag: &TagId) {
+        if self.active_set.remove(tag) {
+            self.active.retain(|t| t != tag);
+        }
     }
 }
 
@@ -499,7 +654,11 @@ struct Prepared<'c> {
     modifier: i32,
     only: Option<HashSet<&'c ResultId>>,
     exclude: HashSet<&'c ResultId>,
+    /// Disabled results an Enable Results effect allows.
+    enabled: HashSet<&'c ResultId>,
     modifiers: Vec<AppliedModifier>,
+    /// Shift and Cap modifiers, in the order they apply.
+    adjust: Vec<Modifier>,
 }
 
 impl<'c> Generator<'c> {
@@ -512,12 +671,17 @@ impl<'c> Generator<'c> {
         Ok(Generator {
             content,
             options: GenerationOptions::default(),
+            settings: Arc::default(),
         })
     }
 
     /// A generator for content already validated by [`Generator::new`].
     pub(crate) fn from_validated(content: &'c ContentSet, options: GenerationOptions) -> Self {
-        Generator { content, options }
+        Generator {
+            content,
+            options,
+            settings: Arc::default(),
+        }
     }
 
     pub fn with_options(mut self, options: GenerationOptions) -> Self {
@@ -525,8 +689,37 @@ impl<'c> Generator<'c> {
         self
     }
 
+    /// Uses `settings` for content-defined settings.
+    pub fn with_settings(mut self, settings: Arc<SettingValues>) -> Self {
+        self.settings = settings;
+        self
+    }
+
     pub fn options(&self) -> GenerationOptions {
         self.options
+    }
+
+    pub(crate) fn settings(&self) -> &Arc<SettingValues> {
+        &self.settings
+    }
+
+    pub(crate) fn content(&self) -> &'c ContentSet {
+        self.content
+    }
+
+    /// Conditions' view of `state` and the settings.
+    pub(crate) fn facts<'s>(&'s self, has: &'s dyn Fn(&TagId) -> bool) -> EngineFacts<'s> {
+        EngineFacts {
+            tags: has,
+            content: self.content,
+            options: self.options,
+            settings: &self.settings,
+        }
+    }
+
+    /// Evaluates `condition` under the tags in `state` and the settings.
+    pub(crate) fn holds(&self, condition: &crate::content::Condition, state: &State) -> bool {
+        condition.evaluate_with(&self.facts(&|t| state.has(t)))
     }
 
     /// Generates a settlement: runs the content's `sequence`.
@@ -571,6 +764,7 @@ impl<'c> Generator<'c> {
             events: state.events,
             tags,
             options: self.options,
+            settings: (*self.settings).clone(),
         }
     }
 
@@ -581,7 +775,7 @@ impl<'c> Generator<'c> {
         } else if table
             .eligibility
             .as_ref()
-            .is_some_and(|c| !c.evaluate(&|t| state.has(t)))
+            .is_some_and(|c| !self.holds(c, state))
         {
             Some(SkipReason::NotEligible)
         } else {
@@ -624,7 +818,7 @@ impl<'c> Generator<'c> {
                 });
             }
             let input_tags = self.named_tags(&state.active);
-            let prepared = self.prepare(table, request.variant.as_ref(), state);
+            let prepared = self.prepare(table, request.variant.as_ref(), &request.modifiers, state);
             let mut record = match choice {
                 Some(choice) => self.select(table, choice, prepared, state)?,
                 None if table.selection == SelectionMode::Choose => {
@@ -639,6 +833,7 @@ impl<'c> Generator<'c> {
             }
             record.modifiers.splice(0..0, redirect);
             record.routed_by = request.via;
+            record.rolled_after = request.after;
             record.input_tags = input_tags;
             self.apply_follow_ups(table, &mut record, state, faces)?;
 
@@ -648,15 +843,37 @@ impl<'c> Generator<'c> {
             record.tags = self.enabled_tags(&result.tags);
             record.value = result.value;
             let emitted = result.tags.clone();
+            let then_roll: Vec<Request> = result
+                .then_roll
+                .iter()
+                .map(|t| Request {
+                    after: Some(record.result.clone()),
+                    ..Request::new(t.clone())
+                })
+                .collect();
             state
                 .events
                 .push(GenerationEvent::TableRolled(Box::new(record)));
-            let routes = self.emit(state, &emitted, faces)?;
+            let mut routes = self.emit(state, &emitted, faces)?;
+            routes.extend(then_roll);
             for (i, route) in routes.into_iter().enumerate() {
                 queue.insert(i, route);
             }
         }
         Ok(())
+    }
+
+    /// Emits `tags` as a result would (running their effects), then rolls
+    /// the tables they route to.
+    pub(crate) fn emit_and_follow(
+        &self,
+        state: &mut State,
+        tags: &[TagId],
+        selections: &Selections,
+        faces: &mut dyn FaceSource,
+    ) -> Result<(), GenerationError> {
+        let routes = self.emit(state, tags, faces)?;
+        self.process(state, routes.into(), selections, faces)
     }
 
     /// Tags activated when `tags` are emitted: enabled tags plus their
@@ -699,6 +916,18 @@ impl<'c> Generator<'c> {
         state: &State,
         result: Option<&ResultId>,
     ) -> Result<StageContext, GenerationError> {
+        self.context_with(requested, state, result, &[])
+    }
+
+    /// Like [`context`](Self::context), for a roll that a flow step also
+    /// applies `step_modifiers` to.
+    pub(crate) fn context_with(
+        &self,
+        requested: &TableId,
+        state: &State,
+        result: Option<&ResultId>,
+        step_modifiers: &[(StepId, Modifier)],
+    ) -> Result<StageContext, GenerationError> {
         let requested = self.table(requested)?;
         let (table, _) = self.resolve_redirects(requested, state)?;
         if let Some(reason) = self.skip_reason(table, state) {
@@ -708,7 +937,7 @@ impl<'c> Generator<'c> {
                 ..StageContext::default()
             });
         }
-        let prepared = self.prepare(table, None, state);
+        let prepared = self.prepare(table, None, step_modifiers, state);
         let options = self.result_options(table, &prepared, state);
         let follow_ups = result
             .map(|r| {
@@ -717,9 +946,7 @@ impl<'c> Generator<'c> {
                     .iter()
                     .filter(|f| {
                         f.on_results.contains(r)
-                            && f.when
-                                .as_ref()
-                                .is_none_or(|c| c.evaluate(&|t| state.has(t)))
+                            && f.when.as_ref().is_none_or(|c| self.holds(c, state))
                     })
                     .map(|f| f.id.clone())
                     .collect()
@@ -741,7 +968,78 @@ impl<'c> Generator<'c> {
                 .map(|o| o.result.id.clone())
                 .collect(),
             follow_ups,
+            adjust: prepared.adjust,
         })
+    }
+
+    /// Each result's exact chance (0–1) of being the result of one roll of
+    /// `requested` with `tags` active: every total the dice can give (with
+    /// Plus and Minus), the table's rules (results that cannot be had are
+    /// rolled again), then Shift and Cap. Follow-up rolls are not included.
+    /// A table that is chosen gives every result that can be had an equal
+    /// share. Also returns the table actually used (after redirects).
+    pub(crate) fn expected_chances(
+        &self,
+        requested: &TableId,
+        tags: &[TagId],
+    ) -> Result<ExpectedChances, GenerationError> {
+        let state = State::with_tags(tags);
+        let requested = self.table(requested)?;
+        let (table, _) = self.resolve_redirects(requested, &state)?;
+        let prepared = self.prepare(table, None, &[], &state);
+        let accepted = |id: &ResultId| {
+            self.outcome_for(table, &prepared, &state, id) == AttemptOutcome::Accepted
+        };
+        let mut rolled: Vec<(&ResultId, f64)> = Vec::new();
+        match (prepared.dice, prepared.layout.bounds()) {
+            (Some(dice), Some(bounds)) if table.selection == SelectionMode::Roll => {
+                let expr = parse_validated(dice)?.with_extra_modifier(prepared.modifier);
+                for (total, n) in crate::dice_assist::total_distribution(&expr) {
+                    let face = total.clamp(bounds.min, bounds.max);
+                    if let Some(id) = prepared.layout.result_at(face)
+                        && accepted(id)
+                    {
+                        rolled.push((id, n as f64));
+                    }
+                }
+            }
+            _ => {
+                for r in table.results.iter().filter(|r| accepted(&r.id)) {
+                    rolled.push((&r.id, 1.0));
+                }
+            }
+        }
+        let total: f64 = rolled.iter().map(|(_, w)| w).sum();
+        let mut out: Vec<(ResultId, f64)> = Vec::new();
+        if total > 0.0 {
+            for (id, w) in rolled {
+                let given = self.adjusted(table, &prepared, &state, id).clone();
+                match out.iter_mut().find(|(r, _)| *r == given) {
+                    Some((_, p)) => *p += w / total,
+                    None => out.push((given, w / total)),
+                }
+            }
+        }
+        Ok((Named::new(&table.id, &table.name), out))
+    }
+
+    /// Rolls `table` once with `tags` active and returns what happened
+    /// (for previews and simulations; generation uses sessions).
+    pub(crate) fn roll_with_tags(
+        &self,
+        table: &TableId,
+        tags: &[TagId],
+        selections: &Selections,
+        faces: &mut dyn FaceSource,
+    ) -> Result<Vec<GenerationEvent>, GenerationError> {
+        let mut state = State::with_tags(tags);
+        self.process(
+            &mut state,
+            [Request::new(table.clone())].into(),
+            selections,
+            faces,
+        )?;
+        Ok(state.take_events())
     }
 
     /// Every result of `requested` under the tags in `state`, with whether it
@@ -753,7 +1051,7 @@ impl<'c> Generator<'c> {
     ) -> Result<(Named<TableId>, Vec<ResultOption>), GenerationError> {
         let requested = self.table(requested)?;
         let (table, _) = self.resolve_redirects(requested, state)?;
-        let prepared = self.prepare(table, None, state);
+        let prepared = self.prepare(table, None, &[], state);
         Ok((
             Named::new(&table.id, &table.name),
             self.result_options(table, &prepared, state),
@@ -843,7 +1141,8 @@ impl<'c> Generator<'c> {
                 });
             }
             applied.push(AppliedModifier {
-                tag: Named::new(&tag.id, &tag.name),
+                tag: Some(Named::new(&tag.id, &tag.name)),
+                step: None,
                 effect: effect.clone(),
                 ignored: false,
             });
@@ -879,7 +1178,9 @@ impl<'c> Generator<'c> {
                         table: table.clone(),
                         variant: variant.clone(),
                         via: Some(Named::new(&tag.id, &tag.name)),
+                        after: None,
                         choice: None,
+                        modifiers: Vec::new(),
                     }),
                     Effect::SecondaryRoll { label, dice } => {
                         let expr = parse_validated(dice)?;
@@ -895,7 +1196,16 @@ impl<'c> Generator<'c> {
                     Effect::UseVariant { .. }
                     | Effect::RestrictResults { .. }
                     | Effect::ModifyDice { .. }
-                    | Effect::RedirectTable { .. } => {}
+                    | Effect::RedirectTable { .. }
+                    | Effect::Shift { .. }
+                    | Effect::Plus { .. }
+                    | Effect::Minus { .. }
+                    | Effect::CapAtHighest { .. }
+                    | Effect::CapAtLowest { .. }
+                    | Effect::EnableResults { .. }
+                    | Effect::Weight { .. } => {}
+                    // Run by the flow runner after the step that emitted it.
+                    Effect::RunFlow { .. } => {}
                     // Never executable (validation keeps intents planned).
                     Effect::Intent { .. } => {}
                 }
@@ -926,15 +1236,16 @@ impl<'c> Generator<'c> {
         &self,
         table: &'c Table,
         forced_variant: Option<&VariantId>,
+        step_modifiers: &[(StepId, Modifier)],
         state: &State,
     ) -> Prepared<'c> {
-        let has = |t: &TagId| state.has(t);
         let effects = self.effects_on(&table.id, state);
         let god_mode = self.options.god_mode;
         let mut modifiers = Vec::new();
         let mut applied = |tag: &Tag, effect: &Effect, ignored: bool| {
             modifiers.push(AppliedModifier {
-                tag: Named::new(&tag.id, &tag.name),
+                tag: Some(Named::new(&tag.id, &tag.name)),
+                step: None,
                 effect: effect.clone(),
                 ignored,
             });
@@ -958,7 +1269,7 @@ impl<'c> Generator<'c> {
             table
                 .variants
                 .iter()
-                .find(|v| v.when.as_ref().is_some_and(|c| c.evaluate(&has)))
+                .find(|v| v.when.as_ref().is_some_and(|c| self.holds(c, state)))
         });
         let layout = match variant {
             Some(v) => Layout::for_variant(table, v),
@@ -1014,6 +1325,59 @@ impl<'c> Generator<'c> {
             }
         }
 
+        // Enabled results: disabled ones a tag allows again.
+        let mut enabled: HashSet<&ResultId> = HashSet::new();
+        for (tag, effect) in &effects {
+            if let Effect::EnableResults { results, .. } = effect {
+                applied(tag, effect, false);
+                enabled.extend(results.iter());
+            }
+        }
+
+        // Weighting lays the results out again on the dice in use.
+        let mut layout = layout;
+        let factors: Vec<(&ResultId, u32)> = effects
+            .iter()
+            .filter_map(|(tag, effect)| match effect {
+                Effect::Weight {
+                    result, percent, ..
+                } => {
+                    applied(tag, effect, false);
+                    Some((result, *percent))
+                }
+                _ => None,
+            })
+            .collect();
+        if let Some(dice) = dice.filter(|_| !factors.is_empty()) {
+            layout = layout.reweighted(dice, &factors);
+        }
+
+        // Plus and Minus change the total; Shift and Cap move the result
+        // along the scale once it is rolled. Tag modifiers come first, in
+        // activation order, then the flow step's.
+        let mut adjust = Vec::new();
+        for (tag, effect) in &effects {
+            if let Some(m) = effect.modifier() {
+                modifier += m.total_delta();
+                if m.needs_scale() {
+                    adjust.push(m);
+                }
+                applied(tag, effect, false);
+            }
+        }
+        for (step, m) in step_modifiers {
+            modifier += m.total_delta();
+            if m.needs_scale() {
+                adjust.push(*m);
+            }
+            modifiers.push(AppliedModifier {
+                tag: None,
+                step: Some(step.clone()),
+                effect: Effect::from_modifier(table.id.clone(), *m),
+                ignored: false,
+            });
+        }
+
         Prepared {
             variant,
             layout,
@@ -1021,8 +1385,69 @@ impl<'c> Generator<'c> {
             modifier,
             only,
             exclude,
+            enabled,
             modifiers,
+            adjust,
         }
+    }
+
+    /// Moves `rolled` along `table`'s scale by the Shift and Cap modifiers
+    /// in `prepared`. Shifts add up and move one result at a time, passing
+    /// over results that cannot be had now (disabled, restricted, ineligible
+    /// or not on the layout) and stopping at either end. A Cap then gives
+    /// the highest or lowest result that can be had; the last Cap wins. A
+    /// result that is not on the scale stays as rolled.
+    fn adjusted(
+        &self,
+        table: &'c Table,
+        prepared: &Prepared<'c>,
+        state: &State,
+        rolled: &'c ResultId,
+    ) -> &'c ResultId {
+        if prepared.adjust.is_empty() {
+            return rolled;
+        }
+        let Some(scale) = self.content.scale_order(table) else {
+            return rolled;
+        };
+        let Some(start) = scale.iter().position(|r| *r == rolled) else {
+            return rolled;
+        };
+        let usable = |id: &ResultId| {
+            self.outcome_for(table, prepared, state, id) == AttemptOutcome::Accepted
+                && prepared.layout.entries.iter().any(|(r, _)| *r == id)
+        };
+        let shift: i32 = prepared
+            .adjust
+            .iter()
+            .map(|m| match m {
+                Modifier::Shift(n) => *n,
+                _ => 0,
+            })
+            .sum();
+        let mut at = start;
+        let mut remaining = shift.unsigned_abs();
+        while remaining > 0 {
+            let next = if shift > 0 {
+                (at + 1..scale.len()).find(|&i| usable(scale[i]))
+            } else {
+                (0..at).rev().find(|&i| usable(scale[i]))
+            };
+            let Some(i) = next else { break };
+            at = i;
+            remaining -= 1;
+        }
+        let cap = prepared
+            .adjust
+            .iter()
+            .rev()
+            .find(|m| matches!(m, Modifier::CapAtHighest | Modifier::CapAtLowest));
+        let capped = match cap {
+            Some(Modifier::CapAtHighest) => (0..scale.len()).rev().find(|&i| usable(scale[i])),
+            Some(Modifier::CapAtLowest) => (0..scale.len()).find(|&i| usable(scale[i])),
+            _ => None,
+        };
+        scale[capped.unwrap_or(at)]
     }
 
     fn outcome_for(
@@ -1035,7 +1460,7 @@ impl<'c> Generator<'c> {
         let Some(result) = table.result(id) else {
             return AttemptOutcome::Ineligible;
         };
-        if !result.enabled {
+        if !result.enabled && !prepared.enabled.contains(id) {
             AttemptOutcome::Disabled
         } else if prepared.exclude.contains(id)
             || prepared.only.as_ref().is_some_and(|o| !o.contains(id))
@@ -1045,7 +1470,7 @@ impl<'c> Generator<'c> {
             && result
                 .eligibility
                 .as_ref()
-                .is_some_and(|c| !c.evaluate(&|t| state.has(t)))
+                .is_some_and(|c| !self.holds(c, state))
         {
             AttemptOutcome::Ineligible
         } else {
@@ -1087,11 +1512,13 @@ impl<'c> Generator<'c> {
             table: Named::new(&table.id, &table.name),
             redirected_from: None,
             routed_by: None,
+            rolled_after: None,
             input_tags: Vec::new(),
             variant: prepared.variant.map(|v| Named::new(&v.id, &v.name)),
             dice: None,
             selected: true,
             attempts: Vec::new(),
+            adjusted_from: None,
             follow_ups: Vec::new(),
             result: Named::new(&result.id, &result.name),
             tags: Vec::new(),
@@ -1152,17 +1579,23 @@ impl<'c> Generator<'c> {
                 outcome,
             });
             if outcome == AttemptOutcome::Accepted {
+                let given = self.adjusted(table, &prepared, state, &result.id);
+                let given = table.result(given).expect("scales refer to results");
+                let adjusted_from =
+                    (given.id != result.id).then(|| Named::new(&result.id, &result.name));
                 return Ok(TableRollRecord {
                     table: Named::new(&table.id, &table.name),
                     redirected_from: None,
                     routed_by: None,
+                    rolled_after: None,
                     input_tags: Vec::new(),
                     variant: prepared.variant.map(|v| Named::new(&v.id, &v.name)),
                     dice: Some(expr.to_string()),
                     selected: false,
                     attempts,
+                    adjusted_from,
                     follow_ups: Vec::new(),
-                    result: Named::new(&result.id, &result.name),
+                    result: Named::new(&given.id, &given.name),
                     tags: Vec::new(),
                     value: None,
                     modifiers: prepared.modifiers,
@@ -1184,10 +1617,7 @@ impl<'c> Generator<'c> {
     ) -> Result<(), GenerationError> {
         for follow_up in &table.follow_ups {
             let applies = follow_up.on_results.contains(&record.result.id)
-                && follow_up
-                    .when
-                    .as_ref()
-                    .is_none_or(|c| c.evaluate(&|t| state.has(t)));
+                && follow_up.when.as_ref().is_none_or(|c| self.holds(c, state));
             if !applies {
                 continue;
             }

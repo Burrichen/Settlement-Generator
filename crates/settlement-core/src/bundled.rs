@@ -22,6 +22,11 @@ pub enum BundledContentError {
         first: &'static str,
         second: &'static str,
     },
+    #[error("bundled content files `{first}` and `{second}` both name the start flow")]
+    DuplicateStart {
+        first: &'static str,
+        second: &'static str,
+    },
     #[error("bundled content file `{file}` uses schema {found}, but others use {expected}")]
     SchemaMismatch {
         file: &'static str,
@@ -39,6 +44,7 @@ pub fn bundled_file_names() -> impl Iterator<Item = &'static str> {
 pub fn bundled_content() -> Result<ContentSet, BundledContentError> {
     let mut merged = ContentSet::default();
     let mut sequence_file: Option<&'static str> = None;
+    let mut start_file: Option<&'static str> = None;
     for (index, (file, json)) in BUNDLED_FILES.iter().enumerate() {
         let part = ContentSet::from_json(json)
             .map_err(|source| BundledContentError::Parse { file, source })?;
@@ -61,11 +67,28 @@ pub fn bundled_content() -> Result<ContentSet, BundledContentError> {
             sequence_file = Some(file);
             merged.sequence = part.sequence;
         }
+        if part.start.is_some() {
+            if let Some(first) = start_file {
+                return Err(BundledContentError::DuplicateStart {
+                    first,
+                    second: file,
+                });
+            }
+            start_file = Some(file);
+            merged.start = part.start;
+        }
         merged.tables.extend(part.tables);
+        merged.shared_results.extend(part.shared_results);
+        merged.scales.extend(part.scales);
+        merged.settings.extend(part.settings);
+        merged.objects.extend(part.objects);
+        merged.flows.extend(part.flows);
         merged.tags.extend(part.tags);
         merged.naming_schemes.extend(part.naming_schemes);
         merged.role_schemes.extend(part.role_schemes);
         merged.location_schemes.extend(part.location_schemes);
     }
+    // Table entries that list a shared result take its fields.
+    crate::framework::link_shared_results(&mut merged);
     Ok(merged)
 }

@@ -1,8 +1,9 @@
 import type { GenerationResponse, StageView } from "../api";
 import { FiguresControls, RolesControls } from "./AuthorityFigures";
-import { OutcomeLine, TagList, applies } from "./generation";
+import { OutcomeLine, RollDetails, TagList, applies } from "./generation";
 import { NameGridRow } from "./NameStage";
 import { LocationsControls } from "./NotableLocations";
+import { FlowControls } from "./FlowRecord";
 
 /** Every stage in one table: choose a legal result or roll each stage. */
 export function StageGrid({
@@ -46,6 +47,16 @@ export function StageGrid({
                   onRoll={() => onRoll(stage.index)}
                   onAct={onAct}
                 />
+              </td>
+            </tr>
+          ) : stage.flow ? (
+            <tr key={stage.index} className={`stage-row status-${stage.status}`}>
+              <th scope="row">
+                <span className="stage-row-name">{stage.stage.name}</span>
+                {stage.result && <span className="stage-row-table">{stage.result.name}</span>}
+              </th>
+              <td colSpan={2}>
+                <FlowControls stage={stage} busy={busy} onRoll={() => onRoll(stage.index)} />
               </td>
             </tr>
           ) : stage.roles ? (
@@ -156,6 +167,7 @@ function StageGridRow({
         )}
         {stage.incomplete && <span className="note small">{stage.incomplete}</span>}
         <TagList tags={stage.tags} label="Emits" />
+        <RollDetails traces={stage.trace} />
       </td>
       <td className="roll-cell">
         {stage.can_roll && (

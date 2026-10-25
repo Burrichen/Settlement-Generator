@@ -372,7 +372,7 @@ pub(crate) fn generate_name(
         let record = state.events_so_far()[start..]
             .iter()
             .find_map(|e| match e {
-                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(r),
+                GenerationEvent::TableRolled(r) if !r.is_routed() => Some(r),
                 _ => None,
             })
             .ok_or_else(|| unavailable(component))?;

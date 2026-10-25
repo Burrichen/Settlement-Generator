@@ -7,23 +7,24 @@
 //! yet, so roles are currently absent.
 //!
 //! Every field is rolled with physical dice on an ordinary, editable table
-//! (see [`FIGURE_FIELDS`]) under the settlement's tags, so redirects (e.g.
-//! the Kurovia species list), eligibility, God Mode and user customisations
-//! apply exactly as on any stage. A figure's results may emit tags of its
-//! own (`species.*`, `gender.*`); these route the figure's name and never
-//! become settlement tags.
+//! (the fields and tables are the step's [`FiguresConfig`]) under the
+//! settlement's tags, so redirects (e.g. the Kurovia species list),
+//! eligibility, God Mode and user customisations apply exactly as on any
+//! stage. A figure's results may emit tags of its own (`species.*`,
+//! `gender.*`); these route the figure's name and never become settlement
+//! tags.
 //!
 //! Names come from **person** naming schemes chosen by the figure's tags,
 //! never from one universal table. When none applies the name is
 //! [`FigureName::Missing`]: nothing is invented, and a name can be typed.
 //!
 //! Every unordered pair of figures gets exactly one relationship, rolled on
-//! [`RELATIONSHIP_TABLE`].
+//! the configured relationship table.
 
 use serde::{Deserialize, Serialize};
 
 use crate::VERSION;
-use crate::authority::AuthorityRepresentatives;
+use crate::authority::{AuthorityConfig, AuthorityRepresentatives};
 use crate::content::ContentSet;
 use crate::content::LabelVariant;
 use crate::dice::FaceSource;
@@ -42,7 +43,8 @@ use crate::roles::{Allocation, RoleAssignment};
 /// which has no table of its own.
 pub const FIGURES_STAGE_ID: &str = "stage.authorityFigures";
 
-/// One field of an Authority Figure and the table it is rolled on.
+/// One field of an Authority Figure and the table it is rolled on, as the
+/// legacy configuration has it.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FigureFieldDef {
     /// Stable field ID, e.g. `species`.
@@ -51,7 +53,9 @@ pub struct FigureFieldDef {
     pub table: &'static str,
 }
 
-/// The fields of an Authority Figure, rolled in this order.
+/// The fields of an Authority Figure in content of the legacy `sequence`
+/// format, rolled in this order. Content with flows configures its own (see
+/// [`FiguresConfig`]).
 pub const FIGURE_FIELDS: [FigureFieldDef; 7] = [
     FigureFieldDef {
         id: "species",
@@ -90,28 +94,78 @@ pub const FIGURE_FIELDS: [FigureFieldDef; 7] = [
     },
 ];
 
-/// Rolled once for every unordered pair of figures.
+/// The relationship table of content in the legacy `sequence` format.
 pub const RELATIONSHIP_TABLE: &str = "table.authorityRelationship";
 
-/// The tables the Authority Figures stage needs.
-pub fn required_tables() -> impl Iterator<Item = TableId> {
-    FIGURE_FIELDS
-        .iter()
-        .map(|f| TableId::new(f.table))
-        .chain(std::iter::once(TableId::new(RELATIONSHIP_TABLE)))
+/// The Authority Figures built-in step's configuration.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FiguresConfig {
+    /// Where the Authority the figures represent is found.
+    pub authority: AuthorityConfig,
+    /// Each figure's fields, rolled in this order.
+    pub fields: Vec<FigureFieldConfig>,
+    /// Rolled once for every unordered pair of figures.
+    pub relationship_table: TableId,
 }
 
-fn field_def(id: &str) -> Result<&'static FigureFieldDef, GenerationError> {
-    FIGURE_FIELDS
-        .iter()
-        .find(|f| f.id == id)
-        .ok_or_else(|| GenerationError::NoSuchFigureField(id.to_owned()))
+/// One field of an Authority Figure and the table it is rolled on.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FigureFieldConfig {
+    /// Stable field ID, e.g. `species`.
+    pub id: String,
+    pub label: String,
+    pub table: TableId,
+}
+
+impl FiguresConfig {
+    /// The configuration of content in the legacy `sequence` format.
+    pub fn legacy() -> Self {
+        FiguresConfig {
+            authority: AuthorityConfig::legacy(),
+            fields: FIGURE_FIELDS
+                .iter()
+                .map(|f| FigureFieldConfig {
+                    id: f.id.to_owned(),
+                    label: f.label.to_owned(),
+                    table: TableId::new(f.table),
+                })
+                .collect(),
+            relationship_table: TableId::new(RELATIONSHIP_TABLE),
+        }
+    }
+
+    /// Every table the stage rolls: the fields', then the relationship
+    /// table.
+    pub fn tables(&self) -> Vec<&TableId> {
+        self.fields
+            .iter()
+            .map(|f| &f.table)
+            .chain(std::iter::once(&self.relationship_table))
+            .collect()
+    }
+
+    pub fn field(&self, id: &str) -> Result<&FigureFieldConfig, GenerationError> {
+        self.fields
+            .iter()
+            .find(|f| f.id == id)
+            .ok_or_else(|| GenerationError::NoSuchFigureField(id.to_owned()))
+    }
+}
+
+/// The tables the Authority Figures stage of legacy content needs.
+pub fn required_tables() -> impl Iterator<Item = TableId> {
+    FiguresConfig::legacy()
+        .tables()
+        .into_iter()
+        .cloned()
+        .collect::<Vec<_>>()
+        .into_iter()
 }
 
 /// One rolled (or chosen) field of a figure, with its full record.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FigureField {
-    /// The field ID from [`FIGURE_FIELDS`].
+    /// The field ID from the stage's configuration.
     pub field: String,
     pub roll: TableRollRecord,
 }
@@ -171,7 +225,7 @@ pub struct AuthorityFigure {
     /// The Role / Title allocated before the figure was generated, if any.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub role: Option<FigureRole>,
-    /// The fields, in [`FIGURE_FIELDS`] order.
+    /// The fields, in the configured order.
     pub fields: Vec<FigureField>,
     pub name: FigureName,
     /// Tags the figure's own results activated (e.g. `species.human`).
@@ -268,6 +322,8 @@ pub(crate) struct FigureGenerator<'g, 'c> {
     pub content: &'c ContentSet,
     /// Tags active in the settlement before the figures are generated.
     pub settlement_tags: &'g [TagId],
+    /// The fields and tables to roll.
+    pub config: &'g FiguresConfig,
 }
 
 impl FigureGenerator<'_, '_> {
@@ -293,7 +349,7 @@ impl FigureGenerator<'_, '_> {
                 relationships.push(Relationship {
                     a: figures[i].id.clone(),
                     b: figures[j].id.clone(),
-                    roll: self.roll(&TableId::new(RELATIONSHIP_TABLE), &[], None, faces)?,
+                    roll: self.roll(&self.config.relationship_table, &[], None, faces)?,
                 });
             }
         }
@@ -314,11 +370,11 @@ impl FigureGenerator<'_, '_> {
         faces: &mut dyn FaceSource,
     ) -> Result<AuthorityFigure, GenerationError> {
         let mut fields: Vec<FigureField> = Vec::new();
-        for def in &FIGURE_FIELDS {
+        for def in &self.config.fields {
             let own = self.own_tags(&fields);
             fields.push(FigureField {
                 field: def.id.to_owned(),
-                roll: self.roll(&TableId::new(def.table), &own, None, faces)?,
+                roll: self.roll(&def.table, &own, None, faces)?,
             });
         }
         let tags = self.named(&self.own_tags(&fields));
@@ -349,19 +405,14 @@ impl FigureGenerator<'_, '_> {
         choice: Option<ResultId>,
         faces: &mut dyn FaceSource,
     ) -> Result<(), GenerationError> {
-        let def = field_def(field)?;
+        let def = self.config.field(field)?;
         let others: Vec<FigureField> = figure
             .fields
             .iter()
             .filter(|f| f.field != field)
             .cloned()
             .collect();
-        let roll = self.roll(
-            &TableId::new(def.table),
-            &self.own_tags(&others),
-            choice,
-            faces,
-        )?;
+        let roll = self.roll(&def.table, &self.own_tags(&others), choice, faces)?;
         let before = figure.tags.clone();
         match figure.fields.iter_mut().find(|f| f.field == field) {
             Some(existing) => existing.roll = roll,
@@ -403,7 +454,7 @@ impl FigureGenerator<'_, '_> {
         choice: Option<ResultId>,
         faces: &mut dyn FaceSource,
     ) -> Result<TableRollRecord, GenerationError> {
-        self.roll(&TableId::new(RELATIONSHIP_TABLE), &[], choice, faces)
+        self.roll(&self.config.relationship_table, &[], choice, faces)
     }
 
     /// Resolves `table` under the settlement's tags plus `own` (the
@@ -426,7 +477,7 @@ impl FigureGenerator<'_, '_> {
             .take_events()
             .into_iter()
             .find_map(|e| match e {
-                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(*r),
+                GenerationEvent::TableRolled(r) if !r.is_routed() => Some(*r),
                 _ => None,
             })
             .ok_or_else(|| GenerationError::FigureTableSkipped {

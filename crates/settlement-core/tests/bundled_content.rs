@@ -9,6 +9,7 @@ use settlement_core::content::{
 };
 use settlement_core::dice::{DiceExpr, ScriptedFaces};
 use settlement_core::engine::{GenerationError, GenerationLog, Generator, Selections};
+use settlement_core::framework::StepAction;
 use settlement_core::ids::TableId;
 use settlement_core::validation::{IssueKind, validate};
 
@@ -1040,10 +1041,13 @@ fn authority_size_is_a_conditional_1d10_from_2_to_6() {
         ]
     );
     let sequence: Vec<_> = c
-        .sequence
-        .iter()
+        .pipeline()
+        .into_iter()
         .filter(|s| s.sub_stage)
-        .filter_map(|s| s.table().map(|t| t.as_str()))
+        .filter_map(|s| match s.action {
+            StepAction::Roll { table, .. } => Some(table.to_string()),
+            _ => None,
+        })
         .collect();
     assert_eq!(
         sequence,
@@ -1487,9 +1491,9 @@ fn size_can_still_be_chosen_manually() {
 #[test]
 fn every_stage_has_its_pipeline_name() {
     let names: Vec<_> = content()
-        .sequence
-        .iter()
-        .map(|s| s.name.clone().unwrap())
+        .pipeline()
+        .into_iter()
+        .map(|s| s.name.unwrap())
         .collect();
     assert_eq!(
         names,

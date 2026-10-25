@@ -27,6 +27,8 @@ export interface Settings {
   theme: Theme;
   /** Every settlement gets one extra Notable Location: a Tavern. */
   bare_minimum_buildings: boolean;
+  /** Advanced: show how every generated value was reached. */
+  roll_details?: boolean;
 }
 
 export function getAppInfo(): Promise<AppInfo> {
@@ -164,6 +166,41 @@ export interface StageView {
   roles?: RolesView;
   /** Present on the Notable Locations stage only. */
   locations?: LocationsView;
+  /** Present on flow stages (repeats, branches, objects, subflows). */
+  flow?: FlowStageView;
+  /** Every roll of the stage explained (only with Roll details). */
+  trace?: RollTrace[];
+}
+
+/** One roll explained, line by line, e.g. "Base roll: 10", "Result: High". */
+export interface RollTrace {
+  title: string;
+  lines: string[];
+}
+
+/** A flow stage: what its step produced, once run. */
+export interface FlowStageView {
+  record?: StepRecord;
+  /** The record as indented lines, laid out by the core. */
+  outline?: OutlineLine[];
+}
+
+/**
+ * What a flow step produced. Interfaces show it through `outline`, which
+ * the core computes; the rest is kept for completeness.
+ */
+export interface StepRecord {
+  step: string;
+  label: string;
+  kind: string;
+  [field: string]: unknown;
+}
+
+/** One indented line of a flow record, as the core lays it out. */
+export interface OutlineLine {
+  depth: number;
+  label: string;
+  value?: string;
 }
 
 /** A table roll as recorded (the parts the interface shows). */
@@ -477,6 +514,10 @@ export interface SnapshotStage {
   locations?: NotableLocations;
   /** The name stage's record (only on the name stage). */
   name?: NameRecord;
+  /** A flow stage's record (only on flow stages). */
+  flow?: StepRecord;
+  /** The flow record as indented lines (only on flow stages). */
+  outline?: OutlineLine[];
 }
 
 /** A saved settlement name and how it was made. */
@@ -518,11 +559,24 @@ export function formatWhen(iso: string): string {
 export type FaceRange = number | [number, number];
 
 export type Condition =
-  { has_tag: string } | { all: Condition[] } | { any: Condition[] } | { not: Condition };
+  | { has_tag: string }
+  | { all: Condition[] }
+  | { any: Condition[] }
+  | { not: Condition }
+  | { setting_on: string }
+  | { setting_is: { setting: string; value: string } }
+  | { setting_between: { setting: string; min?: number; max?: number } }
+  | { setting_has: { setting: string; value: string } }
+  | { result_is: { step: string; results: string[] } }
+  | { value_in: { step: string; min?: number; max?: number } };
 
 export interface TableResult {
   id: string;
   name: string;
+  /** Tables rolled next whenever this result comes up. */
+  then_roll?: string[];
+  /** The shared result this entry lists; it fills the fields left empty. */
+  shared?: string;
   description?: string;
   range?: FaceRange;
   tags?: string[];
@@ -579,6 +633,8 @@ export interface Table {
   status?: "final" | "incomplete";
   status_note?: string;
   ordered?: boolean;
+  /** The scale Shift and Cap modifiers move along. */
+  scale?: string;
   active?: boolean;
   eligibility?: Condition;
   results: TableResult[];
@@ -672,16 +728,206 @@ export interface ContentOverview {
   issues: ValidationIssue[];
 }
 
+/** One place that depends on a table or a result. */
+export interface Usage {
+  description: string;
+  table?: string;
+  tag?: string;
+  flow?: string;
+}
+
+export type FitKind = "exact" | "curve" | "roll_again" | "approximate";
+
+/** One way of laying results out on physical dice. */
+export interface DiceFit {
+  dice: string;
+  kind: FitKind;
+  label: string;
+  explanation: string;
+  ranges: FaceRange[];
+  roll_again?: FaceRange;
+  /** Each result's chance (0–1). */
+  chances: number[];
+  /** Largest difference from the wanted chance, in percentage points. */
+  max_error: number;
+}
+
+export interface EntryChange {
+  kind: "add" | "remove" | "reweight";
+  count: number;
+  dice: string;
+  explanation: string;
+}
+
+export interface DiceAdvice {
+  targets: number[];
+  suggestions: DiceFit[];
+  summary: string;
+  entry_changes?: EntryChange[];
+}
+
+/** A table roll as the preview shows it. */
+export interface PreviewRecord {
+  table: Named;
+  dice?: string;
+  attempts?: {
+    roll: { total: number; dice: { die: string; value: number }[] };
+    face: number;
+    result: Named;
+    outcome: string;
+  }[];
+  result: Named;
+  adjusted_from?: Named;
+  rolled_after?: Named;
+  routed_by?: Named;
+}
+
+export type PreviewEvent =
+  | ({ event: "table_rolled" } & PreviewRecord)
+  | { event: "table_skipped"; table: Named; reason: string }
+  | { event: "secondary_roll"; tag: Named; label: string; roll: { total: number } };
+
+export interface PreviewRoll {
+  events: PreviewEvent[];
+  traces: RollTrace[];
+  note: string;
+}
+
+// ----- testing and simulation ---------------------------------------------------
+
+export interface OutcomeStat {
+  id: string;
+  name: string;
+  count: number;
+  /** Share of the runs, 0–100. */
+  actual: number;
+  /** What the dice should give, 0–100 (tables only). */
+  expected?: number;
+}
+
+export interface ModifierUse {
+  label: string;
+  count: number;
+}
+
+export interface ErrorCount {
+  message: string;
+  count: number;
+}
+
+export interface TableSimulation {
+  runs: number;
+  table: Named;
+  results: OutcomeStat[];
+  unreachable: Named[];
+  rerolls: number;
+  modifiers: ModifierUse[];
+  errors: ErrorCount[];
+  issues: ValidationIssue[];
+  note: string;
+}
+
+export interface StepStat {
+  step: string;
+  label: string;
+  reached: number;
+  outcomes: OutcomeStat[];
+}
+
+export interface BranchStat {
+  step: string;
+  label: string;
+  cases: OutcomeStat[];
+}
+
+export interface FlowSimulation {
+  runs: number;
+  steps: StepStat[];
+  branches: BranchStat[];
+  impossible: string[];
+  modifiers: ModifierUse[];
+  errors: ErrorCount[];
+  issues: ValidationIssue[];
+  note: string;
+}
+
+export interface FlowPreview {
+  steps: StepRecord[];
+  outline: OutlineLine[];
+  traces: RollTrace[];
+  error?: string;
+}
+
+// ----- import and export ------------------------------------------------------------
+
+export type PackKind =
+  "setting" | "scale" | "shared_result" | "object_type" | "table" | "tag" | "flow";
+
+export interface PackItem {
+  kind: PackKind;
+  id: string;
+}
+
+/** A content file: complete items of every kind, plus format details. */
+export interface ContentPack {
+  format: string;
+  version: number;
+  app_version?: string;
+  name?: string;
+  [kind: string]: unknown;
+}
+
+export type Collision = "rename" | "replace" | "skip";
+
+export type ImportAction =
+  | "add"
+  | { add_as: { id: string } }
+  | { replace: { existing: string } }
+  | { skip: { existing: string } };
+
+export interface ImportItem {
+  kind: PackKind;
+  id: string;
+  name: string;
+  action: ImportAction;
+}
+
+export interface ImportPlan {
+  name: string;
+  items: ImportItem[];
+  issues: ValidationIssue[];
+  error?: string;
+  can_import: boolean;
+  summary: string;
+}
+
+export const transfer = {
+  exportItems: (items: PackItem[], withDependencies: boolean, name: string) =>
+    invoke<ContentPack>("content_export_items", { items, withDependencies, name }),
+  exportEverything: (scope: "everything" | "customised") =>
+    invoke<ContentPack>("content_export_everything", { scope }),
+  /** Writes the pack to the exports folder; resolves to the file's path. */
+  writePack: (pack: ContentPack, fileName: string) =>
+    invoke<string>("content_write_pack", { pack, fileName }),
+  exportsFolder: () => invoke<string | null>("content_exports_folder"),
+  planImport: (text: string, policy: Collision) =>
+    invoke<ImportPlan>("content_plan_import", { text, policy }),
+  importPack: (text: string, policy: Collision) =>
+    invoke<ImportPlan>("content_import", { text, policy }),
+};
+
 export interface TableDetail {
   table: Table;
   origin: Origin | null;
   built_in: boolean;
   coverage: Coverage[];
   issues: ValidationIssue[];
+  /** What depends on the table; it cannot be deleted while any remain. */
+  usages?: Usage[];
 }
 
 export interface TagUsage {
-  kind: "emitted_by" | "checked_by" | "added_by";
+  kind: "emitted_by" | "checked_by" | "added_by" | "removed_by";
   location: IssueLocation;
   description: string;
 }
@@ -706,6 +952,7 @@ export type FieldKind =
   | { type: "result"; table_field: string }
   | { type: "result_list"; table_field: string }
   | { type: "tag" }
+  | { type: "flow" }
   | { type: "dice" }
   | { type: "text" }
   | { type: "integer" }
@@ -719,13 +966,123 @@ export interface EffectField {
   help: string;
 }
 
+export interface EffectPreset {
+  label: string;
+  values: Record<string, unknown>;
+}
+
 export interface EffectKindSchema {
   kind: string;
   label: string;
   description: string;
   executable: boolean;
   fields: EffectField[];
+  /** One-click values, e.g. "Shift +1". */
+  presets?: EffectPreset[];
+  /** The Modifier Builder's grouping, e.g. "Change the roll". */
+  group: string;
 }
+
+/** Something an effect or modifier changes. */
+export interface Affected {
+  kind: "table" | "result" | "tag" | "flow";
+  id: string;
+  name: string;
+}
+
+/** An effect or modifier in plain words, from the core. */
+export interface Explanation {
+  title: string;
+  summary: string;
+  /** What happens to a roll, step by step. */
+  preview?: string[];
+  planned: boolean;
+  affects: Affected[];
+}
+
+export interface TablePreview {
+  table: Named;
+  steps: string[];
+}
+
+export interface TagInsight {
+  effects: Explanation[];
+  combined: TablePreview[];
+  /** No active effects: the tag only labels the settlement. */
+  informational: boolean;
+}
+
+// ----- generation settings and framework items -------------------------------
+
+/** On/off, a number, an option (or text), or the options ticked. */
+export type SettingValue = boolean | number | string | string[];
+
+export type SettingType = "toggle" | "number" | "choice" | "multi_select" | "text";
+
+export interface SettingOption {
+  id: string;
+  name: string;
+}
+
+export type SettingDef = {
+  id: string;
+  name: string;
+  description?: string;
+  /** Planned settings are documented but not offered; generation uses the default. */
+  status?: "active" | "planned";
+  note?: string;
+} & (
+  | { kind: "toggle"; default?: boolean }
+  | { kind: "number"; default?: number; min?: number; max?: number }
+  | { kind: "choice"; default: string; options: SettingOption[] }
+  | { kind: "multi_select"; default?: string[]; options: SettingOption[] }
+  | { kind: "text"; default?: string }
+);
+
+export interface SettingDetail {
+  setting: SettingDef;
+  origin: Origin | null;
+  built_in: boolean;
+  usages: Usage[];
+  issues: ValidationIssue[];
+}
+
+export interface ContentSettingView {
+  setting: SettingDef;
+  value: SettingValue;
+}
+
+export type ItemKind = "shared_result" | "scale" | "setting" | "object_type" | "flow";
+
+export interface FrameworkItemListing {
+  kind: ItemKind;
+  id: string;
+  name: string;
+  origin?: Origin;
+  deleted: boolean;
+}
+
+export const framework = {
+  settings: () => invoke<ContentSettingView[]>("content_settings"),
+  setSetting: (id: string, value: SettingValue) =>
+    invoke<ContentSettingView[]>("content_set_setting", { id, value }),
+  /** On/off settings a condition can test (the app's and the content's). */
+  toggleSettings: () => invoke<Named[]>("content_toggle_settings"),
+  items: () => invoke<FrameworkItemListing[]>("framework_items"),
+  item: (kind: ItemKind, id: string) => invoke<unknown>("framework_item", { kind, id }),
+  saveItem: (kind: ItemKind, item: unknown) =>
+    invoke<FrameworkItemListing[]>("framework_save_item", { kind, item }),
+  deleteItem: (kind: ItemKind, id: string) =>
+    invoke<FrameworkItemListing[]>("framework_delete_item", { kind, id }),
+  resetItem: (kind: ItemKind, id: string) =>
+    invoke<FrameworkItemListing[]>("framework_reset_item", { kind, id }),
+  settingDetail: (id: string) => invoke<SettingDetail>("setting_detail", { id }),
+  newSetting: (kind: SettingType) => invoke<SettingDef>("setting_new", { kind }),
+  checkSetting: (setting: SettingDef) => invoke<DraftCheck>("setting_check", { setting }),
+  saveSetting: (setting: SettingDef) => invoke<SettingDetail>("setting_save", { setting }),
+  /** Refused, naming what depends on it, while the setting is used. */
+  deleteSetting: (id: string) => invoke<FrameworkItemListing[]>("setting_delete", { id }),
+};
 
 export const content = {
   overview: () => invoke<ContentOverview>("content_overview"),
@@ -743,10 +1100,197 @@ export const content = {
   resetTable: (id: string) => invoke<ContentOverview>("content_reset_table", { id }),
   resetTag: (id: string) => invoke<ContentOverview>("content_reset_tag", { id }),
   resetAll: () => invoke<ContentOverview>("content_reset_all"),
+  diceAdvice: (weights: number[]) => invoke<DiceAdvice>("content_dice_advice", { weights }),
+  diceFit: (weights: number[], dice: string) =>
+    invoke<DiceFit>("content_dice_fit", { weights, dice }),
+  applyDiceFit: (table: Table, entries: string[], fit: DiceFit) =>
+    invoke<Table>("content_apply_dice_fit", { table, entries, fit }),
+  previewRoll: (table: Table) => invoke<PreviewRoll>("content_preview_roll", { table }),
+  copyTable: (id: string) => invoke<Table>("content_copy_table", { id }),
+  resultUsages: (table: Table, result: string) =>
+    invoke<Usage[]>("content_result_usages", { table, result }),
+  saveTableDraft: (table: Table) => invoke<void>("content_save_table_draft", { table }),
+  tableDraft: (id: string) => invoke<Table | null>("content_table_draft", { id }),
+  discardTableDraft: (id: string) => invoke<void>("content_discard_table_draft", { id }),
   effectSchema: () => invoke<EffectKindSchema[]>("effect_schema"),
+  explainTag: (tag: Tag) => invoke<TagInsight>("tag_explain", { tag }),
+  simulateTable: (table: Table, runs: number, tags: string[] = []) =>
+    invoke<TableSimulation>("content_simulate_table", { table, runs, tags }),
+  explainEffect: (tag: Tag | null, effect: EffectDef) =>
+    invoke<Explanation>("effect_explain", { tag, effect }),
 };
 
 /** `[min, max]` for any face range. */
 export function toPair(range: FaceRange): [number, number] {
   return typeof range === "number" ? [range, range] : range;
 }
+
+// ----- flows -------------------------------------------------------------------
+
+export type Modifier =
+  { shift: number } | { plus: number } | { minus: number } | "cap_at_highest" | "cap_at_lowest";
+
+export type Count =
+  { times: number } | { value_of: { step: string; add?: number } } | { dice: string };
+
+export interface StepModifier {
+  modifier: Modifier;
+  when?: Condition;
+}
+
+export interface BranchCase {
+  name?: string;
+  when: Condition;
+  steps: FlowStep[];
+}
+
+export type StepAction =
+  | { kind: "roll"; table: string; field?: string; modifiers?: StepModifier[] }
+  | { kind: "secondary_roll"; label: string; dice: string }
+  | { kind: "add_tag"; tag: string }
+  | { kind: "remove_tag"; tag: string }
+  | { kind: "set_result"; table: string; result: string; field?: string }
+  | { kind: "set_value"; field: string; value: number }
+  | { kind: "branch"; cases: BranchCase[]; otherwise?: FlowStep[] }
+  | { kind: "repeat"; count: Count; steps: FlowStep[] }
+  | { kind: "run_flow"; flow: string; max_depth?: number }
+  | { kind: "for_each"; object: string; pairs?: boolean; steps?: FlowStep[] }
+  | { kind: "apply_modifier"; table: string; modifier: Modifier }
+  | { kind: "read_setting"; setting: string }
+  | { kind: "stop" }
+  | { kind: "create_object"; object: string; steps?: FlowStep[]; share_tags?: boolean }
+  | { kind: "name"; subject?: "settlement" | "person" }
+  | { kind: "builtin"; handler: string; config?: unknown };
+
+export type FlowStep = {
+  id: string;
+  name?: string;
+  description?: string;
+  /** The step only runs while this holds. */
+  when?: Condition;
+  active?: boolean;
+  status?: "active" | "planned";
+  note?: string;
+  sub_stage?: boolean;
+} & StepAction;
+
+export interface Flow {
+  id: string;
+  name: string;
+  description?: string;
+  steps: FlowStep[];
+  /** The editor's own layout; never affects generation. */
+  editor?: { positions?: Record<string, [number, number]>; detached?: FlowStep[] };
+}
+
+/** A list of steps: the flow's own, a container's body, a case, or Otherwise. */
+export type Slot =
+  | { list: "top" }
+  | { list: "body"; step: string }
+  | { list: "case"; step: string; case: number }
+  | { list: "otherwise"; step: string };
+
+export type FlowPosition = Slot & { index: number };
+
+export type StepKind =
+  | "roll_table"
+  | "run_subflow"
+  | "condition"
+  | "create_object"
+  | "repeat_times"
+  | "repeat_for_each"
+  | "set_value"
+  | "add_tag"
+  | "remove_tag"
+  | "apply_modifier"
+  | "read_setting"
+  | "stop";
+
+export type FlowEdit =
+  | { op: "add"; kind: StepKind; at: FlowPosition }
+  | { op: "insert"; step: FlowStep; at: FlowPosition }
+  | { op: "update"; step: FlowStep }
+  | { op: "remove"; step: string }
+  | { op: "move"; step: string; to: FlowPosition }
+  | { op: "detach"; step: string }
+  | { op: "attach"; step: string; to: FlowPosition }
+  | { op: "duplicate"; step: string }
+  | { op: "add_case"; step: string }
+  | { op: "remove_case"; step: string; case: number }
+  | { op: "place"; step: string; at: [number, number] };
+
+export interface PseudoLine {
+  depth: number;
+  step?: string;
+  text: string;
+}
+
+/** What a step's node shows, in words from the core. */
+export interface NodeText {
+  step: string;
+  kind: string;
+  text: string;
+  when?: string;
+  cases?: string[];
+}
+
+export interface FlowIssueLocation extends IssueLocation {
+  flow?: string;
+  step?: string;
+}
+
+export interface FlowCheck {
+  issues: (ValidationIssue & { location: FlowIssueLocation })[];
+  pseudocode: PseudoLine[];
+  nodes: NodeText[];
+  error: string | null;
+}
+
+/** A step a condition can test. */
+export interface ConditionSubject {
+  step: string;
+  label: string;
+  results: Named[];
+  numeric: boolean;
+  pipeline: boolean;
+}
+
+export interface ConditionSetting {
+  id: string;
+  name: string;
+  kind: SettingType;
+  /** A choice setting's options; empty for an on/off one. */
+  options: Named[];
+}
+
+export interface FlowContext {
+  subjects: ConditionSubject[];
+  tables: Named[];
+  tags: Named[];
+  settings: ConditionSetting[];
+  objects: Named[];
+  flows: Named[];
+  kinds: Named[];
+}
+
+export const flows = {
+  get: (id: string) => invoke<Flow>("flow_get", { id }),
+  create: () => invoke<Flow>("flow_new"),
+  duplicate: (id: string) => invoke<Flow>("flow_duplicate", { id }),
+  edit: (flow: Flow, edit: FlowEdit) => invoke<Flow>("flow_edit", { flow, edit }),
+  check: (flow: Flow) => invoke<FlowCheck>("flow_check", { flow }),
+  context: (flow: Flow) => invoke<FlowContext>("flow_context", { flow }),
+  simulate: (flow: Flow, runs: number) => invoke<FlowSimulation>("flow_simulate", { flow, runs }),
+  preview: (flow: Flow) => invoke<FlowPreview>("flow_preview", { flow }),
+  usages: (id: string) => invoke<Usage[]>("flow_usages", { id }),
+  /** Refused, naming what depends on it, while anything runs the flow. */
+  remove: (id: string) => invoke<FrameworkItemListing[]>("flow_delete", { id }),
+  explainModifier: (table: string, modifier: Modifier) =>
+    invoke<Explanation>("modifier_explain", { table, modifier }),
+  describeCondition: (flow: Flow, condition: Condition) =>
+    invoke<string>("flow_describe_condition", { flow, condition }),
+  save: (flow: Flow) => invoke<Flow>("flow_save", { flow }),
+  saveDraft: (flow: Flow) => invoke<void>("flow_save_draft", { flow }),
+  draft: (id: string) => invoke<Flow | null>("flow_draft", { id }),
+  discardDraft: (id: string) => invoke<void>("flow_discard_draft", { id }),
+};

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "shared_results": [
+    {
+      "id": "environment.farmlandOpenCountry",
+      "name": "Farmland & Open Country",
+      "tags": ["env.farmlandOpenCountry"]
+    },
+    {
+      "id": "environment.grasslandPlains",
+      "name": "Grassland / Plains",
+      "tags": ["env.grasslandPlains"]
+    },
+    {
+      "id": "environment.woodland",
+      "name": "Woodland",
+      "tags": ["env.woodland"]
+    },
+    {
+      "id": "environment.moorlandHeath",
+      "name": "Moorland / Heath",
+      "tags": ["env.moorlandHeath"]
+    },
+    {
+      "id": "environment.hills",
+      "name": "Hills",
+      "tags": ["env.hills"]
+    },
+    {
+      "id": "environment.mountains",
+      "name": "Mountains",
+      "tags": ["env.mountains"]
+    },
+    {
+      "id": "environment.wetlands",
+      "name": "Wetlands",
+      "tags": ["env.wetlands"]
+    },
+    {
+      "id": "environment.coast",
+      "name": "Coast",
+      "tags": ["env.coast"]
+    },
+    {
+      "id": "environment.coldTundra",
+      "name": "Cold / Tundra",
+      "tags": ["env.coldTundra"]
+    }
+  ]
+}

@@ -46,6 +46,10 @@ pub struct Settings {
     #[serde(default)]
     pub bare_minimum_buildings: bool,
     pub theme: Theme,
+    /// Advanced: show how every generated value was reached (each roll,
+    /// modifier and scale move) during generation.
+    #[serde(default)]
+    pub roll_details: bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, thiserror::Error)]
@@ -159,6 +163,7 @@ mod tests {
             tag_view: true,
             theme: Theme::OldTimeyDark,
             bare_minimum_buildings: true,
+            roll_details: true,
         })
         .unwrap();
         assert_eq!(
@@ -169,7 +174,8 @@ mod tests {
                 "god_mode": true,
                 "tag_view": true,
                 "theme": "old_timey_dark",
-                "bare_minimum_buildings": true
+                "bare_minimum_buildings": true,
+                "roll_details": true
             })
         );
     }

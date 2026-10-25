@@ -1,6 +1,9 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   displayVersion,
+  framework,
+  type ContentSettingView,
+  type SettingValue,
   type GenerationMethod,
   type GenerationPresentation,
   type Settings,
@@ -76,19 +79,20 @@ export function SettingsScreen() {
                 onChange={(v) => change({ god_mode: v })}
               />
               <ToggleRow
+                id="roll-details"
+                title="Roll details (advanced)"
+                help="Show how every generated value was reached: each roll, modifier and scale move."
+                checked={settings.roll_details ?? false}
+                onChange={(v) => change({ roll_details: v })}
+              />
+              <ToggleRow
                 id="tag-view"
                 title="Tag View"
                 help="Show applied tags during generation and when viewing saved settlements."
                 checked={settings.tag_view}
                 onChange={(v) => change({ tag_view: v })}
               />
-              <ToggleRow
-                id="bare-minimum-buildings"
-                title="Bare Minimum Buildings"
-                help="Every settlement gets one extra Notable Location: a Tavern with 4 spare rooms."
-                checked={settings.bare_minimum_buildings}
-                onChange={(v) => change({ bare_minimum_buildings: v })}
-              />
+              <ContentSettings onStatus={setStatus} />
             </div>
           </section>
 
@@ -106,6 +110,21 @@ export function SettingsScreen() {
                 title="View Tables"
                 help="Browse and customise tables."
                 onOpen={() => navigate("tables")}
+              />
+              <NavRow
+                title="View Generation Settings"
+                help="Create and change the settings generation offers, and see what uses them."
+                onOpen={() => navigate("setting-defs")}
+              />
+              <NavRow
+                title="Import / Export"
+                help="Share tables, tags, settings and flows as files, or back up everything you made."
+                onOpen={() => navigate("transfer")}
+              />
+              <NavRow
+                title="View Flows"
+                help="See and change how generation runs, step by step, as a diagram."
+                onOpen={() => navigate("flows")}
               />
             </div>
           </section>
@@ -151,6 +170,136 @@ export function SettingsScreen() {
       )}
     </ScreenFrame>
   );
+}
+
+/**
+ * Settings the generator content defines for itself (none in the bundled
+ * content), each a toggle or a choice, saved through the core.
+ */
+function ContentSettings({
+  onStatus,
+}: {
+  onStatus: (status: { text: string; error: boolean }) => void;
+}) {
+  const [list, setList] = useState<ContentSettingView[]>([]);
+  useEffect(() => {
+    framework
+      .settings()
+      .then(setList)
+      .catch(() => setList([]));
+  }, []);
+  const set = async (id: string, value: SettingValue) => {
+    try {
+      setList(await framework.setSetting(id, value));
+      onStatus({ text: "Saved", error: false });
+    } catch (e) {
+      onStatus({ text: String(e), error: true });
+    }
+  };
+  return (
+    <>
+      {list
+        // Planned settings are documented, not offered.
+        .filter(({ setting }) => setting.status !== "planned")
+        .map(({ setting, value }) => (
+          <ContentSettingRow
+            key={setting.id}
+            setting={setting}
+            value={value}
+            onChange={(v) => void set(setting.id, v)}
+          />
+        ))}
+    </>
+  );
+}
+
+function ContentSettingRow({
+  setting,
+  value,
+  onChange,
+}: {
+  setting: ContentSettingView["setting"];
+  value: SettingValue;
+  onChange: (value: SettingValue) => void;
+}) {
+  const [text, setText] = useState(typeof value === "string" ? value : "");
+  useEffect(() => setText(typeof value === "string" ? value : ""), [value]);
+  switch (setting.kind) {
+    case "choice":
+      return (
+        <ChoiceRow<string>
+          name={`setting-${setting.id}`}
+          title={setting.name}
+          help={setting.description}
+          value={String(value)}
+          options={setting.options.map((o) => ({ value: o.id, label: o.name }))}
+          onChange={onChange}
+        />
+      );
+    case "toggle":
+      return (
+        <ToggleRow
+          id={`setting-${setting.id}`}
+          title={setting.name}
+          help={setting.description ?? ""}
+          checked={value === true}
+          onChange={onChange}
+        />
+      );
+    case "number":
+      return (
+        <Row title={setting.name} help={setting.description}>
+          <input
+            className="num-input"
+            type="number"
+            aria-label={setting.name}
+            min={setting.min}
+            max={setting.max}
+            value={typeof value === "number" ? value : ""}
+            onChange={(e) => {
+              const n = Number.parseInt(e.target.value, 10);
+              if (!Number.isNaN(n)) onChange(n);
+            }}
+          />
+        </Row>
+      );
+    case "multi_select": {
+      const ticked = Array.isArray(value) ? value : [];
+      return (
+        <Row title={setting.name} help={setting.description}>
+          <span className="check-list" role="group" aria-label={setting.name}>
+            {setting.options.map((o) => (
+              <label key={o.id} className="check">
+                <input
+                  type="checkbox"
+                  checked={ticked.includes(o.id)}
+                  onChange={(e) =>
+                    onChange(
+                      e.target.checked ? [...ticked, o.id] : ticked.filter((id) => id !== o.id),
+                    )
+                  }
+                />
+                {o.name}
+              </label>
+            ))}
+          </span>
+        </Row>
+      );
+    }
+    case "text":
+      return (
+        <Row title={setting.name} help={setting.description}>
+          <input
+            className="text-input"
+            aria-label={setting.name}
+            maxLength={200}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onBlur={() => text !== value && onChange(text)}
+          />
+        </Row>
+      );
+  }
 }
 
 function Row({ title, help, children }: { title: string; help?: string; children: ReactNode }) {
