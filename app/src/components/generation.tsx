@@ -1,9 +1,29 @@
 // Presentational pieces of the generation flows. All decisions (legal
 // results, rolls, dependencies) come from the core via `SessionView`.
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { formatRange, type Named, type StageOutcome, type StageView } from "../api";
+import { formatRange, type Named, type RollTrace, type StageOutcome, type StageView } from "../api";
 
 /** Tags in plain words, kept visually secondary. Only rendered with Tag View. */
+/** How each value of a stage was reached (the Roll details setting). */
+export function RollDetails({ traces }: { traces?: RollTrace[] }) {
+  if (!traces || traces.length === 0) return null;
+  return (
+    <details className="roll-details">
+      <summary>Roll details</summary>
+      {traces.map((t, i) => (
+        <div key={i} className="roll-trace">
+          <p className="roll-trace-title">{t.title}</p>
+          <ul aria-label={`How ${t.title} was reached`}>
+            {t.lines.map((line, j) => (
+              <li key={j}>{line}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </details>
+  );
+}
+
 export function TagList({ tags, label = "Tags" }: { tags?: Named[]; label?: string }) {
   if (!tags || tags.length === 0) return null;
   return (

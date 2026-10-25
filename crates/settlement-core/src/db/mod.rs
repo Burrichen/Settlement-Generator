@@ -14,7 +14,13 @@ use thiserror::Error;
 
 use crate::VERSION;
 use crate::backup::{self, BackupKind};
+use crate::framework::SettingValues;
 use crate::layers::{OVERRIDES_FORMAT_VERSION, UserOverrides};
+
+/// The `settings` key holding the values of content-defined settings.
+const CONTENT_SETTINGS_KEY: &str = "content_settings";
+/// Prefix of the `settings` keys holding editor drafts.
+const DRAFT_PREFIX: &str = "draft.";
 use crate::settings::{Settings, SettingsError};
 use crate::settlements::{
     MAX_NAME_LENGTH, SNAPSHOT_FORMAT_VERSION, Settlement, SettlementId, SettlementSnapshot,
@@ -287,6 +293,66 @@ impl Database {
             )?;
         }
         tx.commit()?;
+        Ok(())
+    }
+
+    /// Loads the values chosen for content-defined generation settings
+    /// (stored under their own key). Unreadable data reads as none chosen,
+    /// so every setting takes its default.
+    pub fn load_content_settings(&self) -> DbResult<SettingValues> {
+        let value: Option<String> = self
+            .conn
+            .query_row(
+                "SELECT value FROM settings WHERE key = ?1",
+                params![CONTENT_SETTINGS_KEY],
+                |row| row.get(0),
+            )
+            .optional()?;
+        Ok(value
+            .and_then(|v| serde_json::from_str(&v).ok())
+            .unwrap_or_default())
+    }
+
+    /// Saves the values chosen for content-defined generation settings.
+    pub fn save_content_settings(&mut self, values: &SettingValues) -> DbResult<()> {
+        let json = serde_json::to_string(values).expect("setting values serialise");
+        self.conn.execute(
+            "INSERT INTO settings (key, value) VALUES (?1, ?2)
+             ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            params![CONTENT_SETTINGS_KEY, json],
+        )?;
+        Ok(())
+    }
+
+    /// An editor draft saved under `key` (e.g. `table.<id>`), if any. Drafts
+    /// are kept beside settings, under their own keys, until saved or
+    /// discarded.
+    pub fn load_draft(&self, key: &str) -> DbResult<Option<serde_json::Value>> {
+        let value: Option<String> = self
+            .conn
+            .query_row(
+                "SELECT value FROM settings WHERE key = ?1",
+                params![format!("{DRAFT_PREFIX}{key}")],
+                |row| row.get(0),
+            )
+            .optional()?;
+        Ok(value.and_then(|v| serde_json::from_str(&v).ok()))
+    }
+
+    pub fn save_draft(&mut self, key: &str, value: &serde_json::Value) -> DbResult<()> {
+        self.conn.execute(
+            "INSERT INTO settings (key, value) VALUES (?1, ?2)
+             ON CONFLICT (key) DO UPDATE SET value = excluded.value",
+            params![format!("{DRAFT_PREFIX}{key}"), value.to_string()],
+        )?;
+        Ok(())
+    }
+
+    pub fn delete_draft(&mut self, key: &str) -> DbResult<()> {
+        self.conn.execute(
+            "DELETE FROM settings WHERE key = ?1",
+            params![format!("{DRAFT_PREFIX}{key}")],
+        )?;
         Ok(())
     }
 

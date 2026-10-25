@@ -1,7 +1,57 @@
-// Effects are edited from the core's effect schema: every kind and field is
-// described by data, so new effect kinds need no new interface code.
-import type { EffectDef, EffectField, EffectKindSchema } from "../../api";
-import { TableSelect, TagSelect, useTableDetail } from "./common";
+// The Modifier Builder. Effects are edited from the core's effect schema:
+// every kind and field is described by data, so new effect kinds need no
+// new interface code. The core explains each effect in plain words.
+import { useEffect, useState } from "react";
+import {
+  content,
+  type EffectDef,
+  type EffectField,
+  type EffectKindSchema,
+  type Explanation,
+  type Tag,
+} from "../../api";
+import { FlowSelect, TableSelect, TagSelect, useTableDetail } from "./common";
+import { ExplanationView } from "./Explanation";
+
+/** Effect kinds as grouped options, for a kind picker. */
+export function KindOptions({ schema }: { schema: EffectKindSchema[] }) {
+  const groups = [...new Set(schema.map((s) => s.group))];
+  return (
+    <>
+      {groups.map((group) => (
+        <optgroup key={group} label={group}>
+          {schema
+            .filter((s) => s.group === group)
+            .map((s) => (
+              <option key={s.kind} value={s.kind}>
+                {s.label}
+              </option>
+            ))}
+        </optgroup>
+      ))}
+    </>
+  );
+}
+
+/** The core's plain-English account of `effect`, kept up to date. */
+function useExplanation(tag: Tag | undefined, effect: EffectDef): Explanation | null {
+  const [explanation, setExplanation] = useState<Explanation | null>(null);
+  const key = JSON.stringify([tag?.name, tag?.id, effect]);
+  useEffect(() => {
+    let live = true;
+    const timer = setTimeout(() => {
+      content.explainEffect(tag ?? null, effect).then(
+        (e) => live && setExplanation(e),
+        () => live && setExplanation(null),
+      );
+    }, 200);
+    return () => {
+      live = false;
+      clearTimeout(timer);
+    };
+  }, [key]);
+  return explanation;
+}
 
 /** A blank effect of `kind`, with only the discriminator set. */
 export function blankEffect(schema: EffectKindSchema): EffectDef {
@@ -12,16 +62,20 @@ export function EffectEditor({
   effect,
   schema,
   label,
+  tag,
   onChange,
   onRemove,
 }: {
   effect: EffectDef;
   schema: EffectKindSchema[];
   label: string;
+  /** The tag it belongs to, named in the explanation. */
+  tag?: Tag;
   onChange: (effect: EffectDef) => void;
   onRemove: () => void;
 }) {
   const kind = schema.find((s) => s.kind === effect.kind);
+  const explanation = useExplanation(tag, effect);
   const status = effect.status ?? "active";
   const set = (name: string, value: unknown) => {
     const next: EffectDef = { ...effect };
@@ -46,11 +100,7 @@ export function EffectEditor({
             if (next) onChange({ ...blankEffect(next), note: effect.note });
           }}
         >
-          {schema.map((s) => (
-            <option key={s.kind} value={s.kind}>
-              {s.label}
-            </option>
-          ))}
+          <KindOptions schema={schema} />
         </select>
         <select
           className="select select-inline"
@@ -60,7 +110,7 @@ export function EffectEditor({
           onChange={(e) => set("status", e.target.value === "active" ? undefined : "planned")}
         >
           <option value="active">Active</option>
-          <option value="planned">Planned (not executed)</option>
+          <option value="planned">Planned (documented, not run)</option>
         </select>
         <button
           type="button"
@@ -72,6 +122,20 @@ export function EffectEditor({
         </button>
       </div>
       {kind && <p className="muted small effect-description">{kind.description}</p>}
+      {kind?.presets && kind.presets.length > 0 && (
+        <div className="effect-presets" role="group" aria-label={`${label}: quick choices`}>
+          {kind.presets.map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              className="btn btn-small"
+              onClick={() => onChange({ ...effect, ...preset.values })}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      )}
       <div className="effect-fields">
         {kind?.fields.map((field) => (
           <label key={field.name} className="field">
@@ -93,6 +157,9 @@ export function EffectEditor({
             {field.help && <span className="field-help">{field.help}</span>}
           </label>
         ))}
+        <div className="field-wide">
+          <ExplanationView explanation={explanation} />
+        </div>
         <label className="field field-wide">
           <span className="field-label">Note</span>
           <input
@@ -124,6 +191,8 @@ function FieldInput({
       return <TableSelect label={label} value={(value as string) ?? ""} onChange={onChange} />;
     case "tag":
       return <TagSelect label={label} value={(value as string) ?? ""} onChange={onChange} />;
+    case "flow":
+      return <FlowSelect label={label} value={(value as string) ?? ""} onChange={onChange} />;
     case "variant":
     case "result":
     case "result_list":

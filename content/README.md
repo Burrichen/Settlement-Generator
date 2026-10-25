@@ -6,7 +6,12 @@ set:
 - tables;
 - tags;
 - naming and role schemes;
-- the generation `sequence`, in one file only.
+- shared results (`shared-results.json` in the folder of the tables that list
+  them);
+- the generation pipeline (the `start` flow), in `00-pipeline.json` only.
+
+The framework (flows, shared results, scales, settings, objects, modifiers)
+is described in [docs/FRAMEWORK.md](../docs/FRAMEWORK.md).
 
 **One table per file.** Every table has its own file, together with the tags
 it emits. A feature with several tables is a numbered folder (e.g.

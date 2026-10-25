@@ -14,9 +14,8 @@
         },
         {
           "id": "wetlands",
-          "name": "Wetlands",
-          "range": [14, 20],
-          "tags": ["env.wetlands"]
+          "shared": "environment.wetlands",
+          "range": [14, 20]
         }
       ]
     }

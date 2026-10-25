@@ -1,10 +1,27 @@
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { content, type EffectKindSchema, type Tag, type TagDetail } from "../api";
+import {
+  content,
+  type EffectKindSchema,
+  type Tag,
+  type TagDetail,
+  type TagInsight,
+  type TagUsage,
+  type PackItem,
+} from "../api";
 import { useApp } from "../app-state";
 import { ConfirmBar } from "../components/generation";
 import { ScreenFrame } from "../components/ScreenFrame";
-import { CatalogProvider, IssueList, originLabel, useCatalog } from "../components/editors/common";
-import { blankEffect, EffectEditor } from "../components/editors/EffectEditor";
+import {
+  CatalogProvider,
+  IssueList,
+  originLabel,
+  useCatalog,
+  useDraftCheck,
+} from "../components/editors/common";
+import { blankEffect, EffectEditor, KindOptions } from "../components/editors/EffectEditor";
+import { RollPreview } from "../components/editors/Explanation";
+import { DeleteBlocked, UsageLinks, type UsageLike } from "../components/editors/UsageLinks";
+import { ExportButton } from "./TransferScreen";
 import { ItemList, useEntityEditor } from "../components/editors/EntityEditor";
 
 /** View Tags: every effective tag (defaults merged with customisations). */
@@ -24,7 +41,8 @@ const normalizeTag = (t: Tag): Tag => ({
 });
 
 function TagsWorkspace() {
-  const { back } = useApp();
+  const { back, takeTarget } = useApp();
+  const [wanted] = useState(() => takeTarget?.("tag") ?? null);
   const { overview, refresh } = useCatalog();
   const [filter, setFilter] = useState("");
   const [schema, setSchema] = useState<EffectKindSchema[]>([]);
@@ -48,9 +66,10 @@ function TagsWorkspace() {
     if (!opened.current && overview?.tags.length) {
       opened.current = true;
       const first = overview.tags.find((t) => !t.deleted);
-      if (first) void editor.open(first.id);
+      const id = wanted ?? first?.id;
+      if (id) void editor.open(id);
     }
-  }, [overview, editor]);
+  }, [overview, editor, wanted]);
 
   const listItem = deletedId ? overview?.tags.find((t) => t.id === deletedId) : undefined;
   const deletedDefault = listItem?.deleted ?? false;
@@ -192,6 +211,7 @@ function TagForm({
   const check = editor.liveCheck;
   const issues = check ? check.issues : (editor.detail?.issues ?? []);
   const hasErrors = Boolean(check?.error) || issues.some((i) => i.severity === "error");
+  const insight = useDraftCheck<Tag, TagInsight>(draft, content.explainTag, 200);
 
   return (
     <div className="editor">
@@ -245,12 +265,19 @@ function TagForm({
         <h3 id="tag-effects" className="label">
           Effects
         </h3>
-        {effects.length === 0 && <p className="muted small">This tag has no effects.</p>}
+        {insight?.informational && (
+          <p className="muted small" role="note">
+            {effects.length === 0
+              ? "This tag has no effects: it is informational only. It labels the settlement, and conditions (in tables and flows) can still test it."
+              : "Every effect is planned, so the tag is informational only for now: it labels the settlement, and conditions can still test it."}
+          </p>
+        )}
         {effects.map((effect, i) => (
           <EffectEditor
             key={i}
             effect={effect}
             schema={schema}
+            tag={draft}
             label={`Effect ${i + 1}`}
             onChange={(next) => set({ effects: effects.map((e, j) => (j === i ? next : e)) })}
             onRemove={() => set({ effects: effects.filter((_, j) => j !== i) })}
@@ -267,27 +294,26 @@ function TagForm({
             }}
           >
             <option value="">Add effect…</option>
-            {schema.map((s) => (
-              <option key={s.kind} value={s.kind}>
-                {s.label}
-              </option>
-            ))}
+            <KindOptions schema={schema} />
           </select>
+        )}
+        {insight && insight.combined.length > 0 && (
+          <div className="combined-previews">
+            <h4 className="label">Together on one roll</h4>
+            {insight.combined.map((p) => (
+              <div key={p.table.id}>
+                <p className="field-label">{p.table.name}</p>
+                <RollPreview
+                  steps={p.steps}
+                  label={`What this tag does to a roll of ${p.table.name}`}
+                />
+              </div>
+            ))}
+          </div>
         )}
       </section>
 
-      {editor.detail && editor.detail.usages.length > 0 && (
-        <section className="editor-section" aria-labelledby="tag-usages">
-          <h3 id="tag-usages" className="label">
-            Used by
-          </h3>
-          <ul className="usage-list">
-            {editor.detail.usages.map((u, i) => (
-              <li key={i}>{u.description}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {editor.detail && <UsageSection usages={editor.detail.usages} />}
 
       <section className="editor-section" aria-labelledby="tag-problems">
         <h3 id="tag-problems" className="label">
@@ -300,7 +326,7 @@ function TagForm({
         editor={editor}
         hasErrors={hasErrors}
         canReset={builtIn && origin === "modified"}
-        canDelete={!builtIn && !editor.isNew}
+        canDelete={!editor.isNew}
         confirm={confirm}
         setConfirm={setConfirm}
         onSaved={() => void refresh()}
@@ -313,8 +339,42 @@ function TagForm({
           await afterStructuralChange();
         }}
         noun="tag"
+        usages={editor.detail?.usages ?? []}
+        exportItem={{ kind: "tag", id: draft.id }}
       />
     </div>
+  );
+}
+
+const USAGE_GROUPS: { kind: TagUsage["kind"]; title: string }[] = [
+  { kind: "emitted_by", title: "Given by" },
+  { kind: "added_by", title: "Added by" },
+  { kind: "removed_by", title: "Removed by" },
+  { kind: "checked_by", title: "Checked by" },
+];
+
+/** Everything that gives, adds, removes or checks the tag. */
+function UsageSection({ usages }: { usages: TagUsage[] }) {
+  return (
+    <section className="editor-section" aria-labelledby="tag-usages">
+      <h3 id="tag-usages" className="label">
+        Dependencies
+      </h3>
+      {usages.length === 0 ? (
+        <p className="muted small">Nothing uses this tag yet; it can be deleted safely.</p>
+      ) : (
+        USAGE_GROUPS.filter((g) => usages.some((u) => u.kind === g.kind)).map((g) => (
+          <div key={g.kind}>
+            <p className="field-label">{g.title}</p>
+            <UsageLinks
+              label={g.title}
+              usages={usages.filter((u) => u.kind === g.kind)}
+              strip={/^(Given|Added|Removed|Checked) by /}
+            />
+          </div>
+        ))
+      )}
+    </section>
   );
 }
 
@@ -330,6 +390,8 @@ export function EditorActions<T extends { id: string; name: string }, D>({
   onReset,
   onDelete,
   noun,
+  usages = [],
+  exportItem,
 }: {
   editor: ReturnType<typeof useEntityEditor<T, D>>;
   hasErrors: boolean;
@@ -341,7 +403,12 @@ export function EditorActions<T extends { id: string; name: string }, D>({
   onReset: () => Promise<void>;
   onDelete: () => Promise<void>;
   noun: string;
+  /** What uses the item: deleting is blocked, showing these, while any remain. */
+  usages?: UsageLike[];
+  /** Offers a one-click export of the saved item. */
+  exportItem?: PackItem;
 }) {
+  const [blocked, setBlocked] = useState(false);
   const run = async (action: () => Promise<void>) => {
     editor.setBusy(true);
     try {
@@ -354,9 +421,11 @@ export function EditorActions<T extends { id: string; name: string }, D>({
   };
   return (
     <div className="editor-actions">
-      {confirm === "delete" ? (
+      {blocked ? (
+        <DeleteBlocked noun={noun} usages={usages} onClose={() => setBlocked(false)} />
+      ) : confirm === "delete" ? (
         <ConfirmBar
-          message={`Delete the custom ${noun} “${editor.draft?.name}”? This cannot be undone.`}
+          message={`Delete the ${noun} “${editor.draft?.name}”? A default can be restored later; a custom one cannot.`}
           confirmLabel="Delete"
           onConfirm={() => {
             setConfirm(null);
@@ -384,6 +453,9 @@ export function EditorActions<T extends { id: string; name: string }, D>({
           >
             Revert
           </button>
+          {exportItem && !editor.isNew && (
+            <ExportButton item={exportItem} name={editor.draft?.name ?? exportItem.id} />
+          )}
           {canReset && (
             <button
               type="button"
@@ -399,7 +471,7 @@ export function EditorActions<T extends { id: string; name: string }, D>({
               type="button"
               className="btn btn-quiet-danger"
               disabled={editor.busy}
-              onClick={() => setConfirm("delete")}
+              onClick={() => (usages.length > 0 ? setBlocked(true) : setConfirm("delete"))}
             >
               Delete
             </button>

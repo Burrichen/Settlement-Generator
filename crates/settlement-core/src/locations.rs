@@ -34,7 +34,9 @@
 //! the whole settlement, never one per district: a Tavern / Inn with 4 spare
 //! rooms. It is additive (it never takes a rolled location's place), neither
 //! its Type nor its subtype is rolled, and its [`LocationSource`] tells it
-//! apart from a rolled Hospitality location.
+//! apart from a rolled Hospitality location. Which tables are rolled, and
+//! what the guaranteed location is and when it is added, are the step's
+//! [`LocationsConfig`].
 
 use std::fmt;
 
@@ -47,23 +49,72 @@ use crate::engine::{
     GenerationError, GenerationEvent, Generator, MAX_REROLLS, Named, Request, ResultOption,
     Selections, State, TableRollRecord,
 };
-use crate::ids::{LocationSchemeId, ResultId, TableId, TagId};
+use crate::framework::BARE_MINIMUM_BUILDINGS_SETTING;
+use crate::ids::{LocationSchemeId, ResultId, SettingId, TableId, TagId};
 use crate::quality::QualityShift;
 
 /// The stage table recorded in snapshots for the Notable Locations stage.
 pub const LOCATIONS_STAGE_ID: &str = "stage.notableLocations";
-/// Rolled once for each rolled Notable Location.
+/// The type table of content in the legacy `sequence` format.
 pub const TYPE_TABLE: &str = "table.notableLocationType";
-/// The Bare Minimum Buildings Tavern / Inn's type, which must exist in the
-/// type table.
+/// The guaranteed location's type in legacy content.
 pub const HOSPITALITY_TYPE: &str = "locationType.hospitality";
-/// The Bare Minimum Buildings Tavern / Inn's fixed subtype, which must be a
-/// canonical subtype.
+/// The guaranteed location's subtype in legacy content: a canonical
+/// subtype.
 pub const TAVERN_INN_SUBTYPE: &str = "locationSubtype.tavernInn";
-/// The Bare Minimum Buildings Tavern / Inn's stable location ID.
+/// The guaranteed location's stable ID in legacy content.
 pub const GUARANTEED_TAVERN_ID: &str = "notable-location-guaranteed-tavern";
-/// The Bare Minimum Buildings Tavern / Inn always has exactly this many.
+/// The guaranteed location's spare rooms in legacy content.
 pub const TAVERN_SPARE_ROOMS: u32 = 4;
+
+/// The Notable Locations built-in step's configuration.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct LocationsConfig {
+    /// The table whose result is the settlement's Size; the stage needs it.
+    pub size_table: TableId,
+    /// Rolled once for each rolled location.
+    pub type_table: TableId,
+    /// A location added to the whole settlement while a condition holds.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub guaranteed: Option<GuaranteedLocation>,
+}
+
+/// A location that is added, not rolled: one per settlement, on top of the
+/// rolled ones.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct GuaranteedLocation {
+    /// The location is present while this holds (normally a setting).
+    pub when: Condition,
+    /// Its stable location ID.
+    pub id: String,
+    /// Its type: a result of the type table.
+    #[serde(rename = "type")]
+    pub location_type: ResultId,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub subtype: Option<Named<ResultId>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub spare_rooms: Option<u32>,
+}
+
+impl LocationsConfig {
+    /// The configuration of content in the legacy `sequence` format.
+    pub fn legacy() -> Self {
+        LocationsConfig {
+            size_table: TableId::new("table.size"),
+            type_table: TableId::new(TYPE_TABLE),
+            guaranteed: Some(GuaranteedLocation {
+                when: Condition::SettingOn(SettingId::new(BARE_MINIMUM_BUILDINGS_SETTING)),
+                id: GUARANTEED_TAVERN_ID.to_owned(),
+                location_type: ResultId::new(HOSPITALITY_TYPE),
+                subtype: Some(Named {
+                    id: ResultId::new(TAVERN_INN_SUBTYPE),
+                    name: "Tavern / Inn".to_owned(),
+                }),
+                spare_rooms: Some(TAVERN_SPARE_ROOMS),
+            }),
+        }
+    }
+}
 
 /// One canonical Notable Location subtype. It has this one ID in every
 /// subtype table that lists it; the tables only label and weight it.
@@ -359,6 +410,8 @@ pub(crate) struct LocationGenerator<'g, 'c> {
     pub content: &'c ContentSet,
     /// Tags active in the settlement before the locations are generated.
     pub settlement_tags: &'g [TagId],
+    /// The tables to roll and the guaranteed location.
+    pub config: &'g LocationsConfig,
 }
 
 impl LocationGenerator<'_, '_> {
@@ -491,7 +544,7 @@ impl LocationGenerator<'_, '_> {
         }
         match detail {
             LocationDetail::Type => {
-                let roll = self.roll(&TableId::new(TYPE_TABLE), choice, faces)?;
+                let roll = self.roll(&self.config.type_table, choice, faces)?;
                 location.location_type = roll.result.clone();
                 location.type_roll = Some(roll);
                 self.roll_subtype(location, None, faces)?;
@@ -505,46 +558,50 @@ impl LocationGenerator<'_, '_> {
         Ok(())
     }
 
-    /// Adds the guaranteed Tavern / Inn if enabled and absent; removes it
-    /// (and only it) if disabled. Rolled locations are never touched.
+    /// Adds the guaranteed location if enabled and absent; removes it (and
+    /// only it) if disabled. Rolled locations are never touched.
     pub fn set_bare_minimum(
         &self,
         record: &mut NotableLocations,
         enabled: bool,
     ) -> Result<(), GenerationError> {
         let present = record.guaranteed().is_some();
-        if enabled && !present {
-            let hospitality = self
+        if let (true, false, Some(spec)) = (enabled, present, &self.config.guaranteed) {
+            let type_table = &self.config.type_table;
+            let location_type = self
                 .content
-                .table(&TableId::new(TYPE_TABLE))
-                .and_then(|t| t.result(&ResultId::new(HOSPITALITY_TYPE)))
-                .ok_or_else(|| GenerationError::UnknownTable(TableId::new(TYPE_TABLE)))?;
-            // Assigned, not rolled: labelled as the Hospitality table labels
-            // it, else by its canonical name.
-            let tavern = ResultId::new(TAVERN_INN_SUBTYPE);
-            let label = subtype_table(self.content, &hospitality.id)
-                .and_then(|t| self.content.table(t))
-                .and_then(|t| t.result(&tavern))
-                .map(|r| r.name.clone())
-                .or_else(|| subtype(self.content, &tavern).map(|s| s.name.clone()))
-                .ok_or_else(|| GenerationError::UnknownLocationSubtype {
-                    subtype: tavern.clone(),
-                })?;
+                .table(type_table)
+                .and_then(|t| t.result(&spec.location_type))
+                .ok_or_else(|| GenerationError::UnknownTable(type_table.clone()))?;
+            // Assigned, not rolled: labelled as its Type's subtype table
+            // labels it, else by its canonical name, else as configured.
+            let assigned = spec.subtype.as_ref().map(|s| {
+                let label = subtype_table(self.content, &location_type.id)
+                    .and_then(|t| self.content.table(t))
+                    .and_then(|t| t.result(&s.id))
+                    .map(|r| r.name.clone())
+                    .or_else(|| subtype(self.content, &s.id).map(|c| c.name.clone()))
+                    .unwrap_or_else(|| s.name.clone());
+                Named::new(&s.id, &label)
+            });
             record.locations.insert(
                 0,
                 NotableLocation {
-                    id: GUARANTEED_TAVERN_ID.to_owned(),
+                    id: spec.id.clone(),
                     source: LocationSource::BareMinimumBuildings,
                     district: None,
-                    location_type: Named::new(&hospitality.id, &hospitality.name),
+                    location_type: Named::new(&location_type.id, &location_type.name),
                     type_roll: None,
-                    capabilities: self.capabilities(&tavern),
-                    subtype: Some(Named::new(&tavern, &label)),
+                    capabilities: assigned
+                        .as_ref()
+                        .map(|s| self.capabilities(&s.id))
+                        .unwrap_or_default(),
+                    subtype: assigned,
                     subtype_rolls: None,
                     speciality: None,
                     speciality_roll: None,
                     quality_shift: None,
-                    spare_rooms: Some(TAVERN_SPARE_ROOMS),
+                    spare_rooms: spec.spare_rooms,
                 },
             );
         } else if !enabled && present {
@@ -582,7 +639,7 @@ impl LocationGenerator<'_, '_> {
         LocationOptions {
             districts: scheme.and_then(|s| s.districts.as_ref()).and_then(table),
             count: scheme.and_then(|s| table(&s.count)),
-            types: table(&TableId::new(TYPE_TABLE)),
+            types: table(&self.config.type_table),
             details,
         }
     }
@@ -818,7 +875,7 @@ impl LocationGenerator<'_, '_> {
         district: Option<String>,
         faces: &mut dyn FaceSource,
     ) -> Result<NotableLocation, GenerationError> {
-        let roll = self.roll(&TableId::new(TYPE_TABLE), None, faces)?;
+        let roll = self.roll(&self.config.type_table, None, faces)?;
         let mut location = NotableLocation {
             id: format!("notable-location-{:02}", record.next_number()),
             source: LocationSource::Rolled,
@@ -872,7 +929,7 @@ impl LocationGenerator<'_, '_> {
             .take_events()
             .into_iter()
             .find_map(|e| match e {
-                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(*r),
+                GenerationEvent::TableRolled(r) if !r.is_routed() => Some(*r),
                 _ => None,
             })
             .ok_or_else(|| GenerationError::FigureTableSkipped {

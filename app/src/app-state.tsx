@@ -2,7 +2,23 @@ import { createContext, useContext, type MutableRefObject } from "react";
 import type { AppInfo, Settings } from "./api";
 
 export type Screen =
-  "menu" | "start" | "settings" | "view" | "roadmap" | "credits" | "tags" | "tables";
+  | "menu"
+  | "start"
+  | "settings"
+  | "view"
+  | "roadmap"
+  | "credits"
+  | "tags"
+  | "tables"
+  | "flows"
+  | "setting-defs"
+  | "transfer";
+
+/** An item to open in its editor, e.g. from a "used by" link. */
+export interface ItemTarget {
+  kind: "table" | "tag" | "flow" | "setting";
+  id: string;
+}
 
 export interface AppState {
   info: AppInfo | null;
@@ -13,6 +29,10 @@ export interface AppState {
   back: () => void;
   /** Returns to the Main Menu, clearing the screen history. */
   home: () => void;
+  /** Opens an item's editor (its screen, with it selected). */
+  openItem?: (target: ItemTarget) => void;
+  /** The item a screen was opened for by `openItem`; `null` if none. */
+  takeTarget?: (kind: ItemTarget["kind"]) => string | null;
   /** Index of the last focused main-menu item, restored on return. */
   menuFocus: MutableRefObject<number>;
 }

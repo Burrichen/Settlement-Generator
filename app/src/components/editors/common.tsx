@@ -13,8 +13,10 @@ import {
 import {
   content,
   formatRange,
+  framework,
   toPair,
   type Condition,
+  type Named,
   type ContentOverview,
   type Coverage,
   type FaceRange,
@@ -214,12 +216,53 @@ export function TableSelect({
   );
 }
 
+/** Picks a flow (for effects that run one). */
+export function FlowSelect({
+  value,
+  onChange,
+  label,
+}: {
+  value: string;
+  onChange: (id: string) => void;
+  label: string;
+}) {
+  const [flows, setFlows] = useState<Named[]>([]);
+  useEffect(() => {
+    framework.items().then(
+      (items) =>
+        setFlows(
+          items
+            .filter((i) => i.kind === "flow" && !i.deleted)
+            .map((i) => ({ id: i.id, name: i.name })),
+        ),
+      () => setFlows([]),
+    );
+  }, []);
+  const known = flows.some((f) => f.id === value);
+  return (
+    <select
+      className="select select-inline"
+      aria-label={label}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      <option value="">Choose a flow…</option>
+      {value && !known && <option value={value}>{value} (not present)</option>}
+      {flows.map((f) => (
+        <option key={f.id} value={f.id}>
+          {f.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+
 // ----- conditions ---------------------------------------------------------------
 
-type ConditionKind = "has_tag" | "all" | "any" | "not";
+type ConditionKind = "has_tag" | "all" | "any" | "not" | "setting_on";
 
-function kindOf(condition: Condition): ConditionKind {
-  return Object.keys(condition)[0] as ConditionKind;
+function kindOf(condition: Condition): string {
+  return Object.keys(condition)[0];
 }
 
 const KIND_LABELS: Record<ConditionKind, string> = {
@@ -227,6 +270,7 @@ const KIND_LABELS: Record<ConditionKind, string> = {
   all: "All of",
   any: "Any of",
   not: "Not",
+  setting_on: "Setting is on",
 };
 
 function emptyOf(kind: ConditionKind): Condition {
@@ -239,7 +283,57 @@ function emptyOf(kind: ConditionKind): Condition {
       return { any: [{ has_tag: "" }] };
     case "not":
       return { not: { has_tag: "" } };
+    case "setting_on":
+      return { setting_on: "" };
   }
+}
+
+/** Tests that only flows can hold, described as the core words them. */
+function describeFlowTest(condition: Condition): string | undefined {
+  if ("setting_is" in condition)
+    return `Setting ${condition.setting_is.setting} is ${condition.setting_is.value}`;
+  if ("result_is" in condition)
+    return `Step ${condition.result_is.step} gave ${condition.result_is.results.join(" or ")}`;
+  if ("value_in" in condition) {
+    const { step, min, max } = condition.value_in;
+    return `Step ${step}'s number is ${min ?? "any"} to ${max ?? "any"}`;
+  }
+  return undefined;
+}
+
+/** A picker over the on/off settings a condition can test. */
+function SettingSelect({
+  value,
+  onChange,
+  label,
+}: {
+  value: string;
+  onChange: (id: string) => void;
+  label: string;
+}) {
+  const [settings, setSettings] = useState<Named[]>([]);
+  useEffect(() => {
+    framework
+      .toggleSettings()
+      .then(setSettings)
+      .catch(() => setSettings([]));
+  }, []);
+  return (
+    <select
+      className="select select-inline"
+      aria-label={label}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      <option value="">Choose a setting…</option>
+      {settings.map((s) => (
+        <option key={s.id} value={s.id}>
+          {s.name}
+        </option>
+      ))}
+      {value && !settings.some((s) => s.id === value) && <option value={value}>{value}</option>}
+    </select>
+  );
 }
 
 /** Optional condition: "Always" until one is added. */
@@ -285,6 +379,7 @@ export function ConditionEditor({
   label: string;
 }) {
   const kind = kindOf(value);
+  const flowTest = describeFlowTest(value);
   return (
     <div className="condition">
       <select
@@ -298,7 +393,16 @@ export function ConditionEditor({
             {KIND_LABELS[k]}
           </option>
         ))}
+        {flowTest && <option value={kind}>Flow test</option>}
       </select>
+      {flowTest && <span className="muted">{flowTest}</span>}
+      {"setting_on" in value && (
+        <SettingSelect
+          label={`${label}: setting`}
+          value={value.setting_on}
+          onChange={(id) => onChange({ setting_on: id })}
+        />
+      )}
       {"has_tag" in value && (
         <TagSelect
           label={`${label}: tag`}

@@ -10,6 +10,7 @@ import "./styles/app.css";
 import "./styles/generation.css";
 import "./styles/view.css";
 import "./styles/editor.css";
+import "./styles/flows.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

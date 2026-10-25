@@ -110,6 +110,35 @@ define_id!(
     /// the NPCs who hold an Authority. Reserved: no generators exist yet.
     GeneratorId
 );
+define_id!(
+    /// Identifies a shared result: a canonical outcome that several tables
+    /// can list. Unique across all shared results.
+    SharedResultId
+);
+define_id!(
+    /// Identifies an ordered scale of results. Unique across all scales.
+    ScaleId
+);
+define_id!(
+    /// Identifies a generation setting. Unique across all settings. IDs
+    /// starting with `app.` name the application's own settings.
+    SettingId
+);
+define_id!(
+    /// Identifies a kind of generated object (e.g. a person). Unique across
+    /// all object types.
+    ObjectTypeId
+);
+define_id!(
+    /// Identifies a flow: an ordered list of generation steps. Unique across
+    /// all flows.
+    FlowId
+);
+define_id!(
+    /// Identifies a step of a flow. Unique within its flow, including the
+    /// steps nested inside it.
+    StepId
+);
 
 #[cfg(test)]
 mod tests {
