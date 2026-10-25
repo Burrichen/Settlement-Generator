@@ -35,7 +35,17 @@ mod tests {
 
     #[test]
     fn version_is_semver_triplet() {
-        let parts: Vec<&str> = VERSION.split('.').collect();
+        // Test builds carry a pre-release suffix (e.g. `-beta.1`); the
+        // release build itself refuses anything but a stable version.
+        let (core, pre) = VERSION.split_once('-').unwrap_or((VERSION, ""));
+        assert!(
+            pre.is_empty()
+                || pre
+                    .split('.')
+                    .all(|p| !p.is_empty() && p.chars().all(|c| c.is_ascii_alphanumeric())),
+            "malformed pre-release suffix in {VERSION}"
+        );
+        let parts: Vec<&str> = core.split('.').collect();
         assert_eq!(parts.len(), 3, "expected MAJOR.MINOR.PATCH, got {VERSION}");
         for part in parts {
             part.parse::<u64>()
