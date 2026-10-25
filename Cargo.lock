@@ -4020,7 +4020,7 @@ dependencies = [
 
 [[package]]
 name = "settlement-cli"
-version = "0.1.5"
+version = "0.1.6-beta.1"
 dependencies = [
  "anyhow",
  "clap",
@@ -4031,7 +4031,7 @@ dependencies = [
 
 [[package]]
 name = "settlement-core"
-version = "0.1.5"
+version = "0.1.6-beta.1"
 dependencies = [
  "dirs 7.0.0",
  "rand 0.10.3",
@@ -4045,7 +4045,7 @@ dependencies = [
 
 [[package]]
 name = "settlement-gui"
-version = "0.1.5"
+version = "0.1.6-beta.1"
 dependencies = [
  "semver",
  "serde",
