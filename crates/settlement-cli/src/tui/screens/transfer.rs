@@ -135,9 +135,9 @@ impl TransferScreen {
             return rows;
         }
         let folder = ctx
-            .exports
+            .export_dir
             .clone()
-            .or_else(settlement_core::storage::exports_dir)
+            .or_else(settlement_core::storage::default_export_dir)
             .map_or_else(|| "(no folder)".into(), |p| p.display().to_string());
         rows.extend([
             Row::info(Line::styled("EXPORT", s.dim())),
@@ -157,7 +157,7 @@ impl TransferScreen {
                 s.dim(),
             )),
         ]);
-        for path in AppService::list_packs(ctx.exports.clone()) {
+        for path in AppService::list_packs(ctx.export_dir.clone()) {
             let name = path.file_name().map_or_else(
                 || path.display().to_string(),
                 |n| n.to_string_lossy().into(),
@@ -176,7 +176,7 @@ impl TransferScreen {
 
     fn save(&mut self, pack: Result<ContentPack, String>, name: &str, ctx: &Ctx) {
         self.message = Some(
-            match pack.and_then(|p| AppService::write_pack(&p, name, ctx.exports.clone())) {
+            match pack.and_then(|p| AppService::write_pack(&p, name, ctx.export_dir.clone())) {
                 Ok(path) => (format!("Saved to {}", path.display()), false),
                 Err(e) => (e, true),
             },

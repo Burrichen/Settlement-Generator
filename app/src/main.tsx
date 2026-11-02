@@ -11,6 +11,7 @@ import "./styles/generation.css";
 import "./styles/view.css";
 import "./styles/editor.css";
 import "./styles/flows.css";
+import "./styles/map.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

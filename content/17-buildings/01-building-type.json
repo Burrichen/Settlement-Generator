@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.building.type",
+      "name": "Building Type",
+      "description": "What an ordinary building on a settlement map is used for. Rolled the first time the building is opened on a map. Provisional content: review before release.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "house",
+          "name": "House",
+          "description": "A home for one household.",
+          "range": [1, 7],
+          "tags": ["buildingType.dwelling"]
+        },
+        {
+          "id": "cottage",
+          "name": "Cottage",
+          "description": "A small, simple home, often with a garden plot.",
+          "range": [8, 9],
+          "tags": ["buildingType.dwelling"]
+        },
+        {
+          "id": "tenement",
+          "name": "Tenement",
+          "description": "Rooms let to several households under one roof.",
+          "range": 10,
+          "tags": ["buildingType.dwelling", "buildingType.tenement"]
+        },
+        {
+          "id": "shop",
+          "name": "Shop",
+          "description": "Goods sold from a front room, often with the keeper living above.",
+          "range": [11, 13],
+          "tags": ["buildingType.business"]
+        },
+        {
+          "id": "workshop",
+          "name": "Workshop",
+          "description": "A place where something is made or mended.",
+          "range": [14, 16],
+          "tags": ["buildingType.business"]
+        },
+        {
+          "id": "storehouse",
+          "name": "Storehouse",
+          "description": "Goods, grain or tools are kept here.",
+          "range": [17, 18],
+          "tags": ["buildingType.storage"]
+        },
+        {
+          "id": "barn",
+          "name": "Barn / Stable",
+          "description": "Shelter for animals, carts or fodder.",
+          "range": 19,
+          "tags": ["buildingType.storage"]
+        },
+        {
+          "id": "farmhouse",
+          "name": "Farmhouse",
+          "description": "The home of a working farm, with yards or outbuildings.",
+          "range": 20,
+          "tags": ["buildingType.dwelling"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "tradingPost",
+          "name": "Trading Post",
+          "description": "Mostly storage and trade.",
+          "when": { "has_tag": "size.tradingPost" },
+          "ranges": [
+            { "result": "house", "range": [1, 4] },
+            { "result": "cottage", "range": [5, 6] },
+            { "result": "shop", "range": [7, 10] },
+            { "result": "workshop", "range": [11, 12] },
+            { "result": "storehouse", "range": [13, 17] },
+            { "result": "barn", "range": [18, 20] }
+          ]
+        },
+        {
+          "id": "village",
+          "name": "Village",
+          "description": "Rural homes and farms; no tenements.",
+          "when": { "has_tag": "size.village" },
+          "ranges": [
+            { "result": "house", "range": [1, 4] },
+            { "result": "cottage", "range": [5, 9] },
+            { "result": "farmhouse", "range": [10, 13] },
+            { "result": "shop", "range": 14 },
+            { "result": "workshop", "range": [15, 16] },
+            { "result": "storehouse", "range": 17 },
+            { "result": "barn", "range": [18, 20] }
+          ]
+        },
+        {
+          "id": "city",
+          "name": "City or Capital",
+          "description": "Crowded streets: more tenements and shops, no farms.",
+          "when": { "any": [{ "has_tag": "size.city" }, { "has_tag": "size.capital" }] },
+          "ranges": [
+            { "result": "house", "range": [1, 6] },
+            { "result": "tenement", "range": [7, 10] },
+            { "result": "shop", "range": [11, 14] },
+            { "result": "workshop", "range": [15, 17] },
+            { "result": "storehouse", "range": [18, 19] },
+            { "result": "cottage", "range": 20 }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "buildingType.dwelling",
+      "name": "Dwelling",
+      "description": "The building is mainly a home."
+    },
+    {
+      "id": "buildingType.tenement",
+      "name": "Tenement",
+      "description": "The building houses several households."
+    },
+    {
+      "id": "buildingType.business",
+      "name": "Business",
+      "description": "The building is a shop or workshop."
+    },
+    {
+      "id": "buildingType.storage",
+      "name": "Storage",
+      "description": "The building stores goods or shelters animals; nobody lives in it."
+    }
+  ]
+}

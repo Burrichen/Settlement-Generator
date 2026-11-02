@@ -13,14 +13,20 @@ use crate::backup::{BackupKind, KEEP_PER_KIND, list_backups};
 use crate::dice::RandomFaces;
 use crate::engine::Selections;
 use crate::ids::{ResultId, TableId, TagId};
+use crate::maps::{MapGenerationOptions, MapStatus};
 use crate::service::AppService;
 use crate::settings::{GenerationMethod, GenerationPresentation, Theme};
+
+/// The schema this release creates.
+const CURRENT: u32 = MIGRATIONS.len() as u32;
+/// The schema of the simulated next release.
+const NEXT: u32 = CURRENT + 1;
 
 /// A realistic future migration: rebuilds `settlements` with a new column
 /// (the way SQLite schema changes are usually made), recreating its index
 /// and favourite-protection trigger, and adds a column to `settings`.
 const SIMULATED_V2: Migration = Migration {
-    version: 2,
+    version: NEXT,
     name: "simulated_rebuild",
     sql: "
         CREATE TABLE settlements_new (
@@ -53,7 +59,7 @@ const SIMULATED_V2: Migration = Migration {
 
 /// A future migration that fails part-way, after already dropping a table.
 const BROKEN_V2: Migration = Migration {
-    version: 2,
+    version: NEXT,
     name: "broken",
     sql: "
         CREATE TABLE settlements_new (id TEXT PRIMARY KEY NOT NULL) STRICT;
@@ -154,6 +160,8 @@ fn populate(path: &Path) -> SettlementId {
 
     let favourite = generate(&mut s, "Riverside", "town", 1);
     s.saved_set_favourite(&favourite, true).unwrap();
+    s.maps_generate(&favourite, &MapGenerationOptions::default())
+        .unwrap();
     generate(&mut s, "Hillfort", "village", 7);
     favourite
 }
@@ -173,11 +181,29 @@ fn user_data(db: &Database) -> Value {
     })
 }
 
+/// Every saved map set, in comparable form.
+fn map_data(db: &Database) -> Value {
+    db.list_settlements()
+        .unwrap()
+        .iter()
+        .filter_map(|s| db.load_map_set(&s.id).unwrap())
+        .map(|set| serde_json::to_value(set).unwrap())
+        .collect()
+}
+
 #[test]
 fn successful_upgrade_preserves_all_user_data_and_keeps_a_backup() {
     let tmp = TempDir::new();
     let favourite = populate(&tmp.db());
-    let before = user_data(&Database::open_with(&tmp.db(), &this_release()).unwrap());
+    let old = Database::open_with(&tmp.db(), &this_release()).unwrap();
+    let before = user_data(&old);
+    let maps_before = map_data(&old);
+    drop(old);
+    assert_eq!(
+        maps_before.as_array().unwrap().len(),
+        1,
+        "the fixture has maps"
+    );
 
     // Sanity: the fixture really contains each kind of data.
     let overrides = &before["overrides"].to_string();
@@ -193,8 +219,9 @@ fn successful_upgrade_preserves_all_user_data_and_keeps_a_backup() {
     assert_eq!(before["settings"]["theme"], "old_timey_dark");
 
     let mut upgraded = Database::open_with(&tmp.db(), &future_release(SIMULATED_V2)).unwrap();
-    assert_eq!(upgraded.schema_version().unwrap(), 2);
+    assert_eq!(upgraded.schema_version().unwrap(), NEXT);
     assert_eq!(user_data(&upgraded), before);
+    assert_eq!(map_data(&upgraded), maps_before);
 
     // The rebuilt table still protects favourites.
     assert!(matches!(
@@ -210,9 +237,10 @@ fn successful_upgrade_preserves_all_user_data_and_keeps_a_backup() {
         .unwrap()
         .to_string_lossy()
         .into_owned();
-    assert!(name.ends_with("-schema1-to-schema2.sqlite3"), "{name}");
+    let expected = format!("-schema{CURRENT}-to-schema{NEXT}.sqlite3");
+    assert!(name.ends_with(&expected), "{name}");
     let restored = Database::open_with(&backups[0], &this_release()).unwrap();
-    assert_eq!(restored.schema_version().unwrap(), 1);
+    assert_eq!(restored.schema_version().unwrap(), CURRENT);
     assert_eq!(user_data(&restored), before);
 }
 
@@ -229,7 +257,7 @@ fn failed_upgrade_leaves_data_untouched_and_surfaces_the_backup() {
     let DbError::UpgradeFailed { source, backup } = &error else {
         panic!("expected UpgradeFailed, got {error}");
     };
-    assert!(matches!(**source, DbError::Migration { version: 2, .. }));
+    assert!(matches!(**source, DbError::Migration { version: NEXT, .. }));
     assert!(backup.exists(), "backup is kept after a failure");
     let message = error.to_string();
     assert!(message.contains("Nothing was changed"), "{message}");
@@ -237,7 +265,7 @@ fn failed_upgrade_leaves_data_untouched_and_surfaces_the_backup() {
 
     // The previous release opens the untouched data as before.
     let previous = Database::open_with(&tmp.db(), &this_release()).unwrap();
-    assert_eq!(previous.schema_version().unwrap(), 1);
+    assert_eq!(previous.schema_version().unwrap(), CURRENT);
     assert_eq!(user_data(&previous), before);
     drop(previous);
 
@@ -265,7 +293,7 @@ fn migration_is_refused_when_no_backup_can_be_made() {
         .expect("must refuse to migrate without a backup");
     assert!(matches!(error, DbError::Backup { .. }), "{error}");
     let previous = Database::open_with(&tmp.db(), &this_release()).unwrap();
-    assert_eq!(previous.schema_version().unwrap(), 1);
+    assert_eq!(previous.schema_version().unwrap(), CURRENT);
     assert_eq!(user_data(&previous), before);
 }
 
@@ -291,8 +319,8 @@ fn database_from_a_newer_release_is_refused_without_changes() {
     assert!(matches!(
         error,
         DbError::NewerSchema {
-            found: 2,
-            supported: 1
+            found: NEXT,
+            supported: CURRENT
         }
     ));
     let current = Database::open_with(&tmp.db(), &future_release(SIMULATED_V2)).unwrap();
@@ -361,7 +389,7 @@ fn two_processes_upgrading_at_once_both_succeed() {
         assert_eq!(data, before);
     }
     let db = Database::open_with(&tmp.db(), &future_release(SIMULATED_V2)).unwrap();
-    assert_eq!(db.schema_version().unwrap(), 2);
+    assert_eq!(db.schema_version().unwrap(), NEXT);
 }
 
 #[test]
@@ -381,9 +409,215 @@ fn a_database_that_cannot_be_opened_can_still_be_backed_up_for_an_update() {
         .unwrap()
         .expect("a backup");
     let restored = Database::open_with(&backup, &future_release(SIMULATED_V2)).unwrap();
-    assert_eq!(restored.schema_version().unwrap(), 2);
+    assert_eq!(restored.schema_version().unwrap(), NEXT);
 
     // No database yet: nothing to protect.
     let empty = TempDir::new();
     assert!(Database::backup_file(&empty.db(), &kind).unwrap().is_none());
+}
+
+/// The real upgrade every v0.1.5 user makes: schema 1 gains map storage.
+#[test]
+fn a_database_from_before_maps_gains_map_storage_without_changing_user_data() {
+    let tmp = TempDir::new();
+    let before_maps = &this_release()[..1];
+    {
+        let mut s = AppService::new(Database::open_with(&tmp.db(), before_maps).unwrap());
+        generate(&mut s, "Riverside", "town", 1);
+        generate(&mut s, "Highmarket", "city", 3);
+    }
+    let before = user_data(&Database::open_with(&tmp.db(), before_maps).unwrap());
+
+    let db = Database::open(&tmp.db()).unwrap();
+    assert_eq!(db.schema_version().unwrap(), CURRENT);
+    assert_eq!(user_data(&db), before);
+    let backups = list_backups(&tmp.backups(), BackupKind::PRE_MIGRATION_PREFIX);
+    assert_eq!(backups.len(), 1);
+    let name = backups[0]
+        .file_name()
+        .unwrap()
+        .to_string_lossy()
+        .into_owned();
+    assert!(
+        name.ends_with(&format!("-schema1-to-schema{CURRENT}.sqlite3")),
+        "{name}"
+    );
+
+    // Settlements saved before maps existed have none, and can now be mapped.
+    let mut s = AppService::new(db);
+    for summary in s.saved_list().unwrap() {
+        let view = s.maps_get(&summary.id).unwrap();
+        assert_eq!(view.status, MapStatus::NotGenerated);
+        let view = s
+            .maps_generate(&summary.id, &MapGenerationOptions::default())
+            .unwrap();
+        assert_eq!(view.status, MapStatus::Current);
+        let set = view.maps.unwrap();
+        assert!(!set.maps.is_empty());
+        // And their buildings can be opened, which stores their details.
+        let map = &set.maps[0];
+        let building = &map.geometry.buildings[0].id;
+        s.maps_building(&summary.id, &map.id, building).unwrap();
+        assert_eq!(s.maps_get(&summary.id).unwrap().buildings.len(), 1);
+    }
+}
+
+/// A development database that already has map storage (schema 2) gains
+/// building details, and keeps its maps exactly.
+#[test]
+fn a_database_with_maps_gains_building_details_and_keeps_its_maps() {
+    let tmp = TempDir::new();
+    let with_maps = &this_release()[..2];
+    let id = {
+        let mut s = AppService::new(Database::open_with(&tmp.db(), with_maps).unwrap());
+        let id = generate(&mut s, "Riverside", "town", 1);
+        // Saved as a schema-2 build saved maps: the map set alone.
+        let mut db = Database::open_with(&tmp.db(), with_maps).unwrap();
+        let settlement = db.get_settlement(&id).unwrap();
+        let set = crate::maps::generate_map_set(
+            &crate::maps::BuiltinEngine,
+            &settlement,
+            None,
+            &MapGenerationOptions::default(),
+        )
+        .unwrap();
+        db.save_map_set(&set).unwrap();
+        id
+    };
+    let before = Database::open_with(&tmp.db(), with_maps)
+        .unwrap()
+        .load_map_set(&id)
+        .unwrap()
+        .unwrap();
+
+    let mut s = AppService::new(Database::open(&tmp.db()).unwrap());
+    let view = s.maps_get(&id).unwrap();
+    assert_eq!(
+        view.maps.as_ref(),
+        Some(&before),
+        "maps are read back exactly"
+    );
+    assert!(
+        view.buildings.is_empty(),
+        "no building is generated by upgrading"
+    );
+    let map = &before.maps[0];
+    let opened = s
+        .maps_building(&id, &map.id, &map.geometry.buildings[0].id)
+        .unwrap();
+    assert_eq!(opened.version, 1);
+}
+
+/// A database with building details (schema 3) gains the Notable Location
+/// directory: its settlements' own locations are listed, unplaced, and can
+/// be placed.
+#[test]
+fn a_database_with_building_details_gains_the_location_directory() {
+    let tmp = TempDir::new();
+    let before_directory = &this_release()[..3];
+    let id = {
+        let mut s = AppService::new(Database::open_with(&tmp.db(), before_directory).unwrap());
+        let id = generate(&mut s, "Riverside", "town", 1);
+        let mut db = Database::open_with(&tmp.db(), before_directory).unwrap();
+        let settlement = db.get_settlement(&id).unwrap();
+        let set = crate::maps::generate_map_set(
+            &crate::maps::BuiltinEngine,
+            &settlement,
+            None,
+            &MapGenerationOptions::default(),
+        )
+        .unwrap();
+        db.save_map_set(&set).unwrap();
+        id
+    };
+
+    let mut s = AppService::new(Database::open(&tmp.db()).unwrap());
+    let view = s.maps_get(&id).unwrap();
+    assert!(!view.locations.is_empty(), "the settlement's own locations");
+    assert!(view.locations.iter().all(|l| l.placement.is_none()));
+    let map = &view.maps.as_ref().unwrap().maps[0];
+    let target = crate::maps::PlaceOn {
+        map_id: map.id.clone(),
+        building_id: map.geometry.buildings[0].id.clone(),
+    };
+    let placed = s
+        .maps_location_assign(&id, &view.locations[0].id, &target, Default::default())
+        .unwrap();
+    assert_eq!(placed.locations[0].marker, Some(1));
+}
+
+/// A database with the location directory (schema 4) gains district names,
+/// points of interest and saved views, keeping its placements and numbers.
+#[test]
+fn a_database_with_the_directory_gains_districts_points_and_views() {
+    let tmp = TempDir::new();
+    let before = &this_release()[..4];
+    let (id, placed) = {
+        let mut s = AppService::new(Database::open_with(&tmp.db(), before).unwrap());
+        let id = generate(&mut s, "Riverside", "town", 1);
+        let mut db = Database::open_with(&tmp.db(), before).unwrap();
+        let settlement = db.get_settlement(&id).unwrap();
+        let set = crate::maps::generate_map_set(
+            &crate::maps::BuiltinEngine,
+            &settlement,
+            None,
+            &MapGenerationOptions::default(),
+        )
+        .unwrap();
+        db.save_map_set(&set).unwrap();
+        let map = &set.maps[0];
+        let location = settlement.snapshot.notable_locations().unwrap().locations[0]
+            .id
+            .clone();
+        // Stored as a schema-4 build stored a placement: one location row
+        // and the sequences.
+        let record = serde_json::json!({
+            "id": location,
+            "origin": "settlement",
+            "version": 1,
+            "marker": 1,
+            "assignment": {
+                "map_id": map.id,
+                "building_id": map.geometry.buildings[0].id,
+                "assigned_at": "2026-10-24T12:00:00Z"
+            }
+        });
+        db.conn
+            .execute(
+                "INSERT INTO settlement_locations
+                     (settlement_id, location_id, map_format, building_id, document)
+                 VALUES (?1, ?2, 1, ?3, ?4)",
+                rusqlite::params![
+                    id.as_str(),
+                    location,
+                    map.geometry.buildings[0].id.as_str(),
+                    record.to_string()
+                ],
+            )
+            .unwrap();
+        db.conn
+            .execute(
+                "INSERT INTO settlement_location_sequences VALUES (?1, 2, 1)",
+                [id.as_str()],
+            )
+            .unwrap();
+        (id, location)
+    };
+
+    let mut s = AppService::new(Database::open(&tmp.db()).unwrap());
+    let view = s.maps_get(&id).unwrap();
+    let entry = view.locations.iter().find(|l| l.id == placed).unwrap();
+    assert_eq!(entry.marker, Some(1));
+    assert!(view.pois.is_empty() && view.views.is_empty());
+    let map = &view.maps.as_ref().unwrap().maps[0];
+    let added = s
+        .maps_poi_add(
+            &id,
+            &map.id,
+            map.geometry.buildings[1].centroid,
+            "Well".into(),
+            String::new(),
+        )
+        .unwrap();
+    assert_eq!(added.pois[0].number, 2, "continues the existing sequence");
 }

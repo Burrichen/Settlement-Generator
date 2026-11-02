@@ -1,0 +1,1080 @@
+/* Settlement maps: tabs, the Map Explorer and its panels. Colours come from
+   the --map-* tokens in tokens.css, one set per theme. */
+
+/* ----- settlement / map tabs ------------------------------------------ */
+
+.settlement-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settlement-tab {
+  padding: 8px 16px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.settlement-tab:hover {
+  color: var(--text);
+}
+
+.settlement-tab.is-active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* The map uses the whole window width while it is shown. */
+.screen-wide:has(.map-explorer) .screen-header-inner,
+.screen-wide:has(.map-explorer) .screen-body {
+  max-width: none;
+}
+
+.view-layout:has(.map-explorer) {
+  grid-template-columns: minmax(170px, 16%) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.map-unsaved {
+  padding: 32px 0;
+  max-width: 560px;
+}
+
+/* ----- explorer layout ------------------------------------------------ */
+
+.map-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 300px);
+  gap: 14px;
+  align-items: start;
+}
+
+.map-workspace.is-side-closed {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.map-stage-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.map-stage {
+  position: relative;
+  /* The page header and settlement header sit above the map. */
+  height: clamp(380px, calc(100vh - 440px), 1100px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+
+.map-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: clamp(420px, calc(100vh - 400px), 1140px);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .map-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .map-side {
+    max-height: none;
+  }
+}
+
+/* ----- toolbar and districts ------------------------------------------ */
+
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-toolbar .btn-small {
+  min-width: 30px;
+  justify-content: center;
+}
+
+.map-toolbar-gap {
+  flex: 1 1 8px;
+}
+
+.map-zoom {
+  min-width: 46px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.map-toggle[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.map-toggle[aria-pressed="false"] {
+  color: var(--text-muted);
+}
+
+.map-districts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.map-district-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.map-district-tab:hover {
+  color: var(--text);
+}
+
+.map-district-tab.is-active {
+  background: var(--surface-raised);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.map-badge {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  color: var(--text-faint);
+  font-size: 11px;
+}
+
+.map-badge-stale {
+  color: var(--favourite);
+}
+
+.map-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--text-faint);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.map-notice-stale {
+  border-left-color: var(--favourite);
+}
+
+/* ----- canvas ---------------------------------------------------------- */
+
+.map-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.map-canvas:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.map-canvas.is-dragging {
+  cursor: grabbing;
+}
+
+.map-canvas.is-pointing {
+  cursor: pointer;
+}
+
+.map-ground {
+  fill: var(--map-ground-green);
+}
+.ground-arid .map-ground {
+  fill: var(--map-ground-arid);
+}
+.ground-cold .map-ground {
+  fill: var(--map-ground-cold);
+}
+.ground-wet .map-ground {
+  fill: var(--map-ground-wet);
+}
+.ground-strange .map-ground {
+  fill: var(--map-ground-strange);
+}
+
+.map-fields {
+  fill: var(--map-field);
+  stroke: var(--map-field-edge);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-water {
+  fill: var(--map-water);
+}
+
+.map-trees {
+  fill: var(--map-tree);
+}
+
+.map-square {
+  fill: var(--map-square);
+}
+
+.map-street {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Widths come from the geometry, in metres, so streets scale with the map. */
+.map-road {
+  stroke: var(--map-road);
+}
+.map-street-street {
+  stroke: var(--map-street);
+}
+.map-lane {
+  stroke: var(--map-lane);
+}
+
+.map-bridges {
+  fill: var(--map-bridge);
+}
+
+.map-buildings {
+  fill: var(--map-building);
+  stroke: var(--map-building-edge);
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-walls {
+  fill: none;
+  stroke: var(--map-wall);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.map-towers {
+  fill: var(--map-wall);
+}
+
+.map-gates {
+  fill: var(--accent);
+}
+
+.map-district-outline {
+  fill: none;
+  stroke: var(--map-district);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.map-hover {
+  fill: var(--map-hover);
+  fill-opacity: 0.45;
+  stroke: var(--map-hover);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+.map-selection {
+  fill: var(--map-select);
+  fill-opacity: 0.55;
+  stroke: var(--map-select);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+/* Marker pins: the tip marks the building, the numbered head stands above
+   it, so the building stays visible. Notable Locations have round heads in
+   the accent colour; free tokens (POIs) have diamond heads. */
+.map-marker {
+  cursor: pointer;
+}
+
+.map-marker-stem {
+  stroke: var(--surface-sunken);
+  stroke-width: 2;
+}
+
+.map-marker-tip {
+  fill: var(--surface-sunken);
+}
+
+.map-marker-head {
+  stroke: var(--surface-sunken);
+  stroke-width: 2;
+}
+
+.map-marker-location .map-marker-head {
+  fill: var(--accent);
+}
+
+.map-marker-poi .map-marker-head {
+  fill: var(--surface-raised);
+  stroke: var(--accent);
+}
+
+.map-marker.is-selected .map-marker-head {
+  stroke: var(--map-select);
+  stroke-width: 3;
+}
+
+.map-marker text {
+  fill: var(--accent-text);
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.map-marker-poi text {
+  fill: var(--text);
+}
+
+.map-scale {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  pointer-events: none;
+}
+
+.map-scale span {
+  display: block;
+  height: 4px;
+  border: 1px solid var(--text-muted);
+  border-top: 0;
+}
+
+.map-busy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--surface-sunken) 70%, transparent);
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* ----- empty states ---------------------------------------------------- */
+
+.map-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+}
+
+.map-empty p {
+  max-width: 460px;
+  margin: 0 0 18px;
+}
+
+.map-empty-art {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  fill: none;
+  stroke: var(--ornament);
+  stroke-width: 1.5;
+}
+
+.map-empty-art path {
+  fill: var(--surface-raised);
+  stroke: var(--accent);
+}
+
+.map-empty-title {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.map-empty-actions {
+  justify-content: center;
+}
+
+/* ----- side panels ------------------------------------------------------ */
+
+.map-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.map-panel-heading {
+  margin: 0;
+  font-size: inherit;
+}
+
+.map-panel-heading button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-panel-chevron {
+  width: 10px;
+  color: var(--text-faint);
+}
+
+.map-panel-body {
+  padding: 0 12px 12px;
+}
+
+.map-inspector-title {
+  margin: 2px 0 8px;
+  font-size: 16px;
+}
+
+.map-facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 10px;
+  font-size: 13.5px;
+}
+
+.map-facts dt {
+  color: var(--text-muted);
+}
+
+.map-facts dd {
+  margin: 0;
+}
+
+.map-details-note {
+  margin: 0 0 10px;
+}
+
+.map-search.text-input {
+  max-width: none;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  font-size: 13.5px;
+}
+
+.map-subheading {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.map-key,
+.map-numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13.5px;
+}
+
+.map-key li,
+.map-numbered li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.map-swatch {
+  flex: none;
+  width: 18px;
+  height: 12px;
+  border-radius: 1px;
+  background: var(--map-ground-green);
+}
+.swatch-building {
+  background: var(--map-building);
+  outline: 1px solid var(--map-building-edge);
+}
+.swatch-selected {
+  background: var(--map-select);
+}
+.swatch-road {
+  height: 5px;
+  background: var(--map-road);
+}
+.swatch-street {
+  height: 4px;
+  background: var(--map-street);
+}
+.swatch-lane {
+  height: 3px;
+  background: var(--map-lane);
+}
+.swatch-square {
+  background: var(--map-square);
+}
+.swatch-wall {
+  height: 3px;
+  background: var(--map-wall);
+}
+.swatch-gate {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.swatch-water {
+  background: var(--map-water);
+}
+.swatch-bridge {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--map-bridge);
+}
+.swatch-field {
+  background: var(--map-field);
+  outline: 1px solid var(--map-field-edge);
+}
+.swatch-trees {
+  width: 12px;
+  border-radius: 50%;
+  background: var(--map-tree);
+}
+.swatch-district {
+  background: none;
+  border: 1.5px dashed var(--map-district);
+}
+
+.map-marker-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.map-count {
+  margin: 0 0 6px;
+}
+
+.map-directory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.map-directory-list li {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+
+.map-directory-list li:hover {
+  background: var(--surface-raised);
+}
+
+.map-directory-list li.is-selected {
+  background: var(--surface-raised);
+  border-left-color: var(--map-select);
+}
+
+.map-directory-list li:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.map-directory-name {
+  font-size: 13.5px;
+}
+
+.map-directory-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ----- Location Inspector: building details ----- */
+
+.map-inspector-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-inspector-head .map-inspector-title {
+  overflow-wrap: anywhere;
+}
+
+.map-state {
+  flex: none;
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.map-state-generated {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.map-state-customised {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Where a value came from: quiet, so values stay the focus. */
+.map-origin {
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 3px;
+  background: var(--surface-sunken);
+  color: var(--text-faint);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  vertical-align: 1px;
+}
+
+.map-origin-user {
+  color: var(--accent);
+}
+
+.map-facts dd {
+  overflow-wrap: anywhere;
+}
+
+.map-facts-small {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+}
+
+.map-inspector-text {
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}
+
+.map-inspector-notes {
+  white-space: pre-wrap;
+}
+
+.map-inspector-actions {
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.map-inspector-saved {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: var(--success);
+}
+
+.map-inspector-error {
+  margin: 0 0 8px;
+}
+
+.map-inspector-meta {
+  margin-top: 12px;
+  font-size: 12.5px;
+}
+
+.map-inspector-meta summary {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.map-inspector-meta code {
+  font-size: 11.5px;
+  overflow-wrap: anywhere;
+}
+
+/* A confirmation inside the panel: destructive steps are never one click. */
+.map-confirm {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 13.5px;
+}
+
+.map-confirm p {
+  margin: 0 0 8px;
+}
+
+.map-confirm .check {
+  margin-bottom: 6px;
+}
+
+.map-edit .field {
+  margin-bottom: 10px;
+}
+
+.map-edit-label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.map-edit-input.text-input {
+  max-width: none;
+  padding: 6px 9px;
+  font-size: 13.5px;
+}
+
+.map-edit textarea.map-edit-input {
+  resize: vertical;
+}
+
+.btn-link {
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-link:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ----- Notable Locations ----- */
+
+.map-marker-badge.is-empty {
+  background: var(--surface-sunken);
+  color: var(--text-faint);
+}
+
+.map-marker-badge.is-poi {
+  border-radius: 3px;
+  background: var(--surface-raised);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.map-location-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.map-location-row {
+  cursor: pointer;
+}
+
+button.map-location-row:hover {
+  background: var(--surface-raised);
+}
+
+button.map-location-row:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.map-location-row.is-unplaced {
+  color: var(--text-muted);
+}
+
+.map-location-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.map-location-name {
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}
+
+.map-location-meta,
+.map-location-status {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.map-location-status {
+  color: var(--text-faint);
+}
+
+.map-location-list,
+.map-numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.map-numbered li {
+  display: block;
+}
+
+.map-inspector-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-inspector-linked {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-left: 2px solid var(--accent);
+  background: var(--surface-sunken);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.map-inspector-linked .map-subheading {
+  margin-top: 0;
+}
+
+.map-notice-move {
+  padding: 8px 12px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+/* The Make Notable Location dialog. */
+.map-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.map-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(520px, 100%);
+  max-height: min(680px, 100%);
+  padding: 18px 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.map-dialog-title {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+.map-location-options {
+  flex: 1 1 auto;
+  min-height: 120px;
+  margin: 0 0 10px;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.map-location-options:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.map-location-options li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 8px;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.map-location-options li:hover {
+  background: var(--surface-raised);
+}
+
+.map-location-options li.is-chosen {
+  background: var(--surface-raised);
+  border-left-color: var(--accent);
+}
+
+.map-location-options li.is-blocked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.map-location-options .map-location-none {
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: default;
+}
+
+.map-dialog-custom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 12px;
+}
+
+.map-dialog-consequences p {
+  margin: 0 0 8px;
+  font-size: 13.5px;
+}
+
+.map-dialog-actions {
+  justify-content: flex-end;
+}
+
+.map-location-form .field {
+  margin-bottom: 8px;
+}
+
+/* ----- Districts ----- */
+
+.map-canvas.is-placing {
+  cursor: crosshair;
+}
+
+.map-district-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-district-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-district-search.text-input {
+  max-width: 240px;
+  margin: 0;
+}
+
+.map-district-matches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-district-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.map-district-name-input.text-input {
+  max-width: 260px;
+}
+
+.map-scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.map-scope [role="radio"][aria-checked="true"] {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* ----- Export ----- */
+
+.map-export-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+}
+
+.map-export-path {
+  overflow-wrap: anywhere;
+}
+
+.map-export-files {
+  margin: 0 0 12px;
+  padding-left: 18px;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}
