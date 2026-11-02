@@ -11,10 +11,7 @@
           "id": "givenSurname",
           "name": "Air Genasi core (given + family)",
           "description": "Baseline mixed Air Genasi vocabulary: 10% of name generations.",
-          "range": [
-            1,
-            10
-          ]
+          "range": [1, 10]
         },
         {
           "id": "givenSurname.mortal.01",

@@ -15,8 +15,8 @@ This revision is a targeted editorial correction to the earlier 5-method Ordon p
 - Old pack had 4,650 paths but many arose from unrestricted concatenation; quality matters more than the raw number.
 - Geographic: 50 original first elements × 20 approved suffixes, 1d100 + 1d20; a handful of deterministic spelling overrides.
 - Founder: 100 founder names retained, but each has **two individual, hand-authored settlement forms**; 1d100 + 1d4 (A: 1–2, B: 3–4). Oswald now yields **Oswalden** or **Oswaldwick**, never Oswaldsworth.
-- Industry: 40 original industry source concepts × 4 approved names per concept, 1d100 + 1d4. Facility names like *Foundrywell* no longer appear.
-- Transport: 30 original source concepts × 4 approved names, 1d100 + 1d4. No *Market Market*, *Grand Road*, etc.
+- Industry: 40 original industry source concepts × 4 approved names per concept, 1d100 + 1d4. Facility names like _Foundrywell_ no longer appear.
+- Transport: 30 original source concepts × 4 approved names, 1d100 + 1d4. No _Market Market_, _Grand Road_, etc.
 - Inherited: 50 curated names; replaced six names sounding more like landmarks or facilities.
 
 ## Editable files

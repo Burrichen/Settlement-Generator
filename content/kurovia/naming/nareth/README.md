@@ -15,25 +15,25 @@ A few naming styles coexist naturally:
 - Fictional old river-family and community naming roots inherited from the initial Nareth starter content.
 - Ordinary floodplain living: houses, clearings, crossings, cultivated plots and landing settlements.
 - Rare original names evoking concealed monumental architecture and elemental knowledge, inspired by the **atmosphere** of Ixtal.
-- Rare curated complete names, including some two-word forms that echo the *structure* (not the contents) of Uru Taal.
+- Rare curated complete names, including some two-word forms that echo the _structure_ (not the contents) of Uru Taal.
 
 No new fictional root is given a fabricated Quechua translation. Real root glosses in JSON descriptions are contextual and simplified.
 
 ## Methods and probability
 
-| d100 | Method | Chance | Generation paths |
-|---|---|---:|---:|
-| 01-25 | Rivers & Confluences | 25% | 1,200 |
-| 26-47 | Forest & Canopy | 22% | 1,200 |
-| 48-64 | Wetlands & Floodplains | 17% | 960 |
-| 65-75 | Villages & Cultivated Clearings | 11% | 1,000 |
-| 76-82 | Trails & River Crossings | 7% | 600 |
-| 83-88 | Ancient Stone & Terraces | 6% | 800 |
-| 89-92 | Old Geographic Compounds | 4% | 800 |
-| 93-95 | Ancestral Settlements | 3% | 480 |
-| 96-98 | Elemental & Hidden Places | 3% | 800 |
-| 99-100 | Inherited Proper Names | 2% | 100 |
-| **Total** | | **100%** | **7,940** |
+| d100      | Method                          |   Chance | Generation paths |
+| --------- | ------------------------------- | -------: | ---------------: |
+| 01-25     | Rivers & Confluences            |      25% |            1,200 |
+| 26-47     | Forest & Canopy                 |      22% |            1,200 |
+| 48-64     | Wetlands & Floodplains          |      17% |              960 |
+| 65-75     | Villages & Cultivated Clearings |      11% |            1,000 |
+| 76-82     | Trails & River Crossings        |       7% |              600 |
+| 83-88     | Ancient Stone & Terraces        |       6% |              800 |
+| 89-92     | Old Geographic Compounds        |       4% |              800 |
+| 93-95     | Ancestral Settlements           |       3% |              480 |
+| 96-98     | Elemental & Hidden Places       |       3% |              800 |
+| 99-100    | Inherited Proper Names          |       2% |              100 |
+| **Total** |                                 | **100%** |        **7,940** |
 
 **6,405 distinct case-insensitive spellings** result from these 7,940 component paths. **1,535 additional paths** duplicate a spelling produced elsewhere. This counts combinatorial possibilities, not equal chances; dice faces weight the actual outcomes.
 
@@ -50,7 +50,7 @@ The first three methods contribute **64%** of all naming outcomes: rainforest ri
 **Old Geographic Compounds:** `Naroneth`, `Korivai`, `Talamar`, `Narothil`  
 **Ancestral Settlements:** `Talarien`, `Namarvai`, `Ivaramar`, `Eshartal`  
 **Elemental & Hidden Places:** `Xalunkan`, `Tzarineth`, `Querathal`, `Vixaraven`  
-**Inherited Proper Names:** `Yuranei`, `Vara Talen`, `Iru Vasha`, `Mariven`  
+**Inherited Proper Names:** `Yuranei`, `Vara Talen`, `Iru Vasha`, `Mariven`
 
 Names are examples of possible fictional output, not canonically established settlements. Some combinations use authentic Quechua lexical references; others combine invented Nareth roots, and the combinations have **not** been verified for grammar.
 
@@ -88,7 +88,7 @@ Names are examples of possible fictional output, not canonically established set
 4. Modify `01-method.json` to change the proportion of Nareth settlements using rivers vs forest vs old/inherited forms.
 5. Run `python AUTHORING_PREVIEW.py --samples 20 --export` from the extracted folder. The tool validates all tables and generates new CSVs.
 6. A table's `result.id` appears in `naming-schemes.json.methods[].result` for method selection; if you rename a method ID, update the manifest as well. Prefer not changing IDs.
-7. Merge Nareth's `naming-schemes.json` **entry only** into a shared world manifest if your application uses one. This archive's manifest is *not* a full global file.
+7. Merge Nareth's `naming-schemes.json` **entry only** into a shared world manifest if your application uses one. This archive's manifest is _not_ a full global file.
 8. Restart/reload the app according to its content-loading rules. Existing custom user overrides may mask your edited bundled JSON. Do not overwrite user data or old saved settlement snapshots.
 
 ### Compatibility note

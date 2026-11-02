@@ -19,10 +19,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.dwarf.given.masculine",
-            "table.personName.dwarf.family"
-          ],
+          "components": ["table.personName.dwarf.given.masculine", "table.personName.dwarf.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -1137,10 +1134,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.dwarf.given.feminine",
-            "table.personName.dwarf.family"
-          ],
+          "components": ["table.personName.dwarf.given.feminine", "table.personName.dwarf.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -2248,10 +2242,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.dwarf.given.neutral",
-            "table.personName.dwarf.family"
-          ],
+          "components": ["table.personName.dwarf.given.neutral", "table.personName.dwarf.family"],
           "join": {
             "style": "compound",
             "separator": " ",

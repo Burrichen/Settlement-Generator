@@ -11,19 +11,13 @@
           "id": "geographic",
           "name": "Geographic Compound",
           "description": "Two-part place names drawing from Shinkira mountains, forests, waters, cultivated land and a few Utsuro-influenced stems. Ordinary direct joining; no curated variants.",
-          "range": [
-            1,
-            7
-          ]
+          "range": [1, 7]
         },
         {
           "id": "founder",
           "name": "Historic Family or Settlement",
           "description": "Inherited family, shrine, castle and old settlement elements joined to common town endings. Ordinary direct joining; no curated variants.",
-          "range": [
-            8,
-            10
-          ]
+          "range": [8, 10]
         }
       ]
     }

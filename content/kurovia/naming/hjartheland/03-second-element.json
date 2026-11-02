@@ -10,242 +10,152 @@
         {
           "id": "vik",
           "name": "vik",
-          "range": [
-            1,
-            4
-          ]
+          "range": [1, 4]
         },
         {
           "id": "heim",
           "name": "heim",
-          "range": [
-            5,
-            8
-          ]
+          "range": [5, 8]
         },
         {
           "id": "dal",
           "name": "dal",
-          "range": [
-            9,
-            12
-          ]
+          "range": [9, 12]
         },
         {
           "id": "berg",
           "name": "berg",
-          "range": [
-            13,
-            16
-          ]
+          "range": [13, 16]
         },
         {
           "id": "nes",
           "name": "nes",
-          "range": [
-            17,
-            20
-          ]
+          "range": [17, 20]
         },
         {
           "id": "gard",
           "name": "gard",
-          "range": [
-            21,
-            24
-          ]
+          "range": [21, 24]
         },
         {
           "id": "havn",
           "name": "havn",
-          "range": [
-            25,
-            28
-          ]
+          "range": [25, 28]
         },
         {
           "id": "lund",
           "name": "lund",
-          "range": [
-            29,
-            32
-          ]
+          "range": [29, 32]
         },
         {
           "id": "fjord",
           "name": "fjord",
-          "range": [
-            33,
-            36
-          ]
+          "range": [33, 36]
         },
         {
           "id": "set",
           "name": "set",
-          "range": [
-            37,
-            40
-          ]
+          "range": [37, 40]
         },
         {
           "id": "holt",
           "name": "holt",
-          "range": [
-            41,
-            43
-          ]
+          "range": [41, 43]
         },
         {
           "id": "fell",
           "name": "fell",
-          "range": [
-            44,
-            46
-          ]
+          "range": [44, 46]
         },
         {
           "id": "stad",
           "name": "stad",
-          "range": [
-            47,
-            49
-          ]
+          "range": [47, 49]
         },
         {
           "id": "by",
           "name": "by",
-          "range": [
-            50,
-            52
-          ]
+          "range": [50, 52]
         },
         {
           "id": "tun",
           "name": "tun",
-          "range": [
-            53,
-            55
-          ]
+          "range": [53, 55]
         },
         {
           "id": "torp",
           "name": "torp",
-          "range": [
-            56,
-            58
-          ]
+          "range": [56, 58]
         },
         {
           "id": "seter",
           "name": "seter",
-          "range": [
-            59,
-            61
-          ]
+          "range": [59, 61]
         },
         {
           "id": "stol",
           "name": "støl",
-          "range": [
-            62,
-            64
-          ]
+          "range": [62, 64]
         },
         {
           "id": "hus",
           "name": "hus",
-          "range": [
-            65,
-            67
-          ]
+          "range": [65, 67]
         },
         {
           "id": "voll",
           "name": "voll",
-          "range": [
-            68,
-            70
-          ]
+          "range": [68, 70]
         },
         {
           "id": "haug",
           "name": "haug",
-          "range": [
-            71,
-            73
-          ]
+          "range": [71, 73]
         },
         {
           "id": "mark",
           "name": "mark",
-          "range": [
-            74,
-            76
-          ]
+          "range": [74, 76]
         },
         {
           "id": "land",
           "name": "land",
-          "range": [
-            77,
-            79
-          ]
+          "range": [77, 79]
         },
         {
           "id": "strand",
           "name": "strand",
-          "range": [
-            80,
-            82
-          ]
+          "range": [80, 82]
         },
         {
           "id": "eid",
           "name": "eid",
-          "range": [
-            83,
-            85
-          ]
+          "range": [83, 85]
         },
         {
           "id": "sund",
           "name": "sund",
-          "range": [
-            86,
-            88
-          ]
+          "range": [86, 88]
         },
         {
           "id": "rud",
           "name": "rud",
-          "range": [
-            89,
-            91
-          ]
+          "range": [89, 91]
         },
         {
           "id": "vang",
           "name": "vang",
-          "range": [
-            92,
-            94
-          ]
+          "range": [92, 94]
         },
         {
           "id": "bo",
           "name": "bø",
-          "range": [
-            95,
-            97
-          ]
+          "range": [95, 97]
         },
         {
           "id": "tveit",
           "name": "tveit",
-          "range": [
-            98,
-            100
-          ]
+          "range": [98, 100]
         }
       ]
     }

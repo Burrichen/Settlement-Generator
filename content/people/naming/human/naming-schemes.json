@@ -19,10 +19,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.human.given.masculine",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.masculine", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -1929,10 +1926,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.human.given.feminine",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.feminine", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -3832,10 +3826,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -4448,10 +4439,7 @@
         },
         {
           "result": "givenSurname.gender-flexible-names.01",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -4668,10 +4656,7 @@
         },
         {
           "result": "givenSurname.icelandic.01",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -4690,10 +4675,7 @@
         },
         {
           "result": "givenSurname.icelandic.02",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -4712,10 +4694,7 @@
         },
         {
           "result": "givenSurname.indonesian.01",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -4734,10 +4713,7 @@
         },
         {
           "result": "givenSurname.indonesian.02",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -5438,10 +5414,7 @@
         },
         {
           "result": "givenSurname.tamil-south-indian-romanised-given-examples.01",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -5460,10 +5433,7 @@
         },
         {
           "result": "givenSurname.tamil-south-indian-romanised-given-examples.02",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",

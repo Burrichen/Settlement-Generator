@@ -2,7 +2,7 @@
 
 ## Purpose
 
-One coherent, fully editable **Nordic and deep-winter-inspired** naming scheme for Hjartheland. Generated settlements follow cultural and historical *naming mechanisms*, not an unstructured heap of random syllables. The main orthographic flavour is fictionalised Norwegian / West Norse, with selective pan-Nordic influences.
+One coherent, fully editable **Nordic and deep-winter-inspired** naming scheme for Hjartheland. Generated settlements follow cultural and historical _naming mechanisms_, not an unstructured heap of random syllables. The main orthographic flavour is fictionalised Norwegian / West Norse, with selective pan-Nordic influences.
 
 **These are provisional names and spelling conventions, not assertions of authentic Norwegian, Icelandic or Swedish grammar.** No new Kurovia canon is established by installing this pack.
 
@@ -10,17 +10,17 @@ Hjartheland is characterised by tundra, glaciers, mountains and Forever Ice, whi
 
 ## Naming table and generation counts
 
-| d100 | Method | Chance | Paths |
-|---|---|---:|---:|
-| 01-22 | Traditional Settlement Compound | 22% | 1,500 |
-| 23-42 | Mountains, Ridges & Valleys | 20% | 1,200 |
-| 43-63 | Snow, Glaciers & Winter | 21% | 960 |
-| 64-73 | Rivers, Lakes & Fjords | 10% | 600 |
-| 74-82 | Forest, Moor & Pasture | 9% | 600 |
-| 83-93 | Shelter & Winter Routes | 11% | 600 |
-| 94-97 | Historical Homestead | 4% | 480 |
-| 98-100 | Ancient Inherited Name | 3% | 60 |
-| **Total** | | **100%** | **6,000** |
+| d100      | Method                          |   Chance |     Paths |
+| --------- | ------------------------------- | -------: | --------: |
+| 01-22     | Traditional Settlement Compound |      22% |     1,500 |
+| 23-42     | Mountains, Ridges & Valleys     |      20% |     1,200 |
+| 43-63     | Snow, Glaciers & Winter         |      21% |       960 |
+| 64-73     | Rivers, Lakes & Fjords          |      10% |       600 |
+| 74-82     | Forest, Moor & Pasture          |       9% |       600 |
+| 83-93     | Shelter & Winter Routes         |      11% |       600 |
+| 94-97     | Historical Homestead            |       4% |       480 |
+| 98-100    | Ancient Inherited Name          |       3% |        60 |
+| **Total** |                                 | **100%** | **6,000** |
 
 There are **4,842 distinct case-insensitive spellings** and **1,158 extra generation paths that duplicate another generated spelling**. Collisions are recorded in `COLLISIONS.csv` and their generation paths in `COMPLETE_CATALOG.csv`. Duplicate spellings across methods are not automatically mistakes, but merit editorial review.
 
@@ -45,7 +45,7 @@ There are **4,842 distinct case-insensitive spellings** and **1,158 extra genera
 
 This authoring pack follows the existing **Bratislor schema_version 1** and the Halingo expanded naming-pack conventions. It is NOT verified against your running application because the actual core loader implementation was not available.
 
-All methods use only the existing `join.style: compound`, including the one-component complete-name method. No new joining operator is needed. Before replacing content, check that the core supports a single-component naming method. If it does not, add that *generic* support once instead of a Hjartheland hardcode.
+All methods use only the existing `join.style: compound`, including the one-component complete-name method. No new joining operator is needed. Before replacing content, check that the core supports a single-component naming method. If it does not, add that _generic_ support once instead of a Hjartheland hardcode.
 
 The archive contains a one-region `naming-schemes.json`. If your application has one global manifest for all regions, **merge only the Hjartheland scheme object**; never overwrite the other seven regions' scheme entries.
 
@@ -53,7 +53,7 @@ The method dice changes from an initial `1d10` to `1d100`, allowing editable per
 
 ## Genitive / founder joining
 
-The historical `table.naming.hjartheland.founder` has 40 *possessive stems*, not uninflected first names. Each stem's stable ID is the dictionary-form personal name (for example `eirik`), but its text is `Eiriks`. Direct joining with the `stad` ending produces **Eiriksstad**. This is a **simplified naming convention**, not a universal rule for Icelandic/Norwegian grammar. Keeping it in the data avoids new hardcoded linguistic logic in the shared engine.
+The historical `table.naming.hjartheland.founder` has 40 _possessive stems_, not uninflected first names. Each stem's stable ID is the dictionary-form personal name (for example `eirik`), but its text is `Eiriks`. Direct joining with the `stad` ending produces **Eiriksstad**. This is a **simplified naming convention**, not a universal rule for Icelandic/Norwegian grammar. Keeping it in the data avoids new hardcoded linguistic logic in the shared engine.
 
 ## Editing in VS Code
 

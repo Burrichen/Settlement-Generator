@@ -20,18 +20,12 @@
         {
           "id": "ling",
           "name": "ling",
-          "range": [
-            3,
-            4
-          ]
+          "range": [3, 4]
         },
         {
           "id": "thang",
           "name": "thang",
-          "range": [
-            5,
-            6
-          ]
+          "range": [5, 6]
         },
         {
           "id": "tse",
@@ -66,18 +60,12 @@
         {
           "id": "kot",
           "name": "kot",
-          "range": [
-            13,
-            14
-          ]
+          "range": [13, 14]
         },
         {
           "id": "gaun",
           "name": "gaun",
-          "range": [
-            15,
-            16
-          ]
+          "range": [15, 16]
         },
         {
           "id": "danda",

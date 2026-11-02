@@ -11,73 +11,49 @@
           "id": "geographic",
           "name": "Traditional Settlement Compound",
           "description": "Old farmstead, hamlet and settlement place-name elements, with a broad inherited geographic vocabulary.",
-          "range": [
-            1,
-            22
-          ]
+          "range": [1, 22]
         },
         {
           "id": "mountain",
           "name": "Mountains, Ridges & Valleys",
           "description": "Landforms and elevated locations, including steep climbs, exposed highland valleys and ridge communities.",
-          "range": [
-            23,
-            42
-          ]
+          "range": [23, 42]
         },
         {
           "id": "winter",
           "name": "Snow, Glaciers & Winter",
           "description": "Seasonal and permanent ice, glaciers, snowfields and weathered winter geography.",
-          "range": [
-            43,
-            63
-          ]
+          "range": [43, 63]
         },
         {
           "id": "water",
           "name": "Rivers, Lakes & Fjords",
           "description": "Lakes, frozen channels, waterways and older fjord/coastal naming traditions.",
-          "range": [
-            64,
-            73
-          ]
+          "range": [64, 73]
         },
         {
           "id": "forest",
           "name": "Forest, Moor & Pasture",
           "description": "Boreal forest settlements, heath, mossland and seasonal upland farm clearings.",
-          "range": [
-            74,
-            82
-          ]
+          "range": [74, 82]
         },
         {
           "id": "shelter",
           "name": "Shelter & Winter Routes",
           "description": "Shelters, mountain roads, ferries, halls and dependable resting sites important to hospitality.",
-          "range": [
-            83,
-            93
-          ]
+          "range": [83, 93]
         },
         {
           "id": "founder",
           "name": "Historical Homestead",
           "description": "Older landholding/farm names using simplified genitive founder stems; only a small proportion of the final mix.",
-          "range": [
-            94,
-            97
-          ]
+          "range": [94, 97]
         },
         {
           "id": "inherited",
           "name": "Ancient Inherited Name",
           "description": "A complete place name of uncertain or archaic origin: not assembled from modern component tables.",
-          "range": [
-            98,
-            100
-          ]
+          "range": [98, 100]
         }
       ]
     }

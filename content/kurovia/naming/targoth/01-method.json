@@ -11,19 +11,13 @@
           "id": "geographic",
           "name": "Highland and Sacred Geography",
           "description": "An inherited place name based on passes, mountains, river valleys, old lookouts and mountain settlements. Direct compound joining.",
-          "range": [
-            1,
-            8
-          ]
+          "range": [1, 8]
         },
         {
           "id": "founder",
           "name": "Ancient Lineages and Sanctuaries",
           "description": "Names associated with long-forgotten watchers, hermits and older mountain lineages, joined to a landmark or sanctuary ending. Uses the original founder method key for compatibility.",
-          "range": [
-            9,
-            10
-          ]
+          "range": [9, 10]
         }
       ]
     }

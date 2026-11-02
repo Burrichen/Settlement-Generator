@@ -1,4 +1,5 @@
 # Validation report
+
 - 10 JSON tables, all parse at schema v1; all declared physical dice faces covered once with no gaps or overlap.
 - All five original naming method IDs and weights unchanged.
 - Total generation paths: 1530.

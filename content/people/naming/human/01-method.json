@@ -11,10 +11,7 @@
           "id": "givenSurname",
           "name": "Given name + family name",
           "description": "The original twenty names in each table plus eighty mixed historical and contemporary additions.",
-          "range": [
-            1,
-            15
-          ]
+          "range": [1, 15]
         },
         {
           "id": "givenSurname.akan-ghanaian.01",

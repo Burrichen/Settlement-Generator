@@ -11,91 +11,61 @@
           "id": "river",
           "name": "Rivers & Confluences",
           "description": "Waterways and settlements named after river branches, water colour, springs or river mouths.",
-          "range": [
-            1,
-            25
-          ]
+          "range": [1, 25]
         },
         {
           "id": "forest",
           "name": "Forest & Canopy",
           "description": "Canopy, trees, forest clearings, animals and life under heavy vegetation.",
-          "range": [
-            26,
-            47
-          ]
+          "range": [26, 47]
         },
         {
           "id": "wetland",
           "name": "Wetlands & Floodplains",
           "description": "Flooded woods, lagoons, backwaters and marshes.",
-          "range": [
-            48,
-            64
-          ]
+          "range": [48, 64]
         },
         {
           "id": "settlement",
           "name": "Villages & Cultivated Clearings",
           "description": "Everyday settlements named after inhabited plots, homes, planted land and enclosures.",
-          "range": [
-            65,
-            75
-          ]
+          "range": [65, 75]
         },
         {
           "id": "trail",
           "name": "Trails & River Crossings",
           "description": "River crossings, routes, landings, bridges and travel refuges.",
-          "range": [
-            76,
-            82
-          ]
+          "range": [76, 82]
         },
         {
           "id": "stone",
           "name": "Ancient Stone & Terraces",
           "description": "Older built sites, raised plazas, terraces, stone bridges and other durable works.",
-          "range": [
-            83,
-            88
-          ]
+          "range": [83, 88]
         },
         {
           "id": "geographic",
           "name": "Old Geographic Compounds",
           "description": "Preserves the older fictional Nareth geographic compound vocabulary.",
-          "range": [
-            89,
-            92
-          ]
+          "range": [89, 92]
         },
         {
           "id": "founder",
           "name": "Ancestral Settlements",
           "description": "Inherited personal and lineage names; rare, without implying any pre-defined family history.",
-          "range": [
-            93,
-            95
-          ]
+          "range": [93, 95]
         },
         {
           "id": "elemental",
           "name": "Elemental & Hidden Places",
           "description": "Rare deliberately fictional old-city sounding names, inspired by Ixtal atmosphere.",
-          "range": [
-            96,
-            98
-          ]
+          "range": [96, 98]
         },
         {
           "id": "inherited",
           "name": "Inherited Proper Names",
           "description": "Rare complete proper names; some preserve the two-word style of Uru Taal.",
-          "range": [
-            99,
-            100
-          ]
+          "range": [99, 100]
         }
       ]
     }

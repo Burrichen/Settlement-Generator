@@ -10,322 +10,202 @@
         {
           "id": "eldrun",
           "name": "Eldrun",
-          "range": [
-            1,
-            2
-          ]
+          "range": [1, 2]
         },
         {
           "id": "hjervik",
           "name": "Hjervik",
-          "range": [
-            3,
-            4
-          ]
+          "range": [3, 4]
         },
         {
           "id": "ormstad",
           "name": "Ormstad",
-          "range": [
-            5,
-            6
-          ]
+          "range": [5, 6]
         },
         {
           "id": "vestrun",
           "name": "Vestrun",
-          "range": [
-            7,
-            8
-          ]
+          "range": [7, 8]
         },
         {
           "id": "haldren",
           "name": "Haldren",
-          "range": [
-            9,
-            10
-          ]
+          "range": [9, 10]
         },
         {
           "id": "skjeld",
           "name": "Skjeld",
-          "range": [
-            11,
-            12
-          ]
+          "range": [11, 12]
         },
         {
           "id": "eidvara",
           "name": "Eidvara",
-          "range": [
-            13,
-            14
-          ]
+          "range": [13, 14]
         },
         {
           "id": "ravald",
           "name": "Ravald",
-          "range": [
-            15,
-            16
-          ]
+          "range": [15, 16]
         },
         {
           "id": "svalen",
           "name": "Svalen",
-          "range": [
-            17,
-            18
-          ]
+          "range": [17, 18]
         },
         {
           "id": "lindvik",
           "name": "Lindvik",
-          "range": [
-            19,
-            20
-          ]
+          "range": [19, 20]
         },
         {
           "id": "jornes",
           "name": "Jornes",
-          "range": [
-            21,
-            22
-          ]
+          "range": [21, 22]
         },
         {
           "id": "hjorn",
           "name": "Hjorn",
-          "range": [
-            23,
-            24
-          ]
+          "range": [23, 24]
         },
         {
           "id": "nordren",
           "name": "Nordren",
-          "range": [
-            25,
-            26
-          ]
+          "range": [25, 26]
         },
         {
           "id": "varald",
           "name": "Varald",
-          "range": [
-            27,
-            28
-          ]
+          "range": [27, 28]
         },
         {
           "id": "brynja",
           "name": "Brynja",
-          "range": [
-            29,
-            30
-          ]
+          "range": [29, 30]
         },
         {
           "id": "skelund",
           "name": "Skelund",
-          "range": [
-            31,
-            32
-          ]
+          "range": [31, 32]
         },
         {
           "id": "orvik",
           "name": "Orvik",
-          "range": [
-            33,
-            34
-          ]
+          "range": [33, 34]
         },
         {
           "id": "tyrden",
           "name": "Tyrden",
-          "range": [
-            35,
-            36
-          ]
+          "range": [35, 36]
         },
         {
           "id": "svarven",
           "name": "Svarven",
-          "range": [
-            37,
-            38
-          ]
+          "range": [37, 38]
         },
         {
           "id": "eirnes",
           "name": "Eirnes",
-          "range": [
-            39,
-            40
-          ]
+          "range": [39, 40]
         },
         {
           "id": "hovgard",
           "name": "Hovgard",
-          "range": [
-            41,
-            42
-          ]
+          "range": [41, 42]
         },
         {
           "id": "skarnes",
           "name": "Skarnes",
-          "range": [
-            43,
-            44
-          ]
+          "range": [43, 44]
         },
         {
           "id": "fjold",
           "name": "Fjold",
-          "range": [
-            45,
-            46
-          ]
+          "range": [45, 46]
         },
         {
           "id": "lyrstad",
           "name": "Lyrstad",
-          "range": [
-            47,
-            48
-          ]
+          "range": [47, 48]
         },
         {
           "id": "vardun",
           "name": "Vardun",
-          "range": [
-            49,
-            50
-          ]
+          "range": [49, 50]
         },
         {
           "id": "elnes",
           "name": "Elnes",
-          "range": [
-            51,
-            52
-          ]
+          "range": [51, 52]
         },
         {
           "id": "hjorva",
           "name": "Hjorva",
-          "range": [
-            53,
-            54
-          ]
+          "range": [53, 54]
         },
         {
           "id": "rundal",
           "name": "Rundal",
-          "range": [
-            55,
-            56
-          ]
+          "range": [55, 56]
         },
         {
           "id": "stenvik",
           "name": "Stenvik",
-          "range": [
-            57,
-            58
-          ]
+          "range": [57, 58]
         },
         {
           "id": "hjellund",
           "name": "Hjellund",
-          "range": [
-            59,
-            60
-          ]
+          "range": [59, 60]
         },
         {
           "id": "arveng",
           "name": "Arveng",
-          "range": [
-            61,
-            62
-          ]
+          "range": [61, 62]
         },
         {
           "id": "solren",
           "name": "Solren",
-          "range": [
-            63,
-            64
-          ]
+          "range": [63, 64]
         },
         {
           "id": "hravik",
           "name": "Hravik",
-          "range": [
-            65,
-            66
-          ]
+          "range": [65, 66]
         },
         {
           "id": "ulven",
           "name": "Ulven",
-          "range": [
-            67,
-            68
-          ]
+          "range": [67, 68]
         },
         {
           "id": "thoren",
           "name": "Thoren",
-          "range": [
-            69,
-            70
-          ]
+          "range": [69, 70]
         },
         {
           "id": "elvorn",
           "name": "Elvorn",
-          "range": [
-            71,
-            72
-          ]
+          "range": [71, 72]
         },
         {
           "id": "skriva",
           "name": "Skriva",
-          "range": [
-            73,
-            74
-          ]
+          "range": [73, 74]
         },
         {
           "id": "borund",
           "name": "Borund",
-          "range": [
-            75,
-            76
-          ]
+          "range": [75, 76]
         },
         {
           "id": "fjeldra",
           "name": "Fjeldra",
-          "range": [
-            77,
-            78
-          ]
+          "range": [77, 78]
         },
         {
           "id": "veyren",
           "name": "Veyren",
-          "range": [
-            79,
-            80
-          ]
+          "range": [79, 80]
         },
         {
           "id": "vordal",

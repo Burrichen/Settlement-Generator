@@ -2248,10 +2248,7 @@
       "methods": [
         {
           "result": "givenSurname",
-          "components": [
-            "table.personName.yuanTi.given.neutral",
-            "table.personName.yuanTi.family"
-          ],
+          "components": ["table.personName.yuanTi.given.neutral", "table.personName.yuanTi.family"],
           "join": {
             "style": "compound",
             "separator": " ",

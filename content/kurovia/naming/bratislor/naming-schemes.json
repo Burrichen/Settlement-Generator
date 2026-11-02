@@ -30,10 +30,7 @@
         },
         {
           "result": "founder",
-          "components": [
-            "table.naming.bratislor.founder",
-            "table.naming.bratislor.founderEnding"
-          ],
+          "components": ["table.naming.bratislor.founder", "table.naming.bratislor.founderEnding"],
           "join": {
             "style": "compound"
           },
@@ -63,10 +60,7 @@
         },
         {
           "result": "haze",
-          "components": [
-            "table.naming.bratislor.hazeRoot",
-            "table.naming.bratislor.hazeEnding"
-          ],
+          "components": ["table.naming.bratislor.hazeRoot", "table.naming.bratislor.hazeEnding"],
           "join": {
             "style": "compound"
           },

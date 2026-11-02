@@ -19,10 +19,7 @@
       "methods": [
         {
           "result": "river",
-          "components": [
-            "table.naming.nareth.riverFirst",
-            "table.naming.nareth.riverSecond"
-          ],
+          "components": ["table.naming.nareth.riverFirst", "table.naming.nareth.riverSecond"],
           "join": {
             "style": "compound"
           },
@@ -30,10 +27,7 @@
         },
         {
           "result": "forest",
-          "components": [
-            "table.naming.nareth.forestFirst",
-            "table.naming.nareth.forestSecond"
-          ],
+          "components": ["table.naming.nareth.forestFirst", "table.naming.nareth.forestSecond"],
           "join": {
             "style": "compound"
           },
@@ -41,10 +35,7 @@
         },
         {
           "result": "wetland",
-          "components": [
-            "table.naming.nareth.wetlandFirst",
-            "table.naming.nareth.wetlandSecond"
-          ],
+          "components": ["table.naming.nareth.wetlandFirst", "table.naming.nareth.wetlandSecond"],
           "join": {
             "style": "compound"
           },
@@ -63,10 +54,7 @@
         },
         {
           "result": "trail",
-          "components": [
-            "table.naming.nareth.trailFirst",
-            "table.naming.nareth.trailSecond"
-          ],
+          "components": ["table.naming.nareth.trailFirst", "table.naming.nareth.trailSecond"],
           "join": {
             "style": "compound"
           },
@@ -74,10 +62,7 @@
         },
         {
           "result": "stone",
-          "components": [
-            "table.naming.nareth.stoneFirst",
-            "table.naming.nareth.stoneSecond"
-          ],
+          "components": ["table.naming.nareth.stoneFirst", "table.naming.nareth.stoneSecond"],
           "join": {
             "style": "compound"
           },
@@ -85,10 +70,7 @@
         },
         {
           "result": "geographic",
-          "components": [
-            "table.naming.nareth.firstElement",
-            "table.naming.nareth.secondElement"
-          ],
+          "components": ["table.naming.nareth.firstElement", "table.naming.nareth.secondElement"],
           "join": {
             "style": "compound"
           },
@@ -96,10 +78,7 @@
         },
         {
           "result": "founder",
-          "components": [
-            "table.naming.nareth.founder",
-            "table.naming.nareth.founderEnding"
-          ],
+          "components": ["table.naming.nareth.founder", "table.naming.nareth.founderEnding"],
           "join": {
             "style": "compound"
           },
@@ -118,9 +97,7 @@
         },
         {
           "result": "inherited",
-          "components": [
-            "table.naming.nareth.inheritedName"
-          ],
+          "components": ["table.naming.nareth.inheritedName"],
           "join": {
             "style": "compound"
           },

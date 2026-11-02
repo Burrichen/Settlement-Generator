@@ -10,202 +10,127 @@
         {
           "id": "grad",
           "name": "grad",
-          "range": [
-            1,
-            4
-          ]
+          "range": [1, 4]
         },
         {
           "id": "ov",
           "name": "ov",
-          "range": [
-            5,
-            8
-          ]
+          "range": [5, 8]
         },
         {
           "id": "in",
           "name": "in",
-          "range": [
-            9,
-            12
-          ]
+          "range": [9, 12]
         },
         {
           "id": "ova",
           "name": "ova",
-          "range": [
-            13,
-            16
-          ]
+          "range": [13, 16]
         },
         {
           "id": "dol",
           "name": "dol",
-          "range": [
-            17,
-            20
-          ]
+          "range": [17, 20]
         },
         {
           "id": "pol",
           "name": "pol",
-          "range": [
-            21,
-            24
-          ]
+          "range": [21, 24]
         },
         {
           "id": "ice",
           "name": "ice",
-          "range": [
-            25,
-            28
-          ]
+          "range": [25, 28]
         },
         {
           "id": "ovice",
           "name": "ovice",
-          "range": [
-            29,
-            32
-          ]
+          "range": [29, 32]
         },
         {
           "id": "ovce",
           "name": "ovce",
-          "range": [
-            33,
-            36
-          ]
+          "range": [33, 36]
         },
         {
           "id": "any",
           "name": "any",
-          "range": [
-            37,
-            40
-          ]
+          "range": [37, 40]
         },
         {
           "id": "ani",
           "name": "ani",
-          "range": [
-            41,
-            44
-          ]
+          "range": [41, 44]
         },
         {
           "id": "en",
           "name": "en",
-          "range": [
-            45,
-            48
-          ]
+          "range": [45, 48]
         },
         {
           "id": "eni",
           "name": "eni",
-          "range": [
-            49,
-            52
-          ]
+          "range": [49, 52]
         },
         {
           "id": "nik",
           "name": "nik",
-          "range": [
-            53,
-            56
-          ]
+          "range": [53, 56]
         },
         {
           "id": "ovec",
           "name": "ovec",
-          "range": [
-            57,
-            60
-          ]
+          "range": [57, 60]
         },
         {
           "id": "ev",
           "name": "ev",
-          "range": [
-            61,
-            64
-          ]
+          "range": [61, 64]
         },
         {
           "id": "eva",
           "name": "eva",
-          "range": [
-            65,
-            68
-          ]
+          "range": [65, 68]
         },
         {
           "id": "ina",
           "name": "ina",
-          "range": [
-            69,
-            72
-          ]
+          "range": [69, 72]
         },
         {
           "id": "sk",
           "name": "sk",
-          "range": [
-            73,
-            76
-          ]
+          "range": [73, 76]
         },
         {
           "id": "ska",
           "name": "ska",
-          "range": [
-            77,
-            80
-          ]
+          "range": [77, 80]
         },
         {
           "id": "bor",
           "name": "bor",
-          "range": [
-            81,
-            84
-          ]
+          "range": [81, 84]
         },
         {
           "id": "brod",
           "name": "brod",
-          "range": [
-            85,
-            88
-          ]
+          "range": [85, 88]
         },
         {
           "id": "slav",
           "name": "slav",
-          "range": [
-            89,
-            92
-          ]
+          "range": [89, 92]
         },
         {
           "id": "selo",
           "name": "selo",
-          "range": [
-            93,
-            96
-          ]
+          "range": [93, 96]
         },
         {
           "id": "gora",
           "name": "gora",
-          "range": [
-            97,
-            100
-          ]
+          "range": [97, 100]
         }
       ]
     }

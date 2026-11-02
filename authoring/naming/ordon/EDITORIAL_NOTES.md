@@ -2,7 +2,7 @@
 
 ## Why the change
 
-*Oswaldsworth* is the clearest example of treating linguistically possible parts as universally compatible. The core rule is to approve final settlement spellings before they can appear. For family names, industries and route names, the data now contains the final forms directly.
+_Oswaldsworth_ is the clearest example of treating linguistically possible parts as universally compatible. The core rule is to approve final settlement spellings before they can appear. For family names, industries and route names, the data now contains the final forms directly.
 
 ## Category-specific rules
 

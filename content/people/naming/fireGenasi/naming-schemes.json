@@ -1119,10 +1119,7 @@
         },
         {
           "result": "givenSurname.human.01",
-          "components": [
-            "table.personName.human.given.masculine",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.masculine", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -2501,10 +2498,7 @@
         },
         {
           "result": "givenSurname.human.01",
-          "components": [
-            "table.personName.human.given.feminine",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.feminine", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",
@@ -3876,10 +3870,7 @@
         },
         {
           "result": "givenSurname.human.01",
-          "components": [
-            "table.personName.human.given.neutral",
-            "table.personName.human.family"
-          ],
+          "components": ["table.personName.human.given.neutral", "table.personName.human.family"],
           "join": {
             "style": "compound",
             "separator": " ",

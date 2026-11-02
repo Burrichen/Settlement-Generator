@@ -11,9 +11,9 @@ use settlement_core::content::{
     TableResult, TableVariant,
 };
 use settlement_core::dice_assist::{DiceAdvice, DiceFit, EntryChangeKind, FitKind};
+use settlement_core::editor::NamingMethodDetail;
 use settlement_core::engine::GenerationEvent;
 use settlement_core::framework::layers::ItemKind;
-use settlement_core::editor::NamingMethodDetail;
 use settlement_core::ids::{ResultId, TableId, TagId, VariantId};
 use settlement_core::layers::{Origin, new_user_id};
 use settlement_core::naming::{

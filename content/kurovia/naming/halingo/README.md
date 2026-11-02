@@ -4,7 +4,8 @@
 
 An authorable naming pack modelled on your Bratislor `schema_version: 1` files and the original Halingo naming prompt. It is **NOT a tested byte-for-byte replacement for existing Halingo files**, which were not attached. See integration notes below.
 
-The package intentionally preserves the five *expected* original Halingo table IDs:
+The package intentionally preserves the five _expected_ original Halingo table IDs:
+
 - `table.naming.halingo.method`
 - `table.naming.halingo.firstElement`
 - `table.naming.halingo.secondElement`
@@ -17,18 +18,18 @@ And it preserves the initial twelve geographic roots, twelve site endings, twelv
 
 ## Name count
 
-| Method | Weight | Components | Raw outputs | Joining |
-|---|---:|---|---:|---|
-| Geographic & Landmark | 15% | 50 x 30 | 1,500 | space |
-| Water & Survival | 12% | 30 x 20 | 600 | space |
-| Prospecting & Industry | 10% | 40 x 20 | 800 | space |
-| Roads, Rails & Commerce | 6% | 30 x 20 | 600 | space |
-| Fused Frontier Name | 26% | 100 curated | 100 | 1 component |
-| Landholder & Claim | 3% | 40 x 12 | 480 | space |
-| Inherited Desert Name | 24% | 50 | 50 | 1 component |
-| Disaster & Warning | 2% | 20 x 12 | 240 | space |
-| Single-Word Name | 2% | 25 | 25 | 1 component |
-| **Total** | **100%** | | **4,395** | |
+| Method                  |   Weight | Components  | Raw outputs | Joining     |
+| ----------------------- | -------: | ----------- | ----------: | ----------- |
+| Geographic & Landmark   |      15% | 50 x 30     |       1,500 | space       |
+| Water & Survival        |      12% | 30 x 20     |         600 | space       |
+| Prospecting & Industry  |      10% | 40 x 20     |         800 | space       |
+| Roads, Rails & Commerce |       6% | 30 x 20     |         600 | space       |
+| Fused Frontier Name     |      26% | 100 curated |         100 | 1 component |
+| Landholder & Claim      |       3% | 40 x 12     |         480 | space       |
+| Inherited Desert Name   |      24% | 50          |          50 | 1 component |
+| Disaster & Warning      |       2% | 20 x 12     |         240 | space       |
+| Single-Word Name        |       2% | 25          |          25 | 1 component |
+| **Total**               | **100%** |             |   **4,395** |             |
 
 **Current priority:** Fused Frontier (26%) and Inherited Desert (24%) together account for **50%** of Halingo names. Their 100 and 50 curated entries will therefore recur more frequently than individual geographic cross-product results; expand those vocabularies if repetition becomes noticeable.
 

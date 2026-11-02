@@ -10,402 +10,252 @@
         {
           "id": "nord",
           "name": "Nord",
-          "range": [
-            1,
-            2
-          ]
+          "range": [1, 2]
         },
         {
           "id": "hrafn",
           "name": "Hrafn",
-          "range": [
-            3,
-            4
-          ]
+          "range": [3, 4]
         },
         {
           "id": "bjorn",
           "name": "Bjorn",
-          "range": [
-            5,
-            6
-          ]
+          "range": [5, 6]
         },
         {
           "id": "eir",
           "name": "Eir",
-          "range": [
-            7,
-            8
-          ]
+          "range": [7, 8]
         },
         {
           "id": "skar",
           "name": "Skar",
-          "range": [
-            9,
-            10
-          ]
+          "range": [9, 10]
         },
         {
           "id": "kald",
           "name": "Kald",
-          "range": [
-            11,
-            12
-          ]
+          "range": [11, 12]
         },
         {
           "id": "sval",
           "name": "Sval",
-          "range": [
-            13,
-            14
-          ]
+          "range": [13, 14]
         },
         {
           "id": "hald",
           "name": "Hald",
-          "range": [
-            15,
-            16
-          ]
+          "range": [15, 16]
         },
         {
           "id": "stein",
           "name": "Stein",
-          "range": [
-            17,
-            18
-          ]
+          "range": [17, 18]
         },
         {
           "id": "vard",
           "name": "Vard",
-          "range": [
-            19,
-            20
-          ]
+          "range": [19, 20]
         },
         {
           "id": "hjell",
           "name": "Hjell",
-          "range": [
-            21,
-            22
-          ]
+          "range": [21, 22]
         },
         {
           "id": "skog",
           "name": "Skog",
-          "range": [
-            23,
-            24
-          ]
+          "range": [23, 24]
         },
         {
           "id": "aust",
           "name": "Aust",
-          "range": [
-            25,
-            26
-          ]
+          "range": [25, 26]
         },
         {
           "id": "vest",
           "name": "Vest",
-          "range": [
-            27,
-            28
-          ]
+          "range": [27, 28]
         },
         {
           "id": "sor",
           "name": "Sør",
-          "range": [
-            29,
-            30
-          ]
+          "range": [29, 30]
         },
         {
           "id": "stor",
           "name": "Stor",
-          "range": [
-            31,
-            32
-          ]
+          "range": [31, 32]
         },
         {
           "id": "lill",
           "name": "Lill",
-          "range": [
-            33,
-            34
-          ]
+          "range": [33, 34]
         },
         {
           "id": "gran",
           "name": "Gran",
-          "range": [
-            35,
-            36
-          ]
+          "range": [35, 36]
         },
         {
           "id": "birk",
           "name": "Birk",
-          "range": [
-            37,
-            38
-          ]
+          "range": [37, 38]
         },
         {
           "id": "furu",
           "name": "Furu",
-          "range": [
-            39,
-            40
-          ]
+          "range": [39, 40]
         },
         {
           "id": "eik",
           "name": "Eik",
-          "range": [
-            41,
-            42
-          ]
+          "range": [41, 42]
         },
         {
           "id": "rogn",
           "name": "Rogn",
-          "range": [
-            43,
-            44
-          ]
+          "range": [43, 44]
         },
         {
           "id": "lind",
           "name": "Lind",
-          "range": [
-            45,
-            46
-          ]
+          "range": [45, 46]
         },
         {
           "id": "ask",
           "name": "Ask",
-          "range": [
-            47,
-            48
-          ]
+          "range": [47, 48]
         },
         {
           "id": "hassel",
           "name": "Hassel",
-          "range": [
-            49,
-            50
-          ]
+          "range": [49, 50]
         },
         {
           "id": "ravn",
           "name": "Ravn",
-          "range": [
-            51,
-            52
-          ]
+          "range": [51, 52]
         },
         {
           "id": "falk",
           "name": "Falk",
-          "range": [
-            53,
-            54
-          ]
+          "range": [53, 54]
         },
         {
           "id": "ulv",
           "name": "Ulv",
-          "range": [
-            55,
-            56
-          ]
+          "range": [55, 56]
         },
         {
           "id": "rein",
           "name": "Rein",
-          "range": [
-            57,
-            58
-          ]
+          "range": [57, 58]
         },
         {
           "id": "elg",
           "name": "Elg",
-          "range": [
-            59,
-            60
-          ]
+          "range": [59, 60]
         },
         {
           "id": "hjort",
           "name": "Hjort",
-          "range": [
-            61,
-            62
-          ]
+          "range": [61, 62]
         },
         {
           "id": "hauk",
           "name": "Hauk",
-          "range": [
-            63,
-            64
-          ]
+          "range": [63, 64]
         },
         {
           "id": "hare",
           "name": "Hare",
-          "range": [
-            65,
-            66
-          ]
+          "range": [65, 66]
         },
         {
           "id": "myr",
           "name": "Myr",
-          "range": [
-            67,
-            68
-          ]
+          "range": [67, 68]
         },
         {
           "id": "torv",
           "name": "Torv",
-          "range": [
-            69,
-            70
-          ]
+          "range": [69, 70]
         },
         {
           "id": "mose",
           "name": "Mose",
-          "range": [
-            71,
-            72
-          ]
+          "range": [71, 72]
         },
         {
           "id": "elv",
           "name": "Elv",
-          "range": [
-            73,
-            74
-          ]
+          "range": [73, 74]
         },
         {
           "id": "bekke",
           "name": "Bekke",
-          "range": [
-            75,
-            76
-          ]
+          "range": [75, 76]
         },
         {
           "id": "hegg",
           "name": "Hegg",
-          "range": [
-            77,
-            78
-          ]
+          "range": [77, 78]
         },
         {
           "id": "sol",
           "name": "Sol",
-          "range": [
-            79,
-            80
-          ]
+          "range": [79, 80]
         },
         {
           "id": "vind",
           "name": "Vind",
-          "range": [
-            81,
-            82
-          ]
+          "range": [81, 82]
         },
         {
           "id": "rim",
           "name": "Rim",
-          "range": [
-            83,
-            84
-          ]
+          "range": [83, 84]
         },
         {
           "id": "frost",
           "name": "Frost",
-          "range": [
-            85,
-            86
-          ]
+          "range": [85, 86]
         },
         {
           "id": "fonn",
           "name": "Fonn",
-          "range": [
-            87,
-            88
-          ]
+          "range": [87, 88]
         },
         {
           "id": "kvit",
           "name": "Kvit",
-          "range": [
-            89,
-            90
-          ]
+          "range": [89, 90]
         },
         {
           "id": "gra",
           "name": "Grå",
-          "range": [
-            91,
-            92
-          ]
+          "range": [91, 92]
         },
         {
           "id": "svart",
           "name": "Svart",
-          "range": [
-            93,
-            94
-          ]
+          "range": [93, 94]
         },
         {
           "id": "bratt",
           "name": "Bratt",
-          "range": [
-            95,
-            96
-          ]
+          "range": [95, 96]
         },
         {
           "id": "lyng",
           "name": "Lyng",
-          "range": [
-            97,
-            98
-          ]
+          "range": [97, 98]
         },
         {
           "id": "mo",
           "name": "Mo",
-          "range": [
-            99,
-            100
-          ]
+          "range": [99, 100]
         }
       ]
     }

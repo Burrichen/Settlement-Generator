@@ -31,9 +31,9 @@ use settlement_core::naming::{JoinRule, SpellingException};
 use settlement_core::roadmap::RoadmapEntry;
 use settlement_core::service::{
     ActiveGeneration, AppService, ContentOverview, ContentSettingView, DraftCheck, ExportResult,
-    ExportScope, FlowCheck, FrameworkItemListing, GenerationResponse, MapExportRequest, PreviewRoll,
-    SavedSettlementView, ServiceResult, SettingDetail, SettlementMapsView, TableDetail, TagDetail,
-    TagInsight,
+    ExportScope, FlowCheck, FrameworkItemListing, GenerationResponse, MapExportRequest,
+    PreviewRoll, SavedSettlementView, ServiceResult, SettingDetail, SettlementMapsView,
+    TableDetail, TagDetail, TagInsight,
 };
 use settlement_core::session::StageChange;
 use settlement_core::settings::Settings;

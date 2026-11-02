@@ -27,9 +27,7 @@ use crate::framework::layers::{FrameworkItem, ItemKind};
 use crate::framework::{
     Flow, ObjectType, OutlineLine, Scale, SettingDef, SettingValue, SettingValues, SharedResult,
 };
-use crate::ids::{
-    BuildingId, FlowId, MapId, NamingSchemeId, ResultId, SettingId, TableId, TagId,
-};
+use crate::ids::{BuildingId, FlowId, MapId, NamingSchemeId, ResultId, SettingId, TableId, TagId};
 use crate::layers::{ContentLayers, EditError, Origin, new_user_id};
 use crate::maps::details::{self, DetailChoices};
 use crate::maps::directory::{

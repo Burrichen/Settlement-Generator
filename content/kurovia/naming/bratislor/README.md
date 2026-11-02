@@ -6,14 +6,14 @@ This pack is based directly on the six source files you supplied. It preserves e
 
 It **does not change your Rust/Tauri implementation**. The three new naming methods are added by extending the existing method table and manifest, assuming your naming engine dynamically supports additional methods as designed. This could not be tested against your actual source code. Back up your original files before replacing them.
 
-| Method | Weight | First table | Second table | Raw combinations |
-|---|---:|---:|---:|---:|
-| Inherited geographic | 40% | 50 | 25 | 1,250 |
-| Family / landholder | 25% | 50 | 25 | 1,250 |
-| Service / occupation | 15% | 20 | 12 | 240 |
-| Carpathian borderland | 10% | 20 | 6 | 120 |
-| Haze-era folk naming | 10% | 20 | 12 | 240 |
-| **Total** | **100%** | | | **3,100** |
+| Method                |   Weight | First table | Second table | Raw combinations |
+| --------------------- | -------: | ----------: | -----------: | ---------------: |
+| Inherited geographic  |      40% |          50 |           25 |            1,250 |
+| Family / landholder   |      25% |          50 |           25 |            1,250 |
+| Service / occupation  |      15% |          20 |           12 |              240 |
+| Carpathian borderland |      10% |          20 |            6 |              120 |
+| Haze-era folk naming  |      10% |          20 |           12 |              240 |
+| **Total**             | **100%** |             |              |        **3,100** |
 
 **Unique spellings across all methods:** 2,908, with 180 spellings generated more than once. This count assumes simple component concatenation as implemented by the supplied `join.style: "compound"`. It does not account for additional engine normalisation or user-authored joining exceptions.
 
@@ -36,15 +36,19 @@ It **does not change your Rust/Tauri implementation**. The three new naming meth
 ## Design approach
 
 ### Slavic / Central European (main 65%)
+
 Most ordinary settlements use old geographical names or names inherited from families and landholders. Inspiration is taken from the **processes** of Slovak, Czech and Polish naming, not from indiscriminately transcribing those languages. Important historic forms include -ice / -ovice, -ov / -in, -ovce and occupational/community naming.
 
 ### Old occupations (15%)
+
 Names that originated around guard posts, mills, mine camps, trades or service villages. The work may no longer survive.
 
 ### Carpathian borderlands (10%)
+
 Fictional roots and endings inspired loosely by Romanian/Moldovan settlement-name structures. Deliberately a separate method from the main naming grammar. They are romanised for consistent plain-text editing, and **not linguistic reconstructions**.
 
 ### Haze-era (10%)
+
 Retains geographical, pronounceable, fairly understated names instead of overwrought names such as 'Bloodgrave'. Some may be reinterpretations or renamings from an earlier time. Haze-related names are not restricted by Age or Environment yet.
 
 ## Why there are still awkward combinations

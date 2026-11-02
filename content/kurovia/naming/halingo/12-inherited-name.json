@@ -10,402 +10,252 @@
         {
           "id": "kharaven",
           "name": "Kharaven",
-          "range": [
-            1,
-            2
-          ]
+          "range": [1, 2]
         },
         {
           "id": "serath",
           "name": "Serath",
-          "range": [
-            3,
-            4
-          ]
+          "range": [3, 4]
         },
         {
           "id": "varrun",
           "name": "Varrun",
-          "range": [
-            5,
-            6
-          ]
+          "range": [5, 6]
         },
         {
           "id": "talarim",
           "name": "Talarim",
-          "range": [
-            7,
-            8
-          ]
+          "range": [7, 8]
         },
         {
           "id": "marudan",
           "name": "Marudan",
-          "range": [
-            9,
-            10
-          ]
+          "range": [9, 10]
         },
         {
           "id": "vekhar",
           "name": "Vekhar",
-          "range": [
-            11,
-            12
-          ]
+          "range": [11, 12]
         },
         {
           "id": "orvesh",
           "name": "Orvesh",
-          "range": [
-            13,
-            14
-          ]
+          "range": [13, 14]
         },
         {
           "id": "namar",
           "name": "Namar",
-          "range": [
-            15,
-            16
-          ]
+          "range": [15, 16]
         },
         {
           "id": "ashkar",
           "name": "Ashkar",
-          "range": [
-            17,
-            18
-          ]
+          "range": [17, 18]
         },
         {
           "id": "maraeth",
           "name": "Maraeth",
-          "range": [
-            19,
-            20
-          ]
+          "range": [19, 20]
         },
         {
           "id": "kelvar",
           "name": "Kelvar",
-          "range": [
-            21,
-            22
-          ]
+          "range": [21, 22]
         },
         {
           "id": "zarev",
           "name": "Zarev",
-          "range": [
-            23,
-            24
-          ]
+          "range": [23, 24]
         },
         {
           "id": "valeth",
           "name": "Valeth",
-          "range": [
-            25,
-            26
-          ]
+          "range": [25, 26]
         },
         {
           "id": "dareth",
           "name": "Dareth",
-          "range": [
-            27,
-            28
-          ]
+          "range": [27, 28]
         },
         {
           "id": "toravan",
           "name": "Toravan",
-          "range": [
-            29,
-            30
-          ]
+          "range": [29, 30]
         },
         {
           "id": "rhenar",
           "name": "Rhenar",
-          "range": [
-            31,
-            32
-          ]
+          "range": [31, 32]
         },
         {
           "id": "tashir",
           "name": "Tashir",
-          "range": [
-            33,
-            34
-          ]
+          "range": [33, 34]
         },
         {
           "id": "keshram",
           "name": "Keshram",
-          "range": [
-            35,
-            36
-          ]
+          "range": [35, 36]
         },
         {
           "id": "voranel",
           "name": "Voranel",
-          "range": [
-            37,
-            38
-          ]
+          "range": [37, 38]
         },
         {
           "id": "dunareth",
           "name": "Dunareth",
-          "range": [
-            39,
-            40
-          ]
+          "range": [39, 40]
         },
         {
           "id": "zhavren",
           "name": "Zhavren",
-          "range": [
-            41,
-            42
-          ]
+          "range": [41, 42]
         },
         {
           "id": "harek",
           "name": "Harek",
-          "range": [
-            43,
-            44
-          ]
+          "range": [43, 44]
         },
         {
           "id": "sariven",
           "name": "Sariven",
-          "range": [
-            45,
-            46
-          ]
+          "range": [45, 46]
         },
         {
           "id": "keldar",
           "name": "Keldar",
-          "range": [
-            47,
-            48
-          ]
+          "range": [47, 48]
         },
         {
           "id": "vashara",
           "name": "Vashara",
-          "range": [
-            49,
-            50
-          ]
+          "range": [49, 50]
         },
         {
           "id": "tanerim",
           "name": "Tanerim",
-          "range": [
-            51,
-            52
-          ]
+          "range": [51, 52]
         },
         {
           "id": "belkar",
           "name": "Belkar",
-          "range": [
-            53,
-            54
-          ]
+          "range": [53, 54]
         },
         {
           "id": "naraveth",
           "name": "Naraveth",
-          "range": [
-            55,
-            56
-          ]
+          "range": [55, 56]
         },
         {
           "id": "sedran",
           "name": "Sedran",
-          "range": [
-            57,
-            58
-          ]
+          "range": [57, 58]
         },
         {
           "id": "revash",
           "name": "Revash",
-          "range": [
-            59,
-            60
-          ]
+          "range": [59, 60]
         },
         {
           "id": "harunet",
           "name": "Harunet",
-          "range": [
-            61,
-            62
-          ]
+          "range": [61, 62]
         },
         {
           "id": "raleth",
           "name": "Raleth",
-          "range": [
-            63,
-            64
-          ]
+          "range": [63, 64]
         },
         {
           "id": "koravan",
           "name": "Koravan",
-          "range": [
-            65,
-            66
-          ]
+          "range": [65, 66]
         },
         {
           "id": "varekh",
           "name": "Varekh",
-          "range": [
-            67,
-            68
-          ]
+          "range": [67, 68]
         },
         {
           "id": "dhalir",
           "name": "Dhalir",
-          "range": [
-            69,
-            70
-          ]
+          "range": [69, 70]
         },
         {
           "id": "imerath",
           "name": "Imerath",
-          "range": [
-            71,
-            72
-          ]
+          "range": [71, 72]
         },
         {
           "id": "zerak",
           "name": "Zerak",
-          "range": [
-            73,
-            74
-          ]
+          "range": [73, 74]
         },
         {
           "id": "meravan",
           "name": "Meravan",
-          "range": [
-            75,
-            76
-          ]
+          "range": [75, 76]
         },
         {
           "id": "seroveth",
           "name": "Seroveth",
-          "range": [
-            77,
-            78
-          ]
+          "range": [77, 78]
         },
         {
           "id": "karun",
           "name": "Karun",
-          "range": [
-            79,
-            80
-          ]
+          "range": [79, 80]
         },
         {
           "id": "orenath",
           "name": "Orenath",
-          "range": [
-            81,
-            82
-          ]
+          "range": [81, 82]
         },
         {
           "id": "ithavar",
           "name": "Ithavar",
-          "range": [
-            83,
-            84
-          ]
+          "range": [83, 84]
         },
         {
           "id": "haravel",
           "name": "Haravel",
-          "range": [
-            85,
-            86
-          ]
+          "range": [85, 86]
         },
         {
           "id": "belaran",
           "name": "Belaran",
-          "range": [
-            87,
-            88
-          ]
+          "range": [87, 88]
         },
         {
           "id": "rakhim",
           "name": "Rakhim",
-          "range": [
-            89,
-            90
-          ]
+          "range": [89, 90]
         },
         {
           "id": "alvaren",
           "name": "Alvaren",
-          "range": [
-            91,
-            92
-          ]
+          "range": [91, 92]
         },
         {
           "id": "toreneth",
           "name": "Toreneth",
-          "range": [
-            93,
-            94
-          ]
+          "range": [93, 94]
         },
         {
           "id": "morakar",
           "name": "Morakar",
-          "range": [
-            95,
-            96
-          ]
+          "range": [95, 96]
         },
         {
           "id": "nethvar",
           "name": "Nethvar",
-          "range": [
-            97,
-            98
-          ]
+          "range": [97, 98]
         },
         {
           "id": "akharet",
           "name": "Akharet",
-          "range": [
-            99,
-            100
-          ]
+          "range": [99, 100]
         }
       ]
     }

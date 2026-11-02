@@ -10,202 +10,127 @@
         {
           "id": "kar",
           "name": "Kar",
-          "range": [
-            1,
-            4
-          ]
+          "range": [1, 4]
         },
         {
           "id": "tor",
           "name": "Tor",
-          "range": [
-            5,
-            8
-          ]
+          "range": [5, 8]
         },
         {
           "id": "varn",
           "name": "Varn",
-          "range": [
-            9,
-            12
-          ]
+          "range": [9, 12]
         },
         {
           "id": "kel",
           "name": "Kel",
-          "range": [
-            13,
-            16
-          ]
+          "range": [13, 16]
         },
         {
           "id": "mor",
           "name": "Mor",
-          "range": [
-            17,
-            20
-          ]
+          "range": [17, 20]
         },
         {
           "id": "thar",
           "name": "Thar",
-          "range": [
-            21,
-            24
-          ]
+          "range": [21, 24]
         },
         {
           "id": "tara",
           "name": "Tara",
-          "range": [
-            25,
-            28
-          ]
+          "range": [25, 28]
         },
         {
           "id": "nima",
           "name": "Nima",
-          "range": [
-            29,
-            32
-          ]
+          "range": [29, 32]
         },
         {
           "id": "lharen",
           "name": "Lharen",
-          "range": [
-            33,
-            36
-          ]
+          "range": [33, 36]
         },
         {
           "id": "suren",
           "name": "Suren",
-          "range": [
-            37,
-            40
-          ]
+          "range": [37, 40]
         },
         {
           "id": "dorun",
           "name": "Dorun",
-          "range": [
-            41,
-            44
-          ]
+          "range": [41, 44]
         },
         {
           "id": "veyra",
           "name": "Veyra",
-          "range": [
-            45,
-            48
-          ]
+          "range": [45, 48]
         },
         {
           "id": "soma",
           "name": "Soma",
-          "range": [
-            49,
-            52
-          ]
+          "range": [49, 52]
         },
         {
           "id": "seren",
           "name": "Seren",
-          "range": [
-            53,
-            56
-          ]
+          "range": [53, 56]
         },
         {
           "id": "orun",
           "name": "Orun",
-          "range": [
-            57,
-            60
-          ]
+          "range": [57, 60]
         },
         {
           "id": "meren",
           "name": "Meren",
-          "range": [
-            61,
-            64
-          ]
+          "range": [61, 64]
         },
         {
           "id": "kora",
           "name": "Kora",
-          "range": [
-            65,
-            68
-          ]
+          "range": [65, 68]
         },
         {
           "id": "lharo",
           "name": "Lharo",
-          "range": [
-            69,
-            72
-          ]
+          "range": [69, 72]
         },
         {
           "id": "seyra",
           "name": "Seyra",
-          "range": [
-            73,
-            76
-          ]
+          "range": [73, 76]
         },
         {
           "id": "neru",
           "name": "Neru",
-          "range": [
-            77,
-            80
-          ]
+          "range": [77, 80]
         },
         {
           "id": "yorin",
           "name": "Yorin",
-          "range": [
-            81,
-            84
-          ]
+          "range": [81, 84]
         },
         {
           "id": "shara",
           "name": "Shara",
-          "range": [
-            85,
-            88
-          ]
+          "range": [85, 88]
         },
         {
           "id": "rin",
           "name": "Rin",
-          "range": [
-            89,
-            92
-          ]
+          "range": [89, 92]
         },
         {
           "id": "zeru",
           "name": "Zeru",
-          "range": [
-            93,
-            96
-          ]
+          "range": [93, 96]
         },
         {
           "id": "ulan",
           "name": "Ulan",
-          "range": [
-            97,
-            100
-          ]
+          "range": [97, 100]
         }
       ]
     }

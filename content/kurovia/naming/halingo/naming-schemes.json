@@ -19,10 +19,7 @@
       "methods": [
         {
           "result": "geographic",
-          "components": [
-            "table.naming.halingo.firstElement",
-            "table.naming.halingo.secondElement"
-          ],
+          "components": ["table.naming.halingo.firstElement", "table.naming.halingo.secondElement"],
           "join": {
             "style": "space"
           },
@@ -30,10 +27,7 @@
         },
         {
           "result": "water",
-          "components": [
-            "table.naming.halingo.waterFirst",
-            "table.naming.halingo.waterSecond"
-          ],
+          "components": ["table.naming.halingo.waterFirst", "table.naming.halingo.waterSecond"],
           "join": {
             "style": "space"
           },
@@ -52,10 +46,7 @@
         },
         {
           "result": "route",
-          "components": [
-            "table.naming.halingo.routeFirst",
-            "table.naming.halingo.routeSecond"
-          ],
+          "components": ["table.naming.halingo.routeFirst", "table.naming.halingo.routeSecond"],
           "join": {
             "style": "space"
           },
@@ -63,9 +54,7 @@
         },
         {
           "result": "fused",
-          "components": [
-            "table.naming.halingo.fusedBoomtown"
-          ],
+          "components": ["table.naming.halingo.fusedBoomtown"],
           "join": {
             "style": "compound"
           },
@@ -73,10 +62,7 @@
         },
         {
           "result": "founder",
-          "components": [
-            "table.naming.halingo.founder",
-            "table.naming.halingo.founderEnding"
-          ],
+          "components": ["table.naming.halingo.founder", "table.naming.halingo.founderEnding"],
           "join": {
             "style": "space"
           },
@@ -84,9 +70,7 @@
         },
         {
           "result": "archaic",
-          "components": [
-            "table.naming.halingo.inheritedName"
-          ],
+          "components": ["table.naming.halingo.inheritedName"],
           "join": {
             "style": "compound"
           },
@@ -94,10 +78,7 @@
         },
         {
           "result": "warning",
-          "components": [
-            "table.naming.halingo.warningFirst",
-            "table.naming.halingo.warningSecond"
-          ],
+          "components": ["table.naming.halingo.warningFirst", "table.naming.halingo.warningSecond"],
           "join": {
             "style": "space"
           },
@@ -105,9 +86,7 @@
         },
         {
           "result": "single",
-          "components": [
-            "table.naming.halingo.singleWord"
-          ],
+          "components": ["table.naming.halingo.singleWord"],
           "join": {
             "style": "compound"
           },

@@ -96,9 +96,7 @@
         },
         {
           "result": "inherited",
-          "components": [
-            "table.naming.hjartheland.inheritedName"
-          ],
+          "components": ["table.naming.hjartheland.inheritedName"],
           "join": {
             "style": "compound"
           },

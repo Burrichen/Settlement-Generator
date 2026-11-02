@@ -13,6 +13,7 @@ Keep `compound` join and explicit spelling exceptions for traditional geographic
 Check that editing an `approved_names` variant in View Tables or raw JSON is supported or that the editor gives a clear safe fallback. The 1d4 source variants should show readable approved outputs when available.
 
 Acceptance checks:
+
 1. All tables parse and dice outcomes are fully covered.
 2. Oswald + A = Oswalden; Oswald + B = Oswaldwick, not Oswaldsworth.
 3. Godwin + A = Godwinsbury; Nerys + A = Nerysbury.
