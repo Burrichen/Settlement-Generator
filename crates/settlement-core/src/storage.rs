@@ -14,10 +14,25 @@ pub const APP_DIR_NAME: &str = "SettlementGenerator";
 /// SQLite database holding settings, content customisations and saved
 /// settlements.
 pub const DATABASE_FILE: &str = "settlement-generator.sqlite3";
+/// Environment variable naming another default export folder.
+pub const EXPORT_DIR_VAR: &str = "SETTLEMENT_GENERATOR_EXPORT_DIR";
 
 /// The per-user data directory, or `None` if the OS does not provide one.
 pub fn user_data_dir() -> Option<PathBuf> {
     dirs::data_dir().map(|d| d.join(APP_DIR_NAME))
+}
+
+/// Where exports go unless another folder is chosen: a "Settlement
+/// Generator" folder in the user's Documents (or in the data directory if
+/// the OS has no Documents folder). Never beside the binaries.
+/// `SETTLEMENT_GENERATOR_EXPORT_DIR` overrides it (for scripts and tests).
+pub fn default_export_dir() -> Option<PathBuf> {
+    if let Some(dir) = std::env::var_os(EXPORT_DIR_VAR).filter(|d| !d.is_empty()) {
+        return Some(PathBuf::from(dir));
+    }
+    dirs::document_dir()
+        .map(|d| d.join("Settlement Generator"))
+        .or_else(|| user_data_dir().map(|d| d.join("exports")))
 }
 
 pub fn default_database_path() -> Option<PathBuf> {

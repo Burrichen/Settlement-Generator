@@ -2,6 +2,7 @@ import { useState } from "react";
 import { generation, type SessionView } from "../api";
 import { ConfirmBar, NameForm } from "../components/generation";
 import { SettlementSheet, foldSubStages } from "../components/SettlementSheet";
+import { SettlementTabs, type SettlementTab } from "../components/SettlementTabs";
 
 /**
  * The finished settlement. Shows each stage's result; tags only with Tag
@@ -27,6 +28,7 @@ export function CompletedSettlement({
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [tab, setTab] = useState<SettlementTab>("details");
 
   const save = async (name: string) => {
     setSaving(true);
@@ -48,24 +50,36 @@ export function CompletedSettlement({
 
   return (
     <div className="completed">
-      <SettlementSheet
-        label="Generated settlement"
-        rows={foldSubStages(
-          view.stages.map((stage) => ({
-            key: String(stage.index),
-            label: stage.stage.name,
-            value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
-            source: stage.table.name !== stage.stage.name ? stage.table.name : undefined,
-            tags: stage.tags,
-            subStage: stage.sub_stage,
-            // Roles are shown with each Authority Figure instead.
-            skipped: stage.status === "skipped" || !!stage.roles,
-            figures: stage.figures?.record,
-            locations: stage.locations?.record,
-          })),
+      <SettlementTabs active={tab} onChange={setTab}>
+        {tab === "map" ? (
+          <div className="map-unsaved">
+            <p className="display map-empty-title">No map yet</p>
+            <p className="muted">
+              Maps belong to saved settlements. Save this settlement, then open its Map tab in Saved
+              Settlements to draw one. A map is never drawn automatically.
+            </p>
+          </div>
+        ) : (
+          <SettlementSheet
+            label="Generated settlement"
+            rows={foldSubStages(
+              view.stages.map((stage) => ({
+                key: String(stage.index),
+                label: stage.stage.name,
+                value: stage.result?.name ?? (stage.skipped ? "Not applicable" : "—"),
+                source: stage.table.name !== stage.stage.name ? stage.table.name : undefined,
+                tags: stage.tags,
+                subStage: stage.sub_stage,
+                // Roles are shown with each Authority Figure instead.
+                skipped: stage.status === "skipped" || !!stage.roles,
+                figures: stage.figures?.record,
+                locations: stage.locations?.record,
+              })),
+            )}
+            meta="Not saved yet"
+          />
         )}
-        meta="Not saved yet"
-      />
+      </SettlementTabs>
 
       {error && (
         <p className="alert alert-inline" role="alert">

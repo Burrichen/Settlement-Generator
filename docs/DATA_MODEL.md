@@ -592,7 +592,15 @@ modifiers and the God Mode flag.
 - WAL journal mode and a busy timeout let the GUI and the terminal interface
   use the database at the same time.
 - Tables: `settings` (key → JSON value), `content_overrides` (a single JSON
-  document), and `settlements` (metadata columns plus the JSON snapshot).
+  document), `settlements` (metadata columns plus the JSON snapshot), and,
+  from schema 2, `settlement_map_sets` and `settlement_maps` (generated map
+  geometry and editable map data; see [MAPS.md](MAPS.md) §8), and, from
+  schema 3, `settlement_map_buildings` (one row per building whose details
+  have been generated; see [MAPS.md](MAPS.md) §12), and, from schema 4,
+  `settlement_locations` and `settlement_location_sequences` (the Notable
+  Location directory and marker numbers; see [MAPS.md](MAPS.md) §13), and,
+  from schema 5, `settlement_district_names`, `settlement_map_pois` and
+  `settlement_map_views` (see [MAPS.md](MAPS.md) §14).
 - **Migrations:** these are numbered SQL files in `db/migrations/`.
   - **All pending migrations run in one transaction** together with their
     `PRAGMA user_version` bumps and a foreign-key check. An upgrade either

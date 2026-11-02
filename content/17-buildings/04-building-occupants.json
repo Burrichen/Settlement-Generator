@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.building.occupants",
+      "name": "Building Occupants",
+      "description": "How many people live or work in an occupied building; each result's value is the number. Not rolled for storage buildings or empty ones. Provisional content: review before release.",
+      "dice": "1d8",
+      "eligibility": {
+        "all": [
+          { "has_tag": "buildingOccupancy.occupied" },
+          { "not": { "has_tag": "buildingType.storage" } }
+        ]
+      },
+      "ordered": true,
+      "results": [
+        { "id": "one", "name": "1 occupant", "range": 1, "value": 1 },
+        { "id": "two", "name": "2 occupants", "range": [2, 3], "value": 2 },
+        { "id": "three", "name": "3 occupants", "range": [4, 5], "value": 3 },
+        { "id": "four", "name": "4 occupants", "range": 6, "value": 4 },
+        { "id": "five", "name": "5 occupants", "range": 7, "value": 5 },
+        { "id": "six", "name": "6 occupants", "range": 8, "value": 6 },
+        { "id": "eight", "name": "8 occupants", "value": 8 },
+        { "id": "ten", "name": "10 occupants", "value": 10 },
+        { "id": "twelve", "name": "12 occupants", "value": 12 }
+      ],
+      "variants": [
+        {
+          "id": "tenement",
+          "name": "Tenement",
+          "when": { "has_tag": "buildingType.tenement" },
+          "dice": "1d6",
+          "ranges": [
+            { "result": "six", "range": [1, 2] },
+            { "result": "eight", "range": [3, 4] },
+            { "result": "ten", "range": 5 },
+            { "result": "twelve", "range": 6 }
+          ]
+        },
+        {
+          "id": "business",
+          "name": "Shop or workshop",
+          "when": { "has_tag": "buildingType.business" },
+          "dice": "1d4",
+          "ranges": [
+            { "result": "one", "range": 1 },
+            { "result": "two", "range": 2 },
+            { "result": "three", "range": 3 },
+            { "result": "four", "range": 4 }
+          ]
+        }
+      ]
+    }
+  ]
+}

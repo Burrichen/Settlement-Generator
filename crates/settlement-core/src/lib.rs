@@ -4,6 +4,7 @@
 //! interface (`settlement-cli`) are thin adapters over this crate.
 
 mod app_info;
+pub mod archive;
 pub mod authority;
 pub mod backup;
 pub mod bundled;
@@ -17,6 +18,7 @@ pub mod ids;
 pub mod layers;
 mod layout;
 pub mod locations;
+pub mod maps;
 pub mod naming;
 pub mod quality;
 pub mod roadmap;

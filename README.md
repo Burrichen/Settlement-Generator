@@ -12,6 +12,8 @@ The canonical specifications are in [`docs/`](docs/):
 - [CONTENT.md](docs/CONTENT.md): the bundled v0.1.0 generation content and its open items
 - [NAMING_SYSTEM.md](docs/NAMING_SYSTEM.md): settlement naming: schemes, methods, dice rules and how to edit naming data
 - [ORDON_NAMING.md](docs/ORDON_NAMING.md): the Ordon naming pack, its five methods, physical dice and editing workflow
+- [MAPS.md](docs/MAPS.md): interactive settlement maps (design, storage, exports)
+- [MAPS_GUIDE.md](docs/MAPS_GUIDE.md): how to use maps, in plain words
 - [VERSIONING.md](docs/VERSIONING.md): version policy and its single source
 - [RELEASING.md](docs/RELEASING.md): signed releases on GitHub, auto-updates and data safety
 - [V0.1.0_RELEASE_CHECKLIST.md](V0.1.0_RELEASE_CHECKLIST.md): v0.1.0 status, deferred items, known limitations and manual release checks

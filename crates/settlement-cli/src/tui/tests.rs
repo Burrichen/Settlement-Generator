@@ -687,14 +687,17 @@ fn view_lists_settlements_with_favourite_stars_and_actions() {
         "{screen}"
     );
 
-    // The other one: Edit, Favourite, Delete.
+    // The other one: Edit, Maps, Export, Favourite, Delete.
     key(&mut app, KeyCode::Home);
     let screen = text(&mut app);
+    assert!(screen.contains("Maps") && screen.contains("Export"));
     assert!(screen.contains("Favourite") && screen.contains("Delete"));
-    // Right → actions, Right → Favourite, Right → Delete; confirm.
+    // Right → actions, then three more to Delete; confirm.
     keys(
         &mut app,
         &[
+            KeyCode::Right,
+            KeyCode::Right,
             KeyCode::Right,
             KeyCode::Right,
             KeyCode::Right,
@@ -1011,7 +1014,17 @@ fn favourite_and_unfavourite_by_keypress() {
     let mut app = app();
     let id = saved_settlement(&mut app, "Ashford", "town");
     keys(&mut app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]);
-    keys(&mut app, &[KeyCode::Right, KeyCode::Right, KeyCode::Enter]); // Favourite
+    // Edit, Maps, Export, Favourite.
+    keys(
+        &mut app,
+        &[
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Enter,
+        ],
+    );
     assert!(app.ctx.service.saved_get(&id).unwrap().summary.favourite);
     let screen = text(&mut app);
     assert!(
@@ -1557,4 +1570,271 @@ fn table_editor_shows_a_shared_subtype_with_its_other_labels() {
         screen.contains("Also in Trade / Shop as “Jeweller / Precious Goods”"),
         "{screen}"
     );
+}
+
+// ----- maps ------------------------------------------------------------------------
+
+/// Opens Saved Settlements, then the first settlement's Maps.
+fn open_maps(app: &mut App) {
+    keys(app, &[KeyCode::Down, KeyCode::Down, KeyCode::Enter]); // View
+    keys(app, &[KeyCode::Right, KeyCode::Right, KeyCode::Enter]); // Edit → Maps
+    assert!(
+        app.screen_title().starts_with("Maps · "),
+        "{}",
+        app.screen_title()
+    );
+}
+
+fn temp_dir(tag: &str) -> std::path::PathBuf {
+    let dir = std::env::temp_dir().join(format!("sg-tui-{tag}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).unwrap();
+    dir
+}
+
+#[test]
+fn a_map_is_drawn_and_a_building_opened_and_edited_from_the_terminal() {
+    let mut app = app();
+    let id = saved_settlement(&mut app, "Ærøskøbing – Ōshū 城", "town");
+    open_maps(&mut app);
+    assert!(text(&mut app).contains("no map"));
+    keys(&mut app, &[KeyCode::Right, KeyCode::Enter]); // Generate
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    assert_eq!(view.status, settlement_core::maps::MapStatus::Current);
+    assert!(view.buildings.is_empty(), "drawing generates no details");
+    let screen = text(&mut app);
+    assert!(screen.contains("buildings (0 with details)"), "{screen}");
+
+    // Buildings… (focus stays on the actions, now led by Buildings…) →
+    // search by ID → open it: its details are generated.
+    key(&mut app, KeyCode::Enter);
+    type_text(&mut app, "-0003");
+    key(&mut app, KeyCode::Enter);
+    assert!(
+        app.screen_title().starts_with("Building 3 · "),
+        "{}",
+        app.screen_title()
+    );
+    let screen = text(&mut app);
+    assert!(
+        screen.contains("(rolled)") && screen.contains("(inferred)"),
+        "{screen}"
+    );
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    assert_eq!(view.buildings.len(), 1);
+    let b = view.buildings[0].clone();
+    assert!(b.building_id.as_str().ends_with("-0003"));
+
+    // Edit a field… → Name → type a new one: the service the GUI uses sees it.
+    keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+    for _ in 0..40 {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "Mill House");
+    key(&mut app, KeyCode::Enter);
+    let details = app
+        .ctx
+        .service
+        .maps_building(&id, &b.map_id, &b.building_id)
+        .unwrap();
+    assert_eq!(details.name.value.as_deref(), Some("Mill House"));
+    assert_eq!(
+        details.state,
+        settlement_core::maps::DetailsState::Customised
+    );
+    assert!(text(&mut app).contains("(edited)"));
+    // Reopening never rerolls.
+    key(&mut app, KeyCode::Esc);
+    key(&mut app, KeyCode::Enter); // Buildings…
+    type_text(&mut app, "-0003");
+    key(&mut app, KeyCode::Enter);
+    assert!(text(&mut app).contains("Mill House"));
+    assert_eq!(
+        app.ctx
+            .service
+            .maps_building(&id, &b.map_id, &b.building_id)
+            .unwrap()
+            .version,
+        details.version
+    );
+}
+
+#[test]
+fn locations_and_points_are_placed_from_the_terminal() {
+    let mut app = app();
+    let id = saved_settlement(&mut app, "Ashford", "town");
+    app.ctx
+        .service
+        .maps_generate(&id, &Default::default())
+        .unwrap();
+    open_maps(&mut app);
+    // Actions: Buildings, Locations, Points, and so on.
+    keys(&mut app, &[KeyCode::Right, KeyCode::Right, KeyCode::Enter]); // Locations…
+    key(&mut app, KeyCode::Enter); // the first location
+    key(&mut app, KeyCode::Enter); // Place on a building…
+    type_text(&mut app, "-0005");
+    key(&mut app, KeyCode::Enter);
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    let placed = &view.locations[0];
+    assert_eq!(placed.marker, Some(1));
+    assert!(
+        placed
+            .placement
+            .as_ref()
+            .unwrap()
+            .building_id
+            .as_str()
+            .ends_with("-0005")
+    );
+    assert!(text(&mut app).contains("Building 5"), "the legend lists it");
+
+    // Placing a second location on the same building asks first.
+    if view.locations.len() > 1 {
+        key(&mut app, KeyCode::Enter); // Locations… again
+        key(&mut app, KeyCode::Down);
+        keys(&mut app, &[KeyCode::Enter, KeyCode::Enter]);
+        type_text(&mut app, "-0005");
+        key(&mut app, KeyCode::Enter);
+        assert!(text(&mut app).contains("already holds"));
+        key(&mut app, KeyCode::Char('n'));
+        let after = app.ctx.service.maps_get(&id).unwrap();
+        assert!(after.locations[1].placement.is_none(), "nothing changed");
+    }
+
+    // Points… → Add → position → name.
+    keys(&mut app, &[KeyCode::Right, KeyCode::Enter]);
+    key(&mut app, KeyCode::Enter); // Add a point of interest…
+    for _ in 0..5 {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "nonsense");
+    key(&mut app, KeyCode::Enter);
+    assert!(text(&mut app).contains("Enter two numbers"));
+    for _ in 0..10 {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, "10 -5");
+    key(&mut app, KeyCode::Enter);
+    type_text(&mut app, "Old well");
+    key(&mut app, KeyCode::Enter);
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    assert_eq!(view.pois.len(), 1);
+    assert_eq!(view.pois[0].label, "Old well");
+    assert_eq!(view.pois[0].number, 2, "after the location's number 1");
+    assert_eq!(
+        view.pois[0].position,
+        settlement_core::maps::geometry::Point(10.0, -5.0)
+    );
+    assert!(text(&mut app).contains("at 10 -5"));
+}
+
+#[test]
+fn districts_are_listed_drawn_one_at_a_time_and_renamed() {
+    let mut app = app();
+    let id = saved_settlement(&mut app, "Highmarket", "city");
+    open_maps(&mut app);
+    let planned = app.ctx.service.maps_get(&id).unwrap().planned;
+    assert!(planned.len() >= 2);
+    let screen = text(&mut app);
+    for p in &planned {
+        assert!(
+            screen.contains(&format!("{}  ·  no map", p.label)),
+            "{screen}"
+        );
+    }
+    keys(&mut app, &[KeyCode::Right, KeyCode::Enter]); // Generate District 1
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    assert!(view.planned[0].generated && !view.planned[1].generated);
+    // Rename… comes after Buildings, Locations, Points, Export and Redraw.
+    for _ in 0..5 {
+        key(&mut app, KeyCode::Right);
+    }
+    key(&mut app, KeyCode::Enter);
+    type_text(&mut app, "Harbour Ward");
+    key(&mut app, KeyCode::Enter);
+    let view = app.ctx.service.maps_get(&id).unwrap();
+    assert_eq!(view.planned[0].label, "Harbour Ward");
+    assert!(text(&mut app).contains("Harbour Ward  ·  "));
+}
+
+#[test]
+fn maps_and_settlements_are_exported_and_imported_from_the_terminal() {
+    let mut app = app();
+    let dir = temp_dir("export");
+    app.ctx.export_dir = Some(dir.clone());
+    let id = saved_settlement(&mut app, "Ærøskøbing – Ōshū 城", "village");
+    app.ctx
+        .service
+        .maps_generate(&id, &Default::default())
+        .unwrap();
+    open_maps(&mut app);
+    // Export… then "all three" (PNG, SVG, JSON).
+    keys(
+        &mut app,
+        &[
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Enter,
+        ],
+    );
+    keys(
+        &mut app,
+        &[KeyCode::Down, KeyCode::Down, KeyCode::Down, KeyCode::Enter],
+    );
+    let mut files: Vec<String> = std::fs::read_dir(&dir)
+        .unwrap()
+        .map(|e| e.unwrap().file_name().to_string_lossy().into_owned())
+        .collect();
+    files.sort();
+    assert_eq!(
+        files,
+        [
+            "Ærøskøbing – Ōshū 城.map.json",
+            "Ærøskøbing – Ōshū 城.png",
+            "Ærøskøbing – Ōshū 城.svg"
+        ]
+    );
+
+    // Back to Saved Settlements: Export the settlement, then import it.
+    keys(&mut app, &[KeyCode::Esc, KeyCode::Esc]);
+    assert_eq!(app.screen_title(), "Saved Settlements");
+    keys(
+        &mut app,
+        &[
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Right,
+            KeyCode::Enter,
+        ],
+    ); // Export
+    let archive = dir.join("Ærøskøbing – Ōshū 城.settlement.json");
+    assert!(archive.exists());
+    key(&mut app, KeyCode::Esc); // back to the list
+    key(&mut app, KeyCode::Char('i'));
+    type_text(&mut app, "C:/no/such/file.json");
+    key(&mut app, KeyCode::Enter);
+    assert!(text(&mut app).contains("Could not read"));
+    for _ in 0.."C:/no/such/file.json".len() {
+        key(&mut app, KeyCode::Backspace);
+    }
+    type_text(&mut app, &archive.display().to_string());
+    key(&mut app, KeyCode::Enter);
+    let list = app.ctx.service.saved_list().unwrap();
+    assert_eq!(list.len(), 2);
+    let copy = list.iter().find(|s| s.id != id).unwrap();
+    let original = app.ctx.service.maps_get(&id).unwrap();
+    let imported = app.ctx.service.maps_get(&copy.id).unwrap();
+    assert_eq!(
+        imported.maps.as_ref().unwrap().maps[0]
+            .geometry
+            .buildings
+            .len(),
+        original.maps.as_ref().unwrap().maps[0]
+            .geometry
+            .buildings
+            .len()
+    );
+    let _ = std::fs::remove_dir_all(dir);
 }

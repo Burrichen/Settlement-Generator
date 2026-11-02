@@ -35,6 +35,8 @@ pub struct Ctx {
     pub dice: Box<dyn FaceSource>,
     /// A short message shown in the footer until the next key.
     pub flash: Option<String>,
+    /// Where exports are written; `None` is the default export folder.
+    pub export_dir: Option<std::path::PathBuf>,
 }
 
 impl Ctx {
@@ -50,6 +52,7 @@ impl Ctx {
             info: settlement_core::app_info(),
             dice,
             flash,
+            export_dir: None,
         }
     }
 
