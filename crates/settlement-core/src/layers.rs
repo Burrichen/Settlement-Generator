@@ -17,7 +17,14 @@ use crate::content::{
     TableVariant, Tag,
 };
 use crate::engine::{GenerationError, Generator};
-use crate::ids::{NamingSchemeId, ResultId, TableId, TagId, USER_ID_PREFIX};
+use crate::framework::layers::{
+    FrameworkItem, FrameworkOverrides, ItemKind, ItemOrigins, delete_item, merge_items, put_item,
+    reset_item,
+};
+use crate::framework::{
+    Flow, ObjectType, Scale, SettingDef, SharedResult, link_shared_results, relink_shared_results,
+};
+use crate::ids::{NamingSchemeId, ResultId, SharedResultId, TableId, TagId, USER_ID_PREFIX};
 use crate::naming::{JoinRule, NamingMethod, SpellingException};
 use crate::validation::{
     IdScope, IssueKind, Location, Severity, ValidationIssue, ValidationReport, validate,
@@ -46,6 +53,14 @@ impl Fingerprint {
         Fingerprint(format!("{hash:016x}"))
     }
 
+    /// A result, without the shared result it lists: linking a result to a
+    /// shared one with the same values is not a change to the default.
+    fn of_result(result: &TableResult) -> Self {
+        let mut result = result.clone();
+        result.shared = None;
+        Self::of(&result)
+    }
+
     /// A table's own fields, excluding results (patched individually) and
     /// variants (not customisable).
     fn of_table_header(table: &Table) -> Self {
@@ -65,6 +80,9 @@ pub struct UserOverrides {
     pub tables: BTreeMap<TableId, TableOverride>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub tags: BTreeMap<TagId, TagOverride>,
+    /// Customised shared results, scales, settings, object types and flows.
+    #[serde(flatten)]
+    pub framework: FrameworkOverrides,
     /// Changes to bundled naming methods' joining rules and spelling
     /// exceptions, by scheme and then by method (method-table result).
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
@@ -77,6 +95,7 @@ impl Default for UserOverrides {
             format_version: OVERRIDES_FORMAT_VERSION,
             tables: BTreeMap::new(),
             tags: BTreeMap::new(),
+            framework: FrameworkOverrides::default(),
             naming_methods: BTreeMap::new(),
         }
     }
@@ -84,7 +103,10 @@ impl Default for UserOverrides {
 
 impl UserOverrides {
     pub fn is_empty(&self) -> bool {
-        self.tables.is_empty() && self.tags.is_empty() && self.naming_methods.is_empty()
+        self.tables.is_empty()
+            && self.tags.is_empty()
+            && self.framework.is_empty()
+            && self.naming_methods.is_empty()
     }
 }
 
@@ -151,6 +173,10 @@ pub struct TablePatch {
     /// Replaces the whole list of follow-up rolls.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub follow_ups: Option<Vec<FollowUpRoll>>,
+    /// The order of the results, when the user reordered them. Results not
+    /// listed (e.g. added by an update) keep their place after these.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub order: Option<Vec<ResultId>>,
 }
 
 impl TablePatch {
@@ -166,6 +192,7 @@ impl TablePatch {
             added_results: Vec::new(),
             variants: None,
             follow_ups: None,
+            order: None,
         }
     }
 
@@ -190,6 +217,7 @@ impl TablePatch {
             && self.added_results.is_empty()
             && self.variants.is_none()
             && self.follow_ups.is_none()
+            && self.order.is_none()
     }
 }
 
@@ -241,6 +269,14 @@ pub struct ResultPatch {
     pub fallback: Option<Option<ResultId>>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub label_variants: Option<Vec<LabelVariant>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub then_roll: Option<Vec<TableId>>,
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        with = "double_option"
+    )]
+    pub shared: Option<Option<SharedResultId>>,
     /// The whole approved-names map, when customised.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub approved_names: Option<BTreeMap<ResultId, String>>,
@@ -249,7 +285,7 @@ pub struct ResultPatch {
 impl ResultPatch {
     fn new(base: &TableResult) -> Self {
         ResultPatch {
-            base: Fingerprint::of(base),
+            base: Fingerprint::of_result(base),
             name: None,
             description: None,
             range: None,
@@ -260,6 +296,8 @@ impl ResultPatch {
             unique: None,
             fallback: None,
             label_variants: None,
+            then_roll: None,
+            shared: None,
             approved_names: None,
         }
     }
@@ -275,6 +313,8 @@ impl ResultPatch {
         prune_field(&mut self.unique, &base.unique);
         prune_field(&mut self.fallback, &base.fallback);
         prune_field(&mut self.label_variants, &base.label_variants);
+        prune_field(&mut self.then_roll, &base.then_roll);
+        prune_field(&mut self.shared, &base.shared);
         prune_field(&mut self.approved_names, &base.approved_names);
     }
 
@@ -282,6 +322,8 @@ impl ResultPatch {
         self.name.is_none()
             && self.description.is_none()
             && self.range.is_none()
+            && self.then_roll.is_none()
+            && self.shared.is_none()
             && self.tags.is_none()
             && self.eligibility.is_none()
             && self.enabled.is_none()
@@ -303,6 +345,8 @@ impl ResultPatch {
         apply_field(&self.unique, &mut result.unique);
         apply_field(&self.fallback, &mut result.fallback);
         apply_field(&self.label_variants, &mut result.label_variants);
+        apply_field(&self.then_roll, &mut result.then_roll);
+        apply_field(&self.shared, &mut result.shared);
         apply_field(&self.approved_names, &mut result.approved_names);
     }
 }
@@ -390,6 +434,9 @@ pub struct Origins {
     pub deleted_tables: BTreeSet<TableId>,
     pub deleted_results: BTreeMap<TableId, BTreeSet<ResultId>>,
     pub deleted_tags: BTreeSet<TagId>,
+    /// Shared results, scales, settings, object types and flows, by kind.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub items: BTreeMap<ItemKind, ItemOrigins>,
     /// Naming methods whose join or exceptions the user changed.
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub modified_naming_methods: BTreeMap<NamingSchemeId, BTreeSet<ResultId>>,
@@ -430,6 +477,12 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         naming_schemes: bundled.naming_schemes.clone(),
         role_schemes: bundled.role_schemes.clone(),
         location_schemes: bundled.location_schemes.clone(),
+        shared_results: Vec::new(),
+        scales: Vec::new(),
+        settings: Vec::new(),
+        objects: Vec::new(),
+        flows: Vec::new(),
+        start: bundled.start.clone(),
         // The subtype catalogue is content-file data too: the subtype tables
         // are edited, the canonical subtypes they list are not.
         location_subtypes: bundled.location_subtypes.clone(),
@@ -592,6 +645,16 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
         }
     }
 
+    let framework = &overrides.framework;
+    let items = &mut origins.items;
+    merge_items::<SharedResult>(bundled, framework, &mut content, items, &mut issues);
+    merge_items::<Scale>(bundled, framework, &mut content, items, &mut issues);
+    merge_items::<SettingDef>(bundled, framework, &mut content, items, &mut issues);
+    merge_items::<ObjectType>(bundled, framework, &mut content, items, &mut issues);
+    merge_items::<Flow>(bundled, framework, &mut content, items, &mut issues);
+    // Customised shared results reach the table entries that list them.
+    relink_shared_results(&mut content, &bundled.shared_results);
+    link_shared_results(&mut content);
     for (scheme_id, methods) in &overrides.naming_methods {
         let loc = Location::naming_scheme(scheme_id);
         for (result, patch) in methods {
@@ -667,7 +730,7 @@ fn apply_table_patch(
                     .insert(result.id.clone());
             }
             Some(ResultOverride::Modify(rp)) => {
-                if rp.base != Fingerprint::of(result) {
+                if rp.base != Fingerprint::of_result(result) {
                     issues.push(ValidationIssue::new(
                         Severity::Warning,
                         loc.clone().with_result(&result.id),
@@ -706,6 +769,11 @@ fn apply_table_patch(
         table.results.push(added.clone());
     }
     origins.results.insert(base.id.clone(), result_origins);
+    if let Some(order) = &patch.order {
+        // Listed results first, in the user's order; the rest keep theirs.
+        let position = |id: &ResultId| order.iter().position(|o| o == id).unwrap_or(usize::MAX);
+        table.results.sort_by_key(|r| position(&r.id));
+    }
     table
 }
 
@@ -725,6 +793,8 @@ pub enum EditError {
     NotUserId(String),
     #[error("`{0}` is not a bundled default, so it has no default to restore")]
     NotBundled(String),
+    #[error("{0} `{1}` does not exist")]
+    UnknownItem(String, String),
     #[error("naming scheme `{scheme}` has no method `{method}`")]
     UnknownNamingMethod {
         scheme: NamingSchemeId,
@@ -1122,6 +1192,24 @@ impl ContentLayers {
         self.overrides = UserOverrides::default();
     }
 
+    // ----- framework items (shared results, scales, settings, objects, flows)
+
+    /// Stores `item` as the effective version of its ID: the user's version
+    /// of a bundled item, or a user item (which needs a `user.` ID).
+    pub fn put_item<T: FrameworkItem>(&mut self, item: T) -> Result<(), EditError> {
+        put_item(&self.bundled, &mut self.overrides.framework, item)
+    }
+
+    /// Deletes an item: a bundled one is marked deleted, a user one removed.
+    pub fn delete_item<T: FrameworkItem>(&mut self, id: &T::Id) -> Result<(), EditError> {
+        delete_item::<T>(&self.bundled, &mut self.overrides.framework, id)
+    }
+
+    /// Restores a bundled item to its installed default.
+    pub fn reset_item<T: FrameworkItem>(&mut self, id: &T::Id) -> Result<(), EditError> {
+        reset_item::<T>(&self.bundled, &mut self.overrides.framework, id)
+    }
+
     // ----- naming methods ---------------------------------------------------
 
     /// Stores the joining rule and spelling exceptions of a bundled naming
@@ -1243,6 +1331,8 @@ impl ContentLayers {
                     rp.unique = Some(result.unique);
                     rp.fallback = Some(result.fallback.clone());
                     rp.label_variants = Some(result.label_variants.clone());
+                    rp.then_roll = Some(result.then_roll.clone());
+                    rp.shared = Some(result.shared.clone());
                     rp.approved_names = Some(result.approved_names.clone());
                     rp.prune(base_result);
                     if !rp.is_empty() {
@@ -1262,6 +1352,17 @@ impl ContentLayers {
         }
         patch.results = results;
         patch.added_results = added;
+        // The order is kept only when it differs from the default one
+        // (bundled results in their order, then added ones).
+        let natural: Vec<ResultId> = base
+            .results
+            .iter()
+            .filter(|r| table.result(&r.id).is_some())
+            .chain(patch.added_results.iter())
+            .map(|r| r.id.clone())
+            .collect();
+        let order: Vec<ResultId> = table.results.iter().map(|r| r.id.clone()).collect();
+        patch.order = (order != natural).then_some(order);
         patch.prune(base);
         if patch.is_empty() {
             self.overrides.tables.remove(&id);

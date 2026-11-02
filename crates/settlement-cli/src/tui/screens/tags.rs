@@ -7,11 +7,14 @@ use ratatui::layout::Rect;
 use ratatui::text::{Line, Span};
 use serde_json::{Map, Value};
 use settlement_core::content::{EffectDef, Tag};
-use settlement_core::editor::{EffectKindSchema, FieldKind, effect_schema};
+use settlement_core::editor::{EffectKindSchema, FieldKind, UsageKind, effect_schema};
+use settlement_core::explain::Explanation;
+use settlement_core::framework::layers::ItemKind;
 use settlement_core::ids::{TableId, TagId};
-use settlement_core::service::{AppService, ContentOverview, DraftCheck, TagDetail};
+use settlement_core::service::{AppService, ContentOverview, DraftCheck, TagDetail, TagInsight};
 
 use super::common::issue_lines;
+use super::open::{ItemRef, of_tag_usage, open};
 use crate::tui::widgets::{Modal, ModalResult, PickItem, Row, RowsState};
 use crate::tui::{Ctx, Nav, Screen};
 
@@ -223,6 +226,8 @@ enum Act {
     Note,
     RemoveEffect,
     Done,
+    /// Open a dependent item.
+    Open(ItemRef),
 }
 
 enum Pending {
@@ -253,6 +258,8 @@ pub struct TagEditor {
     is_new: bool,
     check: Option<DraftCheck>,
     build_error: Option<String>,
+    /// The draft's effects in plain words, from the core.
+    insight: Option<TagInsight>,
     schema: Vec<EffectKindSchema>,
     page: Option<usize>,
     state: RowsState,
@@ -271,7 +278,7 @@ fn effect_maps(tag: &Tag) -> Vec<Map<String, Value>> {
 }
 
 impl TagEditor {
-    fn open(ctx: &mut Ctx, detail: Option<TagDetail>, new: Option<Tag>) -> Self {
+    pub(crate) fn open(ctx: &mut Ctx, detail: Option<TagDetail>, new: Option<Tag>) -> Self {
         let is_new = new.is_some();
         let tag = new.unwrap_or_else(|| detail.as_ref().expect("detail or new").tag.clone());
         let mut editor = TagEditor {
@@ -285,6 +292,7 @@ impl TagEditor {
             is_new,
             check: None,
             build_error: None,
+            insight: None,
             schema: effect_schema(),
             page: None,
             state: RowsState::default(),
@@ -333,6 +341,7 @@ impl TagEditor {
         match self.build() {
             Ok(tag) => {
                 self.build_error = None;
+                self.insight = ctx.service.explain_tag(&tag).ok();
                 self.check = ctx
                     .service
                     .check_tag(tag)
@@ -342,6 +351,7 @@ impl TagEditor {
             Err(e) => {
                 self.build_error = Some(e);
                 self.check = None;
+                self.insight = None;
             }
         }
     }
@@ -435,6 +445,11 @@ impl TagEditor {
                 field("Note", m.get("note").map_or("—".into(), show)),
                 Act::Note,
             ));
+            if let Some(e) = self.explanation(i) {
+                rows.push(Row::blank());
+                rows.push(Row::info(Line::styled("IN PLAIN WORDS", s.dim())));
+                rows.extend(explanation_lines(e, ctx).into_iter().map(Row::info));
+            }
             rows.push(Row::blank());
             rows.push(Row::item(
                 Line::styled("Remove this effect", s.error()),
@@ -485,16 +500,60 @@ impl TagEditor {
                 Line::raw(format!("{}. {}", i + 1, self.describe_effect(m))),
                 Act::Effect(i),
             ));
+            if let Some(e) = self.explanation(i) {
+                for line in wrap(&e.summary, 100) {
+                    rows.push(Row::info(Line::styled(format!("     {line}"), s.dim())));
+                }
+            }
         }
         rows.push(Row::item(Line::raw("+ Add effect"), Act::AddEffect));
-        if let Some(d) = &self.detail
-            && !d.usages.is_empty()
-        {
-            rows.push(Row::blank());
-            rows.push(Row::info(Line::styled("USED BY", s.dim())));
-            for u in &d.usages {
-                rows.push(Row::info(Line::styled(u.description.clone(), s.dim())));
+        if let Some(insight) = &self.insight {
+            if insight.informational {
+                rows.push(Row::info(Line::styled(
+                    "Informational only: it labels the settlement, and conditions can still test it.",
+                    s.dim(),
+                )));
             }
+            for p in &insight.combined {
+                rows.push(Row::info(Line::from(vec![
+                    Span::styled(format!("Together on {}: ", p.table.name), s.dim()),
+                    Span::raw(format!("{}.", p.steps.join(" → "))),
+                ])));
+            }
+        }
+        rows.push(Row::blank());
+        rows.push(Row::info(Line::styled("DEPENDENCIES", s.dim())));
+        match self.detail.as_ref().map(|d| &d.usages) {
+            Some(usages) if !usages.is_empty() => {
+                for (kind, title) in [
+                    (UsageKind::EmittedBy, "Given by"),
+                    (UsageKind::AddedBy, "Added by"),
+                    (UsageKind::RemovedBy, "Removed by"),
+                    (UsageKind::CheckedBy, "Checked by"),
+                ] {
+                    let of_kind: Vec<_> = usages.iter().filter(|u| u.kind == kind).collect();
+                    if of_kind.is_empty() {
+                        continue;
+                    }
+                    rows.push(Row::info(Line::raw(format!("{title}:"))));
+                    for u in of_kind {
+                        let text = u
+                            .description
+                            .strip_prefix(&format!("{title} "))
+                            .unwrap_or(&u.description);
+                        rows.push(match of_tag_usage(u) {
+                            Some(item) => {
+                                Row::item(Line::raw(format!("  {text}  ›")), Act::Open(item))
+                            }
+                            None => Row::info(Line::styled(format!("  {text}"), s.dim())),
+                        });
+                    }
+                }
+            }
+            _ => rows.push(Row::info(Line::styled(
+                "Nothing uses this tag; it can be deleted safely.",
+                s.dim(),
+            ))),
         }
         rows.push(Row::blank());
         rows.push(Row::info(Line::styled("VALIDATION", s.dim())));
@@ -535,7 +594,7 @@ impl TagEditor {
         if built_in && modified {
             rows.push(Row::item(Line::raw("Reset to default"), Act::Reset));
         }
-        if !built_in && !self.is_new {
+        if !self.is_new {
             rows.push(Row::item(Line::styled("Delete", s.error()), Act::Delete));
         }
         if let Some((m, error)) = &self.message {
@@ -561,6 +620,17 @@ impl TagEditor {
                         .into_iter()
                         .filter(|t| !t.deleted)
                         .map(|t| (t.id.to_string(), t.name))
+                        .collect()
+                })
+                .unwrap_or_default(),
+            FieldKind::Flow => ctx
+                .service
+                .framework_items()
+                .map(|items| {
+                    items
+                        .into_iter()
+                        .filter(|i| i.kind == ItemKind::Flow && !i.deleted)
+                        .map(|i| (i.id, i.name))
                         .collect()
                 })
                 .unwrap_or_default(),
@@ -738,11 +808,16 @@ impl TagEditor {
                 self.set_field(&name, (!chosen.is_empty()).then_some(Value::Array(chosen)));
             }
             (ModalResult::Picked(k), Pending::AddEffect) => {
-                let schema = &self.schema[k];
+                let (kind, preset) = add_choices(&self.schema)[k];
+                let schema = &self.schema[kind];
                 let mut m = Map::new();
                 m.insert("kind".into(), Value::String(schema.kind.clone()));
                 if !schema.executable {
                     m.insert("status".into(), Value::String("planned".into()));
+                }
+                // A preset such as "Shift +1" fills its fields in.
+                if let Some(p) = preset.and_then(|p| schema.presets.get(p)) {
+                    m.extend(p.values.iter().map(|(k, v)| (k.clone(), v.clone())));
                 }
                 self.effects.push(m);
                 self.page = Some(self.effects.len() - 1);
@@ -867,6 +942,7 @@ impl Screen for TagEditor {
             return Nav::Stay;
         };
         match act {
+            Act::Open(item) => return open(ctx, &item),
             Act::Name => {
                 self.modal = Some((
                     Modal::text(
@@ -892,17 +968,18 @@ impl Screen for TagEditor {
                 self.state = RowsState::default();
             }
             Act::AddEffect => {
-                self.modal = Some((
-                    Modal::pick(
-                        "Add effect",
-                        self.schema
-                            .iter()
-                            .map(|k| PickItem::new(k.label.clone()).hint(k.kind.clone()))
-                            .collect(),
-                        0,
-                    ),
-                    Pending::AddEffect,
-                ));
+                let items = add_choices(&self.schema)
+                    .into_iter()
+                    .map(|(kind, preset)| {
+                        let k = &self.schema[kind];
+                        match preset {
+                            Some(p) => PickItem::new(format!("  {}", k.presets[p].label))
+                                .hint(k.kind.clone()),
+                            None => PickItem::new(k.label.clone()).hint(k.group.clone()),
+                        }
+                    })
+                    .collect();
+                self.modal = Some((Modal::pick("Add effect", items, 0), Pending::AddEffect));
             }
             Act::Kind => {
                 self.modal = Some((
@@ -996,4 +1073,60 @@ impl Screen for TagEditor {
             ]
         }
     }
+}
+
+/// The core's explanation of effect `i`, if the draft could be read.
+impl TagEditor {
+    fn explanation(&self, i: usize) -> Option<&Explanation> {
+        self.insight.as_ref().and_then(|x| x.effects.get(i))
+    }
+}
+
+/// An explanation as lines: its sentence, the roll step by step, and what
+/// it affects.
+pub fn explanation_lines(e: &Explanation, ctx: &Ctx) -> Vec<Line<'static>> {
+    let s = &ctx.styles;
+    let mut lines: Vec<Line<'static>> = wrap(&e.summary, 100).into_iter().map(Line::raw).collect();
+    if !e.preview.is_empty() {
+        lines.push(Line::styled(format!("{}.", e.preview.join(" → ")), s.key()));
+    }
+    if !e.affects.is_empty() {
+        let names: Vec<&str> = e.affects.iter().map(|a| a.name.as_str()).collect();
+        lines.push(Line::styled(
+            format!("Affects: {}", names.join(", ")),
+            s.dim(),
+        ));
+    }
+    lines
+}
+
+/// `text` broken into lines of at most `width` characters, at spaces.
+pub fn wrap(text: &str, width: usize) -> Vec<String> {
+    let mut lines = Vec::new();
+    let mut line = String::new();
+    for word in text.split_whitespace() {
+        if !line.is_empty() && line.chars().count() + 1 + word.chars().count() > width {
+            lines.push(std::mem::take(&mut line));
+        }
+        if !line.is_empty() {
+            line.push(' ');
+        }
+        line.push_str(word);
+    }
+    if !line.is_empty() {
+        lines.push(line);
+    }
+    lines
+}
+
+/// The "Add effect" choices: each effect kind, followed by its presets
+/// (e.g. Shift +1), as (kind index, preset index).
+fn add_choices(schema: &[EffectKindSchema]) -> Vec<(usize, Option<usize>)> {
+    schema
+        .iter()
+        .enumerate()
+        .flat_map(|(i, k)| {
+            std::iter::once((i, None)).chain((0..k.presets.len()).map(move |p| (i, Some(p))))
+        })
+        .collect()
 }

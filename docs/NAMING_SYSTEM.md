@@ -65,7 +65,7 @@ example). Everything outside `naming/` folders still has one table per file.
 
 | Path                               | Contains                                                                                                                                                                   |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `content/00-sequence.json`         | The pipeline, including the `{ "naming": true }` Name stage                                                                                                                |
+| `content/00-pipeline.json`         | The pipeline (start flow), including the `{ "kind": "name" }` Name stage                                                                                                   |
 | `content/kurovia/naming/<region>/` | One file per table (`01-method.json`, `02-first-element.json`, …) and the region's own `naming-schemes.json`. Ordon has ten tables; see [ORDON_NAMING.md](ORDON_NAMING.md) |
 
 Ordon, Bratislor, Halingo, Hjartheland and Nareth have expanded packs;

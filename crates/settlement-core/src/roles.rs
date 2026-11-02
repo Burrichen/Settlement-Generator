@@ -23,7 +23,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::VERSION;
-use crate::authority::{AuthorityRepresentatives, Representation};
+use crate::authority::{AuthorityConfig, AuthorityRepresentatives, Representation};
 use crate::content::{Condition, ContentSet, LabelVariant};
 use crate::dice::FaceSource;
 use crate::engine::{
@@ -35,6 +35,23 @@ use crate::ids::{ResultId, RoleSchemeId, TableId, TagId};
 /// The stage table recorded in snapshots for the Role Allocation stage,
 /// which has no table of its own.
 pub const ROLES_STAGE_ID: &str = "stage.authorityRoles";
+
+/// The Role Allocation built-in step's configuration: where the Authority
+/// to allocate roles for is found. The role tables come from the content's
+/// role schemes.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RolesConfig {
+    pub authority: AuthorityConfig,
+}
+
+impl RolesConfig {
+    /// The configuration of content in the legacy `sequence` format.
+    pub fn legacy() -> Self {
+        RolesConfig {
+            authority: AuthorityConfig::legacy(),
+        }
+    }
+}
 
 /// The role tables of one kind of Authority.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -269,7 +286,7 @@ impl RoleAllocator<'_, '_> {
             .take_events()
             .into_iter()
             .find_map(|e| match e {
-                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => Some(*r),
+                GenerationEvent::TableRolled(r) if !r.is_routed() => Some(*r),
                 _ => None,
             })
             .ok_or_else(|| GenerationError::FigureTableSkipped {
@@ -284,14 +301,9 @@ impl RoleAllocator<'_, '_> {
             .ok_or_else(|| GenerationError::UnknownTable(roll.table.id.clone()))?;
         let initial = roll.result.clone();
         // A unique role already held becomes its fallback: no reroll.
-        let (fallback, given) = match &rolled.fallback {
-            Some(fallback) if rolled.unique && held.contains(&rolled.id) => {
-                let fallback = table
-                    .result(fallback)
-                    .ok_or_else(|| GenerationError::UnknownTable(roll.table.id.clone()))?;
-                (Some(Named::new(&fallback.id, &fallback.name)), fallback)
-            }
-            _ => (None, rolled),
+        let (fallback, given) = match table.fallback_for(rolled, held) {
+            Some(fallback) => (Some(Named::new(&fallback.id, &fallback.name)), fallback),
+            None => (None, rolled),
         };
         Ok(RoleAssignment {
             allocation: slot.allocation,

@@ -8,39 +8,33 @@
       "results": [
         {
           "id": "farmlandOpenCountry",
-          "name": "Farmland & Open Country",
-          "range": 1,
-          "tags": ["env.farmlandOpenCountry"]
+          "shared": "environment.farmlandOpenCountry",
+          "range": 1
         },
         {
           "id": "grasslandPlains",
-          "name": "Grassland / Plains",
-          "range": 2,
-          "tags": ["env.grasslandPlains"]
+          "shared": "environment.grasslandPlains",
+          "range": 2
         },
         {
           "id": "woodland",
-          "name": "Woodland",
-          "range": [3, 7],
-          "tags": ["env.woodland"]
+          "shared": "environment.woodland",
+          "range": [3, 7]
         },
         {
           "id": "mountains",
-          "name": "Mountains",
-          "range": [8, 12],
-          "tags": ["env.mountains"]
+          "shared": "environment.mountains",
+          "range": [8, 12]
         },
         {
           "id": "hills",
-          "name": "Hills",
-          "range": [13, 14],
-          "tags": ["env.hills"]
+          "shared": "environment.hills",
+          "range": [13, 14]
         },
         {
           "id": "coast",
-          "name": "Coast",
-          "range": [15, 17],
-          "tags": ["env.coast"]
+          "shared": "environment.coast",
+          "range": [15, 17]
         },
         {
           "id": "crystallineWilds",

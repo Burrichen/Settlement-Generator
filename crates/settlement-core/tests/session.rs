@@ -976,6 +976,7 @@ fn god_mode_exposes_valid_results_but_never_disabled_or_deleted_ones() {
 fn content_without_stages_is_refused_rather_than_crashing_an_interface() {
     let mut empty: ContentSet = bundled_content().unwrap();
     empty.sequence.clear();
+    empty.flows.iter_mut().for_each(|f| f.steps.clear());
     let result = GenerationSession::new(
         Arc::new(empty),
         GenerationOptions {

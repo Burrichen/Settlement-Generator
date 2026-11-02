@@ -13,6 +13,7 @@ use time::OffsetDateTime;
 use crate::authority::AuthorityRepresentatives;
 use crate::engine::{GenerationEvent, GenerationLog, Named};
 use crate::figures::AuthorityFigures;
+use crate::framework::StepRecord;
 use crate::ids::{ResultId, TableId, TagId};
 use crate::locations::NotableLocations;
 use crate::naming::NameRecord;
@@ -104,6 +105,10 @@ pub struct SnapshotStage {
     /// The name stage's record (only on the name stage).
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<NameRecord>,
+    /// A flow stage's record (only on flow stages): every step it ran, with
+    /// its rolls, objects and labels as generated.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub flow: Option<StepRecord>,
 }
 
 impl From<GenerationLog> for SettlementSnapshot {
@@ -150,7 +155,7 @@ impl SettlementSnapshot {
             .events
             .iter()
             .filter_map(|event| match event {
-                GenerationEvent::TableRolled(r) if r.routed_by.is_none() => {
+                GenerationEvent::TableRolled(r) if !r.is_routed() => {
                     let requested = r.redirected_from.as_ref().unwrap_or(&r.table);
                     Some(SnapshotStage {
                         label: requested.name.clone(),
@@ -163,6 +168,7 @@ impl SettlementSnapshot {
                         figures: None,
                         roles: None,
                         locations: None,
+                        flow: None,
                         name: None,
                     })
                 }

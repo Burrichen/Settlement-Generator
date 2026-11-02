@@ -8,21 +8,18 @@
       "results": [
         {
           "id": "mountains",
-          "name": "Mountains",
-          "range": [1, 11],
-          "tags": ["env.mountains"]
+          "shared": "environment.mountains",
+          "range": [1, 11]
         },
         {
           "id": "coldTundra",
-          "name": "Cold / Tundra",
-          "range": [12, 15],
-          "tags": ["env.coldTundra"]
+          "shared": "environment.coldTundra",
+          "range": [12, 15]
         },
         {
           "id": "hills",
-          "name": "Hills",
-          "range": [16, 17],
-          "tags": ["env.hills"]
+          "shared": "environment.hills",
+          "range": [16, 17]
         },
         {
           "id": "subterranean",

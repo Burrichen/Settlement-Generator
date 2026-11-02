@@ -14,15 +14,13 @@
         },
         {
           "id": "woodland",
-          "name": "Woodland",
-          "range": [15, 17],
-          "tags": ["env.woodland"]
+          "shared": "environment.woodland",
+          "range": [15, 17]
         },
         {
           "id": "farmlandOpenCountry",
-          "name": "Farmland & Open Country",
-          "range": [18, 20],
-          "tags": ["env.farmlandOpenCountry"]
+          "shared": "environment.farmlandOpenCountry",
+          "range": [18, 20]
         }
       ]
     }

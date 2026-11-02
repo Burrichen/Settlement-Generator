@@ -73,23 +73,13 @@ pub struct MapRule {
 impl MapDefaults {
     /// Every tag the defaults refer to (for checking against content).
     pub fn referenced_tags(&self) -> Vec<TagId> {
-        fn walk(c: &Condition, out: &mut Vec<TagId>) {
-            match c {
-                Condition::HasTag(t) => out.push(t.clone()),
-                Condition::All(cs) | Condition::Any(cs) => cs.iter().for_each(|c| walk(c, out)),
-                Condition::Not(c) => walk(c, out),
-            }
-        }
-        let mut out = Vec::new();
-        for c in self
-            .sizes
+        self.sizes
             .iter()
             .map(|s| &s.when)
             .chain(self.rules.iter().map(|r| &r.when))
-        {
-            walk(c, &mut out);
-        }
-        out
+            .flat_map(|c| c.tags())
+            .cloned()
+            .collect()
     }
 }
 

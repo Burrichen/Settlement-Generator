@@ -1,5 +1,6 @@
-import type { AuthorityFigures, Named, NotableLocations } from "../api";
+import type { AuthorityFigures, Named, NotableLocations, OutlineLine } from "../api";
 import { FiguresSummary } from "./AuthorityFigures";
+import { FlowOutline } from "./FlowRecord";
 import { LocationsSummary } from "./NotableLocations";
 import { TagList } from "./generation";
 import { Ornament } from "./Ornament";
@@ -18,6 +19,8 @@ export interface SheetRow {
   figures?: AuthorityFigures;
   /** The Notable Locations, on that stage's row. */
   locations?: NotableLocations;
+  /** A flow stage's record, as indented lines. */
+  outline?: OutlineLine[];
 }
 
 /** A stage to lay out on a sheet, before sub-stages are folded in. */
@@ -75,6 +78,7 @@ export function SettlementSheet({
                   {d}
                 </span>
               ))}
+              <FlowOutline lines={row.outline} />
               {row.source && <span className="sheet-source">{row.source}</span>}
               <TagList tags={row.tags} />
             </dd>

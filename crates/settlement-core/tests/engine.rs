@@ -501,7 +501,7 @@ fn god_mode_ignores_tag_based_eligibility_but_keeps_emitted_tags() {
     // The ignored restriction is still recorded to explain the result.
     let modifier = &rolls(&log)[1].modifiers[0];
     assert!(modifier.ignored);
-    assert_eq!(modifier.tag.name, "Rich");
+    assert_eq!(modifier.tag.as_ref().unwrap().name, "Rich");
 }
 
 #[test]

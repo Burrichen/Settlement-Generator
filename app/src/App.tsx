@@ -9,7 +9,13 @@ import {
   type Settings,
   type UpdateOffer,
 } from "./api";
-import { AppContext, themeAttribute, type AppState, type Screen } from "./app-state";
+import {
+  AppContext,
+  themeAttribute,
+  type AppState,
+  type ItemTarget,
+  type Screen,
+} from "./app-state";
 import { MainMenu } from "./screens/MainMenu";
 import { SettingsScreen } from "./screens/SettingsScreen";
 import { RoadmapScreen } from "./screens/RoadmapScreen";
@@ -18,6 +24,9 @@ import { StartScreen } from "./screens/StartScreen";
 import { ViewScreen } from "./screens/ViewScreen";
 import { TagsScreen } from "./screens/TagsScreen";
 import { TablesScreen } from "./screens/TablesScreen";
+import { FlowsScreen } from "./screens/FlowsScreen";
+import { SettingDefsScreen } from "./screens/SettingDefsScreen";
+import { TransferScreen } from "./screens/TransferScreen";
 import { UpdatePrompt } from "./components/UpdatePrompt";
 
 export function App() {
@@ -43,9 +52,30 @@ export function App() {
     document.documentElement.dataset.theme = themeAttribute(settings?.theme ?? "modern_dark");
   }, [settings?.theme]);
 
-  const navigate = useCallback((screen: Screen) => setStack((s) => [...s, screen]), []);
   const back = useCallback(() => setStack((s) => (s.length > 1 ? s.slice(0, -1) : s)), []);
   const home = useCallback(() => setStack(["menu"]), []);
+
+  // Opening an item from a link: its screen, which then selects it. Any
+  // other navigation forgets the target.
+  const target = useRef<ItemTarget | null>(null);
+  const navigate = useCallback((screen: Screen) => {
+    target.current = null;
+    setStack((s) => [...s, screen]);
+  }, []);
+  const openItem = useCallback((item: ItemTarget) => {
+    const screen: Record<ItemTarget["kind"], Screen> = {
+      table: "tables",
+      tag: "tags",
+      flow: "flows",
+      setting: "setting-defs",
+    };
+    target.current = item;
+    setStack((s) => [...s, screen[item.kind]]);
+  }, []);
+  const takeTarget = useCallback(
+    (kind: ItemTarget["kind"]) => (target.current?.kind === kind ? target.current.id : null),
+    [],
+  );
 
   const updateSettings = useCallback(
     async (next: Settings) => {
@@ -72,8 +102,18 @@ export function App() {
   }, [back]);
 
   const state: AppState = useMemo(
-    () => ({ info, settings, updateSettings, navigate, back, home, menuFocus }),
-    [info, settings, updateSettings, navigate, back, home],
+    () => ({
+      info,
+      settings,
+      updateSettings,
+      navigate,
+      back,
+      home,
+      menuFocus,
+      openItem,
+      takeTarget,
+    }),
+    [info, settings, updateSettings, navigate, back, home, openItem, takeTarget],
   );
 
   const screen = stack[stack.length - 1];
@@ -139,5 +179,11 @@ function Screens({ screen }: { screen: Screen }) {
       return <TagsScreen />;
     case "tables":
       return <TablesScreen />;
+    case "flows":
+      return <FlowsScreen />;
+    case "setting-defs":
+      return <SettingDefsScreen />;
+    case "transfer":
+      return <TransferScreen />;
   }
 }

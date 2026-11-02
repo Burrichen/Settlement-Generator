@@ -8,9 +8,8 @@
       "results": [
         {
           "id": "coldTundra",
-          "name": "Cold / Tundra",
-          "range": [1, 7],
-          "tags": ["env.coldTundra"]
+          "shared": "environment.coldTundra",
+          "range": [1, 7]
         },
         {
           "id": "glacial",
@@ -20,9 +19,8 @@
         },
         {
           "id": "mountains",
-          "name": "Mountains",
-          "range": [15, 17],
-          "tags": ["env.mountains"]
+          "shared": "environment.mountains",
+          "range": [15, 17]
         },
         {
           "id": "foreverIce",

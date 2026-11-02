@@ -107,6 +107,7 @@ fn settings_round_trip() {
         tag_view: true,
         theme: Theme::OldTimeyDark,
         bare_minimum_buildings: true,
+        roll_details: true,
     };
     db.save_settings(&wanted).unwrap();
     assert_eq!(db.load_settings().unwrap(), wanted);
