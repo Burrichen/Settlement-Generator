@@ -80,6 +80,7 @@ Requirements common to both:
 | v0.1.0     | First release (scope defined by later prompts) |
 | v0.1.1     | Settlement name generation                     |
 | v0.1.5     | Authority, settlement state, Notable Locations |
+| v0.2.0     | Settlement maps, the generator framework       |
 | Next MINOR | Improved name generation                       |
 | Next MAJOR | New tables                                     |
 
@@ -330,6 +331,12 @@ Still to be specified and built:
   - Security, Crime and Stability;
   - Notable Locations (count by Size and district, 1d20 Type) and the Bare
     Minimum Buildings setting.
+- Released in v0.2.0:
+  - interactive settlement maps (see MAPS.md), with building details,
+    placed Notable Locations, points of interest and exports;
+  - the no-code generator framework: flows, and editors for tables, flows,
+    tags, settings and modifiers (see FRAMEWORK.md);
+  - Notable Location subtypes and revamped name packs.
 - Windows release packaging: one per-user NSIS installer with the GUI
   (`settlement-generator.exe`) and the CLI (`settlement-generator-cli.exe`),
   built by `npm run release:build` (see RELEASING.md).
