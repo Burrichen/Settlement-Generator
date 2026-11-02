@@ -71,6 +71,7 @@ pub fn apply_fit(
             fallback: None,
             label_variants: Vec::new(),
             then_roll: Vec::new(),
+            approved_names: Default::default(),
         }),
         (None, Some(i)) => {
             out.results.remove(i);

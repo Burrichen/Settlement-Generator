@@ -11,6 +11,8 @@ import {
   type DiceAdvice,
   type DiceFit,
   type FrameworkItemListing,
+  type Named,
+  type SubtypeUse,
   type Table,
   type TableDetail,
   type TableResult,
@@ -29,6 +31,7 @@ import {
   useCatalog,
 } from "./common";
 import type { useEntityEditor } from "./EntityEditor";
+import { ApprovedNamesEditor, approvedVariants, NamingMethodsEditor } from "./NamingEditors";
 import { FollowUpsEditor, VariantsEditor } from "./TableAdvanced";
 import { EditorActions } from "../../screens/TagsScreen";
 import { TestPanel } from "./TestPanel";
@@ -414,7 +417,25 @@ export function TableForm({
         base={base}
         relayout={relayout}
         setTable={(t, key) => history.set(t, key)}
+        approved={approvedVariants(editor.detail)}
       />
+
+      {(editor.detail?.subtypes?.length ?? 0) > 0 && (
+        <SubtypesInfo
+          subtypes={editor.detail?.subtypes ?? []}
+          nameOf={(id) => draft.results.find((r) => r.id === id)?.name ?? id}
+        />
+      )}
+
+      {editor.detail && (
+        <NamingMethodsEditor
+          detail={editor.detail}
+          onSaved={(d) => {
+            editor.replaceDetail(d);
+            void refresh();
+          }}
+        />
+      )}
 
       <TestPanel target={{ kind: "table", table: draft }} disabled={hasErrors} />
 
@@ -679,6 +700,50 @@ function DiceAssistant({
 
 // ----- results ------------------------------------------------------------------
 
+// ----- Notable Location subtypes ----------------------------------------------
+
+/**
+ * For a subtype table: which results are canonical subtypes, shared by ID
+ * with other tables. Renaming a result here only relabels it in this table.
+ */
+function SubtypesInfo({
+  subtypes,
+  nameOf,
+}: {
+  subtypes: SubtypeUse[];
+  nameOf: (id: string) => string;
+}) {
+  return (
+    <section className="editor-section" aria-labelledby="table-subtypes">
+      <h3 id="table-subtypes" className="label">
+        Canonical subtypes
+      </h3>
+      <p className="field-help">
+        Each subtype has one ID in every table that lists it. A result's name is only its label in
+        this table, so renaming it never creates a second subtype.
+      </p>
+      <ul className="subtype-list">
+        {subtypes.map((u) => (
+          <li key={u.result}>
+            <strong>{nameOf(u.result)}</strong> <code>{u.subtype.id}</code>
+            {nameOf(u.result) !== u.subtype.name && <> · canonical name {u.subtype.name}</>}
+            {(u.also_in ?? []).map((a) => (
+              <span key={a.table.id} className="cell-sub">
+                Also in {a.table.name} as “{a.label}”.
+              </span>
+            ))}
+            {(u.notes ?? []).map((n) => (
+              <span key={n} className="cell-sub">
+                {n}
+              </span>
+            ))}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function ResultsSheet({
   draft,
   mode,
@@ -686,6 +751,7 @@ function ResultsSheet({
   base,
   relayout,
   setTable,
+  approved,
 }: {
   draft: Table;
   mode: ChanceMode;
@@ -693,6 +759,8 @@ function ResultsSheet({
   base: Coverage | undefined;
   relayout: (next: Table, weights?: number[]) => Promise<void>;
   setTable: (table: Table, key?: string) => void;
+  /** Variants each result needs an approved name for (curated naming). */
+  approved: Named[];
 }) {
   const [filter, setFilter] = useState("");
   const [rowMessage, setRowMessage] = useState<string | null>(null);
@@ -817,6 +885,7 @@ function ResultsSheet({
                 valued={valued}
                 chance={chanceOf(base, result.id)}
                 shared={shared}
+                approved={approved}
                 onChange={(patch, key) => update(i, patch, key)}
                 onLayoutChange={(patch) =>
                   changeLayout(draft.results.map((r, j) => (j === i ? { ...r, ...patch } : r)))
@@ -881,6 +950,7 @@ function ResultRow({
   valued,
   chance,
   shared,
+  approved,
   onChange,
   onLayoutChange,
   onWeight,
@@ -899,6 +969,7 @@ function ResultRow({
   valued: boolean;
   chance: string;
   shared: FrameworkItemListing[];
+  approved: Named[];
   onChange: (patch: Partial<TableResult>, key?: string) => void;
   onLayoutChange: (patch: Partial<TableResult>) => void;
   onWeight: (weight: number) => void;
@@ -1052,6 +1123,17 @@ function ResultRow({
           </button>
         </td>
       </tr>
+      {(approved.length > 0 || Object.keys(result.approved_names ?? {}).length > 0) && (
+        <tr className="sub-row">
+          <td colSpan={columns}>
+            <ApprovedNamesEditor
+              result={result}
+              variants={approved}
+              onChange={(approved_names) => onChange({ approved_names })}
+            />
+          </td>
+        </tr>
+      )}
       {open && (
         <tr className="sub-row">
           <td colSpan={columns}>

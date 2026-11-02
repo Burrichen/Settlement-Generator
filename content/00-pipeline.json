@@ -5,7 +5,7 @@
     {
       "id": "setting.bareMinimumBuildings",
       "name": "Bare Minimum Buildings",
-      "description": "Always add a Tavern with 4 spare rooms to the settlement's Notable Locations, in addition to the rolled ones.",
+      "description": "Always add a Tavern / Inn with 4 spare rooms to the settlement's Notable Locations, in addition to the rolled ones.",
       "kind": "toggle",
       "default": false
     }
@@ -122,7 +122,7 @@
               "when": { "setting_on": "setting.bareMinimumBuildings" },
               "id": "notable-location-guaranteed-tavern",
               "type": "locationType.hospitality",
-              "subtype": { "id": "locationSubtype.tavern", "name": "Tavern" },
+              "subtype": { "id": "locationSubtype.tavernInn", "name": "Tavern / Inn" },
               "spare_rooms": 4
             }
           }

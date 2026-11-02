@@ -719,6 +719,18 @@ impl Validator<'_> {
                 },
             );
         }
+        // And its subtype is a canonical Notable Location subtype.
+        if let Builtin::Locations(c) = builtin
+            && let Some(sub) = c.guaranteed.as_ref().and_then(|g| g.subtype.as_ref())
+            && crate::locations::subtype(self.content, &sub.id).is_none()
+        {
+            self.error(
+                loc.clone(),
+                IssueKind::UnknownLocationSubtype {
+                    subtype: sub.id.clone(),
+                },
+            );
+        }
     }
 
     /// A modifier applied to `table`, by a tag effect or a flow step.

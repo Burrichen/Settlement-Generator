@@ -802,6 +802,7 @@ impl<'g, 'c> FlowRunner<'g, 'c> {
                     text,
                     method,
                     rolls,
+                    ..
                 } = generate_name(self.generator, scheme, state, None, faces)?;
                 state.take_events();
                 if let Some(object) = self.objects.last_mut() {
