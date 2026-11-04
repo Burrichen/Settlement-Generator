@@ -16,7 +16,7 @@ use std::sync::Arc;
 
 use crate::VERSION;
 use crate::authority::{AuthorityConfig, AuthorityRepresentatives};
-use crate::content::{ContentSet, ContentStatus, Modifier, SelectionMode};
+use crate::content::{ContentSet, ContentStatus, EffectStatus, Modifier, SelectionMode};
 use crate::dice::FaceSource;
 use crate::engine::{
     GenerationError, GenerationEvent, GenerationLog, GenerationOptions, Generator, Named, Request,
@@ -29,7 +29,8 @@ use crate::figures::{
 use crate::framework::builtin::Builtin;
 use crate::framework::runner::{Carried, FlowFacts, FlowRunner, Memory, Stored, stored_values};
 use crate::framework::{
-    FlowStep, OutlineLine, SettingValue, SettingValues, StepAction, StepOutcome, StepRecord,
+    FlowStep, OutlineLine, SettingKind, SettingValue, SettingValues, StepAction, StepOutcome,
+    StepRecord,
 };
 use crate::ids::{NamingSchemeId, ResultId, SettingId, StepId, TableId, TagId};
 use crate::locations::{
@@ -148,6 +149,11 @@ pub struct StageView {
     /// skipped sub-stage does not apply and is left out.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub sub_stage: bool,
+    /// A skipped stage with this set does not apply and is left out: a
+    /// sub-stage, a stage with a `when`, or a built-in stage. (Other skipped
+    /// stages are shown as not applicable.)
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub hide_when_skipped: bool,
     /// Present on the Authority Figures stage only.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub figures: Option<FiguresView>,
@@ -515,7 +521,22 @@ struct Stage {
 
 impl Stage {
     fn is_skipped_sub_stage(&self) -> bool {
-        self.sub_stage && matches!(self.state, StageState::Skipped(_))
+        self.hide_when_skipped() && matches!(self.state, StageState::Skipped(_))
+    }
+
+    /// A stage that, once skipped, does not apply and is left out (not
+    /// shown, and passed over): a sub-stage, a stage with a `when` (e.g. one
+    /// that only runs for one Setting Profile), or a built-in stage whose
+    /// source stages did not run.
+    fn hide_when_skipped(&self) -> bool {
+        self.sub_stage
+            || self.step.when.is_some()
+            || matches!(
+                self.kind,
+                StageKind::AuthorityFigures(_)
+                    | StageKind::AuthorityRoles(_)
+                    | StageKind::NotableLocations(_)
+            )
     }
 
     /// The stage's table, for table stages.
@@ -586,6 +607,37 @@ impl Stage {
     }
 }
 
+/// The results choice settings with `chooses_table` preselect: a setting
+/// whose value (or default) is one of its table's results.
+fn preset_selections(content: &ContentSet, values: &SettingValues) -> Selections {
+    let mut out = Selections::new();
+    for def in &content.settings {
+        let SettingKind::Choice {
+            chooses_table: Some(table),
+            default,
+            ..
+        } = &def.kind
+        else {
+            continue;
+        };
+        if def.status != EffectStatus::Active {
+            continue;
+        }
+        let value = match values.get(&def.id) {
+            Some(SettingValue::Choice(v)) => v.clone(),
+            _ => default.clone(),
+        };
+        let result = ResultId::new(value);
+        if content
+            .table(table)
+            .is_some_and(|t| t.result(&result).is_some())
+        {
+            out.insert(table.clone(), result);
+        }
+    }
+    out
+}
+
 /// The stage table recorded in snapshots for a flow stage.
 fn flow_stage_id(step: &StepId) -> TableId {
     TableId::new(format!("{FLOW_STAGE_PREFIX}{step}"))
@@ -603,6 +655,10 @@ pub struct GenerationSession {
     mode: GenerationMode,
     stages: Vec<Stage>,
     cursor: usize,
+    /// Results that settings preselect for choose-only tables (a choice
+    /// setting with `chooses_table`). Used whenever such a table would
+    /// otherwise have to be chosen; an explicit choice still wins.
+    presets: Selections,
 }
 
 impl GenerationSession {
@@ -683,6 +739,7 @@ impl GenerationSession {
             mode,
             stages,
             cursor: 0,
+            presets: Selections::new(),
         })
     }
 
@@ -695,8 +752,44 @@ impl GenerationSession {
         if let Some(value) = settings.remove(&bare_minimum) {
             self.options.bare_minimum_buildings = value == SettingValue::Toggle(true);
         }
+        self.presets = preset_selections(&self.content, &settings);
         self.settings = Arc::new(settings);
         self
+    }
+
+    /// The results settings preselect, by table.
+    pub fn presets(&self) -> &Selections {
+        &self.presets
+    }
+
+    /// Resolves the leading stages whose table a setting preselects (e.g.
+    /// the Setting Profile when a Fantasy Profile is set), so generation
+    /// starts past them. In Incremental the cursor moves past them too.
+    /// Stops at the first stage that is not preselected.
+    pub fn apply_presets(&mut self, faces: &mut dyn FaceSource) -> Result<(), GenerationError> {
+        if self.presets.is_empty() {
+            return Ok(());
+        }
+        let mut index = 0;
+        while let Some(stage) = self.stages.get(index) {
+            let preset = matches!(&stage.kind, StageKind::Table(t) if self.presets.contains_key(t));
+            if !preset || !matches!(stage.state, StageState::Pending) {
+                break;
+            }
+            self.resolve(index, None, &Selections::new(), faces)?;
+            index += 1;
+        }
+        if self.cursor < index {
+            self.cursor = index;
+            while self
+                .stages
+                .get(self.cursor)
+                .is_some_and(Stage::is_skipped_sub_stage)
+            {
+                self.cursor += 1;
+            }
+        }
+        Ok(())
     }
 
     /// The values of content-defined settings this session uses.
@@ -935,6 +1028,7 @@ impl GenerationSession {
             }),
             naming: None,
             sub_stage: stage.sub_stage,
+            hide_when_skipped: stage.hide_when_skipped(),
             figures: None,
             roles: None,
             locations: None,
@@ -1062,6 +1156,7 @@ impl GenerationSession {
             }),
             naming: Some(naming),
             sub_stage: false,
+            hide_when_skipped: false,
             figures: None,
             roles: None,
             locations: None,
@@ -1071,7 +1166,24 @@ impl GenerationSession {
 
     /// Every stage (the One-table presentation).
     pub fn views(&self, view: ViewOptions) -> Result<Vec<StageView>, GenerationError> {
-        (0..self.stages.len()).map(|i| self.view(i, view)).collect()
+        (0..self.stages.len())
+            .map(|i| {
+                let mut stage = self.view(i, view)?;
+                // A pending stage whose condition fails on the results so
+                // far is shown as skipped (and so hidden) until a result
+                // before it makes the condition hold. It is skipped for good
+                // once everything before it is settled.
+                if stage.status == StageStatus::Pending
+                    && self.stages[i].step.when.is_some()
+                    && !self.when_holds(i, &self.tags_before(i))
+                {
+                    stage.status = StageStatus::Skipped;
+                    stage.skipped = Some(SkipReason::NotEligible);
+                    stage.actionable = false;
+                }
+                Ok(stage)
+            })
+            .collect()
     }
 
     // ----- acting -----------------------------------------------------------
@@ -1213,12 +1325,13 @@ impl GenerationSession {
             return Err(GenerationError::StageNotResolved { stage: self.cursor });
         }
         self.cursor += 1;
-        // A sub-stage that does not apply is passed over.
-        while self
-            .stages
-            .get(self.cursor)
-            .is_some_and(Stage::is_skipped_sub_stage)
-        {
+        // A stage that does not apply is skipped now, and passed over when
+        // it is hidden once skipped.
+        while self.cursor < self.stages.len() {
+            self.skip_if_inapplicable(self.cursor);
+            if !self.stages[self.cursor].is_skipped_sub_stage() {
+                break;
+            }
             self.cursor += 1;
         }
         Ok(self.cursor)
@@ -1290,6 +1403,7 @@ impl GenerationSession {
                         tags: self.recorded_names(&res.activated),
                         skipped: false,
                         sub_stage: stage.sub_stage,
+                        hide_when_skipped: stage.hide_when_skipped(),
                         figures: res.figures.as_deref().cloned(),
                         roles: res.roles.as_deref().cloned(),
                         locations: res.locations.as_deref().cloned(),
@@ -1313,6 +1427,7 @@ impl GenerationSession {
                     tags: Vec::new(),
                     skipped: matches!(stage.state, StageState::Skipped(_)),
                     sub_stage: stage.sub_stage,
+                    hide_when_skipped: stage.hide_when_skipped(),
                     figures: None,
                     roles: None,
                     locations: None,
@@ -1838,6 +1953,16 @@ impl GenerationSession {
         let request = Request::new(requested.clone())
             .with_choice(choice)
             .with_modifiers(self.step_modifiers(index, &before));
+        // Settings' preselected results fill in where nothing else chose.
+        let merged;
+        let selections = if self.presets.is_empty() {
+            selections
+        } else {
+            let mut all = self.presets.clone();
+            all.extend(selections.iter().map(|(k, v)| (k.clone(), v.clone())));
+            merged = all;
+            &merged
+        };
         // Nothing is changed unless the stage resolves successfully.
         self.generator()
             .process(&mut state, [request].into(), selections, faces)?;
@@ -2585,6 +2710,7 @@ impl GenerationSession {
             details: None,
             naming: None,
             sub_stage: stage.sub_stage,
+            hide_when_skipped: stage.hide_when_skipped(),
             roles: None,
             locations: None,
             flow: None,
@@ -2854,6 +2980,7 @@ impl GenerationSession {
             details: None,
             naming: None,
             sub_stage: stage.sub_stage,
+            hide_when_skipped: stage.hide_when_skipped(),
             figures: None,
             locations: None,
             flow: None,
@@ -3261,6 +3388,7 @@ impl GenerationSession {
             details: None,
             naming: None,
             sub_stage: stage.sub_stage,
+            hide_when_skipped: stage.hide_when_skipped(),
             figures: None,
             roles: None,
             locations: Some(LocationsView {
@@ -3514,6 +3642,7 @@ impl GenerationSession {
             details: None,
             naming: None,
             sub_stage: stage.sub_stage,
+            hide_when_skipped: stage.hide_when_skipped(),
             figures: None,
             roles: None,
             locations: None,

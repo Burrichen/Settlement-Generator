@@ -6,11 +6,13 @@ import { generation, type GenerationResponse, type SessionView, type StageView }
 import { useApp } from "../app-state";
 import {
   ActiveTags,
+  applies,
   ConfirmBar,
   OutcomeLine,
   ResultList,
   StageRail,
   RollDetails,
+  stagePosition,
   TagList,
 } from "../components/generation";
 import { KeyHints } from "../components/ScreenFrame";
@@ -231,13 +233,14 @@ function AutomaticFlow({
   const stage = view.stages[index];
   const blocked = stage.incomplete !== undefined;
   const choosable = stage.options.some((o) => o.legal);
+  const position = stagePosition(view.stages, index);
 
   return (
     <div className="gen-layout">
       <StageRail stages={view.stages} current={index} />
       <section className="gen-main" aria-labelledby="auto-stage-title">
         <span className="label">
-          Stage {index + 1} of {view.stages.length}
+          Stage {position.number} of {position.total}
         </span>
         <h2 id="auto-stage-title" className="display stage-title">
           {blocked ? `${stage.stage.name} needs a choice` : `Choose a ${stage.stage.name}`}
@@ -271,7 +274,7 @@ function AutomaticFlow({
 
 function StagePanel({
   stage,
-  total,
+  position,
   busy,
   onRoll,
   onChoose,
@@ -279,7 +282,7 @@ function StagePanel({
   onAct,
 }: {
   stage: StageView;
-  total: number;
+  position: { number: number; total: number };
   busy: boolean;
   onRoll: () => void;
   onChoose: (result: string) => void;
@@ -291,7 +294,7 @@ function StagePanel({
   return (
     <section className="gen-main" aria-labelledby={`stage-${stage.index}-title`}>
       <span className="label">
-        Stage {stage.index + 1} of {total}
+        Stage {position.number} of {position.total}
       </span>
       <h2
         ref={heading}
@@ -393,14 +396,14 @@ function IncrementalFlow({
 }) {
   const index = Math.min(view.cursor, view.stages.length - 1);
   const stage = view.stages[index];
-  const last = index === view.stages.length - 1;
+  const last = !view.stages.slice(index + 1).some(applies);
   return (
     <div className="gen-layout">
       <StageRail stages={view.stages} current={index} />
       <div>
         <StagePanel
           stage={stage}
-          total={view.stages.length}
+          position={stagePosition(view.stages, index)}
           busy={busy}
           onRoll={() => onRoll(index)}
           onChoose={(r) => onChoose(index, r)}

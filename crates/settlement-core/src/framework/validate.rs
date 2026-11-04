@@ -146,6 +146,19 @@ impl Validator<'_> {
             if setting.id.as_str().starts_with(APP_SETTING_PREFIX) {
                 self.error(loc.clone(), IssueKind::ReservedSettingId);
             }
+            if let SettingKind::Choice {
+                chooses_table: Some(table),
+                ..
+            } = &setting.kind
+                && !self.tables.contains_key(table)
+            {
+                self.error(
+                    loc.clone(),
+                    IssueKind::MissingTable {
+                        table: table.clone(),
+                    },
+                );
+            }
             let options = setting.kind.options();
             let mut ids = HashSet::new();
             for option in options {

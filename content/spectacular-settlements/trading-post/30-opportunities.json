@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.opportunities",
+      "name": "Opportunities",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "politicalIntrigue",
+          "name": "Political Intrigue",
+          "range": 1,
+          "description": "A locally-known noble has gone missing recently. Perhaps they were traveling through and never made it to their destination? Perhaps no one even saw them leave at all...",
+          "tags": ["ss.tradingPost.opportunities.politicalIntrigue"]
+        },
+        {
+          "id": "missingPerson",
+          "name": "Missing Person",
+          "range": 2,
+          "description": "A local has gone missing, possibly a child, and rumors abound. Some talk of monsters, but their whispers are quickly dismissed as fairy tales. Others have theories, but none have yielded fruit.",
+          "tags": ["ss.tradingPost.opportunities.missingPerson"]
+        },
+        {
+          "id": "monster",
+          "name": "Monster",
+          "range": 3,
+          "description": "A monster has been causing trouble for the locals. Someone in the trading post is asking for help to deal with it.",
+          "tags": ["ss.tradingPost.opportunities.monster"]
+        },
+        {
+          "id": "guardDuty",
+          "name": "Guard Duty",
+          "range": 4,
+          "description": "The local constabulary are in need of more hands for an upcoming event, and capable adventurers are prime candidates.",
+          "tags": ["ss.tradingPost.opportunities.guardDuty"]
+        },
+        {
+          "id": "transportation",
+          "name": "Transportation",
+          "range": 5,
+          "description": "A visitor feels they’ve outstayed their welcome, or urgently needs to leave, for some reason. They need help leaving and getting to their destination.",
+          "tags": ["ss.tradingPost.opportunities.transportation"]
+        },
+        {
+          "id": "acquisition",
+          "name": "Acquisition",
+          "range": 6,
+          "description": "Rumours abound that an item of value is hidden nearby, perhaps one tied to the trading post’s history. Several locals are interested in acquiring it, but not all for the same reason.",
+          "tags": ["ss.tradingPost.opportunities.acquisition"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.opportunities.politicalIntrigue",
+      "name": "Political Intrigue"
+    },
+    {
+      "id": "ss.tradingPost.opportunities.missingPerson",
+      "name": "Missing Person"
+    },
+    {
+      "id": "ss.tradingPost.opportunities.monster",
+      "name": "Monster"
+    },
+    {
+      "id": "ss.tradingPost.opportunities.guardDuty",
+      "name": "Guard Duty"
+    },
+    {
+      "id": "ss.tradingPost.opportunities.transportation",
+      "name": "Transportation"
+    },
+    {
+      "id": "ss.tradingPost.opportunities.acquisition",
+      "name": "Acquisition"
+    }
+  ]
+}

@@ -997,7 +997,10 @@ fn content_setting_values_persist_and_reach_generation() {
         .iter()
         .map(|v| v.setting.id.to_string())
         .collect();
-    assert_eq!(ids, ["setting.bareMinimumBuildings"]);
+    assert_eq!(
+        ids,
+        ["setting.bareMinimumBuildings", "setting.fantasyProfile"]
+    );
     assert!(
         service
             .set_content_setting(&"setting.none".into(), SettingValue::Toggle(true))

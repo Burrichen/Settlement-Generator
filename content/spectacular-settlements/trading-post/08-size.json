@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.size",
+      "name": "Size",
+      "description": "Modified by Visitor Traffic.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "verySmall",
+          "name": "Very Small",
+          "range": [1, 2],
+          "description": "Up to 20 standing structures.",
+          "tags": ["ss.tradingPost.size.verySmall"]
+        },
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [3, 6],
+          "description": "Up to 40 standing structures.",
+          "tags": ["ss.tradingPost.size.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "Up to 60 standing structures.",
+          "tags": ["ss.tradingPost.size.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 18],
+          "description": "Up to 80 standing structures.",
+          "tags": ["ss.tradingPost.size.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": [19, 20],
+          "description": "Up to 100 standing structures.",
+          "tags": ["ss.tradingPost.size.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.size.verySmall",
+      "name": "Very Small"
+    },
+    {
+      "id": "ss.tradingPost.size.small",
+      "name": "Small"
+    },
+    {
+      "id": "ss.tradingPost.size.medium",
+      "name": "Medium"
+    },
+    {
+      "id": "ss.tradingPost.size.large",
+      "name": "Large"
+    },
+    {
+      "id": "ss.tradingPost.size.veryLarge",
+      "name": "Very Large"
+    }
+  ]
+}

@@ -127,12 +127,26 @@ export function ResultList({
   );
 }
 
-/** Vertical list of every stage with its status; the current one marked. */
-/** A sub-stage that was skipped does not apply, and is not shown. */
+/**
+ * A skipped sub-stage, conditional stage or built-in stage does not apply,
+ * and is not shown.
+ */
 export function applies(stage: StageView): boolean {
-  return !(stage.sub_stage && stage.status === "skipped");
+  return !((stage.sub_stage || stage.hide_when_skipped) && stage.status === "skipped");
 }
 
+/** Where the stage at `index` falls among the stages that apply, from 1. */
+export function stagePosition(
+  stages: StageView[],
+  index: number,
+): { number: number; total: number } {
+  return {
+    number: stages.slice(0, index).filter(applies).length + 1,
+    total: stages.filter(applies).length,
+  };
+}
+
+/** Vertical list of every stage with its status; the current one marked. */
 export function StageRail({ stages, current }: { stages: StageView[]; current: number }) {
   return (
     <ol className="stage-rail" aria-label="Stages">

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.condition",
+      "name": "Condition",
+      "description": "The state of the buildings, roads, and other elements of the trading post.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ramshackle",
+          "name": "Ramshackle",
+          "range": [1, 2],
+          "description": "A few of the buildings look to be falling down. There are no formal roads, only trodden paths. (-6 to population wealth roll)",
+          "tags": ["ss.tradingPost.condition.ramshackle"]
+        },
+        {
+          "id": "poor",
+          "name": "Poor",
+          "range": [3, 6],
+          "description": "The buildings and surroundings are rough and dirty. Roads are uneven dirt and dust. (-3 to population wealth roll)",
+          "tags": ["ss.tradingPost.condition.poor"]
+        },
+        {
+          "id": "fair",
+          "name": "Fair",
+          "range": [7, 14],
+          "description": "The buildings are clean and sparsely decorated. Roads are flattened earth, possibly with gravel. (+0 to population wealth roll)",
+          "tags": ["ss.tradingPost.condition.fair"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [15, 18],
+          "description": "Most of the structures are exceptionally well kept and moderately decorated. Roads are cobblestone or, perhaps, cheap brick. (+3 to population wealth roll)",
+          "tags": ["ss.tradingPost.condition.good"]
+        },
+        {
+          "id": "immaculate",
+          "name": "Immaculate",
+          "range": [19, 20],
+          "description": "The shops and houses are spotless, and well-adorned with tasteful decorations. Roads are made of fine, smooth, well-placed flagstones. (+6 to population wealth roll)",
+          "tags": ["ss.tradingPost.condition.immaculate"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.condition.ramshackle",
+      "name": "Ramshackle",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.populationWealth",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.condition.poor",
+      "name": "Poor",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.condition.fair",
+      "name": "Fair"
+    },
+    {
+      "id": "ss.tradingPost.condition.good",
+      "name": "Good",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.condition.immaculate",
+      "name": "Immaculate",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.populationWealth",
+          "amount": 6
+        }
+      ]
+    }
+  ]
+}

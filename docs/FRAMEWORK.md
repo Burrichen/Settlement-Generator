@@ -231,6 +231,21 @@ content setting is kept, and changes are mirrored to the old application
 setting. A generation records its value in its options, as saved
 generations always have, so old and new saves read the same way.
 
+**Preselecting a choose-only table.** A `choice` setting can name a table
+in `chooses_table`. An option whose ID is one of that table's results is
+then used as the table's choice: a generation starts with that table's stage
+already resolved (Incremental starts on the stage after it, Automatic does
+not stop for it), and wherever else the table would need choosing the
+setting supplies the result. An explicit choice still wins, so the stage can
+be changed for one settlement. Any other option (e.g. "Choose") leaves the
+table to be chosen as usual. Validation reports a missing table
+(`missing_table`). Settings shows such a setting, or any choice with more
+than four options, as a dropdown.
+
+**Fantasy Profile** (`setting.fantasyProfile`, in `content/00-pipeline.json`)
+preselects the Setting Profile (`table.settingProfile`). It defaults to
+Choose.
+
 ## 6. Flows
 
 A flow is a named list of steps:
@@ -317,6 +332,14 @@ as before.
   object) is shown under the stage in both interfaces, and saved with the
   generation.
 - `sub_stage: true` shows a stage with the one before it, as before.
+- A stage that does not apply is left out when skipped: it is not shown,
+  Incremental passes over it, and saved settlements omit it. This holds for
+  a skipped sub-stage, a stage with a `when` (e.g. the stages of one Setting
+  Profile), and a built-in stage whose source stages did not run. Other
+  skipped stages are shown as not applicable. A stage whose `when` fails on
+  the results so far is shown as skipped (and hidden) before it is reached,
+  and "Stage N of M" counts only the stages shown. Reopening a saved
+  settlement does not count such hidden stages as a change.
 
 A flow stage is invalidated (and shown with its previous result) when the
 tags or stored results it ran on change, and skipped or reopened when its

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.dangerType",
+      "name": "Danger Type",
+      "description": "What danger tends to be, when it does occur.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "suspiciousLocals",
+          "name": "Suspicious Locals",
+          "range": [1, 2],
+          "description": "Outsiders are often considered untrustworthy, and may be prime suspects in the event of crime.",
+          "tags": ["ss.tradingPost.dangerType.suspiciousLocals"]
+        },
+        {
+          "id": "raids",
+          "name": "Raids",
+          "range": [3, 4],
+          "description": "The trading post is often raided by nearby groups of bandits, or packs of marauding creatures.",
+          "tags": ["ss.tradingPost.dangerType.raids"]
+        },
+        {
+          "id": "monster",
+          "name": "Monster",
+          "range": [5, 6],
+          "description": "The trading post is terrorized by a monster that roams the local area.",
+          "tags": ["ss.tradingPost.dangerType.monster"]
+        },
+        {
+          "id": "environmental",
+          "name": "Environmental",
+          "range": [7, 8],
+          "description": "The environment in which the trading post exists is hazardous. It could be subject to frequent earthquakes, volcanoes, floods, mudslides, avalanches, frequent storms, or the like.",
+          "tags": ["ss.tradingPost.dangerType.environmental"]
+        },
+        {
+          "id": "cult",
+          "name": "Cult",
+          "range": [9, 10],
+          "description": "There is a cult within the trading post. The cult may be known, and present a direct form of threat, or they may be unknown, and the dangers they present may seem to stem from another source, or be unrelated.",
+          "tags": ["ss.tradingPost.dangerType.cult"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.dangerType.suspiciousLocals",
+      "name": "Suspicious Locals"
+    },
+    {
+      "id": "ss.tradingPost.dangerType.raids",
+      "name": "Raids"
+    },
+    {
+      "id": "ss.tradingPost.dangerType.monster",
+      "name": "Monster"
+    },
+    {
+      "id": "ss.tradingPost.dangerType.environmental",
+      "name": "Environmental"
+    },
+    {
+      "id": "ss.tradingPost.dangerType.cult",
+      "name": "Cult"
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.shops",
+      "name": "Shops",
+      "description": "Rolled once per shop location. B = Basic, S = Specialty, E = Exotic. A double is simply another location.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "range": [1, 4],
+          "description": "(Basic) Bakes and sells fresh bread and, possibly, pastries.",
+          "tags": ["ss.tradingPost.shops.baker"]
+        },
+        {
+          "id": "butcher",
+          "name": "Butcher",
+          "range": [5, 8],
+          "description": "(Basic) Processes and sells fresh and/or dried meat.",
+          "tags": ["ss.tradingPost.shops.butcher"]
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": [9, 12],
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc.",
+          "tags": ["ss.tradingPost.shops.cooper"]
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": [13, 16],
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs.",
+          "tags": ["ss.tradingPost.shops.carpenter"]
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "range": [17, 24],
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends.",
+          "tags": ["ss.tradingPost.shops.generalStore"]
+        },
+        {
+          "id": "herbalist",
+          "name": "Herbalist",
+          "range": [25, 28],
+          "description": "(Basic) Sells common herbs and natural, non-magical remedies.",
+          "tags": ["ss.tradingPost.shops.herbalist"]
+        },
+        {
+          "id": "smithy",
+          "name": "Smithy",
+          "range": [29, 36],
+          "description": "(Basic) Sells and crafts metal tools and equipment, including very basic weapons and armor.",
+          "tags": ["ss.tradingPost.shops.smithy"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": [37, 40],
+          "description": "(Basic) Makes and sells of clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.tradingPost.shops.tailor"]
+        },
+        {
+          "id": "tanner",
+          "name": "Tanner/Taxidermist",
+          "range": [41, 44],
+          "description": "(Basic) Processes animal hides for practical or ornamental purposes.",
+          "tags": ["ss.tradingPost.shops.tanner"]
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": [45, 48],
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc.",
+          "tags": ["ss.tradingPost.shops.thatcher"]
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": [49, 52],
+          "description": "(Basic) Builds carts and wagons.",
+          "tags": ["ss.tradingPost.shops.wainwright"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": [53, 56],
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.tradingPost.shops.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": [57, 59],
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.tradingPost.shops.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": [60, 62],
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.tradingPost.shops.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": [63, 65],
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.tradingPost.shops.bankAndExchange"]
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": [66, 68],
+          "description": "(Specialty) Makes and mends boots and shoes.",
+          "tags": ["ss.tradingPost.shops.cobbler"]
+        },
+        {
+          "id": "foundry",
+          "name": "Foundry/Smelting",
+          "range": [69, 71],
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.tradingPost.shops.foundry"]
+        },
+        {
+          "id": "mill",
+          "name": "Mill",
+          "range": [72, 74],
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.tradingPost.shops.mill"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": [75, 77],
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.tradingPost.shops.textileProduction"]
+        },
+        {
+          "id": "shipwright",
+          "name": "Shipwright",
+          "range": [78, 80],
+          "description": "(Specialty) Builds and launches boats and/or ships. Only next to a significant source of water (Coastal or River); otherwise rerolled.",
+          "tags": ["ss.tradingPost.shops.shipwright"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.tradingPost.environment.coastal"
+              },
+              {
+                "has_tag": "ss.tradingPost.environment.river"
+              }
+            ]
+          }
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": [81, 82],
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.tradingPost.shops.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": [83, 84],
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.tradingPost.shops.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibations",
+          "name": "Rare Libations & Fare",
+          "range": [85, 86],
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.tradingPost.shops.rareLibations"]
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": [87, 88],
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region.",
+          "tags": ["ss.tradingPost.shops.rareTradeGoods"]
+        },
+        {
+          "id": "magicArmor",
+          "name": "Magic Shop - Armor",
+          "range": [89, 90],
+          "description": "(Exotic) Sells magical items with a focus on armor and protective equipment.",
+          "tags": ["ss.tradingPost.shops.magicArmor"]
+        },
+        {
+          "id": "magicBooks",
+          "name": "Magic Shop - Books",
+          "range": [91, 92],
+          "description": "(Exotic) Sells magical items with a focus on literature, arcane tomes and lore. They may also carry books and documents (such as maps and records) of a rare and significant nature, though non-magical.",
+          "tags": ["ss.tradingPost.shops.magicBooks"]
+        },
+        {
+          "id": "magicClothing",
+          "name": "Magic Shop - Clothing",
+          "range": [93, 94],
+          "description": "(Exotic) Sells magical items with a focus on clothing of all types which bear magical properties.",
+          "tags": ["ss.tradingPost.shops.magicClothing"]
+        },
+        {
+          "id": "magicJewelry",
+          "name": "Magic Shop - Jewelry",
+          "range": [95, 96],
+          "description": "(Exotic) Sells magical items with a focus on enchanted, or otherwise magically imbued, jewelry.",
+          "tags": ["ss.tradingPost.shops.magicJewelry"]
+        },
+        {
+          "id": "magicWeapons",
+          "name": "Magic Shop - Weapons",
+          "range": [97, 98],
+          "description": "(Exotic) Sells magical items with a focus on weapons with mystic properties and, perhaps, shields.",
+          "tags": ["ss.tradingPost.shops.magicWeapons"]
+        },
+        {
+          "id": "magicCuriosities",
+          "name": "Magic Shop - Miscellaneous & Curiosities",
+          "range": [99, 100],
+          "description": "(Exotic) Procures and sells magical items with a focus on strange and rare artifacts of a wondrous or intriguing nature.",
+          "tags": ["ss.tradingPost.shops.magicCuriosities"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.shops.baker",
+      "name": "Baker"
+    },
+    {
+      "id": "ss.tradingPost.shops.butcher",
+      "name": "Butcher"
+    },
+    {
+      "id": "ss.tradingPost.shops.cooper",
+      "name": "Cooper"
+    },
+    {
+      "id": "ss.tradingPost.shops.carpenter",
+      "name": "Carpenter"
+    },
+    {
+      "id": "ss.tradingPost.shops.generalStore",
+      "name": "General Store"
+    },
+    {
+      "id": "ss.tradingPost.shops.herbalist",
+      "name": "Herbalist"
+    },
+    {
+      "id": "ss.tradingPost.shops.smithy",
+      "name": "Smithy"
+    },
+    {
+      "id": "ss.tradingPost.shops.tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "ss.tradingPost.shops.tanner",
+      "name": "Tanner/Taxidermist"
+    },
+    {
+      "id": "ss.tradingPost.shops.thatcher",
+      "name": "Thatcher"
+    },
+    {
+      "id": "ss.tradingPost.shops.wainwright",
+      "name": "Wainwright"
+    },
+    {
+      "id": "ss.tradingPost.shops.weaver",
+      "name": "Weaver"
+    },
+    {
+      "id": "ss.tradingPost.shops.alchemist",
+      "name": "Alchemist"
+    },
+    {
+      "id": "ss.tradingPost.shops.artist",
+      "name": "Artist"
+    },
+    {
+      "id": "ss.tradingPost.shops.bankAndExchange",
+      "name": "Bank & Exchange"
+    },
+    {
+      "id": "ss.tradingPost.shops.cobbler",
+      "name": "Cobbler"
+    },
+    {
+      "id": "ss.tradingPost.shops.foundry",
+      "name": "Foundry/Smelting"
+    },
+    {
+      "id": "ss.tradingPost.shops.mill",
+      "name": "Mill"
+    },
+    {
+      "id": "ss.tradingPost.shops.textileProduction",
+      "name": "Textile Production"
+    },
+    {
+      "id": "ss.tradingPost.shops.shipwright",
+      "name": "Shipwright"
+    },
+    {
+      "id": "ss.tradingPost.shops.rareBotanicals",
+      "name": "Rare Botanicals"
+    },
+    {
+      "id": "ss.tradingPost.shops.luxuryFurnishings",
+      "name": "Luxury Furnishings"
+    },
+    {
+      "id": "ss.tradingPost.shops.rareLibations",
+      "name": "Rare Libations & Fare"
+    },
+    {
+      "id": "ss.tradingPost.shops.rareTradeGoods",
+      "name": "Rare Trade Goods"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicArmor",
+      "name": "Magic Shop - Armor"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicBooks",
+      "name": "Magic Shop - Books"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicClothing",
+      "name": "Magic Shop - Clothing"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicJewelry",
+      "name": "Magic Shop - Jewelry"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicWeapons",
+      "name": "Magic Shop - Weapons"
+    },
+    {
+      "id": "ss.tradingPost.shops.magicCuriosities",
+      "name": "Magic Shop - Miscellaneous & Curiosities"
+    }
+  ]
+}

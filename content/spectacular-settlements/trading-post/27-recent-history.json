@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.recentHistory",
+      "name": "Recent History",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "benevolenceOfYesteryear",
+          "name": "Benevolence of Yesteryear",
+          "range": 1,
+          "description": "The trading post was run by a benevolent leader, or council, but a corrupt individual, or group, has taken over.",
+          "tags": ["ss.tradingPost.recentHistory.benevolenceOfYesteryear"]
+        },
+        {
+          "id": "construction",
+          "name": "Construction",
+          "range": 2,
+          "description": "Certain parts of the trading post have been (or currently are) under construction. Tools, scaffolding, and other such elements can still be seen, as well as individuals working throughout the day.",
+          "tags": ["ss.tradingPost.recentHistory.construction"]
+        },
+        {
+          "id": "crimeCentral",
+          "name": "Crime Central",
+          "range": 3,
+          "description": "Some of the older population remember when the trading post was run by a criminal organization, but they were ousted some time ago.",
+          "tags": ["ss.tradingPost.recentHistory.crimeCentral"]
+        },
+        {
+          "id": "neutrality",
+          "name": "Neutrality",
+          "range": 4,
+          "description": "The trading post has always professed neutrality, setting itself apart as a safe haven, even if pressured by nearby settlements.",
+          "tags": ["ss.tradingPost.recentHistory.neutrality"]
+        },
+        {
+          "id": "popularProducer",
+          "name": "Popular Producer",
+          "range": 5,
+          "description": "The trading post was known for the production of a unique and/or popular item or service, which is now unavailable or no longer in demand.",
+          "tags": ["ss.tradingPost.recentHistory.popularProducer"]
+        },
+        {
+          "id": "wartorn",
+          "name": "Wartorn",
+          "range": 6,
+          "description": "The trading post was occupied by military forces, and suffered damages, during wartime in the recent past.",
+          "tags": ["ss.tradingPost.recentHistory.wartorn"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.recentHistory.benevolenceOfYesteryear",
+      "name": "Benevolence of Yesteryear"
+    },
+    {
+      "id": "ss.tradingPost.recentHistory.construction",
+      "name": "Construction"
+    },
+    {
+      "id": "ss.tradingPost.recentHistory.crimeCentral",
+      "name": "Crime Central"
+    },
+    {
+      "id": "ss.tradingPost.recentHistory.neutrality",
+      "name": "Neutrality"
+    },
+    {
+      "id": "ss.tradingPost.recentHistory.popularProducer",
+      "name": "Popular Producer"
+    },
+    {
+      "id": "ss.tradingPost.recentHistory.wartorn",
+      "name": "Wartorn"
+    }
+  ]
+}

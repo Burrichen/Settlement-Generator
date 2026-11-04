@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "flows": [
+    {
+      "id": "flow.ss.tradingPost.shops",
+      "name": "Trading Post Shops",
+      "description": "Spectacular Settlements, Trading Posts, Step 3: the default General Store, then 1d8 + (by size) shop locations, each rolled on the Shops table.",
+      "steps": [
+        {
+          "id": "defaultShop",
+          "kind": "set_result",
+          "table": "table.ss.tradingPost.shops",
+          "result": "generalStore",
+          "name": "Default: General Store"
+        },
+        {
+          "id": "shopDice",
+          "kind": "secondary_roll",
+          "label": "Shop locations (1d8)",
+          "dice": "1d8"
+        },
+        {
+          "id": "shopCount",
+          "kind": "branch",
+          "name": "Shop locations by size",
+          "cases": [
+            {
+              "name": "Very Small: 1d8 + 2",
+              "when": {
+                "has_tag": "ss.tradingPost.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "shops-verySmall",
+                  "kind": "repeat",
+                  "name": "Shop locations",
+                  "count": {
+                    "value_of": {
+                      "step": "shopDice",
+                      "add": 2
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "shop-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.shops",
+                      "name": "Shop"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small: 1d8 + 4",
+              "when": {
+                "has_tag": "ss.tradingPost.size.small"
+              },
+              "steps": [
+                {
+                  "id": "shops-small",
+                  "kind": "repeat",
+                  "name": "Shop locations",
+                  "count": {
+                    "value_of": {
+                      "step": "shopDice",
+                      "add": 4
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "shop-small",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.shops",
+                      "name": "Shop"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Medium: 1d8 + 6",
+              "when": {
+                "has_tag": "ss.tradingPost.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "shops-medium",
+                  "kind": "repeat",
+                  "name": "Shop locations",
+                  "count": {
+                    "value_of": {
+                      "step": "shopDice",
+                      "add": 6
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "shop-medium",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.shops",
+                      "name": "Shop"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large: 1d8 + 8",
+              "when": {
+                "has_tag": "ss.tradingPost.size.large"
+              },
+              "steps": [
+                {
+                  "id": "shops-large",
+                  "kind": "repeat",
+                  "name": "Shop locations",
+                  "count": {
+                    "value_of": {
+                      "step": "shopDice",
+                      "add": 8
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "shop-large",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.shops",
+                      "name": "Shop"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Very Large: 1d8 + 10",
+              "when": {
+                "has_tag": "ss.tradingPost.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "shops-veryLarge",
+                  "kind": "repeat",
+                  "name": "Shop locations",
+                  "count": {
+                    "value_of": {
+                      "step": "shopDice",
+                      "add": 10
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "shop-veryLarge",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.shops",
+                      "name": "Shop"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.tradingPost.services",
+      "name": "Trading Post Services",
+      "description": "Spectacular Settlements, Trading Posts, Step 3: the default Inn (and a Tavern for the Food & Drink specialty), then 1d6 + (by size) service locations, each rolled on the Services table.",
+      "steps": [
+        {
+          "id": "defaultInn",
+          "kind": "set_result",
+          "table": "table.ss.tradingPost.services",
+          "result": "inn",
+          "name": "Default: Inn"
+        },
+        {
+          "id": "defaultTavern",
+          "kind": "set_result",
+          "table": "table.ss.tradingPost.services",
+          "result": "tavern",
+          "name": "Default: Tavern (Food & Drink)",
+          "when": {
+            "has_tag": "ss.tradingPost.specialty.foodAndDrink"
+          }
+        },
+        {
+          "id": "serviceDice",
+          "kind": "secondary_roll",
+          "label": "Service locations (1d6)",
+          "dice": "1d6"
+        },
+        {
+          "id": "serviceCount",
+          "kind": "branch",
+          "name": "Service locations by size",
+          "cases": [
+            {
+              "name": "Very Small: 1d6",
+              "when": {
+                "has_tag": "ss.tradingPost.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "services-verySmall",
+                  "kind": "repeat",
+                  "name": "Service locations",
+                  "count": {
+                    "value_of": {
+                      "step": "serviceDice",
+                      "add": 0
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "service-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.services",
+                      "name": "Service"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small: 1d6 + 1",
+              "when": {
+                "has_tag": "ss.tradingPost.size.small"
+              },
+              "steps": [
+                {
+                  "id": "services-small",
+                  "kind": "repeat",
+                  "name": "Service locations",
+                  "count": {
+                    "value_of": {
+                      "step": "serviceDice",
+                      "add": 1
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "service-small",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.services",
+                      "name": "Service"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Medium: 1d6 + 3",
+              "when": {
+                "has_tag": "ss.tradingPost.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "services-medium",
+                  "kind": "repeat",
+                  "name": "Service locations",
+                  "count": {
+                    "value_of": {
+                      "step": "serviceDice",
+                      "add": 3
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "service-medium",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.services",
+                      "name": "Service"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large: 1d6 + 5",
+              "when": {
+                "has_tag": "ss.tradingPost.size.large"
+              },
+              "steps": [
+                {
+                  "id": "services-large",
+                  "kind": "repeat",
+                  "name": "Service locations",
+                  "count": {
+                    "value_of": {
+                      "step": "serviceDice",
+                      "add": 5
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "service-large",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.services",
+                      "name": "Service"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Very Large: 1d6 + 7",
+              "when": {
+                "has_tag": "ss.tradingPost.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "services-veryLarge",
+                  "kind": "repeat",
+                  "name": "Service locations",
+                  "count": {
+                    "value_of": {
+                      "step": "serviceDice",
+                      "add": 7
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "service-veryLarge",
+                      "kind": "roll",
+                      "table": "table.ss.tradingPost.services",
+                      "name": "Service"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

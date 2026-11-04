@@ -549,11 +549,12 @@ impl GenerateScreen {
     ) {
         let s = &ctx.styles;
         let stage = self.view.stages[index].clone();
+        // Hidden skipped stages are not counted.
+        let shown = |st: &&StageView| !(st.hide_when_skipped && st.status == StageStatus::Skipped);
+        let number = self.view.stages[..index].iter().filter(shown).count() + 1;
+        let total = self.view.stages.iter().filter(shown).count();
         let mut top = vec![
-            Line::styled(
-                format!("STAGE {} OF {}", index + 1, self.view.stages.len()),
-                s.dim(),
-            ),
+            Line::styled(format!("STAGE {number} OF {total}"), s.dim()),
             Line::styled(heading, s.title()),
         ];
         if let Some(locations) = &stage.locations {
@@ -767,6 +768,7 @@ impl GenerateScreen {
                 source: (stage.table.name != stage.stage.name).then(|| stage.table.name.clone()),
                 tags: stage.tags.clone(),
                 sub_stage: stage.sub_stage,
+                hidden: stage.hide_when_skipped && stage.status == StageStatus::Skipped,
                 // Roles are shown with each Authority Figure instead.
                 skipped: stage.status == StageStatus::Skipped || stage.roles.is_some(),
                 figures: stage.figures.as_ref().and_then(|f| f.record.clone()),
@@ -1705,10 +1707,11 @@ impl Screen for GenerateScreen {
                 self.open_settlement_name_parts(index);
             }
             KeyCode::Char('n') | KeyCode::Right if !automatic => {
-                let last = index + 1 == self.view.stages.len();
+                // Hidden stages at the end are passed over, so the cursor
+                // may leave the last stage shown.
                 if self.act(ctx, |a, _| a.session.advance()) {
                     self.rows = RowsState::default();
-                    if last {
+                    if self.view.cursor >= self.view.stages.len() {
                         self.phase = Phase::Completed;
                     }
                 }

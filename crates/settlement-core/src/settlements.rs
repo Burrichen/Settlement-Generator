@@ -90,6 +90,10 @@ pub struct SnapshotStage {
     /// [`SequenceStep::sub_stage`](crate::content::SequenceStep::sub_stage)).
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub sub_stage: bool,
+    /// When skipped, the stage does not apply and is left out of the
+    /// settlement (see `StageView::hide_when_skipped`). Older saves lack it.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub hide_when_skipped: bool,
     /// The Notable Locations stage's record (only on that stage): counts,
     /// districts and every location with its rolls and source.
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -122,6 +126,31 @@ impl From<GenerationLog> for SettlementSnapshot {
 }
 
 impl SettlementSnapshot {
+    /// Whether `other` records the same settlement. Stages that are skipped
+    /// and hidden in either (and their skip events) are left out, so content
+    /// that adds such stages does not make a saved settlement look edited.
+    pub fn same_settlement(&self, other: &SettlementSnapshot) -> bool {
+        let hidden: std::collections::BTreeSet<TableId> = self
+            .stages
+            .iter()
+            .chain(&other.stages)
+            .filter(|s| s.skipped && (s.sub_stage || s.hide_when_skipped))
+            .map(|s| s.stage_table.clone())
+            .collect();
+        let visible = |snapshot: &SettlementSnapshot| {
+            let mut out = snapshot.clone();
+            out.stages.retain(|s| !hidden.contains(&s.stage_table));
+            for stage in &mut out.stages {
+                stage.hide_when_skipped = false;
+            }
+            out.log.events.retain(|e| {
+                !matches!(e, GenerationEvent::TableSkipped { table, .. } if hidden.contains(&table.id))
+            });
+            out
+        };
+        visible(self) == visible(other)
+    }
+
     /// The Notable Locations, as generated.
     pub fn notable_locations(&self) -> Option<&NotableLocations> {
         self.stages.iter().find_map(|s| s.locations.as_ref())
@@ -165,6 +194,7 @@ impl SettlementSnapshot {
                         tags: r.tags.clone(),
                         skipped: false,
                         sub_stage: false,
+                        hide_when_skipped: false,
                         figures: None,
                         roles: None,
                         locations: None,

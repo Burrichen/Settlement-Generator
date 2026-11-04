@@ -38,7 +38,14 @@ fn generation_round_trip_through_the_service() {
     let revised = s.save_edit(&edit, "Riverside II").unwrap();
     assert_eq!(revised.summary.name, "Riverside II");
     assert_eq!(
-        revised.stages.len(),
+        revised
+            .stages
+            .iter()
+            .filter(|s| {
+                let t = s.stage.stage_table.as_str();
+                !(t.starts_with("table.ss.") || t.starts_with("step.ssTradingPost"))
+            })
+            .count(),
         19,
         "thirteen table stages, Name, three Authority sub-stages, Authority Figures and Notable Locations"
     );

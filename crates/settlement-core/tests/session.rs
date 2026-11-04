@@ -51,6 +51,12 @@ fn content() -> ContentSet {
     bundled_content().unwrap()
 }
 
+/// Whether a stage belongs to the generic pipeline rather than the
+/// Spectacular Settlements profile (covered by `spectacular_settlements.rs`).
+fn generic(id: &str) -> bool {
+    !(id.starts_with("table.ss.") || id.starts_with("step.ssTradingPost"))
+}
+
 fn none() -> ScriptedFaces {
     ScriptedFaces::new([])
 }
@@ -137,7 +143,11 @@ fn automatic_resolves_every_stage_with_real_dice() {
     .unwrap();
     assert!(s.is_complete());
     let views = s.views(ViewOptions::default()).unwrap();
-    let names: Vec<_> = views.iter().map(|v| v.stage.name.as_str()).collect();
+    let names: Vec<_> = views
+        .iter()
+        .filter(|v| generic(v.stage.id.as_str()))
+        .map(|v| v.stage.name.as_str())
+        .collect();
     assert_eq!(
         names,
         [
@@ -168,7 +178,11 @@ fn automatic_resolves_every_stage_with_real_dice() {
     let ordon = NAMED_REGIONS.contains(&views[REGION].result.as_ref().unwrap().name.as_str());
     let mut sub_rolls = 0;
     for v in &views {
-        if v.index == NAME && !ordon {
+        if !generic(v.stage.id.as_str()) {
+            // Another profile's stage: skipped and hidden.
+            assert_eq!(v.status, StageStatus::Skipped, "{}", v.stage.name);
+            assert!(v.hide_when_skipped, "{}", v.stage.name);
+        } else if v.index == NAME && !ordon {
             assert_eq!(v.skipped, Some(SkipReason::NoNamingScheme));
         } else if v.sub_stage && v.status == StageStatus::Skipped {
             assert_eq!(v.skipped, Some(SkipReason::NotEligible));
@@ -251,7 +265,7 @@ fn incremental_presents_one_stage_at_a_time() {
     let first = view(&s, PROFILE);
     assert!(first.current && first.actionable);
     assert!(!first.can_roll, "Setting Profile is chosen, not rolled");
-    assert_eq!(legal(&first).len(), 6);
+    assert_eq!(legal(&first).len(), 7);
     assert!(!view(&s, REGION).actionable);
 
     // Only the current stage can be acted on, and it must be done first.
@@ -413,6 +427,10 @@ fn one_table_allows_any_stage_and_rechecks_dependants() {
     let c = content();
     let mut s = session(&c, GenerationMode::OneTable, false);
     let views = s.views(ViewOptions::default()).unwrap();
+    let views: Vec<_> = views
+        .into_iter()
+        .filter(|v| generic(v.stage.id.as_str()))
+        .collect();
     assert_eq!(views.len(), 19);
     assert!(views.iter().all(|v| v.actionable));
 
@@ -655,7 +673,14 @@ fn session_snapshot_includes_active_tags_only_with_tag_view() {
         })
         .unwrap();
     assert_eq!(tagged.active_tags.unwrap()[0].id.as_str(), "world.kurovia");
-    assert_eq!(tagged.stages.len(), 19);
+    assert_eq!(
+        tagged
+            .stages
+            .iter()
+            .filter(|v| generic(v.stage.id.as_str()))
+            .count(),
+        19
+    );
 }
 
 #[test]
@@ -777,7 +802,11 @@ fn saved_settlement(c: &ContentSet) -> SettlementSnapshot {
 fn snapshots_record_every_stage_for_display() {
     let snapshot = saved_settlement(&content());
     let stages = snapshot.display_stages();
-    let labels: Vec<_> = stages.iter().map(|s| s.label.as_str()).collect();
+    let labels: Vec<_> = stages
+        .iter()
+        .filter(|s| generic(s.stage_table.as_str()))
+        .map(|s| s.label.as_str())
+        .collect();
     assert_eq!(
         labels,
         [
@@ -806,7 +835,8 @@ fn snapshots_record_every_stage_for_display() {
     let ordon = NAMED_REGIONS.contains(&stages[REGION].result.as_ref().unwrap().name.as_str());
     assert!(stages.iter().enumerate().all(|(i, s)| s.result.is_some()
         || (i == NAME && !ordon && s.skipped)
-        || (s.sub_stage && s.skipped)));
+        || (s.sub_stage && s.skipped)
+        || (!generic(s.stage_table.as_str()) && s.skipped && s.hide_when_skipped)));
     assert_eq!(stages[0].tags[0].id.as_str(), "world.kurovia");
 }
 
