@@ -298,6 +298,11 @@ button {
   border-top: 1px solid var(--border);
 }
 
+.setting-row .setting-select {
+  width: auto;
+  min-width: 180px;
+}
+
 .setting-name {
   font-weight: 600;
 }

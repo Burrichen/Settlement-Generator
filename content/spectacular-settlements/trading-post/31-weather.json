@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.weather",
+      "name": "Weather",
+      "description": "The weather when the adventurers arrive. Roll again whenever it should change.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [1, 2],
+          "description": "Unseasonably excellent. A warm day in winter, a cool day in summer, etc.",
+          "tags": ["ss.tradingPost.weather.good"]
+        },
+        {
+          "id": "mild",
+          "name": "Mild",
+          "range": [3, 6],
+          "description": "The best kind of day that could be expected for the season. Rain or snow is light, if at all. Winds are soft.",
+          "tags": ["ss.tradingPost.weather.mild"]
+        },
+        {
+          "id": "fair",
+          "name": "Fair",
+          "range": [7, 14],
+          "description": "A normal day for the season. Rain, snow or wind are average and manageable.",
+          "tags": ["ss.tradingPost.weather.fair"]
+        },
+        {
+          "id": "harsh",
+          "name": "Harsh",
+          "range": [15, 18],
+          "description": "A rough day for the season. Rain, snow and wind are strong and could make things difficult.",
+          "tags": ["ss.tradingPost.weather.harsh"]
+        },
+        {
+          "id": "bad",
+          "name": "Bad",
+          "range": [19, 20],
+          "description": "Most folk are staying indoors. Travel is dangerous in these conditions. Rain is torrential, snow is blinding. Winds potentially reach hurricane force.",
+          "tags": ["ss.tradingPost.weather.bad"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.weather.good",
+      "name": "Good"
+    },
+    {
+      "id": "ss.tradingPost.weather.mild",
+      "name": "Mild"
+    },
+    {
+      "id": "ss.tradingPost.weather.fair",
+      "name": "Fair"
+    },
+    {
+      "id": "ss.tradingPost.weather.harsh",
+      "name": "Harsh"
+    },
+    {
+      "id": "ss.tradingPost.weather.bad",
+      "name": "Bad"
+    }
+  ]
+}

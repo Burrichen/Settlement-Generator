@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.visitorTraffic",
+      "name": "Visitor Traffic",
+      "description": "Modified by Age.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "vacant",
+          "name": "Vacant",
+          "range": [1, 2],
+          "description": "No one seems to be visiting this place. (+0 to size roll) (+2 to crime roll)",
+          "tags": ["ss.tradingPost.visitorTraffic.vacant"]
+        },
+        {
+          "id": "groups",
+          "name": "Groups",
+          "range": [3, 6],
+          "description": "Visitors are a rarity, though a few might be around. (+1 to size roll) (+1 to crime roll)",
+          "tags": ["ss.tradingPost.visitorTraffic.groups"]
+        },
+        {
+          "id": "crowds",
+          "name": "Crowds",
+          "range": [7, 14],
+          "description": "It is typical to see some new visitors most days. (+2 to size roll) (+0 to crime roll)",
+          "tags": ["ss.tradingPost.visitorTraffic.crowds"]
+        },
+        {
+          "id": "droves",
+          "name": "Droves",
+          "range": [15, 18],
+          "description": "There are lots of new faces on a regular basis. (+3 to size roll) (-1 to crime roll)",
+          "tags": ["ss.tradingPost.visitorTraffic.droves"]
+        },
+        {
+          "id": "masses",
+          "name": "Masses",
+          "range": [19, 20],
+          "description": "New people are everywhere, coming and going at all times. (+4 to size roll) (-2 to crime roll)",
+          "tags": ["ss.tradingPost.visitorTraffic.masses"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.visitorTraffic.vacant",
+      "name": "Vacant",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.visitorTraffic.groups",
+      "name": "Groups",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.size",
+          "amount": 1
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.visitorTraffic.crowds",
+      "name": "Crowds",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.size",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.visitorTraffic.droves",
+      "name": "Droves",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.size",
+          "amount": 3
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.visitorTraffic.masses",
+      "name": "Masses",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.size",
+          "amount": 4
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

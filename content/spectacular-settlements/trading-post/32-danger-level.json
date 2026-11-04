@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.dangerLevel",
+      "name": "Danger Level",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "everPresent",
+          "name": "Ever-Present",
+          "range": [1, 2],
+          "description": "The trading post is constantly in peril. Encountering some form of hardship or adversity, when in the area, is almost guaranteed. It is never safe to go anywhere alone. Preparation and caution (even in and around the trading post) are critical.",
+          "tags": ["ss.tradingPost.dangerLevel.everPresent"]
+        },
+        {
+          "id": "frequent",
+          "name": "Frequent",
+          "range": [3, 6],
+          "description": "Traveling near the trading post and not encountering danger or hazards is a rarity. Preparation and caution are strongly advised.",
+          "tags": ["ss.tradingPost.dangerLevel.frequent"]
+        },
+        {
+          "id": "common",
+          "name": "Common",
+          "range": [7, 14],
+          "description": "Danger or hazards are commonplace. Preparation and caution are advised.",
+          "tags": ["ss.tradingPost.dangerLevel.common"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "range": [15, 18],
+          "description": "Danger or hazards are not encountered often, though preparation is encouraged.",
+          "tags": ["ss.tradingPost.dangerLevel.uncommon"]
+        },
+        {
+          "id": "rare",
+          "name": "Rare",
+          "range": [19, 20],
+          "description": "This trading post is built in a place known to be extremely safe; danger or hazards are a rarity.",
+          "tags": ["ss.tradingPost.dangerLevel.rare"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.dangerLevel.everPresent",
+      "name": "Ever-Present"
+    },
+    {
+      "id": "ss.tradingPost.dangerLevel.frequent",
+      "name": "Frequent"
+    },
+    {
+      "id": "ss.tradingPost.dangerLevel.common",
+      "name": "Common"
+    },
+    {
+      "id": "ss.tradingPost.dangerLevel.uncommon",
+      "name": "Uncommon"
+    },
+    {
+      "id": "ss.tradingPost.dangerLevel.rare",
+      "name": "Rare"
+    }
+  ]
+}

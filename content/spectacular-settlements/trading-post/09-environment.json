@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.environment",
+      "name": "Environment",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "coastal",
+          "name": "Coastal",
+          "range": 1,
+          "description": "The trading post is near a large body of water, such as a lake or ocean.",
+          "tags": ["ss.tradingPost.environment.coastal"]
+        },
+        {
+          "id": "forest",
+          "name": "Forest",
+          "range": 2,
+          "description": "The trading post is nestled among the trees.",
+          "tags": ["ss.tradingPost.environment.forest"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": 3,
+          "description": "The trading post is found on stony passes or soaring peaks.",
+          "tags": ["ss.tradingPost.environment.mountains"]
+        },
+        {
+          "id": "plains",
+          "name": "Plains",
+          "range": 4,
+          "description": "The trading post is in the wide, open fields.",
+          "tags": ["ss.tradingPost.environment.plains"]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "range": 5,
+          "description": "The trading post is near a steadily flowing stream, or other watercourse.",
+          "tags": ["ss.tradingPost.environment.river"]
+        },
+        {
+          "id": "swamp",
+          "name": "Swamp",
+          "range": 6,
+          "description": "The trading post is in, or near, a vast area of stagnant water.",
+          "tags": ["ss.tradingPost.environment.swamp"]
+        },
+        {
+          "id": "underground",
+          "name": "Underground",
+          "range": 7,
+          "description": "The trading post is within a large network of caves.",
+          "tags": ["ss.tradingPost.environment.underground"]
+        },
+        {
+          "id": "valley",
+          "name": "Valley",
+          "range": 8,
+          "description": "The trading post is found within, or on the edge of, an area of recessed elevation in relation to the landscape around it.",
+          "tags": ["ss.tradingPost.environment.valley"]
+        },
+        {
+          "id": "tundra",
+          "name": "Tundra",
+          "range": 9,
+          "description": "The trading post is in a very cold environment.",
+          "tags": ["ss.tradingPost.environment.tundra"]
+        },
+        {
+          "id": "desert",
+          "name": "Desert",
+          "range": 10,
+          "description": "The trading post is in a dry and arid environment, likely covered with vast sand dunes.",
+          "tags": ["ss.tradingPost.environment.desert"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.environment.coastal",
+      "name": "Coastal"
+    },
+    {
+      "id": "ss.tradingPost.environment.forest",
+      "name": "Forest"
+    },
+    {
+      "id": "ss.tradingPost.environment.mountains",
+      "name": "Mountains"
+    },
+    {
+      "id": "ss.tradingPost.environment.plains",
+      "name": "Plains"
+    },
+    {
+      "id": "ss.tradingPost.environment.river",
+      "name": "River"
+    },
+    {
+      "id": "ss.tradingPost.environment.swamp",
+      "name": "Swamp"
+    },
+    {
+      "id": "ss.tradingPost.environment.underground",
+      "name": "Underground"
+    },
+    {
+      "id": "ss.tradingPost.environment.valley",
+      "name": "Valley"
+    },
+    {
+      "id": "ss.tradingPost.environment.tundra",
+      "name": "Tundra"
+    },
+    {
+      "id": "ss.tradingPost.environment.desert",
+      "name": "Desert"
+    }
+  ]
+}

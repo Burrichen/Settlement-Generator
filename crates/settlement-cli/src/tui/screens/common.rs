@@ -23,6 +23,9 @@ pub struct SheetRow {
     pub sub_stage: bool,
     /// Did not apply. A skipped sub-stage is left out.
     pub skipped: bool,
+    /// Skipped and does not apply at all (a conditional or built-in stage):
+    /// left out of the sheet.
+    pub hidden: bool,
     /// The Authority Figures, on that stage's row.
     pub figures: Option<AuthorityFigures>,
     /// The Notable Locations, on that stage's row.
@@ -196,9 +199,10 @@ pub fn figure_lines(
     lines
 }
 
-/// A sub-stage that was skipped does not apply, and is not shown.
+/// A skipped sub-stage, conditional stage or built-in stage does not apply,
+/// and is not shown.
 pub fn applies(stage: &StageView) -> bool {
-    !(stage.sub_stage && stage.status == StageStatus::Skipped)
+    !((stage.sub_stage || stage.hide_when_skipped) && stage.status == StageStatus::Skipped)
 }
 
 /// A settlement laid out stage by stage: label, result, the table actually
@@ -213,7 +217,7 @@ pub fn sheet_lines(rows: &[SheetRow], styles: &Styles) -> Vec<Line<'static>> {
         tags: Option<Vec<Named<TagId>>>,
     }
     let mut folded: Vec<Folded> = Vec::new();
-    for row in rows {
+    for row in rows.iter().filter(|r| !r.hidden) {
         match folded.last_mut() {
             Some(parent) if row.sub_stage => {
                 if !row.skipped {

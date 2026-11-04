@@ -273,6 +273,7 @@ impl SavedScreen {
                     .map(|t| t.name.clone()),
                 tags: ctx.settings.tag_view.then(|| st.tags.clone()),
                 sub_stage: st.sub_stage,
+                hidden: st.hide_when_skipped && st.skipped,
                 // Roles are shown with each Authority Figure instead.
                 skipped: st.skipped || st.roles.is_some(),
                 figures: st.figures.clone(),

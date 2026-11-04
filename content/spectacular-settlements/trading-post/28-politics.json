@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.politics",
+      "name": "Politics",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "brinkOfWar",
+          "name": "On the Brink of War",
+          "range": 1,
+          "description": "Tension is in the air, and rumors of impending conflict can be heard in hushed tones within the trading post.",
+          "tags": ["ss.tradingPost.politics.brinkOfWar"]
+        },
+        {
+          "id": "lawlessRegion",
+          "name": "Lawless Region",
+          "range": 2,
+          "description": "With the trading post outside the regularly frequented borders of any established kingdom, the generally accepted standards of justice don’t seem to apply here.",
+          "tags": ["ss.tradingPost.politics.lawlessRegion"]
+        },
+        {
+          "id": "embattled",
+          "name": "Embattled",
+          "range": 3,
+          "description": "Opposing enemy forces surround the trading post on all sides, and it finds itself located in the midst of (though not necessarily participating in) an ongoing conflict.",
+          "tags": ["ss.tradingPost.politics.embattled"]
+        },
+        {
+          "id": "revolution",
+          "name": "Revolution",
+          "range": 4,
+          "description": "A nearby kingdom is in the throes of an uprising. Members of either side may be present in the trading post.",
+          "tags": ["ss.tradingPost.politics.revolution"]
+        },
+        {
+          "id": "peace",
+          "name": "Peace",
+          "range": 5,
+          "description": "All is quiet, almost suspiciously so...",
+          "tags": ["ss.tradingPost.politics.peace"]
+        },
+        {
+          "id": "newGovernance",
+          "name": "New Governance",
+          "range": 6,
+          "description": "A new and unknown power has moved in to control the surrounding area. Locals may be in favor of, against, or neutral about it. Depending on the kind of governance, speaking out against the leadership may not be permitted.",
+          "tags": ["ss.tradingPost.politics.newGovernance"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.politics.brinkOfWar",
+      "name": "On the Brink of War"
+    },
+    {
+      "id": "ss.tradingPost.politics.lawlessRegion",
+      "name": "Lawless Region"
+    },
+    {
+      "id": "ss.tradingPost.politics.embattled",
+      "name": "Embattled"
+    },
+    {
+      "id": "ss.tradingPost.politics.revolution",
+      "name": "Revolution"
+    },
+    {
+      "id": "ss.tradingPost.politics.peace",
+      "name": "Peace"
+    },
+    {
+      "id": "ss.tradingPost.politics.newGovernance",
+      "name": "New Governance"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.leadership",
+      "name": "Leadership",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "noLeader",
+          "name": "No Leader",
+          "range": 1,
+          "description": "The trading post operates with no leadership, which could lead to unresolved disputes.",
+          "tags": ["ss.tradingPost.leadership.noLeader"]
+        },
+        {
+          "id": "hereditary",
+          "name": "Hereditary",
+          "range": [2, 4],
+          "description": "A non-elected leader is in power, by virtue of their bloodline.",
+          "tags": ["ss.tradingPost.leadership.hereditary"]
+        },
+        {
+          "id": "merchantMonarch",
+          "name": "Merchant Monarch",
+          "range": [5, 7],
+          "description": "The wealthiest shop owner in the trading post leads by default.",
+          "tags": ["ss.tradingPost.leadership.merchantMonarch"]
+        },
+        {
+          "id": "underworld",
+          "name": "Underworld or Criminal Enterprise",
+          "range": [8, 10],
+          "description": "A criminal, or group of criminals, either publicly, or privately, controls the trading post.",
+          "tags": ["ss.tradingPost.leadership.underworld"]
+        },
+        {
+          "id": "oligarchy",
+          "name": "Oligarchy",
+          "range": [11, 13],
+          "description": "A few individuals hold sway, collectively, over the trading post (which group is rolled next).",
+          "tags": ["ss.tradingPost.leadership.oligarchy"],
+          "then_roll": ["table.ss.tradingPost.oligarchy"]
+        },
+        {
+          "id": "localCouncil",
+          "name": "Local Council",
+          "range": [14, 16],
+          "description": "Prominent members of the community were chosen to lead the trading post collectively.",
+          "tags": ["ss.tradingPost.leadership.localCouncil"]
+        },
+        {
+          "id": "electedLeader",
+          "name": "Single, Elected Leader",
+          "range": [17, 19],
+          "description": "The locals democratically voted for their current leader.",
+          "tags": ["ss.tradingPost.leadership.electedLeader"]
+        },
+        {
+          "id": "commune",
+          "name": "Anarcho-Syndicalist Commune",
+          "range": 20,
+          "description": "The members of the trading post take turns as a sort of executive officer for the week.",
+          "tags": ["ss.tradingPost.leadership.commune"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.leadership.noLeader",
+      "name": "No Leader"
+    },
+    {
+      "id": "ss.tradingPost.leadership.hereditary",
+      "name": "Hereditary"
+    },
+    {
+      "id": "ss.tradingPost.leadership.merchantMonarch",
+      "name": "Merchant Monarch"
+    },
+    {
+      "id": "ss.tradingPost.leadership.underworld",
+      "name": "Underworld or Criminal Enterprise"
+    },
+    {
+      "id": "ss.tradingPost.leadership.oligarchy",
+      "name": "Oligarchy"
+    },
+    {
+      "id": "ss.tradingPost.leadership.localCouncil",
+      "name": "Local Council"
+    },
+    {
+      "id": "ss.tradingPost.leadership.electedLeader",
+      "name": "Single, Elected Leader"
+    },
+    {
+      "id": "ss.tradingPost.leadership.commune",
+      "name": "Anarcho-Syndicalist Commune"
+    }
+  ]
+}

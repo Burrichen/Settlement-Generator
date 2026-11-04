@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.lawEnforcement",
+      "name": "Law Enforcement",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 2],
+          "description": "This could be good or bad, depending on one’s point of view. Good, if the folk here are just that. Bad when mob justice is carried out on a petty thief. (-8 to crime roll)",
+          "tags": ["ss.tradingPost.lawEnforcement.none"]
+        },
+        {
+          "id": "sheriff",
+          "name": "Sheriff",
+          "range": [3, 6],
+          "description": "A single sheriff and a deputy keep things civil. (-4 to crime roll)",
+          "tags": ["ss.tradingPost.lawEnforcement.sheriff"]
+        },
+        {
+          "id": "smallLocalWatch",
+          "name": "Small Local Watch",
+          "range": [7, 14],
+          "description": "A sheriff, a deputy, and a handful of volunteer residents make up a token watch presence. (+0 to crime roll)",
+          "tags": ["ss.tradingPost.lawEnforcement.smallLocalWatch"]
+        },
+        {
+          "id": "wellEquipped",
+          "name": "Well-Equipped",
+          "range": [15, 18],
+          "description": "Law enforcement is very common. (+4 to crime roll)",
+          "tags": ["ss.tradingPost.lawEnforcement.wellEquipped"]
+        },
+        {
+          "id": "overwhelmingPresence",
+          "name": "Overwhelming Presence",
+          "range": [19, 20],
+          "description": "Law enforcement is always around in public, no matter what. (+8 to crime roll)",
+          "tags": ["ss.tradingPost.lawEnforcement.overwhelmingPresence"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.lawEnforcement.none",
+      "name": "None",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.lawEnforcement.sheriff",
+      "name": "Sheriff",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.lawEnforcement.smallLocalWatch",
+      "name": "Small Local Watch"
+    },
+    {
+      "id": "ss.tradingPost.lawEnforcement.wellEquipped",
+      "name": "Well-Equipped",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.lawEnforcement.overwhelmingPresence",
+      "name": "Overwhelming Presence",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 8
+        }
+      ]
+    }
+  ]
+}

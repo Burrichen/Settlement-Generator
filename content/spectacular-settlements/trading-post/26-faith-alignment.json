@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.faithAlignment",
+      "name": "Alignment of the Faith",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "evil",
+          "name": "Evil",
+          "range": 1,
+          "tags": ["ss.tradingPost.faithAlignment.evil"]
+        },
+        {
+          "id": "neutral",
+          "name": "Neutral",
+          "range": [2, 5],
+          "tags": ["ss.tradingPost.faithAlignment.neutral"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [6, 10],
+          "tags": ["ss.tradingPost.faithAlignment.good"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.faithAlignment.evil",
+      "name": "Evil"
+    },
+    {
+      "id": "ss.tradingPost.faithAlignment.neutral",
+      "name": "Neutral"
+    },
+    {
+      "id": "ss.tradingPost.faithAlignment.good",
+      "name": "Good"
+    }
+  ]
+}

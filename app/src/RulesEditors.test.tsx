@@ -101,6 +101,21 @@ function contentSettings(): ContentSettingView[] {
     },
     { setting: { id: "setting.motto", name: "Motto", kind: "text" }, value: "Onward" },
     {
+      setting: {
+        id: "setting.fantasyProfile",
+        name: "Fantasy Profile",
+        kind: "choice",
+        chooses_table: "table.settingProfile",
+        default: "choose",
+        options: [
+          { id: "choose", name: "Choose" },
+          { id: "kurovia", name: "Kurovia" },
+          { id: "horror", name: "Horror" },
+        ],
+      },
+      value: "choose",
+    },
+    {
       setting: { id: "setting.later", name: "Later", kind: "toggle", status: "planned" },
       value: false,
     },
@@ -284,6 +299,17 @@ describe("settings screen", () => {
     await user.type(motto, "Ever on");
     await user.tab();
     expect(api.setSetting).toHaveBeenLastCalledWith("setting.motto", "Ever on");
+  });
+});
+
+describe("fantasy profile setting", () => {
+  it("is a dropdown, defaulting to Choose, that saves the profile when changed", async () => {
+    const user = userEvent.setup();
+    render(withApp(<SettingsScreen />));
+    const profile = await screen.findByRole("combobox", { name: "Fantasy Profile" });
+    expect((profile as HTMLSelectElement).value).toBe("choose");
+    await user.selectOptions(profile, "kurovia");
+    expect(api.setSetting).toHaveBeenLastCalledWith("setting.fantasyProfile", "kurovia");
   });
 });
 

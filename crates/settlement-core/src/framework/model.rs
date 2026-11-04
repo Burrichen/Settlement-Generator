@@ -138,6 +138,12 @@ pub enum SettingKind {
     Choice {
         options: Vec<SettingOption>,
         default: String,
+        /// When set, the setting preselects a result of this choose-only
+        /// table: an option whose ID is one of the table's results is used
+        /// as that table's choice, so its stage is not asked for. Any other
+        /// option (e.g. "Choose") leaves the table to be chosen as usual.
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        chooses_table: Option<TableId>,
     },
     /// Any number of a list of options.
     MultiSelect {

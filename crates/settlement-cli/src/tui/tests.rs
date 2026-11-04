@@ -168,9 +168,7 @@ fn every_screen_survives_resizing() {
     key(&mut app, KeyCode::Down);
     key(&mut app, KeyCode::Enter);
     check(&mut app);
-    for _ in 0..4 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tags");
     key(&mut app, KeyCode::Enter); // View Tags
     check(&mut app);
     key(&mut app, KeyCode::Enter);
@@ -339,15 +337,15 @@ fn incremental_generation_one_stage_at_a_time() {
         key(&mut app, KeyCode::Char('n'));
     }
     // Authority follows Economy. Choose Local Council (the first result):
-    // always a group, so Representation is passed over and Authority Size
-    // comes next.
+    // always a group, so Representation is passed over (and no longer
+    // counted) and Authority Size comes next.
     let screen = text(&mut app);
     assert!(screen.contains("STAGE 11 OF 19"), "{screen}");
     assert!(screen.contains("Popular Assembly"), "{screen}");
     key(&mut app, KeyCode::Enter);
     key(&mut app, KeyCode::Char('n'));
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 13 OF 19"), "{screen}");
+    assert!(screen.contains("STAGE 12 OF 18"), "{screen}");
     assert!(screen.contains("Authority Size"), "{screen}");
     assert!(!screen.contains("Representation"), "skipped: {screen}");
     key(&mut app, KeyCode::Char('r'));
@@ -355,7 +353,7 @@ fn incremental_generation_one_stage_at_a_time() {
     key(&mut app, KeyCode::Char('n'));
     // Roles: one lead and the rest members, before the figures.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 14 OF 19"), "{screen}");
+    assert!(screen.contains("STAGE 13 OF 18"), "{screen}");
     assert!(screen.contains("allocate roles"), "{screen}");
     assert!(screen.contains("Figure 1 · Lead"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
@@ -364,7 +362,7 @@ fn incremental_generation_one_stage_at_a_time() {
     key(&mut app, KeyCode::Char('n'));
     // Authority Figures: generate them all.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 15 OF 19"), "{screen}");
+    assert!(screen.contains("STAGE 14 OF 18"), "{screen}");
     assert!(screen.contains("generate figures"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
     let screen = text_at(&mut app, 140, 80);
@@ -376,9 +374,9 @@ fn incremental_generation_one_stage_at_a_time() {
     assert!(screen.contains("RELATIONSHIPS"), "{screen}");
     key(&mut app, KeyCode::Char('n'));
     // Security, Crime and Stability, in that order.
-    for (stage, name) in [(16, "Security"), (17, "Crime"), (18, "Stability")] {
+    for (stage, name) in [(15, "Security"), (16, "Crime"), (17, "Stability")] {
         let screen = text(&mut app);
-        assert!(screen.contains(&format!("STAGE {stage} OF 19")), "{screen}");
+        assert!(screen.contains(&format!("STAGE {stage} OF 18")), "{screen}");
         assert!(screen.contains(name), "{screen}");
         key(&mut app, KeyCode::Char('r'));
         assert!(text(&mut app).contains("on 1d12"), "{name}");
@@ -386,7 +384,7 @@ fn incremental_generation_one_stage_at_a_time() {
     }
     // Notable Locations last.
     let screen = text(&mut app);
-    assert!(screen.contains("STAGE 19 OF 19"), "{screen}");
+    assert!(screen.contains("STAGE 18 OF 18"), "{screen}");
     key(&mut app, KeyCode::Char('r'));
     key(&mut app, KeyCode::Char('n'));
     let screen = text_at(&mut app, 120, 160);
@@ -823,9 +821,7 @@ fn editing_a_saved_settlement_saves_a_revision() {
 fn tag_editor_renames_and_saves_through_the_core() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..4 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tags");
     key(&mut app, KeyCode::Enter); // View Tags
     assert!(text(&mut app).contains("world.kurovia"));
     key(&mut app, KeyCode::Enter); // first tag
@@ -849,9 +845,7 @@ fn tag_editor_renames_and_saves_through_the_core() {
 fn table_editor_opens_size_like_any_other_table() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tables");
     key(&mut app, KeyCode::Enter); // View Tables
     let screen = text_at(&mut app, 140, 60);
     let size_row = screen
@@ -875,9 +869,7 @@ fn table_editor_opens_size_like_any_other_table() {
 fn table_editor_shows_unique_roles_and_their_fallbacks() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tables");
     key(&mut app, KeyCode::Enter); // View Tables
     key(&mut app, KeyCode::Char('/'));
     type_text(&mut app, "table.authorityRole.council.member");
@@ -916,9 +908,7 @@ fn table_editor_shows_unique_roles_and_their_fallbacks() {
 fn table_editor_opens_authority_like_any_other_table() {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tables");
     key(&mut app, KeyCode::Enter); // View Tables
     key(&mut app, KeyCode::Char('/')); // filter by ID
     type_text(&mut app, "table.authority");
@@ -986,9 +976,7 @@ fn table_editor_shows_uncovered_faces_and_refuses_to_save() {
 fn open_table(id: &str) -> App {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Tables");
     key(&mut app, KeyCode::Enter); // View Tables
     key(&mut app, KeyCode::Char('/')); // filter by ID
     type_text(&mut app, id);
@@ -1544,9 +1532,7 @@ fn view_lists_notable_locations_with_their_districts() {
 fn open_flows() -> App {
     let mut app = app();
     keys(&mut app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..6 {
-        key(&mut app, KeyCode::Down);
-    }
+    select_line(&mut app, "View Flows");
     key(&mut app, KeyCode::Enter); // View Flows
     app
 }
@@ -1896,9 +1882,7 @@ fn down_to(app: &mut App, needle: &str) {
 /// Opens table `id` in View Tables.
 fn open_table_in(app: &mut App, id: &str) {
     keys(app, &[KeyCode::Down, KeyCode::Enter]); // Settings
-    for _ in 0..5 {
-        key(app, KeyCode::Down);
-    }
+    select_line(app, "View Tables");
     key(app, KeyCode::Enter); // View Tables
     key(app, KeyCode::Char('/'));
     type_text(app, id);

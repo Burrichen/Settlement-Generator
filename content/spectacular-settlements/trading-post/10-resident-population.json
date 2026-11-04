@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.residentPopulation",
+      "name": "Resident Population",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "nearlyDeserted",
+          "name": "Nearly Deserted",
+          "range": [1, 2],
+          "description": "There are many empty houses and businesses. (+2 to crime roll)",
+          "tags": ["ss.tradingPost.residentPopulation.nearlyDeserted"]
+        },
+        {
+          "id": "sparse",
+          "name": "Sparse",
+          "range": [3, 6],
+          "description": "There are some empty houses and businesses. (+1 to crime roll)",
+          "tags": ["ss.tradingPost.residentPopulation.sparse"]
+        },
+        {
+          "id": "appropriate",
+          "name": "Appropriate",
+          "range": [7, 14],
+          "description": "Homes and businesses are comfortably populated. (+0 to crime roll)",
+          "tags": ["ss.tradingPost.residentPopulation.appropriate"]
+        },
+        {
+          "id": "congested",
+          "name": "Congested",
+          "range": [15, 18],
+          "description": "Movement is difficult. Homes and common buildings are often at capacity. (-1 to crime roll)",
+          "tags": ["ss.tradingPost.residentPopulation.congested"]
+        },
+        {
+          "id": "overwhelmed",
+          "name": "Overwhelmed",
+          "range": [19, 20],
+          "description": "The trading post cannot support this many people. Movement is extremely difficult. Tent and shanty towns have cropped up along the outskirts of the settlement. (-2 to crime roll)",
+          "tags": ["ss.tradingPost.residentPopulation.overwhelmed"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.residentPopulation.nearlyDeserted",
+      "name": "Nearly Deserted",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.residentPopulation.sparse",
+      "name": "Sparse",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.residentPopulation.appropriate",
+      "name": "Appropriate"
+    },
+    {
+      "id": "ss.tradingPost.residentPopulation.congested",
+      "name": "Congested",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.residentPopulation.overwhelmed",
+      "name": "Overwhelmed",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

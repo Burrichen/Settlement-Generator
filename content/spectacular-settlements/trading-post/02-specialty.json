@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.specialty",
+      "name": "Specialty",
+      "description": "The main thing the trading post is known for.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "atypicalShipping",
+          "name": "Atypical Shipping Methods",
+          "range": 1,
+          "description": "This trading post is known for having unique and effective ways to move goods.",
+          "tags": ["ss.tradingPost.specialty.atypicalShipping"]
+        },
+        {
+          "id": "foodAndDrink",
+          "name": "Food & Drink",
+          "range": 2,
+          "description": "This trading post is known for its food or its drink (rolled next). A tavern is added as a default service.",
+          "tags": ["ss.tradingPost.specialty.foodAndDrink"],
+          "then_roll": ["table.ss.tradingPost.foodAndDrink"]
+        },
+        {
+          "id": "hospitality",
+          "name": "Hospitality",
+          "range": 3,
+          "description": "The main inn here is particularly good, offering excellent service, comfortable rooms, and good food. (If you roll for the inn’s quality, ignore results that would make it ‘poor’.)",
+          "tags": ["ss.tradingPost.specialty.hospitality"]
+        },
+        {
+          "id": "information",
+          "name": "Information",
+          "range": 4,
+          "description": "This trading post is known as a source for reliable information. They may not know everything, but your chances of finding solid gossip, lore, news, or an intriguing tidbit here is good.",
+          "tags": ["ss.tradingPost.specialty.information"]
+        },
+        {
+          "id": "purchasingConnections",
+          "name": "Purchasing Connections",
+          "range": 5,
+          "description": "This trading post is known for having folks who can find things. If they don’t have (or know about) what you’re looking for, they can direct you to someone who does.",
+          "tags": ["ss.tradingPost.specialty.purchasingConnections"]
+        },
+        {
+          "id": "unscrupulousContractors",
+          "name": "Unscrupulous Contractors",
+          "range": 6,
+          "description": "This trading post is known for having people who can get just about anything done, if the coin is right. Free location: a Hired Help service (its kind and size are rolled next).",
+          "tags": ["ss.tradingPost.specialty.unscrupulousContractors"],
+          "then_roll": ["table.ss.tradingPost.contractors"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.specialty.atypicalShipping",
+      "name": "Atypical Shipping Methods"
+    },
+    {
+      "id": "ss.tradingPost.specialty.foodAndDrink",
+      "name": "Food & Drink"
+    },
+    {
+      "id": "ss.tradingPost.specialty.hospitality",
+      "name": "Hospitality"
+    },
+    {
+      "id": "ss.tradingPost.specialty.information",
+      "name": "Information"
+    },
+    {
+      "id": "ss.tradingPost.specialty.purchasingConnections",
+      "name": "Purchasing Connections"
+    },
+    {
+      "id": "ss.tradingPost.specialty.unscrupulousContractors",
+      "name": "Unscrupulous Contractors"
+    }
+  ]
+}

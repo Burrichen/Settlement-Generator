@@ -173,6 +173,12 @@ export interface StageView {
   naming?: NamingView;
   /** Elaborates the stage before it; left out where it does not apply. */
   sub_stage?: boolean;
+  /**
+   * When skipped, the stage does not apply and is left out entirely: a
+   * sub-stage, a stage with a condition (e.g. one Setting Profile's), or a
+   * built-in stage.
+   */
+  hide_when_skipped?: boolean;
   /** Present on the Authority Figures stage only. */
   figures?: FiguresView;
   /** Present on the Role Allocation stage only. */
@@ -626,6 +632,12 @@ export interface SnapshotStage {
   skipped?: boolean;
   /** Elaborates the stage before it; left out where it does not apply. */
   sub_stage?: boolean;
+  /**
+   * When skipped, the stage does not apply and is left out entirely: a
+   * sub-stage, a stage with a condition (e.g. one Setting Profile's), or a
+   * built-in stage.
+   */
+  hide_when_skipped?: boolean;
   /** The Authority Figures stage's record (only on that stage). */
   figures?: AuthorityFigures;
   /** The Role Allocation stage's record (only on that stage). */
@@ -1271,7 +1283,7 @@ export type SettingDef = {
 } & (
   | { kind: "toggle"; default?: boolean }
   | { kind: "number"; default?: number; min?: number; max?: number }
-  | { kind: "choice"; default: string; options: SettingOption[] }
+  | { kind: "choice"; default: string; options: SettingOption[]; chooses_table?: string }
   | { kind: "multi_select"; default?: string[]; options: SettingOption[] }
   | { kind: "text"; default?: string }
 );

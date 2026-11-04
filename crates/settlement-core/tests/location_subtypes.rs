@@ -785,7 +785,12 @@ fn a41_the_shift_caps_at_excellent() {
 #[test]
 fn a42_no_quality_distribution_exists() {
     let c = content();
-    for t in &c.tables {
+    // Spectacular Settlements' own Quality table is imported but not rolled.
+    for t in c
+        .tables
+        .iter()
+        .filter(|t| !t.id.as_str().starts_with("table.ss."))
+    {
         let text = format!("{} {}", t.id, t.name).to_lowercase();
         assert!(!text.contains("quality"), "{text}: no Quality table yet");
     }

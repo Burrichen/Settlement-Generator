@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.magicShopSpecialization",
+      "name": "Magic Shop Specialization",
+      "description": "Optional: an alternative way to roll a magic shop's specialization. Not rolled by default; the Shops table already names it.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "armor",
+          "name": "Armor",
+          "range": 1,
+          "tags": ["ss.tradingPost.magicShopSpecialization.armor"]
+        },
+        {
+          "id": "books",
+          "name": "Books",
+          "range": 2,
+          "tags": ["ss.tradingPost.magicShopSpecialization.books"]
+        },
+        {
+          "id": "clothing",
+          "name": "Clothing",
+          "range": 3,
+          "tags": ["ss.tradingPost.magicShopSpecialization.clothing"]
+        },
+        {
+          "id": "jewelry",
+          "name": "Jewelry",
+          "range": 4,
+          "tags": ["ss.tradingPost.magicShopSpecialization.jewelry"]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "range": 5,
+          "tags": ["ss.tradingPost.magicShopSpecialization.weapons"]
+        },
+        {
+          "id": "curiosities",
+          "name": "Miscellaneous & Curiosities",
+          "range": 6,
+          "tags": ["ss.tradingPost.magicShopSpecialization.curiosities"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.armor",
+      "name": "Armor"
+    },
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.books",
+      "name": "Books"
+    },
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.clothing",
+      "name": "Clothing"
+    },
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.jewelry",
+      "name": "Jewelry"
+    },
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.weapons",
+      "name": "Weapons"
+    },
+    {
+      "id": "ss.tradingPost.magicShopSpecialization.curiosities",
+      "name": "Miscellaneous & Curiosities"
+    }
+  ]
+}
