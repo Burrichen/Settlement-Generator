@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.age",
+      "name": "Age",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "recent",
+          "name": "Recent",
+          "range": [1, 3],
+          "description": "The trading post was established within the past year. (-1 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.recent"]
+        },
+        {
+          "id": "established",
+          "name": "Established",
+          "range": [4, 8],
+          "description": "The trading post has been around for at least a couple of years. (+0 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.established"]
+        },
+        {
+          "id": "mature",
+          "name": "Mature",
+          "range": [9, 13],
+          "description": "The trading post was originally built decades ago. (+1 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.mature"]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [14, 17],
+          "description": "The trading post was built around a hundred years ago. (+2 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.old"]
+        },
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "range": [18, 19],
+          "description": "The trading post was built hundreds of years ago. (+3 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.ancient"]
+        },
+        {
+          "id": "unknown",
+          "name": "Unknown",
+          "range": 20,
+          "description": "No one really knows when the trading post was established. (+4 to visitor traffic roll)",
+          "tags": ["ss.tradingPost.age.unknown"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.age.recent",
+      "name": "Recent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.age.established",
+      "name": "Established"
+    },
+    {
+      "id": "ss.tradingPost.age.mature",
+      "name": "Mature",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.age.old",
+      "name": "Old",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.age.ancient",
+      "name": "Ancient",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.age.unknown",
+      "name": "Unknown",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "amount": 4
+        }
+      ]
+    }
+  ]
+}

@@ -27,6 +27,8 @@ export interface SheetRow {
 export interface SheetStage extends SheetRow {
   subStage?: boolean;
   skipped?: boolean;
+  /** The stage was skipped and does not apply: it is left out entirely. */
+  hidden?: boolean;
 }
 
 /**
@@ -36,7 +38,8 @@ export interface SheetStage extends SheetRow {
  */
 export function foldSubStages(stages: SheetStage[]): SheetRow[] {
   const rows: SheetRow[] = [];
-  for (const { subStage, skipped, ...row } of stages) {
+  for (const { subStage, skipped, hidden, ...row } of stages) {
+    if (hidden) continue;
     const parent = rows[rows.length - 1];
     if (!subStage || !parent) {
       rows.push(row);

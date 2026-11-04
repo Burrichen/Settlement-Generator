@@ -908,6 +908,7 @@ impl AppService {
                         option("option-2", "Option 2"),
                     ],
                     default: "option-1".into(),
+                    chooses_table: None,
                 },
                 SettingType::MultiSelect => crate::framework::SettingKind::MultiSelect {
                     options: vec![
@@ -1573,6 +1574,11 @@ impl AppService {
         )
         .map_err(msg)?
         .with_settings(self.content_setting_values()?);
+        // Stages a setting preselects (e.g. Fantasy Profile) start resolved.
+        let mut session = session;
+        session
+            .apply_presets(&mut RandomFaces::from_entropy())
+            .map_err(msg)?;
         Ok(ActiveGeneration {
             session,
             view: ViewOptions::from_settings(&settings),
@@ -1627,7 +1633,11 @@ impl AppService {
             .as_ref()
             .ok_or("No settlement is being edited.")?;
         let saved = self.db.get_settlement(id).map_err(msg)?;
-        Ok(name.trim() != saved.summary.name || active.session.to_snapshot() != saved.snapshot)
+        Ok(name.trim() != saved.summary.name
+            || !active
+                .session
+                .to_snapshot()
+                .same_settlement(&saved.snapshot))
     }
 
     /// Saves an edit as an explicit revised snapshot under `name`. Saving

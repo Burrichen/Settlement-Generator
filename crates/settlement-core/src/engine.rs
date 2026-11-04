@@ -741,13 +741,25 @@ impl<'c> Generator<'c> {
         condition.evaluate_with(&self.facts(&|t| state.has(t)))
     }
 
-    /// Generates a settlement: runs the content's `sequence`.
+    /// Generates a settlement: rolls the pipeline's table stages in order,
+    /// skipping a stage whose `when` does not hold under the tags so far.
     pub fn run_sequence(
         &self,
         selections: &Selections,
         faces: &mut dyn FaceSource,
     ) -> Result<GenerationLog, GenerationError> {
-        self.run_with(&self.content.sequence_tables(), selections, faces)
+        let mut state = State::default();
+        for step in self.content.pipeline().into_iter().filter(|s| s.runs()) {
+            let crate::framework::StepAction::Roll { table, .. } = step.action else {
+                continue;
+            };
+            if step.when.as_ref().is_some_and(|c| !self.holds(c, &state)) {
+                continue;
+            }
+            let queue = VecDeque::from([Request::new(table)]);
+            self.process(&mut state, queue, selections, faces)?;
+        }
+        Ok(self.log_from(state))
     }
 
     /// Rolls each table in `start` in order, following routes depth-first.

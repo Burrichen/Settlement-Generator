@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.services",
+      "name": "Services",
+      "description": "Rolled once per service location. Hired help also rolls its size.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": [1, 8],
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.tradingPost.services.barber"]
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": [9, 16],
+          "description": "Provides spaces for bathing.",
+          "tags": ["ss.tradingPost.services.bathhouse"]
+        },
+        {
+          "id": "doctor",
+          "name": "Doctor/Apothecary",
+          "range": [17, 24],
+          "description": "Provides medical care.",
+          "tags": ["ss.tradingPost.services.doctor"]
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": [25, 32],
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind).",
+          "tags": ["ss.tradingPost.services.houseOfLeisure"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": [33, 44],
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.tradingPost.services.inn"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": [45, 52],
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.tradingPost.services.club"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": [53, 60],
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.tradingPost.services.soothsayer"]
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": [61, 68],
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack.",
+          "tags": ["ss.tradingPost.services.stable"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": [69, 80],
+          "description": "Provides food and drink.",
+          "tags": ["ss.tradingPost.services.tavern"]
+        },
+        {
+          "id": "brutesAndBrawlers",
+          "name": "Hired Help - Brutes and Brawlers",
+          "range": [81, 82],
+          "description": "Thugs, ruffians and muscle.",
+          "tags": ["ss.tradingPost.services.brutesAndBrawlers"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "cloakAndDagger",
+          "name": "Hired Help - Cloak and Dagger",
+          "range": [83, 84],
+          "description": "Assassins, thieves and spies.",
+          "tags": ["ss.tradingPost.services.cloakAndDagger"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "bowsAndSlings",
+          "name": "Hired Help - Bows and Slings",
+          "range": [85, 86],
+          "description": "Archers and ranged attack specialists.",
+          "tags": ["ss.tradingPost.services.bowsAndSlings"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "scribesAndClerks",
+          "name": "Hired Help - Scribes and Clerks",
+          "range": [87, 88],
+          "description": "Masters of history, literature, mathematics and/or business.",
+          "tags": ["ss.tradingPost.services.scribesAndClerks"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "guidesAndTrackers",
+          "name": "Hired Help - Guides and Trackers",
+          "range": [89, 90],
+          "description": "Scouts, rangers and wilderness experts.",
+          "tags": ["ss.tradingPost.services.guidesAndTrackers"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "caravanAndMount",
+          "name": "Hired Help - Caravan and Mount",
+          "range": [91, 92],
+          "description": "Specialists in transportation and journeys to various locations as well as expedition organization and management.",
+          "tags": ["ss.tradingPost.services.caravanAndMount"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "arcaneAcademics",
+          "name": "Hired Help - Arcane Academics",
+          "range": [93, 94],
+          "description": "Experts in matters of magic and lore (may also be natural magic or something else; it need not be exclusively arcane).",
+          "tags": ["ss.tradingPost.services.arcaneAcademics"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "magicMercenaries",
+          "name": "Hired Help - Magic Mercenaries",
+          "range": [95, 96],
+          "description": "Specialists trained the use of arcane or non-divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.tradingPost.services.magicMercenaries"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "priestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "range": [97, 98],
+          "description": "Sages offering counsel in all matters of religion and the divine.",
+          "tags": ["ss.tradingPost.services.priestlyGuidance"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "handsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "range": [99, 100],
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.tradingPost.services.handsOfTheDivine"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.services.barber",
+      "name": "Barber"
+    },
+    {
+      "id": "ss.tradingPost.services.bathhouse",
+      "name": "Bathhouse"
+    },
+    {
+      "id": "ss.tradingPost.services.doctor",
+      "name": "Doctor/Apothecary"
+    },
+    {
+      "id": "ss.tradingPost.services.houseOfLeisure",
+      "name": "House of Leisure"
+    },
+    {
+      "id": "ss.tradingPost.services.inn",
+      "name": "Inn"
+    },
+    {
+      "id": "ss.tradingPost.services.club",
+      "name": "Club"
+    },
+    {
+      "id": "ss.tradingPost.services.soothsayer",
+      "name": "Soothsayer"
+    },
+    {
+      "id": "ss.tradingPost.services.stable",
+      "name": "Stable"
+    },
+    {
+      "id": "ss.tradingPost.services.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.tradingPost.services.brutesAndBrawlers",
+      "name": "Hired Help - Brutes and Brawlers"
+    },
+    {
+      "id": "ss.tradingPost.services.cloakAndDagger",
+      "name": "Hired Help - Cloak and Dagger"
+    },
+    {
+      "id": "ss.tradingPost.services.bowsAndSlings",
+      "name": "Hired Help - Bows and Slings"
+    },
+    {
+      "id": "ss.tradingPost.services.scribesAndClerks",
+      "name": "Hired Help - Scribes and Clerks"
+    },
+    {
+      "id": "ss.tradingPost.services.guidesAndTrackers",
+      "name": "Hired Help - Guides and Trackers"
+    },
+    {
+      "id": "ss.tradingPost.services.caravanAndMount",
+      "name": "Hired Help - Caravan and Mount"
+    },
+    {
+      "id": "ss.tradingPost.services.arcaneAcademics",
+      "name": "Hired Help - Arcane Academics"
+    },
+    {
+      "id": "ss.tradingPost.services.magicMercenaries",
+      "name": "Hired Help - Magic Mercenaries"
+    },
+    {
+      "id": "ss.tradingPost.services.priestlyGuidance",
+      "name": "Hired Help - Priestly Guidance"
+    },
+    {
+      "id": "ss.tradingPost.services.handsOfTheDivine",
+      "name": "Hired Help - Hands of the Divine"
+    }
+  ]
+}

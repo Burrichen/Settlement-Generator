@@ -63,6 +63,52 @@ specified for it. Each result emits its `world.*` tag:
 - High Fantasy — `world.highFantasy`
 - Forgotten Realms — `world.forgottenRealms`
 - Horror — `world.horror`
+- Spectacular Settlements Generation — `world.spectacularSettlements`
+
+The **Fantasy Profile** setting (`setting.fantasyProfile`, Settings ›
+Generation) can fix the profile for every new settlement: set to a profile,
+the Setting Profile stage is resolved with it and generation starts past it;
+set to Choose (the default) the profile is chosen each time. See
+[FRAMEWORK.md](FRAMEWORK.md#5-settings).
+
+## Spectacular Settlements Generation
+
+The **Spectacular Settlements Generation** profile follows the builder
+chapters of _Spectacular Settlements_ (reference copy:
+[content/SPECTACULAR_SETTLEMENTS.md](content/SPECTACULAR_SETTLEMENTS.md))
+table by table, instead of the generic stages. Only the **Trading Posts**
+builder is imported so far, in `content/spectacular-settlements/trading-post/`
+(tables `table.ss.tradingPost.*`, tags `ss.tradingPost.*`).
+
+- Every generic table stage has `when: not world.spectacularSettlements`,
+  and every Trading Post stage `when: world.spectacularSettlements`, so each
+  profile only sees its own stages (the others are hidden). The Name stage
+  is shared; the built-in Roles, Authority Figures and Notable Locations
+  stages skip themselves because their source stages did not run.
+- Stages, in the book's order: Step 1 (Origin, Specialty, Age, Condition,
+  Visitor Traffic, Size, Environment), Step 2 (Resident Population,
+  Demographics, Disposition, Law Enforcement, Leadership, Population Wealth,
+  Crime), Step 3 (Shops, Services, Place of Worship and, on "Yes", its Size,
+  Fervency and Alignment) and Extra Intrigue (Recent History, Politics,
+  Events, Opportunities, Weather, Danger Level, Danger Type).
+- The book's roll modifiers are `plus`/`minus` tag effects on the later
+  table (e.g. Age → Visitor Traffic, Condition → Population Wealth, Visitor
+  Traffic → Size and Crime, Resident Population, Law Enforcement and
+  Population Wealth → Crime, Population Wealth → Quality). A total past
+  either end of a table is read as that end, as the book says.
+- In-result rolls are follow-up tables (`then_roll`): Food & Drink (d6
+  food or drink), Unscrupulous Contractors (the d10 Hired Help kind, then
+  its size), Oligarchy (d4 group), and every Hired Help service's size.
+- **Shops** and **Services** are flows (`content/spectacular-settlements/
+trading-post/00-flows.json`): the default General Store / Inn (and a
+  Tavern for Food & Drink), then 1d8 + 2/4/6/8/10 shops and 1d6 +
+  0/1/3/5/7 services by size, each rolled on its table. A Shipwright needs
+  a Coastal or River environment, otherwise it is rerolled.
+- Optional tables are imported but not rolled: Quality and Magic Shop
+  Specialization. Crime's "+N to urban encounter rolls" is recorded as a
+  planned intent until Appendix B is imported.
+- The book prints Demographics' Normal Distribution as 10-14, overlapping
+  Only Two (6-10); it is read as 11-14.
 
 ## Region routing
 

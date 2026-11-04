@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.placeOfWorship",
+      "name": "Place of Worship",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "no",
+          "name": "No",
+          "range": [1, 3],
+          "description": "The trading post has no place of worship.",
+          "tags": ["ss.tradingPost.placeOfWorship.no"]
+        },
+        {
+          "id": "yes",
+          "name": "Yes",
+          "range": [4, 6],
+          "description": "The trading post has a place of worship: its size, following and alignment are rolled next.",
+          "tags": ["ss.tradingPost.placeOfWorship.yes"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.placeOfWorship.no",
+      "name": "No"
+    },
+    {
+      "id": "ss.tradingPost.placeOfWorship.yes",
+      "name": "Yes"
+    }
+  ]
+}

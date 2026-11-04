@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.contractors",
+      "name": "Unscrupulous Contractors",
+      "description": "The free Hired Help service of the Unscrupulous Contractors specialty.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "brutesAndBrawlers",
+          "name": "Hired Help - Brutes and Brawlers",
+          "range": 1,
+          "description": "Thugs, ruffians and muscle.",
+          "tags": ["ss.tradingPost.contractors.brutesAndBrawlers"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "cloakAndDagger",
+          "name": "Hired Help - Cloak and Dagger",
+          "range": 2,
+          "description": "Assassins, thieves and spies.",
+          "tags": ["ss.tradingPost.contractors.cloakAndDagger"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "bowsAndSlings",
+          "name": "Hired Help - Bows and Slings",
+          "range": 3,
+          "description": "Archers and ranged attack specialists.",
+          "tags": ["ss.tradingPost.contractors.bowsAndSlings"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "scribesAndClerks",
+          "name": "Hired Help - Scribes and Clerks",
+          "range": 4,
+          "description": "Masters of history, literature, mathematics and/or business.",
+          "tags": ["ss.tradingPost.contractors.scribesAndClerks"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "guidesAndTrackers",
+          "name": "Hired Help - Guides and Trackers",
+          "range": 5,
+          "description": "Scouts, rangers and wilderness experts.",
+          "tags": ["ss.tradingPost.contractors.guidesAndTrackers"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "caravanAndMount",
+          "name": "Hired Help - Caravan and Mount",
+          "range": 6,
+          "description": "Specialists in transportation and journeys to various locations as well as expedition organization and management.",
+          "tags": ["ss.tradingPost.contractors.caravanAndMount"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "arcaneAcademics",
+          "name": "Hired Help - Arcane Academics",
+          "range": 7,
+          "description": "Experts in matters of magic and lore (may also be natural magic or something else; it need not be exclusively arcane).",
+          "tags": ["ss.tradingPost.contractors.arcaneAcademics"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "magicMercenaries",
+          "name": "Hired Help - Magic Mercenaries",
+          "range": 8,
+          "description": "Specialists trained the use of arcane or non-divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.tradingPost.contractors.magicMercenaries"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "priestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "range": 9,
+          "description": "Sages offering counsel in all matters of religion and the divine.",
+          "tags": ["ss.tradingPost.contractors.priestlyGuidance"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        },
+        {
+          "id": "handsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "range": 10,
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.tradingPost.contractors.handsOfTheDivine"],
+          "then_roll": ["table.ss.tradingPost.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.contractors.brutesAndBrawlers",
+      "name": "Hired Help - Brutes and Brawlers"
+    },
+    {
+      "id": "ss.tradingPost.contractors.cloakAndDagger",
+      "name": "Hired Help - Cloak and Dagger"
+    },
+    {
+      "id": "ss.tradingPost.contractors.bowsAndSlings",
+      "name": "Hired Help - Bows and Slings"
+    },
+    {
+      "id": "ss.tradingPost.contractors.scribesAndClerks",
+      "name": "Hired Help - Scribes and Clerks"
+    },
+    {
+      "id": "ss.tradingPost.contractors.guidesAndTrackers",
+      "name": "Hired Help - Guides and Trackers"
+    },
+    {
+      "id": "ss.tradingPost.contractors.caravanAndMount",
+      "name": "Hired Help - Caravan and Mount"
+    },
+    {
+      "id": "ss.tradingPost.contractors.arcaneAcademics",
+      "name": "Hired Help - Arcane Academics"
+    },
+    {
+      "id": "ss.tradingPost.contractors.magicMercenaries",
+      "name": "Hired Help - Magic Mercenaries"
+    },
+    {
+      "id": "ss.tradingPost.contractors.priestlyGuidance",
+      "name": "Hired Help - Priestly Guidance"
+    },
+    {
+      "id": "ss.tradingPost.contractors.handsOfTheDivine",
+      "name": "Hired Help - Hands of the Divine"
+    }
+  ]
+}

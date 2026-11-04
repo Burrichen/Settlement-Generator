@@ -12,7 +12,13 @@
         { "id": "mediumFantasy", "name": "Medium Fantasy", "tags": ["world.mediumFantasy"] },
         { "id": "highFantasy", "name": "High Fantasy", "tags": ["world.highFantasy"] },
         { "id": "forgottenRealms", "name": "Forgotten Realms", "tags": ["world.forgottenRealms"] },
-        { "id": "horror", "name": "Horror", "tags": ["world.horror"] }
+        { "id": "horror", "name": "Horror", "tags": ["world.horror"] },
+        {
+          "id": "spectacularSettlements",
+          "name": "Spectacular Settlements Generation",
+          "description": "Follows the builder chapters of Spectacular Settlements table by table, in place of the generic stages. Currently the Trading Posts builder.",
+          "tags": ["world.spectacularSettlements"]
+        }
       ]
     }
   ],
@@ -63,6 +69,11 @@
           "note": "Horror Region table is not designed yet. Activate once table.horrorRegion exists."
         }
       ]
+    },
+    {
+      "id": "world.spectacularSettlements",
+      "name": "Spectacular Settlements Generation",
+      "description": "Profile-routing tag: generation follows the Spectacular Settlements builders (currently Trading Posts) instead of the generic stages, which are skipped."
     }
   ]
 }

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.events",
+      "name": "Events",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "highClassVisitor",
+          "name": "High-Class Visitor",
+          "range": 1,
+          "description": "A wealthy aristocrat is passing through and throwing their money around. It seems like anything can be bought, and no price is too high.",
+          "tags": ["ss.tradingPost.events.highClassVisitor"]
+        },
+        {
+          "id": "troublemakers",
+          "name": "Troublemakers",
+          "range": 2,
+          "description": "A pack of ruffians is making themselves a nuisance to the locals. Hostile encounters are escalating and might become violent.",
+          "tags": ["ss.tradingPost.events.troublemakers"]
+        },
+        {
+          "id": "foolsFestival",
+          "name": "Fool’s Festival",
+          "range": 3,
+          "description": "It’s the day of the fool. Many folk are dressed as jesters and tumblers. The drink is flowing and the mood is merry.",
+          "tags": ["ss.tradingPost.events.foolsFestival"]
+        },
+        {
+          "id": "caughtRedHanded",
+          "name": "Caught Red-Handed",
+          "range": 4,
+          "description": "A shop owner has caught a thief, and is threatening them with a weapon in the street as they beg for mercy.",
+          "tags": ["ss.tradingPost.events.caughtRedHanded"]
+        },
+        {
+          "id": "strangers",
+          "name": "Strangers",
+          "range": 5,
+          "description": "A large trade caravan just arrived, full of people locals have never seen, and some don’t know what to make of them.",
+          "tags": ["ss.tradingPost.events.strangers"]
+        },
+        {
+          "id": "publicEmergency",
+          "name": "Public Emergency",
+          "range": 6,
+          "description": "There is an emergency situation in town, such as a fire. There is lots of commotion as people rush to help, or get a look at what’s going on.",
+          "tags": ["ss.tradingPost.events.publicEmergency"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.events.highClassVisitor",
+      "name": "High-Class Visitor"
+    },
+    {
+      "id": "ss.tradingPost.events.troublemakers",
+      "name": "Troublemakers"
+    },
+    {
+      "id": "ss.tradingPost.events.foolsFestival",
+      "name": "Fool’s Festival"
+    },
+    {
+      "id": "ss.tradingPost.events.caughtRedHanded",
+      "name": "Caught Red-Handed"
+    },
+    {
+      "id": "ss.tradingPost.events.strangers",
+      "name": "Strangers"
+    },
+    {
+      "id": "ss.tradingPost.events.publicEmergency",
+      "name": "Public Emergency"
+    }
+  ]
+}

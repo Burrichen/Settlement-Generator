@@ -634,15 +634,21 @@ impl SettingEditor {
                     e.draft.kind = SettingKind::Text { default: t }
                 })
             }
-            SettingKind::Choice { options, default } => {
+            SettingKind::Choice {
+                options, default, ..
+            } => {
                 let at = options.iter().position(|o| o.id == default).unwrap_or(0);
                 let items = options
                     .iter()
                     .map(|o| PickItem::new(o.name.clone()))
                     .collect();
                 self.ask(Modal::pick("Default", items, at), move |e, r, _| {
-                    if let (ModalResult::Picked(k), SettingKind::Choice { options, default }) =
-                        (r, &mut e.draft.kind)
+                    if let (
+                        ModalResult::Picked(k),
+                        SettingKind::Choice {
+                            options, default, ..
+                        },
+                    ) = (r, &mut e.draft.kind)
                         && let Some(o) = options.get(k)
                     {
                         *default = o.id.clone();
@@ -686,7 +692,9 @@ fn options_mut(kind: &mut SettingKind) -> &mut Vec<SettingOption> {
 /// Removes option `i`; a default that named it moves to what remains.
 fn remove_option(kind: &mut SettingKind, i: usize) {
     match kind {
-        SettingKind::Choice { options, default } if options.len() > 1 => {
+        SettingKind::Choice {
+            options, default, ..
+        } if options.len() > 1 => {
             let gone = options.remove(i);
             if *default == gone.id {
                 *default = options[0].id.clone();

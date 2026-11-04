@@ -226,6 +226,26 @@ function ContentSettingRow({
   useEffect(() => setText(typeof value === "string" ? value : ""), [value]);
   switch (setting.kind) {
     case "choice":
+      // A setting that picks a table result (e.g. Fantasy Profile), or one
+      // with many options, is a dropdown; short lists stay as radios.
+      if (setting.chooses_table || setting.options.length > 4) {
+        return (
+          <Row title={setting.name} help={setting.description}>
+            <select
+              className="select setting-select"
+              aria-label={setting.name}
+              value={String(value)}
+              onChange={(e) => onChange(e.target.value)}
+            >
+              {setting.options.map((o) => (
+                <option key={o.id} value={o.id}>
+                  {o.name}
+                </option>
+              ))}
+            </select>
+          </Row>
+        );
+      }
       return (
         <ChoiceRow<string>
           name={`setting-${setting.id}`}

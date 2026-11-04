@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.origin",
+      "name": "Origin",
+      "description": "How the trading post came to be.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "accidental",
+          "name": "Accidental",
+          "range": 1,
+          "description": "The trading post came about due to an accident, such as a caravan breaking down or mistaken directions. What was set up to deal with the accident eventually became the trading post.",
+          "tags": ["ss.tradingPost.origin.accidental"]
+        },
+        {
+          "id": "businessVenture",
+          "name": "Business Venture",
+          "range": 2,
+          "description": "The trading post was established by a wealthy entrepreneur specifically to be a trading post from the start.",
+          "tags": ["ss.tradingPost.origin.businessVenture"]
+        },
+        {
+          "id": "crossroads",
+          "name": "Crossroads",
+          "range": 3,
+          "description": "The trading post is at the intersection of more than one major trade route.",
+          "tags": ["ss.tradingPost.origin.crossroads"]
+        },
+        {
+          "id": "militaryOutpost",
+          "name": "Military Outpost",
+          "range": 4,
+          "description": "The trading post was built on the remnants of an old fortress or watchtower, the structures of which have long since fallen down or been repurposed by the locals.",
+          "tags": ["ss.tradingPost.origin.militaryOutpost"]
+        },
+        {
+          "id": "noMansLand",
+          "name": "No Man’s Land",
+          "range": 5,
+          "description": "The trading post was established as a neutral place where opposing forces could purchase wares, without encroaching on enemy territory.",
+          "tags": ["ss.tradingPost.origin.noMansLand"]
+        },
+        {
+          "id": "native",
+          "name": "Native",
+          "range": 6,
+          "description": "The trading post was started by someone native to the area, who saw potential in trade with passersby.",
+          "tags": ["ss.tradingPost.origin.native"]
+        },
+        {
+          "id": "overnightStop",
+          "name": "Overnight Stop",
+          "range": 7,
+          "description": "The trading post was originally a single, large house for overnight stays for weary travelers, which soon grew, along with the demand for accommodations.",
+          "tags": ["ss.tradingPost.origin.overnightStop"]
+        },
+        {
+          "id": "wildernessExpert",
+          "name": "Wilderness Expert",
+          "range": 8,
+          "description": "The trading post was started when a trapper, hunter or guide set up a camp, in order to aid those passing through the area.",
+          "tags": ["ss.tradingPost.origin.wildernessExpert"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.origin.accidental",
+      "name": "Accidental"
+    },
+    {
+      "id": "ss.tradingPost.origin.businessVenture",
+      "name": "Business Venture"
+    },
+    {
+      "id": "ss.tradingPost.origin.crossroads",
+      "name": "Crossroads"
+    },
+    {
+      "id": "ss.tradingPost.origin.militaryOutpost",
+      "name": "Military Outpost"
+    },
+    {
+      "id": "ss.tradingPost.origin.noMansLand",
+      "name": "No Man’s Land"
+    },
+    {
+      "id": "ss.tradingPost.origin.native",
+      "name": "Native"
+    },
+    {
+      "id": "ss.tradingPost.origin.overnightStop",
+      "name": "Overnight Stop"
+    },
+    {
+      "id": "ss.tradingPost.origin.wildernessExpert",
+      "name": "Wilderness Expert"
+    }
+  ]
+}

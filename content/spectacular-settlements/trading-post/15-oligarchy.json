@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.oligarchy",
+      "name": "Oligarchy",
+      "description": "Which few hold sway, for an Oligarchy.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "merchants",
+          "name": "Merchants (Plutocracy)",
+          "range": 1,
+          "tags": ["ss.tradingPost.oligarchy.merchants"]
+        },
+        {
+          "id": "mages",
+          "name": "Mages (Magocracy)",
+          "range": 2,
+          "tags": ["ss.tradingPost.oligarchy.mages"]
+        },
+        {
+          "id": "priests",
+          "name": "Priests (Theocracy)",
+          "range": 3,
+          "tags": ["ss.tradingPost.oligarchy.priests"]
+        },
+        {
+          "id": "other",
+          "name": "Other Small Group",
+          "range": 4,
+          "tags": ["ss.tradingPost.oligarchy.other"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.oligarchy.merchants",
+      "name": "Merchants (Plutocracy)"
+    },
+    {
+      "id": "ss.tradingPost.oligarchy.mages",
+      "name": "Mages (Magocracy)"
+    },
+    {
+      "id": "ss.tradingPost.oligarchy.priests",
+      "name": "Priests (Theocracy)"
+    },
+    {
+      "id": "ss.tradingPost.oligarchy.other",
+      "name": "Other Small Group"
+    }
+  ]
+}

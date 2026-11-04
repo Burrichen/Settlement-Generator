@@ -192,6 +192,9 @@ fn sequence_is_the_approved_pipeline() {
         .sequence_tables()
         .iter()
         .map(|t| t.to_string())
+        // The Spectacular Settlements profile's own tables are covered by
+        // `spectacular_settlements.rs`.
+        .filter(|t| !t.starts_with("table.ss."))
         .collect();
     assert_eq!(
         seq,
@@ -235,6 +238,10 @@ fn setting_profile_keeps_every_profile() {
             ("High Fantasy", "world.highFantasy"),
             ("Forgotten Realms", "world.forgottenRealms"),
             ("Horror", "world.horror"),
+            (
+                "Spectacular Settlements Generation",
+                "world.spectacularSettlements"
+            ),
         ]
     );
 }
@@ -1498,6 +1505,7 @@ fn every_stage_has_its_pipeline_name() {
     let names: Vec<_> = content()
         .pipeline()
         .into_iter()
+        .filter(|s| !s.id.as_str().starts_with("ssTradingPost-"))
         .map(|s| s.name.unwrap())
         .collect();
     assert_eq!(

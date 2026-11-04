@@ -123,6 +123,8 @@ fn security_precedes_crime_which_precedes_stability_after_the_authority() {
     let names: Vec<_> = content()
         .pipeline()
         .into_iter()
+        // The Spectacular Settlements profile's own stages come after.
+        .filter(|s| !s.id.as_str().starts_with("ssTradingPost-"))
         .map(|s| s.name.unwrap())
         .collect();
     let at = |n: &str| names.iter().position(|x| x == n).unwrap();
@@ -377,6 +379,7 @@ fn snapshots_keep_all_three_and_ignore_later_edits() {
     let stored: Vec<_> = snapshot
         .display_stages()
         .into_iter()
+        .filter(|st| !st.stage_table.as_str().starts_with("table.ss."))
         .filter(|st| ["Security", "Crime", "Stability"].contains(&st.label.as_str()))
         .collect();
     assert_eq!(stored.len(), 3);

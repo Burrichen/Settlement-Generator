@@ -8,6 +8,24 @@
       "description": "Always add a Tavern / Inn with 4 spare rooms to the settlement's Notable Locations, in addition to the rolled ones.",
       "kind": "toggle",
       "default": false
+    },
+    {
+      "id": "setting.fantasyProfile",
+      "name": "Fantasy Profile",
+      "description": "Use this profile for every new settlement and skip the Setting Profile stage. Choose asks each time.",
+      "kind": "choice",
+      "chooses_table": "table.settingProfile",
+      "default": "choose",
+      "options": [
+        { "id": "choose", "name": "Choose" },
+        { "id": "kurovia", "name": "Kurovia" },
+        { "id": "lowFantasy", "name": "Low Fantasy" },
+        { "id": "mediumFantasy", "name": "Medium Fantasy" },
+        { "id": "highFantasy", "name": "High Fantasy" },
+        { "id": "forgottenRealms", "name": "Forgotten Realms" },
+        { "id": "horror", "name": "Horror" },
+        { "id": "spectacularSettlements", "name": "Spectacular Settlements Generation" }
+      ]
     }
   ],
   "flows": [
@@ -22,28 +40,73 @@
           "table": "table.settingProfile",
           "name": "Setting Profile"
         },
-        { "id": "region", "kind": "roll", "table": "table.genericRegion", "name": "Region" },
+        {
+          "id": "region",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.genericRegion",
+          "name": "Region"
+        },
         { "id": "name", "kind": "name", "name": "Name" },
         {
           "id": "environment",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
           "kind": "roll",
           "table": "table.environment",
           "name": "Environment"
         },
         {
           "id": "connections",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
           "kind": "roll",
           "table": "table.connections",
           "name": "Connections"
         },
-        { "id": "size", "kind": "roll", "table": "table.size", "name": "Size" },
-        { "id": "origin", "kind": "roll", "table": "table.origin", "name": "Origin" },
-        { "id": "purpose", "kind": "roll", "table": "table.purpose", "name": "Purpose" },
-        { "id": "age", "kind": "roll", "table": "table.age", "name": "Age" },
-        { "id": "economy", "kind": "roll", "table": "table.economy", "name": "Economy" },
-        { "id": "authority", "kind": "roll", "table": "table.authority", "name": "Authority" },
+        {
+          "id": "size",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.size",
+          "name": "Size"
+        },
+        {
+          "id": "origin",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.origin",
+          "name": "Origin"
+        },
+        {
+          "id": "purpose",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.purpose",
+          "name": "Purpose"
+        },
+        {
+          "id": "age",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.age",
+          "name": "Age"
+        },
+        {
+          "id": "economy",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.economy",
+          "name": "Economy"
+        },
+        {
+          "id": "authority",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.authority",
+          "name": "Authority"
+        },
         {
           "id": "representation",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
           "kind": "roll",
           "table": "table.authorityRepresentation",
           "name": "Representation",
@@ -51,6 +114,7 @@
         },
         {
           "id": "authoritySize",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
           "kind": "roll",
           "table": "table.authoritySize",
           "name": "Authority Size",
@@ -107,9 +171,27 @@
             "relationship_table": "table.authorityRelationship"
           }
         },
-        { "id": "security", "kind": "roll", "table": "table.security", "name": "Security" },
-        { "id": "crime", "kind": "roll", "table": "table.crime", "name": "Crime" },
-        { "id": "stability", "kind": "roll", "table": "table.stability", "name": "Stability" },
+        {
+          "id": "security",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.security",
+          "name": "Security"
+        },
+        {
+          "id": "crime",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.crime",
+          "name": "Crime"
+        },
+        {
+          "id": "stability",
+          "when": { "not": { "has_tag": "world.spectacularSettlements" } },
+          "kind": "roll",
+          "table": "table.stability",
+          "name": "Stability"
+        },
         {
           "id": "notableLocations",
           "kind": "builtin",
@@ -126,6 +208,195 @@
               "spare_rooms": 4
             }
           }
+        },
+        {
+          "id": "ssTradingPost-origin",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.origin",
+          "name": "Origin",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-specialty",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.specialty",
+          "name": "Specialty",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-age",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.age",
+          "name": "Age",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-condition",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.condition",
+          "name": "Condition",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-visitorTraffic",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.visitorTraffic",
+          "name": "Visitor Traffic",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-size",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.size",
+          "name": "Size",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-environment",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.environment",
+          "name": "Environment",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-residentPopulation",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.residentPopulation",
+          "name": "Resident Population",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-demographics",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.demographics",
+          "name": "Demographics",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-disposition",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.disposition",
+          "name": "Disposition",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-lawEnforcement",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.lawEnforcement",
+          "name": "Law Enforcement",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-leadership",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.leadership",
+          "name": "Leadership",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-populationWealth",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.populationWealth",
+          "name": "Population Wealth",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-crime",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.crime",
+          "name": "Crime",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-shops",
+          "kind": "run_flow",
+          "flow": "flow.ss.tradingPost.shops",
+          "name": "Shops",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-services",
+          "kind": "run_flow",
+          "flow": "flow.ss.tradingPost.services",
+          "name": "Services",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-placeOfWorship",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.placeOfWorship",
+          "name": "Place of Worship",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-placeOfWorshipSize",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.placeOfWorshipSize",
+          "name": "Place of Worship Size",
+          "when": { "has_tag": "ss.tradingPost.placeOfWorship.yes" }
+        },
+        {
+          "id": "ssTradingPost-fervency",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.fervency",
+          "name": "Fervency of Local Following",
+          "when": { "has_tag": "ss.tradingPost.placeOfWorship.yes" }
+        },
+        {
+          "id": "ssTradingPost-faithAlignment",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.faithAlignment",
+          "name": "Alignment of the Faith",
+          "when": { "has_tag": "ss.tradingPost.placeOfWorship.yes" }
+        },
+        {
+          "id": "ssTradingPost-recentHistory",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.recentHistory",
+          "name": "Recent History",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-politics",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.politics",
+          "name": "Politics",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-events",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.events",
+          "name": "Events",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-opportunities",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.opportunities",
+          "name": "Opportunities",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-weather",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.weather",
+          "name": "Weather",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-dangerLevel",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.dangerLevel",
+          "name": "Danger Level",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
+          "id": "ssTradingPost-dangerType",
+          "kind": "roll",
+          "table": "table.ss.tradingPost.dangerType",
+          "name": "Danger Type",
+          "when": { "has_tag": "world.spectacularSettlements" }
         }
       ]
     }

@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.populationWealth",
+      "name": "Population Wealth",
+      "description": "Modified by Condition. Low wealth breeds crime from desperation, high wealth crime from greed.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "destitute",
+          "name": "Destitute",
+          "range": [1, 2],
+          "description": "Most of the population consistently lacks the barest essentials of what they need to survive. (-4 to crime roll) (-2 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.destitute"]
+        },
+        {
+          "id": "impoverished",
+          "name": "Impoverished",
+          "range": [3, 6],
+          "description": "Around half of the population struggles to carve out even a meager existence. (-2 to crime roll) (-1 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.impoverished"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Most of the population have enough to live a modest life. (+0 to crime roll) (+0 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.average"]
+        },
+        {
+          "id": "prosperous",
+          "name": "Prosperous",
+          "range": [15, 17],
+          "description": "Most of the population has enough to live a good life and, of them, a fair amount can even live comfortably. (-1 to crime roll) (+0 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.prosperous"]
+        },
+        {
+          "id": "wealthy",
+          "name": "Wealthy",
+          "range": [18, 19],
+          "description": "Nearly everyone has what they need to live comfortably, many are able to live well, and some are very prosperous. (-2 to crime roll) (+2 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.wealthy"]
+        },
+        {
+          "id": "affluent",
+          "name": "Affluent",
+          "range": 20,
+          "description": "Nearly everyone is able to live comfortably, with a significant portion living in luxury. (-4 to crime roll) (+3 to quality rolls)",
+          "tags": ["ss.tradingPost.populationWealth.affluent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.populationWealth.destitute",
+      "name": "Destitute",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 4
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.quality",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.populationWealth.impoverished",
+      "name": "Impoverished",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.quality",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.populationWealth.average",
+      "name": "Average"
+    },
+    {
+      "id": "ss.tradingPost.populationWealth.prosperous",
+      "name": "Prosperous",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.populationWealth.wealthy",
+      "name": "Wealthy",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 2
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.quality",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.populationWealth.affluent",
+      "name": "Affluent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.tradingPost.crime",
+          "amount": 4
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.tradingPost.quality",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

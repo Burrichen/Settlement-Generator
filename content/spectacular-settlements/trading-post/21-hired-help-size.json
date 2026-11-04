@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.hiredHelpSize",
+      "name": "Hired Help Size",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "individual",
+          "name": "Individual Person",
+          "range": [1, 6],
+          "description": "The hired help is a single person hiring out their services.",
+          "tags": ["ss.tradingPost.hiredHelpSize.individual"]
+        },
+        {
+          "id": "team",
+          "name": "Team",
+          "range": [7, 10],
+          "description": "The hired help is a team of individuals who work together.",
+          "tags": ["ss.tradingPost.hiredHelpSize.team"]
+        },
+        {
+          "id": "guild",
+          "name": "Guild",
+          "range": [11, 12],
+          "description": "An organized guild is hiring out their services. When hired, a portion of the guild’s members handle the job, not the entire guild (unless the job is very large).",
+          "tags": ["ss.tradingPost.hiredHelpSize.guild"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.hiredHelpSize.individual",
+      "name": "Individual Person"
+    },
+    {
+      "id": "ss.tradingPost.hiredHelpSize.team",
+      "name": "Team"
+    },
+    {
+      "id": "ss.tradingPost.hiredHelpSize.guild",
+      "name": "Guild"
+    }
+  ]
+}

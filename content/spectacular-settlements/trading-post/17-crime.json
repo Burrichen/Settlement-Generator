@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.tradingPost.crime",
+      "name": "Crime",
+      "description": "Modified by Resident Population, Visitor Traffic, Law Enforcement and Population Wealth.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "regular",
+          "name": "Regular",
+          "range": [1, 2],
+          "description": "The streets are crawling with criminals, and a purse unstowed is almost sure to be snatched. (+4 to urban encounter rolls)",
+          "tags": ["ss.tradingPost.crime.regular"]
+        },
+        {
+          "id": "common",
+          "name": "Common",
+          "range": [3, 6],
+          "description": "Most are used to hearing about trouble every day or two. Everyone knows someone who’s been a victim of crime. (+3 to urban encounter rolls)",
+          "tags": ["ss.tradingPost.crime.common"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Theft or mild violence can happen from time to time. Best to keep an eye out. (+2 to urban encounter rolls)",
+          "tags": ["ss.tradingPost.crime.average"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "range": [15, 18],
+          "description": "Some in the trading post have run into a pickpocket or heard about a robbery but, when they do, it’s a noteworthy occurrence. (+1 to urban encounter rolls)",
+          "tags": ["ss.tradingPost.crime.uncommon"]
+        },
+        {
+          "id": "rare",
+          "name": "Rare",
+          "range": [19, 20],
+          "description": "Most in the trading post have had no personal experience of crime, and know few people that have. (+0 to urban encounter rolls)",
+          "tags": ["ss.tradingPost.crime.rare"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.tradingPost.crime.regular",
+      "name": "Regular",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+4 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.crime.common",
+      "name": "Common",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+3 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.crime.average",
+      "name": "Average",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+2 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.crime.uncommon",
+      "name": "Uncommon",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+1 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.tradingPost.crime.rare",
+      "name": "Rare"
+    }
+  ]
+}
