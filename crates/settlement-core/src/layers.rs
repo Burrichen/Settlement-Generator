@@ -7,6 +7,7 @@
 //! fields the user has not customised. See `docs/DATA_MODEL.md` §4.
 
 use std::collections::{BTreeMap, BTreeSet};
+use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use serde::{Deserialize, Serialize};
@@ -445,7 +446,8 @@ pub struct Origins {
 /// The effective content and everything known about how it was produced.
 #[derive(Debug, Clone, PartialEq)]
 pub struct MergedContent {
-    pub content: ContentSet,
+    /// Shared, so a cached merge hands out the content without copying it.
+    pub content: Arc<ContentSet>,
     pub origins: Origins,
     /// Layering issues followed by validation of the merged content.
     pub report: ValidationReport,
@@ -692,7 +694,7 @@ pub fn merge(bundled: &ContentSet, overrides: &UserOverrides) -> MergedContent {
 
     issues.extend(validate(&content).issues);
     MergedContent {
-        content,
+        content: Arc::new(content),
         origins,
         report: ValidationReport { issues },
     }
@@ -836,13 +838,18 @@ enum TagEdit<'a> {
 /// ever change the override layer.
 #[derive(Debug, Clone)]
 pub struct ContentLayers {
-    bundled: ContentSet,
+    /// Shared and never edited: cloning layers (as every trial edit does)
+    /// copies only the overrides.
+    bundled: Arc<ContentSet>,
     overrides: UserOverrides,
 }
 
 impl ContentLayers {
-    pub fn new(bundled: ContentSet, overrides: UserOverrides) -> Self {
-        Self { bundled, overrides }
+    pub fn new(bundled: impl Into<Arc<ContentSet>>, overrides: UserOverrides) -> Self {
+        Self {
+            bundled: bundled.into(),
+            overrides,
+        }
     }
 
     pub fn bundled(&self) -> &ContentSet {

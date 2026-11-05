@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.fervency",
+      "name": "Fervency of Local Following",
+      "description": "Rolled for each place of worship: the degree of veneration visible to any outsider visiting the village. Individual adherents may express their faith more or less boldly.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "unseen",
+          "name": "Unseen",
+          "range": [1, 3],
+          "description": "To those outside the following, it is not clear that the group exists.",
+          "tags": ["ss.village.fervency.unseen"]
+        },
+        {
+          "id": "quiet",
+          "name": "Quiet",
+          "range": [4, 7],
+          "description": "Adherents to the faith are inconspicuous, unless one knows what to look for (perhaps particular gestures, items of clothing, or phrases).",
+          "tags": ["ss.village.fervency.quiet"]
+        },
+        {
+          "id": "subtle",
+          "name": "Subtle",
+          "range": [8, 12],
+          "description": "Followers of the faith may be identifiable, but remain very reserved.",
+          "tags": ["ss.village.fervency.subtle"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [13, 16],
+          "description": "The pious are confident and unafraid to display their faith openly, but do not encroach upon the wider populus uncalled for.",
+          "tags": ["ss.village.fervency.moderate"]
+        },
+        {
+          "id": "fervent",
+          "name": "Fervent",
+          "range": [17, 19],
+          "description": "Followers are outspoken, with little or no fear of reproach. They may sing or speak to the masses.",
+          "tags": ["ss.village.fervency.fervent"]
+        },
+        {
+          "id": "zealous",
+          "name": "Zealous",
+          "range": 20,
+          "description": "Adherents are utterly and unthinkingly devout, forcing their doctrine upon their surroundings and peers, or taking actions that further their cause regardless of personal cost. Though typically seen as negative, this could also be a positive, such as a church of light rising up in an evil kingdom, helping those in need, even if it puts themselves in peril.",
+          "tags": ["ss.village.fervency.zealous"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.fervency.unseen",
+      "name": "Unseen"
+    },
+    {
+      "id": "ss.village.fervency.quiet",
+      "name": "Quiet"
+    },
+    {
+      "id": "ss.village.fervency.subtle",
+      "name": "Subtle"
+    },
+    {
+      "id": "ss.village.fervency.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "ss.village.fervency.fervent",
+      "name": "Fervent"
+    },
+    {
+      "id": "ss.village.fervency.zealous",
+      "name": "Zealous"
+    }
+  ]
+}

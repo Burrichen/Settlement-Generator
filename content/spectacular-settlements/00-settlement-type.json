@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.settlementType",
+      "name": "Settlement Type",
+      "description": "Which builder chapter of Spectacular Settlements to follow. Chosen, not rolled: the book has no table for it.",
+      "selection": "choose",
+      "results": [
+        {
+          "id": "tradingPost",
+          "name": "Trading Post",
+          "description": "Chapter 2: Trading Posts.",
+          "tags": ["ss.settlementType.tradingPost"]
+        },
+        {
+          "id": "village",
+          "name": "Village",
+          "description": "Chapter 3: Villages.",
+          "tags": ["ss.settlementType.village"]
+        },
+        {
+          "id": "town",
+          "name": "Town",
+          "description": "Chapter 4: Towns.",
+          "tags": ["ss.settlementType.town"]
+        },
+        {
+          "id": "city",
+          "name": "City",
+          "description": "Chapter 5: Cities.",
+          "tags": ["ss.settlementType.city"]
+        },
+        {
+          "id": "capital",
+          "name": "Capital",
+          "description": "Chapter 6: Capitals.",
+          "tags": ["ss.settlementType.capital"]
+        },
+        {
+          "id": "fortress",
+          "name": "Fortress",
+          "description": "Chapter 7: Fortresses (a keep, castle or stronghold).",
+          "tags": ["ss.settlementType.fortress"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.settlementType.tradingPost", "name": "Trading Post" },
+    { "id": "ss.settlementType.village", "name": "Village" },
+    { "id": "ss.settlementType.town", "name": "Town" },
+    { "id": "ss.settlementType.city", "name": "City" },
+    { "id": "ss.settlementType.capital", "name": "Capital" },
+    { "id": "ss.settlementType.fortress", "name": "Fortress" }
+  ]
+}

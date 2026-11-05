@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.age",
+      "name": "Age",
+      "description": "How long since the first actions were taken to establish the town. Modifies Population Density.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "recent",
+          "name": "Recent",
+          "range": [1, 2],
+          "description": "Established within the past year, the town has not been around long. Awareness has likely not spread beyond the immediate surrounding area. (-2 to population density roll)",
+          "tags": ["ss.town.age.recent"]
+        },
+        {
+          "id": "established",
+          "name": "Established",
+          "range": [3, 4],
+          "description": "The town has been around for a few years. Folk within a few dozen miles may have heard of it. It has most likely been added to major official maps. (-1 to population density roll)",
+          "tags": ["ss.town.age.established"]
+        },
+        {
+          "id": "mature",
+          "name": "Mature",
+          "range": [5, 6],
+          "description": "The town has been around for decades, and may have developed some sort of reputation, depending on its community, location, and what goes on in the town. (+0 to population density roll)",
+          "tags": ["ss.town.age.mature"]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [7, 8],
+          "description": "The town has been around near enough to a century, or so. Families have grown up here. Some businesses have grown, folded, and been replaced by new ones. Features have likely been added, or it may have expanded outwards. It may also have seen through many events that could have altered the town’s course. (+1 to population density roll)",
+          "tags": ["ss.town.age.old"]
+        },
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "range": [9, 10],
+          "description": "The town is hundreds of years old, or more. It may still be thriving, or in ruins, remaining much like it has always been, or may have drastically changed, for better or worse. (+2 to population density roll)",
+          "tags": ["ss.town.age.ancient"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.age.recent",
+      "name": "Recent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationDensity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.age.established",
+      "name": "Established",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationDensity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.age.mature",
+      "name": "Mature"
+    },
+    {
+      "id": "ss.town.age.old",
+      "name": "Old",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationDensity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.age.ancient",
+      "name": "Ancient",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationDensity",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

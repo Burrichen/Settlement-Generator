@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.recruitmentType",
+      "name": "Recruitment Type",
+      "description": "The preferred method of enlistment (not necessarily the only one).",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "mercenary",
+          "name": "Mercenary",
+          "range": 1,
+          "description": "The force is bought and paid for until such time as their contract ends, at which point the mercenaries renew or move on.",
+          "tags": ["ss.capital.recruitmentType.mercenary"]
+        },
+        {
+          "id": "mandatory",
+          "name": "Mandatory",
+          "range": 2,
+          "description": "Law states all able-bodied citizens must spend a certain amount of time serving in the military.",
+          "tags": ["ss.capital.recruitmentType.mandatory"]
+        },
+        {
+          "id": "volunteer",
+          "name": "Volunteer",
+          "range": 3,
+          "description": "Forces are made up of individuals who joined up willingly, and of their own volition.",
+          "tags": ["ss.capital.recruitmentType.volunteer"]
+        },
+        {
+          "id": "handPicked",
+          "name": "Hand-Picked",
+          "range": 4,
+          "description": "The capital hand picks individuals from its populace, based on certain criteria.",
+          "tags": ["ss.capital.recruitmentType.handPicked"]
+        },
+        {
+          "id": "criminals",
+          "name": "Criminals",
+          "range": 5,
+          "description": "Convicts are enlisted, either as a compulsory part of their sentence or, quite possibly, voluntarily, as a way of commuting their sentences.",
+          "tags": ["ss.capital.recruitmentType.criminals"]
+        },
+        {
+          "id": "conscripted",
+          "name": "Conscripted",
+          "range": 6,
+          "description": "Troops are levied from regions owing fealty to the capital. This type of conscription is typically for a specific purpose which, once fulfilled, disbands, so troops can return to their homelands.",
+          "tags": ["ss.capital.recruitmentType.conscripted"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.recruitmentType.mercenary",
+      "name": "Mercenary"
+    },
+    {
+      "id": "ss.capital.recruitmentType.mandatory",
+      "name": "Mandatory"
+    },
+    {
+      "id": "ss.capital.recruitmentType.volunteer",
+      "name": "Volunteer"
+    },
+    {
+      "id": "ss.capital.recruitmentType.handPicked",
+      "name": "Hand-Picked"
+    },
+    {
+      "id": "ss.capital.recruitmentType.criminals",
+      "name": "Criminals"
+    },
+    {
+      "id": "ss.capital.recruitmentType.conscripted",
+      "name": "Conscripted"
+    }
+  ]
+}

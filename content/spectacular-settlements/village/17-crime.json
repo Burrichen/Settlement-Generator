@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.crime",
+      "name": "Crime",
+      "description": "Modified by Population Density, Law Enforcement and Population Wealth. Crime in a village is likely rare and, when it does occur, swiftly dealt with.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [1, 2],
+          "description": "Theft or violence can happen from time to time. Best to keep an eye out. (+3 to urban encounter rolls)",
+          "tags": ["ss.village.crime.average"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "range": [3, 5],
+          "description": "Crime does not occur often but, when it does, it is a noteworthy occurrence. (+2 to urban encounter rolls)",
+          "tags": ["ss.village.crime.uncommon"]
+        },
+        {
+          "id": "rare",
+          "name": "Rare",
+          "range": [6, 10],
+          "description": "Most villagers have had no personal experience with crime, and few know people that have. (+1 to urban encounter rolls)",
+          "tags": ["ss.village.crime.rare"]
+        },
+        {
+          "id": "littleToNone",
+          "name": "Little-to-None",
+          "range": [11, 20],
+          "description": "Most, or all, of the villagers believe the village is totally safe, and certainly haven’t experienced any crime personally. (+0 to urban encounter rolls)",
+          "tags": ["ss.village.crime.littleToNone"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.crime.average",
+      "name": "Average",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+3 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.village.crime.uncommon",
+      "name": "Uncommon",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+2 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.village.crime.rare",
+      "name": "Rare",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+1 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    { "id": "ss.village.crime.littleToNone", "name": "Little-to-None" }
+  ]
+}

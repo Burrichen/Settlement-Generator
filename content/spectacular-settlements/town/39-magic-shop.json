@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.magicShop",
+      "name": "Magic Shop",
+      "description": "The Magic priority's free magic shop.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "armor",
+          "name": "Magic Shop - Armor",
+          "range": 1,
+          "description": "(Exotic) Sells magical items with a focus on armor and protective equipment.",
+          "tags": ["ss.town.magicShop.armor"]
+        },
+        {
+          "id": "books",
+          "name": "Magic Shop - Books",
+          "range": 2,
+          "description": "(Exotic) Sells magical items with a focus on literature, arcane tomes and lore.",
+          "tags": ["ss.town.magicShop.books"]
+        },
+        {
+          "id": "clothing",
+          "name": "Magic Shop - Clothing",
+          "range": 3,
+          "description": "(Exotic) Sells magical items with a focus on clothing of all types which bear magical properties.",
+          "tags": ["ss.town.magicShop.clothing"]
+        },
+        {
+          "id": "jewelry",
+          "name": "Magic Shop - Jewelry",
+          "range": 4,
+          "description": "(Exotic) Sells magical items with a focus on enchanted, or otherwise magically imbued, jewelry.",
+          "tags": ["ss.town.magicShop.jewelry"]
+        },
+        {
+          "id": "weapons",
+          "name": "Magic Shop - Weapons",
+          "range": 5,
+          "description": "(Exotic) Sells magical items with a focus on weapons with mystic properties and, perhaps, shields.",
+          "tags": ["ss.town.magicShop.weapons"]
+        },
+        {
+          "id": "curiosities",
+          "name": "Magic Shop - Miscellaneous & Curiosities",
+          "range": 6,
+          "description": "(Exotic) Procures and sells magical items with a focus on strange and rare artifacts of a wondrous or intriguing nature.",
+          "tags": ["ss.town.magicShop.curiosities"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.magicShop.armor",
+      "name": "Magic Shop - Armor"
+    },
+    {
+      "id": "ss.town.magicShop.books",
+      "name": "Magic Shop - Books"
+    },
+    {
+      "id": "ss.town.magicShop.clothing",
+      "name": "Magic Shop - Clothing"
+    },
+    {
+      "id": "ss.town.magicShop.jewelry",
+      "name": "Magic Shop - Jewelry"
+    },
+    {
+      "id": "ss.town.magicShop.weapons",
+      "name": "Magic Shop - Weapons"
+    },
+    {
+      "id": "ss.town.magicShop.curiosities",
+      "name": "Magic Shop - Miscellaneous & Curiosities"
+    }
+  ]
+}

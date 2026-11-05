@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.visitReason",
+      "name": "Reason for Visit",
+      "description": "Rolled for each notable visitor: why they are in the capital.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "escape",
+          "name": "Escape",
+          "range": 1,
+          "description": "They are trying to get away from something.",
+          "tags": ["ss.capital.visitReason.escape"]
+        },
+        {
+          "id": "diplomacy",
+          "name": "Diplomacy",
+          "range": 2,
+          "description": "They are here to negotiate some kind of agreement.",
+          "tags": ["ss.capital.visitReason.diplomacy"]
+        },
+        {
+          "id": "lookingForFun",
+          "name": "Looking for Fun",
+          "range": 3,
+          "description": "They came here to enjoy themselves.",
+          "tags": ["ss.capital.visitReason.lookingForFun"]
+        },
+        {
+          "id": "anImportantMeeting",
+          "name": "An Important Meeting",
+          "range": 4,
+          "description": "They are here for a critical meeting with an individual or group.",
+          "tags": ["ss.capital.visitReason.anImportantMeeting"]
+        },
+        {
+          "id": "grudge",
+          "name": "Grudge",
+          "range": 5,
+          "description": "They are here looking to settle a score.",
+          "tags": ["ss.capital.visitReason.grudge"]
+        },
+        {
+          "id": "tricked",
+          "name": "Tricked",
+          "range": 6,
+          "description": "They wound up here after being deceived.",
+          "tags": ["ss.capital.visitReason.tricked"]
+        },
+        {
+          "id": "visitingAnOldFriend",
+          "name": "Visiting an Old Friend",
+          "range": 7,
+          "description": "They are in the capital to meet with someone they haven’t seen in a long time.",
+          "tags": ["ss.capital.visitReason.visitingAnOldFriend"]
+        },
+        {
+          "id": "inNeedOfHelp",
+          "name": "In Need of Help",
+          "range": 8,
+          "description": "They are beset by a problem and have come here looking for aid.",
+          "tags": ["ss.capital.visitReason.inNeedOfHelp"]
+        },
+        {
+          "id": "lost",
+          "name": "Lost",
+          "range": 9,
+          "description": "They wound up here trying to find their way somewhere else.",
+          "tags": ["ss.capital.visitReason.lost"]
+        },
+        {
+          "id": "tookWrongTransportation",
+          "name": "Took Wrong Transportation",
+          "range": 10,
+          "description": "They wound up here thinking they were traveling to another location. They’re now lost.",
+          "tags": ["ss.capital.visitReason.tookWrongTransportation"]
+        },
+        {
+          "id": "angry",
+          "name": "Angry",
+          "range": 11,
+          "description": "They’re upset about something, and are looking to deal with it.",
+          "tags": ["ss.capital.visitReason.angry"]
+        },
+        {
+          "id": "interestingPlace",
+          "name": "Interesting Place",
+          "range": 12,
+          "description": "Word of a noteworthy place reached them, and they mean to see it.",
+          "tags": ["ss.capital.visitReason.interestingPlace"]
+        },
+        {
+          "id": "seekingAdvice",
+          "name": "Seeking Advice",
+          "range": 13,
+          "description": "They are here to gain understanding about an issue that has been affecting them.",
+          "tags": ["ss.capital.visitReason.seekingAdvice"]
+        },
+        {
+          "id": "followingProphecy",
+          "name": "Following Prophecy",
+          "range": 14,
+          "description": "They are here because they feel they were meant to be.",
+          "tags": ["ss.capital.visitReason.followingProphecy"]
+        },
+        {
+          "id": "hadAVision",
+          "name": "Had a Vision",
+          "range": 15,
+          "description": "They saw something in a dream that involved coming here.",
+          "tags": ["ss.capital.visitReason.hadAVision"]
+        },
+        {
+          "id": "lostABet",
+          "name": "Lost a Bet",
+          "range": 16,
+          "description": "The visitor is here for some particular, unpleasant reason as the losing penalty of a wager.",
+          "tags": ["ss.capital.visitReason.lostABet"]
+        },
+        {
+          "id": "doingAFavor",
+          "name": "Doing a Favor",
+          "range": 17,
+          "description": "A friend or loved one asked them to come here and resolve some kind of business.",
+          "tags": ["ss.capital.visitReason.doingAFavor"]
+        },
+        {
+          "id": "collectingADebt",
+          "name": "Collecting a Debt",
+          "range": 18,
+          "description": "Someone owes the visitor (or someone connected to them), and it’s time to collect.",
+          "tags": ["ss.capital.visitReason.collectingADebt"]
+        },
+        {
+          "id": "lookingForAChange",
+          "name": "Looking for a Change",
+          "range": 19,
+          "description": "They are here because they want to change something significant in their life.",
+          "tags": ["ss.capital.visitReason.lookingForAChange"]
+        },
+        {
+          "id": "onTheHunt",
+          "name": "On the Hunt",
+          "range": 20,
+          "description": "They are in pursuit of someone or something.",
+          "tags": ["ss.capital.visitReason.onTheHunt"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.visitReason.escape",
+      "name": "Escape"
+    },
+    {
+      "id": "ss.capital.visitReason.diplomacy",
+      "name": "Diplomacy"
+    },
+    {
+      "id": "ss.capital.visitReason.lookingForFun",
+      "name": "Looking for Fun"
+    },
+    {
+      "id": "ss.capital.visitReason.anImportantMeeting",
+      "name": "An Important Meeting"
+    },
+    {
+      "id": "ss.capital.visitReason.grudge",
+      "name": "Grudge"
+    },
+    {
+      "id": "ss.capital.visitReason.tricked",
+      "name": "Tricked"
+    },
+    {
+      "id": "ss.capital.visitReason.visitingAnOldFriend",
+      "name": "Visiting an Old Friend"
+    },
+    {
+      "id": "ss.capital.visitReason.inNeedOfHelp",
+      "name": "In Need of Help"
+    },
+    {
+      "id": "ss.capital.visitReason.lost",
+      "name": "Lost"
+    },
+    {
+      "id": "ss.capital.visitReason.tookWrongTransportation",
+      "name": "Took Wrong Transportation"
+    },
+    {
+      "id": "ss.capital.visitReason.angry",
+      "name": "Angry"
+    },
+    {
+      "id": "ss.capital.visitReason.interestingPlace",
+      "name": "Interesting Place"
+    },
+    {
+      "id": "ss.capital.visitReason.seekingAdvice",
+      "name": "Seeking Advice"
+    },
+    {
+      "id": "ss.capital.visitReason.followingProphecy",
+      "name": "Following Prophecy"
+    },
+    {
+      "id": "ss.capital.visitReason.hadAVision",
+      "name": "Had a Vision"
+    },
+    {
+      "id": "ss.capital.visitReason.lostABet",
+      "name": "Lost a Bet"
+    },
+    {
+      "id": "ss.capital.visitReason.doingAFavor",
+      "name": "Doing a Favor"
+    },
+    {
+      "id": "ss.capital.visitReason.collectingADebt",
+      "name": "Collecting a Debt"
+    },
+    {
+      "id": "ss.capital.visitReason.lookingForAChange",
+      "name": "Looking for a Change"
+    },
+    {
+      "id": "ss.capital.visitReason.onTheHunt",
+      "name": "On the Hunt"
+    }
+  ]
+}

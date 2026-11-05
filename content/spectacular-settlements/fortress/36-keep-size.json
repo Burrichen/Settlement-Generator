@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.keepSize",
+      "name": "Keep Size",
+      "description": "The flat area the keep occupies (each floor roughly the same). Its Base Size Modifier (BSM) sets the number of rooms. 1 square = 5 ft.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [1, 6],
+          "description": "BSM 1. Floor space 5x5 squares, or 7 squares across if round.",
+          "tags": ["ss.fortress.keepSize.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "BSM 2. Floor space 7x7 squares, or 9 squares across if round.",
+          "tags": ["ss.fortress.keepSize.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 19],
+          "description": "BSM 3. Floor space 9x9 squares, or 11 squares across if round.",
+          "tags": ["ss.fortress.keepSize.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": 20,
+          "description": "BSM 4. Floor space 11x11 squares, or 13 squares across if round.",
+          "tags": ["ss.fortress.keepSize.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.keepSize.small", "name": "Small" },
+    { "id": "ss.fortress.keepSize.medium", "name": "Medium" },
+    { "id": "ss.fortress.keepSize.large", "name": "Large" },
+    { "id": "ss.fortress.keepSize.veryLarge", "name": "Very Large" }
+  ]
+}

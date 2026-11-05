@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.organizedCrime",
+      "name": "Organized Crime",
+      "description": "Rolled when General Crime is Dangerous, Frequent or Common, or the capital is led by the Underworld.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "completelySecret",
+          "name": "Completely Secret",
+          "range": [1, 2],
+          "description": "The organization has operated incognito, beneath any form of public notice. Any contacts with public officials are dealt with through redundant channels, always maintaining multiple degrees of separation. Remaining unknown is of paramount importance.",
+          "tags": ["ss.capital.organizedCrime.completelySecret"]
+        },
+        {
+          "id": "whispers",
+          "name": "Whispers",
+          "range": [3, 6],
+          "description": "There are hushed rumors of criminal organization, but most folks keep these suspicions to themselves, for fear of ridicule, or reprisal. The organization has a few operatives within the capital and they work hard to keep a very low profile.",
+          "tags": ["ss.capital.organizedCrime.whispers"]
+        },
+        {
+          "id": "talk",
+          "name": "Talk",
+          "range": [7, 14],
+          "description": "Enough incidents have occurred that most folk don’t have trouble believing there is an organized criminal element in the capital. They operate quietly, but ambitiously, carrying out frequent, high-profile jobs. They could also have ties to government officials, or may even attempt to control elements of the capital itself.",
+          "tags": ["ss.capital.organizedCrime.talk"]
+        },
+        {
+          "id": "barelyHidden",
+          "name": "Barely Hidden",
+          "range": [15, 18],
+          "description": "The organization is a looming shadow within the capital. None are entirely sure where it is based, or who their operators are, but it’s clear that the organization is real. Obstacles that would be contrary to the ‘hypothetical’ organization’s interests are quickly resolved. Bodies are found, messages sent and, one way or another, their will is always made known.",
+          "tags": ["ss.capital.organizedCrime.barelyHidden"]
+        },
+        {
+          "id": "open",
+          "name": "Open",
+          "range": [19, 20],
+          "description": "Though key members may be unknown, the presence of the organization is common knowledge and, though it may not have been fully proved, it’s clear they have a direct hand in running the capital. They operate with impunity, with little fear of reprisal or repercussion, likely taking no steps to mask their presence to ensure compliance, such as with a sigil on a sealed envelope. How did it get to this point? How do the people of the capital feel about this?",
+          "tags": ["ss.capital.organizedCrime.open"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.organizedCrime.completelySecret",
+      "name": "Completely Secret"
+    },
+    {
+      "id": "ss.capital.organizedCrime.whispers",
+      "name": "Whispers"
+    },
+    {
+      "id": "ss.capital.organizedCrime.talk",
+      "name": "Talk"
+    },
+    {
+      "id": "ss.capital.organizedCrime.barelyHidden",
+      "name": "Barely Hidden"
+    },
+    {
+      "id": "ss.capital.organizedCrime.open",
+      "name": "Open"
+    }
+  ]
+}

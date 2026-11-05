@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.harshWeather",
+      "name": "Harsh Weather",
+      "description": "Extra Intrigue. Weather in a village is almost always of major importance. Results the book marks for a region (arid, non-arid, coastal) are rerolled elsewhere; reroll any other result that conflicts with the environment.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "ideal",
+          "name": "Ideal",
+          "range": 1,
+          "description": "Recent conditions have been as good as possible. Work has been able to progress better than usual, and any grown resource may be having a richer yield than normal.",
+          "tags": ["ss.village.harshWeather.ideal"]
+        },
+        {
+          "id": "heavyPrecipitation",
+          "name": "Heavy Precipitation",
+          "range": 2,
+          "description": "Rain or snow have been significantly heavier than usual. There has either been sufficient flooding, or snow has been deep enough, to cause damage, perhaps even trapping folk inside their homes.",
+          "tags": ["ss.village.harshWeather.heavyPrecipitation"]
+        },
+        {
+          "id": "drought",
+          "name": "Drought",
+          "range": 3,
+          "description": "It has been warm, maybe even pleasantly so, but it also has not rained in some time. Things are getting dry and brittle. Unless water storage solutions are in place, and water distribution (such as irrigation) is available, this doesn’t bode well.",
+          "tags": ["ss.village.harshWeather.drought"]
+        },
+        {
+          "id": "storms",
+          "name": "Thunderstorms or Blizzards",
+          "range": 4,
+          "description": "(Non-arid region; rerolled in a Desert) The precipitation hasn’t been the problem so much as the severity of the storms. It is impossible to work, or travel, in these conditions, so village residents are holed up inside, waiting out the storms, which have been occurring much more frequently.",
+          "tags": ["ss.village.harshWeather.storms"],
+          "eligibility": { "not": { "has_tag": "ss.village.environment.desert" } }
+        },
+        {
+          "id": "wildfires",
+          "name": "Wildfires",
+          "range": 5,
+          "description": "There have been fires, either nearby or some ways off. Either way, they’re too close for comfort. Ash can be seen on the ground, smoke can be smelled in the air, and forests nearby are in danger, if not ablaze already.",
+          "tags": ["ss.village.harshWeather.wildfires"]
+        },
+        {
+          "id": "hail",
+          "name": "Hail",
+          "range": 6,
+          "description": "Storms dropping chunks of ice at great speeds have been devastating the village, possibly damaging crops, structures, or even people and animals caught outdoors.",
+          "tags": ["ss.village.harshWeather.hail"]
+        },
+        {
+          "id": "dustStorms",
+          "name": "Dust Storms",
+          "range": 7,
+          "description": "(Arid region; rerolled outside a Desert) Dust storms have been passing through in a choking haze, making it difficult to travel, or do extended work outside. Air quality is awful, and some folk are getting sick.",
+          "tags": ["ss.village.harshWeather.dustStorms"],
+          "eligibility": { "has_tag": "ss.village.environment.desert" }
+        },
+        {
+          "id": "hurricane",
+          "name": "Hurricane",
+          "range": 8,
+          "description": "(Coastal region; rerolled elsewhere) A hurricane is approaching, or has arrived. Forceful wind, pounding rain, flooding, and hail have all been seen. Some folks may be fleeing.",
+          "tags": ["ss.village.harshWeather.hurricane"],
+          "eligibility": { "has_tag": "ss.village.environment.coastal" }
+        },
+        {
+          "id": "tornado",
+          "name": "Tornado",
+          "range": 9,
+          "description": "A whirling cyclone is approaching, or has careened through or near, the village, uprooting crops, destroying buildings, or worse.",
+          "tags": ["ss.village.harshWeather.tornado"]
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "range": 10,
+          "description": "Shifting earth beneath the village is causing, or has caused, structural collapse and, possibly, even sinkholes and cave-ins.",
+          "tags": ["ss.village.harshWeather.earthquake"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.harshWeather.ideal", "name": "Ideal" },
+    { "id": "ss.village.harshWeather.heavyPrecipitation", "name": "Heavy Precipitation" },
+    { "id": "ss.village.harshWeather.drought", "name": "Drought" },
+    { "id": "ss.village.harshWeather.storms", "name": "Thunderstorms or Blizzards" },
+    { "id": "ss.village.harshWeather.wildfires", "name": "Wildfires" },
+    { "id": "ss.village.harshWeather.hail", "name": "Hail" },
+    { "id": "ss.village.harshWeather.dustStorms", "name": "Dust Storms" },
+    { "id": "ss.village.harshWeather.hurricane", "name": "Hurricane" },
+    { "id": "ss.village.harshWeather.tornado", "name": "Tornado" },
+    { "id": "ss.village.harshWeather.earthquake", "name": "Earthquake" }
+  ]
+}

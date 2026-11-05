@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.placesOfGathering",
+      "name": "Places of Gathering",
+      "description": "Places that are primarily social in nature.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "amphitheater",
+          "name": "Amphitheater",
+          "range": 1,
+          "description": "Outdoor space with a stage and tiered seating.",
+          "tags": ["ss.town.placesOfGathering.amphitheater"]
+        },
+        {
+          "id": "danceHall",
+          "name": "Dance Hall",
+          "range": 2,
+          "description": "Location for dances and festive events.",
+          "tags": ["ss.town.placesOfGathering.danceHall"]
+        },
+        {
+          "id": "gatheringHall",
+          "name": "Gathering Hall",
+          "range": 3,
+          "description": "General, open-use building, such as a community center, used for local activities, or where locals may simply socialize on a day-to-day basis.",
+          "tags": ["ss.town.placesOfGathering.gatheringHall"]
+        },
+        {
+          "id": "outdoorRecreation",
+          "name": "Outdoor Recreational Area",
+          "range": 4,
+          "description": "A tended space where locals might eat, take leisure time, or duel to the death...",
+          "tags": ["ss.town.placesOfGathering.outdoorRecreation"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.placesOfGathering.amphitheater",
+      "name": "Amphitheater"
+    },
+    {
+      "id": "ss.town.placesOfGathering.danceHall",
+      "name": "Dance Hall"
+    },
+    {
+      "id": "ss.town.placesOfGathering.gatheringHall",
+      "name": "Gathering Hall"
+    },
+    {
+      "id": "ss.town.placesOfGathering.outdoorRecreation",
+      "name": "Outdoor Recreational Area"
+    }
+  ]
+}

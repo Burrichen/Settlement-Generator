@@ -124,7 +124,7 @@ fn security_precedes_crime_which_precedes_stability_after_the_authority() {
         .pipeline()
         .into_iter()
         // The Spectacular Settlements profile's own stages come after.
-        .filter(|s| !s.id.as_str().starts_with("ssTradingPost-"))
+        .filter(|s| !s.id.as_str().starts_with("ss"))
         .map(|s| s.name.unwrap())
         .collect();
     let at = |n: &str| names.iter().position(|x| x == n).unwrap();

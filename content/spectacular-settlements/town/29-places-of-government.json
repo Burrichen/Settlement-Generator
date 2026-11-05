@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.placesOfGovernment",
+      "name": "Places of Government",
+      "description": "Places used by town officials and workers to deal with official matters.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "chancery",
+          "name": "Chancery",
+          "range": 1,
+          "description": "Used as an office for official documentation and administrative tasks.",
+          "tags": ["ss.town.placesOfGovernment.chancery"]
+        },
+        {
+          "id": "courthouse",
+          "name": "Courthouse",
+          "range": 2,
+          "description": "Used to hold trials or dispense justice.",
+          "tags": ["ss.town.placesOfGovernment.courthouse"]
+        },
+        {
+          "id": "townHall",
+          "name": "Town Hall",
+          "range": 3,
+          "description": "Used for official town business, audiences, and meetings.",
+          "tags": ["ss.town.placesOfGovernment.townHall"]
+        },
+        {
+          "id": "treasury",
+          "name": "Treasury",
+          "range": 4,
+          "description": "Used as a centralised place to manage the town’s funds.",
+          "tags": ["ss.town.placesOfGovernment.treasury"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.placesOfGovernment.chancery",
+      "name": "Chancery"
+    },
+    {
+      "id": "ss.town.placesOfGovernment.courthouse",
+      "name": "Courthouse"
+    },
+    {
+      "id": "ss.town.placesOfGovernment.townHall",
+      "name": "Town Hall"
+    },
+    {
+      "id": "ss.town.placesOfGovernment.treasury",
+      "name": "Treasury"
+    }
+  ]
+}

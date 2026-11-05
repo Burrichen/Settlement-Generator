@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.merchantOverflow",
+      "name": "Merchant Overflow",
+      "description": "Whether merchants may sell outside the capital itself. Modifies Law Enforcement.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "banned",
+          "name": "Banned",
+          "range": 1,
+          "description": "Excess vendors are not allowed to set up stalls outside the town. City guards will enforce this. (+1 to law enforcement roll)",
+          "tags": ["ss.capital.merchantOverflow.banned"]
+        },
+        {
+          "id": "unpatrolled",
+          "name": "Unpatrolled",
+          "range": 2,
+          "description": "Excess vendors are allowed to set up stalls but, as the city watch do not patrol or monitor these areas, the risk is higher. The spaces available are unkempt.",
+          "tags": ["ss.capital.merchantOverflow.unpatrolled"]
+        },
+        {
+          "id": "monitored",
+          "name": "Monitored",
+          "range": 3,
+          "description": "Excess vendors are allowed to set up stalls, and the city watch patrols through regularly, but the areas themselves are less-maintained and traffic is lighter.",
+          "tags": ["ss.capital.merchantOverflow.monitored"]
+        },
+        {
+          "id": "encouraged",
+          "name": "Encouraged",
+          "range": 4,
+          "description": "Excess vendors are encouraged to set up stalls outside the capital, if they are unable to get a spot in the square. There are maintained areas available for use, and are provided on a first-come, first-served basis. When in use by vendors, this area is regularly patrolled, if law enforcement personnel can be spared.",
+          "tags": ["ss.capital.merchantOverflow.encouraged"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.merchantOverflow.banned",
+      "name": "Banned",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.lawEnforcement",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.merchantOverflow.unpatrolled",
+      "name": "Unpatrolled"
+    },
+    {
+      "id": "ss.capital.merchantOverflow.monitored",
+      "name": "Monitored"
+    },
+    {
+      "id": "ss.capital.merchantOverflow.encouraged",
+      "name": "Encouraged"
+    }
+  ]
+}

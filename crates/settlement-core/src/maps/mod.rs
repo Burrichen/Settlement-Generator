@@ -52,6 +52,10 @@ pub enum MapError {
     NoSize,
     #[error("No map layout is defined for the Size \u{201c}{0}\u{201d}.")]
     UnsupportedSize(String),
+    /// Maps are turned off for this kind of settlement; `map-defaults.json`
+    /// gives the reason shown.
+    #[error("{0}")]
+    Disabled(String),
     #[error(
         "This {0} has no districts recorded yet. Roll its Notable Locations, which roll the \
          districts, before generating its maps."

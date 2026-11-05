@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.lifestyle",
+      "name": "Lifestyle",
+      "description": "How the leader goes about their life. Rolled once here; with several leaders, roll again for each (the number of leaders is yours to choose). Modifies Residence.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "humble",
+          "name": "Humble",
+          "range": [1, 2],
+          "description": "The leader requires only what is necessary to live and function basically. Minimal attention is paid to their comfort. (-6 to residence roll)",
+          "tags": ["ss.capital.lifestyle.humble"]
+        },
+        {
+          "id": "respectable",
+          "name": "Respectable",
+          "range": [3, 10],
+          "description": "The leader’s lifestyle is unassuming, but comfortable, appropriate to one in their position. (+0 to residence roll)",
+          "tags": ["ss.capital.lifestyle.respectable"]
+        },
+        {
+          "id": "distinguished",
+          "name": "Distinguished",
+          "range": [11, 15],
+          "description": "The leader aspires to quality and high-functionality, but without concern for needless luxury or vanity. (+0 to residence roll)",
+          "tags": ["ss.capital.lifestyle.distinguished"]
+        },
+        {
+          "id": "exquisite",
+          "name": "Exquisite",
+          "range": [16, 17],
+          "description": "The leader quietly enjoys the luxuries afforded to one in their lofty position, and presents a refined, well-maintained appearance. (+1 to residence roll)",
+          "tags": ["ss.capital.lifestyle.exquisite"]
+        },
+        {
+          "id": "luxurious",
+          "name": "Luxurious",
+          "range": [18, 19],
+          "description": "The leader takes unrestrained advantage of the comforts and luxuries available to one in their position, and presents a striking, or flamboyant, appearance. (+2 to residence roll)",
+          "tags": ["ss.capital.lifestyle.luxurious"]
+        },
+        {
+          "id": "ostentatious",
+          "name": "Ostentatious",
+          "range": 20,
+          "description": "The leader revels in comfort and luxury, probably to excess, or endeavours to project such an image. They aim to inspire awe and jealousy in all who see them. (+3 to residence roll)",
+          "tags": ["ss.capital.lifestyle.ostentatious"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.lifestyle.humble",
+      "name": "Humble",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.residence",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lifestyle.respectable",
+      "name": "Respectable"
+    },
+    {
+      "id": "ss.capital.lifestyle.distinguished",
+      "name": "Distinguished"
+    },
+    {
+      "id": "ss.capital.lifestyle.exquisite",
+      "name": "Exquisite",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.residence",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lifestyle.luxurious",
+      "name": "Luxurious",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.residence",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lifestyle.ostentatious",
+      "name": "Ostentatious",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.residence",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

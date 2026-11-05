@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.residentAttitude",
+      "name": "Resident Attitude",
+      "description": "How the current residents feel about daily life in the fortress.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "angry",
+          "name": "Angry",
+          "range": 1,
+          "description": "The residents hate being here. Not a day goes by where they don’t actively think about leaving, but they have stayed for some reason, perhaps one outside their control.",
+          "tags": ["ss.fortress.residentAttitude.angry"]
+        },
+        {
+          "id": "irritated",
+          "name": "Irritated",
+          "range": 2,
+          "description": "The residents are perturbed by this place. Something about it, or their situation, is irksome and grates on them daily.",
+          "tags": ["ss.fortress.residentAttitude.irritated"]
+        },
+        {
+          "id": "ambivalent",
+          "name": "Ambivalent",
+          "range": 3,
+          "description": "The residents could take or leave this place. They have other things on their minds, and do not devote much thought to the fortress.",
+          "tags": ["ss.fortress.residentAttitude.ambivalent"]
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "range": 4,
+          "description": "The residents like the fortress well enough. The place itself, or their circumstances, may not be ideal, but things aren’t so bad.",
+          "tags": ["ss.fortress.residentAttitude.content"]
+        },
+        {
+          "id": "happy",
+          "name": "Happy",
+          "range": 5,
+          "description": "The residents like the fortress, or are pleased with their situation (or both). Things are good and spirits are up.",
+          "tags": ["ss.fortress.residentAttitude.happy"]
+        },
+        {
+          "id": "enthused",
+          "name": "Enthused",
+          "range": 6,
+          "description": "The residents are thrilled to be here. The fortress, or their circumstances (or both) are wonderfully suited to them, and convincing them to leave would be extremely difficult.",
+          "tags": ["ss.fortress.residentAttitude.enthused"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.residentAttitude.angry", "name": "Angry" },
+    { "id": "ss.fortress.residentAttitude.irritated", "name": "Irritated" },
+    { "id": "ss.fortress.residentAttitude.ambivalent", "name": "Ambivalent" },
+    { "id": "ss.fortress.residentAttitude.content", "name": "Content" },
+    { "id": "ss.fortress.residentAttitude.happy", "name": "Happy" },
+    { "id": "ss.fortress.residentAttitude.enthused", "name": "Enthused" }
+  ]
+}

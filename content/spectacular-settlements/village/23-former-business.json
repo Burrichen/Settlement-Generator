@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.formerBusiness",
+      "name": "Former Business",
+      "description": "What a burned-down or abandoned business used to be: the Other Locations table rolled once more. A 100 is rolled again.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "baker",
+          "name": "Baker",
+          "range": [1, 4],
+          "description": "(Basic) Bakes and sells fresh bread and, possibly, pastries."
+        },
+        {
+          "id": "butcher",
+          "name": "Butcher",
+          "range": [5, 7],
+          "description": "(Basic) Processes and sells fresh and/or dried meat."
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": [8, 11],
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc."
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": [12, 15],
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs."
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "range": [16, 19],
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends."
+        },
+        {
+          "id": "herbalist",
+          "name": "Herbalist",
+          "range": [20, 23],
+          "description": "(Basic) Sells common herbs and natural, non-magical remedies."
+        },
+        {
+          "id": "smithy",
+          "name": "Smithy",
+          "range": [24, 27],
+          "description": "(Basic) Sells and crafts metal tools and equipment, including very basic weapons and armor."
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": [28, 31],
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods."
+        },
+        {
+          "id": "tanner",
+          "name": "Tanner/Taxidermist",
+          "range": [32, 35],
+          "description": "(Basic) Processes animal hides for practical or ornamental purposes."
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": [36, 39],
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc."
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": [40, 43],
+          "description": "(Basic) Builds carts and wagons."
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": [44, 47],
+          "description": "(Basic) Weaves raw fabric and baskets."
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": [48, 50],
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients."
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": [51, 52],
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate."
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": [53, 55],
+          "description": "(Specialty) Makes and mends boots and shoes."
+        },
+        {
+          "id": "mill",
+          "name": "Mill",
+          "range": [56, 58],
+          "description": "(Specialty) Facilities for milling grain."
+        },
+        {
+          "id": "shipwright",
+          "name": "Shipwright",
+          "range": [59, 61],
+          "description": "(Specialty) Builds and launches boats and/or ships. Only next to a significant source of water (Coastal or River); otherwise rerolled.",
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.village.environment.coastal"
+              },
+              {
+                "has_tag": "ss.village.environment.river"
+              }
+            ]
+          }
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 62,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region."
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 63,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods."
+        },
+        {
+          "id": "rareLibations",
+          "name": "Rare Libations & Fare",
+          "range": 64,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region."
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": 65,
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region."
+        },
+        {
+          "id": "magicArmor",
+          "name": "Magic Shop - Armor",
+          "range": 66,
+          "description": "(Exotic) Sells magical items with a focus on armor and protective equipment."
+        },
+        {
+          "id": "magicBooks",
+          "name": "Magic Shop - Books",
+          "range": 67,
+          "description": "(Exotic) Sells magical items with a focus on literature, arcane tomes and lore. They may also carry books and documents (such as maps and records) of a rare and significant nature, though non-magical."
+        },
+        {
+          "id": "magicClothing",
+          "name": "Magic Shop - Clothing",
+          "range": 68,
+          "description": "(Exotic) Sells magical items with a focus on clothing of all types which bear magical properties."
+        },
+        {
+          "id": "magicJewelry",
+          "name": "Magic Shop - Jewelry",
+          "range": 69,
+          "description": "(Exotic) Sells magical items with a focus on enchanted, or otherwise magically imbued, jewelry."
+        },
+        {
+          "id": "magicWeapons",
+          "name": "Magic Shop - Weapons",
+          "range": 70,
+          "description": "(Exotic) Sells magical items with a focus on weapons with mystic properties and, perhaps, shields."
+        },
+        {
+          "id": "magicCuriosities",
+          "name": "Magic Shop - Miscellaneous & Curiosities",
+          "range": 71,
+          "description": "(Exotic) Procures and sells magical items with a focus on strange and rare artifacts of a wondrous or intriguing nature."
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": [72, 73],
+          "description": "Provides grooming services, such as haircuts or shaves."
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": [74, 75],
+          "description": "Provides spaces for bathing."
+        },
+        {
+          "id": "doctor",
+          "name": "Doctor/Apothecary",
+          "range": [76, 77],
+          "description": "Provides medical care."
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": [78, 79],
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind)."
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": [80, 84],
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal."
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": [85, 89],
+          "description": "Provides magical prediction and prophecy - sayers of sooth!"
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": [90, 94],
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack."
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": [95, 99],
+          "description": "Provides food and drink."
+        },
+        {
+          "id": "rollAgain",
+          "name": "Burned Down or Abandoned Business",
+          "range": 100,
+          "description": "Rolled again: the book has you roll once more for what the business was.",
+          "eligibility": {
+            "not": {
+              "has_tag": "ss.village.otherLocations.burnedDown"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

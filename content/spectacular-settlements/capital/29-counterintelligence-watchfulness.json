@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.counterintelligenceWatchfulness",
+      "name": "Counterintelligence Watchfulness",
+      "description": "How observant the capital's counterintelligence operations are.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "passing",
+          "name": "Passing",
+          "range": [1, 10],
+          "description": "Obvious threats to the capital are found and dealt with. Threats with any serious degree of subtlety (if there are any) go undetected.",
+          "tags": ["ss.capital.counterintelligenceWatchfulness.passing"]
+        },
+        {
+          "id": "wary",
+          "name": "Wary",
+          "range": [11, 15],
+          "description": "Efforts are diligent and concerted, though not taken to extreme. Moderate efforts at secrecy are often caught and dealt with.",
+          "tags": ["ss.capital.counterintelligenceWatchfulness.wary"]
+        },
+        {
+          "id": "vigilant",
+          "name": "Vigilant",
+          "range": [16, 19],
+          "description": "Pursuit of threats is ongoing and thorough. Skilled efforts at secrecy are often caught and dealt with.",
+          "tags": ["ss.capital.counterintelligenceWatchfulness.vigilant"]
+        },
+        {
+          "id": "paranoid",
+          "name": "Paranoid",
+          "range": 20,
+          "description": "Caution could not be higher. All potential threats are taken seriously and investigated with utmost dedication. Even the very best efforts at secrecy are often discovered. However, this zealous level of caution can lead to interrogation (or even incarceration) of innocents, if care and restraint are not shown.",
+          "tags": ["ss.capital.counterintelligenceWatchfulness.paranoid"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.counterintelligenceWatchfulness.passing",
+      "name": "Passing"
+    },
+    {
+      "id": "ss.capital.counterintelligenceWatchfulness.wary",
+      "name": "Wary"
+    },
+    {
+      "id": "ss.capital.counterintelligenceWatchfulness.vigilant",
+      "name": "Vigilant"
+    },
+    {
+      "id": "ss.capital.counterintelligenceWatchfulness.paranoid",
+      "name": "Paranoid"
+    }
+  ]
+}

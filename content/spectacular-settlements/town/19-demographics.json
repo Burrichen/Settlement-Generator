@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.demographics",
+      "name": "Demographics",
+      "description": "Who resides in the town; use its setting and environment to choose the races.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "onlyOne",
+          "name": "Only One",
+          "range": [1, 4],
+          "description": "100% primary race.",
+          "tags": ["ss.town.demographics.onlyOne"]
+        },
+        {
+          "id": "onlyTwo",
+          "name": "Only Two",
+          "range": [5, 8],
+          "description": "60% primary race, 40% secondary race.",
+          "tags": ["ss.town.demographics.onlyTwo"]
+        },
+        {
+          "id": "normalDistribution",
+          "name": "Normal Distribution",
+          "range": [9, 14],
+          "description": "50% primary race, 25% secondary race, 15% tertiary race, 10% other.",
+          "tags": ["ss.town.demographics.normalDistribution"]
+        },
+        {
+          "id": "wideDistribution",
+          "name": "Wide Distribution",
+          "range": [15, 17],
+          "description": "20% primary race. All others reasonably well represented.",
+          "tags": ["ss.town.demographics.wideDistribution"]
+        },
+        {
+          "id": "highAndLow",
+          "name": "High and Low",
+          "range": [18, 19],
+          "description": "80% primary race, 20% secondary race.",
+          "tags": ["ss.town.demographics.highAndLow"]
+        },
+        {
+          "id": "everChanging",
+          "name": "Ever-Changing",
+          "range": 20,
+          "description": "No discernible distribution. Racial representation lacks any sense of numerical dominance.",
+          "tags": ["ss.town.demographics.everChanging"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.demographics.onlyOne",
+      "name": "Only One"
+    },
+    {
+      "id": "ss.town.demographics.onlyTwo",
+      "name": "Only Two"
+    },
+    {
+      "id": "ss.town.demographics.normalDistribution",
+      "name": "Normal Distribution"
+    },
+    {
+      "id": "ss.town.demographics.wideDistribution",
+      "name": "Wide Distribution"
+    },
+    {
+      "id": "ss.town.demographics.highAndLow",
+      "name": "High and Low"
+    },
+    {
+      "id": "ss.town.demographics.everChanging",
+      "name": "Ever-Changing"
+    }
+  ]
+}

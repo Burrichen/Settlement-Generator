@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.districtConditionLevel",
+      "name": "District Condition Level",
+      "description": "A district's own condition: the city's general condition moved by its District Condition steps, stopping at the best or worst. Modifies District Crime. Set, never rolled.",
+      "selection": "choose",
+      "results": [
+        {
+          "id": "squalid",
+          "name": "Squalid",
+          "description": "The district is in a deplorable state. Things are falling apart, filthy and, to anyone who doesn’t live here, seems positively unlivable. Most of the buildings, if not all, are likely a disgrace, or in terrible need of help. (-2 to district crime roll)",
+          "tags": ["ss.capital.districtConditionLevel.squalid"]
+        },
+        {
+          "id": "dilapidated",
+          "name": "Dilapidated",
+          "description": "Things are dirty and in a widespread state of disrepair, though some token effort may have been made at cleanliness. Streets are probably packed dirt or broken stone. They may be uneven, rutted or muddy. Structures have likely received similar low levels of care, though there could be some disparity. (-1 to district crime roll)",
+          "tags": ["ss.capital.districtConditionLevel.dilapidated"]
+        },
+        {
+          "id": "decent",
+          "name": "Decent",
+          "description": "The district is passable. While not offensive to the senses of one that is well traveled, it could still be off-putting to those with lofty expectations. Structures may not be aesthetically pleasing, but are generally functional. (+0 to district crime roll)",
+          "tags": ["ss.capital.districtConditionLevel.decent"]
+        },
+        {
+          "id": "impressive",
+          "name": "Impressive",
+          "description": "The district is well taken care of, and cleanliness is clearly a priority. Structures are maintained, though signs of wear may still be apparent. It feels lived-in, but of a respectable quality in every regard. (-1 to district crime roll)",
+          "tags": ["ss.capital.districtConditionLevel.impressive"]
+        },
+        {
+          "id": "magnificent",
+          "name": "Magnificent",
+          "description": "The district is incredible. Cleanliness, maintenance and structural integrity are all of the highest standard. Loving attention seems to have been lavished on as many aspects as possible. (-2 to district crime roll)",
+          "tags": ["ss.capital.districtConditionLevel.magnificent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.districtConditionLevel.squalid",
+      "name": "Squalid",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtConditionLevel.dilapidated",
+      "name": "Dilapidated",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtConditionLevel.decent",
+      "name": "Decent"
+    },
+    {
+      "id": "ss.capital.districtConditionLevel.impressive",
+      "name": "Impressive",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtConditionLevel.magnificent",
+      "name": "Magnificent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

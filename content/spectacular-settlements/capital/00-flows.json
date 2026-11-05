@@ -1,0 +1,3847 @@
+{
+  "schema_version": 1,
+  "objects": [
+    {
+      "id": "object.ss.capital.district",
+      "name": "District",
+      "description": "One district of a Spectacular Settlements capital.",
+      "label": "District {n}",
+      "id_prefix": "district",
+      "fields": [
+        {
+          "id": "type",
+          "name": "Type"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow.ss.capital.outsideTheCapital",
+      "name": "Capital Outside the Capital",
+      "description": "Spectacular Settlements, Capitals, Step 1: Outside the Capital rolls by size (Very Small 5, Small 4, Medium 3, Large 2, Very Large 1).",
+      "steps": [
+        {
+          "id": "count",
+          "kind": "branch",
+          "name": "Outside the Capital rolls by size",
+          "cases": [
+            {
+              "name": "verySmall: 5",
+              "when": {
+                "has_tag": "ss.capital.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "rolls-verySmall",
+                  "kind": "repeat",
+                  "name": "Outside the Capital rolls",
+                  "count": {
+                    "times": 5
+                  },
+                  "steps": [
+                    {
+                      "id": "outside-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.capital.outsideTheCapital",
+                      "name": "Outside the Capital"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "small: 4",
+              "when": {
+                "has_tag": "ss.capital.size.small"
+              },
+              "steps": [
+                {
+                  "id": "rolls-small",
+                  "kind": "repeat",
+                  "name": "Outside the Capital rolls",
+                  "count": {
+                    "times": 4
+                  },
+                  "steps": [
+                    {
+                      "id": "outside-small",
+                      "kind": "roll",
+                      "table": "table.ss.capital.outsideTheCapital",
+                      "name": "Outside the Capital"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "medium: 3",
+              "when": {
+                "has_tag": "ss.capital.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "rolls-medium",
+                  "kind": "repeat",
+                  "name": "Outside the Capital rolls",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "outside-medium",
+                      "kind": "roll",
+                      "table": "table.ss.capital.outsideTheCapital",
+                      "name": "Outside the Capital"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "large: 2",
+              "when": {
+                "has_tag": "ss.capital.size.large"
+              },
+              "steps": [
+                {
+                  "id": "rolls-large",
+                  "kind": "repeat",
+                  "name": "Outside the Capital rolls",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "outside-large",
+                      "kind": "roll",
+                      "table": "table.ss.capital.outsideTheCapital",
+                      "name": "Outside the Capital"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "veryLarge: 1",
+              "when": {
+                "has_tag": "ss.capital.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "rolls-veryLarge",
+                  "kind": "repeat",
+                  "name": "Outside the Capital rolls",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "outside-veryLarge",
+                      "kind": "roll",
+                      "table": "table.ss.capital.outsideTheCapital",
+                      "name": "Outside the Capital"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.connections",
+      "name": "Capital Connections",
+      "description": "Spectacular Settlements, Capitals, Step 2: the number of significant connections, then each one's relation to the capital.",
+      "steps": [
+        {
+          "id": "count",
+          "kind": "roll",
+          "table": "table.ss.capital.numberOfConnections",
+          "name": "Number of Connections"
+        },
+        {
+          "id": "each",
+          "kind": "repeat",
+          "name": "Connections",
+          "count": {
+            "value_of": {
+              "step": "count"
+            }
+          },
+          "steps": [
+            {
+              "id": "relation",
+              "kind": "roll",
+              "table": "table.ss.capital.connectionRelation",
+              "name": "Connection Relation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.notableVisitors",
+      "name": "Capital Notable Visitors",
+      "description": "Spectacular Settlements, Capitals, Step 2: the number of notable visitors, then each one's role and reason for visiting.",
+      "steps": [
+        {
+          "id": "count",
+          "kind": "roll",
+          "table": "table.ss.capital.numberOfVisitors",
+          "name": "Number of Notable Visitors"
+        },
+        {
+          "id": "each",
+          "kind": "repeat",
+          "name": "Notable visitors",
+          "count": {
+            "value_of": {
+              "step": "count"
+            }
+          },
+          "steps": [
+            {
+              "id": "role",
+              "kind": "roll",
+              "table": "table.ss.capital.visitorRole",
+              "name": "Visitor Role"
+            },
+            {
+              "id": "reason",
+              "kind": "roll",
+              "table": "table.ss.capital.visitReason",
+              "name": "Reason for Visit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.rootOfRelationship",
+      "name": "Capital Root of Relationship with the People",
+      "description": "Spectacular Settlements, Capitals, Step 2: the root of the relationship between the nobility and the people, read positively or negatively by the Relationship with the People. Resources gives +2 (positive) or -2 (negative) to Population Wealth.",
+      "steps": [
+        {
+          "id": "root",
+          "kind": "roll",
+          "table": "table.ss.capital.rootOfRelationship",
+          "name": "Root of Relationship with the People"
+        },
+        {
+          "id": "reading",
+          "kind": "branch",
+          "name": "Its reading",
+          "cases": [
+            {
+              "name": "Resources, negative",
+              "when": {
+                "all": [
+                  {
+                    "result_is": {
+                      "step": "root",
+                      "results": ["resources"]
+                    }
+                  },
+                  {
+                    "any": [
+                      {
+                        "has_tag": "ss.capital.relationshipWithPeople.awful"
+                      },
+                      {
+                        "has_tag": "ss.capital.relationshipWithPeople.veryBad"
+                      },
+                      {
+                        "has_tag": "ss.capital.relationshipWithPeople.bad"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "resourcesNegative",
+                  "kind": "apply_modifier",
+                  "name": "Negative: -2 to Population Wealth",
+                  "table": "table.ss.capital.populationWealth",
+                  "modifier": {
+                    "minus": 2
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Resources, positive",
+              "when": {
+                "result_is": {
+                  "step": "root",
+                  "results": ["resources"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "resourcesPositive",
+                  "kind": "apply_modifier",
+                  "name": "Positive: +2 to Population Wealth",
+                  "table": "table.ss.capital.populationWealth",
+                  "modifier": {
+                    "plus": 2
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.districts",
+      "name": "Capital Districts",
+      "description": "Spectacular Settlements, Capitals, Step 4: the number of districts (modified by size), the districts a governing priority or leadership gives (Economic: Market; Enlightenment: Scholar; Industry & Innovation: Industrial; Religious: Temple; Merchant Monarch: Merchant; Oligarchy: the district that fits its group), each taking one of the rolls, then the rest rolled on District Type. Each district is described by the Capital District flow.",
+      "steps": [
+        {
+          "id": "count",
+          "kind": "roll",
+          "table": "table.ss.capital.numberOfDistricts",
+          "name": "Number of Districts"
+        },
+        {
+          "id": "economic",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Economic priority)",
+          "when": {
+            "has_tag": "ss.capital.governingPriority.economic"
+          },
+          "steps": [
+            {
+              "id": "economic-type",
+              "kind": "set_result",
+              "table": "table.ss.capital.districtType",
+              "result": "market",
+              "name": "District Type",
+              "field": "type"
+            },
+            {
+              "id": "economic-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "enlightenment",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Enlightenment priority)",
+          "when": {
+            "has_tag": "ss.capital.governingPriority.enlightenment"
+          },
+          "steps": [
+            {
+              "id": "enlightenment-type",
+              "kind": "set_result",
+              "table": "table.ss.capital.districtType",
+              "result": "scholar",
+              "name": "District Type",
+              "field": "type"
+            },
+            {
+              "id": "enlightenment-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "industry",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Industry & Innovation priority)",
+          "when": {
+            "has_tag": "ss.capital.governingPriority.industry"
+          },
+          "steps": [
+            {
+              "id": "industry-type",
+              "kind": "set_result",
+              "table": "table.ss.capital.districtType",
+              "result": "industrial",
+              "name": "District Type",
+              "field": "type"
+            },
+            {
+              "id": "industry-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "religious",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Religious priority)",
+          "when": {
+            "has_tag": "ss.capital.governingPriority.religious"
+          },
+          "steps": [
+            {
+              "id": "religious-type",
+              "kind": "set_result",
+              "table": "table.ss.capital.districtType",
+              "result": "temple",
+              "name": "District Type",
+              "field": "type"
+            },
+            {
+              "id": "religious-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "merchant",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Merchant Monarch)",
+          "when": {
+            "has_tag": "ss.capital.leadership.merchantMonarch"
+          },
+          "steps": [
+            {
+              "id": "merchant-type",
+              "kind": "set_result",
+              "table": "table.ss.capital.districtType",
+              "result": "merchant",
+              "name": "District Type",
+              "field": "type"
+            },
+            {
+              "id": "merchant-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "oligarchy",
+          "kind": "create_object",
+          "object": "object.ss.capital.district",
+          "name": "District (Oligarchy)",
+          "when": {
+            "has_tag": "ss.capital.leadership.oligarchy"
+          },
+          "steps": [
+            {
+              "id": "oligarchy-type",
+              "kind": "branch",
+              "name": "The district that fits the oligarchy",
+              "cases": [
+                {
+                  "name": "merchants: Merchant",
+                  "when": {
+                    "has_tag": "ss.capital.oligarchy.merchants"
+                  },
+                  "steps": [
+                    {
+                      "id": "oligarchy-type-merchants",
+                      "kind": "set_result",
+                      "table": "table.ss.capital.districtType",
+                      "result": "merchant",
+                      "name": "District Type",
+                      "field": "type"
+                    }
+                  ]
+                },
+                {
+                  "name": "mages: Arcane",
+                  "when": {
+                    "has_tag": "ss.capital.oligarchy.mages"
+                  },
+                  "steps": [
+                    {
+                      "id": "oligarchy-type-mages",
+                      "kind": "set_result",
+                      "table": "table.ss.capital.districtType",
+                      "result": "arcane",
+                      "name": "District Type",
+                      "field": "type"
+                    }
+                  ]
+                },
+                {
+                  "name": "priests: Temple",
+                  "when": {
+                    "has_tag": "ss.capital.oligarchy.priests"
+                  },
+                  "steps": [
+                    {
+                      "id": "oligarchy-type-priests",
+                      "kind": "set_result",
+                      "table": "table.ss.capital.districtType",
+                      "result": "temple",
+                      "name": "District Type",
+                      "field": "type"
+                    }
+                  ]
+                },
+                {
+                  "name": "other: Administration",
+                  "when": {
+                    "has_tag": "ss.capital.oligarchy.other"
+                  },
+                  "steps": [
+                    {
+                      "id": "oligarchy-type-other",
+                      "kind": "set_result",
+                      "table": "table.ss.capital.districtType",
+                      "result": "administration",
+                      "name": "District Type",
+                      "field": "type"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "oligarchy-details",
+              "kind": "run_flow",
+              "flow": "flow.ss.capital.district",
+              "name": "District"
+            }
+          ]
+        },
+        {
+          "id": "rest",
+          "kind": "branch",
+          "name": "Districts left to roll",
+          "cases": [
+            {
+              "name": "Two given",
+              "when": {
+                "all": [
+                  {
+                    "any": [
+                      {
+                        "has_tag": "ss.capital.governingPriority.economic"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.enlightenment"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.industry"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.religious"
+                      }
+                    ]
+                  },
+                  {
+                    "any": [
+                      {
+                        "has_tag": "ss.capital.leadership.merchantMonarch"
+                      },
+                      {
+                        "has_tag": "ss.capital.leadership.oligarchy"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "rest-2",
+                  "kind": "repeat",
+                  "name": "Rolled districts",
+                  "count": {
+                    "value_of": {
+                      "step": "count",
+                      "add": -2
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "rest-2-district",
+                      "kind": "create_object",
+                      "object": "object.ss.capital.district",
+                      "name": "District",
+                      "steps": [
+                        {
+                          "id": "rest-2-type",
+                          "kind": "roll",
+                          "table": "table.ss.capital.districtType",
+                          "name": "District Type",
+                          "field": "type"
+                        },
+                        {
+                          "id": "rest-2-district-details",
+                          "kind": "run_flow",
+                          "flow": "flow.ss.capital.district",
+                          "name": "District"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "One given",
+              "when": {
+                "any": [
+                  {
+                    "any": [
+                      {
+                        "has_tag": "ss.capital.governingPriority.economic"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.enlightenment"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.industry"
+                      },
+                      {
+                        "has_tag": "ss.capital.governingPriority.religious"
+                      }
+                    ]
+                  },
+                  {
+                    "any": [
+                      {
+                        "has_tag": "ss.capital.leadership.merchantMonarch"
+                      },
+                      {
+                        "has_tag": "ss.capital.leadership.oligarchy"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "rest-1",
+                  "kind": "repeat",
+                  "name": "Rolled districts",
+                  "count": {
+                    "value_of": {
+                      "step": "count",
+                      "add": -1
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "rest-1-district",
+                      "kind": "create_object",
+                      "object": "object.ss.capital.district",
+                      "name": "District",
+                      "steps": [
+                        {
+                          "id": "rest-1-type",
+                          "kind": "roll",
+                          "table": "table.ss.capital.districtType",
+                          "name": "District Type",
+                          "field": "type"
+                        },
+                        {
+                          "id": "rest-1-district-details",
+                          "kind": "run_flow",
+                          "flow": "flow.ss.capital.district",
+                          "name": "District"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "otherwise": [
+            {
+              "id": "rest-0",
+              "kind": "repeat",
+              "name": "Rolled districts",
+              "count": {
+                "value_of": {
+                  "step": "count",
+                  "add": 0
+                }
+              },
+              "steps": [
+                {
+                  "id": "rest-0-district",
+                  "kind": "create_object",
+                  "object": "object.ss.capital.district",
+                  "name": "District",
+                  "steps": [
+                    {
+                      "id": "rest-0-type",
+                      "kind": "roll",
+                      "table": "table.ss.capital.districtType",
+                      "name": "District Type",
+                      "field": "type"
+                    },
+                    {
+                      "id": "rest-0-district-details",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.capital.district",
+                      "name": "District"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.district",
+      "name": "Capital District",
+      "description": "One district, after its type: condition (and its level), entry, crime (and its degree), housing, notable locations, included locations, additional locations (by capital size) and the notability of the first notable ones.",
+      "steps": [
+        {
+          "id": "condition",
+          "kind": "roll",
+          "table": "table.ss.capital.districtCondition",
+          "name": "District Condition"
+        },
+        {
+          "id": "conditionLevel",
+          "kind": "branch",
+          "name": "Condition Level",
+          "cases": [
+            {
+              "name": "General: squalid",
+              "when": {
+                "has_tag": "ss.capital.generalCondition.squalid"
+              },
+              "steps": [
+                {
+                  "id": "conditionLevel-squalid",
+                  "kind": "branch",
+                  "name": "From squalid",
+                  "cases": [
+                    {
+                      "name": "farWorse: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-squalid-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-squalid-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-squalid-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: dilapidated",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-squalid-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "dilapidated",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: decent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-squalid-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "decent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: dilapidated",
+              "when": {
+                "has_tag": "ss.capital.generalCondition.dilapidated"
+              },
+              "steps": [
+                {
+                  "id": "conditionLevel-dilapidated",
+                  "kind": "branch",
+                  "name": "From dilapidated",
+                  "cases": [
+                    {
+                      "name": "farWorse: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-dilapidated-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-dilapidated-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: dilapidated",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-dilapidated-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "dilapidated",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: decent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-dilapidated-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "decent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: impressive",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-dilapidated-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "impressive",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: decent",
+              "when": {
+                "has_tag": "ss.capital.generalCondition.decent"
+              },
+              "steps": [
+                {
+                  "id": "conditionLevel-decent",
+                  "kind": "branch",
+                  "name": "From decent",
+                  "cases": [
+                    {
+                      "name": "farWorse: squalid",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-decent-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "squalid",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: dilapidated",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-decent-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "dilapidated",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: decent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-decent-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "decent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: impressive",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-decent-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "impressive",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-decent-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: impressive",
+              "when": {
+                "has_tag": "ss.capital.generalCondition.impressive"
+              },
+              "steps": [
+                {
+                  "id": "conditionLevel-impressive",
+                  "kind": "branch",
+                  "name": "From impressive",
+                  "cases": [
+                    {
+                      "name": "farWorse: dilapidated",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-impressive-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "dilapidated",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: decent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-impressive-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "decent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: impressive",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-impressive-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "impressive",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-impressive-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-impressive-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: magnificent",
+              "when": {
+                "has_tag": "ss.capital.generalCondition.magnificent"
+              },
+              "steps": [
+                {
+                  "id": "conditionLevel-magnificent",
+                  "kind": "branch",
+                  "name": "From magnificent",
+                  "cases": [
+                    {
+                      "name": "farWorse: decent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-magnificent-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "decent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: impressive",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-magnificent-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "impressive",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-magnificent-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-magnificent-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: magnificent",
+                      "when": {
+                        "result_is": {
+                          "step": "condition",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "conditionLevel-magnificent-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtConditionLevel",
+                          "result": "magnificent",
+                          "name": "Condition Level"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "entry",
+          "kind": "roll",
+          "table": "table.ss.capital.districtEntry",
+          "name": "District Entry"
+        },
+        {
+          "id": "crime",
+          "kind": "roll",
+          "table": "table.ss.capital.districtCrime",
+          "name": "District Crime"
+        },
+        {
+          "id": "crimeDegree",
+          "kind": "branch",
+          "name": "Crime Degree",
+          "cases": [
+            {
+              "name": "General: dangerous",
+              "when": {
+                "has_tag": "ss.capital.generalCrime.dangerous"
+              },
+              "steps": [
+                {
+                  "id": "crimeDegree-dangerous",
+                  "kind": "branch",
+                  "name": "From dangerous",
+                  "cases": [
+                    {
+                      "name": "farWorse: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-dangerous-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-dangerous-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-dangerous-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: frequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-dangerous-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "frequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: common",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-dangerous-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "common",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: frequent",
+              "when": {
+                "has_tag": "ss.capital.generalCrime.frequent"
+              },
+              "steps": [
+                {
+                  "id": "crimeDegree-frequent",
+                  "kind": "branch",
+                  "name": "From frequent",
+                  "cases": [
+                    {
+                      "name": "farWorse: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-frequent-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-frequent-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: frequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-frequent-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "frequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: common",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-frequent-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "common",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: uncommon",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-frequent-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "uncommon",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: common",
+              "when": {
+                "has_tag": "ss.capital.generalCrime.common"
+              },
+              "steps": [
+                {
+                  "id": "crimeDegree-common",
+                  "kind": "branch",
+                  "name": "From common",
+                  "cases": [
+                    {
+                      "name": "farWorse: dangerous",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-common-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "dangerous",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: frequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-common-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "frequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: common",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-common-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "common",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: uncommon",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-common-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "uncommon",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-common-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: uncommon",
+              "when": {
+                "has_tag": "ss.capital.generalCrime.uncommon"
+              },
+              "steps": [
+                {
+                  "id": "crimeDegree-uncommon",
+                  "kind": "branch",
+                  "name": "From uncommon",
+                  "cases": [
+                    {
+                      "name": "farWorse: frequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-uncommon-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "frequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: common",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-uncommon-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "common",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: uncommon",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-uncommon-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "uncommon",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-uncommon-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-uncommon-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "General: infrequent",
+              "when": {
+                "has_tag": "ss.capital.generalCrime.infrequent"
+              },
+              "steps": [
+                {
+                  "id": "crimeDegree-infrequent",
+                  "kind": "branch",
+                  "name": "From infrequent",
+                  "cases": [
+                    {
+                      "name": "farWorse: common",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farWorse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-infrequent-farWorse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "common",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "worse: uncommon",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["worse"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-infrequent-worse",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "uncommon",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "equal: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["equal"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-infrequent-equal",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "better: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["better"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-infrequent-better",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "farBetter: infrequent",
+                      "when": {
+                        "result_is": {
+                          "step": "crime",
+                          "results": ["farBetter"]
+                        }
+                      },
+                      "steps": [
+                        {
+                          "id": "crimeDegree-infrequent-farBetter",
+                          "kind": "set_result",
+                          "table": "table.ss.capital.districtCrimeDegree",
+                          "result": "infrequent",
+                          "name": "Crime Degree"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "housing",
+          "kind": "roll",
+          "table": "table.ss.capital.housing",
+          "name": "Housing"
+        },
+        {
+          "id": "notable",
+          "kind": "roll",
+          "table": "table.ss.capital.districtNotableLocations",
+          "name": "District Notable Locations"
+        },
+        {
+          "id": "included",
+          "kind": "branch",
+          "name": "Included locations",
+          "cases": [
+            {
+              "name": "Administration",
+              "when": {
+                "has_tag": "ss.capital.districtType.administration"
+              },
+              "steps": [
+                {
+                  "id": "administration-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "courthouse",
+                  "name": "Included: Courthouse"
+                },
+                {
+                  "id": "administration-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "chancery",
+                  "name": "Included: Chancery"
+                },
+                {
+                  "id": "administration-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "townHall",
+                  "name": "Included: Town Hall"
+                },
+                {
+                  "id": "administration-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "treasury",
+                  "name": "Included: Treasury"
+                },
+                {
+                  "id": "administration-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "hiredHelpScribesAndClerks",
+                  "name": "Included: Hired Help - Scribes and Clerks"
+                },
+                {
+                  "id": "administration-included-5-size",
+                  "kind": "roll",
+                  "table": "table.ss.capital.hiredHelpSize",
+                  "name": "Hired Help Size"
+                }
+              ]
+            },
+            {
+              "name": "Arcane",
+              "when": {
+                "has_tag": "ss.capital.districtType.arcane"
+              },
+              "steps": [
+                {
+                  "id": "arcane-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "archivesLibrary",
+                  "name": "Included: Archives/Library"
+                },
+                {
+                  "id": "arcane-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "academyUniversity",
+                  "name": "Included: Academy/University"
+                },
+                {
+                  "id": "arcane-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "magicShop",
+                  "name": "Included: Magic Shop"
+                },
+                {
+                  "id": "arcane-included-3-specialization",
+                  "kind": "roll",
+                  "table": "table.ss.capital.magicShopSpecialization",
+                  "name": "Magic Shop Specialization"
+                },
+                {
+                  "id": "arcane-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "magicShop",
+                  "name": "Included: Magic Shop"
+                },
+                {
+                  "id": "arcane-included-4-specialization",
+                  "kind": "roll",
+                  "table": "table.ss.capital.magicShopSpecialization",
+                  "name": "Magic Shop Specialization"
+                },
+                {
+                  "id": "arcane-included-5",
+                  "kind": "roll",
+                  "table": "table.ss.capital.arcaneHiredHelp",
+                  "name": "Included: Hired Help"
+                }
+              ]
+            },
+            {
+              "name": "Botanical",
+              "when": {
+                "has_tag": "ss.capital.districtType.botanical"
+              },
+              "steps": [
+                {
+                  "id": "botanical-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "outdoorRecreationalArea",
+                  "name": "Included: Outdoor Recreational Area"
+                },
+                {
+                  "id": "botanical-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "inn",
+                  "name": "Included: Inn"
+                },
+                {
+                  "id": "botanical-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "stable",
+                  "name": "Included: Stable"
+                }
+              ]
+            },
+            {
+              "name": "Craft",
+              "when": {
+                "has_tag": "ss.capital.districtType.craft"
+              },
+              "steps": [
+                {
+                  "id": "craft-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "smithy",
+                  "name": "Included: Smithy"
+                },
+                {
+                  "id": "craft-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "carpenter",
+                  "name": "Included: Carpenter"
+                },
+                {
+                  "id": "craft-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "generalStore",
+                  "name": "Included: General Store"
+                },
+                {
+                  "id": "craft-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tailor",
+                  "name": "Included: Tailor"
+                },
+                {
+                  "id": "craft-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "magicShop",
+                  "name": "Included: Magic Shop"
+                },
+                {
+                  "id": "craft-included-5-specialization",
+                  "kind": "roll",
+                  "table": "table.ss.capital.magicShopSpecialization",
+                  "name": "Magic Shop Specialization"
+                }
+              ]
+            },
+            {
+              "name": "Docks",
+              "when": {
+                "has_tag": "ss.capital.districtType.docks"
+              },
+              "steps": [
+                {
+                  "id": "docks-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "shipwright",
+                  "name": "Included: Shipwright"
+                },
+                {
+                  "id": "docks-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "weaver",
+                  "name": "Included: Weaver"
+                },
+                {
+                  "id": "docks-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "houseOfLeisure",
+                  "name": "Included: House of Leisure"
+                },
+                {
+                  "id": "docks-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "inn",
+                  "name": "Included: Inn"
+                },
+                {
+                  "id": "docks-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tavern",
+                  "name": "Included: Tavern"
+                }
+              ]
+            },
+            {
+              "name": "Industrial",
+              "when": {
+                "has_tag": "ss.capital.districtType.industrial"
+              },
+              "steps": [
+                {
+                  "id": "industrial-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "smithy",
+                  "name": "Included: Smithy"
+                },
+                {
+                  "id": "industrial-included-2",
+                  "kind": "roll",
+                  "table": "table.ss.capital.industrialLocation",
+                  "name": "Included: Industrial Location"
+                }
+              ]
+            },
+            {
+              "name": "Market",
+              "when": {
+                "has_tag": "ss.capital.districtType.market"
+              },
+              "steps": [
+                {
+                  "id": "market-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "baker",
+                  "name": "Included: Baker"
+                },
+                {
+                  "id": "market-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "butcher",
+                  "name": "Included: Butcher"
+                },
+                {
+                  "id": "market-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "generalStore",
+                  "name": "Included: General Store"
+                },
+                {
+                  "id": "market-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "smithy",
+                  "name": "Included: Smithy"
+                },
+                {
+                  "id": "market-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tailor",
+                  "name": "Included: Tailor"
+                }
+              ]
+            },
+            {
+              "name": "Merchant",
+              "when": {
+                "has_tag": "ss.capital.districtType.merchant"
+              },
+              "steps": [
+                {
+                  "id": "merchant-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "bankAndExchange",
+                  "name": "Included: Bank & Exchange"
+                },
+                {
+                  "id": "merchant-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tailor",
+                  "name": "Included: Tailor"
+                },
+                {
+                  "id": "merchant-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "artist",
+                  "name": "Included: Artist"
+                },
+                {
+                  "id": "merchant-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "cobbler",
+                  "name": "Included: Cobbler"
+                },
+                {
+                  "id": "merchant-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "magicShopMiscellaneousAndCuriosities",
+                  "name": "Included: Magic Shop - Miscellaneous & Curiosities"
+                }
+              ]
+            },
+            {
+              "name": "Scholar",
+              "when": {
+                "has_tag": "ss.capital.districtType.scholar"
+              },
+              "steps": [
+                {
+                  "id": "scholar-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "archivesLibrary",
+                  "name": "Included: Archives/Library"
+                },
+                {
+                  "id": "scholar-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "academyUniversity",
+                  "name": "Included: Academy/University"
+                },
+                {
+                  "id": "scholar-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "forum",
+                  "name": "Included: Forum"
+                },
+                {
+                  "id": "scholar-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "schoolhouse",
+                  "name": "Included: Schoolhouse"
+                },
+                {
+                  "id": "scholar-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "hiredHelpScribesAndClerks",
+                  "name": "Included: Hired Help - Scribes and Clerks"
+                },
+                {
+                  "id": "scholar-included-5-size",
+                  "kind": "roll",
+                  "table": "table.ss.capital.hiredHelpSize",
+                  "name": "Hired Help Size"
+                }
+              ]
+            },
+            {
+              "name": "Slums",
+              "when": {
+                "has_tag": "ss.capital.districtType.slums"
+              },
+              "steps": [
+                {
+                  "id": "slums-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "butcher",
+                  "name": "Included: Butcher"
+                },
+                {
+                  "id": "slums-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "houseOfLeisure",
+                  "name": "Included: House of Leisure"
+                },
+                {
+                  "id": "slums-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "inn",
+                  "name": "Included: Inn"
+                },
+                {
+                  "id": "slums-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tavern",
+                  "name": "Included: Tavern"
+                }
+              ]
+            },
+            {
+              "name": "Temple",
+              "when": {
+                "has_tag": "ss.capital.districtType.temple"
+              },
+              "steps": [
+                {
+                  "id": "temple-included-1",
+                  "kind": "roll",
+                  "table": "table.ss.capital.templeSize",
+                  "name": "Included: Temple or Great Temple"
+                },
+                {
+                  "id": "temple-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "archivesLibrary",
+                  "name": "Included: Archives/Library"
+                },
+                {
+                  "id": "temple-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "hiredHelpScribesAndClerks",
+                  "name": "Included: Hired Help - Scribes and Clerks"
+                },
+                {
+                  "id": "temple-included-3-size",
+                  "kind": "roll",
+                  "table": "table.ss.capital.hiredHelpSize",
+                  "name": "Hired Help Size"
+                },
+                {
+                  "id": "temple-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "hiredHelpPriestlyGuidance",
+                  "name": "Included: Hired Help - Priestly Guidance"
+                },
+                {
+                  "id": "temple-included-4-size",
+                  "kind": "roll",
+                  "table": "table.ss.capital.hiredHelpSize",
+                  "name": "Hired Help Size"
+                },
+                {
+                  "id": "temple-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "hiredHelpHandsOfTheDivine",
+                  "name": "Included: Hired Help - Hands of the Divine"
+                },
+                {
+                  "id": "temple-included-5-size",
+                  "kind": "roll",
+                  "table": "table.ss.capital.hiredHelpSize",
+                  "name": "Hired Help Size"
+                }
+              ]
+            },
+            {
+              "name": "Upper Class",
+              "when": {
+                "has_tag": "ss.capital.districtType.upperClass"
+              },
+              "steps": [
+                {
+                  "id": "upperClass-included-1",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "bankAndExchange",
+                  "name": "Included: Bank & Exchange"
+                },
+                {
+                  "id": "upperClass-included-2",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "baker",
+                  "name": "Included: Baker"
+                },
+                {
+                  "id": "upperClass-included-3",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "tailor",
+                  "name": "Included: Tailor"
+                },
+                {
+                  "id": "upperClass-included-4",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "luxuryFurnishings",
+                  "name": "Included: Luxury Furnishings"
+                },
+                {
+                  "id": "upperClass-included-5",
+                  "kind": "set_result",
+                  "table": "table.ss.capital.includedLocation",
+                  "result": "doctorApothecary",
+                  "name": "Included: Doctor/Apothecary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "additional",
+          "kind": "branch",
+          "name": "Additional locations by city size",
+          "cases": [
+            {
+              "name": "verySmall: 1",
+              "when": {
+                "has_tag": "ss.capital.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "additional-verySmall",
+                  "kind": "repeat",
+                  "name": "Additional locations",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "additional-verySmall-byType",
+                      "kind": "branch",
+                      "name": "By district type",
+                      "cases": [
+                        {
+                          "name": "Administration",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.administration"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-administration",
+                              "kind": "roll",
+                              "table": "table.ss.capital.administrationLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Arcane",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.arcane"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-arcane",
+                              "kind": "roll",
+                              "table": "table.ss.capital.arcaneLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Botanical",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.botanical"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-botanical",
+                              "kind": "roll",
+                              "table": "table.ss.capital.botanicalLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Craft",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.craft"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-craft",
+                              "kind": "roll",
+                              "table": "table.ss.capital.craftLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Docks",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.docks"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-docks",
+                              "kind": "roll",
+                              "table": "table.ss.capital.docksLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Industrial",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.industrial"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-industrial",
+                              "kind": "roll",
+                              "table": "table.ss.capital.industrialLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Market",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.market"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-market",
+                              "kind": "roll",
+                              "table": "table.ss.capital.marketLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Merchant",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.merchant"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-merchant",
+                              "kind": "roll",
+                              "table": "table.ss.capital.merchantLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Scholar",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.scholar"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-scholar",
+                              "kind": "roll",
+                              "table": "table.ss.capital.scholarLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Slums",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.slums"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-slums",
+                              "kind": "roll",
+                              "table": "table.ss.capital.slumsLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Temple",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.temple"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-temple",
+                              "kind": "roll",
+                              "table": "table.ss.capital.templeLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Upper Class",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.upperClass"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-verySmall-upperClass",
+                              "kind": "roll",
+                              "table": "table.ss.capital.upperClassLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "small: 2",
+              "when": {
+                "has_tag": "ss.capital.size.small"
+              },
+              "steps": [
+                {
+                  "id": "additional-small",
+                  "kind": "repeat",
+                  "name": "Additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "additional-small-byType",
+                      "kind": "branch",
+                      "name": "By district type",
+                      "cases": [
+                        {
+                          "name": "Administration",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.administration"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-administration",
+                              "kind": "roll",
+                              "table": "table.ss.capital.administrationLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Arcane",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.arcane"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-arcane",
+                              "kind": "roll",
+                              "table": "table.ss.capital.arcaneLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Botanical",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.botanical"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-botanical",
+                              "kind": "roll",
+                              "table": "table.ss.capital.botanicalLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Craft",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.craft"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-craft",
+                              "kind": "roll",
+                              "table": "table.ss.capital.craftLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Docks",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.docks"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-docks",
+                              "kind": "roll",
+                              "table": "table.ss.capital.docksLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Industrial",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.industrial"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-industrial",
+                              "kind": "roll",
+                              "table": "table.ss.capital.industrialLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Market",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.market"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-market",
+                              "kind": "roll",
+                              "table": "table.ss.capital.marketLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Merchant",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.merchant"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-merchant",
+                              "kind": "roll",
+                              "table": "table.ss.capital.merchantLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Scholar",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.scholar"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-scholar",
+                              "kind": "roll",
+                              "table": "table.ss.capital.scholarLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Slums",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.slums"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-slums",
+                              "kind": "roll",
+                              "table": "table.ss.capital.slumsLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Temple",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.temple"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-temple",
+                              "kind": "roll",
+                              "table": "table.ss.capital.templeLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Upper Class",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.upperClass"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-small-upperClass",
+                              "kind": "roll",
+                              "table": "table.ss.capital.upperClassLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "medium: 3",
+              "when": {
+                "has_tag": "ss.capital.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "additional-medium",
+                  "kind": "repeat",
+                  "name": "Additional locations",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "additional-medium-byType",
+                      "kind": "branch",
+                      "name": "By district type",
+                      "cases": [
+                        {
+                          "name": "Administration",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.administration"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-administration",
+                              "kind": "roll",
+                              "table": "table.ss.capital.administrationLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Arcane",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.arcane"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-arcane",
+                              "kind": "roll",
+                              "table": "table.ss.capital.arcaneLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Botanical",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.botanical"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-botanical",
+                              "kind": "roll",
+                              "table": "table.ss.capital.botanicalLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Craft",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.craft"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-craft",
+                              "kind": "roll",
+                              "table": "table.ss.capital.craftLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Docks",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.docks"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-docks",
+                              "kind": "roll",
+                              "table": "table.ss.capital.docksLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Industrial",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.industrial"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-industrial",
+                              "kind": "roll",
+                              "table": "table.ss.capital.industrialLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Market",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.market"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-market",
+                              "kind": "roll",
+                              "table": "table.ss.capital.marketLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Merchant",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.merchant"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-merchant",
+                              "kind": "roll",
+                              "table": "table.ss.capital.merchantLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Scholar",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.scholar"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-scholar",
+                              "kind": "roll",
+                              "table": "table.ss.capital.scholarLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Slums",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.slums"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-slums",
+                              "kind": "roll",
+                              "table": "table.ss.capital.slumsLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Temple",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.temple"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-temple",
+                              "kind": "roll",
+                              "table": "table.ss.capital.templeLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Upper Class",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.upperClass"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-medium-upperClass",
+                              "kind": "roll",
+                              "table": "table.ss.capital.upperClassLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "large: 4",
+              "when": {
+                "has_tag": "ss.capital.size.large"
+              },
+              "steps": [
+                {
+                  "id": "additional-large",
+                  "kind": "repeat",
+                  "name": "Additional locations",
+                  "count": {
+                    "times": 4
+                  },
+                  "steps": [
+                    {
+                      "id": "additional-large-byType",
+                      "kind": "branch",
+                      "name": "By district type",
+                      "cases": [
+                        {
+                          "name": "Administration",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.administration"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-administration",
+                              "kind": "roll",
+                              "table": "table.ss.capital.administrationLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Arcane",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.arcane"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-arcane",
+                              "kind": "roll",
+                              "table": "table.ss.capital.arcaneLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Botanical",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.botanical"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-botanical",
+                              "kind": "roll",
+                              "table": "table.ss.capital.botanicalLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Craft",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.craft"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-craft",
+                              "kind": "roll",
+                              "table": "table.ss.capital.craftLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Docks",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.docks"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-docks",
+                              "kind": "roll",
+                              "table": "table.ss.capital.docksLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Industrial",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.industrial"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-industrial",
+                              "kind": "roll",
+                              "table": "table.ss.capital.industrialLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Market",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.market"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-market",
+                              "kind": "roll",
+                              "table": "table.ss.capital.marketLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Merchant",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.merchant"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-merchant",
+                              "kind": "roll",
+                              "table": "table.ss.capital.merchantLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Scholar",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.scholar"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-scholar",
+                              "kind": "roll",
+                              "table": "table.ss.capital.scholarLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Slums",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.slums"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-slums",
+                              "kind": "roll",
+                              "table": "table.ss.capital.slumsLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Temple",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.temple"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-temple",
+                              "kind": "roll",
+                              "table": "table.ss.capital.templeLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Upper Class",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.upperClass"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-large-upperClass",
+                              "kind": "roll",
+                              "table": "table.ss.capital.upperClassLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "veryLarge: 5",
+              "when": {
+                "has_tag": "ss.capital.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "additional-veryLarge",
+                  "kind": "repeat",
+                  "name": "Additional locations",
+                  "count": {
+                    "times": 5
+                  },
+                  "steps": [
+                    {
+                      "id": "additional-veryLarge-byType",
+                      "kind": "branch",
+                      "name": "By district type",
+                      "cases": [
+                        {
+                          "name": "Administration",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.administration"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-administration",
+                              "kind": "roll",
+                              "table": "table.ss.capital.administrationLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Arcane",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.arcane"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-arcane",
+                              "kind": "roll",
+                              "table": "table.ss.capital.arcaneLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Botanical",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.botanical"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-botanical",
+                              "kind": "roll",
+                              "table": "table.ss.capital.botanicalLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Craft",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.craft"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-craft",
+                              "kind": "roll",
+                              "table": "table.ss.capital.craftLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Docks",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.docks"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-docks",
+                              "kind": "roll",
+                              "table": "table.ss.capital.docksLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Industrial",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.industrial"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-industrial",
+                              "kind": "roll",
+                              "table": "table.ss.capital.industrialLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Market",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.market"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-market",
+                              "kind": "roll",
+                              "table": "table.ss.capital.marketLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Merchant",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.merchant"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-merchant",
+                              "kind": "roll",
+                              "table": "table.ss.capital.merchantLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Scholar",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.scholar"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-scholar",
+                              "kind": "roll",
+                              "table": "table.ss.capital.scholarLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Slums",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.slums"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-slums",
+                              "kind": "roll",
+                              "table": "table.ss.capital.slumsLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Temple",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.temple"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-temple",
+                              "kind": "roll",
+                              "table": "table.ss.capital.templeLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "Upper Class",
+                          "when": {
+                            "has_tag": "ss.capital.districtType.upperClass"
+                          },
+                          "steps": [
+                            {
+                              "id": "additional-veryLarge-upperClass",
+                              "kind": "roll",
+                              "table": "table.ss.capital.upperClassLocations",
+                              "name": "Additional Location"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "notability",
+          "kind": "branch",
+          "name": "Notable locations",
+          "cases": [
+            {
+              "name": "verySmall, one: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.verySmall"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["one"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-verySmall-one",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-verySmall-one",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "verySmall, two: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.verySmall"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["two"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-verySmall-two",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-verySmall-two",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "verySmall, three: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.verySmall"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["three"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-verySmall-three",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-verySmall-three",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "small, one: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.small"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["one"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-small-one",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-small-one",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "small, two: 2",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.small"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["two"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-small-two",
+                  "kind": "repeat",
+                  "name": "The first 2 additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-small-two",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "small, three: 2",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.small"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["three"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-small-three",
+                  "kind": "repeat",
+                  "name": "The first 2 additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-small-three",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "medium, one: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.medium"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["one"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-medium-one",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-medium-one",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "medium, two: 2",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.medium"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["two"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-medium-two",
+                  "kind": "repeat",
+                  "name": "The first 2 additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-medium-two",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "medium, three: 3",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.medium"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["three"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-medium-three",
+                  "kind": "repeat",
+                  "name": "The first 3 additional locations",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-medium-three",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "large, one: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.large"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["one"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-large-one",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-large-one",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "large, two: 2",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.large"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["two"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-large-two",
+                  "kind": "repeat",
+                  "name": "The first 2 additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-large-two",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "large, three: 3",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.large"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["three"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-large-three",
+                  "kind": "repeat",
+                  "name": "The first 3 additional locations",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-large-three",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "veryLarge, one: 1",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.veryLarge"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["one"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-veryLarge-one",
+                  "kind": "repeat",
+                  "name": "The first 1 additional location",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-veryLarge-one",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "veryLarge, two: 2",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.veryLarge"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["two"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-veryLarge-two",
+                  "kind": "repeat",
+                  "name": "The first 2 additional locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-veryLarge-two",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "veryLarge, three: 3",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.capital.size.veryLarge"
+                  },
+                  {
+                    "result_is": {
+                      "step": "notable",
+                      "results": ["three"]
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "notability-veryLarge-three",
+                  "kind": "repeat",
+                  "name": "The first 3 additional locations",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "notable-veryLarge-three",
+                      "kind": "roll",
+                      "table": "table.ss.capital.locationNotability",
+                      "name": "Location Notability"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.capital.nobleResidences",
+      "name": "Capital Noble Residences",
+      "description": "Spectacular Settlements, Capitals, Step 4: the district each primary noble lives in.",
+      "steps": [
+        {
+          "id": "nobles",
+          "kind": "repeat",
+          "name": "Primary nobles",
+          "count": {
+            "value_of": {
+              "step": "ssCapital-primaryNobles"
+            }
+          },
+          "steps": [
+            {
+              "id": "residence",
+              "kind": "roll",
+              "table": "table.ss.capital.nobleResidence",
+              "name": "Noble Residence"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

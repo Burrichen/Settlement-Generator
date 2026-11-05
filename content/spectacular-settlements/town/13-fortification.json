@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.fortification",
+      "name": "Fortification",
+      "description": "Walls, heavy gates and watchtowers. Modified by a Military priority; modifies Disposition. A substantially fortified town might have a fortress (Chapter 7).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "unfortified",
+          "name": "Unfortified",
+          "range": 1,
+          "description": "The town’s perimeter is open, allowing entry from almost any point. (-5 to disposition roll)",
+          "tags": ["ss.town.fortification.unfortified"]
+        },
+        {
+          "id": "lightlyFortified",
+          "name": "Lightly Fortified",
+          "range": [2, 8],
+          "description": "The town proper is surrounded by a light wall of wood or stacked stone. The fortifications pose only a mild inconvenience to outside forces, but they easily keep out wild animals. (+1 to disposition roll)",
+          "tags": ["ss.town.fortification.lightlyFortified"]
+        },
+        {
+          "id": "fortified",
+          "name": "Fortified",
+          "range": [9, 15],
+          "description": "The town proper is surrounded by a substantial wall of wood or stone. The wall is able to be patrolled by guards on a raised walkway. Visitors to the city pass through a main gate that can be barred in the evenings. A few watch towers may be placed around the town, though they are likely sporadic. (+3 to disposition roll)",
+          "tags": ["ss.town.fortification.fortified"]
+        },
+        {
+          "id": "heavilyFortified",
+          "name": "Heavily Fortified",
+          "range": [16, 19],
+          "description": "The town proper is surrounded by a heavy wall of wood or stone, with several watchtowers built along its length. The gate is double-thickness and reinforced with metal bands. There are additional watchtowers built at various points throughout the surrounding countryside. (+5 to disposition roll)",
+          "tags": ["ss.town.fortification.heavilyFortified"]
+        },
+        {
+          "id": "extremelyFortified",
+          "name": "Extremely Fortified",
+          "range": 20,
+          "description": "The town proper is surrounded by an imposing wall of wood or stone, with many fully-staffed watchtowers at regular intervals along its length. The gate is double-thickness, reinforced with metal bands, augmented with a portcullis, and is always manned. A supplementary wall of wood or stone encompasses the surrounding countryside, with its own watchtowers. Nothing goes in or out without the watch’s knowledge or permission. (+7 to disposition roll)",
+          "tags": ["ss.town.fortification.extremelyFortified"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.fortification.unfortified",
+      "name": "Unfortified",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.disposition",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.town.fortification.lightlyFortified",
+      "name": "Lightly Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.disposition",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.fortification.fortified",
+      "name": "Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.disposition",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.fortification.heavilyFortified",
+      "name": "Heavily Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.disposition",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.town.fortification.extremelyFortified",
+      "name": "Extremely Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.disposition",
+          "amount": 7
+        }
+      ]
+    }
+  ]
+}

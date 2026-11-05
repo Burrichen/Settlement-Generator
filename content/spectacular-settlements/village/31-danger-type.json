@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.dangerType",
+      "name": "Danger Type",
+      "description": "Extra Intrigue. Dangerous occurrences adventurers could run into. Not rolled when there is no danger.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "wildlifeAttack",
+          "name": "Wildlife Attack",
+          "range": 1,
+          "description": "Wildlife lives in close proximity to the village, which may be open, or have little in the way of defenses. Wildlife may be free to roam the village, especially in low-traffic hours.",
+          "tags": ["ss.village.dangerType.wildlifeAttack"]
+        },
+        {
+          "id": "misunderstanding",
+          "name": "Misunderstanding",
+          "range": 2,
+          "description": "For new arrivals in the village, especially those not from the region, communication can be hard. Miscommunication can lead to dangerous situations.",
+          "tags": ["ss.village.dangerType.misunderstanding"]
+        },
+        {
+          "id": "workplaceAccidents",
+          "name": "Workplace Accidents",
+          "range": 3,
+          "description": "Depending on the kind of work being done, there may be some omnipresent danger, from mishaps with animals, to issues with equipment, especially if it is in poor condition.",
+          "tags": ["ss.village.dangerType.workplaceAccidents"]
+        },
+        {
+          "id": "disease",
+          "name": "Disease",
+          "range": 4,
+          "description": "Villages can lack rigorous standards of cleanliness or, due to their rural placement, can sometimes be prone to issues with disease-carrying vermin.",
+          "tags": ["ss.village.dangerType.disease"]
+        },
+        {
+          "id": "unwantedAttention",
+          "name": "Unwanted Attention",
+          "range": 5,
+          "description": "Being a tight-knit community has the benefit of everyone being very familiar with everyone else. This makes visitors stick out like a sore thumb. This could draw attention from the villagers, or anyone who might be watching.",
+          "tags": ["ss.village.dangerType.unwantedAttention"]
+        },
+        {
+          "id": "monsterPrey",
+          "name": "Monster Prey",
+          "range": 6,
+          "description": "Large monsters, who might view a town or city as too threatening a target, may view a village as a much easier source of food.",
+          "tags": ["ss.village.dangerType.monsterPrey"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.dangerType.wildlifeAttack",
+      "name": "Wildlife Attack"
+    },
+    {
+      "id": "ss.village.dangerType.misunderstanding",
+      "name": "Misunderstanding"
+    },
+    {
+      "id": "ss.village.dangerType.workplaceAccidents",
+      "name": "Workplace Accidents"
+    },
+    {
+      "id": "ss.village.dangerType.disease",
+      "name": "Disease"
+    },
+    {
+      "id": "ss.village.dangerType.unwantedAttention",
+      "name": "Unwanted Attention"
+    },
+    {
+      "id": "ss.village.dangerType.monsterPrey",
+      "name": "Monster Prey"
+    }
+  ]
+}

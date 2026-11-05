@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.industrialLocations",
+      "name": "Industrial District Additional Locations",
+      "description": "Rolled for each additional location of a Industrial district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.city.industrialLocations.stepDown"],
+          "then_roll": ["table.ss.city.industrialLocationsAgain"]
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": 2,
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc.",
+          "tags": ["ss.city.industrialLocations.cooper"]
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": 3,
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs.",
+          "tags": ["ss.city.industrialLocations.carpenter"]
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "range": 4,
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends.",
+          "tags": ["ss.city.industrialLocations.generalStore"]
+        },
+        {
+          "id": "smithy",
+          "name": "Smithy",
+          "range": 5,
+          "description": "(Basic) Sells and crafts metal tools and equipment, including very basic weapons and armor.",
+          "tags": ["ss.city.industrialLocations.smithy"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": 6,
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.city.industrialLocations.tailor"]
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": 7,
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc.",
+          "tags": ["ss.city.industrialLocations.thatcher"]
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": 8,
+          "description": "(Basic) Builds carts and wagons.",
+          "tags": ["ss.city.industrialLocations.wainwright"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 9,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.city.industrialLocations.weaver"]
+        },
+        {
+          "id": "foundrySmelting",
+          "name": "Foundry/Smelting",
+          "range": 10,
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.city.industrialLocations.foundrySmelting"]
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "range": 11,
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.city.industrialLocations.miller"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": 12,
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.city.industrialLocations.textileProduction"]
+        },
+        {
+          "id": "shipwright",
+          "name": "Shipwright",
+          "range": 13,
+          "description": "(Specialty) Builds and launches boats and/or ships. Only near significant water (Coastal or River); otherwise rerolled.",
+          "tags": ["ss.city.industrialLocations.shipwright"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.city.environment.coastal"
+              },
+              {
+                "has_tag": "ss.city.environment.river"
+              }
+            ]
+          }
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": 14,
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind).",
+          "tags": ["ss.city.industrialLocations.houseOfLeisure"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": 15,
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.city.industrialLocations.club"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 16,
+          "description": "Provides food and drink.",
+          "tags": ["ss.city.industrialLocations.tavern"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 17,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.city.industrialLocations.hiredHelp"],
+          "then_roll": ["table.ss.city.hiredHelpType"]
+        },
+        {
+          "id": "gatheringHall",
+          "name": "Gathering Hall",
+          "range": 18,
+          "description": "(Non-commercial) General, open-use building used for local activities, or where locals may simply socialize.",
+          "tags": ["ss.city.industrialLocations.gatheringHall"]
+        },
+        {
+          "id": "treasury",
+          "name": "Treasury",
+          "range": 19,
+          "description": "(Non-commercial) Used as a centralised place to manage the funds.",
+          "tags": ["ss.city.industrialLocations.treasury"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.city.industrialLocations.stepUp"],
+          "then_roll": ["table.ss.city.industrialLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.industrialLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.city.industrialLocations.cooper",
+      "name": "Cooper"
+    },
+    {
+      "id": "ss.city.industrialLocations.carpenter",
+      "name": "Carpenter"
+    },
+    {
+      "id": "ss.city.industrialLocations.generalStore",
+      "name": "General Store"
+    },
+    {
+      "id": "ss.city.industrialLocations.smithy",
+      "name": "Smithy"
+    },
+    {
+      "id": "ss.city.industrialLocations.tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "ss.city.industrialLocations.thatcher",
+      "name": "Thatcher"
+    },
+    {
+      "id": "ss.city.industrialLocations.wainwright",
+      "name": "Wainwright"
+    },
+    {
+      "id": "ss.city.industrialLocations.weaver",
+      "name": "Weaver"
+    },
+    {
+      "id": "ss.city.industrialLocations.foundrySmelting",
+      "name": "Foundry/Smelting"
+    },
+    {
+      "id": "ss.city.industrialLocations.miller",
+      "name": "Miller"
+    },
+    {
+      "id": "ss.city.industrialLocations.textileProduction",
+      "name": "Textile Production"
+    },
+    {
+      "id": "ss.city.industrialLocations.shipwright",
+      "name": "Shipwright"
+    },
+    {
+      "id": "ss.city.industrialLocations.houseOfLeisure",
+      "name": "House of Leisure"
+    },
+    {
+      "id": "ss.city.industrialLocations.club",
+      "name": "Club"
+    },
+    {
+      "id": "ss.city.industrialLocations.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.city.industrialLocations.hiredHelp",
+      "name": "Hired Help"
+    },
+    {
+      "id": "ss.city.industrialLocations.gatheringHall",
+      "name": "Gathering Hall"
+    },
+    {
+      "id": "ss.city.industrialLocations.treasury",
+      "name": "Treasury"
+    },
+    {
+      "id": "ss.city.industrialLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

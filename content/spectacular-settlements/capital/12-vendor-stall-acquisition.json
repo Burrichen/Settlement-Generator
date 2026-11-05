@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.vendorStallAcquisition",
+      "name": "Vendor Stall Acquisition",
+      "description": "How a vendor finds a space in the market square.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "firstComeNoFee",
+          "name": "First Come, First Served - No Fee",
+          "range": 1,
+          "description": "Merchants line up prior to market day. Those at the front of the line are given the spaces. No fees are charged.",
+          "tags": ["ss.capital.vendorStallAcquisition.firstComeNoFee"]
+        },
+        {
+          "id": "firstComeFee",
+          "name": "First Come, First Served - Fee",
+          "range": 2,
+          "description": "Merchants line up prior to market day. Those at the front of the line are given first pick of the available stall spaces, provided they can pay the fee for the day.",
+          "tags": ["ss.capital.vendorStallAcquisition.firstComeFee"]
+        },
+        {
+          "id": "lease",
+          "name": "Lease",
+          "range": 3,
+          "description": "Merchants pay in advance (sometimes far in advance) for the right to a space in the market square.",
+          "tags": ["ss.capital.vendorStallAcquisition.lease"]
+        },
+        {
+          "id": "bid",
+          "name": "Bid",
+          "range": 4,
+          "description": "Prior to market day, the spaces are auctioned off.",
+          "tags": ["ss.capital.vendorStallAcquisition.bid"]
+        },
+        {
+          "id": "sponsoredNoFee",
+          "name": "Sponsored Referral Only - No Fee",
+          "range": 5,
+          "description": "A stall may only be acquired if the vendor is sponsored by a citizen of the capital. The sponsor assumes responsibility for the vendor. The space is granted once proof of sponsorship is submitted and approved.",
+          "tags": ["ss.capital.vendorStallAcquisition.sponsoredNoFee"]
+        },
+        {
+          "id": "sponsoredFee",
+          "name": "Sponsored Referral Only - Fee",
+          "range": 6,
+          "description": "A stall may only be acquired once the vendor pays a fee, and the vendor is sponsored by a citizen of the capital. The sponsor assumes responsibility for the vendor. The space is granted once payment and proof of sponsorship is submitted and approved.",
+          "tags": ["ss.capital.vendorStallAcquisition.sponsoredFee"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.vendorStallAcquisition.firstComeNoFee",
+      "name": "First Come, First Served - No Fee"
+    },
+    {
+      "id": "ss.capital.vendorStallAcquisition.firstComeFee",
+      "name": "First Come, First Served - Fee"
+    },
+    {
+      "id": "ss.capital.vendorStallAcquisition.lease",
+      "name": "Lease"
+    },
+    {
+      "id": "ss.capital.vendorStallAcquisition.bid",
+      "name": "Bid"
+    },
+    {
+      "id": "ss.capital.vendorStallAcquisition.sponsoredNoFee",
+      "name": "Sponsored Referral Only - No Fee"
+    },
+    {
+      "id": "ss.capital.vendorStallAcquisition.sponsoredFee",
+      "name": "Sponsored Referral Only - Fee"
+    }
+  ]
+}

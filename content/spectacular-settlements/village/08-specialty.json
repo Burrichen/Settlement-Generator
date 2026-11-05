@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.specialty",
+      "name": "Specialty",
+      "description": "Likely the reason the village exists. Once points of interest are added, make sure there is an appropriate place for it.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": 1,
+          "description": "The village is unremarkable, or not widely known for any particular thing.",
+          "tags": ["ss.village.specialty.none"]
+        },
+        {
+          "id": "foodOrDrink",
+          "name": "Food or Drink",
+          "range": 2,
+          "description": "Someone in the village makes a particular food or drink (such as bread, stew, produce, ale, wine, etc.) that has gained some notoriety. They may own an establishment, but could easily just sell it out of their home.",
+          "tags": ["ss.village.specialty.foodOrDrink"]
+        },
+        {
+          "id": "locationProximity",
+          "name": "Location Proximity",
+          "range": 3,
+          "description": "The village itself may not be very special, but it is near somewhere that is, such as a stunning vista, or a site of historical significance.",
+          "tags": ["ss.village.specialty.locationProximity"]
+        },
+        {
+          "id": "livestock",
+          "name": "Livestock",
+          "range": 4,
+          "description": "The village is known for breeding strong and healthy (perhaps, even pedigree) animals, such as horses, cattle, sheep, etc.",
+          "tags": ["ss.village.specialty.livestock"]
+        },
+        {
+          "id": "crop",
+          "name": "Crop",
+          "range": 5,
+          "description": "The village is known for a particularly notable crop. This could mean rare, high-quality, plentiful, or a mix of the three.",
+          "tags": ["ss.village.specialty.crop"]
+        },
+        {
+          "id": "craftedGoods",
+          "name": "Crafted Goods",
+          "range": 6,
+          "description": "The village is known for the craft of a certain item, or type of goods, widely liked and highly valued, such as hand-crafted furniture, a category of clothing item, etc.",
+          "tags": ["ss.village.specialty.craftedGoods"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.specialty.none", "name": "None" },
+    { "id": "ss.village.specialty.foodOrDrink", "name": "Food or Drink" },
+    { "id": "ss.village.specialty.locationProximity", "name": "Location Proximity" },
+    { "id": "ss.village.specialty.livestock", "name": "Livestock" },
+    { "id": "ss.village.specialty.crop", "name": "Crop" },
+    { "id": "ss.village.specialty.craftedGoods", "name": "Crafted Goods" }
+  ]
+}

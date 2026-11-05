@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.populationWealth",
+      "name": "Population Wealth",
+      "description": "Modified by Stewardship, a Wealth/Possessions nobility and a Resources root of relationship with the people. Modifies General Crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "destitute",
+          "name": "Destitute",
+          "range": [1, 2],
+          "description": "Nearly everyone in the capital consistently lacks the barest essentials of what they need to survive. (-2 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.destitute"]
+        },
+        {
+          "id": "impoverished",
+          "name": "Impoverished",
+          "range": [3, 6],
+          "description": "Around half of the capital struggles to carve out even a meager existence. (-1 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.impoverished"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Most of the capital’s population have enough to live a modest life. Those without are a minority. (+0 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.average"]
+        },
+        {
+          "id": "prosperous",
+          "name": "Prosperous",
+          "range": [15, 17],
+          "description": "The majority have enough to live a good life and, of them, a fair amount can even live comfortably. (-1 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.prosperous"]
+        },
+        {
+          "id": "wealthy",
+          "name": "Wealthy",
+          "range": [18, 19],
+          "description": "Nearly everyone has what they need to live comfortably, many are able to live well, and some are very prosperous. (-2 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.wealthy"]
+        },
+        {
+          "id": "affluent",
+          "name": "Affluent",
+          "range": 20,
+          "description": "The entire capital is able to live comfortably, with a significant portion living in luxury. (-3 to general crime roll)",
+          "tags": ["ss.capital.populationWealth.affluent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.populationWealth.destitute",
+      "name": "Destitute",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationWealth.impoverished",
+      "name": "Impoverished",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationWealth.average",
+      "name": "Average"
+    },
+    {
+      "id": "ss.capital.populationWealth.prosperous",
+      "name": "Prosperous",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationWealth.wealthy",
+      "name": "Wealthy",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationWealth.affluent",
+      "name": "Affluent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

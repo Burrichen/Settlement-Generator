@@ -43,7 +43,7 @@ fn generation_round_trip_through_the_service() {
             .iter()
             .filter(|s| {
                 let t = s.stage.stage_table.as_str();
-                !(t.starts_with("table.ss.") || t.starts_with("step.ssTradingPost"))
+                !(t.starts_with("table.ss.") || t.starts_with("step.ss"))
             })
             .count(),
         19,

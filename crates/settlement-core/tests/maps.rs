@@ -862,3 +862,223 @@ fn each_map_knows_when_the_settlement_has_changed_since() {
     );
     assert_eq!(maps::map_status(&edited, Some(&set)), MapStatus::Stale);
 }
+
+// ----- setting profiles ---------------------------------------------------------
+
+/// A saved settlement made with the Spectacular Settlements profile, which
+/// skips the generic Size, Environment, Origin and Age stages and rolls the
+/// tables of its Settlement Type (`tradingPost` or `village`) instead.
+fn spectacular(s: &mut AppService, kind: &str, seed: u64) -> SettlementId {
+    let mut active = s.start_generation().unwrap();
+    active
+        .session
+        .choose(
+            0,
+            ResultId::new("spectacularSettlements"),
+            &mut RandomFaces::seeded(seed),
+        )
+        .unwrap();
+    let mut chosen = Selections::new();
+    chosen.insert("table.ss.settlementType".into(), kind.into());
+    active
+        .session
+        .run_automatic(&chosen, &mut RandomFaces::seeded(seed + 1))
+        .unwrap();
+    s.save_new(&active, &format!("Spectacular {kind} {seed}"))
+        .unwrap()
+        .id
+}
+
+#[test]
+fn spectacular_settlements_are_mapped_from_their_own_stages() {
+    // Buildings asked for, from the book's structure counts for each size.
+    let trading_post = |size: &str| -> u32 {
+        match size {
+            "verySmall" => 15,
+            "small" => 30,
+            "medium" => 50,
+            "large" => 70,
+            "veryLarge" => 90,
+            other => panic!("unknown Trading Post size {other}"),
+        }
+    };
+    let village = |size: &str| -> u32 {
+        match size {
+            "verySmall" => 15,
+            "small" => 24,
+            "medium" => 45,
+            "large" => 70,
+            "veryLarge" => 95,
+            other => panic!("unknown Village size {other}"),
+        }
+    };
+    let mut s = service();
+    for (kind, prefix, buildings, origin) in [
+        (
+            "tradingPost",
+            "table.ss.tradingPost",
+            &trading_post as &dyn Fn(&str) -> u32,
+            true,
+        ),
+        ("village", "table.ss.village", &village, false),
+    ] {
+        let mut sizes = HashSet::new();
+        for seed in 0..30 {
+            let id = spectacular(&mut s, kind, seed);
+            // Reopens (its flows hold secondary rolls) and has a Size.
+            let saved = s.saved_get(&id).unwrap();
+            let view = s.maps_get(&id).unwrap();
+            assert_eq!(view.problem, None, "{kind} seed {seed}");
+            assert_eq!(view.layout, Some(MapLayout::Single), "{kind} seed {seed}");
+
+            let drawn = s.maps_generate(&id, &options(seed)).unwrap();
+            assert_eq!(drawn.status, MapStatus::Current, "{kind} seed {seed}");
+            let set = drawn.maps.unwrap();
+            assert_eq!(set.maps.len(), 1);
+            assert!(!set.maps[0].geometry.buildings.is_empty());
+
+            // The inputs are the type's own recorded stages.
+            let recorded = |table: &str| {
+                saved
+                    .stages
+                    .iter()
+                    .find(|st| {
+                        st.stage_table.as_str() == format!("{prefix}.{table}") && !st.skipped
+                    })
+                    .and_then(|st| st.result.clone())
+            };
+            let inputs = &set.inputs;
+            assert_eq!(Some(inputs.size.clone()), recorded("size"), "{kind}");
+            assert_eq!(inputs.environment, recorded("environment"), "{kind}");
+            assert_eq!(inputs.age, recorded("age"), "{kind}");
+            // Villages have no Origin table.
+            assert_eq!(inputs.origin.is_some(), origin, "{kind}");
+            sizes.insert(inputs.size.id.as_str().to_owned());
+
+            let defaults = params::default_parameters(inputs).unwrap();
+            assert_eq!(
+                defaults.building_count,
+                buildings(inputs.size.id.as_str()),
+                "{kind} seed {seed}"
+            );
+        }
+        assert!(sizes.len() >= 3, "{kind}: several sizes seen: {sizes:?}");
+    }
+}
+
+#[test]
+fn spectacular_settlements_towns_are_not_mapped_and_say_why() {
+    let mut s = service();
+    for seed in 0..10 {
+        let id = spectacular(&mut s, "town", seed);
+        let view = s.maps_get(&id).unwrap();
+        // The Size is recognised; maps are refused with the reason.
+        let problem = view
+            .problem
+            .unwrap_or_else(|| panic!("seed {seed}: no reason given"));
+        assert!(
+            problem.starts_with("Town maps are turned off."),
+            "{problem}"
+        );
+        assert!(problem.contains("600 buildings"), "{problem}");
+        assert!(view.planned.is_empty(), "seed {seed}: nothing planned");
+        let err = s.maps_generate(&id, &options(seed)).unwrap_err();
+        assert_eq!(err, problem, "seed {seed}: generating says the same");
+        assert!(s.maps_get(&id).unwrap().maps.is_none(), "nothing stored");
+    }
+}
+
+#[test]
+fn spectacular_settlements_cities_are_mapped_district_by_district() {
+    let mut s = service();
+    for seed in 0..10 {
+        let id = spectacular(&mut s, "city", seed);
+        let view = s.maps_get(&id).unwrap();
+        assert_eq!(view.problem, None, "seed {seed}");
+        assert_eq!(view.layout, Some(MapLayout::PerDistrict), "seed {seed}");
+        // Each district the city made, under its type: "District 2 (Market)".
+        assert!(
+            view.planned.len() >= 2,
+            "seed {seed}: {} maps",
+            view.planned.len()
+        );
+        for (i, plan) in view.planned.iter().enumerate() {
+            assert_eq!(plan.id.as_str(), format!("map-district-{:02}", i + 1));
+            assert!(
+                plan.label.starts_with(&format!("District {} (", i + 1))
+                    && plan.label.ends_with(')'),
+                "seed {seed}: {}",
+                plan.label
+            );
+            assert!(matches!(plan.scope, MapScope::District { .. }));
+        }
+        let drawn = s.maps_generate(&id, &options(seed)).unwrap();
+        let set = drawn.maps.unwrap();
+        assert_eq!(set.maps.len(), view.planned.len(), "one map per district");
+        assert!(set.maps.iter().all(|m| !m.geometry.buildings.is_empty()));
+    }
+}
+
+#[test]
+fn spectacular_settlements_capitals_are_mapped_district_by_district() {
+    let mut s = service();
+    for seed in 0..6 {
+        let id = spectacular(&mut s, "capital", seed);
+        let view = s.maps_get(&id).unwrap();
+        assert_eq!(view.problem, None, "seed {seed}");
+        assert_eq!(view.layout, Some(MapLayout::PerDistrict), "seed {seed}");
+        for (i, plan) in view.planned.iter().enumerate() {
+            assert_eq!(plan.id.as_str(), format!("map-district-{:02}", i + 1));
+            assert!(
+                plan.label.starts_with(&format!("District {} (", i + 1)),
+                "{}",
+                plan.label
+            );
+        }
+        let set = s.maps_generate(&id, &options(seed)).unwrap().maps.unwrap();
+        assert_eq!(set.maps.len(), view.planned.len());
+    }
+}
+
+#[test]
+fn spectacular_settlements_fortresses_are_not_mapped_and_say_why() {
+    let mut s = service();
+    for (seed, kind) in ["general", "keep", "castle", "stronghold"]
+        .iter()
+        .enumerate()
+    {
+        let seed = seed as u64;
+        let mut active = s.start_generation().unwrap();
+        active
+            .session
+            .choose(
+                0,
+                ResultId::new("spectacularSettlements"),
+                &mut RandomFaces::seeded(seed),
+            )
+            .unwrap();
+        let mut chosen = Selections::new();
+        chosen.insert("table.ss.settlementType".into(), "fortress".into());
+        chosen.insert("table.ss.fortress.fortressType".into(), (*kind).into());
+        active
+            .session
+            .run_automatic(&chosen, &mut RandomFaces::seeded(seed + 1))
+            .unwrap();
+        let id = s
+            .save_new(&active, &format!("Spectacular fortress {seed}"))
+            .unwrap()
+            .id;
+        let view = s.maps_get(&id).unwrap();
+        // Not asked for a Size it does not have: refused with the reason.
+        let problem = view
+            .problem
+            .unwrap_or_else(|| panic!("{kind}: no reason given"));
+        assert!(
+            problem.starts_with("Fortress maps are turned off."),
+            "{problem}"
+        );
+        assert!(view.planned.is_empty(), "{kind}: nothing planned");
+        let err = s.maps_generate(&id, &options(seed)).unwrap_err();
+        assert_eq!(err, problem, "{kind}: generating says the same");
+    }
+}

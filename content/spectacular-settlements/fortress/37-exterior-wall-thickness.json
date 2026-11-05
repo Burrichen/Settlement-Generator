@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.exteriorWallThickness",
+      "name": "Exterior Wall Thickness",
+      "description": "How thick the keep's outer walls are (outside its floor area).",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "oneFoot",
+          "name": "1 ft.",
+          "range": 1,
+          "description": "A single line, 0 squares.",
+          "tags": ["ss.fortress.exteriorWallThickness.oneFoot"]
+        },
+        {
+          "id": "twoAndAHalfFeet",
+          "name": "2.5 ft.",
+          "range": [2, 3],
+          "description": "1/2 a square.",
+          "tags": ["ss.fortress.exteriorWallThickness.twoAndAHalfFeet"]
+        },
+        {
+          "id": "fiveFeet",
+          "name": "5 ft.",
+          "range": [4, 7],
+          "description": "1 square.",
+          "tags": ["ss.fortress.exteriorWallThickness.fiveFeet"]
+        },
+        {
+          "id": "tenFeet",
+          "name": "10 ft.",
+          "range": [8, 9],
+          "description": "2 squares.",
+          "tags": ["ss.fortress.exteriorWallThickness.tenFeet"]
+        },
+        {
+          "id": "fifteenFeet",
+          "name": "15 ft.",
+          "range": 10,
+          "description": "3 squares.",
+          "tags": ["ss.fortress.exteriorWallThickness.fifteenFeet"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.exteriorWallThickness.oneFoot", "name": "1 ft." },
+    { "id": "ss.fortress.exteriorWallThickness.twoAndAHalfFeet", "name": "2.5 ft." },
+    { "id": "ss.fortress.exteriorWallThickness.fiveFeet", "name": "5 ft." },
+    { "id": "ss.fortress.exteriorWallThickness.tenFeet", "name": "10 ft." },
+    { "id": "ss.fortress.exteriorWallThickness.fifteenFeet", "name": "15 ft." }
+  ]
+}

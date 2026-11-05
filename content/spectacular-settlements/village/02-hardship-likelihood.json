@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.hardshipLikelihood",
+      "name": "Hardship Likelihood",
+      "description": "Modified by Age. Each result's value is one more than its number of hardships (values must be positive): Hardship Type and Hardship Outcome are rolled value - 1 times.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "No Hardship",
+          "range": [1, 2],
+          "value": 1,
+          "description": "The village has been lucky, and nothing has troubled it so far.",
+          "tags": ["ss.village.hardshipLikelihood.none"]
+        },
+        {
+          "id": "one",
+          "name": "One Hardship",
+          "range": [3, 6],
+          "value": 2,
+          "description": "The village has experienced one notable time of difficulty.",
+          "tags": ["ss.village.hardshipLikelihood.one"]
+        },
+        {
+          "id": "two",
+          "name": "Two Hardships",
+          "range": [7, 14],
+          "value": 3,
+          "description": "The village has gone through a couple of hardships.",
+          "tags": ["ss.village.hardshipLikelihood.two"]
+        },
+        {
+          "id": "three",
+          "name": "Three Hardships",
+          "range": [15, 18],
+          "value": 4,
+          "description": "The village has experienced three difficult situations.",
+          "tags": ["ss.village.hardshipLikelihood.three"]
+        },
+        {
+          "id": "four",
+          "name": "Four Hardships",
+          "range": [19, 20],
+          "value": 5,
+          "description": "The village has been beset by four trying times.",
+          "tags": ["ss.village.hardshipLikelihood.four"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.hardshipLikelihood.none",
+      "name": "No Hardship"
+    },
+    {
+      "id": "ss.village.hardshipLikelihood.one",
+      "name": "One Hardship"
+    },
+    {
+      "id": "ss.village.hardshipLikelihood.two",
+      "name": "Two Hardships"
+    },
+    {
+      "id": "ss.village.hardshipLikelihood.three",
+      "name": "Three Hardships"
+    },
+    {
+      "id": "ss.village.hardshipLikelihood.four",
+      "name": "Four Hardships"
+    }
+  ]
+}

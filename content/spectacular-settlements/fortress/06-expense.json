@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.expense",
+      "name": "Expense",
+      "description": "How much was spent on the fortress. Modifies Furnishings; sets the castle's Curtain Wall Defenses rolls.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "paltry",
+          "name": "Paltry",
+          "range": [1, 2],
+          "description": "The fortress was built on a shoestring budget, barely sufficient to build even the most basic and rudimentary version, possibly cutting corners by necessity. (-5 to furnishings roll)",
+          "tags": ["ss.fortress.expense.paltry"]
+        },
+        {
+          "id": "modest",
+          "name": "Modest",
+          "range": [3, 8],
+          "description": "The fortress was constructed with a small budget, enough to build something simple, but functional. (-2 to furnishings roll)",
+          "tags": ["ss.fortress.expense.modest"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [9, 15],
+          "description": "The fortress was built with a medium budget, perhaps allowing for a small comfort or two. (+0 to furnishings roll)",
+          "tags": ["ss.fortress.expense.moderate"]
+        },
+        {
+          "id": "significant",
+          "name": "Significant",
+          "range": [16, 19],
+          "description": "The fortress was built with a large budget, allowing for high-quality materials and some luxury elements. (+2 to furnishings roll)",
+          "tags": ["ss.fortress.expense.significant"]
+        },
+        {
+          "id": "extravagant",
+          "name": "Extravagant",
+          "range": 20,
+          "description": "Little or no expense was spared in the construction. Materials are of top-quality, and the fortress feels grand and splendid. (+5 to furnishings roll)",
+          "tags": ["ss.fortress.expense.extravagant"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.fortress.expense.paltry",
+      "name": "Paltry",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.furnishings", "amount": 5 }]
+    },
+    {
+      "id": "ss.fortress.expense.modest",
+      "name": "Modest",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.furnishings", "amount": 2 }]
+    },
+    { "id": "ss.fortress.expense.moderate", "name": "Moderate" },
+    {
+      "id": "ss.fortress.expense.significant",
+      "name": "Significant",
+      "effects": [{ "kind": "plus", "table": "table.ss.fortress.furnishings", "amount": 2 }]
+    },
+    {
+      "id": "ss.fortress.expense.extravagant",
+      "name": "Extravagant",
+      "effects": [{ "kind": "plus", "table": "table.ss.fortress.furnishings", "amount": 5 }]
+    }
+  ]
+}

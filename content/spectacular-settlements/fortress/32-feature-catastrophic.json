@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureCatastrophic",
+      "name": "Catastrophic Event",
+      "description": "Special Feature specifics: Catastrophic Event.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "naturalDisaster",
+          "name": "Natural Disaster",
+          "range": 1,
+          "description": "A major storm, earthquake, or other calamity struck this place.",
+          "tags": ["ss.fortress.featureCatastrophic.naturalDisaster"]
+        },
+        {
+          "id": "battle",
+          "name": "Battle",
+          "range": 2,
+          "description": "This was the site of a brutal, devastating conflict.",
+          "tags": ["ss.fortress.featureCatastrophic.battle"]
+        },
+        {
+          "id": "genocide",
+          "name": "Genocide",
+          "range": 3,
+          "description": "An attempt was made to wipe a people, or creature, from existence here.",
+          "tags": ["ss.fortress.featureCatastrophic.genocide"]
+        },
+        {
+          "id": "betrayal",
+          "name": "Betrayal",
+          "range": 4,
+          "description": "A significant trust was broken here.",
+          "tags": ["ss.fortress.featureCatastrophic.betrayal"]
+        },
+        {
+          "id": "curse",
+          "name": "Curse",
+          "range": 5,
+          "description": "The fortress, or the area in general, was placed under a vindictive spell.",
+          "tags": ["ss.fortress.featureCatastrophic.curse"]
+        },
+        {
+          "id": "summoning",
+          "name": "Summoning",
+          "range": 6,
+          "description": "A terrible creature, or otherworldly being, was summoned to this plane from within the fortress, and may remain nearby.",
+          "tags": ["ss.fortress.featureCatastrophic.summoning"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureCatastrophic.naturalDisaster", "name": "Natural Disaster" },
+    { "id": "ss.fortress.featureCatastrophic.battle", "name": "Battle" },
+    { "id": "ss.fortress.featureCatastrophic.genocide", "name": "Genocide" },
+    { "id": "ss.fortress.featureCatastrophic.betrayal", "name": "Betrayal" },
+    { "id": "ss.fortress.featureCatastrophic.curse", "name": "Curse" },
+    { "id": "ss.fortress.featureCatastrophic.summoning", "name": "Summoning" }
+  ]
+}

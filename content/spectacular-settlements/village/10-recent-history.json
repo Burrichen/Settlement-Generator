@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.recentHistory",
+      "name": "Recent History",
+      "description": "Village gossip: events of the past few weeks or months, up to a year at most.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "animalIssues",
+          "name": "Animal Issues",
+          "range": 1,
+          "description": "Livestock, or pets, may have been ravaged by local wildlife, or monsters, or animals may have been struck by sickness or pestilence.",
+          "tags": ["ss.village.recentHistory.animalIssues"]
+        },
+        {
+          "id": "attacks",
+          "name": "Attacks",
+          "range": 2,
+          "description": "Members of the community have been attacked, either by brigands or, perhaps, monsters.",
+          "tags": ["ss.village.recentHistory.attacks"]
+        },
+        {
+          "id": "bumperProduction",
+          "name": "Bumper Production",
+          "range": 3,
+          "description": "A staple resource of the village has yielded very well, recently.",
+          "tags": ["ss.village.recentHistory.bumperProduction"]
+        },
+        {
+          "id": "outOfFavor",
+          "name": "Out of Favor",
+          "range": 4,
+          "description": "The village has been subject to the ire of a nearby ruler, or entity.",
+          "tags": ["ss.village.recentHistory.outOfFavor"]
+        },
+        {
+          "id": "entertainment",
+          "name": "Entertainment",
+          "range": 5,
+          "description": "A certain form of entertainment is proving popular, whether a game or pastime, the arrival of a storyteller or musician, or something else.",
+          "tags": ["ss.village.recentHistory.entertainment"]
+        },
+        {
+          "id": "fear",
+          "name": "Fear",
+          "range": 6,
+          "description": "Something unnerving, or frightening, has happened recently.",
+          "tags": ["ss.village.recentHistory.fear"]
+        },
+        {
+          "id": "goodFortune",
+          "name": "Good Fortune",
+          "range": 7,
+          "description": "The village has received favorable notice from a nearby ruler, or entity of note.",
+          "tags": ["ss.village.recentHistory.goodFortune"]
+        },
+        {
+          "id": "infestation",
+          "name": "Infestation",
+          "range": 8,
+          "description": "Some form of vermin, or pest, has recently beset the village, and has become an ongoing issue.",
+          "tags": ["ss.village.recentHistory.infestation"]
+        },
+        {
+          "id": "poorProduction",
+          "name": "Poor Production",
+          "range": 9,
+          "description": "A staple resource of the village has yielded poorly of late.",
+          "tags": ["ss.village.recentHistory.poorProduction"]
+        },
+        {
+          "id": "powerVacuum",
+          "name": "Power Vacuum",
+          "range": 10,
+          "description": "The death, or absence, of a local leadership figure, or figures, has led to internal strife within the community.",
+          "tags": ["ss.village.recentHistory.powerVacuum"]
+        },
+        {
+          "id": "safeHaven",
+          "name": "Safe Haven",
+          "range": 11,
+          "description": "The village has become a sanctuary for refugees, or those in need.",
+          "tags": ["ss.village.recentHistory.safeHaven"]
+        },
+        {
+          "id": "wartorn",
+          "name": "Wartorn",
+          "range": 12,
+          "description": "The village was occupied by military forces, and suffered damages, during wartime in the recent past.",
+          "tags": ["ss.village.recentHistory.wartorn"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.recentHistory.animalIssues", "name": "Animal Issues" },
+    { "id": "ss.village.recentHistory.attacks", "name": "Attacks" },
+    { "id": "ss.village.recentHistory.bumperProduction", "name": "Bumper Production" },
+    { "id": "ss.village.recentHistory.outOfFavor", "name": "Out of Favor" },
+    { "id": "ss.village.recentHistory.entertainment", "name": "Entertainment" },
+    { "id": "ss.village.recentHistory.fear", "name": "Fear" },
+    { "id": "ss.village.recentHistory.goodFortune", "name": "Good Fortune" },
+    { "id": "ss.village.recentHistory.infestation", "name": "Infestation" },
+    { "id": "ss.village.recentHistory.poorProduction", "name": "Poor Production" },
+    { "id": "ss.village.recentHistory.powerVacuum", "name": "Power Vacuum" },
+    { "id": "ss.village.recentHistory.safeHaven", "name": "Safe Haven" },
+    { "id": "ss.village.recentHistory.wartorn", "name": "Wartorn" }
+  ]
+}

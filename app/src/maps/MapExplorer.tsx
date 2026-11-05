@@ -14,6 +14,7 @@ import { LocationInspector, type Draft } from "./LocationInspector";
 import { BuildingDirectory, Legend, Panel, buildingLabel } from "./MapPanels";
 import { DistrictBar, PoiForm, PoiInspector } from "./Districts";
 import { ExportDialog } from "./MapExport";
+import { withStableGeometry } from "./stable";
 import {
   LocationDialog,
   LocationDirectory,
@@ -144,11 +145,16 @@ export function MapExplorer({
   const toolbarRef = useRef<HTMLDivElement>(null);
   const describedBy = useId();
   const tabPanelId = useId();
+  /** Takes a view from the core, keeping the geometry already on screen. */
+  const adopt = useCallback(
+    (next: SettlementMapsView) => setView((prev) => withStableGeometry(prev, next)),
+    [],
+  );
 
   useEffect(() => {
     let live = true;
     maps.get(settlementId).then(
-      (v) => live && setView(v),
+      (v) => live && adopt(v),
       (e: unknown) => live && setError(String(e)),
     );
     return () => {
@@ -403,7 +409,7 @@ export function MapExplorer({
     setLocationBusy(true);
     try {
       const next = await maps.addPoi(settlementId, at.mapId, at.point, label, notes);
-      setView(next);
+      adopt(next);
       setError(null);
       setNewPoiAt(null);
       const added = next.pois?.find((p) => !before.has(p.id));
@@ -447,11 +453,11 @@ export function MapExplorer({
   ): Promise<string | null> => {
     setLocationBusy(true);
     try {
-      setView(await action());
+      adopt(await action());
       setError(null);
       return null;
     } catch (e) {
-      maps.get(settlementId).then(setView, () => {});
+      maps.get(settlementId).then(adopt, () => {});
       return String(e);
     } finally {
       setLocationBusy(false);
@@ -524,7 +530,7 @@ export function MapExplorer({
     setConfirmRegenerate(false);
     try {
       const next = await maps.generate(settlementId, options);
-      setView(next);
+      adopt(next);
       setError(null);
       // Regenerated buildings have new IDs: drop the old selection and the
       // details and drafts of the buildings that were replaced.

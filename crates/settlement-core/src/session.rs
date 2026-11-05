@@ -1472,7 +1472,21 @@ impl GenerationSession {
         mode: GenerationMode,
         snapshot: &SettlementSnapshot,
     ) -> Result<Self, GenerationError> {
-        let mut session = Self::new(content, options, mode)?.with_settings(settings);
+        Generator::new(&content)?;
+        Self::from_snapshot_validated(content, options, settings, mode, snapshot)
+    }
+
+    /// [`from_snapshot_with`](Self::from_snapshot_with) for content already
+    /// validated (the service's merged content always is), skipping a
+    /// second full validation.
+    pub(crate) fn from_snapshot_validated(
+        content: Arc<ContentSet>,
+        options: GenerationOptions,
+        settings: SettingValues,
+        mode: GenerationMode,
+        snapshot: &SettlementSnapshot,
+    ) -> Result<Self, GenerationError> {
+        let mut session = Self::from_validated(content, options, mode)?.with_settings(settings);
         let groups = group_by_stage(&snapshot.log.events, &session.stages);
         // Saved stages are matched by their stage table, in order, so a
         // snapshot from before a stage was added (such as Name) still lines

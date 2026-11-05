@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.scholarLocations",
+      "name": "Scholar District Additional Locations",
+      "description": "Rolled for each additional location of a Scholar district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.capital.scholarLocations.stepDown"],
+          "then_roll": ["table.ss.capital.scholarLocationsAgain"]
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "range": 2,
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends.",
+          "tags": ["ss.capital.scholarLocations.generalStore"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": 3,
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.capital.scholarLocations.tailor"]
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": 4,
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc.",
+          "tags": ["ss.capital.scholarLocations.thatcher"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 5,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.capital.scholarLocations.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 6,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.capital.scholarLocations.alchemist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 7,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.capital.scholarLocations.bankAndExchange"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.capital.scholarLocations.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 9,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.capital.scholarLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations & Fare",
+          "range": 10,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.capital.scholarLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": 11,
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region.",
+          "tags": ["ss.capital.scholarLocations.rareTradeGoods"]
+        },
+        {
+          "id": "magicShopBooks",
+          "name": "Magic Shop - Books",
+          "range": 12,
+          "description": "(Exotic) Sells magical items with a focus on literature, arcane tomes and lore.",
+          "tags": ["ss.capital.scholarLocations.magicShopBooks"]
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "range": 13,
+          "description": "Provides medical care.",
+          "tags": ["ss.capital.scholarLocations.doctorApothecary"]
+        },
+        {
+          "id": "hiredHelpScholarsAndClerics",
+          "name": "Hired Help - Scholars & Clerics",
+          "range": 14,
+          "description": "Hired help, as the book names it here (Scholars & Clerics).",
+          "tags": ["ss.capital.scholarLocations.hiredHelpScholarsAndClerics"],
+          "then_roll": ["table.ss.capital.hiredHelpSize"]
+        },
+        {
+          "id": "archivesLibrary",
+          "name": "Archives/Library",
+          "range": 15,
+          "description": "(Non-commercial) A structure devoted to housing records and written information.",
+          "tags": ["ss.capital.scholarLocations.archivesLibrary"]
+        },
+        {
+          "id": "academyUniversity",
+          "name": "Academy/University",
+          "range": 16,
+          "description": "(Non-commercial) A conservatory devoted to the pursuit of higher knowledge, sometimes of a specific area of study.",
+          "tags": ["ss.capital.scholarLocations.academyUniversity"]
+        },
+        {
+          "id": "forum",
+          "name": "Forum",
+          "range": 17,
+          "description": "(Non-commercial) A place designated for the use of intellectual debate and discussion.",
+          "tags": ["ss.capital.scholarLocations.forum"]
+        },
+        {
+          "id": "schoolhouse",
+          "name": "Schoolhouse",
+          "range": 18,
+          "description": "(Non-commercial) An institution focused on educating children.",
+          "tags": ["ss.capital.scholarLocations.schoolhouse"]
+        },
+        {
+          "id": "gatheringHall",
+          "name": "Gathering Hall",
+          "range": 19,
+          "description": "(Non-commercial) General, open-use building used for local activities, or where locals may simply socialize.",
+          "tags": ["ss.capital.scholarLocations.gatheringHall"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.capital.scholarLocations.stepUp"],
+          "then_roll": ["table.ss.capital.scholarLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.scholarLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.capital.scholarLocations.generalStore",
+      "name": "General Store"
+    },
+    {
+      "id": "ss.capital.scholarLocations.tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "ss.capital.scholarLocations.thatcher",
+      "name": "Thatcher"
+    },
+    {
+      "id": "ss.capital.scholarLocations.weaver",
+      "name": "Weaver"
+    },
+    {
+      "id": "ss.capital.scholarLocations.alchemist",
+      "name": "Alchemist"
+    },
+    {
+      "id": "ss.capital.scholarLocations.bankAndExchange",
+      "name": "Bank & Exchange"
+    },
+    {
+      "id": "ss.capital.scholarLocations.rareBotanicals",
+      "name": "Rare Botanicals"
+    },
+    {
+      "id": "ss.capital.scholarLocations.luxuryFurnishings",
+      "name": "Luxury Furnishings"
+    },
+    {
+      "id": "ss.capital.scholarLocations.rareLibationsAndFare",
+      "name": "Rare Libations & Fare"
+    },
+    {
+      "id": "ss.capital.scholarLocations.rareTradeGoods",
+      "name": "Rare Trade Goods"
+    },
+    {
+      "id": "ss.capital.scholarLocations.magicShopBooks",
+      "name": "Magic Shop - Books"
+    },
+    {
+      "id": "ss.capital.scholarLocations.doctorApothecary",
+      "name": "Doctor/Apothecary"
+    },
+    {
+      "id": "ss.capital.scholarLocations.hiredHelpScholarsAndClerics",
+      "name": "Hired Help - Scholars & Clerics"
+    },
+    {
+      "id": "ss.capital.scholarLocations.archivesLibrary",
+      "name": "Archives/Library"
+    },
+    {
+      "id": "ss.capital.scholarLocations.academyUniversity",
+      "name": "Academy/University"
+    },
+    {
+      "id": "ss.capital.scholarLocations.forum",
+      "name": "Forum"
+    },
+    {
+      "id": "ss.capital.scholarLocations.schoolhouse",
+      "name": "Schoolhouse"
+    },
+    {
+      "id": "ss.capital.scholarLocations.gatheringHall",
+      "name": "Gathering Hall"
+    },
+    {
+      "id": "ss.capital.scholarLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

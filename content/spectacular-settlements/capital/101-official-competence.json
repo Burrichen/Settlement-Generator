@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.officialCompetence",
+      "name": "Official's Competence",
+      "description": "Extra Intrigue. How competent the noteworthy official truly is.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "corrupt",
+          "name": "Corrupt",
+          "range": 1,
+          "description": "Taking advantage of the position for personal gain.",
+          "tags": ["ss.capital.officialCompetence.corrupt"]
+        },
+        {
+          "id": "incompetent",
+          "name": "Incompetent",
+          "range": [2, 3],
+          "description": "Doesn’t truly understand how to execute the position.",
+          "tags": ["ss.capital.officialCompetence.incompetent"]
+        },
+        {
+          "id": "committed",
+          "name": "Committed",
+          "range": [4, 5],
+          "description": "Utterly committed to the job, truly feeling it is of vital importance.",
+          "tags": ["ss.capital.officialCompetence.committed"]
+        },
+        {
+          "id": "overqualified",
+          "name": "Overqualified",
+          "range": 6,
+          "description": "Based on skills and experience, ought to be in a higher, or more challenging, position.",
+          "tags": ["ss.capital.officialCompetence.overqualified"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.officialCompetence.corrupt",
+      "name": "Corrupt"
+    },
+    {
+      "id": "ss.capital.officialCompetence.incompetent",
+      "name": "Incompetent"
+    },
+    {
+      "id": "ss.capital.officialCompetence.committed",
+      "name": "Committed"
+    },
+    {
+      "id": "ss.capital.officialCompetence.overqualified",
+      "name": "Overqualified"
+    }
+  ]
+}

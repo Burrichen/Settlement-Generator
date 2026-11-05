@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.residents",
+      "name": "Residents",
+      "description": "Modified by Age. Who currently occupies the fortress. Optionally, 0 or less could mean a deserted fortress.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "original",
+          "name": "Original",
+          "range": [1, 8],
+          "description": "The original residents, their descendants, or successors are in residence. This might be the person responsible for building the fortress and/or their family, or the people they stationed there (or their descendants/successors).",
+          "tags": ["ss.fortress.residents.original"]
+        },
+        {
+          "id": "newPeaceful",
+          "name": "New (Peaceful)",
+          "range": [9, 14],
+          "description": "Non-original residents reside in the fortress, after obtaining it peacefully. Perhaps the fortress was purchased, inherited, or was a gift. These new residents could also be allies of the original residents, acting as stewards. The fortress could even have been found abandoned, so the new residents moved in.",
+          "tags": ["ss.fortress.residents.newPeaceful"]
+        },
+        {
+          "id": "newForceful",
+          "name": "New (Forceful)",
+          "range": [15, 20],
+          "description": "Non-original residents reside in the fortress, after obtaining it by conquest or illegitimate means. This does not necessarily mean that those occupying the fortress took forceful action themselves, but rather that the way the fortress changed hands was through, or after, some kind of conflict.",
+          "tags": ["ss.fortress.residents.newForceful"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.residents.original", "name": "Original" },
+    { "id": "ss.fortress.residents.newPeaceful", "name": "New (Peaceful)" },
+    { "id": "ss.fortress.residents.newForceful", "name": "New (Forceful)" }
+  ]
+}

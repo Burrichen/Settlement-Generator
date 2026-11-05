@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureGreatPerson",
+      "name": "Resident - Great Person",
+      "description": "Special Feature specifics: Resident - Great Person.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "hero",
+          "name": "Hero",
+          "range": 1,
+          "description": "A person known for their good deeds, performed selflessly for the benefit of others.",
+          "tags": ["ss.fortress.featureGreatPerson.hero"]
+        },
+        {
+          "id": "villain",
+          "name": "Villain",
+          "range": 2,
+          "description": "A person known for committing dreadful atrocities.",
+          "tags": ["ss.fortress.featureGreatPerson.villain"]
+        },
+        {
+          "id": "thinker",
+          "name": "Thinker",
+          "range": 3,
+          "description": "A person known for their wisdom and enlightenment (such as a philosopher, naturalist, scientist, etc).",
+          "tags": ["ss.fortress.featureGreatPerson.thinker"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 4,
+          "description": "A person known for creating works of exceptional beauty.",
+          "tags": ["ss.fortress.featureGreatPerson.artist"]
+        },
+        {
+          "id": "writer",
+          "name": "Writer",
+          "range": 5,
+          "description": "A person who is known for their exquisite written prowess, having spun riveting tales or accounted pivotal events.",
+          "tags": ["ss.fortress.featureGreatPerson.writer"]
+        },
+        {
+          "id": "warrior",
+          "name": "Warrior",
+          "range": 6,
+          "description": "A person known for their martial prowess, or valor, in battle.",
+          "tags": ["ss.fortress.featureGreatPerson.warrior"]
+        },
+        {
+          "id": "arcanist",
+          "name": "Arcanist",
+          "range": 7,
+          "description": "A person known for their magical ability or expertise.",
+          "tags": ["ss.fortress.featureGreatPerson.arcanist"]
+        },
+        {
+          "id": "priest",
+          "name": "Priest",
+          "range": 8,
+          "description": "A person known for having a special connection to the divine.",
+          "tags": ["ss.fortress.featureGreatPerson.priest"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureGreatPerson.hero", "name": "Hero" },
+    { "id": "ss.fortress.featureGreatPerson.villain", "name": "Villain" },
+    { "id": "ss.fortress.featureGreatPerson.thinker", "name": "Thinker" },
+    { "id": "ss.fortress.featureGreatPerson.artist", "name": "Artist" },
+    { "id": "ss.fortress.featureGreatPerson.writer", "name": "Writer" },
+    { "id": "ss.fortress.featureGreatPerson.warrior", "name": "Warrior" },
+    { "id": "ss.fortress.featureGreatPerson.arcanist", "name": "Arcanist" },
+    { "id": "ss.fortress.featureGreatPerson.priest", "name": "Priest" }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.hardshipOutcome",
+      "name": "Hardship Outcome",
+      "description": "Rolled once per hardship. Its value is taken from the rolls of the attributes its Hardship Type lists.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "catastrophic",
+          "name": "Catastrophic Losses",
+          "range": [1, 2],
+          "value": 5,
+          "description": "The village’s losses were brutal, and excruciatingly difficult, or even impossible, to recover from. (-5 to the hardship type’s modified attributes)",
+          "tags": ["ss.village.hardshipOutcome.catastrophic"]
+        },
+        {
+          "id": "terrible",
+          "name": "Terrible Losses",
+          "range": [3, 4],
+          "value": 4,
+          "description": "The village’s losses were crushing, and incredibly difficult to recover from. (-4 to the hardship type’s modified attributes)",
+          "tags": ["ss.village.hardshipOutcome.terrible"]
+        },
+        {
+          "id": "heavy",
+          "name": "Heavy Losses",
+          "range": [5, 6],
+          "value": 3,
+          "description": "The village’s losses were awful, and recovery is proving difficult. (-3 to the hardship type’s modified attributes)",
+          "tags": ["ss.village.hardshipOutcome.heavy"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate Losses",
+          "range": [7, 8],
+          "value": 2,
+          "description": "The village’s losses were rough but recovery is likely, though may be tough. (-2 to the hardship type’s modified attributes)",
+          "tags": ["ss.village.hardshipOutcome.moderate"]
+        },
+        {
+          "id": "minimal",
+          "name": "Minimal Losses",
+          "range": [9, 10],
+          "value": 1,
+          "description": "The village’s losses were as little as could have been hoped for, and recovery should be very possible, or even inevitable. (-1 to the hardship type’s modified attributes)",
+          "tags": ["ss.village.hardshipOutcome.minimal"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.hardshipOutcome.catastrophic",
+      "name": "Catastrophic Losses"
+    },
+    {
+      "id": "ss.village.hardshipOutcome.terrible",
+      "name": "Terrible Losses"
+    },
+    {
+      "id": "ss.village.hardshipOutcome.heavy",
+      "name": "Heavy Losses"
+    },
+    {
+      "id": "ss.village.hardshipOutcome.moderate",
+      "name": "Moderate Losses"
+    },
+    {
+      "id": "ss.village.hardshipOutcome.minimal",
+      "name": "Minimal Losses"
+    }
+  ]
+}

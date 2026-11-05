@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.fortification",
+      "name": "Fortification",
+      "description": "The structural defenses surrounding the capital proper. Modifies Disposition.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "unfortified",
+          "name": "Unfortified",
+          "range": 1,
+          "description": "The capital is exposed on all sides, save for any barriers created by the presence of buildings or natural land formations. There may still be gates across main thoroughfares, but no fortification of substance surrounds the city. (-5 to disposition roll)",
+          "tags": ["ss.capital.fortification.unfortified"]
+        },
+        {
+          "id": "lightlyFortified",
+          "name": "Lightly Fortified",
+          "range": [2, 8],
+          "description": "The capital has bare-bones fortifications which are a minimal obstacle for enemy forces, but are adequate to deter wild animals. A simple gate, which can be barred in the evenings, sits astride the main road. (+1 to disposition roll)",
+          "tags": ["ss.capital.fortification.lightlyFortified"]
+        },
+        {
+          "id": "fortified",
+          "name": "Fortified",
+          "range": [9, 15],
+          "description": "The capital is surrounded by a substantial wall of wood or stone. The wall is able to be patrolled by guards on a raised walkway. Visitors to the capital pass through a main gate that can be barred in the evenings. A few watch towers may be placed around the city, though are likely sporadic. (+3 to disposition roll)",
+          "tags": ["ss.capital.fortification.fortified"]
+        },
+        {
+          "id": "heavilyFortified",
+          "name": "Heavily Fortified",
+          "range": [16, 19],
+          "description": "The capital is surrounded by a heavy wall of wood or stone with several watchtowers built along its length. The gate is double-thickness and reinforced with metal bands. There are additional watchtowers built at various points throughout the surrounding countryside. (+5 to disposition roll)",
+          "tags": ["ss.capital.fortification.heavilyFortified"]
+        },
+        {
+          "id": "extremelyFortified",
+          "name": "Extremely Fortified",
+          "range": 20,
+          "description": "The capital is surrounded by an imposing wall of wood or stone, with many fully-staffed watchtowers at regular intervals along its length. The gate is double-thickness, reinforced with metal bands, augmented with a portcullis, and is always manned. A supplementary wall of wood or stone encompasses the surrounding countryside, with its own watchtowers. Nothing goes in or out without the watch’s knowledge or permission. (+7 to disposition roll)",
+          "tags": ["ss.capital.fortification.extremelyFortified"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.fortification.unfortified",
+      "name": "Unfortified",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.disposition",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.fortification.lightlyFortified",
+      "name": "Lightly Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.disposition",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.fortification.fortified",
+      "name": "Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.disposition",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.fortification.heavilyFortified",
+      "name": "Heavily Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.disposition",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.fortification.extremelyFortified",
+      "name": "Extremely Fortified",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.disposition",
+          "amount": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,867 @@
+{
+  "schema_version": 1,
+  "flows": [
+    {
+      "id": "flow.ss.village.hardships",
+      "name": "Village Hardships",
+      "description": "Spectacular Settlements, Villages, Step 1: Hardship Likelihood (modified by Age) gives the number of hardships. Each rolls a Hardship Type and a Hardship Outcome; the outcome's penalty is taken from every later roll of the attributes that type lists (identical modifiers add up).",
+      "steps": [
+        {
+          "id": "likelihood",
+          "kind": "roll",
+          "table": "table.ss.village.hardshipLikelihood",
+          "name": "Hardship Likelihood"
+        },
+        {
+          "id": "hardships",
+          "kind": "repeat",
+          "name": "Hardships",
+          "count": {
+            "value_of": {
+              "step": "likelihood",
+              "add": -1
+            }
+          },
+          "steps": [
+            {
+              "id": "type",
+              "kind": "roll",
+              "table": "table.ss.village.hardshipType",
+              "name": "Hardship Type"
+            },
+            {
+              "id": "outcome",
+              "kind": "roll",
+              "table": "table.ss.village.hardshipOutcome",
+              "name": "Hardship Outcome"
+            },
+            {
+              "id": "losses",
+              "kind": "branch",
+              "name": "Losses",
+              "cases": [
+                {
+                  "name": "Catastrophic: -5",
+                  "when": {
+                    "result_is": {
+                      "step": "outcome",
+                      "results": ["catastrophic"]
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "catastrophic-size",
+                      "kind": "apply_modifier",
+                      "name": "-5 to Size",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["raid", "harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.size",
+                      "modifier": {
+                        "minus": 5
+                      }
+                    },
+                    {
+                      "id": "catastrophic-condition",
+                      "kind": "apply_modifier",
+                      "name": "-5 to Condition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.condition",
+                      "modifier": {
+                        "minus": 5
+                      }
+                    },
+                    {
+                      "id": "catastrophic-density",
+                      "kind": "apply_modifier",
+                      "name": "-5 to Population Density",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["plague", "raid", "famine", "conflict", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.populationDensity",
+                      "modifier": {
+                        "minus": 5
+                      }
+                    },
+                    {
+                      "id": "catastrophic-disposition",
+                      "kind": "apply_modifier",
+                      "name": "-5 to Disposition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["conflict", "lossOfLeader"]
+                        }
+                      },
+                      "table": "table.ss.village.disposition",
+                      "modifier": {
+                        "minus": 5
+                      }
+                    },
+                    {
+                      "id": "catastrophic-wealth",
+                      "kind": "apply_modifier",
+                      "name": "-5 to Population Wealth",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["bandits", "raid"]
+                        }
+                      },
+                      "table": "table.ss.village.populationWealth",
+                      "modifier": {
+                        "minus": 5
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Terrible: -4",
+                  "when": {
+                    "result_is": {
+                      "step": "outcome",
+                      "results": ["terrible"]
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "terrible-size",
+                      "kind": "apply_modifier",
+                      "name": "-4 to Size",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["raid", "harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.size",
+                      "modifier": {
+                        "minus": 4
+                      }
+                    },
+                    {
+                      "id": "terrible-condition",
+                      "kind": "apply_modifier",
+                      "name": "-4 to Condition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.condition",
+                      "modifier": {
+                        "minus": 4
+                      }
+                    },
+                    {
+                      "id": "terrible-density",
+                      "kind": "apply_modifier",
+                      "name": "-4 to Population Density",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["plague", "raid", "famine", "conflict", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.populationDensity",
+                      "modifier": {
+                        "minus": 4
+                      }
+                    },
+                    {
+                      "id": "terrible-disposition",
+                      "kind": "apply_modifier",
+                      "name": "-4 to Disposition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["conflict", "lossOfLeader"]
+                        }
+                      },
+                      "table": "table.ss.village.disposition",
+                      "modifier": {
+                        "minus": 4
+                      }
+                    },
+                    {
+                      "id": "terrible-wealth",
+                      "kind": "apply_modifier",
+                      "name": "-4 to Population Wealth",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["bandits", "raid"]
+                        }
+                      },
+                      "table": "table.ss.village.populationWealth",
+                      "modifier": {
+                        "minus": 4
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Heavy: -3",
+                  "when": {
+                    "result_is": {
+                      "step": "outcome",
+                      "results": ["heavy"]
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "heavy-size",
+                      "kind": "apply_modifier",
+                      "name": "-3 to Size",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["raid", "harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.size",
+                      "modifier": {
+                        "minus": 3
+                      }
+                    },
+                    {
+                      "id": "heavy-condition",
+                      "kind": "apply_modifier",
+                      "name": "-3 to Condition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.condition",
+                      "modifier": {
+                        "minus": 3
+                      }
+                    },
+                    {
+                      "id": "heavy-density",
+                      "kind": "apply_modifier",
+                      "name": "-3 to Population Density",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["plague", "raid", "famine", "conflict", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.populationDensity",
+                      "modifier": {
+                        "minus": 3
+                      }
+                    },
+                    {
+                      "id": "heavy-disposition",
+                      "kind": "apply_modifier",
+                      "name": "-3 to Disposition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["conflict", "lossOfLeader"]
+                        }
+                      },
+                      "table": "table.ss.village.disposition",
+                      "modifier": {
+                        "minus": 3
+                      }
+                    },
+                    {
+                      "id": "heavy-wealth",
+                      "kind": "apply_modifier",
+                      "name": "-3 to Population Wealth",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["bandits", "raid"]
+                        }
+                      },
+                      "table": "table.ss.village.populationWealth",
+                      "modifier": {
+                        "minus": 3
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Moderate: -2",
+                  "when": {
+                    "result_is": {
+                      "step": "outcome",
+                      "results": ["moderate"]
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "moderate-size",
+                      "kind": "apply_modifier",
+                      "name": "-2 to Size",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["raid", "harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.size",
+                      "modifier": {
+                        "minus": 2
+                      }
+                    },
+                    {
+                      "id": "moderate-condition",
+                      "kind": "apply_modifier",
+                      "name": "-2 to Condition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.condition",
+                      "modifier": {
+                        "minus": 2
+                      }
+                    },
+                    {
+                      "id": "moderate-density",
+                      "kind": "apply_modifier",
+                      "name": "-2 to Population Density",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["plague", "raid", "famine", "conflict", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.populationDensity",
+                      "modifier": {
+                        "minus": 2
+                      }
+                    },
+                    {
+                      "id": "moderate-disposition",
+                      "kind": "apply_modifier",
+                      "name": "-2 to Disposition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["conflict", "lossOfLeader"]
+                        }
+                      },
+                      "table": "table.ss.village.disposition",
+                      "modifier": {
+                        "minus": 2
+                      }
+                    },
+                    {
+                      "id": "moderate-wealth",
+                      "kind": "apply_modifier",
+                      "name": "-2 to Population Wealth",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["bandits", "raid"]
+                        }
+                      },
+                      "table": "table.ss.village.populationWealth",
+                      "modifier": {
+                        "minus": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Minimal: -1",
+                  "when": {
+                    "result_is": {
+                      "step": "outcome",
+                      "results": ["minimal"]
+                    }
+                  },
+                  "steps": [
+                    {
+                      "id": "minimal-size",
+                      "kind": "apply_modifier",
+                      "name": "-1 to Size",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["raid", "harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.size",
+                      "modifier": {
+                        "minus": 1
+                      }
+                    },
+                    {
+                      "id": "minimal-condition",
+                      "kind": "apply_modifier",
+                      "name": "-1 to Condition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["harshWeather", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.condition",
+                      "modifier": {
+                        "minus": 1
+                      }
+                    },
+                    {
+                      "id": "minimal-density",
+                      "kind": "apply_modifier",
+                      "name": "-1 to Population Density",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["plague", "raid", "famine", "conflict", "war"]
+                        }
+                      },
+                      "table": "table.ss.village.populationDensity",
+                      "modifier": {
+                        "minus": 1
+                      }
+                    },
+                    {
+                      "id": "minimal-disposition",
+                      "kind": "apply_modifier",
+                      "name": "-1 to Disposition",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["conflict", "lossOfLeader"]
+                        }
+                      },
+                      "table": "table.ss.village.disposition",
+                      "modifier": {
+                        "minus": 1
+                      }
+                    },
+                    {
+                      "id": "minimal-wealth",
+                      "kind": "apply_modifier",
+                      "name": "-1 to Population Wealth",
+                      "when": {
+                        "result_is": {
+                          "step": "type",
+                          "results": ["bandits", "raid"]
+                        }
+                      },
+                      "table": "table.ss.village.populationWealth",
+                      "modifier": {
+                        "minus": 1
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.village.placesOfWorship",
+      "name": "Village Places of Worship",
+      "description": "Spectacular Settlements, Villages, Step 3: places of worship by size (Very Small 1, Small/Medium 1d2, Large/Very Large 1d2+1), each with its size, the fervency of its following and the alignment of its faith.",
+      "steps": [
+        {
+          "id": "worshipCount",
+          "kind": "branch",
+          "name": "Places of worship by size",
+          "cases": [
+            {
+              "name": "Very Small: 1",
+              "when": {
+                "has_tag": "ss.village.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "worship-verySmall",
+                  "kind": "repeat",
+                  "name": "Places of worship",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "worshipSize-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.village.placeOfWorshipSize",
+                      "name": "Place of Worship Size"
+                    },
+                    {
+                      "id": "worshipFervency-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.village.fervency",
+                      "name": "Fervency of Local Following"
+                    },
+                    {
+                      "id": "worshipAlignment-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.village.faithAlignment",
+                      "name": "Alignment of the Faith"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small or Medium: 1d2",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.village.size.small"
+                  },
+                  {
+                    "has_tag": "ss.village.size.medium"
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "worship-smallMedium",
+                  "kind": "repeat",
+                  "name": "Places of worship",
+                  "count": {
+                    "dice": "1d2"
+                  },
+                  "steps": [
+                    {
+                      "id": "worshipSize-smallMedium",
+                      "kind": "roll",
+                      "table": "table.ss.village.placeOfWorshipSize",
+                      "name": "Place of Worship Size"
+                    },
+                    {
+                      "id": "worshipFervency-smallMedium",
+                      "kind": "roll",
+                      "table": "table.ss.village.fervency",
+                      "name": "Fervency of Local Following"
+                    },
+                    {
+                      "id": "worshipAlignment-smallMedium",
+                      "kind": "roll",
+                      "table": "table.ss.village.faithAlignment",
+                      "name": "Alignment of the Faith"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large or Very Large: 1d2 + 1",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.village.size.large"
+                  },
+                  {
+                    "has_tag": "ss.village.size.veryLarge"
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "worship-large",
+                  "kind": "repeat",
+                  "name": "Places of worship",
+                  "count": {
+                    "dice": "1d2+1"
+                  },
+                  "steps": [
+                    {
+                      "id": "worshipSize-large",
+                      "kind": "roll",
+                      "table": "table.ss.village.placeOfWorshipSize",
+                      "name": "Place of Worship Size"
+                    },
+                    {
+                      "id": "worshipFervency-large",
+                      "kind": "roll",
+                      "table": "table.ss.village.fervency",
+                      "name": "Fervency of Local Following"
+                    },
+                    {
+                      "id": "worshipAlignment-large",
+                      "kind": "roll",
+                      "table": "table.ss.village.faithAlignment",
+                      "name": "Alignment of the Faith"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.village.placesOfGathering",
+      "name": "Village Places of Gathering",
+      "description": "Spectacular Settlements, Villages, Step 3: places of gathering by size (Very Small 1d2-1, Small 1, Medium 1d2, Large 1d2, Very Large 1d2+1), each rolled on the Places of Gathering table.",
+      "steps": [
+        {
+          "id": "gatheringCount",
+          "kind": "branch",
+          "name": "Places of gathering by size",
+          "cases": [
+            {
+              "name": "Very Small: 1d2 - 1",
+              "when": {
+                "has_tag": "ss.village.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "gathering-verySmall",
+                  "kind": "repeat",
+                  "name": "Places of gathering",
+                  "count": {
+                    "dice": "1d2-1"
+                  },
+                  "steps": [
+                    {
+                      "id": "place-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.village.placesOfGathering",
+                      "name": "Place of Gathering"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small: 1",
+              "when": {
+                "has_tag": "ss.village.size.small"
+              },
+              "steps": [
+                {
+                  "id": "gathering-small",
+                  "kind": "repeat",
+                  "name": "Places of gathering",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "place-small",
+                      "kind": "roll",
+                      "table": "table.ss.village.placesOfGathering",
+                      "name": "Place of Gathering"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Medium or Large: 1d2",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.village.size.medium"
+                  },
+                  {
+                    "has_tag": "ss.village.size.large"
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "gathering-mediumLarge",
+                  "kind": "repeat",
+                  "name": "Places of gathering",
+                  "count": {
+                    "dice": "1d2"
+                  },
+                  "steps": [
+                    {
+                      "id": "place-mediumLarge",
+                      "kind": "roll",
+                      "table": "table.ss.village.placesOfGathering",
+                      "name": "Place of Gathering"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Very Large: 1d2 + 1",
+              "when": {
+                "has_tag": "ss.village.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "gathering-veryLarge",
+                  "kind": "repeat",
+                  "name": "Places of gathering",
+                  "count": {
+                    "dice": "1d2+1"
+                  },
+                  "steps": [
+                    {
+                      "id": "place-veryLarge",
+                      "kind": "roll",
+                      "table": "table.ss.village.placesOfGathering",
+                      "name": "Place of Gathering"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.village.otherLocations",
+      "name": "Village Other Locations",
+      "description": "Spectacular Settlements, Villages, Step 3: other locations by size (Very Small 1d2-1, Small 1d2, Medium 1d2+1, Large 2d2, Very Large 2d2+1), each rolled on the Other Locations table.",
+      "steps": [
+        {
+          "id": "otherCount",
+          "kind": "branch",
+          "name": "Other locations by size",
+          "cases": [
+            {
+              "name": "Very Small: 1d2 - 1",
+              "when": {
+                "has_tag": "ss.village.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "other-verySmall",
+                  "kind": "repeat",
+                  "name": "Other locations",
+                  "count": {
+                    "dice": "1d2-1"
+                  },
+                  "steps": [
+                    {
+                      "id": "location-verySmall",
+                      "kind": "roll",
+                      "table": "table.ss.village.otherLocations",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small: 1d2",
+              "when": {
+                "has_tag": "ss.village.size.small"
+              },
+              "steps": [
+                {
+                  "id": "other-small",
+                  "kind": "repeat",
+                  "name": "Other locations",
+                  "count": {
+                    "dice": "1d2"
+                  },
+                  "steps": [
+                    {
+                      "id": "location-small",
+                      "kind": "roll",
+                      "table": "table.ss.village.otherLocations",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Medium: 1d2 + 1",
+              "when": {
+                "has_tag": "ss.village.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "other-medium",
+                  "kind": "repeat",
+                  "name": "Other locations",
+                  "count": {
+                    "dice": "1d2+1"
+                  },
+                  "steps": [
+                    {
+                      "id": "location-medium",
+                      "kind": "roll",
+                      "table": "table.ss.village.otherLocations",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large: 2d2",
+              "when": {
+                "has_tag": "ss.village.size.large"
+              },
+              "steps": [
+                {
+                  "id": "other-large",
+                  "kind": "repeat",
+                  "name": "Other locations",
+                  "count": {
+                    "dice": "2d2"
+                  },
+                  "steps": [
+                    {
+                      "id": "location-large",
+                      "kind": "roll",
+                      "table": "table.ss.village.otherLocations",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Very Large: 2d2 + 1",
+              "when": {
+                "has_tag": "ss.village.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "other-veryLarge",
+                  "kind": "repeat",
+                  "name": "Other locations",
+                  "count": {
+                    "dice": "2d2+1"
+                  },
+                  "steps": [
+                    {
+                      "id": "location-veryLarge",
+                      "kind": "roll",
+                      "table": "table.ss.village.otherLocations",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

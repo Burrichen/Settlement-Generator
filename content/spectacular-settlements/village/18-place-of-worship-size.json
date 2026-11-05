@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.placeOfWorshipSize",
+      "name": "Place of Worship Size",
+      "description": "Rolled for each place of worship in the village.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "secret",
+          "name": "Secret",
+          "range": 1,
+          "description": "The place of worship’s size is unclear, as the location is not publicly known.",
+          "tags": ["ss.village.placeOfWorshipSize.secret"]
+        },
+        {
+          "id": "altar",
+          "name": "Altar",
+          "range": [2, 7],
+          "description": "A small shrine or, perhaps, a tiny shack, usually evincing some various items or images relating to that which the faith venerates.",
+          "tags": ["ss.village.placeOfWorshipSize.altar"]
+        },
+        {
+          "id": "oratory",
+          "name": "Oratory",
+          "range": [8, 14],
+          "description": "A modest building with seating for attendees, appointed with various items or images relating to that which the faith venerates.",
+          "tags": ["ss.village.placeOfWorshipSize.oratory"]
+        },
+        {
+          "id": "sanctuary",
+          "name": "Sanctuary",
+          "range": [15, 17],
+          "description": "A large, well-appointed structure, able to comfortably accommodate up to a few hundred people.",
+          "tags": ["ss.village.placeOfWorshipSize.sanctuary"]
+        },
+        {
+          "id": "temple",
+          "name": "Temple",
+          "range": [18, 19],
+          "description": "A grand building, replete with elements like high ceilings, plush furnishings, and other impressive ornamental and/or architectural features. It can hold nearly a thousand attendees.",
+          "tags": ["ss.village.placeOfWorshipSize.temple"]
+        },
+        {
+          "id": "greatTemple",
+          "name": "Great Temple",
+          "range": 20,
+          "description": "An awe-inspiring structure, devoted to that which it venerates. No expense was spared in its construction. It might display such elements as stunning frescos, elaborate stained-glass scenes, and towering, gilded statues. Walking into a great temple is a rare and striking experience for those who do not live near one.",
+          "tags": ["ss.village.placeOfWorshipSize.greatTemple"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.placeOfWorshipSize.secret",
+      "name": "Secret"
+    },
+    {
+      "id": "ss.village.placeOfWorshipSize.altar",
+      "name": "Altar"
+    },
+    {
+      "id": "ss.village.placeOfWorshipSize.oratory",
+      "name": "Oratory"
+    },
+    {
+      "id": "ss.village.placeOfWorshipSize.sanctuary",
+      "name": "Sanctuary"
+    },
+    {
+      "id": "ss.village.placeOfWorshipSize.temple",
+      "name": "Temple"
+    },
+    {
+      "id": "ss.village.placeOfWorshipSize.greatTemple",
+      "name": "Great Temple"
+    }
+  ]
+}

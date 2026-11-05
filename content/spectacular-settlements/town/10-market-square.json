@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.marketSquare",
+      "name": "Market Square",
+      "description": "The beating heart of a town; buildings around it are prime real estate. Modified by an Economic priority.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "tight",
+          "name": "Tight",
+          "range": [1, 2],
+          "description": "Only room for a few, key vendor stalls.",
+          "tags": ["ss.town.marketSquare.tight"]
+        },
+        {
+          "id": "ample",
+          "name": "Ample",
+          "range": [3, 4],
+          "description": "Room for a fair number of vendor stalls.",
+          "tags": ["ss.town.marketSquare.ample"]
+        },
+        {
+          "id": "spacious",
+          "name": "Spacious",
+          "range": [5, 6],
+          "description": "Room for lots of vendor stalls.",
+          "tags": ["ss.town.marketSquare.spacious"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.marketSquare.tight",
+      "name": "Tight"
+    },
+    {
+      "id": "ss.town.marketSquare.ample",
+      "name": "Ample"
+    },
+    {
+      "id": "ss.town.marketSquare.spacious",
+      "name": "Spacious"
+    }
+  ]
+}

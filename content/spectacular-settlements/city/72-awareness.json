@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.awareness",
+      "name": "Beneath the Surface - Awareness",
+      "description": "Extra Intrigue. How much awareness there is of what is going on beneath the surface.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "utterlyOblivious",
+          "name": "Utterly Oblivious",
+          "range": 1,
+          "description": "The public has not seen, or heard, any hint of whatever is going on. It will go unchecked until something triggers a change.",
+          "tags": ["ss.city.awareness.utterlyOblivious"]
+        },
+        {
+          "id": "singleSubtleOccurrence",
+          "name": "Single, Subtle Occurrence",
+          "range": 2,
+          "description": "Someone has noticed some kind of evidence, but doesn’t quite know what to make of it. They just know it’s strange.",
+          "tags": ["ss.city.awareness.singleSubtleOccurrence"]
+        },
+        {
+          "id": "disparateSubtleOccurrences",
+          "name": "Disparate, Subtle Occurrences",
+          "range": 3,
+          "description": "A few people have passively encountered some evidence of what’s going on, though they are not aware of one another, and are not sure about what they’ve encountered.",
+          "tags": ["ss.city.awareness.disparateSubtleOccurrences"]
+        },
+        {
+          "id": "manySubtleOccurrences",
+          "name": "Many Subtle Occurrences",
+          "range": 4,
+          "description": "A fair amount of people have encountered something related to what’s going on and, while firm conclusions have not been drawn, there may be rumors.",
+          "tags": ["ss.city.awareness.manySubtleOccurrences"]
+        },
+        {
+          "id": "singleOccurrence",
+          "name": "Single Occurrence",
+          "range": 5,
+          "description": "Someone has noticed something, and has formed some ideas. They have started to ask questions, or poke around a bit.",
+          "tags": ["ss.city.awareness.singleOccurrence"]
+        },
+        {
+          "id": "disparateOccurrences",
+          "name": "Disparate Occurrences",
+          "range": 6,
+          "description": "A few people have noticed evidence, and are beginning to ask serious questions.",
+          "tags": ["ss.city.awareness.disparateOccurrences"]
+        },
+        {
+          "id": "manyOccurrences",
+          "name": "Many Occurrences",
+          "range": 7,
+          "description": "A fair amount of people have noticed evidence, and are beginning to ask serious questions. Some may even have found one another and pooled their knowledge.",
+          "tags": ["ss.city.awareness.manyOccurrences"]
+        },
+        {
+          "id": "singleDirectOccurrence",
+          "name": "Single, Direct Occurrence",
+          "range": 8,
+          "description": "Someone has had a direct, first-hand experience involving the issue, and is trying to deal with it somehow.",
+          "tags": ["ss.city.awareness.singleDirectOccurrence"]
+        },
+        {
+          "id": "disparateDirectOccurrences",
+          "name": "Disparate, Direct Occurrences",
+          "range": 9,
+          "description": "A few people have had direct, first-hand experiences involving the issue, and word is starting to spread. Claims have become difficult to dismiss.",
+          "tags": ["ss.city.awareness.disparateDirectOccurrences"]
+        },
+        {
+          "id": "manyDirectOccurrences",
+          "name": "Many Direct Occurrences",
+          "range": 10,
+          "description": "A fair amount of people have had direct, first-hand experiences involving the issue. Talk seems to be all over the place, and some of the witnesses have grouped together.",
+          "tags": ["ss.city.awareness.manyDirectOccurrences"]
+        },
+        {
+          "id": "willfullyIgnorant",
+          "name": "Willfully Ignorant",
+          "range": 11,
+          "description": "The public is fully aware of most, or all, of the issue, but deliberately avoids addressing it or dealing with it in any way.",
+          "tags": ["ss.city.awareness.willfullyIgnorant"]
+        },
+        {
+          "id": "activelyAware",
+          "name": "Actively Aware",
+          "range": 12,
+          "description": "The public is fully aware, and actively addressing whatever is going on.",
+          "tags": ["ss.city.awareness.activelyAware"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.awareness.utterlyOblivious",
+      "name": "Utterly Oblivious"
+    },
+    {
+      "id": "ss.city.awareness.singleSubtleOccurrence",
+      "name": "Single, Subtle Occurrence"
+    },
+    {
+      "id": "ss.city.awareness.disparateSubtleOccurrences",
+      "name": "Disparate, Subtle Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.manySubtleOccurrences",
+      "name": "Many Subtle Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.singleOccurrence",
+      "name": "Single Occurrence"
+    },
+    {
+      "id": "ss.city.awareness.disparateOccurrences",
+      "name": "Disparate Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.manyOccurrences",
+      "name": "Many Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.singleDirectOccurrence",
+      "name": "Single, Direct Occurrence"
+    },
+    {
+      "id": "ss.city.awareness.disparateDirectOccurrences",
+      "name": "Disparate, Direct Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.manyDirectOccurrences",
+      "name": "Many Direct Occurrences"
+    },
+    {
+      "id": "ss.city.awareness.willfullyIgnorant",
+      "name": "Willfully Ignorant"
+    },
+    {
+      "id": "ss.city.awareness.activelyAware",
+      "name": "Actively Aware"
+    }
+  ]
+}

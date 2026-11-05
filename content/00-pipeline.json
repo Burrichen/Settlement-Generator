@@ -210,123 +210,130 @@
           }
         },
         {
+          "id": "ssSettlementType",
+          "kind": "roll",
+          "table": "table.ss.settlementType",
+          "name": "Settlement Type",
+          "when": { "has_tag": "world.spectacularSettlements" }
+        },
+        {
           "id": "ssTradingPost-origin",
           "kind": "roll",
           "table": "table.ss.tradingPost.origin",
           "name": "Origin",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-specialty",
           "kind": "roll",
           "table": "table.ss.tradingPost.specialty",
           "name": "Specialty",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-age",
           "kind": "roll",
           "table": "table.ss.tradingPost.age",
           "name": "Age",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-condition",
           "kind": "roll",
           "table": "table.ss.tradingPost.condition",
           "name": "Condition",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-visitorTraffic",
           "kind": "roll",
           "table": "table.ss.tradingPost.visitorTraffic",
           "name": "Visitor Traffic",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-size",
           "kind": "roll",
           "table": "table.ss.tradingPost.size",
           "name": "Size",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-environment",
           "kind": "roll",
           "table": "table.ss.tradingPost.environment",
           "name": "Environment",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-residentPopulation",
           "kind": "roll",
           "table": "table.ss.tradingPost.residentPopulation",
           "name": "Resident Population",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-demographics",
           "kind": "roll",
           "table": "table.ss.tradingPost.demographics",
           "name": "Demographics",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-disposition",
           "kind": "roll",
           "table": "table.ss.tradingPost.disposition",
           "name": "Disposition",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-lawEnforcement",
           "kind": "roll",
           "table": "table.ss.tradingPost.lawEnforcement",
           "name": "Law Enforcement",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-leadership",
           "kind": "roll",
           "table": "table.ss.tradingPost.leadership",
           "name": "Leadership",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-populationWealth",
           "kind": "roll",
           "table": "table.ss.tradingPost.populationWealth",
           "name": "Population Wealth",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-crime",
           "kind": "roll",
           "table": "table.ss.tradingPost.crime",
           "name": "Crime",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-shops",
           "kind": "run_flow",
           "flow": "flow.ss.tradingPost.shops",
           "name": "Shops",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-services",
           "kind": "run_flow",
           "flow": "flow.ss.tradingPost.services",
           "name": "Services",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-placeOfWorship",
           "kind": "roll",
           "table": "table.ss.tradingPost.placeOfWorship",
           "name": "Place of Worship",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-placeOfWorshipSize",
@@ -354,49 +361,1703 @@
           "kind": "roll",
           "table": "table.ss.tradingPost.recentHistory",
           "name": "Recent History",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-politics",
           "kind": "roll",
           "table": "table.ss.tradingPost.politics",
           "name": "Politics",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-events",
           "kind": "roll",
           "table": "table.ss.tradingPost.events",
           "name": "Events",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-opportunities",
           "kind": "roll",
           "table": "table.ss.tradingPost.opportunities",
           "name": "Opportunities",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-weather",
           "kind": "roll",
           "table": "table.ss.tradingPost.weather",
           "name": "Weather",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-dangerLevel",
           "kind": "roll",
           "table": "table.ss.tradingPost.dangerLevel",
           "name": "Danger Level",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
         },
         {
           "id": "ssTradingPost-dangerType",
           "kind": "roll",
           "table": "table.ss.tradingPost.dangerType",
           "name": "Danger Type",
-          "when": { "has_tag": "world.spectacularSettlements" }
+          "when": { "has_tag": "ss.settlementType.tradingPost" }
+        },
+        {
+          "id": "ssVillage-age",
+          "kind": "roll",
+          "table": "table.ss.village.age",
+          "name": "Age",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-hardships",
+          "kind": "run_flow",
+          "flow": "flow.ss.village.hardships",
+          "name": "Hardships",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-size",
+          "kind": "roll",
+          "table": "table.ss.village.size",
+          "name": "Size",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-condition",
+          "kind": "roll",
+          "table": "table.ss.village.condition",
+          "name": "Condition",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-environment",
+          "kind": "roll",
+          "table": "table.ss.village.environment",
+          "name": "Environment",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-specialty",
+          "kind": "roll",
+          "table": "table.ss.village.specialty",
+          "name": "Specialty",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-resources",
+          "kind": "roll",
+          "table": "table.ss.village.resources",
+          "name": "Resources",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-recentHistory",
+          "kind": "roll",
+          "table": "table.ss.village.recentHistory",
+          "name": "Recent History",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-populationDensity",
+          "kind": "roll",
+          "table": "table.ss.village.populationDensity",
+          "name": "Population Density",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-demographics",
+          "kind": "roll",
+          "table": "table.ss.village.demographics",
+          "name": "Demographics",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-disposition",
+          "kind": "roll",
+          "table": "table.ss.village.disposition",
+          "name": "Disposition",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-lawEnforcement",
+          "kind": "roll",
+          "table": "table.ss.village.lawEnforcement",
+          "name": "Law Enforcement",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-leadership",
+          "kind": "roll",
+          "table": "table.ss.village.leadership",
+          "name": "Leadership",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-populationWealth",
+          "kind": "roll",
+          "table": "table.ss.village.populationWealth",
+          "name": "Population Wealth",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-crime",
+          "kind": "roll",
+          "table": "table.ss.village.crime",
+          "name": "Crime",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-placesOfWorship",
+          "kind": "run_flow",
+          "flow": "flow.ss.village.placesOfWorship",
+          "name": "Places of Worship",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-placesOfGathering",
+          "kind": "run_flow",
+          "flow": "flow.ss.village.placesOfGathering",
+          "name": "Places of Gathering",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-otherLocations",
+          "kind": "run_flow",
+          "flow": "flow.ss.village.otherLocations",
+          "name": "Other Locations",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-events",
+          "kind": "roll",
+          "table": "table.ss.village.events",
+          "name": "Events",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-politicalRumors",
+          "kind": "roll",
+          "table": "table.ss.village.politicalRumors",
+          "name": "Political Rumors",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-superstitions",
+          "kind": "roll",
+          "table": "table.ss.village.superstitions",
+          "name": "Superstitions",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-goingsOn",
+          "kind": "roll",
+          "table": "table.ss.village.goingsOn",
+          "name": "Goings On",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-opportunities",
+          "kind": "roll",
+          "table": "table.ss.village.opportunities",
+          "name": "Opportunities",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-harshWeather",
+          "kind": "roll",
+          "table": "table.ss.village.harshWeather",
+          "name": "Harsh Weather",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-dangerLevel",
+          "kind": "roll",
+          "table": "table.ss.village.dangerLevel",
+          "name": "Danger Level",
+          "when": { "has_tag": "ss.settlementType.village" }
+        },
+        {
+          "id": "ssVillage-dangerType",
+          "kind": "roll",
+          "table": "table.ss.village.dangerType",
+          "name": "Danger Type",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.village" },
+              { "not": { "has_tag": "ss.village.dangerLevel.none" } }
+            ]
+          }
+        },
+        {
+          "id": "ssTown-origin",
+          "kind": "roll",
+          "table": "table.ss.town.origin",
+          "name": "Origin",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-priority",
+          "kind": "roll",
+          "table": "table.ss.town.priority",
+          "name": "Priority",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-specialty",
+          "kind": "roll",
+          "table": "table.ss.town.specialty",
+          "name": "Specialty",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-age",
+          "kind": "roll",
+          "table": "table.ss.town.age",
+          "name": "Age",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-size",
+          "kind": "roll",
+          "table": "table.ss.town.size",
+          "name": "Size",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-condition",
+          "kind": "roll",
+          "table": "table.ss.town.condition",
+          "name": "Condition",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-environment",
+          "kind": "roll",
+          "table": "table.ss.town.environment",
+          "name": "Environment",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.town" },
+              { "not": { "has_tag": "ss.town.origin.port" } }
+            ]
+          }
+        },
+        {
+          "id": "ssTown-prosperity",
+          "kind": "roll",
+          "table": "table.ss.town.prosperity",
+          "name": "Prosperity",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-marketSquare",
+          "kind": "roll",
+          "table": "table.ss.town.marketSquare",
+          "name": "Market Square",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-vendorStallAcquisition",
+          "kind": "roll",
+          "table": "table.ss.town.vendorStallAcquisition",
+          "name": "Vendor Stall Acquisition",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-merchantOverflow",
+          "kind": "roll",
+          "table": "table.ss.town.merchantOverflow",
+          "name": "Merchant Overflow",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-fortification",
+          "kind": "roll",
+          "table": "table.ss.town.fortification",
+          "name": "Fortification",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-populationDensity",
+          "kind": "roll",
+          "table": "table.ss.town.populationDensity",
+          "name": "Population Density",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-populationOverflow",
+          "kind": "roll",
+          "table": "table.ss.town.populationOverflow",
+          "name": "Population Overflow",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-farmsAndResources",
+          "kind": "run_flow",
+          "flow": "flow.ss.town.farmsAndResources",
+          "name": "Farms & Resources",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-visitorTraffic",
+          "kind": "roll",
+          "table": "table.ss.town.visitorTraffic",
+          "name": "Visitor Traffic",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-nightActivity",
+          "kind": "roll",
+          "table": "table.ss.town.nightActivity",
+          "name": "Night Activity",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-demographics",
+          "kind": "roll",
+          "table": "table.ss.town.demographics",
+          "name": "Demographics",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-disposition",
+          "kind": "roll",
+          "table": "table.ss.town.disposition",
+          "name": "Disposition",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-leadership",
+          "kind": "roll",
+          "table": "table.ss.town.leadership",
+          "name": "Leadership",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-lawEnforcement",
+          "kind": "roll",
+          "table": "table.ss.town.lawEnforcement",
+          "name": "Law Enforcement",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-populationWealth",
+          "kind": "roll",
+          "table": "table.ss.town.populationWealth",
+          "name": "Population Wealth",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-crime",
+          "kind": "roll",
+          "table": "table.ss.town.crime",
+          "name": "Crime",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-nonCommercialLocations",
+          "kind": "run_flow",
+          "flow": "flow.ss.town.nonCommercialLocations",
+          "name": "Non-Commercial Locations",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-commercialLocations",
+          "kind": "run_flow",
+          "flow": "flow.ss.town.commercialLocations",
+          "name": "Commercial Locations",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-recentHistory",
+          "kind": "roll",
+          "table": "table.ss.town.recentHistory",
+          "name": "Recent History",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-noteworthyOfficial",
+          "kind": "roll",
+          "table": "table.ss.town.noteworthyOfficial",
+          "name": "Noteworthy Official",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-officialCompetence",
+          "kind": "roll",
+          "table": "table.ss.town.officialCompetence",
+          "name": "Official Competence",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssTown-marketDay",
+          "kind": "roll",
+          "table": "table.ss.town.marketDay",
+          "name": "Market Day",
+          "when": { "has_tag": "ss.settlementType.town" }
+        },
+        {
+          "id": "ssCity-origin",
+          "kind": "roll",
+          "table": "table.ss.city.origin",
+          "name": "Origin",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-priority",
+          "kind": "roll",
+          "table": "table.ss.city.priority",
+          "name": "Priority",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-age",
+          "kind": "roll",
+          "table": "table.ss.city.age",
+          "name": "Age",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-size",
+          "kind": "roll",
+          "table": "table.ss.city.size",
+          "name": "Size",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-outsideTheCity",
+          "kind": "run_flow",
+          "flow": "flow.ss.city.outsideTheCity",
+          "name": "Outside the City",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-stewardship",
+          "kind": "roll",
+          "table": "table.ss.city.stewardship",
+          "name": "Stewardship",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-generalCondition",
+          "kind": "roll",
+          "table": "table.ss.city.generalCondition",
+          "name": "General Condition",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-environment",
+          "kind": "roll",
+          "table": "table.ss.city.environment",
+          "name": "Environment",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-fortification",
+          "kind": "roll",
+          "table": "table.ss.city.fortification",
+          "name": "Fortification",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-marketSquare",
+          "kind": "roll",
+          "table": "table.ss.city.marketSquare",
+          "name": "Market Square",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-vendorStallAcquisition",
+          "kind": "roll",
+          "table": "table.ss.city.vendorStallAcquisition",
+          "name": "Vendor Stall Acquisition",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-merchantOverflow",
+          "kind": "roll",
+          "table": "table.ss.city.merchantOverflow",
+          "name": "Merchant Overflow",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-undergroundPassages",
+          "kind": "roll",
+          "table": "table.ss.city.undergroundPassages",
+          "name": "Underground Passages",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-populationDensity",
+          "kind": "roll",
+          "table": "table.ss.city.populationDensity",
+          "name": "Population Density",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-demographics",
+          "kind": "roll",
+          "table": "table.ss.city.demographics",
+          "name": "Demographics",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-populationWealth",
+          "kind": "roll",
+          "table": "table.ss.city.populationWealth",
+          "name": "Population Wealth",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-visitorTraffic",
+          "kind": "roll",
+          "table": "table.ss.city.visitorTraffic",
+          "name": "Visitor Traffic",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-disposition",
+          "kind": "roll",
+          "table": "table.ss.city.disposition",
+          "name": "Disposition",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-nightActivity",
+          "kind": "roll",
+          "table": "table.ss.city.nightActivity",
+          "name": "Night Activity",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-leadership",
+          "kind": "roll",
+          "table": "table.ss.city.leadership",
+          "name": "Leadership",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-lawEnforcement",
+          "kind": "roll",
+          "table": "table.ss.city.lawEnforcement",
+          "name": "Law Enforcement",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-generalCrime",
+          "kind": "roll",
+          "table": "table.ss.city.generalCrime",
+          "name": "General Crime",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-organizedCrime",
+          "kind": "roll",
+          "table": "table.ss.city.organizedCrime",
+          "name": "Organized Crime",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.city" },
+              {
+                "any": [
+                  { "has_tag": "ss.city.generalCrime.dangerous" },
+                  { "has_tag": "ss.city.generalCrime.frequent" },
+                  { "has_tag": "ss.city.generalCrime.common" },
+                  { "has_tag": "ss.city.leadership.underworld" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssCity-districts",
+          "kind": "run_flow",
+          "flow": "flow.ss.city.districts",
+          "name": "Districts",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-recentHistory",
+          "kind": "roll",
+          "table": "table.ss.city.recentHistory",
+          "name": "Recent History",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-noteworthyOfficial",
+          "kind": "roll",
+          "table": "table.ss.city.noteworthyOfficial",
+          "name": "Noteworthy Official",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-officialCompetence",
+          "kind": "roll",
+          "table": "table.ss.city.officialCompetence",
+          "name": "Official's Competence",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-beneathTheSurface",
+          "kind": "roll",
+          "table": "table.ss.city.beneathTheSurface",
+          "name": "Beneath the Surface",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCity-awareness",
+          "kind": "roll",
+          "table": "table.ss.city.awareness",
+          "name": "Beneath the Surface - Awareness",
+          "when": { "has_tag": "ss.settlementType.city" }
+        },
+        {
+          "id": "ssCapital-origin",
+          "kind": "roll",
+          "table": "table.ss.capital.origin",
+          "name": "Origin",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-age",
+          "kind": "roll",
+          "table": "table.ss.capital.age",
+          "name": "Age",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-size",
+          "kind": "roll",
+          "table": "table.ss.capital.size",
+          "name": "Size",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-environment",
+          "kind": "roll",
+          "table": "table.ss.capital.environment",
+          "name": "Environment",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-outsideTheCapital",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.outsideTheCapital",
+          "name": "Outside the Capital",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-stewardship",
+          "kind": "roll",
+          "table": "table.ss.capital.stewardship",
+          "name": "Stewardship",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-generalCondition",
+          "kind": "roll",
+          "table": "table.ss.capital.generalCondition",
+          "name": "General Condition",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-fortification",
+          "kind": "roll",
+          "table": "table.ss.capital.fortification",
+          "name": "Fortification",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-marketSquare",
+          "kind": "roll",
+          "table": "table.ss.capital.marketSquare",
+          "name": "Market Square",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-vendorStallAcquisition",
+          "kind": "roll",
+          "table": "table.ss.capital.vendorStallAcquisition",
+          "name": "Vendor Stall Acquisition",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-merchantOverflow",
+          "kind": "roll",
+          "table": "table.ss.capital.merchantOverflow",
+          "name": "Merchant Overflow",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-undergroundPassages",
+          "kind": "roll",
+          "table": "table.ss.capital.undergroundPassages",
+          "name": "Underground Passages",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-leadership",
+          "kind": "roll",
+          "table": "table.ss.capital.leadership",
+          "name": "Leadership",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-leadershipUnity",
+          "kind": "roll",
+          "table": "table.ss.capital.leadershipUnity",
+          "name": "Leadership Unity",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-governingPriority",
+          "kind": "roll",
+          "table": "table.ss.capital.governingPriority",
+          "name": "Governing Priority",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-priorityApproach",
+          "kind": "roll",
+          "table": "table.ss.capital.priorityApproach",
+          "name": "Priority Approach",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-prioritySuccess",
+          "kind": "roll",
+          "table": "table.ss.capital.prioritySuccess",
+          "name": "Priority Success",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-lifestyle",
+          "kind": "roll",
+          "table": "table.ss.capital.lifestyle",
+          "name": "Lifestyle",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-residence",
+          "kind": "roll",
+          "table": "table.ss.capital.residence",
+          "name": "Residence",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-intent",
+          "kind": "roll",
+          "table": "table.ss.capital.intent",
+          "name": "Intent",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-connections",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.connections",
+          "name": "Connections",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-spyNetworkSize",
+          "kind": "roll",
+          "table": "table.ss.capital.spyNetworkSize",
+          "name": "Spy Network Size",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-infiltrationDepth",
+          "kind": "roll",
+          "table": "table.ss.capital.infiltrationDepth",
+          "name": "Infiltration Depth",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "not": { "has_tag": "ss.capital.spyNetworkSize.none" } }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-counterintelligence",
+          "kind": "roll",
+          "table": "table.ss.capital.counterintelligence",
+          "name": "Counterintelligence",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-counterintelligenceWatchfulness",
+          "kind": "roll",
+          "table": "table.ss.capital.counterintelligenceWatchfulness",
+          "name": "Counterintelligence Watchfulness",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "not": { "has_tag": "ss.capital.counterintelligence.none" } }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-notableVisitors",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.notableVisitors",
+          "name": "Notable Visitors",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-militaryForce",
+          "kind": "roll",
+          "table": "table.ss.capital.militaryForce",
+          "name": "Military Force",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-standingOrDisbanded",
+          "kind": "roll",
+          "table": "table.ss.capital.standingOrDisbanded",
+          "name": "Standing or Disbanded",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "has_tag": "ss.capital.militaryForce.yes" }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-recruitmentType",
+          "kind": "roll",
+          "table": "table.ss.capital.recruitmentType",
+          "name": "Recruitment Type",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "has_tag": "ss.capital.militaryForce.yes" }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-sizeOfForce",
+          "kind": "roll",
+          "table": "table.ss.capital.sizeOfForce",
+          "name": "Size of Force",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "has_tag": "ss.capital.militaryForce.yes" }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-specialization",
+          "kind": "roll",
+          "table": "table.ss.capital.specialization",
+          "name": "Specialization",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "has_tag": "ss.capital.militaryForce.yes" }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-militaryFacilities",
+          "kind": "roll",
+          "table": "table.ss.capital.militaryFacilities",
+          "name": "Military Facilities",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "has_tag": "ss.capital.militaryForce.yes" }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-typeOfNobility",
+          "kind": "roll",
+          "table": "table.ss.capital.typeOfNobility",
+          "name": "Type of Nobility",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-primaryNobles",
+          "kind": "roll",
+          "table": "table.ss.capital.primaryNobles",
+          "name": "Primary Nobles",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-relationshipToLeadership",
+          "kind": "roll",
+          "table": "table.ss.capital.relationshipToLeadership",
+          "name": "Relationship to the Leadership",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-relationshipWithPeople",
+          "kind": "roll",
+          "table": "table.ss.capital.relationshipWithPeople",
+          "name": "Relationship with the People",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-rootOfRelationship",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.rootOfRelationship",
+          "name": "Root of Relationship with the People",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-culture",
+          "kind": "roll",
+          "table": "table.ss.capital.culture",
+          "name": "Culture",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-pursuitOfCulture",
+          "kind": "roll",
+          "table": "table.ss.capital.pursuitOfCulture",
+          "name": "Pursuit of Culture",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              { "not": { "has_tag": "ss.capital.culture.nonSpecific" } }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-populationDensity",
+          "kind": "roll",
+          "table": "table.ss.capital.populationDensity",
+          "name": "Population Density",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-demographics",
+          "kind": "roll",
+          "table": "table.ss.capital.demographics",
+          "name": "Demographics",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-populationWealth",
+          "kind": "roll",
+          "table": "table.ss.capital.populationWealth",
+          "name": "Population Wealth",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-visitorTraffic",
+          "kind": "roll",
+          "table": "table.ss.capital.visitorTraffic",
+          "name": "Visitor Traffic",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-disposition",
+          "kind": "roll",
+          "table": "table.ss.capital.disposition",
+          "name": "Disposition",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-nightActivity",
+          "kind": "roll",
+          "table": "table.ss.capital.nightActivity",
+          "name": "Night Activity",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-lawEnforcement",
+          "kind": "roll",
+          "table": "table.ss.capital.lawEnforcement",
+          "name": "Law Enforcement",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-generalCrime",
+          "kind": "roll",
+          "table": "table.ss.capital.generalCrime",
+          "name": "General Crime",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-organizedCrime",
+          "kind": "roll",
+          "table": "table.ss.capital.organizedCrime",
+          "name": "Organized Crime",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.capital" },
+              {
+                "any": [
+                  { "has_tag": "ss.capital.generalCrime.dangerous" },
+                  { "has_tag": "ss.capital.generalCrime.frequent" },
+                  { "has_tag": "ss.capital.generalCrime.common" },
+                  { "has_tag": "ss.capital.leadership.underworld" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssCapital-districts",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.districts",
+          "name": "Districts",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-nobleResidences",
+          "kind": "run_flow",
+          "flow": "flow.ss.capital.nobleResidences",
+          "name": "Noble Residences",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-recentHistory",
+          "kind": "roll",
+          "table": "table.ss.capital.recentHistory",
+          "name": "Recent History",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-noteworthyOfficial",
+          "kind": "roll",
+          "table": "table.ss.capital.noteworthyOfficial",
+          "name": "Noteworthy Official",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-officialCompetence",
+          "kind": "roll",
+          "table": "table.ss.capital.officialCompetence",
+          "name": "Official's Competence",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-beneathTheSurface",
+          "kind": "roll",
+          "table": "table.ss.capital.beneathTheSurface",
+          "name": "Beneath the Surface",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssCapital-awareness",
+          "kind": "roll",
+          "table": "table.ss.capital.awareness",
+          "name": "Beneath the Surface - Awareness",
+          "when": { "has_tag": "ss.settlementType.capital" }
+        },
+        {
+          "id": "ssFortress-fortressType",
+          "kind": "roll",
+          "table": "table.ss.fortress.fortressType",
+          "name": "Fortress Type",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-locationInRelation",
+          "kind": "roll",
+          "table": "table.ss.fortress.locationInRelation",
+          "name": "Location in Relation to Settlement",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-age",
+          "kind": "roll",
+          "table": "table.ss.fortress.age",
+          "name": "Age",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-condition",
+          "kind": "roll",
+          "table": "table.ss.fortress.condition",
+          "name": "Condition",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-environment",
+          "kind": "roll",
+          "table": "table.ss.fortress.environment",
+          "name": "Environment",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-expense",
+          "kind": "roll",
+          "table": "table.ss.fortress.expense",
+          "name": "Expense",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-primaryMaterial",
+          "kind": "roll",
+          "table": "table.ss.fortress.primaryMaterial",
+          "name": "Primary Building Material",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-resourceOrigin",
+          "kind": "roll",
+          "table": "table.ss.fortress.resourceOrigin",
+          "name": "Resource Origin",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-reasonForConstruction",
+          "kind": "roll",
+          "table": "table.ss.fortress.reasonForConstruction",
+          "name": "Reason for Construction",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-designTheme",
+          "kind": "roll",
+          "table": "table.ss.fortress.designTheme",
+          "name": "Design Theme",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-alternateEntries",
+          "kind": "roll",
+          "table": "table.ss.fortress.alternateEntries",
+          "name": "Alternate Entries",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-localImpact",
+          "kind": "roll",
+          "table": "table.ss.fortress.localImpact",
+          "name": "Local Impact",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-residents",
+          "kind": "roll",
+          "table": "table.ss.fortress.residents",
+          "name": "Residents",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-residentRelations",
+          "kind": "roll",
+          "table": "table.ss.fortress.residentRelations",
+          "name": "Resident Relations",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-residentHobbies",
+          "kind": "roll",
+          "table": "table.ss.fortress.residentHobbies",
+          "name": "Resident Hobbies",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-residentAttitude",
+          "kind": "roll",
+          "table": "table.ss.fortress.residentAttitude",
+          "name": "Resident Attitude",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-garrisonSize",
+          "kind": "roll",
+          "table": "table.ss.fortress.garrisonSize",
+          "name": "Garrison Size",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-garrisonEquipment",
+          "kind": "roll",
+          "table": "table.ss.fortress.garrisonEquipment",
+          "name": "Garrison Equipment",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-currentIssue",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.currentIssue",
+          "name": "Current Issue",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-history",
+          "kind": "roll",
+          "table": "table.ss.fortress.history",
+          "name": "History",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-secrets",
+          "kind": "roll",
+          "table": "table.ss.fortress.secrets",
+          "name": "Secrets",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-oddities",
+          "kind": "roll",
+          "table": "table.ss.fortress.oddities",
+          "name": "Oddities",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-specialFeature",
+          "kind": "roll",
+          "table": "table.ss.fortress.specialFeature",
+          "name": "Special Feature",
+          "when": { "has_tag": "ss.settlementType.fortress" }
+        },
+        {
+          "id": "ssFortress-shape",
+          "kind": "roll",
+          "table": "table.ss.fortress.shape",
+          "name": "Keep: Shape",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-keepSize",
+          "kind": "roll",
+          "table": "table.ss.fortress.keepSize",
+          "name": "Keep: Size",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-exteriorWallThickness",
+          "kind": "roll",
+          "table": "table.ss.fortress.exteriorWallThickness",
+          "name": "Keep: Exterior Wall Thickness",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-numberOfFloors",
+          "kind": "roll",
+          "table": "table.ss.fortress.numberOfFloors",
+          "name": "Keep: Number of Floors",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-raisedEntrance",
+          "kind": "roll",
+          "table": "table.ss.fortress.raisedEntrance",
+          "name": "Keep: Raised Entrance",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              },
+              { "not": { "has_tag": "ss.fortress.numberOfFloors.one" } },
+              { "not": { "has_tag": "ss.fortress.numberOfFloors.two" } }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-entryDefenses",
+          "kind": "roll",
+          "table": "table.ss.fortress.entryDefenses",
+          "name": "Keep: Entry Defenses",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-rooms",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.rooms",
+          "name": "Keep: Rooms",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-furnishings",
+          "kind": "roll",
+          "table": "table.ss.fortress.furnishings",
+          "name": "Keep: Furnishings",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.keep" },
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-geographicAdvantages",
+          "kind": "roll",
+          "table": "table.ss.fortress.geographicAdvantages",
+          "name": "Castle: Geographic Advantages",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-style",
+          "kind": "roll",
+          "table": "table.ss.fortress.style",
+          "name": "Castle: Style",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-castleSize",
+          "kind": "roll",
+          "table": "table.ss.fortress.castleSize",
+          "name": "Castle: Size",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-curtainWallThickness",
+          "kind": "roll",
+          "table": "table.ss.fortress.curtainWallThickness",
+          "name": "Castle: Curtain Wall Thickness",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-curtainWallHeight",
+          "kind": "roll",
+          "table": "table.ss.fortress.curtainWallHeight",
+          "name": "Castle: Curtain Wall Height",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-towers",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.towers",
+          "name": "Castle: Curtain Wall Towers",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-curtainWallDefenses",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.curtainWallDefenses",
+          "name": "Castle: Curtain Wall Defenses",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-barbican",
+          "kind": "roll",
+          "table": "table.ss.fortress.barbican",
+          "name": "Castle: Barbican",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-gatehouse",
+          "kind": "roll",
+          "table": "table.ss.fortress.gatehouse",
+          "name": "Castle: Gatehouse",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-moat",
+          "kind": "roll",
+          "table": "table.ss.fortress.moat",
+          "name": "Castle: Moat",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-moatWidth",
+          "kind": "roll",
+          "table": "table.ss.fortress.moatWidth",
+          "name": "Castle: Moat Width",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              },
+              { "not": { "has_tag": "ss.fortress.moat.none" } }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-moatDepth",
+          "kind": "roll",
+          "table": "table.ss.fortress.moatDepth",
+          "name": "Castle: Moat Depth",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              },
+              { "not": { "has_tag": "ss.fortress.moat.none" } }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-barracksLocation",
+          "kind": "roll",
+          "table": "table.ss.fortress.barracksLocation",
+          "name": "Castle: Barracks Location",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-outbuildings",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.outbuildings",
+          "name": "Castle: Bailey Outbuildings",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              {
+                "any": [
+                  { "has_tag": "ss.fortress.fortressType.castle" },
+                  { "has_tag": "ss.fortress.fortressType.stronghold" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-additionalThickness",
+          "kind": "roll",
+          "table": "table.ss.fortress.additionalThickness",
+          "name": "Stronghold: Additional Thickness",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              { "any": [{ "has_tag": "ss.fortress.fortressType.stronghold" }] }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-additionalHeight",
+          "kind": "roll",
+          "table": "table.ss.fortress.additionalHeight",
+          "name": "Stronghold: Additional Height",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              { "any": [{ "has_tag": "ss.fortress.fortressType.stronghold" }] }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-additionalTowers",
+          "kind": "run_flow",
+          "flow": "flow.ss.fortress.additionalTowers",
+          "name": "Stronghold: Additional Curtain Wall Towers",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              { "any": [{ "has_tag": "ss.fortress.fortressType.stronghold" }] }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-styleAmplification",
+          "kind": "roll",
+          "table": "table.ss.fortress.styleAmplification",
+          "name": "Stronghold: Style Amplification",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              { "any": [{ "has_tag": "ss.fortress.fortressType.stronghold" }] }
+            ]
+          }
+        },
+        {
+          "id": "ssFortress-brutalDefenses",
+          "kind": "roll",
+          "table": "table.ss.fortress.brutalDefenses",
+          "name": "Stronghold: Brutal Defenses",
+          "when": {
+            "all": [
+              { "has_tag": "ss.settlementType.fortress" },
+              { "any": [{ "has_tag": "ss.fortress.fortressType.stronghold" }] }
+            ]
+          }
         }
       ]
     }

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.history",
+      "name": "History",
+      "description": "A significant event before, or just after, the fortress was built.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "previousResidents",
+          "name": "Previous Residents",
+          "range": 1,
+          "description": "Someone of note lived here before the fortress was built.",
+          "tags": ["ss.fortress.history.previousResidents"]
+        },
+        {
+          "id": "notableFamilyTree",
+          "name": "Notable Family Tree",
+          "range": 2,
+          "description": "A resident within the fortress has (or had) very interesting lineage.",
+          "tags": ["ss.fortress.history.notableFamilyTree"]
+        },
+        {
+          "id": "accursed",
+          "name": "Accursed",
+          "range": 3,
+          "description": "The site of the fortress was cursed, either during construction, or since. The curse effects may vary greatly in scope and severity.",
+          "tags": ["ss.fortress.history.accursed"]
+        },
+        {
+          "id": "inTheirFootsteps",
+          "name": "In Their Footsteps",
+          "range": 4,
+          "description": "A very powerful being once walked where the fortress now stands.",
+          "tags": ["ss.fortress.history.inTheirFootsteps"]
+        },
+        {
+          "id": "convergence",
+          "name": "Convergence",
+          "range": 5,
+          "description": "A pivotal meeting happened here.",
+          "tags": ["ss.fortress.history.convergence"]
+        },
+        {
+          "id": "digSite",
+          "name": "Dig Site",
+          "range": 6,
+          "description": "An intriguing discovery was made here.",
+          "tags": ["ss.fortress.history.digSite"]
+        },
+        {
+          "id": "protests",
+          "name": "Protests",
+          "range": 7,
+          "description": "Prior to construction, there were strong objections to building the fortress.",
+          "tags": ["ss.fortress.history.protests"]
+        },
+        {
+          "id": "ensuredSilence",
+          "name": "Ensured Silence",
+          "range": 8,
+          "description": "The architect of this fortress was imprisoned (before or after the fortress was built).",
+          "tags": ["ss.fortress.history.ensuredSilence"]
+        },
+        {
+          "id": "traditionalHome",
+          "name": "Traditional Home",
+          "range": 9,
+          "description": "A family of creatures, or beings, has lived within the fortress since it was built, appearing in records as far back as any have been kept. They may be seen as simple mascots, or may serve some deeper purpose.",
+          "tags": ["ss.fortress.history.traditionalHome"]
+        },
+        {
+          "id": "hallowedGround",
+          "name": "Hallowed Ground",
+          "range": 10,
+          "description": "When the fortress was built, a central area of the site featured markings that someone viewed as being of great importance. As such, it was built around and preserved.",
+          "tags": ["ss.fortress.history.hallowedGround"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.history.previousResidents", "name": "Previous Residents" },
+    { "id": "ss.fortress.history.notableFamilyTree", "name": "Notable Family Tree" },
+    { "id": "ss.fortress.history.accursed", "name": "Accursed" },
+    { "id": "ss.fortress.history.inTheirFootsteps", "name": "In Their Footsteps" },
+    { "id": "ss.fortress.history.convergence", "name": "Convergence" },
+    { "id": "ss.fortress.history.digSite", "name": "Dig Site" },
+    { "id": "ss.fortress.history.protests", "name": "Protests" },
+    { "id": "ss.fortress.history.ensuredSilence", "name": "Ensured Silence" },
+    { "id": "ss.fortress.history.traditionalHome", "name": "Traditional Home" },
+    { "id": "ss.fortress.history.hallowedGround", "name": "Hallowed Ground" }
+  ]
+}

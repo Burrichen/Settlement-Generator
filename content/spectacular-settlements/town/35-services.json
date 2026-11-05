@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.services",
+      "name": "Services",
+      "description": "Establishments where something can be done for you, for a price. Every town also has a default Inn and Tavern. Hired help then rolls its size.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": [1, 8],
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.town.services.barber"]
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": [9, 16],
+          "description": "Provides spaces for bathing.",
+          "tags": ["ss.town.services.bathhouse"]
+        },
+        {
+          "id": "doctor",
+          "name": "Doctor/Apothecary",
+          "range": [17, 24],
+          "description": "Provides medical care.",
+          "tags": ["ss.town.services.doctor"]
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": [25, 32],
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind).",
+          "tags": ["ss.town.services.houseOfLeisure"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": [33, 44],
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.town.services.inn"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": [45, 52],
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.town.services.club"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": [53, 60],
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.town.services.soothsayer"]
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": [61, 68],
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack.",
+          "tags": ["ss.town.services.stable"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": [69, 80],
+          "description": "Provides food and drink.",
+          "tags": ["ss.town.services.tavern"]
+        },
+        {
+          "id": "brutesAndBrawlers",
+          "name": "Hired Help - Brutes and Brawlers",
+          "range": [81, 82],
+          "description": "Thugs, ruffians and muscle.",
+          "tags": ["ss.town.services.brutesAndBrawlers"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "cloakAndDagger",
+          "name": "Hired Help - Cloak and Dagger",
+          "range": [83, 84],
+          "description": "Assassins, thieves and spies.",
+          "tags": ["ss.town.services.cloakAndDagger"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "bowsAndSlings",
+          "name": "Hired Help - Bows and Slings",
+          "range": [85, 86],
+          "description": "Archers and ranged attack specialists.",
+          "tags": ["ss.town.services.bowsAndSlings"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "scribesAndClerks",
+          "name": "Hired Help - Scribes and Clerks",
+          "range": [87, 88],
+          "description": "Masters of history, literature, mathematics and/or business.",
+          "tags": ["ss.town.services.scribesAndClerks"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "guidesAndTrackers",
+          "name": "Hired Help - Guides and Trackers",
+          "range": [89, 90],
+          "description": "Scouts, rangers and wilderness experts.",
+          "tags": ["ss.town.services.guidesAndTrackers"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "caravanAndMount",
+          "name": "Hired Help - Caravan and Mount",
+          "range": [91, 92],
+          "description": "Specialists in transportation and journeys to various locations as well as expedition organization and management.",
+          "tags": ["ss.town.services.caravanAndMount"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "arcaneAcademics",
+          "name": "Hired Help - Arcane Academics",
+          "range": [93, 94],
+          "description": "Experts in matters of magic and lore (may also be natural magic or something else; it need not be exclusively arcane).",
+          "tags": ["ss.town.services.arcaneAcademics"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "magicMercenaries",
+          "name": "Hired Help - Magic Mercenaries",
+          "range": [95, 96],
+          "description": "Specialists trained the use of arcane or non-divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.town.services.magicMercenaries"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "priestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "range": [97, 98],
+          "description": "Sages offering counsel in all matters of religion and the divine.",
+          "tags": ["ss.town.services.priestlyGuidance"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        },
+        {
+          "id": "handsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "range": [99, 100],
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.town.services.handsOfTheDivine"],
+          "then_roll": ["table.ss.town.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.services.barber",
+      "name": "Barber"
+    },
+    {
+      "id": "ss.town.services.bathhouse",
+      "name": "Bathhouse"
+    },
+    {
+      "id": "ss.town.services.doctor",
+      "name": "Doctor/Apothecary"
+    },
+    {
+      "id": "ss.town.services.houseOfLeisure",
+      "name": "House of Leisure"
+    },
+    {
+      "id": "ss.town.services.inn",
+      "name": "Inn"
+    },
+    {
+      "id": "ss.town.services.club",
+      "name": "Club"
+    },
+    {
+      "id": "ss.town.services.soothsayer",
+      "name": "Soothsayer"
+    },
+    {
+      "id": "ss.town.services.stable",
+      "name": "Stable"
+    },
+    {
+      "id": "ss.town.services.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.town.services.brutesAndBrawlers",
+      "name": "Hired Help - Brutes and Brawlers"
+    },
+    {
+      "id": "ss.town.services.cloakAndDagger",
+      "name": "Hired Help - Cloak and Dagger"
+    },
+    {
+      "id": "ss.town.services.bowsAndSlings",
+      "name": "Hired Help - Bows and Slings"
+    },
+    {
+      "id": "ss.town.services.scribesAndClerks",
+      "name": "Hired Help - Scribes and Clerks"
+    },
+    {
+      "id": "ss.town.services.guidesAndTrackers",
+      "name": "Hired Help - Guides and Trackers"
+    },
+    {
+      "id": "ss.town.services.caravanAndMount",
+      "name": "Hired Help - Caravan and Mount"
+    },
+    {
+      "id": "ss.town.services.arcaneAcademics",
+      "name": "Hired Help - Arcane Academics"
+    },
+    {
+      "id": "ss.town.services.magicMercenaries",
+      "name": "Hired Help - Magic Mercenaries"
+    },
+    {
+      "id": "ss.town.services.priestlyGuidance",
+      "name": "Hired Help - Priestly Guidance"
+    },
+    {
+      "id": "ss.town.services.handsOfTheDivine",
+      "name": "Hired Help - Hands of the Divine"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.populationWealth",
+      "name": "Population Wealth",
+      "description": "Modified by Stewardship and a Trade priority. Modifies General Crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "destitute",
+          "name": "Destitute",
+          "range": [1, 2],
+          "description": "Nearly everyone in the city consistently lacks the barest essentials of what they need to survive. (-2 to general crime roll)",
+          "tags": ["ss.city.populationWealth.destitute"]
+        },
+        {
+          "id": "impoverished",
+          "name": "Impoverished",
+          "range": [3, 6],
+          "description": "Around half of the city struggles to carve out even a meager existence. (-1 to general crime roll)",
+          "tags": ["ss.city.populationWealth.impoverished"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Most of the city’s population have enough to live a modest life. Those without are a minority. (+0 to general crime roll)",
+          "tags": ["ss.city.populationWealth.average"]
+        },
+        {
+          "id": "prosperous",
+          "name": "Prosperous",
+          "range": [15, 17],
+          "description": "The majority have enough to live a good life and, of them, a fair amount can even live comfortably. (-1 to general crime roll)",
+          "tags": ["ss.city.populationWealth.prosperous"]
+        },
+        {
+          "id": "wealthy",
+          "name": "Wealthy",
+          "range": [18, 19],
+          "description": "Nearly everyone has what they need to live comfortably, many are able to live well, and some are very prosperous. (-2 to general crime roll)",
+          "tags": ["ss.city.populationWealth.wealthy"]
+        },
+        {
+          "id": "affluent",
+          "name": "Affluent",
+          "range": 20,
+          "description": "The entire city is able to live comfortably, with a significant portion living in luxury. (-3 to general crime roll)",
+          "tags": ["ss.city.populationWealth.affluent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.populationWealth.destitute",
+      "name": "Destitute",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationWealth.impoverished",
+      "name": "Impoverished",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationWealth.average",
+      "name": "Average"
+    },
+    {
+      "id": "ss.city.populationWealth.prosperous",
+      "name": "Prosperous",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationWealth.wealthy",
+      "name": "Wealthy",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationWealth.affluent",
+      "name": "Affluent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

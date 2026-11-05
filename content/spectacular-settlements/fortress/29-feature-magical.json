@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureMagical",
+      "name": "Magical Properties",
+      "description": "Special Feature specifics: Magical Properties.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "flying",
+          "name": "Flying",
+          "range": 1,
+          "description": "The fortress can be, or is always, airborne. The magic is likely sustained by a ritual, enchanted object, or individual, who may or may not command the fortress.",
+          "tags": ["ss.fortress.featureMagical.flying"]
+        },
+        {
+          "id": "dreamer",
+          "name": "Dreamer",
+          "range": 2,
+          "description": "The fortress is mentally tethered to the imagination of a mortal mind. While they dream, the fortress appears nearby. If the individual dies, the fortress transfers to another.",
+          "tags": ["ss.fortress.featureMagical.dreamer"]
+        },
+        {
+          "id": "spellsOfBinding",
+          "name": "Spells of Binding",
+          "range": 3,
+          "description": "Magic augmented the building process to more-thoroughly bind the materials together, strengthening the overall structure exponentially.",
+          "tags": ["ss.fortress.featureMagical.spellsOfBinding"]
+        },
+        {
+          "id": "speech",
+          "name": "Speech",
+          "range": 4,
+          "description": "The fortress itself is sentient, and is able to communicate telepathically to those it chooses. Any excesses of personality are at the discretion of the GM!",
+          "tags": ["ss.fortress.featureMagical.speech"]
+        },
+        {
+          "id": "exudingPresence",
+          "name": "Exuding Presence",
+          "range": 5,
+          "description": "The fortress exudes an unseen aura which influences the emotional state of visitors, both friend or foe.",
+          "tags": ["ss.fortress.featureMagical.exudingPresence"]
+        },
+        {
+          "id": "desecratedGround",
+          "name": "Desecrated Ground",
+          "range": 6,
+          "description": "The bodies of the fallen tend to rise and turn against their living comrades.",
+          "tags": ["ss.fortress.featureMagical.desecratedGround"]
+        },
+        {
+          "id": "deceptive",
+          "name": "Deceptive",
+          "range": 7,
+          "description": "The fortress appears differently to onlookers outside of its walls than to those inside them.",
+          "tags": ["ss.fortress.featureMagical.deceptive"]
+        },
+        {
+          "id": "nexus",
+          "name": "Nexus",
+          "range": 8,
+          "description": "Magic here seems to be more potent and effective, but the veil between worlds also seems thin. Otherworldly entities may be drawn to magic used here which resonates with their home plane.",
+          "tags": ["ss.fortress.featureMagical.nexus"]
+        },
+        {
+          "id": "teleportation",
+          "name": "Teleportation",
+          "range": 9,
+          "description": "The fortress can magically change location instantly, blinking out of one place and into another.",
+          "tags": ["ss.fortress.featureMagical.teleportation"]
+        },
+        {
+          "id": "phasing",
+          "name": "Phasing",
+          "range": 10,
+          "description": "The fortress can shift from one plane of existence to another, but always remains in the same physical location.",
+          "tags": ["ss.fortress.featureMagical.phasing"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureMagical.flying", "name": "Flying" },
+    { "id": "ss.fortress.featureMagical.dreamer", "name": "Dreamer" },
+    { "id": "ss.fortress.featureMagical.spellsOfBinding", "name": "Spells of Binding" },
+    { "id": "ss.fortress.featureMagical.speech", "name": "Speech" },
+    { "id": "ss.fortress.featureMagical.exudingPresence", "name": "Exuding Presence" },
+    { "id": "ss.fortress.featureMagical.desecratedGround", "name": "Desecrated Ground" },
+    { "id": "ss.fortress.featureMagical.deceptive", "name": "Deceptive" },
+    { "id": "ss.fortress.featureMagical.nexus", "name": "Nexus" },
+    { "id": "ss.fortress.featureMagical.teleportation", "name": "Teleportation" },
+    { "id": "ss.fortress.featureMagical.phasing", "name": "Phasing" }
+  ]
+}

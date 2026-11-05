@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.populationDensity",
+      "name": "Population Density",
+      "description": "Modified by Age. Modifies Population Overflow and Night Activity. Optionally, a result of 0 or less could mean a deserted town.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton",
+          "range": [1, 2],
+          "description": "The town only has enough people to function at its most basic level. (-2 to population overflow roll) (-2 to night activity roll)",
+          "tags": ["ss.town.populationDensity.skeleton"]
+        },
+        {
+          "id": "sparse",
+          "name": "Sparse",
+          "range": [3, 6],
+          "description": "Folk live here, but it would never be called bustling. Walking down the street, you’ll typically only see a few people. (-1 to population overflow roll) (-1 to night activity roll)",
+          "tags": ["ss.town.populationDensity.sparse"]
+        },
+        {
+          "id": "populous",
+          "name": "Populous",
+          "range": [7, 14],
+          "description": "A moderate amount of people live here. Walking through the streets, you will see plenty of people, but never so many that it would feel cramped. (+0 to population overflow roll) (+0 to night activity roll)",
+          "tags": ["ss.town.populationDensity.populous"]
+        },
+        {
+          "id": "dense",
+          "name": "Dense",
+          "range": [15, 18],
+          "description": "There is a large amount of people living here. There are few, if any, vacant buildings. In high traffic areas, one generally has elbow room, but not much more. (+1 to population overflow roll) (+1 to night activity roll)",
+          "tags": ["ss.town.populationDensity.dense"]
+        },
+        {
+          "id": "crowded",
+          "name": "Crowded",
+          "range": [19, 20],
+          "description": "The town is filled with jostling throngs. Practically all structures are occupied. Some may even camp outside town. Moving about can be difficult, and bumping into other people is typical in higher traffic areas. (+2 to population overflow roll) (+2 to night activity roll)",
+          "tags": ["ss.town.populationDensity.crowded"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.populationDensity.skeleton",
+      "name": "Skeleton",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 2
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.populationDensity.sparse",
+      "name": "Sparse",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 1
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.populationDensity.populous",
+      "name": "Populous"
+    },
+    {
+      "id": "ss.town.populationDensity.dense",
+      "name": "Dense",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 1
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.populationDensity.crowded",
+      "name": "Crowded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 2
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

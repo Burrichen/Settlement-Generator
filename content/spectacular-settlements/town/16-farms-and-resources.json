@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.farmsAndResources",
+      "name": "Farms & Resources",
+      "description": "Rolled by size (Very Small 1, Small and Medium 2, Large and Very Large 3 rolls). A town with the Farming or Resource Gathering specialty adds 1 and rerolls 1-8: rolled as its d12 variant, the same odds (rerolling a raw 1-8 on the d20, then adding 1).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 4],
+          "description": "If you have any remaining rolls to make on this table, proceed with them. With no farms or resources, how does the town function?",
+          "tags": ["ss.town.farmsAndResources.none"]
+        },
+        {
+          "id": "agriculture",
+          "name": "Farming [Agriculture]",
+          "range": [5, 11],
+          "description": "A group of farms, which provide food, are found on the nearest hospitable land under the town’s control.",
+          "tags": ["ss.town.farmsAndResources.agriculture"]
+        },
+        {
+          "id": "livestock",
+          "name": "Farming [Livestock]",
+          "range": [12, 16],
+          "description": "A group of farms, which provide livestock, are found on the nearest hospitable land under the town’s control.",
+          "tags": ["ss.town.farmsAndResources.livestock"]
+        },
+        {
+          "id": "resourceHarvesting",
+          "name": "Resource Harvesting",
+          "range": [17, 20],
+          "description": "Depending on the landscape and available resources (trees, minerals, ore, stone, etc.), a logging camp, mine, or quarry belonging to the town has been built nearby to harvest resources for use or sale.",
+          "tags": ["ss.town.farmsAndResources.resourceHarvesting"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "farmingSpecialty",
+          "name": "Farming or Resource Gathering specialty (+1, reroll 1-8)",
+          "when": {
+            "has_tag": "ss.town.specialty.farming"
+          },
+          "dice": "1d12",
+          "ranges": [
+            {
+              "result": "agriculture",
+              "range": [1, 2]
+            },
+            {
+              "result": "livestock",
+              "range": [3, 7]
+            },
+            {
+              "result": "resourceHarvesting",
+              "range": [8, 12]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.farmsAndResources.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.town.farmsAndResources.agriculture",
+      "name": "Farming [Agriculture]"
+    },
+    {
+      "id": "ss.town.farmsAndResources.livestock",
+      "name": "Farming [Livestock]"
+    },
+    {
+      "id": "ss.town.farmsAndResources.resourceHarvesting",
+      "name": "Resource Harvesting"
+    }
+  ]
+}

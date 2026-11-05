@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.vendorStallAcquisition",
+      "name": "Vendor Stall Acquisition",
+      "description": "How a vendor finds a space in the market square.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "firstComeNoFee",
+          "name": "First Come, First Served - No Fee",
+          "range": 1,
+          "description": "Merchants line up prior to market day. Those at the front of the line are given the spaces. No fees are charged.",
+          "tags": ["ss.city.vendorStallAcquisition.firstComeNoFee"]
+        },
+        {
+          "id": "firstComeFee",
+          "name": "First Come, First Served - Fee",
+          "range": 2,
+          "description": "Merchants line up prior to market day. Those at the front of the line are given first pick of the available stall spaces, provided they can pay the fee for the day.",
+          "tags": ["ss.city.vendorStallAcquisition.firstComeFee"]
+        },
+        {
+          "id": "lease",
+          "name": "Lease",
+          "range": 3,
+          "description": "Merchants pay in advance (sometimes far in advance) for the right to a space in the market square.",
+          "tags": ["ss.city.vendorStallAcquisition.lease"]
+        },
+        {
+          "id": "bid",
+          "name": "Bid",
+          "range": 4,
+          "description": "Prior to market day, the spaces are auctioned off.",
+          "tags": ["ss.city.vendorStallAcquisition.bid"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.vendorStallAcquisition.firstComeNoFee",
+      "name": "First Come, First Served - No Fee"
+    },
+    {
+      "id": "ss.city.vendorStallAcquisition.firstComeFee",
+      "name": "First Come, First Served - Fee"
+    },
+    {
+      "id": "ss.city.vendorStallAcquisition.lease",
+      "name": "Lease"
+    },
+    {
+      "id": "ss.city.vendorStallAcquisition.bid",
+      "name": "Bid"
+    }
+  ]
+}

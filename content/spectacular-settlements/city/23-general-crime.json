@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.generalCrime",
+      "name": "General Crime",
+      "description": "Modified by Leadership, Law Enforcement and Population Wealth. Dangerous, Frequent and Common (1-14) roll on Organized Crime. The baseline for every district's crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "dangerous",
+          "name": "Dangerous",
+          "range": [1, 2],
+          "description": "The streets are crawling with crime. Having things stolen is the least of folks’ worries. Vandalism and muggings are a daily occurrence, and discoveries of bodies are not what one would call ‘rare’. (Roll on organized crime table) (+4 to urban encounter rolls)",
+          "tags": ["ss.city.generalCrime.dangerous"]
+        },
+        {
+          "id": "frequent",
+          "name": "Frequent",
+          "range": [3, 6],
+          "description": "The streets are unsafe, and a purse in plain sight is almost sure to be stolen. Vandalism and muggings are fairly regular. It’s dangerous to travel alone. (Roll on organized crime table) (+4 to urban encounter rolls)",
+          "tags": ["ss.city.generalCrime.frequent"]
+        },
+        {
+          "id": "common",
+          "name": "Common",
+          "range": [7, 14],
+          "description": "Most are used to hearing about some sort of trouble every day or two. Everyone knows someone who’s been a victim of crime, either a theft or, sometimes, even a mugging, or worse. (Roll on organized crime table) (+3 to urban encounter rolls)",
+          "tags": ["ss.city.generalCrime.common"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "range": [15, 18],
+          "description": "Theft or mild violence happens from time to time. Best to keep an eye out, just in case. (+2 to urban encounter rolls)",
+          "tags": ["ss.city.generalCrime.uncommon"]
+        },
+        {
+          "id": "infrequent",
+          "name": "Infrequent",
+          "range": [19, 20],
+          "description": "Most don’t believe there is any crime, and certainly haven’t experienced any. (+1 to urban encounter rolls)",
+          "tags": ["ss.city.generalCrime.infrequent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.generalCrime.dangerous",
+      "name": "Dangerous",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+4 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.generalCrime.frequent",
+      "name": "Frequent",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+4 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.generalCrime.common",
+      "name": "Common",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+3 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.generalCrime.uncommon",
+      "name": "Uncommon",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+2 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.generalCrime.infrequent",
+      "name": "Infrequent",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+1 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    }
+  ]
+}

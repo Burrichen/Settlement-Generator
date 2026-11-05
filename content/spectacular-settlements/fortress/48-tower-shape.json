@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.towerShape",
+      "name": "Tower Shape",
+      "description": "The curtain wall towers' shape (built from the walls' material).",
+      "dice": "1d6",
+      "results": [
+        { "id": "box", "name": "Box", "range": [1, 3], "tags": ["ss.fortress.towerShape.box"] },
+        {
+          "id": "round",
+          "name": "Round (Cylinder)",
+          "range": [4, 6],
+          "tags": ["ss.fortress.towerShape.round"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.towerShape.box", "name": "Box" },
+    { "id": "ss.fortress.towerShape.round", "name": "Round (Cylinder)" }
+  ]
+}

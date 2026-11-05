@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.botanicalLocations",
+      "name": "Botanical District Additional Locations",
+      "description": "Rolled for each additional location of a Botanical district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.capital.botanicalLocations.stepDown"],
+          "then_roll": ["table.ss.capital.botanicalLocationsAgain"]
+        },
+        {
+          "id": "baker",
+          "name": "Baker",
+          "range": 2,
+          "description": "(Basic) Bakes and sells fresh bread and, possibly, pastries.",
+          "tags": ["ss.capital.botanicalLocations.baker"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": 3,
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.capital.botanicalLocations.tailor"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 4,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.capital.botanicalLocations.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 5,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.capital.botanicalLocations.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 6,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.capital.botanicalLocations.artist"]
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": 7,
+          "description": "(Specialty) Makes and mends boots and shoes.",
+          "tags": ["ss.capital.botanicalLocations.cobbler"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.capital.botanicalLocations.rareBotanicals"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations and Fare",
+          "range": 9,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.capital.botanicalLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 10,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.capital.botanicalLocations.magicShop"],
+          "then_roll": ["table.ss.capital.magicShopSpecialization"]
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "range": 11,
+          "description": "Provides medical care.",
+          "tags": ["ss.capital.botanicalLocations.doctorApothecary"]
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": 12,
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind).",
+          "tags": ["ss.capital.botanicalLocations.houseOfLeisure"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 13,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.capital.botanicalLocations.inn"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 14,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.capital.botanicalLocations.soothsayer"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 15,
+          "description": "Provides food and drink.",
+          "tags": ["ss.capital.botanicalLocations.tavern"]
+        },
+        {
+          "id": "hiredHelpGuidesAndTrackers",
+          "name": "Hired Help - Guides and Trackers",
+          "range": 16,
+          "description": "Scouts, rangers and wilderness experts.",
+          "tags": ["ss.capital.botanicalLocations.hiredHelpGuidesAndTrackers"],
+          "then_roll": ["table.ss.capital.hiredHelpSize"]
+        },
+        {
+          "id": "outdoorRecreationalArea",
+          "name": "Outdoor Recreational Area",
+          "range": 17,
+          "description": "(Non-commercial) A tended space where locals might eat, take leisure time, or duel to the death...",
+          "tags": ["ss.capital.botanicalLocations.outdoorRecreationalArea"]
+        },
+        {
+          "id": "danceHall",
+          "name": "Dance Hall",
+          "range": 18,
+          "description": "(Non-commercial) Location for dances and festive events.",
+          "tags": ["ss.capital.botanicalLocations.danceHall"]
+        },
+        {
+          "id": "altar",
+          "name": "Altar",
+          "range": 19,
+          "description": "(Non-commercial) A small shrine or, perhaps, a tiny shack, usually evincing some various items or images relating to that which the faith venerates.",
+          "tags": ["ss.capital.botanicalLocations.altar"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.capital.botanicalLocations.stepUp"],
+          "then_roll": ["table.ss.capital.botanicalLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.botanicalLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.baker",
+      "name": "Baker"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.weaver",
+      "name": "Weaver"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.alchemist",
+      "name": "Alchemist"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.artist",
+      "name": "Artist"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.cobbler",
+      "name": "Cobbler"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.rareBotanicals",
+      "name": "Rare Botanicals"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.rareLibationsAndFare",
+      "name": "Rare Libations and Fare"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.magicShop",
+      "name": "Magic Shop"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.doctorApothecary",
+      "name": "Doctor/Apothecary"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.houseOfLeisure",
+      "name": "House of Leisure"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.inn",
+      "name": "Inn"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.soothsayer",
+      "name": "Soothsayer"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.hiredHelpGuidesAndTrackers",
+      "name": "Hired Help - Guides and Trackers"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.outdoorRecreationalArea",
+      "name": "Outdoor Recreational Area"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.danceHall",
+      "name": "Dance Hall"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.altar",
+      "name": "Altar"
+    },
+    {
+      "id": "ss.capital.botanicalLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

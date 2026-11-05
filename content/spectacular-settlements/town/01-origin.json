@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.origin",
+      "name": "Origin",
+      "description": "The circumstances surrounding the initial settling of the site.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "accidental",
+          "name": "Accidental",
+          "range": 1,
+          "description": "The town was never meant to be anything more than a camp or minor settlement, at most. Fate saw to it that things happened differently. Outsiders found the place, some stayed, some left and told others and, over time, more and more came, more and more stayed, and the place grew.",
+          "tags": ["ss.town.origin.accidental"]
+        },
+        {
+          "id": "decree",
+          "name": "Decree",
+          "range": 2,
+          "description": "It was decided by some authority that a town was needed here, funds and materials were set aside for its founding, and it was established.",
+          "tags": ["ss.town.origin.decree"]
+        },
+        {
+          "id": "exodus",
+          "name": "Exodus or Exile",
+          "range": 3,
+          "description": "A group of settlers left (or were forced to leave) their home. They found this place and decided to build.",
+          "tags": ["ss.town.origin.exodus"]
+        },
+        {
+          "id": "keyCrossroads",
+          "name": "Key Crossroads",
+          "range": 4,
+          "description": "The town was established on a crossroads frequented by travelers from all over.",
+          "tags": ["ss.town.origin.keyCrossroads"]
+        },
+        {
+          "id": "militaryCamp",
+          "name": "Military Camp",
+          "range": 5,
+          "description": "A deployment wound up lasting longer than anticipated, so the camp began building more solid fortifications in an increasingly permanent fashion. Either the original members of the encampment still reside here, or it was otherwise occupied after they departed.",
+          "tags": ["ss.town.origin.militaryCamp"]
+        },
+        {
+          "id": "port",
+          "name": "Port",
+          "range": 6,
+          "description": "The town established itself on the water where none had done so previously, sprouting worn piers and roads taken by merchants and travelers alike. (The environment your port is in is [d6]: 1-3: coastal 4-6: river; the Environment table is skipped.)",
+          "tags": ["ss.town.origin.port"],
+          "then_roll": ["table.ss.town.portEnvironment"]
+        },
+        {
+          "id": "rapid",
+          "name": "Rapid",
+          "range": 7,
+          "description": "Fueled by ambition, strong will and, perhaps, access to certain excellent products or resources, a group of people set their minds to creating this town in an important location. Witnesses express how it almost seemed to spring up overnight.",
+          "tags": ["ss.town.origin.rapid"]
+        },
+        {
+          "id": "steady",
+          "name": "Steady",
+          "range": 8,
+          "description": "Built piece by piece over time, this town was a labor of commitment and devotion. It may have taken years, or even decades, until it reached fruition, but now it stands, such as it is.",
+          "tags": ["ss.town.origin.steady"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.origin.accidental",
+      "name": "Accidental"
+    },
+    {
+      "id": "ss.town.origin.decree",
+      "name": "Decree"
+    },
+    {
+      "id": "ss.town.origin.exodus",
+      "name": "Exodus or Exile"
+    },
+    {
+      "id": "ss.town.origin.keyCrossroads",
+      "name": "Key Crossroads"
+    },
+    {
+      "id": "ss.town.origin.militaryCamp",
+      "name": "Military Camp"
+    },
+    {
+      "id": "ss.town.origin.port",
+      "name": "Port"
+    },
+    {
+      "id": "ss.town.origin.rapid",
+      "name": "Rapid"
+    },
+    {
+      "id": "ss.town.origin.steady",
+      "name": "Steady"
+    }
+  ]
+}

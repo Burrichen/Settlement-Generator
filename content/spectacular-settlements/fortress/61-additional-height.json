@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.additionalHeight",
+      "name": "Additional Height",
+      "description": "Added to the castle's Curtain Wall Height.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "twenty",
+          "name": "+20 ft.",
+          "range": [1, 6],
+          "description": "4 squares.",
+          "tags": ["ss.fortress.additionalHeight.twenty"]
+        },
+        {
+          "id": "twentyFive",
+          "name": "+25 ft.",
+          "range": [7, 14],
+          "description": "5 squares.",
+          "tags": ["ss.fortress.additionalHeight.twentyFive"]
+        },
+        {
+          "id": "thirty",
+          "name": "+30 ft.",
+          "range": [15, 19],
+          "description": "6 squares.",
+          "tags": ["ss.fortress.additionalHeight.thirty"]
+        },
+        {
+          "id": "thirtyFive",
+          "name": "+35 ft.",
+          "range": 20,
+          "description": "7 squares.",
+          "tags": ["ss.fortress.additionalHeight.thirtyFive"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.additionalHeight.twenty", "name": "+20 ft." },
+    { "id": "ss.fortress.additionalHeight.twentyFive", "name": "+25 ft." },
+    { "id": "ss.fortress.additionalHeight.thirty", "name": "+30 ft." },
+    { "id": "ss.fortress.additionalHeight.thirtyFive", "name": "+35 ft." }
+  ]
+}

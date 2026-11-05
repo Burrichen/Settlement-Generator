@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.barracksLocation",
+      "name": "Barracks Location",
+      "description": "Where the castle's guards or military personnel reside.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "simpleRooms",
+          "name": "Simple Room(s)",
+          "range": 1,
+          "description": "Members of the garrison simply sleep where there is space in the castle.",
+          "tags": ["ss.fortress.barracksLocation.simpleRooms"]
+        },
+        {
+          "id": "multipleStructures",
+          "name": "Multiple, Separate Structures",
+          "range": [2, 5],
+          "description": "The barracks are made up of multiple, smaller buildings arranged near one another, housing the garrison. The separation could be based on rank, or simple practicality.",
+          "tags": ["ss.fortress.barracksLocation.multipleStructures"]
+        },
+        {
+          "id": "singleStructure",
+          "name": "Single, Separate Structure",
+          "range": [6, 12],
+          "description": "The barracks are situated in a single, large building in the bailey of the castle, housing the garrison. Within, there could be separate quarters (for officers, training, etc.), or there could simply be common areas, used as needed.",
+          "tags": ["ss.fortress.barracksLocation.singleStructure"]
+        },
+        {
+          "id": "builtOnKeep",
+          "name": "Built-On [Keep]",
+          "range": [13, 16],
+          "description": "The barracks are attached to the fortress’ keep, and house the garrison. Within, there could be separate quarters (for officers, training, etc.), or there could simply be common areas used as needed.",
+          "tags": ["ss.fortress.barracksLocation.builtOnKeep"]
+        },
+        {
+          "id": "builtInWalls",
+          "name": "Built-In [Walls]",
+          "range": [17, 20],
+          "description": "The barracks facilities are attached to the fortress walls (in the walls if they are thick enough, attached to them if not), and house the garrison. Within, there could be separate quarters (for officers, training, etc.), or there could simply be common areas, used as needed.",
+          "tags": ["ss.fortress.barracksLocation.builtInWalls"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.barracksLocation.simpleRooms", "name": "Simple Room(s)" },
+    {
+      "id": "ss.fortress.barracksLocation.multipleStructures",
+      "name": "Multiple, Separate Structures"
+    },
+    { "id": "ss.fortress.barracksLocation.singleStructure", "name": "Single, Separate Structure" },
+    { "id": "ss.fortress.barracksLocation.builtOnKeep", "name": "Built-On [Keep]" },
+    { "id": "ss.fortress.barracksLocation.builtInWalls", "name": "Built-In [Walls]" }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.hiredHelpType",
+      "name": "Hired Help",
+      "description": "The kind of hired help a location names without saying which, then its size.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "brutesAndBrawlers",
+          "name": "Hired Help - Brutes and Brawlers",
+          "range": 1,
+          "description": "Thugs, ruffians and muscle.",
+          "tags": ["ss.city.hiredHelpType.brutesAndBrawlers"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "cloakAndDagger",
+          "name": "Hired Help - Cloak and Dagger",
+          "range": 2,
+          "description": "Assassins, thieves and spies.",
+          "tags": ["ss.city.hiredHelpType.cloakAndDagger"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "bowsAndSlings",
+          "name": "Hired Help - Bows and Slings",
+          "range": 3,
+          "description": "Archers and ranged attack specialists.",
+          "tags": ["ss.city.hiredHelpType.bowsAndSlings"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "scribesAndClerks",
+          "name": "Hired Help - Scribes and Clerks",
+          "range": 4,
+          "description": "Masters of history, literature, mathematics and/or business.",
+          "tags": ["ss.city.hiredHelpType.scribesAndClerks"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "guidesAndTrackers",
+          "name": "Hired Help - Guides and Trackers",
+          "range": 5,
+          "description": "Scouts, rangers and wilderness experts.",
+          "tags": ["ss.city.hiredHelpType.guidesAndTrackers"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "caravanAndMount",
+          "name": "Hired Help - Caravan and Mount",
+          "range": 6,
+          "description": "Specialists in transportation and journeys to various locations as well as expedition organization and management.",
+          "tags": ["ss.city.hiredHelpType.caravanAndMount"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "arcaneAcademics",
+          "name": "Hired Help - Arcane Academics",
+          "range": 7,
+          "description": "Experts in matters of magic and lore (may also be natural magic or something else; it need not be exclusively arcane).",
+          "tags": ["ss.city.hiredHelpType.arcaneAcademics"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "magicMercenaries",
+          "name": "Hired Help - Magic Mercenaries",
+          "range": 8,
+          "description": "Specialists trained the use of arcane or non-divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.city.hiredHelpType.magicMercenaries"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "priestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "range": 9,
+          "description": "Sages offering counsel in all matters of religion and the divine.",
+          "tags": ["ss.city.hiredHelpType.priestlyGuidance"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "handsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "range": 10,
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.city.hiredHelpType.handsOfTheDivine"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.hiredHelpType.brutesAndBrawlers",
+      "name": "Hired Help - Brutes and Brawlers"
+    },
+    {
+      "id": "ss.city.hiredHelpType.cloakAndDagger",
+      "name": "Hired Help - Cloak and Dagger"
+    },
+    {
+      "id": "ss.city.hiredHelpType.bowsAndSlings",
+      "name": "Hired Help - Bows and Slings"
+    },
+    {
+      "id": "ss.city.hiredHelpType.scribesAndClerks",
+      "name": "Hired Help - Scribes and Clerks"
+    },
+    {
+      "id": "ss.city.hiredHelpType.guidesAndTrackers",
+      "name": "Hired Help - Guides and Trackers"
+    },
+    {
+      "id": "ss.city.hiredHelpType.caravanAndMount",
+      "name": "Hired Help - Caravan and Mount"
+    },
+    {
+      "id": "ss.city.hiredHelpType.arcaneAcademics",
+      "name": "Hired Help - Arcane Academics"
+    },
+    {
+      "id": "ss.city.hiredHelpType.magicMercenaries",
+      "name": "Hired Help - Magic Mercenaries"
+    },
+    {
+      "id": "ss.city.hiredHelpType.priestlyGuidance",
+      "name": "Hired Help - Priestly Guidance"
+    },
+    {
+      "id": "ss.city.hiredHelpType.handsOfTheDivine",
+      "name": "Hired Help - Hands of the Divine"
+    }
+  ]
+}

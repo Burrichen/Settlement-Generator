@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.leadership",
+      "name": "Leadership",
+      "description": "Village leadership can be formal, but can also be organic or unorganized.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "noLeader",
+          "name": "No Leader",
+          "range": 1,
+          "description": "The village operates with no leadership, which could lead to unresolved disputes.",
+          "tags": ["ss.village.leadership.noLeader"]
+        },
+        {
+          "id": "naturalElder",
+          "name": "Natural Village Elder",
+          "range": 2,
+          "description": "The village recognizes a wise individual, and informally acknowledges them as an authority figure.",
+          "tags": ["ss.village.leadership.naturalElder"]
+        },
+        {
+          "id": "externalRuler",
+          "name": "External Ruler",
+          "range": 3,
+          "description": "The village owes fealty to a ruler who is located outside the village itself.",
+          "tags": ["ss.village.leadership.externalRuler"]
+        },
+        {
+          "id": "localCouncil",
+          "name": "Local Council",
+          "range": 4,
+          "description": "Prominent members of the community were chosen to lead the village collectively.",
+          "tags": ["ss.village.leadership.localCouncil"]
+        },
+        {
+          "id": "electedLeader",
+          "name": "Single, Elected Leader",
+          "range": 5,
+          "description": "The locals democratically voted for their current leader.",
+          "tags": ["ss.village.leadership.electedLeader"]
+        },
+        {
+          "id": "commune",
+          "name": "Anarcho-Syndicalist Commune",
+          "range": 6,
+          "description": "The members of the village take turns as a sort of executive officer for the week.",
+          "tags": ["ss.village.leadership.commune"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.leadership.noLeader", "name": "No Leader" },
+    { "id": "ss.village.leadership.naturalElder", "name": "Natural Village Elder" },
+    { "id": "ss.village.leadership.externalRuler", "name": "External Ruler" },
+    { "id": "ss.village.leadership.localCouncil", "name": "Local Council" },
+    { "id": "ss.village.leadership.electedLeader", "name": "Single, Elected Leader" },
+    { "id": "ss.village.leadership.commune", "name": "Anarcho-Syndicalist Commune" }
+  ]
+}

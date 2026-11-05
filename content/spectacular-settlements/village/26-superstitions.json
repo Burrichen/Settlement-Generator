@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.superstitions",
+      "name": "Superstitions",
+      "description": "Extra Intrigue. Something the locals believe, usually about health, productivity, luck or romance. Is the superstition true?",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "deadCat",
+          "name": "A Cat Under the Doorstep",
+          "range": 1,
+          "description": "Burying a dead cat under the doorstep is essential for a building’s prosperity.",
+          "tags": ["ss.village.superstitions.deadCat"]
+        },
+        {
+          "id": "halfAChicken",
+          "name": "Half a Chicken",
+          "range": 2,
+          "description": "Half a chicken will cure any number of ailments (from plague, to pimples) when tied to the afflicted area.",
+          "tags": ["ss.village.superstitions.halfAChicken"]
+        },
+        {
+          "id": "mirrors",
+          "name": "Facing Mirrors",
+          "range": 3,
+          "description": "Placing mirrors, or large reflective objects, opposite one another in a room can open an invisible doorway for devils.",
+          "tags": ["ss.village.superstitions.mirrors"]
+        },
+        {
+          "id": "mistletoe",
+          "name": "Mistletoe Above the Lintel",
+          "range": 4,
+          "description": "Hanging mistletoe above the lintel is a sacred oath that the host will harm none who enter.",
+          "tags": ["ss.village.superstitions.mistletoe"]
+        },
+        {
+          "id": "knifePoint",
+          "name": "Knife Point-Down",
+          "range": 5,
+          "description": "Never stick a knife point-down into wood, or a cutting block, as it invites acts of violence among those nearby.",
+          "tags": ["ss.village.superstitions.knifePoint"]
+        },
+        {
+          "id": "cabbages",
+          "name": "Spirits in the Cabbages",
+          "range": 6,
+          "description": "Evil spirits can lurk within the leaves of cabbages and sprouts; you must carve a holy sign into the bottom before cooking them.",
+          "tags": ["ss.village.superstitions.cabbages"]
+        },
+        {
+          "id": "windingPath",
+          "name": "A Winding Path Home",
+          "range": 7,
+          "description": "After visiting a grave or cemetery, one must take a winding path home, making stops along the way, in order to lose any tag-along spirits.",
+          "tags": ["ss.village.superstitions.windingPath"]
+        },
+        {
+          "id": "knifeGift",
+          "name": "A Knife as a Gift",
+          "range": 8,
+          "description": "Giving a knife as a gift will sever a friendship, so they must always be symbolically paid for.",
+          "tags": ["ss.village.superstitions.knifeGift"]
+        },
+        {
+          "id": "dullScissors",
+          "name": "Dull Scissors",
+          "range": 9,
+          "description": "Never use dull scissors as, if you do, you risk accidentally cutting the thread tethering your soul to your body.",
+          "tags": ["ss.village.superstitions.dullScissors"]
+        },
+        {
+          "id": "fullName",
+          "name": "Secret Middle Names",
+          "range": 10,
+          "description": "Knowing your full name allows those who wish you ill to put a curse on you, so keep your middle names secret.",
+          "tags": ["ss.village.superstitions.fullName"]
+        },
+        {
+          "id": "carrionBird",
+          "name": "A Carrion Bird",
+          "range": 11,
+          "description": "A carrion bird landing in front of you means you, or someone close to you, will die soon.",
+          "tags": ["ss.village.superstitions.carrionBird"]
+        },
+        {
+          "id": "magpie",
+          "name": "A Single Magpie",
+          "range": 12,
+          "description": "A single magpie is bad luck, but saluting the lone magpie (‘Good morning Mr. Magpie, how’s your wife?’) will turn bad luck into good.",
+          "tags": ["ss.village.superstitions.magpie"]
+        },
+        {
+          "id": "dice",
+          "name": "Never Grab the Dice",
+          "range": 13,
+          "description": "In games, never grab the dice. The owner of the dice must give them to the first person who must roll, who must pass them on and so on. Doing otherwise will curse the dice for a fortnight.",
+          "tags": ["ss.village.superstitions.dice"]
+        },
+        {
+          "id": "secondLamp",
+          "name": "A Second Lamp",
+          "range": 14,
+          "description": "A pregnant woman must not go out in the evenings, lest the overwhelming darkness taint the child. If she must go out, she must carry a second lamp directly in front of her stomach, to protect the baby.",
+          "tags": ["ss.village.superstitions.secondLamp"]
+        },
+        {
+          "id": "wishingWell",
+          "name": "The Wishing Well",
+          "range": 15,
+          "description": "When making a wish at a well, the value of coin you throw in should be commensurate with that of your wish.",
+          "tags": ["ss.village.superstitions.wishingWell"]
+        },
+        {
+          "id": "sirOrMadam",
+          "name": "Sir or Madam",
+          "range": 16,
+          "description": "When speaking with adult men or women, it is bad luck to not address them as ‘sir’ or ‘madam’, at least once, during the exchange.",
+          "tags": ["ss.village.superstitions.sirOrMadam"]
+        },
+        {
+          "id": "firstStrike",
+          "name": "The First Strike",
+          "range": 17,
+          "description": "When mining or cutting stone, the chips from the first strike of the day must be pocketed by the one who struck, lest earth spirits feel taken for granted.",
+          "tags": ["ss.village.superstitions.firstStrike"]
+        },
+        {
+          "id": "dawnAndDusk",
+          "name": "Love at Dawn or Dusk",
+          "range": 18,
+          "description": "Proclaiming new love at dawn or dusk is bad luck.",
+          "tags": ["ss.village.superstitions.dawnAndDusk"]
+        },
+        {
+          "id": "doorFrame",
+          "name": "Kissing the Door Frame",
+          "range": 19,
+          "description": "Kissing the door frame of your house upon entry or exit asks the gods’ protection upon it.",
+          "tags": ["ss.village.superstitions.doorFrame"]
+        },
+        {
+          "id": "emptyGlass",
+          "name": "The Empty Glass",
+          "range": 20,
+          "description": "Never leave an empty spirits glass or cup right-side-up, lest an actual spirit attempt to fill the void, inhabiting the body of the next drinker.",
+          "tags": ["ss.village.superstitions.emptyGlass"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.superstitions.deadCat", "name": "A Cat Under the Doorstep" },
+    { "id": "ss.village.superstitions.halfAChicken", "name": "Half a Chicken" },
+    { "id": "ss.village.superstitions.mirrors", "name": "Facing Mirrors" },
+    { "id": "ss.village.superstitions.mistletoe", "name": "Mistletoe Above the Lintel" },
+    { "id": "ss.village.superstitions.knifePoint", "name": "Knife Point-Down" },
+    { "id": "ss.village.superstitions.cabbages", "name": "Spirits in the Cabbages" },
+    { "id": "ss.village.superstitions.windingPath", "name": "A Winding Path Home" },
+    { "id": "ss.village.superstitions.knifeGift", "name": "A Knife as a Gift" },
+    { "id": "ss.village.superstitions.dullScissors", "name": "Dull Scissors" },
+    { "id": "ss.village.superstitions.fullName", "name": "Secret Middle Names" },
+    { "id": "ss.village.superstitions.carrionBird", "name": "A Carrion Bird" },
+    { "id": "ss.village.superstitions.magpie", "name": "A Single Magpie" },
+    { "id": "ss.village.superstitions.dice", "name": "Never Grab the Dice" },
+    { "id": "ss.village.superstitions.secondLamp", "name": "A Second Lamp" },
+    { "id": "ss.village.superstitions.wishingWell", "name": "The Wishing Well" },
+    { "id": "ss.village.superstitions.sirOrMadam", "name": "Sir or Madam" },
+    { "id": "ss.village.superstitions.firstStrike", "name": "The First Strike" },
+    { "id": "ss.village.superstitions.dawnAndDusk", "name": "Love at Dawn or Dusk" },
+    { "id": "ss.village.superstitions.doorFrame", "name": "Kissing the Door Frame" },
+    { "id": "ss.village.superstitions.emptyGlass", "name": "The Empty Glass" }
+  ]
+}

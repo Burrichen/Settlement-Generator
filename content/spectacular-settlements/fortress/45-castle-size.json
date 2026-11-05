@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.castleSize",
+      "name": "Castle Size",
+      "description": "A visitor's general impression of the castle as much as its land. Its Base Size Modifier (BSM) sets the towers and outbuildings (the keep's BSM is not used here).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [1, 6],
+          "description": "BSM 1.",
+          "tags": ["ss.fortress.castleSize.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "BSM 2.",
+          "tags": ["ss.fortress.castleSize.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 19],
+          "description": "BSM 3.",
+          "tags": ["ss.fortress.castleSize.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": 20,
+          "description": "BSM 4.",
+          "tags": ["ss.fortress.castleSize.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.castleSize.small", "name": "Small" },
+    { "id": "ss.fortress.castleSize.medium", "name": "Medium" },
+    { "id": "ss.fortress.castleSize.large", "name": "Large" },
+    { "id": "ss.fortress.castleSize.veryLarge", "name": "Very Large" }
+  ]
+}

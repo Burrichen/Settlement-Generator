@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.marketSquare",
+      "name": "Market Square",
+      "description": "Every capital has a non-district market square where typical goods can be found.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "tight",
+          "name": "Tight",
+          "range": [1, 2],
+          "description": "Only room for a few vendor stalls.",
+          "tags": ["ss.capital.marketSquare.tight"]
+        },
+        {
+          "id": "ample",
+          "name": "Ample",
+          "range": [3, 4],
+          "description": "Room for a fair number of vendor stalls.",
+          "tags": ["ss.capital.marketSquare.ample"]
+        },
+        {
+          "id": "spacious",
+          "name": "Spacious",
+          "range": [5, 6],
+          "description": "Room for lots of vendor stalls.",
+          "tags": ["ss.capital.marketSquare.spacious"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.marketSquare.tight",
+      "name": "Tight"
+    },
+    {
+      "id": "ss.capital.marketSquare.ample",
+      "name": "Ample"
+    },
+    {
+      "id": "ss.capital.marketSquare.spacious",
+      "name": "Spacious"
+    }
+  ]
+}

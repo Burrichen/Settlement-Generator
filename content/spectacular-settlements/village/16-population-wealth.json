@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.populationWealth",
+      "name": "Population Wealth",
+      "description": "Modified by Condition and Hardship Type/Outcome. Modifies Crime. Consider how the village's resources affect its wealth.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "destitute",
+          "name": "Destitute",
+          "range": [1, 2],
+          "description": "Most of the population consistently lacks the barest essentials of what they need to survive. (-2 to crime roll)",
+          "tags": ["ss.village.populationWealth.destitute"]
+        },
+        {
+          "id": "impoverished",
+          "name": "Impoverished",
+          "range": [3, 6],
+          "description": "Around half of the population struggles to carve out even a meager existence. (-1 to crime roll)",
+          "tags": ["ss.village.populationWealth.impoverished"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Most of the population have enough to live a modest life. (+0 to crime roll)",
+          "tags": ["ss.village.populationWealth.average"]
+        },
+        {
+          "id": "prosperous",
+          "name": "Prosperous",
+          "range": [15, 17],
+          "description": "Most of the population has enough to live a good life and, of them, a fair amount can even live comfortably. (-1 to crime roll)",
+          "tags": ["ss.village.populationWealth.prosperous"]
+        },
+        {
+          "id": "wealthy",
+          "name": "Wealthy",
+          "range": [18, 19],
+          "description": "The villagers are well off, perhaps even able to indulge once in a while. (-2 to crime roll)",
+          "tags": ["ss.village.populationWealth.wealthy"]
+        },
+        {
+          "id": "affluent",
+          "name": "Affluent",
+          "range": 20,
+          "description": "The villagers have plenty of disposable income and want for absolutely nothing. (-3 to crime roll)",
+          "tags": ["ss.village.populationWealth.affluent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.populationWealth.destitute",
+      "name": "Destitute",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 2 }]
+    },
+    {
+      "id": "ss.village.populationWealth.impoverished",
+      "name": "Impoverished",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    { "id": "ss.village.populationWealth.average", "name": "Average" },
+    {
+      "id": "ss.village.populationWealth.prosperous",
+      "name": "Prosperous",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    {
+      "id": "ss.village.populationWealth.wealthy",
+      "name": "Wealthy",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 2 }]
+    },
+    {
+      "id": "ss.village.populationWealth.affluent",
+      "name": "Affluent",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 3 }]
+    }
+  ]
+}

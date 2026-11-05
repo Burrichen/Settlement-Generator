@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.warrensKnown",
+      "name": "Subterranean Warrens",
+      "description": "Whether the capital knows about its subterranean warrens: 1-3 known, 4-6 not known.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "known",
+          "name": "Known to the Capital",
+          "range": [1, 3],
+          "description": "It is known to the capital.",
+          "tags": ["ss.capital.warrensKnown.known"]
+        },
+        {
+          "id": "unknown",
+          "name": "Not Known About",
+          "range": [4, 6],
+          "description": "It is not known about.",
+          "tags": ["ss.capital.warrensKnown.unknown"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.warrensKnown.known",
+      "name": "Known to the Capital"
+    },
+    {
+      "id": "ss.capital.warrensKnown.unknown",
+      "name": "Not Known About"
+    }
+  ]
+}

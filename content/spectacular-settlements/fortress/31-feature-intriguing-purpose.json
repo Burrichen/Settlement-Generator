@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureIntriguingPurpose",
+      "name": "Intriguing Purpose",
+      "description": "Special Feature specifics: Intriguing Purpose.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "protection",
+          "name": "Protection",
+          "range": 1,
+          "description": "The fortress was built to keep something safe. Whatever that something is, it is no secret that it resides in the fortress.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.protection"]
+        },
+        {
+          "id": "hiding",
+          "name": "Hiding",
+          "range": 2,
+          "description": "The fortress was built to keep something from being found.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.hiding"]
+        },
+        {
+          "id": "hint",
+          "name": "Hint",
+          "range": 3,
+          "description": "The fortress was built to act as a clue to some greater mystery.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.hint"]
+        },
+        {
+          "id": "instruction",
+          "name": "Instruction",
+          "range": 4,
+          "description": "The fortress was built with a lesson in mind, to teach those who would look upon it.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.instruction"]
+        },
+        {
+          "id": "imprisonment",
+          "name": "Imprisonment",
+          "range": 5,
+          "description": "The fortress was built to prevent something from getting into others’ hands, or from being unleashed on the wider world.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.imprisonment"]
+        },
+        {
+          "id": "connection",
+          "name": "Connection",
+          "range": 6,
+          "description": "The fortress was built to accommodate a magical or extraplanar portal.",
+          "tags": ["ss.fortress.featureIntriguingPurpose.connection"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureIntriguingPurpose.protection", "name": "Protection" },
+    { "id": "ss.fortress.featureIntriguingPurpose.hiding", "name": "Hiding" },
+    { "id": "ss.fortress.featureIntriguingPurpose.hint", "name": "Hint" },
+    { "id": "ss.fortress.featureIntriguingPurpose.instruction", "name": "Instruction" },
+    { "id": "ss.fortress.featureIntriguingPurpose.imprisonment", "name": "Imprisonment" },
+    { "id": "ss.fortress.featureIntriguingPurpose.connection", "name": "Connection" }
+  ]
+}

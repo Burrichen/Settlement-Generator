@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.priority",
+      "name": "Priority",
+      "description": "An idea of particular importance within the town itself; it may have been founded around it.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "military",
+          "name": "Military",
+          "range": 1,
+          "description": "The town prioritizes defenses and law enforcement. (+1 to fortification roll) (+1 to law enforcement roll)",
+          "tags": ["ss.town.priority.military"]
+        },
+        {
+          "id": "government",
+          "name": "Government",
+          "range": 2,
+          "description": "The town prioritizes structure, order, and law. (+1 to law enforcement roll) (When rolling on the leadership table, reroll any results from 91-100.) (Free location: Non-Commercial - Place of Government)",
+          "tags": ["ss.town.priority.government"]
+        },
+        {
+          "id": "production",
+          "name": "Production",
+          "range": 3,
+          "description": "The town prioritizes generation and movement of resources. (Roll a d4 instead of a d8 on the specialty table.)",
+          "tags": ["ss.town.priority.production"]
+        },
+        {
+          "id": "economic",
+          "name": "Economic",
+          "range": 4,
+          "description": "The town prioritizes their market, ensuring a large area, wide streets, more shops, and lodging. (+2 to market square roll) (When checking the commercial locations table, consider your town 1 size category larger)",
+          "tags": ["ss.town.priority.economic"]
+        },
+        {
+          "id": "religious",
+          "name": "Religious",
+          "range": 5,
+          "description": "The town contains substantial temples in prominent locations. (Free location: Non-Commercial - Place of Worship and +5 to its place of worship size roll)",
+          "tags": ["ss.town.priority.religious"]
+        },
+        {
+          "id": "magic",
+          "name": "Magic",
+          "range": 6,
+          "description": "The town is focused on some form of magical pursuit. (Free location: Shop - Magic Shop [d6]: 1: Armor 2: Books 3: Clothing 4: Jewelry 5: Weapons 6: Misc. & Curiosities)",
+          "tags": ["ss.town.priority.magic"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.priority.military",
+      "name": "Military",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.fortification",
+          "amount": 1
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.town.lawEnforcement",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.priority.government",
+      "name": "Government",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.lawEnforcement",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.priority.production",
+      "name": "Production"
+    },
+    {
+      "id": "ss.town.priority.economic",
+      "name": "Economic",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.marketSquare",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.priority.religious",
+      "name": "Religious"
+    },
+    {
+      "id": "ss.town.priority.magic",
+      "name": "Magic"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.styleAmplification",
+      "name": "Style Amplification",
+      "description": "How upgrading to a stronghold amplifies the castle's style. Apply the listed changes to your keep and castle; Bristling Defenses and Magical Forms roll their extra defenses.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "additionalWall",
+          "name": "Additional Curtain Wall",
+          "range": 1,
+          "description": "The entire fortification is surrounded by an additional wall. Castle: thickness and height of this new curtain wall are equal to (or, if you prefer, less than) that of your other curtain walls.",
+          "tags": ["ss.fortress.styleAmplification.additionalWall"]
+        },
+        {
+          "id": "lowHulk",
+          "name": "Low Hulk",
+          "range": 2,
+          "description": "The fortress favors reinforcement over height, creating a low-slung, brutish construction. Keep: -1 floor (min. 1 above-ground floor, 1 cellar); if box-shaped, increase floor area by 2x2 squares; if round, by 2 squares in diameter; increase exterior wall thickness by 5 feet. Castle: reduce curtain wall height and tower height by 10 feet (to a minimum of 10 feet); increase curtain wall thickness by 5 feet; additional curtain wall defenses: Batters.",
+          "tags": ["ss.fortress.styleAmplification.lowHulk"]
+        },
+        {
+          "id": "greatDrums",
+          "name": "Great Drums",
+          "range": 3,
+          "description": "The keep, towers, and curtain walls are all built with curving surfaces to help deflect both weaponry and weather. (Increase all thickness rolls by one step.) Keep: if box-shaped, shape is now round (use diameter for floor area); increase exterior wall thickness by 5 feet. Castle: if box-shaped, all curtain wall towers are now round (use diameter for floor area); increase curtain wall thickness by 5 feet.",
+          "tags": ["ss.fortress.styleAmplification.greatDrums"]
+        },
+        {
+          "id": "tiered",
+          "name": "Tiered",
+          "range": 4,
+          "description": "A heavy wall surrounds the perimeter, at ground level, and the fortress rises in stepped elevation to a high peak. Fortifications and internal structures line the steps. Keep: +1 floor. Castle: increase curtain wall thickness of outermost curtain wall by 5 feet; increase curtain wall height and tower height by 5 feet.",
+          "tags": ["ss.fortress.styleAmplification.tiered"]
+        },
+        {
+          "id": "massiveWalls",
+          "name": "Massive Curtain Walls",
+          "range": 5,
+          "description": "The fortress’ curtain walls, and keep exterior walls, are huge. Castle: increase curtain wall thickness by 10 feet; increase curtain wall height and tower height by 10 feet.",
+          "tags": ["ss.fortress.styleAmplification.massiveWalls"]
+        },
+        {
+          "id": "bristlingDefenses",
+          "name": "Bristling Defenses",
+          "range": 6,
+          "description": "There are more defenses than there otherwise might be. Castle: roll 1 additional time on the curtain wall defenses table.",
+          "tags": ["ss.fortress.styleAmplification.bristlingDefenses"],
+          "then_roll": ["table.ss.fortress.curtainWallDefenses"]
+        },
+        {
+          "id": "fortifiedEntries",
+          "name": "Fortified Entries",
+          "range": 7,
+          "description": "Special focus has been placed on protecting what would be the weakest points: the entrances. Keep: entry has a reinforced heavy door with a portcullis and drawbridge. Castle: the approach goes over a drawbridge, through a gatehouse, through a walled approach and across another drawbridge, before passing through the outermost wall; your gatehouses are Grand Gatehouses. (These are optional maximums - GMs may choose to select lesser options.)",
+          "tags": ["ss.fortress.styleAmplification.fortifiedEntries"]
+        },
+        {
+          "id": "greatMoat",
+          "name": "Great Moat",
+          "range": 8,
+          "description": "The exterior perimeter of the stronghold is surrounded by a massive moat. Castle: choose a moat type (dry, dry [trapped], filled or filled [trapped]); your moat is 35 feet across and 40 feet deep.",
+          "tags": ["ss.fortress.styleAmplification.greatMoat"]
+        },
+        {
+          "id": "mightyKeep",
+          "name": "Mighty Keep",
+          "range": 9,
+          "description": "The stronghold’s keep is especially robust. Keep: if box-shaped, increase floor area by 2x2 squares; if round, by 2 squares in diameter; increase exterior wall thickness by 5 feet; +1 floor.",
+          "tags": ["ss.fortress.styleAmplification.mightyKeep"]
+        },
+        {
+          "id": "watchful",
+          "name": "Watchful",
+          "range": 10,
+          "description": "Vigilance is of paramount importance. Castle: +2 towers; if box-shaped, increase floor area for all towers by 2x2 squares; if round, by 2 squares in diameter; +10 feet to tower height.",
+          "tags": ["ss.fortress.styleAmplification.watchful"]
+        },
+        {
+          "id": "underCover",
+          "name": "Under Cover",
+          "range": 11,
+          "description": "The wall-walks are covered with permanent fortifications, allowing for safer patrols and easier defense. Castle: increase curtain wall thickness by 5 feet; add ‘Machicolations’ to curtain wall defenses.",
+          "tags": ["ss.fortress.styleAmplification.underCover"]
+        },
+        {
+          "id": "magicalForms",
+          "name": "Magical Forms",
+          "range": 12,
+          "description": "Magical runes, symbols, or patterns were planned and worked into the construction of the stronghold itself. Castle: roll once on the magical defenses table.",
+          "tags": ["ss.fortress.styleAmplification.magicalForms"],
+          "then_roll": ["table.ss.fortress.magicalDefenses"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.styleAmplification.additionalWall", "name": "Additional Curtain Wall" },
+    { "id": "ss.fortress.styleAmplification.lowHulk", "name": "Low Hulk" },
+    { "id": "ss.fortress.styleAmplification.greatDrums", "name": "Great Drums" },
+    { "id": "ss.fortress.styleAmplification.tiered", "name": "Tiered" },
+    { "id": "ss.fortress.styleAmplification.massiveWalls", "name": "Massive Curtain Walls" },
+    { "id": "ss.fortress.styleAmplification.bristlingDefenses", "name": "Bristling Defenses" },
+    { "id": "ss.fortress.styleAmplification.fortifiedEntries", "name": "Fortified Entries" },
+    { "id": "ss.fortress.styleAmplification.greatMoat", "name": "Great Moat" },
+    { "id": "ss.fortress.styleAmplification.mightyKeep", "name": "Mighty Keep" },
+    { "id": "ss.fortress.styleAmplification.watchful", "name": "Watchful" },
+    { "id": "ss.fortress.styleAmplification.underCover", "name": "Under Cover" },
+    { "id": "ss.fortress.styleAmplification.magicalForms", "name": "Magical Forms" }
+  ]
+}

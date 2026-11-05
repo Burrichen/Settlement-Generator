@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.designTheme",
+      "name": "Design Theme",
+      "description": "What the builder wanted the fortress's design to project.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "power",
+          "name": "Power",
+          "range": 1,
+          "description": "Strength and fortitude.",
+          "tags": ["ss.fortress.designTheme.power"]
+        },
+        {
+          "id": "glory",
+          "name": "Glory",
+          "range": 2,
+          "description": "Prestige and triumph.",
+          "tags": ["ss.fortress.designTheme.glory"]
+        },
+        {
+          "id": "refuge",
+          "name": "Refuge",
+          "range": 3,
+          "description": "Welcome and safety.",
+          "tags": ["ss.fortress.designTheme.refuge"]
+        },
+        {
+          "id": "fear",
+          "name": "Fear",
+          "range": 4,
+          "description": "Dread and insignificance.",
+          "tags": ["ss.fortress.designTheme.fear"]
+        },
+        {
+          "id": "grace",
+          "name": "Grace",
+          "range": 5,
+          "description": "Beauty and elegance.",
+          "tags": ["ss.fortress.designTheme.grace"]
+        },
+        {
+          "id": "wealth",
+          "name": "Wealth",
+          "range": 6,
+          "description": "Luxury and opulence.",
+          "tags": ["ss.fortress.designTheme.wealth"]
+        },
+        {
+          "id": "piety",
+          "name": "Piety",
+          "range": 7,
+          "description": "Righteousness and ascendence.",
+          "tags": ["ss.fortress.designTheme.piety"]
+        },
+        {
+          "id": "practicality",
+          "name": "Practicality",
+          "range": 8,
+          "description": "Utility and function.",
+          "tags": ["ss.fortress.designTheme.practicality"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.designTheme.power", "name": "Power" },
+    { "id": "ss.fortress.designTheme.glory", "name": "Glory" },
+    { "id": "ss.fortress.designTheme.refuge", "name": "Refuge" },
+    { "id": "ss.fortress.designTheme.fear", "name": "Fear" },
+    { "id": "ss.fortress.designTheme.grace", "name": "Grace" },
+    { "id": "ss.fortress.designTheme.wealth", "name": "Wealth" },
+    { "id": "ss.fortress.designTheme.piety", "name": "Piety" },
+    { "id": "ss.fortress.designTheme.practicality", "name": "Practicality" }
+  ]
+}

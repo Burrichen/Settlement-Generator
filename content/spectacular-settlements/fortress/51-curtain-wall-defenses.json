@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.curtainWallDefenses",
+      "name": "Curtain Wall Defenses",
+      "description": "Defenses beyond the walls' crenelations, rolled by Expense (Paltry 0, Modest 1, Moderate 2, Significant 3, Extravagant 4). Magical Defenses roll their kind (reroll if the setting has no such magic).",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "batters",
+          "name": "Batters",
+          "range": 1,
+          "description": "The bottom portion of the wall slopes outward and is, therefore, much thicker. This hinders the approach of siege towers, makes undermining difficult, and stretches siege ladders to breaking point, if they can bridge the distance at all. In addition, it removes a blindspot for defenders - the area directly beneath them.",
+          "tags": ["ss.fortress.curtainWallDefenses.batters"]
+        },
+        {
+          "id": "bossing",
+          "name": "Bossing",
+          "range": 2,
+          "description": "Various stones protrude from the wall’s surface. These effectively reduce impacts, like catapult shots, that hit the bossing. A potential drawback could be making the wall easier to climb (unless the protrusions are sufficiently rounded).",
+          "tags": ["ss.fortress.curtainWallDefenses.bossing"]
+        },
+        {
+          "id": "hoardings",
+          "name": "Hoardings",
+          "range": 3,
+          "description": "Temporary, wooden shelters are constructed, protruding out on top of the walls, allowing defenders to fire directly down on attackers. These would require fireproofing (such as a covering of soaked animal skins), but can be deconstructed and stored in peacetime.",
+          "tags": ["ss.fortress.curtainWallDefenses.hoardings"]
+        },
+        {
+          "id": "machicolations",
+          "name": "Machicolations",
+          "range": 4,
+          "description": "Similar to hoardings, but built as a permanent part of the structure, allowing defenders to fire directly down on attackers. If you already have hoardings, treat them as providing overhead cover.",
+          "tags": ["ss.fortress.curtainWallDefenses.machicolations"]
+        },
+        {
+          "id": "brattice",
+          "name": "Brattice",
+          "range": 5,
+          "description": "A singular projecting space (similar to machicolations), placed over a vulnerable area, such as a passage. Like machicolations, this allows defenders to rain down attacks on an enemy directly below them, and also allows for flanking fire along the wall.",
+          "tags": ["ss.fortress.curtainWallDefenses.brattice"]
+        },
+        {
+          "id": "magical",
+          "name": "Magical Defenses",
+          "range": 6,
+          "description": "The castle is protected by something magical. If your setting allows for this level of magic, roll on the magical defenses table; if for any reason there would not be magical defenses, re-roll.",
+          "tags": ["ss.fortress.curtainWallDefenses.magical"],
+          "then_roll": ["table.ss.fortress.magicalDefenses"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.curtainWallDefenses.batters", "name": "Batters" },
+    { "id": "ss.fortress.curtainWallDefenses.bossing", "name": "Bossing" },
+    { "id": "ss.fortress.curtainWallDefenses.hoardings", "name": "Hoardings" },
+    { "id": "ss.fortress.curtainWallDefenses.machicolations", "name": "Machicolations" },
+    { "id": "ss.fortress.curtainWallDefenses.brattice", "name": "Brattice" },
+    { "id": "ss.fortress.curtainWallDefenses.magical", "name": "Magical Defenses" }
+  ]
+}

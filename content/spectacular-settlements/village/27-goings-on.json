@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.goingsOn",
+      "name": "Goings On",
+      "description": "Extra Intrigue. Interesting occurrences happening at the moment.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "workersCompensation",
+          "name": "Worker’s Compensation",
+          "range": 1,
+          "description": "A worker has been injured on the job, and folks are rushing to help them.",
+          "tags": ["ss.village.goingsOn.workersCompensation"]
+        },
+        {
+          "id": "roadMerchant",
+          "name": "Road Merchant",
+          "range": 2,
+          "description": "A travelling merchant just arrived in town, and has all kinds of unique things to show and sell.",
+          "tags": ["ss.village.goingsOn.roadMerchant"]
+        },
+        {
+          "id": "childrenMissing",
+          "name": "Children Missing",
+          "range": 3,
+          "description": "Some of the younger villagers have gone missing. How long have they been gone? What were they last seen doing?",
+          "tags": ["ss.village.goingsOn.childrenMissing"]
+        },
+        {
+          "id": "fallenRider",
+          "name": "Fallen Rider",
+          "range": 4,
+          "description": "A severely injured man in armor has ridden into the village, late at night, and fallen, unconscious, from his horse. He is wearing a tabard displaying an unfamiliar coat of arms.",
+          "tags": ["ss.village.goingsOn.fallenRider"]
+        },
+        {
+          "id": "theyreMine",
+          "name": "They’re Mine",
+          "range": 5,
+          "description": "Two villagers are competing for the hand of a local heartthrob.",
+          "tags": ["ss.village.goingsOn.theyreMine"]
+        },
+        {
+          "id": "echoesInTheDeep",
+          "name": "Echoes in the Deep",
+          "range": 6,
+          "description": "A villager swears they can hear sounds like voices coming from underground.",
+          "tags": ["ss.village.goingsOn.echoesInTheDeep"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.goingsOn.workersCompensation", "name": "Worker’s Compensation" },
+    { "id": "ss.village.goingsOn.roadMerchant", "name": "Road Merchant" },
+    { "id": "ss.village.goingsOn.childrenMissing", "name": "Children Missing" },
+    { "id": "ss.village.goingsOn.fallenRider", "name": "Fallen Rider" },
+    { "id": "ss.village.goingsOn.theyreMine", "name": "They’re Mine" },
+    { "id": "ss.village.goingsOn.echoesInTheDeep", "name": "Echoes in the Deep" }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.governingPriority",
+      "name": "Governing Priority",
+      "description": "What is of greatest importance to those running the capital.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "humanitarian",
+          "name": "Humanitarian",
+          "range": 1,
+          "description": "The leadership’s goal is to truly do right by its people. Care and compassion are their highest priorities.",
+          "tags": ["ss.capital.governingPriority.humanitarian"]
+        },
+        {
+          "id": "control",
+          "name": "Control",
+          "range": 2,
+          "description": "Absolute control is of utmost importance. All decisions are made with the aim of maintaining an iron grip on the capital and its people. (+1 to military force roll)",
+          "tags": ["ss.capital.governingPriority.control"]
+        },
+        {
+          "id": "isolationist",
+          "name": "Isolationist",
+          "range": 3,
+          "description": "The capital has no desire to get involved in the dealings of other sovereign entities. They are open and clear about this.",
+          "tags": ["ss.capital.governingPriority.isolationist"]
+        },
+        {
+          "id": "expansionist",
+          "name": "Expansionist",
+          "range": 4,
+          "description": "The capital wishes to expand its reach, bringing more regions into itself. (+1 to military force roll)",
+          "tags": ["ss.capital.governingPriority.expansionist"]
+        },
+        {
+          "id": "cloakAndDagger",
+          "name": "Cloak & Dagger",
+          "range": 5,
+          "description": "The government heavily favors pursuing its goals through the liberal use of secrecy and intrigue. These operations could be secret to all but the inner circle, or the use of these types of operations may be blatant and open within the governing body itself. (When rolling for spy network size, 1-16 = Modest; counterintelligence None is rerolled)",
+          "tags": ["ss.capital.governingPriority.cloakAndDagger"]
+        },
+        {
+          "id": "economic",
+          "name": "Economic",
+          "range": 6,
+          "description": "The capital’s leadership concerns itself largely with economic prosperity, with the further acquisition of wealth and resources the deciding factor in matters of state. (When rolling districts, choose ‘Market District’ as one of them)",
+          "tags": ["ss.capital.governingPriority.economic"]
+        },
+        {
+          "id": "enlightenment",
+          "name": "Enlightenment",
+          "range": 7,
+          "description": "The leadership prides itself on intelligence and wisdom, typically making choices that preserve culture and heritage, or reinforce the community’s access to knowledge and understanding. (When rolling districts, choose ‘Scholar District’ as one of them)",
+          "tags": ["ss.capital.governingPriority.enlightenment"]
+        },
+        {
+          "id": "industry",
+          "name": "Industry & Innovation",
+          "range": 8,
+          "description": "Those in charge are intent on staying ahead of the curve, pursuing and prioritizing modernization and new practical ideas in an effort to make the capital, and its people, more productive and efficient. (When rolling districts, choose ‘Industrial District’ as one of them)",
+          "tags": ["ss.capital.governingPriority.industry"]
+        },
+        {
+          "id": "release",
+          "name": "Release",
+          "range": 9,
+          "description": "Those at the top do not actually want to be in power. Perhaps they were elected and carried to the position by momentum, or they inherited it from birth. They might have simply been an individual (or group) the people rallied behind, but never desired to rule. Now, they just want out.",
+          "tags": ["ss.capital.governingPriority.release"]
+        },
+        {
+          "id": "religious",
+          "name": "Religious",
+          "range": 10,
+          "description": "The leadership is dedicated to a deity (or deities) and to following their tenets and core teachings. (When rolling districts, choose ‘Temple District’ for one of them)",
+          "tags": ["ss.capital.governingPriority.religious"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.governingPriority.humanitarian",
+      "name": "Humanitarian"
+    },
+    {
+      "id": "ss.capital.governingPriority.control",
+      "name": "Control",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.militaryForce",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.governingPriority.isolationist",
+      "name": "Isolationist"
+    },
+    {
+      "id": "ss.capital.governingPriority.expansionist",
+      "name": "Expansionist",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.militaryForce",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.governingPriority.cloakAndDagger",
+      "name": "Cloak & Dagger"
+    },
+    {
+      "id": "ss.capital.governingPriority.economic",
+      "name": "Economic"
+    },
+    {
+      "id": "ss.capital.governingPriority.enlightenment",
+      "name": "Enlightenment"
+    },
+    {
+      "id": "ss.capital.governingPriority.industry",
+      "name": "Industry & Innovation"
+    },
+    {
+      "id": "ss.capital.governingPriority.release",
+      "name": "Release"
+    },
+    {
+      "id": "ss.capital.governingPriority.religious",
+      "name": "Religious"
+    }
+  ]
+}

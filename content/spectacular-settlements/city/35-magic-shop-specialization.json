@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.magicShopSpecialization",
+      "name": "Magic Shop Specialization",
+      "description": "The specialization of a magic shop that names none.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "armor",
+          "name": "Armor",
+          "range": 1,
+          "tags": ["ss.city.magicShopSpecialization.armor"]
+        },
+        {
+          "id": "books",
+          "name": "Books",
+          "range": 2,
+          "tags": ["ss.city.magicShopSpecialization.books"]
+        },
+        {
+          "id": "clothing",
+          "name": "Clothing",
+          "range": 3,
+          "tags": ["ss.city.magicShopSpecialization.clothing"]
+        },
+        {
+          "id": "jewelry",
+          "name": "Jewelry",
+          "range": 4,
+          "tags": ["ss.city.magicShopSpecialization.jewelry"]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "range": 5,
+          "tags": ["ss.city.magicShopSpecialization.weapons"]
+        },
+        {
+          "id": "miscellaneousAndCuriosities",
+          "name": "Miscellaneous & Curiosities",
+          "range": 6,
+          "tags": ["ss.city.magicShopSpecialization.miscellaneousAndCuriosities"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.magicShopSpecialization.armor",
+      "name": "Armor"
+    },
+    {
+      "id": "ss.city.magicShopSpecialization.books",
+      "name": "Books"
+    },
+    {
+      "id": "ss.city.magicShopSpecialization.clothing",
+      "name": "Clothing"
+    },
+    {
+      "id": "ss.city.magicShopSpecialization.jewelry",
+      "name": "Jewelry"
+    },
+    {
+      "id": "ss.city.magicShopSpecialization.weapons",
+      "name": "Weapons"
+    },
+    {
+      "id": "ss.city.magicShopSpecialization.miscellaneousAndCuriosities",
+      "name": "Miscellaneous & Curiosities"
+    }
+  ]
+}

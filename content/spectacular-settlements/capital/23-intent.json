@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.intent",
+      "name": "Intent",
+      "description": "Why the leader lives the lifestyle that they do.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "genuine",
+          "name": "Genuine",
+          "range": [1, 8],
+          "description": "The individual lives this lifestyle because they truly believe it is good/right/acceptable to live this way. This (whether positive or negative) might be based on influences from their life, such as how they were raised, or even a sense of entitlement.",
+          "tags": ["ss.capital.intent.genuine"]
+        },
+        {
+          "id": "positiveDeception",
+          "name": "Positive Deception",
+          "range": [9, 13],
+          "description": "The individual would not typically live this lifestyle, but is doing so because they believe it will have a positive impact, such as inspiring those who see them.",
+          "tags": ["ss.capital.intent.positiveDeception"]
+        },
+        {
+          "id": "negativeDeception",
+          "name": "Negative Deception",
+          "range": [14, 18],
+          "description": "The individual would not typically live this lifestyle, but is doing so out of selfish motives, or because they are somehow being forced into this lifestyle against their will.",
+          "tags": ["ss.capital.intent.negativeDeception"]
+        },
+        {
+          "id": "unknownAlternative",
+          "name": "Unknown Alternative",
+          "range": [19, 20],
+          "description": "The individual is living this lifestyle because they simply do not really know (or have forgotten) how to live any other way.",
+          "tags": ["ss.capital.intent.unknownAlternative"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.intent.genuine",
+      "name": "Genuine"
+    },
+    {
+      "id": "ss.capital.intent.positiveDeception",
+      "name": "Positive Deception"
+    },
+    {
+      "id": "ss.capital.intent.negativeDeception",
+      "name": "Negative Deception"
+    },
+    {
+      "id": "ss.capital.intent.unknownAlternative",
+      "name": "Unknown Alternative"
+    }
+  ]
+}

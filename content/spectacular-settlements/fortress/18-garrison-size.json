@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.garrisonSize",
+      "name": "Garrison Size",
+      "description": "How many guards defend the fortress. Large and Maximum add Guard Bunks to the keep's starting rooms.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "minimum",
+          "name": "Minimum",
+          "range": [1, 4],
+          "description": "The garrison is the smallest necessary to do the job, so is likely overworked, or unable to handle more than absolutely vital tasks. A force this size requires few commanding officers.",
+          "tags": ["ss.fortress.garrisonSize.minimum"]
+        },
+        {
+          "id": "modest",
+          "name": "Modest",
+          "range": [5, 12],
+          "description": "The garrison’s size is large enough to sufficiently defend the fortress and allow for reasonable guard shifts.",
+          "tags": ["ss.fortress.garrisonSize.modest"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [13, 19],
+          "description": "The garrison’s size is substantial, and is more than enough to keep the fortress well-defended at all times. Guards are able to stay well-rested. (When building a keep, add ‘Guard Bunks’ to the listed starting rooms)",
+          "tags": ["ss.fortress.garrisonSize.large"]
+        },
+        {
+          "id": "maximum",
+          "name": "Maximum",
+          "range": 20,
+          "description": "The garrison’s size is the highest the fortress can sustain. (When building a keep, add ‘Guard Bunks’ to the listed starting rooms)",
+          "tags": ["ss.fortress.garrisonSize.maximum"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.garrisonSize.minimum", "name": "Minimum" },
+    { "id": "ss.fortress.garrisonSize.modest", "name": "Modest" },
+    { "id": "ss.fortress.garrisonSize.large", "name": "Large" },
+    { "id": "ss.fortress.garrisonSize.maximum", "name": "Maximum" }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.numberOfFloors",
+      "name": "Number of Floors",
+      "description": "How many floors high the keep is. A cellar counts as a floor.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "one",
+          "name": "One",
+          "range": [1, 2],
+          "description": "One above-ground floor, no cellar.",
+          "tags": ["ss.fortress.numberOfFloors.one"]
+        },
+        {
+          "id": "two",
+          "name": "Two",
+          "range": [3, 6],
+          "description": "One above-ground floor and a cellar.",
+          "tags": ["ss.fortress.numberOfFloors.two"]
+        },
+        {
+          "id": "three",
+          "name": "Three",
+          "range": [7, 13],
+          "description": "Two above-ground floors and a cellar.",
+          "tags": ["ss.fortress.numberOfFloors.three"]
+        },
+        {
+          "id": "four",
+          "name": "Four",
+          "range": [14, 17],
+          "description": "Three above-ground floors and a cellar.",
+          "tags": ["ss.fortress.numberOfFloors.four"]
+        },
+        {
+          "id": "five",
+          "name": "Five",
+          "range": [18, 19],
+          "description": "Four above-ground floors and a cellar.",
+          "tags": ["ss.fortress.numberOfFloors.five"]
+        },
+        {
+          "id": "six",
+          "name": "Six",
+          "range": 20,
+          "description": "Five above-ground floors and a cellar.",
+          "tags": ["ss.fortress.numberOfFloors.six"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.numberOfFloors.one", "name": "One" },
+    { "id": "ss.fortress.numberOfFloors.two", "name": "Two" },
+    { "id": "ss.fortress.numberOfFloors.three", "name": "Three" },
+    { "id": "ss.fortress.numberOfFloors.four", "name": "Four" },
+    { "id": "ss.fortress.numberOfFloors.five", "name": "Five" },
+    { "id": "ss.fortress.numberOfFloors.six", "name": "Six" }
+  ]
+}

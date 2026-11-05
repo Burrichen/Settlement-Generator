@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.relationshipToLeadership",
+      "name": "Relationship to the Leadership",
+      "description": "The general attitude of the nobility towards the leadership.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "rancorous",
+          "name": "Rancorous",
+          "range": 1,
+          "description": "The nobility openly loathe and revile the leadership with impunity.",
+          "tags": ["ss.capital.relationshipToLeadership.rancorous"]
+        },
+        {
+          "id": "opposed",
+          "name": "Opposed",
+          "range": [2, 3],
+          "description": "The nobility are in contention with the current leadership, making the job of ruling even more difficult.",
+          "tags": ["ss.capital.relationshipToLeadership.opposed"]
+        },
+        {
+          "id": "disliked",
+          "name": "Disliked",
+          "range": [4, 6],
+          "description": "The nobility are not fond of the leadership, but have yet to truly cause a problem.",
+          "tags": ["ss.capital.relationshipToLeadership.disliked"]
+        },
+        {
+          "id": "tolerated",
+          "name": "Tolerated",
+          "range": [7, 9],
+          "description": "The nobility put up with the leadership, at least for the moment.",
+          "tags": ["ss.capital.relationshipToLeadership.tolerated"]
+        },
+        {
+          "id": "liked",
+          "name": "Liked",
+          "range": [10, 14],
+          "description": "The nobility like the leadership well enough; some may even be friends.",
+          "tags": ["ss.capital.relationshipToLeadership.liked"]
+        },
+        {
+          "id": "supported",
+          "name": "Supported",
+          "range": [15, 17],
+          "description": "The nobility support what the leadership is doing, and generally agree with their goals and priorities.",
+          "tags": ["ss.capital.relationshipToLeadership.supported"]
+        },
+        {
+          "id": "defended",
+          "name": "Defended",
+          "range": [18, 19],
+          "description": "The nobility not only support the leadership, but actively seek to subdue any who would challenge them.",
+          "tags": ["ss.capital.relationshipToLeadership.defended"]
+        },
+        {
+          "id": "loved",
+          "name": "Loved",
+          "range": 20,
+          "description": "The nobility are devoted to the leadership, and stand ever-ready to do their bidding.",
+          "tags": ["ss.capital.relationshipToLeadership.loved"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.relationshipToLeadership.rancorous",
+      "name": "Rancorous"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.opposed",
+      "name": "Opposed"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.disliked",
+      "name": "Disliked"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.tolerated",
+      "name": "Tolerated"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.liked",
+      "name": "Liked"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.supported",
+      "name": "Supported"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.defended",
+      "name": "Defended"
+    },
+    {
+      "id": "ss.capital.relationshipToLeadership.loved",
+      "name": "Loved"
+    }
+  ]
+}

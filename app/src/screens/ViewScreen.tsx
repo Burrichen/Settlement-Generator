@@ -100,8 +100,17 @@ export function ViewScreen() {
     }
     let live = true;
     saved.get(selectedId).then(
-      (d) => live && setDetail(d),
-      (e: unknown) => live && setError(String(e)),
+      (d) => {
+        if (!live) return;
+        setDetail(d);
+        setError(null);
+      },
+      (e: unknown) => {
+        if (!live) return;
+        // Not the previous settlement under this one's error.
+        setDetail(null);
+        setError(String(e));
+      },
     );
     return () => {
       live = false;
@@ -296,7 +305,16 @@ function DetailPane({
   const [confirmDelete, setConfirmDelete] = useState(false);
   useEffect(() => setConfirmDelete(false), [detail?.id]);
   const [tab, setTab] = useState<SettlementTab>("details");
-  if (!detail) return <p className="muted">Loading…</p>;
+  if (!detail) {
+    // A settlement that cannot be opened says why, never loads forever.
+    return error ? (
+      <p className="alert alert-inline" role="alert">
+        {error}
+      </p>
+    ) : (
+      <p className="muted">Loading…</p>
+    );
+  }
 
   // Toolbar: Left/Right move between actions; Left from the first returns
   // to the list.

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.undergroundPassages",
+      "name": "Underground Passages",
+      "description": "Structures or passages through the underside of the capital.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 4],
+          "description": "There are no significant passages underneath the capital.",
+          "tags": ["ss.capital.undergroundPassages.none"]
+        },
+        {
+          "id": "sewers",
+          "name": "Sewers",
+          "range": [5, 14],
+          "description": "A network of drains, pipes, and trenches lies beneath the capital. Base the sewer’s condition upon that of the settlement, if they were built concurrently. They may pre-date the current capital city.",
+          "tags": ["ss.capital.undergroundPassages.sewers"]
+        },
+        {
+          "id": "naturalCaves",
+          "name": "Natural Caves",
+          "range": [15, 17],
+          "description": "Below the capital, natural cave systems can be found that may, or may not, have been discovered yet.",
+          "tags": ["ss.capital.undergroundPassages.naturalCaves"]
+        },
+        {
+          "id": "tunnels",
+          "name": "Tunnels",
+          "range": [18, 19],
+          "description": "A series of tunnels exist beneath the capital. This could be for maintenance, defensive, or clandestine purposes and may, or may not, have been purpose-built for the current settlement. They could potentially have been dug by enemy forces, either recently or long ago.",
+          "tags": ["ss.capital.undergroundPassages.tunnels"]
+        },
+        {
+          "id": "forgottenCrypts",
+          "name": "Forgotten Crypts",
+          "range": 20,
+          "description": "Old burial chambers and tombs are housed deep beneath the capital, likely unknown to the general populace.",
+          "tags": ["ss.capital.undergroundPassages.forgottenCrypts"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.undergroundPassages.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.undergroundPassages.sewers",
+      "name": "Sewers"
+    },
+    {
+      "id": "ss.capital.undergroundPassages.naturalCaves",
+      "name": "Natural Caves"
+    },
+    {
+      "id": "ss.capital.undergroundPassages.tunnels",
+      "name": "Tunnels"
+    },
+    {
+      "id": "ss.capital.undergroundPassages.forgottenCrypts",
+      "name": "Forgotten Crypts"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.residence",
+      "name": "Residence",
+      "description": "Modified by Lifestyle. The kind of residence the leader lives in; consider placing it once the districts are known.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "modestHouse",
+          "name": "Modest House",
+          "range": 1,
+          "description": "The leader’s residence is just enough to accommodate their needs. This may garner positivity among the poor or frugal, but may also draw derision from the wealthy or extravagant.",
+          "tags": ["ss.capital.residence.modestHouse"]
+        },
+        {
+          "id": "largeHouse",
+          "name": "Large House",
+          "range": 2,
+          "description": "The leader’s residence is large enough to make an impression and, potentially, have some spare rooms.",
+          "tags": ["ss.capital.residence.largeHouse"]
+        },
+        {
+          "id": "smallMansion",
+          "name": "Small Mansion",
+          "range": 3,
+          "description": "The leader’s residence likely has several spare rooms, as well as space for a recreational room or two.",
+          "tags": ["ss.capital.residence.smallMansion"]
+        },
+        {
+          "id": "largeMansion",
+          "name": "Large Mansion",
+          "range": 4,
+          "description": "The leader’s residence likely has many spare rooms, as well as plenty of space for recreational rooms.",
+          "tags": ["ss.capital.residence.largeMansion"]
+        },
+        {
+          "id": "smallEstateInside",
+          "name": "Small Estate (Inside the Capital)",
+          "range": 5,
+          "description": "The leader’s main residence is notable, and on a small amount of land. The property is likely bordered with hedges, fencing, or a wall.",
+          "tags": ["ss.capital.residence.smallEstateInside"]
+        },
+        {
+          "id": "smallEstateOutside",
+          "name": "Small Estate (Outside the Capital)",
+          "range": 6,
+          "description": "The leader’s main residence is notable, with generous grounds, large enough to graze livestock or ride for leisure. The property may or may not be walled, depending on the danger of the area and the disposition of the resident.",
+          "tags": ["ss.capital.residence.smallEstateOutside"]
+        },
+        {
+          "id": "largeEstateInside",
+          "name": "Large Estate (Inside the Capital)",
+          "range": 7,
+          "description": "The leader’s main residence is substantial, and surrounded by modest grounds. Staff probably have apartments within the property. The property is likely bordered with hedges, fencing, or a wall.",
+          "tags": ["ss.capital.residence.largeEstateInside"]
+        },
+        {
+          "id": "largeEstateOutside",
+          "name": "Large Estate (Outside the Capital)",
+          "range": 8,
+          "description": "The leader’s main residence is substantial, with considerable grounds large enough to graze large quantities of livestock, or even hunt. Staff probably have small dwellings on the property. The property may, or may not, be walled, depending on the danger in the area and the desires of the residents.",
+          "tags": ["ss.capital.residence.largeEstateOutside"]
+        },
+        {
+          "id": "palaceInside",
+          "name": "Palace (Inside the Capital)",
+          "range": 9,
+          "description": "The leader’s main residence is grand and palatial, with a great many opulent and comfortable rooms. It occupies a significant amount of the land in the capital. Staff probably have their own wing, or floor, within the property. The palace is designed as a luxury residence, not a defensible military structure.",
+          "tags": ["ss.capital.residence.palaceInside"]
+        },
+        {
+          "id": "palaceOutside",
+          "name": "Palace (Outside the Capital)",
+          "range": 10,
+          "description": "The leader’s main residence is grand and palatial, with a great many opulent and comfortable rooms, as well as massive amounts of land used for a mixture of practical and leisurely uses. The estate also contains multiple smaller dwellings, probably for staff. The palace is designed as a luxury residence, not a defensible military structure.",
+          "tags": ["ss.capital.residence.palaceOutside"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.residence.modestHouse",
+      "name": "Modest House"
+    },
+    {
+      "id": "ss.capital.residence.largeHouse",
+      "name": "Large House"
+    },
+    {
+      "id": "ss.capital.residence.smallMansion",
+      "name": "Small Mansion"
+    },
+    {
+      "id": "ss.capital.residence.largeMansion",
+      "name": "Large Mansion"
+    },
+    {
+      "id": "ss.capital.residence.smallEstateInside",
+      "name": "Small Estate (Inside the Capital)"
+    },
+    {
+      "id": "ss.capital.residence.smallEstateOutside",
+      "name": "Small Estate (Outside the Capital)"
+    },
+    {
+      "id": "ss.capital.residence.largeEstateInside",
+      "name": "Large Estate (Inside the Capital)"
+    },
+    {
+      "id": "ss.capital.residence.largeEstateOutside",
+      "name": "Large Estate (Outside the Capital)"
+    },
+    {
+      "id": "ss.capital.residence.palaceInside",
+      "name": "Palace (Inside the Capital)"
+    },
+    {
+      "id": "ss.capital.residence.palaceOutside",
+      "name": "Palace (Outside the Capital)"
+    }
+  ]
+}

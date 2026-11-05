@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.leadership",
+      "name": "Leadership",
+      "description": "Who controls the city.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "electedCouncil",
+          "name": "Elected Council",
+          "range": [1, 15],
+          "description": "Prominent members of the community were chosen to lead the city collectively.",
+          "tags": ["ss.city.leadership.electedCouncil"]
+        },
+        {
+          "id": "mayor",
+          "name": "Mayor",
+          "range": [16, 30],
+          "description": "The locals democratically voted for their current leader.",
+          "tags": ["ss.city.leadership.mayor"]
+        },
+        {
+          "id": "hereditary",
+          "name": "Hereditary",
+          "range": [31, 45],
+          "description": "A non-elected leader is in power, by virtue of their bloodline.",
+          "tags": ["ss.city.leadership.hereditary"]
+        },
+        {
+          "id": "merchantMonarch",
+          "name": "Merchant Monarch",
+          "range": [46, 60],
+          "description": "The wealthiest merchant in the city leads by default. (Regardless of population wealth, they are, at least, considered wealthy.) (When rolling districts, choose ‘Market District’ as one of them)",
+          "tags": ["ss.city.leadership.merchantMonarch"]
+        },
+        {
+          "id": "militaryOfficer",
+          "name": "Military Officer",
+          "range": [61, 75],
+          "description": "The city is controlled by a current or ex-leader of a military group. (+1 to law enforcement roll)",
+          "tags": ["ss.city.leadership.militaryOfficer"]
+        },
+        {
+          "id": "oligarchy",
+          "name": "Oligarchy",
+          "range": [76, 90],
+          "description": "A few top individuals hold sway, collectively, over the city. [Roll 1d4]: 1: merchants (plutocracy); 2: mages (magocracy); 3: priests (theocracy); 4: other small group. (When rolling districts, choose one that best fits your leadership as one of them)",
+          "tags": ["ss.city.leadership.oligarchy"],
+          "then_roll": ["table.ss.city.oligarchy"]
+        },
+        {
+          "id": "underworld",
+          "name": "Underworld or Criminal Enterprise",
+          "range": [91, 99],
+          "description": "A criminal, or group of criminals, either publicly, or privately, controls the city. (-2 to general crime roll) (Roll on organized crime table regardless of general crime table result)",
+          "tags": ["ss.city.leadership.underworld"]
+        },
+        {
+          "id": "commune",
+          "name": "Anarcho-Syndicalist Commune",
+          "range": 100,
+          "description": "The members of the city take turns as a sort of executive officer for the week.",
+          "tags": ["ss.city.leadership.commune"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.leadership.electedCouncil",
+      "name": "Elected Council"
+    },
+    {
+      "id": "ss.city.leadership.mayor",
+      "name": "Mayor"
+    },
+    {
+      "id": "ss.city.leadership.hereditary",
+      "name": "Hereditary"
+    },
+    {
+      "id": "ss.city.leadership.merchantMonarch",
+      "name": "Merchant Monarch"
+    },
+    {
+      "id": "ss.city.leadership.militaryOfficer",
+      "name": "Military Officer",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.leadership.oligarchy",
+      "name": "Oligarchy"
+    },
+    {
+      "id": "ss.city.leadership.underworld",
+      "name": "Underworld or Criminal Enterprise",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.leadership.commune",
+      "name": "Anarcho-Syndicalist Commune"
+    }
+  ]
+}

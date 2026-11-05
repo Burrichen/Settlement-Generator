@@ -2045,7 +2045,7 @@ impl TableEditor {
             Act::Description => self.text("Description", "", &self.draft.description.clone(), act),
             Act::Dice => self.text(
                 "Dice",
-                "d4, d6, d8, d10, d12, d20, d100, or sums such as 2d6 or 1d8+1d4.",
+                "d2, d4, d6, d8, d10, d12, d20, d100, or sums such as 2d6 or 1d8+1d4.",
                 &self.draft.dice.clone().unwrap_or_default(),
                 act,
             ),

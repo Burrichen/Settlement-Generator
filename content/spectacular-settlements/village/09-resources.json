@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.resources",
+      "name": "Resources",
+      "description": "How the villagers get by, and what the village exports. Each resource lists the locations related to it. Optional resource (choose it if it suits the village; not on the dice): Ice, kept in an ice house.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "crops",
+          "name": "Crops",
+          "range": 1,
+          "description": "The village is surrounded by fields or orchards that produce wheat, barley, grapes, vegetables, fruit, etc. These are harvested in their raw forms, and the excess is sold or traded. Location(s): farm(s), mill(s) and/or storage locations (silos or barns).",
+          "tags": ["ss.village.resources.crops"]
+        },
+        {
+          "id": "dairy",
+          "name": "Dairy",
+          "range": 2,
+          "description": "Pastures contain cows, goats, or sheep for milk, or chickens (or similar) for eggs. Additional animals may also be bred for sale. Due to milk’s tendency to spoil quickly, it might only be sold at nearby towns or markets. If the produce needs to travel longer distances, perhaps the village makes butter, cream, or cheese instead. Location(s): cellar, creamery, field/barn/coop.",
+          "tags": ["ss.village.resources.dairy"]
+        },
+        {
+          "id": "herbs",
+          "name": "Herbs",
+          "range": 3,
+          "description": "Herbs grown in the village are used for alchemy, medicine or, simply, cooking, and are typically tended by an individual, due to their more specialized, and potentially dangerous, nature. The individual may have had some degree of medical, or arcane, training. Unless the village is extremely small, it is unlikely that herbs are a village’s sole focus. Location: herbalist’s hut and gardens.",
+          "tags": ["ss.village.resources.herbs"]
+        },
+        {
+          "id": "fishing",
+          "name": "Fishing",
+          "range": 4,
+          "description": "The villagers utilize the bounty of the nearest stream, river, lake, or ocean. The village’s proximity to neighboring settlements dictates how the fish can be sold. If remote, the fish might be dried and salted; if nearby, they could be sold fresh. Location(s): fisherman’s stand, wharf/pier.",
+          "tags": ["ss.village.resources.fishing"]
+        },
+        {
+          "id": "livestockLabor",
+          "name": "Livestock (Labor)",
+          "range": 5,
+          "description": "Animals are bred here to perform a particular job. These include plough and war horses, donkeys, cattle, and oxen. The breeding and raising of these animals can be a long process, so trade is likely seasonal, and the animals expensive. Location(s): stable or barn.",
+          "tags": ["ss.village.resources.livestockLabor"]
+        },
+        {
+          "id": "livestockMeat",
+          "name": "Livestock (Meat and Hides)",
+          "range": 6,
+          "description": "Animals are raised to be slaughtered for meat, including cattle, pigs, and sheep. Some may be kept to feed the village, but excess animals (live or butchered) would be sold or traded. Location(s): barn or pens, small butcher’s shop.",
+          "tags": ["ss.village.resources.livestockMeat"]
+        },
+        {
+          "id": "livestockShearing",
+          "name": "Livestock (Shearing)",
+          "range": 7,
+          "description": "Llamas, sheep, goats, and/or yaks are shorn in the village, the wool bundled and taken to market. The village may also produce its own woolen goods for sale. Location(s): shearing shed, storage, fields/barn, small stall/shop.",
+          "tags": ["ss.village.resources.livestockShearing"]
+        },
+        {
+          "id": "logging",
+          "name": "Logging and Lumber",
+          "range": 8,
+          "description": "Trees are planted and harvested, sustainably. Harvested trees are hand-trimmed of branches, and logs are used, traded, and sold. Villagers may also process wood to craft wooden goods. Location(s): logging camp, carpenters workshop.",
+          "tags": ["ss.village.resources.logging"]
+        },
+        {
+          "id": "mining",
+          "name": "Mining",
+          "range": 9,
+          "description": "Raw metal ores are excavated from the ground, cleaned and sorted, and then used, traded, or sold. It is possible the mine is owned by a noble or kingdom, who sends transport to pick up excavated materials. Ores may be processed in the village and turned into metal goods. Location(s): foreman’s station, mine, smithy.",
+          "tags": ["ss.village.resources.mining"]
+        },
+        {
+          "id": "quarrying",
+          "name": "Quarrying and Masonry",
+          "range": 10,
+          "description": "Stone is removed from the landscape in either raw, unrefined pieces, or cut into blocks for various purposes. It is possible the quarry is owned by a noble or kingdom, who sends transport to pick up excavated materials. A local mason may build using the excavated stone. Location(s): mason or foreman’s station.",
+          "tags": ["ss.village.resources.quarrying"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.resources.crops", "name": "Crops" },
+    { "id": "ss.village.resources.dairy", "name": "Dairy" },
+    { "id": "ss.village.resources.herbs", "name": "Herbs" },
+    { "id": "ss.village.resources.fishing", "name": "Fishing" },
+    { "id": "ss.village.resources.livestockLabor", "name": "Livestock (Labor)" },
+    { "id": "ss.village.resources.livestockMeat", "name": "Livestock (Meat and Hides)" },
+    { "id": "ss.village.resources.livestockShearing", "name": "Livestock (Shearing)" },
+    { "id": "ss.village.resources.logging", "name": "Logging and Lumber" },
+    { "id": "ss.village.resources.mining", "name": "Mining" },
+    { "id": "ss.village.resources.quarrying", "name": "Quarrying and Masonry" }
+  ]
+}

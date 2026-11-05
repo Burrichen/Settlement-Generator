@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.portEnvironment",
+      "name": "Port Environment",
+      "description": "A Port's environment, in place of the Environment table: 1-3 coastal, 4-6 river.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "coastal",
+          "name": "Coastal",
+          "range": [1, 3],
+          "description": "The town is near a large body of water, such as a lake or ocean.",
+          "tags": ["ss.town.environment.coastal"]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "range": [4, 6],
+          "description": "The town is near or built around a steadily flowing stream, or other watercourse.",
+          "tags": ["ss.town.environment.river"]
+        }
+      ]
+    }
+  ]
+}

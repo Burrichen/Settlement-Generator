@@ -9,12 +9,124 @@ use crate::engine::{GenerationEvent, Named, SkipReason, TableRollRecord};
 use crate::ids::{FlowId, NamingSchemeId, ObjectTypeId, ResultId, StepId, TableId, TagId};
 
 /// One step as it ran.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+///
+/// Its outcome is flattened into the same JSON object, so no outcome field
+/// may be called `step` or `label` (see [`StepRecord`]'s `Deserialize`).
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct StepRecord {
     pub step: StepId,
     pub label: String,
     #[serde(flatten)]
     pub outcome: StepOutcome,
+}
+
+/// Read by hand rather than derived, to open settlements saved before
+/// [`StepOutcome::SecondaryRoll`]'s label was stored as `roll_label`. Those
+/// were written with two `label` keys in one object (the step's, then the
+/// roll's), which the derived reader refuses as a duplicate field, so the
+/// whole settlement could not be opened. The step's label always comes
+/// first, so a second `label` is the roll's.
+///
+/// The record is first read whole into a JSON value by [`Repaired`], which
+/// renames such a second `label` at every depth. Records nest (a Repeat's
+/// iterations hold records), and a plain JSON value keeps only the last of
+/// two equal keys, so the repair has to happen while the text is read.
+impl<'de> Deserialize<'de> for StepRecord {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        use serde::de::Error;
+
+        let Repaired(value) = Repaired::deserialize(deserializer)?;
+        let serde_json::Value::Object(mut fields) = value else {
+            return Err(D::Error::custom("expected a flow step record"));
+        };
+        let mut take = |name: &'static str| {
+            fields
+                .remove(name)
+                .ok_or_else(|| D::Error::missing_field(name))
+        };
+        let step = serde_json::from_value(take("step")?).map_err(D::Error::custom)?;
+        let label = serde_json::from_value(take("label")?).map_err(D::Error::custom)?;
+        let outcome = StepOutcome::deserialize(serde_json::Value::Object(fields))
+            .map_err(D::Error::custom)?;
+        Ok(StepRecord {
+            step,
+            label,
+            outcome,
+        })
+    }
+}
+
+/// A JSON value read so that, in any object, a second `label` key is kept
+/// as `roll_label` instead of being refused or overwriting the first (see
+/// [`StepRecord`]'s `Deserialize`). Any other repeated key is an error.
+struct Repaired(serde_json::Value);
+
+impl<'de> Deserialize<'de> for Repaired {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        use serde::de::{Error, MapAccess, SeqAccess, Visitor};
+        use serde_json::Value;
+
+        struct RepairVisitor;
+
+        impl<'de> Visitor<'de> for RepairVisitor {
+            type Value = Repaired;
+
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("a JSON value")
+            }
+            fn visit_bool<E>(self, v: bool) -> Result<Repaired, E> {
+                Ok(Repaired(Value::Bool(v)))
+            }
+            fn visit_i64<E>(self, v: i64) -> Result<Repaired, E> {
+                Ok(Repaired(Value::from(v)))
+            }
+            fn visit_u64<E>(self, v: u64) -> Result<Repaired, E> {
+                Ok(Repaired(Value::from(v)))
+            }
+            fn visit_f64<E>(self, v: f64) -> Result<Repaired, E> {
+                Ok(Repaired(Value::from(v)))
+            }
+            fn visit_str<E>(self, v: &str) -> Result<Repaired, E> {
+                Ok(Repaired(Value::String(v.to_owned())))
+            }
+            fn visit_string<E>(self, v: String) -> Result<Repaired, E> {
+                Ok(Repaired(Value::String(v)))
+            }
+            fn visit_unit<E>(self) -> Result<Repaired, E> {
+                Ok(Repaired(Value::Null))
+            }
+            fn visit_none<E>(self) -> Result<Repaired, E> {
+                Ok(Repaired(Value::Null))
+            }
+            fn visit_some<D: serde::Deserializer<'de>>(self, d: D) -> Result<Repaired, D::Error> {
+                Repaired::deserialize(d)
+            }
+            fn visit_seq<A: SeqAccess<'de>>(self, mut seq: A) -> Result<Repaired, A::Error> {
+                let mut items = Vec::new();
+                while let Some(Repaired(item)) = seq.next_element()? {
+                    items.push(item);
+                }
+                Ok(Repaired(Value::Array(items)))
+            }
+            fn visit_map<A: MapAccess<'de>>(self, mut map: A) -> Result<Repaired, A::Error> {
+                let mut fields = serde_json::Map::new();
+                while let Some(key) = map.next_key::<String>()? {
+                    let Repaired(value) = map.next_value()?;
+                    let key = match key.as_str() {
+                        "label" if fields.contains_key("label") => "roll_label".to_owned(),
+                        _ => key,
+                    };
+                    if fields.contains_key(&key) {
+                        return Err(A::Error::custom(format!("duplicate field `{key}`")));
+                    }
+                    fields.insert(key, value);
+                }
+                Ok(Repaired(Value::Object(fields)))
+            }
+        }
+
+        deserializer.deserialize_any(RepairVisitor)
+    }
 }
 
 /// Why a step did not run.
@@ -58,6 +170,9 @@ pub enum StepOutcome {
         reason: StepSkip,
     },
     SecondaryRoll {
+        /// Stored as `roll_label`: the step record around it has its own
+        /// `label` in the same JSON object.
+        #[serde(rename = "roll_label")]
         label: String,
         roll: DiceRoll,
     },
@@ -392,5 +507,103 @@ impl StepRecord {
             },
             StepOutcome::Stop => "Stopped".into(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::dice::DieRoll;
+
+    fn roll() -> DiceRoll {
+        DiceRoll {
+            expression: "1d6".into(),
+            dice: vec![DieRoll {
+                die: crate::dice::Die::D6,
+                value: 4,
+            }],
+            modifier: 0,
+            total: 4,
+        }
+    }
+
+    fn secondary(step: &str, label: &str, roll_label: &str) -> StepRecord {
+        StepRecord {
+            step: StepId::new(step),
+            label: label.into(),
+            outcome: StepOutcome::SecondaryRoll {
+                label: roll_label.into(),
+                roll: roll(),
+            },
+        }
+    }
+
+    #[test]
+    fn a_secondary_roll_reads_back_with_both_labels() {
+        let record = secondary("s1", "Shop count", "Extra shops");
+        let json = serde_json::to_string(&record).unwrap();
+        assert_eq!(json.matches("\"label\"").count(), 1, "{json}");
+        assert!(json.contains("\"roll_label\":\"Extra shops\""), "{json}");
+        let back: StepRecord = serde_json::from_str(&json).unwrap();
+        assert_eq!(back, record);
+    }
+
+    #[test]
+    fn a_secondary_roll_saved_with_two_label_keys_still_opens() {
+        // How these were stored before `roll_label`: the step's label, then
+        // the roll's, under the same key in one object.
+        let old = r#"{"step":"s1","label":"Shop count","kind":"secondary_roll","label":"Extra shops","roll":{"expression":"1d6","dice":[{"die":"d6","value":4}],"modifier":0,"total":4}}"#;
+        let back: StepRecord = serde_json::from_str(old).unwrap();
+        assert_eq!(back, secondary("s1", "Shop count", "Extra shops"));
+
+        // The same inside a count flow's iterations (as the Spectacular
+        // Settlements Shops and Services stages saved them).
+        let nested = format!(
+            r#"{{"step":"count","label":"Shops","kind":"repeat","count":1,"iterations":[[{old}]]}}"#
+        );
+        let back: StepRecord = serde_json::from_str(&nested).unwrap();
+        assert_eq!(
+            back,
+            StepRecord {
+                step: StepId::new("count"),
+                label: "Shops".into(),
+                outcome: StepOutcome::Repeat {
+                    count: 1,
+                    count_roll: None,
+                    iterations: vec![vec![secondary("s1", "Shop count", "Extra shops")]],
+                },
+            }
+        );
+    }
+
+    #[test]
+    fn nested_records_round_trip() {
+        let record = StepRecord {
+            step: StepId::new("count"),
+            label: "Shops".into(),
+            outcome: StepOutcome::Repeat {
+                count: 2,
+                count_roll: Some(roll()),
+                iterations: vec![
+                    vec![secondary("a", "First", "Roll A")],
+                    vec![StepRecord {
+                        step: StepId::new("b"),
+                        label: "Second".into(),
+                        outcome: StepOutcome::Branch {
+                            case: Some(1),
+                            steps: vec![secondary("c", "Inner", "Roll C")],
+                        },
+                    }],
+                ],
+            },
+        };
+        let json = serde_json::to_string(&record).unwrap();
+        assert_eq!(serde_json::from_str::<StepRecord>(&json).unwrap(), record);
+        assert_eq!(
+            serde_json::from_str::<StepRecord>(r#"{"label":"x","kind":"stop"}"#)
+                .unwrap_err()
+                .to_string(),
+            "missing field `step`"
+        );
     }
 }

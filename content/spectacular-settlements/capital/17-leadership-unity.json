@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.leadershipUnity",
+      "name": "Leadership Unity",
+      "description": "Whether those in charge present a unified front. For a single leader, that person and those close to them in ruling.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "rankAnimosity",
+          "name": "Rank Animosity",
+          "range": 1,
+          "description": "There is open and blatant hostility. Outbursts, threats, and physical violence are possible (or, even, common).",
+          "tags": ["ss.capital.leadershipUnity.rankAnimosity"]
+        },
+        {
+          "id": "thinlyVeiledDiscord",
+          "name": "Thinly-Veiled Discord",
+          "range": [2, 3],
+          "description": "There is barely disguised hostility. Muttering, sarcasm, and spiteful comments are likely, but blatant actions, such as yelling or violence, has not occurred.",
+          "tags": ["ss.capital.leadershipUnity.thinlyVeiledDiscord"]
+        },
+        {
+          "id": "strained",
+          "name": "Strained",
+          "range": [4, 6],
+          "description": "Tension can be felt in the room, and overly polite disagreements are frequent.",
+          "tags": ["ss.capital.leadershipUnity.strained"]
+        },
+        {
+          "id": "uneasy",
+          "name": "Uneasy",
+          "range": [7, 9],
+          "description": "Something feels off, but it may just be that someone is having a bad day.",
+          "tags": ["ss.capital.leadershipUnity.uneasy"]
+        },
+        {
+          "id": "calm",
+          "name": "Calm",
+          "range": [10, 14],
+          "description": "Things are peaceful.",
+          "tags": ["ss.capital.leadershipUnity.calm"]
+        },
+        {
+          "id": "closeKnit",
+          "name": "Close-Knit",
+          "range": [15, 17],
+          "description": "Communication is open. Disagreements are constructive.",
+          "tags": ["ss.capital.leadershipUnity.closeKnit"]
+        },
+        {
+          "id": "accord",
+          "name": "Accord",
+          "range": [18, 19],
+          "description": "Most of those involved are on the same wavelength, and can often anticipate one another.",
+          "tags": ["ss.capital.leadershipUnity.accord"]
+        },
+        {
+          "id": "united",
+          "name": "United",
+          "range": 20,
+          "description": "The bond between those in power is pretty ironclad. They are all of one mind, wholly and equally committed to one vision.",
+          "tags": ["ss.capital.leadershipUnity.united"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.leadershipUnity.rankAnimosity",
+      "name": "Rank Animosity"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.thinlyVeiledDiscord",
+      "name": "Thinly-Veiled Discord"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.strained",
+      "name": "Strained"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.uneasy",
+      "name": "Uneasy"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.calm",
+      "name": "Calm"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.closeKnit",
+      "name": "Close-Knit"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.accord",
+      "name": "Accord"
+    },
+    {
+      "id": "ss.capital.leadershipUnity.united",
+      "name": "United"
+    }
+  ]
+}

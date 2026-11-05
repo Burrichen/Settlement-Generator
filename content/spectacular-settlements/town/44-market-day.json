@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.marketDay",
+      "name": "Market Day",
+      "description": "Extra Intrigue. Something special on market day. Roll more than once for several, or reuse the table for later market days.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "monkeys",
+          "name": "Monkey Merchant",
+          "range": 1,
+          "description": "A merchant selling lively, little monkeys has arrived, and whipped both the local, and visiting, children into an excited frenzy.",
+          "tags": ["ss.town.marketDay.monkeys"]
+        },
+        {
+          "id": "rain",
+          "name": "Downpour",
+          "range": 2,
+          "description": "It’s raining. Hard. Many of the vendors are fighting to get their wares covered so they remain unspoiled.",
+          "tags": ["ss.town.marketDay.rain"]
+        },
+        {
+          "id": "halfPrice",
+          "name": "Half-Price Produce",
+          "range": 3,
+          "description": "Fruits and vegetables have been in easy supply recently, so are being sold at half the usual price.",
+          "tags": ["ss.town.marketDay.halfPrice"]
+        },
+        {
+          "id": "cows",
+          "name": "Loose Cattle",
+          "range": 4,
+          "description": "A cattle merchant’s pen has broken, and cows now roam all over town. The merchant is trying their best to round them up.",
+          "tags": ["ss.town.marketDay.cows"]
+        },
+        {
+          "id": "fire",
+          "name": "Stall Fire",
+          "range": 5,
+          "description": "A cookfire has sparked a blaze, setting one of the stalls alight, and is now threatening to spread to neighboring tables.",
+          "tags": ["ss.town.marketDay.fire"]
+        },
+        {
+          "id": "puppetShow",
+          "name": "Puppet Show",
+          "range": 6,
+          "description": "A traveling puppet show is in town, performing a political parody of some famous regional figures to rapturous applause.",
+          "tags": ["ss.town.marketDay.puppetShow"]
+        },
+        {
+          "id": "bandits",
+          "name": "Bandit Merchants",
+          "range": 7,
+          "description": "Bandits, posing as merchants, are stealing goods from the other, legitimate merchants nearby.",
+          "tags": ["ss.town.marketDay.bandits"]
+        },
+        {
+          "id": "apple",
+          "name": "Apple Thief",
+          "range": 8,
+          "description": "A small child has swiped an apple from a fruit cart. The merchant has noticed, and is yelling after the small, fleeing figure, calling for someone to catch them.",
+          "tags": ["ss.town.marketDay.apple"]
+        },
+        {
+          "id": "wedding",
+          "name": "Wedding Reception",
+          "range": 9,
+          "description": "A local wedding is taking place in town, and the reception is being set up alongside the merchants in the square, supplementing all the hubbub with happy music and dancing.",
+          "tags": ["ss.town.marketDay.wedding"]
+        },
+        {
+          "id": "tavernSpecial",
+          "name": "Tavern Special",
+          "range": 10,
+          "description": "One of the taverns, facing onto the market square, has announced a market day special, and now has an ever-growing line out their door.",
+          "tags": ["ss.town.marketDay.tavernSpecial"]
+        },
+        {
+          "id": "injuredGuard",
+          "name": "Injured Guard",
+          "range": 11,
+          "description": "An injured guard has ridden into the marketplace, looking around frantically. They have promptly passed out, falling from their horse.",
+          "tags": ["ss.town.marketDay.injuredGuard"]
+        },
+        {
+          "id": "infestation",
+          "name": "Infested Cargo",
+          "range": 12,
+          "description": "One of the merchants’ wagon loads is infested with some kind of pest, and the guards are working to remove the cart and its cargo to be burnt outside of town, before it spreads. The merchant is arguing loudly and desperately.",
+          "tags": ["ss.town.marketDay.infestation"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.marketDay.monkeys",
+      "name": "Monkey Merchant"
+    },
+    {
+      "id": "ss.town.marketDay.rain",
+      "name": "Downpour"
+    },
+    {
+      "id": "ss.town.marketDay.halfPrice",
+      "name": "Half-Price Produce"
+    },
+    {
+      "id": "ss.town.marketDay.cows",
+      "name": "Loose Cattle"
+    },
+    {
+      "id": "ss.town.marketDay.fire",
+      "name": "Stall Fire"
+    },
+    {
+      "id": "ss.town.marketDay.puppetShow",
+      "name": "Puppet Show"
+    },
+    {
+      "id": "ss.town.marketDay.bandits",
+      "name": "Bandit Merchants"
+    },
+    {
+      "id": "ss.town.marketDay.apple",
+      "name": "Apple Thief"
+    },
+    {
+      "id": "ss.town.marketDay.wedding",
+      "name": "Wedding Reception"
+    },
+    {
+      "id": "ss.town.marketDay.tavernSpecial",
+      "name": "Tavern Special"
+    },
+    {
+      "id": "ss.town.marketDay.injuredGuard",
+      "name": "Injured Guard"
+    },
+    {
+      "id": "ss.town.marketDay.infestation",
+      "name": "Infested Cargo"
+    }
+  ]
+}

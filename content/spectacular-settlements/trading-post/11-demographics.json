@@ -4,7 +4,7 @@
     {
       "id": "table.ss.tradingPost.demographics",
       "name": "Demographics",
-      "description": "The book prints Normal Distribution as 10-14, overlapping Only Two (6-10); it is read here as 11-14.",
+      "description": "The book prints Only Two as 6-10 and Normal Distribution as 10-14; Normal Distribution keeps its printed 10-14, so Only Two is 6-9.",
       "dice": "1d20",
       "results": [
         {
@@ -17,14 +17,14 @@
         {
           "id": "onlyTwo",
           "name": "Only Two",
-          "range": [6, 10],
+          "range": [6, 9],
           "description": "60% primary race, 40% secondary race.",
           "tags": ["ss.tradingPost.demographics.onlyTwo"]
         },
         {
           "id": "normalDistribution",
           "name": "Normal Distribution",
-          "range": [11, 14],
+          "range": [10, 14],
           "description": "50% primary race, 25% secondary race, 15% tertiary race, 10% other.",
           "tags": ["ss.tradingPost.demographics.normalDistribution"]
         },

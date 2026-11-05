@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.politicalRumors",
+      "name": "Political Rumors",
+      "description": "Extra Intrigue. Political happenings discussed in the village; the more remote the village, the larger the grain of salt.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "mightyMisfortune",
+          "name": "Mighty Misfortune",
+          "range": 1,
+          "description": "Misfortune has fallen upon a prominent figure residing near to, but outside the bounds of, the settlement (stripped of title, robbed, murdered, lost at cards, etc).",
+          "tags": ["ss.village.politicalRumors.mightyMisfortune"]
+        },
+        {
+          "id": "fealty",
+          "name": "Fealty",
+          "range": 2,
+          "description": "A new power is claiming rights of fealty over the village, at the culmination of a long conflict.",
+          "tags": ["ss.village.politicalRumors.fealty"]
+        },
+        {
+          "id": "drumsOfWar",
+          "name": "Drums of War",
+          "range": 3,
+          "description": "Neighboring cities are preparing to go to war with one another.",
+          "tags": ["ss.village.politicalRumors.drumsOfWar"]
+        },
+        {
+          "id": "nobleWedding",
+          "name": "Noble Wedding",
+          "range": 4,
+          "description": "A local noble has just married the son or daughter of a well-loved (or greatly-loathed) family.",
+          "tags": ["ss.village.politicalRumors.nobleWedding"]
+        },
+        {
+          "id": "moreTaxes",
+          "name": "More Taxes",
+          "range": 5,
+          "description": "An increase in taxes is about to be implemented, to pay for an expensive and ambitious project.",
+          "tags": ["ss.village.politicalRumors.moreTaxes"]
+        },
+        {
+          "id": "missingTaxman",
+          "name": "Missing Taxman",
+          "range": 6,
+          "description": "Taxes have not been collected in quite some time, and no one has seen the collector for weeks.",
+          "tags": ["ss.village.politicalRumors.missingTaxman"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.politicalRumors.mightyMisfortune", "name": "Mighty Misfortune" },
+    { "id": "ss.village.politicalRumors.fealty", "name": "Fealty" },
+    { "id": "ss.village.politicalRumors.drumsOfWar", "name": "Drums of War" },
+    { "id": "ss.village.politicalRumors.nobleWedding", "name": "Noble Wedding" },
+    { "id": "ss.village.politicalRumors.moreTaxes", "name": "More Taxes" },
+    { "id": "ss.village.politicalRumors.missingTaxman", "name": "Missing Taxman" }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.garrisonEquipment",
+      "name": "Garrison Equipment",
+      "description": "Whether the garrison has what it needs to function effectively.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "poor",
+          "name": "Poor",
+          "range": [1, 2],
+          "description": "Guards are equipped with substandard kit and lack a dedicated training area.",
+          "tags": ["ss.fortress.garrisonEquipment.poor"]
+        },
+        {
+          "id": "standard",
+          "name": "Standard",
+          "range": [3, 8],
+          "description": "Guards are equipped with standard kit, and have a dedicated training area with basic practice equipment (simple targets, poles for combat dummies, etc.).",
+          "tags": ["ss.fortress.garrisonEquipment.standard"]
+        },
+        {
+          "id": "decent",
+          "name": "Decent",
+          "range": [9, 13],
+          "description": "Guards are equipped with standard kit, and have a dedicated training area and equipment for use. They demonstrate refined practice techniques, such as specific drills, for a variety of situations.",
+          "tags": ["ss.fortress.garrisonEquipment.decent"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [14, 18],
+          "description": "Guards are equipped with above-standard kit, and have a dedicated training area and equipment for use. They utilize highly refined practice techniques, such as specific drills, for a variety of situations.",
+          "tags": ["ss.fortress.garrisonEquipment.good"]
+        },
+        {
+          "id": "exemplary",
+          "name": "Exemplary",
+          "range": [19, 20],
+          "description": "Guards are equipped with the best kit available, and have a dedicated training area, complete with the best of any and all training equipment and practices that would be required.",
+          "tags": ["ss.fortress.garrisonEquipment.exemplary"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.garrisonEquipment.poor", "name": "Poor" },
+    { "id": "ss.fortress.garrisonEquipment.standard", "name": "Standard" },
+    { "id": "ss.fortress.garrisonEquipment.decent", "name": "Decent" },
+    { "id": "ss.fortress.garrisonEquipment.good", "name": "Good" },
+    { "id": "ss.fortress.garrisonEquipment.exemplary", "name": "Exemplary" }
+  ]
+}

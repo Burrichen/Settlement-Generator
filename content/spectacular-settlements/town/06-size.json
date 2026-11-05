@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.size",
+      "name": "Size",
+      "description": "The town's boundary includes the surrounding countryside, its farms and outlying buildings. Modifies Population Overflow; sets the number of locations.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "verySmall",
+          "name": "Very Small",
+          "range": [1, 2],
+          "description": "Up to a few hundred standing structures in an area able to support up to around 1000 people. (+2 to population overflow)",
+          "tags": ["ss.town.size.verySmall"]
+        },
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [3, 6],
+          "description": "Up to 500 standing structures in an area able to support around 2000 people. (+1 to population overflow)",
+          "tags": ["ss.town.size.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "Up to 1000 standing structures in an area able to support around 4000 people. (+0 to population overflow roll)",
+          "tags": ["ss.town.size.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 18],
+          "description": "Up to 1500 standing structures in an area able to support around 6000 people. (-1 to population overflow roll)",
+          "tags": ["ss.town.size.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": [19, 20],
+          "description": "Up to 2000 standing structures in an area able to support around 8000 people. (-2 to population overflow roll)",
+          "tags": ["ss.town.size.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.size.verySmall",
+      "name": "Very Small",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.size.small",
+      "name": "Small",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.size.medium",
+      "name": "Medium"
+    },
+    {
+      "id": "ss.town.size.large",
+      "name": "Large",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.size.veryLarge",
+      "name": "Very Large",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationOverflow",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

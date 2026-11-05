@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.industryShop",
+      "name": "Industry Shop",
+      "description": "The Industry specialty's free shop: 1-2 Mill, 3-4 Textile Production, 5-6 Foundry/Smelting.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "mill",
+          "name": "Mill",
+          "range": [1, 2],
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.town.industryShop.mill"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": [3, 4],
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.town.industryShop.textileProduction"]
+        },
+        {
+          "id": "foundry",
+          "name": "Foundry/Smelting",
+          "range": [5, 6],
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.town.industryShop.foundry"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.industryShop.mill",
+      "name": "Mill"
+    },
+    {
+      "id": "ss.town.industryShop.textileProduction",
+      "name": "Textile Production"
+    },
+    {
+      "id": "ss.town.industryShop.foundry",
+      "name": "Foundry/Smelting"
+    }
+  ]
+}

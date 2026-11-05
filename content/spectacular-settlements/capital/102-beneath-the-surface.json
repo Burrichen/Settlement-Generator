@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.beneathTheSurface",
+      "name": "Beneath the Surface",
+      "description": "Extra Intrigue. Something happening in the capital that not everyone is aware of.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "pack",
+          "name": "Pack",
+          "range": 1,
+          "description": "A pack of particularly feral animals roams the capital.",
+          "tags": ["ss.capital.beneathTheSurface.pack"]
+        },
+        {
+          "id": "monster",
+          "name": "Monster",
+          "range": 2,
+          "description": "A monster lurks somewhere in the capital.",
+          "tags": ["ss.capital.beneathTheSurface.monster"]
+        },
+        {
+          "id": "markings",
+          "name": "Markings",
+          "range": 3,
+          "description": "Strange markings have been showing up around the capital.",
+          "tags": ["ss.capital.beneathTheSurface.markings"]
+        },
+        {
+          "id": "fightClub",
+          "name": "Fight Club",
+          "range": 4,
+          "description": "A fight club has started somewhere in the capital, and may be gaining more participants.",
+          "tags": ["ss.capital.beneathTheSurface.fightClub"]
+        },
+        {
+          "id": "secret",
+          "name": "Secret",
+          "range": 5,
+          "description": "Some portion of the populace is not as they seem.",
+          "tags": ["ss.capital.beneathTheSurface.secret"]
+        },
+        {
+          "id": "outsideContact",
+          "name": "Outside Contact",
+          "range": 6,
+          "description": "Someone in the capital is in regular communication with an interesting external contact.",
+          "tags": ["ss.capital.beneathTheSurface.outsideContact"]
+        },
+        {
+          "id": "tampering",
+          "name": "Tampering",
+          "range": 7,
+          "description": "Someone is interfering with forces best left alone.",
+          "tags": ["ss.capital.beneathTheSurface.tampering"]
+        },
+        {
+          "id": "unsafe",
+          "name": "Unsafe",
+          "range": 8,
+          "description": "There is a structural problem with a location within the capital (or, possibly, the land, or environment, it is built on). The longer it goes unnoticed, the more damaging it could be.",
+          "tags": ["ss.capital.beneathTheSurface.unsafe"]
+        },
+        {
+          "id": "parties",
+          "name": "Parties",
+          "range": 9,
+          "description": "A guerilla party scene has been emerging within the capital, with semi-frequent, secret, invitation-only parties being held at ever-changing locations.",
+          "tags": ["ss.capital.beneathTheSurface.parties"]
+        },
+        {
+          "id": "blackMarket",
+          "name": "Black Market",
+          "range": 10,
+          "description": "An underground black-market has been established, dealing in the movement of illicit goods or services.",
+          "tags": ["ss.capital.beneathTheSurface.blackMarket"]
+        },
+        {
+          "id": "races",
+          "name": "Races",
+          "range": 11,
+          "description": "A racing circuit has been established outside the capital.",
+          "tags": ["ss.capital.beneathTheSurface.races"]
+        },
+        {
+          "id": "haunted",
+          "name": "Haunted",
+          "range": 12,
+          "description": "The capital is being haunted by some kind of spirit.",
+          "tags": ["ss.capital.beneathTheSurface.haunted"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.beneathTheSurface.pack",
+      "name": "Pack"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.monster",
+      "name": "Monster"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.markings",
+      "name": "Markings"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.fightClub",
+      "name": "Fight Club"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.secret",
+      "name": "Secret"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.outsideContact",
+      "name": "Outside Contact"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.tampering",
+      "name": "Tampering"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.unsafe",
+      "name": "Unsafe"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.parties",
+      "name": "Parties"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.blackMarket",
+      "name": "Black Market"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.races",
+      "name": "Races"
+    },
+    {
+      "id": "ss.capital.beneathTheSurface.haunted",
+      "name": "Haunted"
+    }
+  ]
+}

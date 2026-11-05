@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.includedLocation",
+      "name": "Included Location",
+      "description": "The locations each district type automatically has. Set, never rolled.",
+      "selection": "choose",
+      "results": [
+        {
+          "id": "academyUniversity",
+          "name": "Academy/University",
+          "description": "(Non-commercial) A conservatory devoted to the pursuit of higher knowledge, sometimes of a specific area of study."
+        },
+        {
+          "id": "archivesLibrary",
+          "name": "Archives/Library",
+          "description": "(Non-commercial) A structure devoted to housing records and written information."
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate."
+        },
+        {
+          "id": "baker",
+          "name": "Baker",
+          "description": "(Basic) Bakes and sells fresh bread and, possibly, pastries."
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency."
+        },
+        {
+          "id": "butcher",
+          "name": "Butcher",
+          "description": "(Basic) Processes and sells fresh and/or dried meat."
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs."
+        },
+        {
+          "id": "chancery",
+          "name": "Chancery",
+          "description": "(Non-commercial) Used as an office for official documentation and administrative tasks."
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "description": "(Specialty) Makes and mends boots and shoes."
+        },
+        {
+          "id": "courthouse",
+          "name": "Courthouse",
+          "description": "(Non-commercial) Used to hold trials or dispense justice."
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "description": "Provides medical care."
+        },
+        {
+          "id": "forum",
+          "name": "Forum",
+          "description": "(Non-commercial) A place designated for the use of intellectual debate and discussion."
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends."
+        },
+        {
+          "id": "hiredHelpHandsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios."
+        },
+        {
+          "id": "hiredHelpPriestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "description": "Sages offering counsel in all matters of religion and the divine."
+        },
+        {
+          "id": "hiredHelpScribesAndClerks",
+          "name": "Hired Help - Scribes and Clerks",
+          "description": "Masters of history, literature, mathematics and/or business."
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind)."
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal."
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods."
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "description": "(Exotic) A magic shop; its specialization is rolled."
+        },
+        {
+          "id": "magicShopMiscellaneousAndCuriosities",
+          "name": "Magic Shop - Miscellaneous & Curiosities",
+          "description": "(Exotic) Procures and sells magical items with a focus on strange and rare artifacts of a wondrous or intriguing nature."
+        },
+        {
+          "id": "outdoorRecreationalArea",
+          "name": "Outdoor Recreational Area",
+          "description": "(Non-commercial) A tended space where locals might eat, take leisure time, or duel to the death..."
+        },
+        {
+          "id": "schoolhouse",
+          "name": "Schoolhouse",
+          "description": "(Non-commercial) An institution focused on educating children."
+        },
+        {
+          "id": "shipwright",
+          "name": "Shipwright",
+          "description": "(Specialty) Builds and launches boats and/or ships."
+        },
+        {
+          "id": "smithy",
+          "name": "Smithy",
+          "description": "(Basic) Sells and crafts metal tools and equipment, including very basic weapons and armor."
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack."
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods."
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "description": "Provides food and drink."
+        },
+        {
+          "id": "townHall",
+          "name": "Town Hall",
+          "description": "(Non-commercial) Used for official business, audiences, and meetings."
+        },
+        {
+          "id": "treasury",
+          "name": "Treasury",
+          "description": "(Non-commercial) Used as a centralised place to manage the funds."
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "description": "(Basic) Weaves raw fabric and baskets."
+        }
+      ]
+    }
+  ]
+}

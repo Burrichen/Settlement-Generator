@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.housing",
+      "name": "Housing",
+      "description": "Rolled for each district: how many people live there. Without housing in any district, people live in the city's general area.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 5],
+          "description": "No one lives in this district. (Rerolled for Slums and Upper Class districts.)",
+          "tags": ["ss.city.housing.none"],
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.city.districtType.slums"
+                },
+                {
+                  "has_tag": "ss.city.districtType.upperClass"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "limited",
+          "name": "Limited",
+          "range": [6, 9],
+          "description": "Only a few live here; the district may be predominantly a place of business or functionality, or perhaps people avoid living here for another, less innocent reason.",
+          "tags": ["ss.city.housing.limited"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [10, 11],
+          "description": "A fair amount of the buildings in the district house residents.",
+          "tags": ["ss.city.housing.moderate"]
+        },
+        {
+          "id": "extensive",
+          "name": "Extensive",
+          "range": 12,
+          "description": "A significant amount of the district’s buildings are housing for residents.",
+          "tags": ["ss.city.housing.extensive"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.housing.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.city.housing.limited",
+      "name": "Limited"
+    },
+    {
+      "id": "ss.city.housing.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "ss.city.housing.extensive",
+      "name": "Extensive"
+    }
+  ]
+}

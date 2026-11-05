@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.localImpact",
+      "name": "Local Impact",
+      "description": "The impact the fortress's creation and early presence had on the local area. (Optional, not rolled: whether it has since changed.)",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "hostile",
+          "name": "Hostile",
+          "range": 1,
+          "description": "The fortress was constructed in direct opposition to the wishes of those in the area, and relations immediately turned sour.",
+          "tags": ["ss.fortress.localImpact.hostile"]
+        },
+        {
+          "id": "disruptive",
+          "name": "Disruptive",
+          "range": 2,
+          "description": "The fortress disturbed the area in which it was built. This may or may not have been intentional.",
+          "tags": ["ss.fortress.localImpact.disruptive"]
+        },
+        {
+          "id": "irritating",
+          "name": "Irritating",
+          "range": 3,
+          "description": "The fortress’ construction, or presence, caused some annoyance, or small issue, within the local area.",
+          "tags": ["ss.fortress.localImpact.irritating"]
+        },
+        {
+          "id": "innocuous",
+          "name": "Innocuous",
+          "range": 4,
+          "description": "The fortress’ construction had little impact on its surroundings, causing no trouble, but also not any great benefit.",
+          "tags": ["ss.fortress.localImpact.innocuous"]
+        },
+        {
+          "id": "beneficial",
+          "name": "Beneficial",
+          "range": 5,
+          "description": "The fortress proved a boon to the local area, perhaps serving as a compromise to a pre-existing issue, or demonstrating some small, positive impact.",
+          "tags": ["ss.fortress.localImpact.beneficial"]
+        },
+        {
+          "id": "advantageous",
+          "name": "Advantageous",
+          "range": 6,
+          "description": "The fortress immediately benefited the local area in a big way, perhaps resolving a serious issue, or exerting an extremely positive influence.",
+          "tags": ["ss.fortress.localImpact.advantageous"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.localImpact.hostile", "name": "Hostile" },
+    { "id": "ss.fortress.localImpact.disruptive", "name": "Disruptive" },
+    { "id": "ss.fortress.localImpact.irritating", "name": "Irritating" },
+    { "id": "ss.fortress.localImpact.innocuous", "name": "Innocuous" },
+    { "id": "ss.fortress.localImpact.beneficial", "name": "Beneficial" },
+    { "id": "ss.fortress.localImpact.advantageous", "name": "Advantageous" }
+  ]
+}

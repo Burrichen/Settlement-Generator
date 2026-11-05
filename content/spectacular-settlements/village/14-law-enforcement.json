@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.lawEnforcement",
+      "name": "Law Enforcement",
+      "description": "Formally established officers are rare in villages. Modifies Crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 3],
+          "description": "This could be good or bad, depending on one’s point of view. Good if the folk are honest enough that policing is unnecessary, but bad when you need to call for help. (-2 to crime roll)",
+          "tags": ["ss.village.lawEnforcement.none"]
+        },
+        {
+          "id": "disorganizedRabble",
+          "name": "Disorganized Rabble",
+          "range": [4, 10],
+          "description": "The quintessential village mob, with little to no organization. This is usually formed on the spur-of-the-moment to address a particular issue. (-1 to crime roll)",
+          "tags": ["ss.village.lawEnforcement.disorganizedRabble"]
+        },
+        {
+          "id": "organizedRabble",
+          "name": "Organized Rabble",
+          "range": [11, 14],
+          "description": "Perhaps better than the alternative, this group has guidance and leadership in the form of an individual, or small group. They may or may not be competent. (+0 to crime roll)",
+          "tags": ["ss.village.lawEnforcement.organizedRabble"]
+        },
+        {
+          "id": "sheriff",
+          "name": "Sheriff",
+          "range": [15, 18],
+          "description": "A single, officially sanctioned sheriff looks to maintaining order within the village. If they require additional help, they request it from the villagers, who may assist in a temporary capacity. (+1 to crime roll)",
+          "tags": ["ss.village.lawEnforcement.sheriff"]
+        },
+        {
+          "id": "sheriffAndDeputies",
+          "name": "Sheriff and Deputies",
+          "range": [19, 20],
+          "description": "A sheriff and a handful of deputies, who are officially sanctioned authorities, maintain a firm hold on the village. They maintain civility in an official capacity. (+2 to crime roll)",
+          "tags": ["ss.village.lawEnforcement.sheriffAndDeputies"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.lawEnforcement.none",
+      "name": "None",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 2 }]
+    },
+    {
+      "id": "ss.village.lawEnforcement.disorganizedRabble",
+      "name": "Disorganized Rabble",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    { "id": "ss.village.lawEnforcement.organizedRabble", "name": "Organized Rabble" },
+    {
+      "id": "ss.village.lawEnforcement.sheriff",
+      "name": "Sheriff",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    {
+      "id": "ss.village.lawEnforcement.sheriffAndDeputies",
+      "name": "Sheriff and Deputies",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.crime", "amount": 2 }]
+    }
+  ]
+}

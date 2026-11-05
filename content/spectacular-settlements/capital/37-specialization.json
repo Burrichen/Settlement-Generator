@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.specialization",
+      "name": "Specialization",
+      "description": "A specialist part of the military force.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 9],
+          "tags": ["ss.capital.specialization.none"]
+        },
+        {
+          "id": "mounted",
+          "name": "Mounted",
+          "range": 10,
+          "description": "A section of the military force is most effective while riding.",
+          "tags": ["ss.capital.specialization.mounted"]
+        },
+        {
+          "id": "engineering",
+          "name": "Engineering",
+          "range": 11,
+          "description": "A section of the military force uses knowledge of materials and structure to exploit enemy weaknesses or create their own advantages. They may also employ devices such as explosives or traps.",
+          "tags": ["ss.capital.specialization.engineering"]
+        },
+        {
+          "id": "berserker",
+          "name": "Berserker",
+          "range": 12,
+          "description": "A section of the military force is made up of warriors that hurl themselves fearlessly into the fray, terrifying defenders and punching holes in enemy lines.",
+          "tags": ["ss.capital.specialization.berserker"]
+        },
+        {
+          "id": "covert",
+          "name": "Covert",
+          "range": 13,
+          "description": "A section of the military force is trained in subtlety, going behind enemy lines and accomplishing tasks unsuited to large groups.",
+          "tags": ["ss.capital.specialization.covert"]
+        },
+        {
+          "id": "theatrics",
+          "name": "Theatrics",
+          "range": 14,
+          "description": "A section of the military force uses display to distract enemy attention and sow chaos (such as starting strategically-placed fires).",
+          "tags": ["ss.capital.specialization.theatrics"]
+        },
+        {
+          "id": "magical",
+          "name": "Magical",
+          "range": 15,
+          "description": "A section of the military force is made up of magic-users, or arcane specialists are placed in every squad.",
+          "tags": ["ss.capital.specialization.magical"]
+        },
+        {
+          "id": "biological",
+          "name": "Biological",
+          "range": 16,
+          "description": "A section of the military force has expert knowledge of diseases and chemicals, manufacturing and distributing disruptive, or even deadly, munitions.",
+          "tags": ["ss.capital.specialization.biological"]
+        },
+        {
+          "id": "calculation",
+          "name": "Calculation",
+          "range": 17,
+          "description": "A section of the military force are experts at analysis and coordination, increasing the efficiency of the entire force.",
+          "tags": ["ss.capital.specialization.calculation"]
+        },
+        {
+          "id": "unconventional",
+          "name": "Unconventional",
+          "range": 18,
+          "description": "A section of the military force employs unorthodox thinking and methods, taking advantage of the enemy’s preconceived notions to achieve unexpected results.",
+          "tags": ["ss.capital.specialization.unconventional"]
+        },
+        {
+          "id": "transportBased",
+          "name": "Transport-Based",
+          "range": 19,
+          "description": "A section of the military force are trained in warfare from a particular type of craft (sailing vessels, airships, etc.).",
+          "tags": ["ss.capital.specialization.transportBased"]
+        },
+        {
+          "id": "defensive",
+          "name": "Defensive",
+          "range": 20,
+          "description": "A section of the military force (or the entire force) is weighted towards strong defense as the best offense, favoring shields and unbreakable formations.",
+          "tags": ["ss.capital.specialization.defensive"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.specialization.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.specialization.mounted",
+      "name": "Mounted"
+    },
+    {
+      "id": "ss.capital.specialization.engineering",
+      "name": "Engineering"
+    },
+    {
+      "id": "ss.capital.specialization.berserker",
+      "name": "Berserker"
+    },
+    {
+      "id": "ss.capital.specialization.covert",
+      "name": "Covert"
+    },
+    {
+      "id": "ss.capital.specialization.theatrics",
+      "name": "Theatrics"
+    },
+    {
+      "id": "ss.capital.specialization.magical",
+      "name": "Magical"
+    },
+    {
+      "id": "ss.capital.specialization.biological",
+      "name": "Biological"
+    },
+    {
+      "id": "ss.capital.specialization.calculation",
+      "name": "Calculation"
+    },
+    {
+      "id": "ss.capital.specialization.unconventional",
+      "name": "Unconventional"
+    },
+    {
+      "id": "ss.capital.specialization.transportBased",
+      "name": "Transport-Based"
+    },
+    {
+      "id": "ss.capital.specialization.defensive",
+      "name": "Defensive"
+    }
+  ]
+}

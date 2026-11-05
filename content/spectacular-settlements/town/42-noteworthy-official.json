@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.noteworthyOfficial",
+      "name": "Noteworthy Official",
+      "description": "Extra Intrigue. One member of the town administration of particular note (everyone else performs their roles ably and quietly).",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "catchpole",
+          "name": "Catchpole",
+          "range": 1,
+          "description": "Catches and brings in debtors.",
+          "tags": ["ss.town.noteworthyOfficial.catchpole"]
+        },
+        {
+          "id": "clerk",
+          "name": "Clerk",
+          "range": 2,
+          "description": "Recordkeeper for the town.",
+          "tags": ["ss.town.noteworthyOfficial.clerk"]
+        },
+        {
+          "id": "exchequer",
+          "name": "Exchequer",
+          "range": 3,
+          "description": "Responsible for taxes.",
+          "tags": ["ss.town.noteworthyOfficial.exchequer"]
+        },
+        {
+          "id": "jailer",
+          "name": "Jailer",
+          "range": 4,
+          "description": "In charge of confining prisoners.",
+          "tags": ["ss.town.noteworthyOfficial.jailer"]
+        },
+        {
+          "id": "judge",
+          "name": "Judge",
+          "range": 5,
+          "description": "Decision-maker in legal matters.",
+          "tags": ["ss.town.noteworthyOfficial.judge"]
+        },
+        {
+          "id": "liner",
+          "name": "Liner",
+          "range": 6,
+          "description": "Determines property boundaries.",
+          "tags": ["ss.town.noteworthyOfficial.liner"]
+        },
+        {
+          "id": "masterOfRevels",
+          "name": "Master of Revels",
+          "range": 7,
+          "description": "Lead organizer of festivals and special events.",
+          "tags": ["ss.town.noteworthyOfficial.masterOfRevels"]
+        },
+        {
+          "id": "masterOfStores",
+          "name": "Master of Stores",
+          "range": 8,
+          "description": "Oversees the town’s stores of supplies such as grain or building materials.",
+          "tags": ["ss.town.noteworthyOfficial.masterOfStores"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.noteworthyOfficial.catchpole",
+      "name": "Catchpole"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.clerk",
+      "name": "Clerk"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.exchequer",
+      "name": "Exchequer"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.jailer",
+      "name": "Jailer"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.judge",
+      "name": "Judge"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.liner",
+      "name": "Liner"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.masterOfRevels",
+      "name": "Master of Revels"
+    },
+    {
+      "id": "ss.town.noteworthyOfficial.masterOfStores",
+      "name": "Master of Stores"
+    }
+  ]
+}

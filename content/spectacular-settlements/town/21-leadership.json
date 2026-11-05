@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.leadership",
+      "name": "Leadership",
+      "description": "Who is in charge at present. With the Government priority, 91-100 are rerolled.",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "townCouncil",
+          "name": "Town Council",
+          "range": [1, 15],
+          "description": "Prominent members of the community were chosen to lead the town collectively. (Free Location: Non-Commercial - Town Hall)",
+          "tags": ["ss.town.leadership.townCouncil"]
+        },
+        {
+          "id": "mayor",
+          "name": "Mayor",
+          "range": [16, 30],
+          "description": "The locals democratically voted for their current leader.",
+          "tags": ["ss.town.leadership.mayor"]
+        },
+        {
+          "id": "hereditary",
+          "name": "Hereditary",
+          "range": [31, 45],
+          "description": "A non-elected leader is in power, by virtue of their bloodline.",
+          "tags": ["ss.town.leadership.hereditary"]
+        },
+        {
+          "id": "merchantMonarch",
+          "name": "Merchant Monarch",
+          "range": [46, 60],
+          "description": "The wealthiest shop owner in the town leads by default. (+2 to your commercial locations number)",
+          "tags": ["ss.town.leadership.merchantMonarch"]
+        },
+        {
+          "id": "militaryRule",
+          "name": "Military Rule",
+          "range": [61, 75],
+          "description": "The town is controlled by a current or ex-leader of a military group. (+1 to law enforcement roll)",
+          "tags": ["ss.town.leadership.militaryRule"]
+        },
+        {
+          "id": "oligarchy",
+          "name": "Oligarchy",
+          "range": [76, 90],
+          "description": "A few individuals hold sway, collectively, over the town. [Roll 1d4]: 1: merchants (plutocracy); 2: mages (magocracy); 3: priests (theocracy); 4: other small group. (Free Location: Non-Commercial - choose one appropriate type and roll on that table)",
+          "tags": ["ss.town.leadership.oligarchy"],
+          "then_roll": ["table.ss.town.oligarchy"]
+        },
+        {
+          "id": "underworld",
+          "name": "Underworld or Criminal Enterprise",
+          "range": [91, 99],
+          "description": "A criminal, or group of criminals, either publicly, or privately, controls the town. (-1 to crime roll) Rerolled with the Government priority.",
+          "tags": ["ss.town.leadership.underworld"],
+          "eligibility": {
+            "not": {
+              "has_tag": "ss.town.priority.government"
+            }
+          }
+        },
+        {
+          "id": "commune",
+          "name": "Anarcho-Syndicalist Commune",
+          "range": 100,
+          "description": "The members of the town take turns as a sort of executive officer for the week. Rerolled with the Government priority.",
+          "tags": ["ss.town.leadership.commune"],
+          "eligibility": {
+            "not": {
+              "has_tag": "ss.town.priority.government"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.leadership.townCouncil",
+      "name": "Town Council"
+    },
+    {
+      "id": "ss.town.leadership.mayor",
+      "name": "Mayor"
+    },
+    {
+      "id": "ss.town.leadership.hereditary",
+      "name": "Hereditary"
+    },
+    {
+      "id": "ss.town.leadership.merchantMonarch",
+      "name": "Merchant Monarch"
+    },
+    {
+      "id": "ss.town.leadership.militaryRule",
+      "name": "Military Rule",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.lawEnforcement",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.leadership.oligarchy",
+      "name": "Oligarchy"
+    },
+    {
+      "id": "ss.town.leadership.underworld",
+      "name": "Underworld or Criminal Enterprise",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.crime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.leadership.commune",
+      "name": "Anarcho-Syndicalist Commune"
+    }
+  ]
+}

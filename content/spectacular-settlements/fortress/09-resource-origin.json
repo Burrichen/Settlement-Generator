@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.resourceOrigin",
+      "name": "Resource Origin",
+      "description": "Where the building materials came from.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "localPreserved",
+          "name": "Locally Made/Harvested [Preserved Surroundings]",
+          "range": [1, 7],
+          "description": "Building materials were sourced from the site of the structure itself, and from nearby areas, but sustainably, without depleting any harvesting locations.",
+          "tags": ["ss.fortress.resourceOrigin.localPreserved"]
+        },
+        {
+          "id": "localStripped",
+          "name": "Locally Made/Harvested [Stripped Surroundings]",
+          "range": [8, 10],
+          "description": "Building materials were sourced from the site of the structure itself, and from nearby areas, entirely depleting the harvesting locations (natural surroundings needed for the structure, natural defenses, etc. are unaffected).",
+          "tags": ["ss.fortress.resourceOrigin.localStripped"]
+        },
+        {
+          "id": "partiallyImported",
+          "name": "Partially Local, Partially Imported",
+          "range": [11, 12],
+          "description": "Building materials that were unable to be obtained locally were purchased and brought in from an outside source.",
+          "tags": ["ss.fortress.resourceOrigin.partiallyImported"]
+        },
+        {
+          "id": "imported",
+          "name": "Imported",
+          "range": [13, 14],
+          "description": "Building materials were purchased and brought in from an outside source in their entirety.",
+          "tags": ["ss.fortress.resourceOrigin.imported"]
+        },
+        {
+          "id": "partiallySalvaged",
+          "name": "Partially Salvaged",
+          "range": 15,
+          "description": "Some new materials were obtained locally, but a significant portion was salvaged from ruins and other destroyed structures.",
+          "tags": ["ss.fortress.resourceOrigin.partiallySalvaged"]
+        },
+        {
+          "id": "entirelySalvaged",
+          "name": "Entirely Salvaged",
+          "range": 16,
+          "description": "Building materials were all salvaged from various demolished structures.",
+          "tags": ["ss.fortress.resourceOrigin.entirelySalvaged"]
+        },
+        {
+          "id": "partiallyStolen",
+          "name": "Partially Stolen",
+          "range": 17,
+          "description": "Building materials were gathered illicitly over time, perhaps by hijacking ships and other cargo transports, or commandeering materials from a quarry not under the builders’ control.",
+          "tags": ["ss.fortress.resourceOrigin.partiallyStolen"]
+        },
+        {
+          "id": "completelyStolen",
+          "name": "Completely Stolen",
+          "range": 18,
+          "description": "Building materials were looted from one or more rightful owners, either openly or covertly.",
+          "tags": ["ss.fortress.resourceOrigin.completelyStolen"]
+        },
+        {
+          "id": "partialMagic",
+          "name": "Partial Magic",
+          "range": 19,
+          "description": "Standard building materials were partially augmented by magic. Mundane materials may have been acquired or even created by magic.",
+          "tags": ["ss.fortress.resourceOrigin.partialMagic"]
+        },
+        {
+          "id": "completelyMagic",
+          "name": "Completely Magic",
+          "range": 20,
+          "description": "Magic was used to either acquire an entire slew of mundane building materials, or create fantastical ones.",
+          "tags": ["ss.fortress.resourceOrigin.completelyMagic"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.fortress.resourceOrigin.localPreserved",
+      "name": "Locally Made/Harvested [Preserved Surroundings]"
+    },
+    {
+      "id": "ss.fortress.resourceOrigin.localStripped",
+      "name": "Locally Made/Harvested [Stripped Surroundings]"
+    },
+    {
+      "id": "ss.fortress.resourceOrigin.partiallyImported",
+      "name": "Partially Local, Partially Imported"
+    },
+    { "id": "ss.fortress.resourceOrigin.imported", "name": "Imported" },
+    { "id": "ss.fortress.resourceOrigin.partiallySalvaged", "name": "Partially Salvaged" },
+    { "id": "ss.fortress.resourceOrigin.entirelySalvaged", "name": "Entirely Salvaged" },
+    { "id": "ss.fortress.resourceOrigin.partiallyStolen", "name": "Partially Stolen" },
+    { "id": "ss.fortress.resourceOrigin.completelyStolen", "name": "Completely Stolen" },
+    { "id": "ss.fortress.resourceOrigin.partialMagic", "name": "Partial Magic" },
+    { "id": "ss.fortress.resourceOrigin.completelyMagic", "name": "Completely Magic" }
+  ]
+}

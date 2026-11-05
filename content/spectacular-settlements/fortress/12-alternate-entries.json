@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.alternateEntries",
+      "name": "Alternate Entries",
+      "description": "Other ways into the fortress. Decide where one is once the rest of the fortress is built.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 10],
+          "description": "There are no alternate entries into the fortress.",
+          "tags": ["ss.fortress.alternateEntries.none"]
+        },
+        {
+          "id": "backDoorBlocked",
+          "name": "Back Door, Blocked",
+          "range": 11,
+          "description": "A small, rear-access door was built into the exterior wall. For security reasons, it has been blocked from the inside.",
+          "tags": ["ss.fortress.alternateEntries.backDoorBlocked"]
+        },
+        {
+          "id": "backDoorExposed",
+          "name": "Back Door, Exposed",
+          "range": 12,
+          "description": "A small, rear-access door was built into the exterior wall. The door may still be in regular use, and no attempt has been made to disguise or conceal it. It may be guarded.",
+          "tags": ["ss.fortress.alternateEntries.backDoorExposed"]
+        },
+        {
+          "id": "backDoorHidden",
+          "name": "Back Door, Hidden",
+          "range": 13,
+          "description": "A small, rear-access door was built into the exterior wall. The door may be used infrequently, and has been intentionally obscured or covered. It may also be guarded.",
+          "tags": ["ss.fortress.alternateEntries.backDoorHidden"]
+        },
+        {
+          "id": "secretDoorInExteriorWall",
+          "name": "Secret Door in Exterior Wall",
+          "range": 14,
+          "description": "A hidden, or invisible, door is built into the exterior wall, to allow for covert comings and goings. It is probably monitored, but discreetly.",
+          "tags": ["ss.fortress.alternateEntries.secretDoorInExteriorWall"]
+        },
+        {
+          "id": "secretDoorInExteriorWallForgotten",
+          "name": "Secret Door in Exterior Wall, Forgotten",
+          "range": 15,
+          "description": "A hidden, or invisible, door was built into the exterior wall, to allow for covert comings and goings, but those who built and/or knew about it are no longer around.",
+          "tags": ["ss.fortress.alternateEntries.secretDoorInExteriorWallForgotten"]
+        },
+        {
+          "id": "drainWithGrating",
+          "name": "Drain, with Grating",
+          "range": 16,
+          "description": "A drain pipe emerges somewhere in the landscape outside the fortress. Its opening is covered by metal grating.",
+          "tags": ["ss.fortress.alternateEntries.drainWithGrating"]
+        },
+        {
+          "id": "drainBlocked",
+          "name": "Drain, Blocked",
+          "range": 17,
+          "description": "A drain pipe emerges somewhere in the landscape outside the fortress. Its final several yards are entirely filled with large stones to allow water to easily pass, but not intruders.",
+          "tags": ["ss.fortress.alternateEntries.drainBlocked"]
+        },
+        {
+          "id": "drainBlockedWithGrating",
+          "name": "Drain, Blocked, with Grating",
+          "range": 18,
+          "description": "A drain pipe emerges somewhere in the landscape outside the fortress. Its final several yards are entirely filled with large stones to allow water to easily pass, but not intruders. Its mouth is also covered with metal grating.",
+          "tags": ["ss.fortress.alternateEntries.drainBlockedWithGrating"]
+        },
+        {
+          "id": "oldForgottenTunnel",
+          "name": "Old, Forgotten Tunnel",
+          "range": 19,
+          "description": "A tunnel was dug out of the fortress quite some time ago, but has since fallen into disrepair. There is a possibility that no one knows about it. Use of the tunnel might risk collapse or cave-in.",
+          "tags": ["ss.fortress.alternateEntries.oldForgottenTunnel"]
+        },
+        {
+          "id": "maintainedTunnel",
+          "name": "Maintained Tunnel",
+          "range": 20,
+          "description": "A tunnel leads out of the fortress, which is well-maintained and in good repair. It shows signs of recent (but not heavy) use.",
+          "tags": ["ss.fortress.alternateEntries.maintainedTunnel"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.alternateEntries.none", "name": "None" },
+    { "id": "ss.fortress.alternateEntries.backDoorBlocked", "name": "Back Door, Blocked" },
+    { "id": "ss.fortress.alternateEntries.backDoorExposed", "name": "Back Door, Exposed" },
+    { "id": "ss.fortress.alternateEntries.backDoorHidden", "name": "Back Door, Hidden" },
+    {
+      "id": "ss.fortress.alternateEntries.secretDoorInExteriorWall",
+      "name": "Secret Door in Exterior Wall"
+    },
+    {
+      "id": "ss.fortress.alternateEntries.secretDoorInExteriorWallForgotten",
+      "name": "Secret Door in Exterior Wall, Forgotten"
+    },
+    { "id": "ss.fortress.alternateEntries.drainWithGrating", "name": "Drain, with Grating" },
+    { "id": "ss.fortress.alternateEntries.drainBlocked", "name": "Drain, Blocked" },
+    {
+      "id": "ss.fortress.alternateEntries.drainBlockedWithGrating",
+      "name": "Drain, Blocked, with Grating"
+    },
+    { "id": "ss.fortress.alternateEntries.oldForgottenTunnel", "name": "Old, Forgotten Tunnel" },
+    { "id": "ss.fortress.alternateEntries.maintainedTunnel", "name": "Maintained Tunnel" }
+  ]
+}

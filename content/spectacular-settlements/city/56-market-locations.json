@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.marketLocations",
+      "name": "Market District Additional Locations",
+      "description": "Rolled for each additional location of a Market district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.city.marketLocations.stepDown"],
+          "then_roll": ["table.ss.city.marketLocationsAgain"]
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": 2,
+          "description": "(Basic) Builds carts and wagons.",
+          "tags": ["ss.city.marketLocations.wainwright"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 3,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.city.marketLocations.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 4,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.city.marketLocations.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 5,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.city.marketLocations.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 6,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.city.marketLocations.bankAndExchange"]
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": 7,
+          "description": "(Specialty) Makes and mends boots and shoes.",
+          "tags": ["ss.city.marketLocations.cobbler"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.city.marketLocations.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 9,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.city.marketLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations & Fare",
+          "range": 10,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.city.marketLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": 11,
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region.",
+          "tags": ["ss.city.marketLocations.rareTradeGoods"]
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 12,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.city.marketLocations.magicShop"],
+          "then_roll": ["table.ss.city.magicShopSpecialization"]
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": 13,
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.city.marketLocations.barber"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 14,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.city.marketLocations.inn"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": 15,
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.city.marketLocations.club"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 16,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.city.marketLocations.soothsayer"]
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": 17,
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack.",
+          "tags": ["ss.city.marketLocations.stable"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 18,
+          "description": "Provides food and drink.",
+          "tags": ["ss.city.marketLocations.tavern"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 19,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.city.marketLocations.hiredHelp"],
+          "then_roll": ["table.ss.city.hiredHelpType"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.city.marketLocations.stepUp"],
+          "then_roll": ["table.ss.city.marketLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.marketLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.city.marketLocations.wainwright",
+      "name": "Wainwright"
+    },
+    {
+      "id": "ss.city.marketLocations.weaver",
+      "name": "Weaver"
+    },
+    {
+      "id": "ss.city.marketLocations.alchemist",
+      "name": "Alchemist"
+    },
+    {
+      "id": "ss.city.marketLocations.artist",
+      "name": "Artist"
+    },
+    {
+      "id": "ss.city.marketLocations.bankAndExchange",
+      "name": "Bank & Exchange"
+    },
+    {
+      "id": "ss.city.marketLocations.cobbler",
+      "name": "Cobbler"
+    },
+    {
+      "id": "ss.city.marketLocations.rareBotanicals",
+      "name": "Rare Botanicals"
+    },
+    {
+      "id": "ss.city.marketLocations.luxuryFurnishings",
+      "name": "Luxury Furnishings"
+    },
+    {
+      "id": "ss.city.marketLocations.rareLibationsAndFare",
+      "name": "Rare Libations & Fare"
+    },
+    {
+      "id": "ss.city.marketLocations.rareTradeGoods",
+      "name": "Rare Trade Goods"
+    },
+    {
+      "id": "ss.city.marketLocations.magicShop",
+      "name": "Magic Shop"
+    },
+    {
+      "id": "ss.city.marketLocations.barber",
+      "name": "Barber"
+    },
+    {
+      "id": "ss.city.marketLocations.inn",
+      "name": "Inn"
+    },
+    {
+      "id": "ss.city.marketLocations.club",
+      "name": "Club"
+    },
+    {
+      "id": "ss.city.marketLocations.soothsayer",
+      "name": "Soothsayer"
+    },
+    {
+      "id": "ss.city.marketLocations.stable",
+      "name": "Stable"
+    },
+    {
+      "id": "ss.city.marketLocations.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.city.marketLocations.hiredHelp",
+      "name": "Hired Help"
+    },
+    {
+      "id": "ss.city.marketLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

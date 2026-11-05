@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.demographics",
+      "name": "Demographics",
+      "description": "Distributions of fantasy races residing in the village. The races can be whatever suits the locations and regions nearby.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "onlyOne",
+          "name": "Only One",
+          "range": [1, 8],
+          "description": "100% primary race.",
+          "tags": ["ss.village.demographics.onlyOne"]
+        },
+        {
+          "id": "onlyTwo",
+          "name": "Only Two",
+          "range": [9, 12],
+          "description": "60% primary race, 40% secondary race.",
+          "tags": ["ss.village.demographics.onlyTwo"]
+        },
+        {
+          "id": "normalDistribution",
+          "name": "Normal Distribution",
+          "range": [13, 15],
+          "description": "50% primary race, 25% secondary race, 15% tertiary race, 10% other.",
+          "tags": ["ss.village.demographics.normalDistribution"]
+        },
+        {
+          "id": "wideDistribution",
+          "name": "Wide Distribution",
+          "range": [16, 17],
+          "description": "20% primary race. All others reasonably well represented.",
+          "tags": ["ss.village.demographics.wideDistribution"]
+        },
+        {
+          "id": "highAndLow",
+          "name": "High and Low",
+          "range": [18, 19],
+          "description": "80% primary race in high social standing, 20% secondary race, in lower social standing.",
+          "tags": ["ss.village.demographics.highAndLow"]
+        },
+        {
+          "id": "inFlux",
+          "name": "In Flux",
+          "range": 20,
+          "description": "No discernible distribution. Racial diversity seems random, with no sense of organization or numerical dominance.",
+          "tags": ["ss.village.demographics.inFlux"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.demographics.onlyOne", "name": "Only One" },
+    { "id": "ss.village.demographics.onlyTwo", "name": "Only Two" },
+    { "id": "ss.village.demographics.normalDistribution", "name": "Normal Distribution" },
+    { "id": "ss.village.demographics.wideDistribution", "name": "Wide Distribution" },
+    { "id": "ss.village.demographics.highAndLow", "name": "High and Low" },
+    { "id": "ss.village.demographics.inFlux", "name": "In Flux" }
+  ]
+}

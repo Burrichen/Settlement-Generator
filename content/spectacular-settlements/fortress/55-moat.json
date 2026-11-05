@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.moat",
+      "name": "Moat",
+      "description": "Modified by Barbican. A trench dug around the fortification.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 2],
+          "description": "None.",
+          "tags": ["ss.fortress.moat.none"]
+        },
+        {
+          "id": "dry",
+          "name": "Dry Moat",
+          "range": [3, 5],
+          "description": "The moat is not filled with water and is, instead, a deep pit encircling the fortification. This could be purposeful, or the lack of water could be due to drought.",
+          "tags": ["ss.fortress.moat.dry"]
+        },
+        {
+          "id": "dryTrapped",
+          "name": "Dry Moat [Trapped]",
+          "range": [6, 7],
+          "description": "The moat is dry, but filled with some extra defensive measures, such as spikes or vicious animals.",
+          "tags": ["ss.fortress.moat.dryTrapped"]
+        },
+        {
+          "id": "filled",
+          "name": "Filled Moat",
+          "range": [8, 9],
+          "description": "A standard moat, filled with water.",
+          "tags": ["ss.fortress.moat.filled"]
+        },
+        {
+          "id": "filledTrapped",
+          "name": "Filled Moat [Trapped]",
+          "range": 10,
+          "description": "The moat is filled with water and is trapped somehow. Perhaps there is a natural or artificial current, or perhaps it is filled with vicious, aquatic animals.",
+          "tags": ["ss.fortress.moat.filledTrapped"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.moat.none", "name": "None" },
+    { "id": "ss.fortress.moat.dry", "name": "Dry Moat" },
+    { "id": "ss.fortress.moat.dryTrapped", "name": "Dry Moat [Trapped]" },
+    { "id": "ss.fortress.moat.filled", "name": "Filled Moat" },
+    { "id": "ss.fortress.moat.filledTrapped", "name": "Filled Moat [Trapped]" }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.templeHiredHelp",
+      "name": "Temple District Hired Help",
+      "description": "The Temple district's rolled hired help: 1-3 Priestly Guidance, 4-6 Hands of the Divine.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "priestlyGuidance",
+          "name": "Hired Help - Priestly Guidance",
+          "range": [1, 3],
+          "description": "Sages offering counsel in all matters of religion and the divine.",
+          "tags": ["ss.city.templeHiredHelp.priestlyGuidance"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        },
+        {
+          "id": "handsOfTheDivine",
+          "name": "Hired Help - Hands of the Divine",
+          "range": [4, 6],
+          "description": "Specialists trained in the use of divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.city.templeHiredHelp.handsOfTheDivine"],
+          "then_roll": ["table.ss.city.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.templeHiredHelp.priestlyGuidance",
+      "name": "Hired Help - Priestly Guidance"
+    },
+    {
+      "id": "ss.city.templeHiredHelp.handsOfTheDivine",
+      "name": "Hired Help - Hands of the Divine"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.nightActivity",
+      "name": "Night Activity",
+      "description": "Modified by Population Density and Visitor Traffic. Even when most are open, some shopkeepers keep regular hours.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "dark",
+          "name": "Dark",
+          "range": [1, 2],
+          "description": "By the time the sun goes down, the streets are nearly empty and the town closes up. All is quiet and peaceful. If the town has a gate, it is closed and barred. Guards may, or may not, allow night travelers inside.",
+          "tags": ["ss.town.nightActivity.dark"]
+        },
+        {
+          "id": "quiet",
+          "name": "Quiet",
+          "range": [3, 6],
+          "description": "Everything is closed except for inns and taverns, which remain open until midnight. Late guests would have to wake an innkeeper to get a room. If the town has a gate, it is closed and barred. Guards will usually let visitors in, but will discourage wandering.",
+          "tags": ["ss.town.nightActivity.quiet"]
+        },
+        {
+          "id": "slow",
+          "name": "Slow",
+          "range": [7, 14],
+          "description": "Almost everything is closed except for taverns, which may be open until early morning, and inns, which stay open perpetually. If the town has a gate, it is closed, but guards will generally be ready to open it, as needed.",
+          "tags": ["ss.town.nightActivity.slow"]
+        },
+        {
+          "id": "active",
+          "name": "Active",
+          "range": [15, 18],
+          "description": "Inns and taverns remain open perpetually. Some shops and services may be open, catering to late travelers or night owls. A fair amount of establishments may still be closed. If the town has a gate, it is kept open, but guarded, ready to be closed, if needed.",
+          "tags": ["ss.town.nightActivity.active"]
+        },
+        {
+          "id": "lively",
+          "name": "Lively",
+          "range": [19, 20],
+          "description": "There is little difference between day and night traffic. There are always people on the streets and it may seem like no one ever sleeps. Most shops and services remain open constantly. If the town has a gate, it remains open and is only closed under the most dire of circumstances.",
+          "tags": ["ss.town.nightActivity.lively"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.nightActivity.dark",
+      "name": "Dark"
+    },
+    {
+      "id": "ss.town.nightActivity.quiet",
+      "name": "Quiet"
+    },
+    {
+      "id": "ss.town.nightActivity.slow",
+      "name": "Slow"
+    },
+    {
+      "id": "ss.town.nightActivity.active",
+      "name": "Active"
+    },
+    {
+      "id": "ss.town.nightActivity.lively",
+      "name": "Lively"
+    }
+  ]
+}

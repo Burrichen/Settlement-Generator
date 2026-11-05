@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.populationDensity",
+      "name": "Population Density",
+      "description": "Modified by Age. Modifies Night Activity. Optionally, 0 or less could mean a deserted city (-5 to night activity).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton",
+          "range": [1, 2],
+          "description": "The city only has enough people to function at its most basic level. (-2 to night activity roll)",
+          "tags": ["ss.city.populationDensity.skeleton"]
+        },
+        {
+          "id": "sparse",
+          "name": "Sparse",
+          "range": [3, 6],
+          "description": "Folk live in the city, but it would never be called bustling. Walking down the street, you’ll typically only see a few people. (-1 to night activity roll)",
+          "tags": ["ss.city.populationDensity.sparse"]
+        },
+        {
+          "id": "populous",
+          "name": "Populous",
+          "range": [7, 14],
+          "description": "A moderate amount of people live in the city. Walking through the streets, you will see plenty of people, but never so many that it would feel cramped. (+0 to night activity roll)",
+          "tags": ["ss.city.populationDensity.populous"]
+        },
+        {
+          "id": "dense",
+          "name": "Dense",
+          "range": [15, 18],
+          "description": "There is a large amount of people living in the city. There are few, if any, vacant buildings. In high traffic areas, one generally has elbow room, but not much more. (+1 to night activity roll)",
+          "tags": ["ss.city.populationDensity.dense"]
+        },
+        {
+          "id": "crowded",
+          "name": "Crowded",
+          "range": [19, 20],
+          "description": "The city is filled with jostling throngs. Practically all structures are occupied. Some may even camp outside the walls. Moving about can be difficult, and bumping into other people is typical in higher traffic areas. (+2 to night activity roll)",
+          "tags": ["ss.city.populationDensity.crowded"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.populationDensity.skeleton",
+      "name": "Skeleton",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationDensity.sparse",
+      "name": "Sparse",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationDensity.populous",
+      "name": "Populous"
+    },
+    {
+      "id": "ss.city.populationDensity.dense",
+      "name": "Dense",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.populationDensity.crowded",
+      "name": "Crowded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

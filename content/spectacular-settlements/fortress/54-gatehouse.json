@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.gatehouse",
+      "name": "Gatehouse",
+      "description": "The gatehouse guarding the primary passage through the wall; each result builds on the ones below it. Optional extras: a second portcullis (Strong or Grand), murder holes, spouts, other traps.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "standard",
+          "name": "Standard Gatehouse",
+          "range": [1, 6],
+          "description": "The same height as the wall and slightly thicker. Entry is covered by heavy doors.",
+          "tags": ["ss.fortress.gatehouse.standard"]
+        },
+        {
+          "id": "strong",
+          "name": "Strong Gatehouse",
+          "range": [7, 16],
+          "description": "One and a half times the height and thickness of its wall. Entry is covered by heavy doors and a portcullis.",
+          "tags": ["ss.fortress.gatehouse.strong"]
+        },
+        {
+          "id": "grand",
+          "name": "Grand Gatehouse",
+          "range": [17, 20],
+          "description": "Twice the height and thickness of its wall. Entry is covered by heavy doors and a portcullis.",
+          "tags": ["ss.fortress.gatehouse.grand"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.gatehouse.standard", "name": "Standard Gatehouse" },
+    { "id": "ss.fortress.gatehouse.strong", "name": "Strong Gatehouse" },
+    { "id": "ss.fortress.gatehouse.grand", "name": "Grand Gatehouse" }
+  ]
+}

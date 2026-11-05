@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.age",
+      "name": "Age",
+      "description": "Modifies Population Density and Hardship Likelihood. The book prints Established as 6-10 and Mature as 10-14; Mature keeps its printed 10-14, so Established is 6-9.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "recent",
+          "name": "Recent",
+          "range": [1, 5],
+          "description": "The village was established within the past year. Those within the village are newly settled. (-5 to population density roll) (-4 to hardship likelihood roll)",
+          "tags": ["ss.village.age.recent"]
+        },
+        {
+          "id": "established",
+          "name": "Established",
+          "range": [6, 9],
+          "description": "The village has been settled for a few years. They have been able to successfully sustain themselves, and the families have started to grow. (-2 to population density roll) (-2 to hardship likelihood roll)",
+          "tags": ["ss.village.age.established"]
+        },
+        {
+          "id": "mature",
+          "name": "Mature",
+          "range": [10, 14],
+          "description": "The village has been around close to a decade or so. Production has been honed, and practices are optimized. Children born in the settlement may be old enough to start to lend a hand. (+0 to population density roll) (+0 to hardship likelihood roll)",
+          "tags": ["ss.village.age.mature"]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [15, 18],
+          "description": "The village was founded decades ago. Production has reached peak performance, with the elder members of the community being old hands at the work. There are many adults in the village who were born there. (+0 to population density roll) (+2 to hardship likelihood roll)",
+          "tags": ["ss.village.age.old"]
+        },
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "range": [19, 20],
+          "description": "The village was established near to, or more than, a century ago. (+0 to population density roll) (+4 to hardship likelihood roll)",
+          "tags": ["ss.village.age.ancient"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.age.recent",
+      "name": "Recent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.village.populationDensity",
+          "amount": 5
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.village.hardshipLikelihood",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.village.age.established",
+      "name": "Established",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.village.populationDensity",
+          "amount": 2
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.village.hardshipLikelihood",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.village.age.mature",
+      "name": "Mature"
+    },
+    {
+      "id": "ss.village.age.old",
+      "name": "Old",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.village.hardshipLikelihood",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.village.age.ancient",
+      "name": "Ancient",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.village.hardshipLikelihood",
+          "amount": 4
+        }
+      ]
+    }
+  ]
+}

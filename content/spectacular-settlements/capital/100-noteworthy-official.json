@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.noteworthyOfficial",
+      "name": "Noteworthy Official",
+      "description": "Extra Intrigue. One member of the capital's administration of particular note.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "adviser",
+          "name": "Adviser",
+          "range": 1,
+          "description": "Second in command of the city. Can be an official, or unofficial, position.",
+          "tags": ["ss.capital.noteworthyOfficial.adviser"]
+        },
+        {
+          "id": "ambassador",
+          "name": "Ambassador",
+          "range": 2,
+          "description": "Regularly acts as a representative for the capital/nation when traveling abroad.",
+          "tags": ["ss.capital.noteworthyOfficial.ambassador"]
+        },
+        {
+          "id": "catchpole",
+          "name": "Catchpole",
+          "range": 3,
+          "description": "Catches and brings in debtors.",
+          "tags": ["ss.capital.noteworthyOfficial.catchpole"]
+        },
+        {
+          "id": "champion",
+          "name": "Champion",
+          "range": 4,
+          "description": "Ready to stand in for the leadership for any martial matters, either ceremonially or officially.",
+          "tags": ["ss.capital.noteworthyOfficial.champion"]
+        },
+        {
+          "id": "clerk",
+          "name": "Clerk",
+          "range": 5,
+          "description": "Recordkeeper for the capital.",
+          "tags": ["ss.capital.noteworthyOfficial.clerk"]
+        },
+        {
+          "id": "exchequer",
+          "name": "Exchequer",
+          "range": 6,
+          "description": "Responsible for taxes.",
+          "tags": ["ss.capital.noteworthyOfficial.exchequer"]
+        },
+        {
+          "id": "guildmaster",
+          "name": "Guildmaster",
+          "range": 7,
+          "description": "Oversees one of the official (or underground) guilds, or factions, within the capital.",
+          "tags": ["ss.capital.noteworthyOfficial.guildmaster"]
+        },
+        {
+          "id": "herald",
+          "name": "Herald",
+          "range": 8,
+          "description": "Responsible for disseminating official edicts, and other news, to the general populace. If serving in a courtly capacity, bears responsibility for knowing the names, titles of important individuals and announcing them when appropriate.",
+          "tags": ["ss.capital.noteworthyOfficial.herald"]
+        },
+        {
+          "id": "highPriestDruid",
+          "name": "High Priest/Druid",
+          "range": 9,
+          "description": "The primary representative of the faithful to the capital leadership.",
+          "tags": ["ss.capital.noteworthyOfficial.highPriestDruid"]
+        },
+        {
+          "id": "highMage",
+          "name": "High Mage",
+          "range": 10,
+          "description": "The representative of the practitioners of arcane arts to the capital leadership.",
+          "tags": ["ss.capital.noteworthyOfficial.highMage"]
+        },
+        {
+          "id": "jailer",
+          "name": "Jailer",
+          "range": 11,
+          "description": "In charge of confining prisoners.",
+          "tags": ["ss.capital.noteworthyOfficial.jailer"]
+        },
+        {
+          "id": "judge",
+          "name": "Judge",
+          "range": 12,
+          "description": "Decision-maker in legal matters.",
+          "tags": ["ss.capital.noteworthyOfficial.judge"]
+        },
+        {
+          "id": "liner",
+          "name": "Liner",
+          "range": 13,
+          "description": "Determines property boundaries.",
+          "tags": ["ss.capital.noteworthyOfficial.liner"]
+        },
+        {
+          "id": "masterOfIntelligence",
+          "name": "Master of Intelligence",
+          "range": 14,
+          "description": "Responsible for seeking and utilizing information vital for capital/national security.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfIntelligence"]
+        },
+        {
+          "id": "masterOfRevels",
+          "name": "Master of Revels",
+          "range": 15,
+          "description": "Lead organizer of festivals and special events.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfRevels"]
+        },
+        {
+          "id": "masterOfStores",
+          "name": "Master of Stores",
+          "range": 16,
+          "description": "Oversees the capital’s stores of supplies, such as grain or building materials.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfStores"]
+        },
+        {
+          "id": "masterOfTrade",
+          "name": "Master of Trade",
+          "range": 17,
+          "description": "Responsible for the management of imports and exports.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfTrade"]
+        },
+        {
+          "id": "masterOfTheTreasury",
+          "name": "Master of the Treasury",
+          "range": 18,
+          "description": "Responsible for the capital’s expenditures and paying contracts and debts.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfTheTreasury"]
+        },
+        {
+          "id": "masterOfTheWild",
+          "name": "Master of the Wild",
+          "range": 19,
+          "description": "Surveys the surrounding areas, mapping the wilderness, looking for monsters or other threats, and regulating hunting.",
+          "tags": ["ss.capital.noteworthyOfficial.masterOfTheWild"]
+        },
+        {
+          "id": "roadwardenDockwarden",
+          "name": "Roadwarden/Dockwarden",
+          "range": 20,
+          "description": "In charge of some, or all, of the capital’s transportation systems.",
+          "tags": ["ss.capital.noteworthyOfficial.roadwardenDockwarden"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.noteworthyOfficial.adviser",
+      "name": "Adviser"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.ambassador",
+      "name": "Ambassador"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.catchpole",
+      "name": "Catchpole"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.champion",
+      "name": "Champion"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.clerk",
+      "name": "Clerk"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.exchequer",
+      "name": "Exchequer"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.guildmaster",
+      "name": "Guildmaster"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.herald",
+      "name": "Herald"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.highPriestDruid",
+      "name": "High Priest/Druid"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.highMage",
+      "name": "High Mage"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.jailer",
+      "name": "Jailer"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.judge",
+      "name": "Judge"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.liner",
+      "name": "Liner"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfIntelligence",
+      "name": "Master of Intelligence"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfRevels",
+      "name": "Master of Revels"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfStores",
+      "name": "Master of Stores"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfTrade",
+      "name": "Master of Trade"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfTheTreasury",
+      "name": "Master of the Treasury"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.masterOfTheWild",
+      "name": "Master of the Wild"
+    },
+    {
+      "id": "ss.capital.noteworthyOfficial.roadwardenDockwarden",
+      "name": "Roadwarden/Dockwarden"
+    }
+  ]
+}

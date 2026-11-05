@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.industrialLocation",
+      "name": "Industrial Location",
+      "description": "The Industrial district's included industrial location: 1-2 Foundry/Smelting, 3-4 Textile Production, 5-6 Miller.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "foundry",
+          "name": "Foundry/Smelting",
+          "range": [1, 2],
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.city.industrialLocation.foundry"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": [3, 4],
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.city.industrialLocation.textileProduction"]
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "range": [5, 6],
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.city.industrialLocation.miller"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.industrialLocation.foundry",
+      "name": "Foundry/Smelting"
+    },
+    {
+      "id": "ss.city.industrialLocation.textileProduction",
+      "name": "Textile Production"
+    },
+    {
+      "id": "ss.city.industrialLocation.miller",
+      "name": "Miller"
+    }
+  ]
+}

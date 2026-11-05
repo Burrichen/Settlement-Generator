@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.crime",
+      "name": "Crime",
+      "description": "Modified by Leadership, Law Enforcement and Population Wealth. Robbery, confidence games, muggings: acts not typically resulting in loss of life.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "regular",
+          "name": "Regular",
+          "range": [1, 2],
+          "description": "The streets are crawling with criminals, and a purse unstowed is almost sure to be snatched. (+4 to urban encounter rolls)",
+          "tags": ["ss.town.crime.regular"]
+        },
+        {
+          "id": "common",
+          "name": "Common",
+          "range": [3, 6],
+          "description": "Most are used to hearing about trouble every day or two. Everyone knows someone who’s been a victim of crime. (+3 to urban encounter rolls)",
+          "tags": ["ss.town.crime.common"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "Theft or mild violence can happen from time to time. Best to keep an eye out. (+2 to urban encounter rolls)",
+          "tags": ["ss.town.crime.average"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "range": [15, 18],
+          "description": "Crime does not occur often but, when it does, it is a noteworthy occurrence. (+1 to urban encounter rolls)",
+          "tags": ["ss.town.crime.uncommon"]
+        },
+        {
+          "id": "rare",
+          "name": "Rare",
+          "range": [19, 20],
+          "description": "Most in the town have had no personal experience of crime in the town, and know few people that have. (+0 to urban encounter rolls)",
+          "tags": ["ss.town.crime.rare"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.crime.regular",
+      "name": "Regular",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+4 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.town.crime.common",
+      "name": "Common",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+3 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.town.crime.average",
+      "name": "Average",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+2 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.town.crime.uncommon",
+      "name": "Uncommon",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+1 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.town.crime.rare",
+      "name": "Rare"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.priority",
+      "name": "Priority",
+      "description": "An idea of particular importance within the city itself; it may have been founded around it.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "control",
+          "name": "Control",
+          "range": 1,
+          "description": "The city has established itself as a power in the region, establishing a network of patrolled roads, but also military presence, in other local settlements. The city itself is a strong and formidable presence. (+3 to law enforcement roll)",
+          "tags": ["ss.city.priority.control"]
+        },
+        {
+          "id": "trade",
+          "name": "Trade",
+          "range": 2,
+          "description": "The city was made to move goods. Coin flows from hand to hand, and the city wholeheartedly encourages this. It likely collects a tax from any trade, but the benefits should far outweigh the costs. (+1 to population wealth roll)",
+          "tags": ["ss.city.priority.trade"]
+        },
+        {
+          "id": "enlightenment",
+          "name": "Enlightenment",
+          "range": 3,
+          "description": "The leadership prides itself on its intelligence and wisdom, typically making choices that preserve their society and reinforce the community’s access to knowledge and culture. (When rolling districts, choose ‘Scholar District’ as one of them)",
+          "tags": ["ss.city.priority.enlightenment"]
+        },
+        {
+          "id": "entertainment",
+          "name": "Entertainment",
+          "range": 4,
+          "description": "Whatever this place was before the city was founded properly, it was known for fun. Perhaps it was a place of grandiose performances, raucous pubs, or dancing and festivities. On the other hand, maybe it became known for more disreputable pursuits, such as underground fighting or gambling, among many other possibilities. (When rolling for additional locations in your districts, manually select one place you would consider an entertainment venue for each.)",
+          "tags": ["ss.city.priority.entertainment"]
+        },
+        {
+          "id": "production",
+          "name": "Production",
+          "range": 5,
+          "description": "This settlement was built around producing a particular good or resource. This could be raw materials, like crops or mining ore, but could also be the manufacture of a certain product or products. (For your first roll on the outside the city table, roll a d10, rerolling any results 1-4.)",
+          "tags": ["ss.city.priority.production"]
+        },
+        {
+          "id": "faith",
+          "name": "Faith",
+          "range": 6,
+          "description": "The city is a nexus for the faithful. For one reason or another, folk may undertake pilgrimages here. There are likely at least a few places of worship, perhaps many more than usual. The city may have been founded around the site of a miracle or visitation. It could be the holding place of a special artifact, or the residence of a particular person of religious import. The city may be dominated by a single faith or, perhaps, multiple faiths are represented here. (When rolling districts, choose ‘Temple District’ as one of them.)",
+          "tags": ["ss.city.priority.faith"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.priority.control",
+      "name": "Control",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.city.priority.trade",
+      "name": "Trade",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.priority.enlightenment",
+      "name": "Enlightenment"
+    },
+    {
+      "id": "ss.city.priority.entertainment",
+      "name": "Entertainment"
+    },
+    {
+      "id": "ss.city.priority.production",
+      "name": "Production"
+    },
+    {
+      "id": "ss.city.priority.faith",
+      "name": "Faith"
+    }
+  ]
+}

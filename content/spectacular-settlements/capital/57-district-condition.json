@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.districtCondition",
+      "name": "District Condition",
+      "description": "Rolled for each district: steps from the city's general condition. Modified by General Condition and an Upper Class district; Slums roll a d4. The district's own level follows (District Condition Level).",
+      "dice": "1d20",
+      "variants": [
+        {
+          "id": "slums",
+          "name": "Slums (d4)",
+          "when": {
+            "has_tag": "ss.capital.districtType.slums"
+          },
+          "dice": "1d4",
+          "ranges": [
+            {
+              "result": "farWorse",
+              "range": [1, 3]
+            },
+            {
+              "result": "worse",
+              "range": 4
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "id": "farWorse",
+          "name": "Far Worse",
+          "range": [1, 3],
+          "description": "2 steps worse than general condition level. (-2 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtCondition.farWorse"]
+        },
+        {
+          "id": "worse",
+          "name": "Worse",
+          "range": [4, 7],
+          "description": "1 step worse than general condition level. (-1 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtCondition.worse"]
+        },
+        {
+          "id": "equal",
+          "name": "Equal",
+          "range": [8, 13],
+          "description": "Same as general condition level. (+0 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtCondition.equal"]
+        },
+        {
+          "id": "better",
+          "name": "Better",
+          "range": [14, 17],
+          "description": "1 step better than general condition level. (+1 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtCondition.better"]
+        },
+        {
+          "id": "farBetter",
+          "name": "Far Better",
+          "range": [18, 20],
+          "description": "2 steps better than general condition level. (+2 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtCondition.farBetter"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.districtCondition.farWorse",
+      "name": "Far Worse",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.quality",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtCondition.worse",
+      "name": "Worse",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.quality",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtCondition.equal",
+      "name": "Equal"
+    },
+    {
+      "id": "ss.capital.districtCondition.better",
+      "name": "Better",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.quality",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtCondition.farBetter",
+      "name": "Far Better",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.quality",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

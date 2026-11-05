@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.numberOfConnections",
+      "name": "Number of Connections",
+      "description": "The significant entities (cities, capitals, foreign powers, organisations or powerful individuals) the capital is involved with.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "one",
+          "name": "One",
+          "range": 1,
+          "value": 1,
+          "description": "1 connection.",
+          "tags": ["ss.capital.numberOfConnections.one"]
+        },
+        {
+          "id": "two",
+          "name": "Two",
+          "range": 2,
+          "value": 2,
+          "description": "2 connections.",
+          "tags": ["ss.capital.numberOfConnections.two"]
+        },
+        {
+          "id": "three",
+          "name": "Three",
+          "range": 3,
+          "value": 3,
+          "description": "3 connections.",
+          "tags": ["ss.capital.numberOfConnections.three"]
+        },
+        {
+          "id": "four",
+          "name": "Four",
+          "range": 4,
+          "value": 4,
+          "description": "4 connections.",
+          "tags": ["ss.capital.numberOfConnections.four"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.numberOfConnections.one",
+      "name": "One"
+    },
+    {
+      "id": "ss.capital.numberOfConnections.two",
+      "name": "Two"
+    },
+    {
+      "id": "ss.capital.numberOfConnections.three",
+      "name": "Three"
+    },
+    {
+      "id": "ss.capital.numberOfConnections.four",
+      "name": "Four"
+    }
+  ]
+}

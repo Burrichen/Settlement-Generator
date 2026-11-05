@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.arcaneHiredHelp",
+      "name": "Arcane District Hired Help",
+      "description": "The Arcane district's included hired help: 1-3 Arcane Academics, 4-6 Magic Mercenaries.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "arcaneAcademics",
+          "name": "Hired Help - Arcane Academics",
+          "range": [1, 3],
+          "description": "Experts in matters of magic and lore (may also be natural magic or something else; it need not be exclusively arcane).",
+          "tags": ["ss.capital.arcaneHiredHelp.arcaneAcademics"],
+          "then_roll": ["table.ss.capital.hiredHelpSize"]
+        },
+        {
+          "id": "magicMercenaries",
+          "name": "Hired Help - Magic Mercenaries",
+          "range": [4, 6],
+          "description": "Specialists trained the use of arcane or non-divine magic in combat and practical mission scenarios.",
+          "tags": ["ss.capital.arcaneHiredHelp.magicMercenaries"],
+          "then_roll": ["table.ss.capital.hiredHelpSize"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.arcaneHiredHelp.arcaneAcademics",
+      "name": "Hired Help - Arcane Academics"
+    },
+    {
+      "id": "ss.capital.arcaneHiredHelp.magicMercenaries",
+      "name": "Hired Help - Magic Mercenaries"
+    }
+  ]
+}

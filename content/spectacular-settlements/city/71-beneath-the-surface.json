@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.beneathTheSurface",
+      "name": "Beneath the Surface",
+      "description": "Extra Intrigue. Something happening that not everyone is aware of.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "pack",
+          "name": "Pack",
+          "range": 1,
+          "description": "A pack of particularly feral animals roams the city.",
+          "tags": ["ss.city.beneathTheSurface.pack"]
+        },
+        {
+          "id": "monster",
+          "name": "Monster",
+          "range": 2,
+          "description": "A monster lurks somewhere in the city.",
+          "tags": ["ss.city.beneathTheSurface.monster"]
+        },
+        {
+          "id": "markings",
+          "name": "Markings",
+          "range": 3,
+          "description": "Strange markings have been showing up around the city.",
+          "tags": ["ss.city.beneathTheSurface.markings"]
+        },
+        {
+          "id": "fightClub",
+          "name": "Fight Club",
+          "range": 4,
+          "description": "A fight club has started somewhere in the city, and may be gaining more participants.",
+          "tags": ["ss.city.beneathTheSurface.fightClub"]
+        },
+        {
+          "id": "secret",
+          "name": "Secret",
+          "range": 5,
+          "description": "Some portion of the populace is not as they seem.",
+          "tags": ["ss.city.beneathTheSurface.secret"]
+        },
+        {
+          "id": "outsideContact",
+          "name": "Outside Contact",
+          "range": 6,
+          "description": "Someone in the city is in regular communication with an interesting external contact.",
+          "tags": ["ss.city.beneathTheSurface.outsideContact"]
+        },
+        {
+          "id": "tampering",
+          "name": "Tampering",
+          "range": 7,
+          "description": "Someone is interfering with forces best left alone.",
+          "tags": ["ss.city.beneathTheSurface.tampering"]
+        },
+        {
+          "id": "unsafe",
+          "name": "Unsafe",
+          "range": 8,
+          "description": "There is a structural problem with a location within the city (or, possibly, the land, or environment, it is built on). The longer it goes unnoticed, the more damaging it could be.",
+          "tags": ["ss.city.beneathTheSurface.unsafe"]
+        },
+        {
+          "id": "parties",
+          "name": "Parties",
+          "range": 9,
+          "description": "A guerilla party scene has been emerging within the city, with semi-frequent, secret, invitation-only parties being held at ever-changing locations.",
+          "tags": ["ss.city.beneathTheSurface.parties"]
+        },
+        {
+          "id": "blackMarket",
+          "name": "Black Market",
+          "range": 10,
+          "description": "An underground black-market has been established, dealing in the movement of illicit goods or services.",
+          "tags": ["ss.city.beneathTheSurface.blackMarket"]
+        },
+        {
+          "id": "races",
+          "name": "Races",
+          "range": 11,
+          "description": "A racing circuit has been established outside the city.",
+          "tags": ["ss.city.beneathTheSurface.races"]
+        },
+        {
+          "id": "haunted",
+          "name": "Haunted",
+          "range": 12,
+          "description": "The city is being haunted by some kind of spirit.",
+          "tags": ["ss.city.beneathTheSurface.haunted"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.beneathTheSurface.pack",
+      "name": "Pack"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.monster",
+      "name": "Monster"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.markings",
+      "name": "Markings"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.fightClub",
+      "name": "Fight Club"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.secret",
+      "name": "Secret"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.outsideContact",
+      "name": "Outside Contact"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.tampering",
+      "name": "Tampering"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.unsafe",
+      "name": "Unsafe"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.parties",
+      "name": "Parties"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.blackMarket",
+      "name": "Black Market"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.races",
+      "name": "Races"
+    },
+    {
+      "id": "ss.city.beneathTheSurface.haunted",
+      "name": "Haunted"
+    }
+  ]
+}

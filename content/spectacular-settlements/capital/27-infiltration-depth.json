@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.infiltrationDepth",
+      "name": "Infiltration Depth",
+      "description": "How deeply embedded the capital's spies are. Each level includes the goals and repercussions of the levels before it.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "general",
+          "name": "General",
+          "range": [1, 10],
+          "description": "Goals: Gathering general intelligence involving identification of key places, figures, routines and infrastructure. Repercussions: Individual - revelation of identity. National - diplomatic tension, divulging information about discovered spy’s efforts.",
+          "tags": ["ss.capital.infiltrationDepth.general"]
+        },
+        {
+          "id": "deep",
+          "name": "Deep",
+          "range": [11, 15],
+          "description": "Goals: Ingratiating selves with individual targets, monitoring and noting relationships and actively guarded information. Repercussions: Individual - revelation of identity, imprisonment/ransom or attempts to turn operative. National - diplomatic tension, divulging information about discovered spy’s efforts, difficult negotiations.",
+          "tags": ["ss.capital.infiltrationDepth.deep"]
+        },
+        {
+          "id": "immersed",
+          "name": "Immersed",
+          "range": [16, 19],
+          "description": "Goals: Establishing and building deeper connections with key figures. Repercussions: Individual - mortal peril or possible attempts to turn operative. National - ultimatums, deals highly in favor of the target.",
+          "tags": ["ss.capital.infiltrationDepth.immersed"]
+        },
+        {
+          "id": "embroiled",
+          "name": "Embroiled",
+          "range": 20,
+          "description": "Goals: Deep cover into the heart of the target’s operations, gaining the highest levels of trust, achieving positions of power within the target’s structure. Repercussions: Individual - mortal peril. National - war.",
+          "tags": ["ss.capital.infiltrationDepth.embroiled"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.infiltrationDepth.general",
+      "name": "General"
+    },
+    {
+      "id": "ss.capital.infiltrationDepth.deep",
+      "name": "Deep"
+    },
+    {
+      "id": "ss.capital.infiltrationDepth.immersed",
+      "name": "Immersed"
+    },
+    {
+      "id": "ss.capital.infiltrationDepth.embroiled",
+      "name": "Embroiled"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.faithAlignment",
+      "name": "Alignment of the Faith",
+      "description": "Rolled for each place of worship in the village.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "evil",
+          "name": "Evil",
+          "range": 1,
+          "tags": ["ss.village.faithAlignment.evil"]
+        },
+        {
+          "id": "neutral",
+          "name": "Neutral",
+          "range": [2, 5],
+          "tags": ["ss.village.faithAlignment.neutral"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [6, 10],
+          "tags": ["ss.village.faithAlignment.good"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.faithAlignment.evil",
+      "name": "Evil"
+    },
+    {
+      "id": "ss.village.faithAlignment.neutral",
+      "name": "Neutral"
+    },
+    {
+      "id": "ss.village.faithAlignment.good",
+      "name": "Good"
+    }
+  ]
+}

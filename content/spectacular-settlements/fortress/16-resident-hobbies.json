@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.residentHobbies",
+      "name": "Resident Hobbies",
+      "description": "What the people in the fortress enjoy in their spare time: rolled once here; roll again for each major individual or group if you like.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "hunting",
+          "name": "Hunting",
+          "range": 1,
+          "tags": ["ss.fortress.residentHobbies.hunting"]
+        },
+        {
+          "id": "cooking",
+          "name": "Cooking",
+          "range": 2,
+          "tags": ["ss.fortress.residentHobbies.cooking"]
+        },
+        {
+          "id": "strategyGames",
+          "name": "Strategy Games",
+          "range": 3,
+          "tags": ["ss.fortress.residentHobbies.strategyGames"]
+        },
+        {
+          "id": "gambling",
+          "name": "Gambling",
+          "range": 4,
+          "description": "(cards or dice)",
+          "tags": ["ss.fortress.residentHobbies.gambling"]
+        },
+        {
+          "id": "art",
+          "name": "Art",
+          "range": 5,
+          "description": "(any discipline)",
+          "tags": ["ss.fortress.residentHobbies.art"]
+        },
+        {
+          "id": "history",
+          "name": "History",
+          "range": 6,
+          "description": "(domestic or foreign)",
+          "tags": ["ss.fortress.residentHobbies.history"]
+        },
+        {
+          "id": "knittingSewing",
+          "name": "Knitting/Sewing",
+          "range": 7,
+          "tags": ["ss.fortress.residentHobbies.knittingSewing"]
+        },
+        {
+          "id": "carving",
+          "name": "Carving",
+          "range": 8,
+          "tags": ["ss.fortress.residentHobbies.carving"]
+        },
+        {
+          "id": "botanyStudyOfNature",
+          "name": "Botany/Study of Nature",
+          "range": 9,
+          "tags": ["ss.fortress.residentHobbies.botanyStudyOfNature"]
+        },
+        {
+          "id": "outdoorGamesThrowingOrShooting",
+          "name": "Outdoor Games - Throwing or Shooting",
+          "range": 10,
+          "description": "(archery, throwing axes or hammers, etc)",
+          "tags": ["ss.fortress.residentHobbies.outdoorGamesThrowingOrShooting"]
+        },
+        {
+          "id": "outdoorGamesMartial",
+          "name": "Outdoor Games - Martial",
+          "range": 11,
+          "description": "(mock combat, jousting, tourneys, wrestling, etc)",
+          "tags": ["ss.fortress.residentHobbies.outdoorGamesMartial"]
+        },
+        {
+          "id": "outdoorGamesBallBased",
+          "name": "Outdoor Games - Ball-Based",
+          "range": 12,
+          "description": "(golf, bowls, tennis, etc)",
+          "tags": ["ss.fortress.residentHobbies.outdoorGamesBallBased"]
+        },
+        {
+          "id": "feasting",
+          "name": "Feasting",
+          "range": 13,
+          "tags": ["ss.fortress.residentHobbies.feasting"]
+        },
+        {
+          "id": "music",
+          "name": "Music",
+          "range": 14,
+          "description": "(listening or playing)",
+          "tags": ["ss.fortress.residentHobbies.music"]
+        },
+        {
+          "id": "craft",
+          "name": "Craft",
+          "range": 15,
+          "description": "(creation of decorative items like jewellery or ceramics)",
+          "tags": ["ss.fortress.residentHobbies.craft"]
+        },
+        {
+          "id": "hawking",
+          "name": "Hawking",
+          "range": 16,
+          "tags": ["ss.fortress.residentHobbies.hawking"]
+        },
+        {
+          "id": "martialTraining",
+          "name": "Martial Training",
+          "range": 17,
+          "tags": ["ss.fortress.residentHobbies.martialTraining"]
+        },
+        {
+          "id": "brewing",
+          "name": "Brewing",
+          "range": 18,
+          "tags": ["ss.fortress.residentHobbies.brewing"]
+        },
+        {
+          "id": "readingStorytelling",
+          "name": "Reading/Storytelling",
+          "range": 19,
+          "tags": ["ss.fortress.residentHobbies.readingStorytelling"]
+        },
+        {
+          "id": "poetry",
+          "name": "Poetry",
+          "range": 20,
+          "tags": ["ss.fortress.residentHobbies.poetry"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.residentHobbies.hunting", "name": "Hunting" },
+    { "id": "ss.fortress.residentHobbies.cooking", "name": "Cooking" },
+    { "id": "ss.fortress.residentHobbies.strategyGames", "name": "Strategy Games" },
+    { "id": "ss.fortress.residentHobbies.gambling", "name": "Gambling" },
+    { "id": "ss.fortress.residentHobbies.art", "name": "Art" },
+    { "id": "ss.fortress.residentHobbies.history", "name": "History" },
+    { "id": "ss.fortress.residentHobbies.knittingSewing", "name": "Knitting/Sewing" },
+    { "id": "ss.fortress.residentHobbies.carving", "name": "Carving" },
+    { "id": "ss.fortress.residentHobbies.botanyStudyOfNature", "name": "Botany/Study of Nature" },
+    {
+      "id": "ss.fortress.residentHobbies.outdoorGamesThrowingOrShooting",
+      "name": "Outdoor Games - Throwing or Shooting"
+    },
+    { "id": "ss.fortress.residentHobbies.outdoorGamesMartial", "name": "Outdoor Games - Martial" },
+    {
+      "id": "ss.fortress.residentHobbies.outdoorGamesBallBased",
+      "name": "Outdoor Games - Ball-Based"
+    },
+    { "id": "ss.fortress.residentHobbies.feasting", "name": "Feasting" },
+    { "id": "ss.fortress.residentHobbies.music", "name": "Music" },
+    { "id": "ss.fortress.residentHobbies.craft", "name": "Craft" },
+    { "id": "ss.fortress.residentHobbies.hawking", "name": "Hawking" },
+    { "id": "ss.fortress.residentHobbies.martialTraining", "name": "Martial Training" },
+    { "id": "ss.fortress.residentHobbies.brewing", "name": "Brewing" },
+    { "id": "ss.fortress.residentHobbies.readingStorytelling", "name": "Reading/Storytelling" },
+    { "id": "ss.fortress.residentHobbies.poetry", "name": "Poetry" }
+  ]
+}

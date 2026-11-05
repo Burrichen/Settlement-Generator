@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.culture",
+      "name": "Culture",
+      "description": "The aspect of daily life the capital's people place value in. Non-Specific skips Pursuit of Culture.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "nonSpecific",
+          "name": "Non-Specific",
+          "range": [1, 2],
+          "description": "Culture within the capital is shaped simply by their environment and current events.",
+          "tags": ["ss.capital.culture.nonSpecific"]
+        },
+        {
+          "id": "artAndBeauty",
+          "name": "Art & Beauty",
+          "range": 3,
+          "description": "Citizens believe life finds its meaning in the appreciation of the world and its beauty, exploring it through creative pursuits.",
+          "tags": ["ss.capital.culture.artAndBeauty"]
+        },
+        {
+          "id": "music",
+          "name": "Music",
+          "range": 4,
+          "description": "Citizens believe life finds its meaning in the making and experiencing of music, the true language of the soul.",
+          "tags": ["ss.capital.culture.music"]
+        },
+        {
+          "id": "cuisine",
+          "name": "Cuisine",
+          "range": 5,
+          "description": "Citizens believe life finds its meaning in the creation and consumption of excellent food, and the joy it can bring to all.",
+          "tags": ["ss.capital.culture.cuisine"]
+        },
+        {
+          "id": "selfImprovement",
+          "name": "Self-Improvement",
+          "range": 6,
+          "description": "Citizens believe life finds its meaning through the endless pursuit of bettering oneself, inside and out.",
+          "tags": ["ss.capital.culture.selfImprovement"]
+        },
+        {
+          "id": "enjoyment",
+          "name": "Enjoyment",
+          "range": 7,
+          "description": "Citizens believe life finds its meaning in the pursuit of happiness and fun.",
+          "tags": ["ss.capital.culture.enjoyment"]
+        },
+        {
+          "id": "challenge",
+          "name": "Challenge",
+          "range": 8,
+          "description": "Citizens believe life finds its meaning in struggle and overcoming obstacles.",
+          "tags": ["ss.capital.culture.challenge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.culture.nonSpecific",
+      "name": "Non-Specific"
+    },
+    {
+      "id": "ss.capital.culture.artAndBeauty",
+      "name": "Art & Beauty"
+    },
+    {
+      "id": "ss.capital.culture.music",
+      "name": "Music"
+    },
+    {
+      "id": "ss.capital.culture.cuisine",
+      "name": "Cuisine"
+    },
+    {
+      "id": "ss.capital.culture.selfImprovement",
+      "name": "Self-Improvement"
+    },
+    {
+      "id": "ss.capital.culture.enjoyment",
+      "name": "Enjoyment"
+    },
+    {
+      "id": "ss.capital.culture.challenge",
+      "name": "Challenge"
+    }
+  ]
+}
