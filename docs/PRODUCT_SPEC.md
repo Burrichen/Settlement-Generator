@@ -146,6 +146,10 @@ Settings are persistent and shared by both interfaces:
   rooms. It is added to the rolled Notable Locations, never instead of one,
   and is never repeated per district.
 - **Theme:** Modern Dark (the default) or Old-Timey Dark.
+- **Colour theme:** the accent colours (buttons, selection, focus) for the
+  active theme: Ember, Brass, Amethyst, Verdigris, Lapis, Moss or Glacier.
+  Each theme remembers its own choice; Modern Dark starts on Ember and
+  Old-Timey Dark on Brass. Maps keep their own colours.
 
 ## 9. Saved settlements
 

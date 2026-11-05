@@ -28,7 +28,7 @@
   --text-faint: #80868f;
 
   --accent: #cf5a43;
-  --accent-strong: #e2735c;
+  --accent-strong: #d26650;
   --accent-text: #140d0b;
   --focus: #e8a33d;
   --ornament: #444951;
@@ -83,7 +83,7 @@
   --text-faint: #937f64;
 
   --accent: #c7a259;
-  --accent-strong: #ddbb72;
+  --accent-strong: #cba965;
   --accent-text: #19130f;
   --focus: #e9c87e;
   --ornament: #6f5636;
@@ -117,4 +117,95 @@
   --map-hover: #e9c87e;
   --map-select: #d65a3c;
   --map-district: rgba(233, 200, 126, 0.5);
+}
+
+/*
+ * Accent palettes (Settings > Colour theme). Each theme keeps its own
+ * choice; App sets `data-accent` for the active one. The map keeps its own
+ * --map-* colours. Hover shades sit only a touch above the base colour.
+ */
+:root {
+  --ember-accent: #cf5a43;
+  --ember-strong: #d26650;
+  --ember-focus: #e8a33d;
+  --ember-text: #140d0b;
+
+  --brass-accent: #c7a259;
+  --brass-strong: #cba965;
+  --brass-focus: #e9c87e;
+  --brass-text: #19130f;
+
+  --amethyst-accent: #a077cc;
+  --amethyst-strong: #a781d0;
+  --amethyst-focus: #e8ab8c;
+  --amethyst-text: #120c18;
+
+  --verdigris-accent: #3fa08c;
+  --verdigris-strong: #4ca794;
+  --verdigris-focus: #e39a62;
+  --verdigris-text: #08130f;
+
+  --lapis-accent: #6587dc;
+  --lapis-strong: #708fde;
+  --lapis-focus: #e4bd5f;
+  --lapis-text: #0a0e18;
+
+  --moss-accent: #7ea24b;
+  --moss-strong: #87a958;
+  --moss-focus: #dcc56b;
+  --moss-text: #0d1207;
+
+  --glacier-accent: #4ea7c6;
+  --glacier-strong: #5aadca;
+  --glacier-focus: #c4e6f1;
+  --glacier-text: #071318;
+}
+
+:root[data-accent="ember"] {
+  --accent: var(--ember-accent);
+  --accent-strong: var(--ember-strong);
+  --focus: var(--ember-focus);
+  --accent-text: var(--ember-text);
+}
+
+:root[data-accent="brass"] {
+  --accent: var(--brass-accent);
+  --accent-strong: var(--brass-strong);
+  --focus: var(--brass-focus);
+  --accent-text: var(--brass-text);
+}
+
+:root[data-accent="amethyst"] {
+  --accent: var(--amethyst-accent);
+  --accent-strong: var(--amethyst-strong);
+  --focus: var(--amethyst-focus);
+  --accent-text: var(--amethyst-text);
+}
+
+:root[data-accent="verdigris"] {
+  --accent: var(--verdigris-accent);
+  --accent-strong: var(--verdigris-strong);
+  --focus: var(--verdigris-focus);
+  --accent-text: var(--verdigris-text);
+}
+
+:root[data-accent="lapis"] {
+  --accent: var(--lapis-accent);
+  --accent-strong: var(--lapis-strong);
+  --focus: var(--lapis-focus);
+  --accent-text: var(--lapis-text);
+}
+
+:root[data-accent="moss"] {
+  --accent: var(--moss-accent);
+  --accent-strong: var(--moss-strong);
+  --focus: var(--moss-focus);
+  --accent-text: var(--moss-text);
+}
+
+:root[data-accent="glacier"] {
+  --accent: var(--glacier-accent);
+  --accent-strong: var(--glacier-strong);
+  --focus: var(--glacier-focus);
+  --accent-text: var(--glacier-text);
 }

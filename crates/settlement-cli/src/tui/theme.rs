@@ -3,7 +3,7 @@
 //! readability never depends on the theme.
 
 use ratatui::style::{Color, Modifier, Style};
-use settlement_core::settings::Theme;
+use settlement_core::settings::{AccentPalette, Settings, Theme};
 
 #[derive(Debug, Clone, Copy)]
 pub struct Styles {
@@ -14,6 +14,14 @@ pub struct Styles {
 }
 
 impl Styles {
+    /// The active theme's styles with its chosen accent palette.
+    pub fn for_settings(settings: &Settings) -> Self {
+        Styles {
+            accent: accent_colour(settings.accent()),
+            ..Self::for_theme(settings.theme)
+        }
+    }
+
     pub fn for_theme(theme: Theme) -> Self {
         match theme {
             Theme::ModernDark => Styles {
@@ -70,5 +78,19 @@ impl Styles {
 
     pub fn border(&self) -> Style {
         Style::new().add_modifier(Modifier::DIM)
+    }
+}
+
+/// The nearest plain terminal colour to each palette's accent, so it reads
+/// on any terminal scheme.
+fn accent_colour(palette: AccentPalette) -> Color {
+    match palette {
+        AccentPalette::Ember => Color::LightRed,
+        AccentPalette::Brass => Color::Yellow,
+        AccentPalette::Amethyst => Color::LightMagenta,
+        AccentPalette::Verdigris => Color::Cyan,
+        AccentPalette::Lapis => Color::LightBlue,
+        AccentPalette::Moss => Color::LightGreen,
+        AccentPalette::Glacier => Color::LightCyan,
     }
 }

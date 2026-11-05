@@ -114,7 +114,7 @@ export function EffectEditor({
         </select>
         <button
           type="button"
-          className="icon-button"
+          className="icon-button icon-remove"
           aria-label={`Remove ${label}`}
           onClick={onRemove}
         >

@@ -1115,7 +1115,7 @@ function ResultRow({
           </button>
           <button
             type="button"
-            className="icon-button"
+            className="icon-button icon-remove"
             aria-label={`Remove ${label}`}
             onClick={onRemove}
           >
@@ -1175,7 +1175,7 @@ function ResultRow({
                   />
                   <button
                     type="button"
-                    className="icon-button"
+                    className="icon-button icon-remove"
                     aria-label={`Remove then roll ${i + 1}`}
                     onClick={() => onChange({ then_roll: thenRoll.filter((_, j) => j !== i) })}
                   >
@@ -1266,7 +1266,7 @@ function ResultRow({
                   />
                   <button
                     type="button"
-                    className="icon-button"
+                    className="icon-button icon-remove"
                     aria-label={`Remove display variant ${i + 1}`}
                     onClick={() => onChange({ label_variants: variants.filter((_, j) => j !== i) })}
                   >

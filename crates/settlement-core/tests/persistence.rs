@@ -10,7 +10,9 @@ use settlement_core::db::{Database, DbError};
 use settlement_core::dice::ScriptedFaces;
 use settlement_core::engine::Generator;
 use settlement_core::layers::{ContentLayers, UserOverrides};
-use settlement_core::settings::{GenerationMethod, GenerationPresentation, Settings, Theme};
+use settlement_core::settings::{
+    AccentPalette, GenerationMethod, GenerationPresentation, Settings, Theme,
+};
 use settlement_core::settlements::{SettlementId, SettlementSnapshot};
 
 struct TempDb {
@@ -108,6 +110,8 @@ fn settings_round_trip() {
         theme: Theme::OldTimeyDark,
         bare_minimum_buildings: true,
         roll_details: true,
+        modern_dark_accent: AccentPalette::Lapis,
+        old_timey_dark_accent: AccentPalette::Amethyst,
     };
     db.save_settings(&wanted).unwrap();
     assert_eq!(db.load_settings().unwrap(), wanted);

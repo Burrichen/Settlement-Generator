@@ -18,6 +18,10 @@
   border-color: var(--text-faint);
 }
 
+.btn:active:not(:disabled) {
+  background: var(--surface);
+}
+
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -209,8 +213,27 @@
   color: var(--text-muted);
 }
 
+/* Sub-stages sit one step in from their parent stage. */
 .stage-rail .rail-sub {
-  padding-left: 14px;
+  padding-left: 32px;
+  font-size: 13px;
+}
+
+.stage-rail .rail-sub .rail-mark {
+  left: 11px;
+  top: 10px;
+  width: 7px;
+  height: 7px;
+}
+
+.stage-rail .rail-sub::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 11px;
+  height: 1px;
+  background: var(--border-strong);
 }
 
 .rail-done {
@@ -315,12 +338,17 @@
   font-size: 12.5px;
 }
 
+/* Stage navigation stays in reach below long result lists. */
 .step-nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   margin-top: 26px;
-  padding-top: 16px;
+  padding: 12px 0;
   border-top: 1px solid var(--border);
+  background: var(--bg);
 }
 
 /* Tags stay secondary. */
@@ -354,10 +382,16 @@
 }
 
 /* One-table workspace. */
+/* Roll remaining / Finish stay visible while the stage table scrolls. */
 .one-table-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin: -8px 0 6px;
+  padding: 8px 0;
+  background: var(--bg);
 }
 
 .stage-table-grid {
@@ -429,11 +463,32 @@
   font-size: 14px;
 }
 
+.select:hover:not(:disabled),
+.text-input:hover:not(:disabled) {
+  border-color: var(--text-faint);
+}
+
+.text-input:focus-visible,
+.select:focus-visible {
+  outline-offset: 0;
+  border-color: var(--focus);
+}
+
 .select:disabled {
   color: var(--text-faint);
 }
 
 /* Completed settlement. */
+.sticky-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  /* Wide enough to cover the sheet's outer rule as it scrolls beneath. */
+  margin-inline: -8px;
+  padding: 12px 8px;
+  border-top: 1px solid var(--border-strong);
+  background: var(--bg);
+}
 .completed {
   max-width: 640px;
   margin: 0 auto;

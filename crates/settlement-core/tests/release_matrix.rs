@@ -12,7 +12,9 @@ use settlement_core::dice::RandomFaces;
 use settlement_core::engine::Selections;
 use settlement_core::ids::{ResultId, TableId, TagId};
 use settlement_core::service::AppService;
-use settlement_core::settings::{GenerationMethod, GenerationPresentation, Settings, Theme};
+use settlement_core::settings::{
+    AccentPalette, GenerationMethod, GenerationPresentation, Settings, Theme,
+};
 use settlement_core::settlements::SettlementId;
 
 struct TempDir(PathBuf);
@@ -85,6 +87,9 @@ fn every_setting_survives_a_restart() {
             theme: Theme::OldTimeyDark,
             bare_minimum_buildings: false,
             roll_details: false,
+            // Older databases have no accent choice: each theme's own.
+            modern_dark_accent: AccentPalette::Ember,
+            old_timey_dark_accent: AccentPalette::Brass,
         }
     );
 }
