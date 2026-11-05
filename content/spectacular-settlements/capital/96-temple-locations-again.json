@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.templeLocationsAgain",
+      "name": "Temple District Additional Location (Rolled Again)",
+      "description": "The location a \"roll again\" gives in a Temple district: the same table, a 1 or 20 rolled again.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "rollAgainLow",
+          "name": "Roll Again",
+          "range": 1,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.capital.templeLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.capital.templeLocations.stepUp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": 2,
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc.",
+          "tags": ["ss.capital.templeLocations.cooper"]
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": 3,
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs.",
+          "tags": ["ss.capital.templeLocations.carpenter"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": 4,
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.capital.templeLocations.tailor"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 5,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.capital.templeLocations.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 6,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.capital.templeLocations.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 7,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.capital.templeLocations.bankAndExchange"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.capital.templeLocations.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 9,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.capital.templeLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations & Fare",
+          "range": 10,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.capital.templeLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 11,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.capital.templeLocations.magicShop"],
+          "then_roll": ["table.ss.capital.magicShopSpecialization"]
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": 12,
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.capital.templeLocations.barber"]
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": 13,
+          "description": "Provides spaces for bathing.",
+          "tags": ["ss.capital.templeLocations.bathhouse"]
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "range": 14,
+          "description": "Provides medical care.",
+          "tags": ["ss.capital.templeLocations.doctorApothecary"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 15,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.capital.templeLocations.inn"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 16,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.capital.templeLocations.soothsayer"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 17,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.capital.templeLocations.hiredHelp"],
+          "then_roll": ["table.ss.capital.templeHiredHelp"]
+        },
+        {
+          "id": "schoolhouse",
+          "name": "Schoolhouse",
+          "range": 18,
+          "description": "(Non-commercial) An institution focused on educating children.",
+          "tags": ["ss.capital.templeLocations.schoolhouse"]
+        },
+        {
+          "id": "amphitheater",
+          "name": "Amphitheater",
+          "range": 19,
+          "description": "(Non-commercial) Outdoor space with a stage and tiered seating.",
+          "tags": ["ss.capital.templeLocations.amphitheater"]
+        },
+        {
+          "id": "rollAgainHigh",
+          "name": "Roll Again",
+          "range": 20,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.capital.templeLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.capital.templeLocations.stepUp"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

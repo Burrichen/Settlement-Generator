@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.condition",
+      "name": "Condition",
+      "description": "Modified by Hardship Type/Outcome. Modifies Population Wealth.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ruined",
+          "name": "Ruined",
+          "range": [1, 2],
+          "description": "The village is little but rubble and debris with, perhaps, a few exceptions. This could have been the result of a war, raid, earthquake, or storm. (-6 to population wealth roll)",
+          "tags": ["ss.village.condition.ruined"]
+        },
+        {
+          "id": "dilapidated",
+          "name": "Dilapidated",
+          "range": [3, 6],
+          "description": "The village is in a state of disrepair. Some buildings may be coming down, or may have been built in a shoddy fashion. Cleanliness is not a priority. (-3 to population wealth roll)",
+          "tags": ["ss.village.condition.dilapidated"]
+        },
+        {
+          "id": "simple",
+          "name": "Simple",
+          "range": [7, 14],
+          "description": "Most buildings are organized and seem sturdy enough, though there is nothing remarkable. The streets are clear enough to move through, but may be uneven and rutted. (+0 to population wealth roll)",
+          "tags": ["ss.village.condition.simple"]
+        },
+        {
+          "id": "hearty",
+          "name": "Hearty",
+          "range": [15, 18],
+          "description": "Everything here appears to be well-built and robust. The village seems mindful of cleanliness and the settlement’s upkeep. Roads and paths are well-groomed and flattened. (+3 to population wealth roll)",
+          "tags": ["ss.village.condition.hearty"]
+        },
+        {
+          "id": "immaculate",
+          "name": "Immaculate",
+          "range": [19, 20],
+          "description": "The village is very well organized, and there is clearly a concerted effort to keep the village in the best shape possible. Cleanliness is a priority, as is maintenance. Roads and paths are plainly surfaced and clean. (+6 to population wealth roll)",
+          "tags": ["ss.village.condition.immaculate"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.condition.ruined",
+      "name": "Ruined",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.populationWealth", "amount": 6 }]
+    },
+    {
+      "id": "ss.village.condition.dilapidated",
+      "name": "Dilapidated",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.populationWealth", "amount": 3 }]
+    },
+    { "id": "ss.village.condition.simple", "name": "Simple" },
+    {
+      "id": "ss.village.condition.hearty",
+      "name": "Hearty",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.populationWealth", "amount": 3 }]
+    },
+    {
+      "id": "ss.village.condition.immaculate",
+      "name": "Immaculate",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.populationWealth", "amount": 6 }]
+    }
+  ]
+}

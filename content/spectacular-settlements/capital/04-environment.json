@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.environment",
+      "name": "Environment",
+      "description": "However it is placed, the capital gets plentiful water somehow.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "coastal",
+          "name": "Coastal",
+          "range": 1,
+          "description": "The capital is near a large body of water, such as a lake or ocean.",
+          "tags": ["ss.capital.environment.coastal"]
+        },
+        {
+          "id": "forest",
+          "name": "Forest",
+          "range": 2,
+          "description": "The capital is nestled among the trees.",
+          "tags": ["ss.capital.environment.forest"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": 3,
+          "description": "The capital is found on stony passes or soaring peaks.",
+          "tags": ["ss.capital.environment.mountains"]
+        },
+        {
+          "id": "plains",
+          "name": "Plains",
+          "range": 4,
+          "description": "The capital is in the wide open fields.",
+          "tags": ["ss.capital.environment.plains"]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "range": 5,
+          "description": "The capital is near a steadily flowing stream, or other watercourse.",
+          "tags": ["ss.capital.environment.river"]
+        },
+        {
+          "id": "swamp",
+          "name": "Swamp",
+          "range": 6,
+          "description": "The capital is in, or near, a vast area of stagnant water.",
+          "tags": ["ss.capital.environment.swamp"]
+        },
+        {
+          "id": "underground",
+          "name": "Underground",
+          "range": 7,
+          "description": "The capital is within a large network of caves.",
+          "tags": ["ss.capital.environment.underground"]
+        },
+        {
+          "id": "valley",
+          "name": "Valley",
+          "range": 8,
+          "description": "The capital is found within, or on the edge of, an area of recessed elevation in relation to the landscape around it.",
+          "tags": ["ss.capital.environment.valley"]
+        },
+        {
+          "id": "tundra",
+          "name": "Tundra",
+          "range": 9,
+          "description": "The capital is in a very cold environment.",
+          "tags": ["ss.capital.environment.tundra"]
+        },
+        {
+          "id": "desert",
+          "name": "Desert",
+          "range": 10,
+          "description": "The capital is in a dry and arid environment, likely covered with vast sand dunes.",
+          "tags": ["ss.capital.environment.desert"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.environment.coastal",
+      "name": "Coastal"
+    },
+    {
+      "id": "ss.capital.environment.forest",
+      "name": "Forest"
+    },
+    {
+      "id": "ss.capital.environment.mountains",
+      "name": "Mountains"
+    },
+    {
+      "id": "ss.capital.environment.plains",
+      "name": "Plains"
+    },
+    {
+      "id": "ss.capital.environment.river",
+      "name": "River"
+    },
+    {
+      "id": "ss.capital.environment.swamp",
+      "name": "Swamp"
+    },
+    {
+      "id": "ss.capital.environment.underground",
+      "name": "Underground"
+    },
+    {
+      "id": "ss.capital.environment.valley",
+      "name": "Valley"
+    },
+    {
+      "id": "ss.capital.environment.tundra",
+      "name": "Tundra"
+    },
+    {
+      "id": "ss.capital.environment.desert",
+      "name": "Desert"
+    }
+  ]
+}

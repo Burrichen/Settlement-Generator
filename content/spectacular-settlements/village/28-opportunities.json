@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.opportunities",
+      "name": "Opportunities",
+      "description": "Extra Intrigue. Problems the villagers are dealing with, that they may need help with.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "thief",
+          "name": "Thief",
+          "range": 1,
+          "description": "Someone has been absconding with large amounts of the village’s major crop, or resource.",
+          "tags": ["ss.village.opportunities.thief"]
+        },
+        {
+          "id": "wildlife",
+          "name": "Wildlife",
+          "range": 2,
+          "description": "Local wildlife has been harassing the villagers, or animals.",
+          "tags": ["ss.village.opportunities.wildlife"]
+        },
+        {
+          "id": "monsters",
+          "name": "Monster(s)",
+          "range": 3,
+          "description": "Something worse than simple wildlife is terrorizing the village.",
+          "tags": ["ss.village.opportunities.monsters"]
+        },
+        {
+          "id": "haunting",
+          "name": "Haunting",
+          "range": 4,
+          "description": "A spirit haunts some place within the village. Something was done to this person while they were alive that has tied the spirit to this place.",
+          "tags": ["ss.village.opportunities.haunting"]
+        },
+        {
+          "id": "partyTime",
+          "name": "Party Time",
+          "range": 5,
+          "description": "A festival is coming up soon, and a shipment carrying something important for the event has not arrived.",
+          "tags": ["ss.village.opportunities.partyTime"]
+        },
+        {
+          "id": "shadyDoings",
+          "name": "Shady Doings",
+          "range": 6,
+          "description": "Strange symbols are discovered written on the walls of certain homes, or other buildings. Bits of bones, or piles of stones, placed just-so have been found. Something, or someone, is trying to send a message, or accomplish a less-than-savory task. What is it and why is it happening?",
+          "tags": ["ss.village.opportunities.shadyDoings"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.opportunities.thief", "name": "Thief" },
+    { "id": "ss.village.opportunities.wildlife", "name": "Wildlife" },
+    { "id": "ss.village.opportunities.monsters", "name": "Monster(s)" },
+    { "id": "ss.village.opportunities.haunting", "name": "Haunting" },
+    { "id": "ss.village.opportunities.partyTime", "name": "Party Time" },
+    { "id": "ss.village.opportunities.shadyDoings", "name": "Shady Doings" }
+  ]
+}

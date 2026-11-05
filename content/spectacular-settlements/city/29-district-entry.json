@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.districtEntry",
+      "name": "District Entry",
+      "description": "Rolled for each district: how restricted traffic is in and out. Modifies District Crime.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "open",
+          "name": "Open",
+          "range": [1, 4],
+          "description": "Entrance to the district is unrestricted. (+0 to district crime roll)",
+          "tags": ["ss.city.districtEntry.open"]
+        },
+        {
+          "id": "lightlyGuarded",
+          "name": "Lightly Guarded",
+          "range": [5, 7],
+          "description": "The district entrance has a token guard presence. (+1 to district crime roll)",
+          "tags": ["ss.city.districtEntry.lightlyGuarded"]
+        },
+        {
+          "id": "guarded",
+          "name": "Guarded",
+          "range": [8, 10],
+          "description": "The district entrance has a strong guard presence. (+2 to district crime roll)",
+          "tags": ["ss.city.districtEntry.guarded"]
+        },
+        {
+          "id": "gatedAndGuarded",
+          "name": "Gated & Guarded",
+          "range": [11, 12],
+          "description": "The district entrance is barred by a gate with guards. (+3 to district crime roll)",
+          "tags": ["ss.city.districtEntry.gatedAndGuarded"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.districtEntry.open",
+      "name": "Open"
+    },
+    {
+      "id": "ss.city.districtEntry.lightlyGuarded",
+      "name": "Lightly Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.districtCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtEntry.guarded",
+      "name": "Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.districtCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtEntry.gatedAndGuarded",
+      "name": "Gated & Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.districtCrime",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

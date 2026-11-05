@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.brutalDefenses",
+      "name": "Brutal Defenses",
+      "description": "The stronghold's particularly nasty tricks.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stalwartDefenders",
+          "name": "Stalwart Defenders",
+          "range": [1, 8],
+          "description": "A portion of the fortress’ defenders are extremely well-trained in general warfare and siegecraft, and are particularly loyal (GM’s discretion on stats and abilities).",
+          "tags": ["ss.fortress.brutalDefenses.stalwartDefenders"]
+        },
+        {
+          "id": "shards",
+          "name": "Shards",
+          "range": 9,
+          "description": "The walls have fragments of metal, glass, and broken pottery built into them, so any climbing becomes an eviscerating nightmare.",
+          "tags": ["ss.fortress.brutalDefenses.shards"]
+        },
+        {
+          "id": "scythe",
+          "name": "Scythe",
+          "range": 10,
+          "description": "A massive blade, covering a large amount of vertical space, sheers across the face of the wall, shaving any enemies, or equipment, from its surface.",
+          "tags": ["ss.fortress.brutalDefenses.scythe"]
+        },
+        {
+          "id": "quake",
+          "name": "Quake",
+          "range": 11,
+          "description": "A subterranean device of magic, or technology, is able to send shivering impacts up through the area surrounding the stronghold’s outer wall.",
+          "tags": ["ss.fortress.brutalDefenses.quake"]
+        },
+        {
+          "id": "rollingPin",
+          "name": "Rolling Pin",
+          "range": 12,
+          "description": "Massive timbers, or rounded, stone cylinders, are held horizontally, with an axle running through the center. When released, the massive cylinders roll down the face of the wall and, potentially, out across the ground, crushing all in its path. The axle ends are connected to chains, allowing the cylinders to be raised back to their original position.",
+          "tags": ["ss.fortress.brutalDefenses.rollingPin"]
+        },
+        {
+          "id": "oiledSurface",
+          "name": "Oiled Surface",
+          "range": 13,
+          "description": "The surface of the wall is oiled, making it slick and very difficult to climb. It can also be set ablaze, if need be.",
+          "tags": ["ss.fortress.brutalDefenses.oiledSurface"]
+        },
+        {
+          "id": "gasSpouts",
+          "name": "Gas Spouts",
+          "range": 14,
+          "description": "Pipes built into the wall expel noxious fumes, from deep in the earth, that cascade down the walls and over the ranks of the enemy.",
+          "tags": ["ss.fortress.brutalDefenses.gasSpouts"]
+        },
+        {
+          "id": "wallOfDarts",
+          "name": "Wall of Darts",
+          "range": 15,
+          "description": "The walls are set with dart traps that can be triggered when the walls are being swarmed.",
+          "tags": ["ss.fortress.brutalDefenses.wallOfDarts"]
+        },
+        {
+          "id": "vertigo",
+          "name": "Vertigo",
+          "range": 16,
+          "description": "The architecture is designed using forced perspective. An example could be cunningly placed stones of differing sizes, tricking the eye to make walls appear much higher than they are, and triggering bouts of dizziness and disorientation in attackers.",
+          "tags": ["ss.fortress.brutalDefenses.vertigo"]
+        },
+        {
+          "id": "mightyAdhesive",
+          "name": "Mighty Adhesive",
+          "range": 17,
+          "description": "The defenses are covered in a gelatinous adhesive that reduces impacts and holds onto anything that touches it. This turns projectiles (such as catapult stones, arrows, etc.) and even fellow attackers, into obstacles on the ascent to the top.",
+          "tags": ["ss.fortress.brutalDefenses.mightyAdhesive"]
+        },
+        {
+          "id": "tarFields",
+          "name": "Tar Fields",
+          "range": 18,
+          "description": "The open areas leading up to the stronghold are saturated with tar, and can be lit on fire, if the need arises.",
+          "tags": ["ss.fortress.brutalDefenses.tarFields"]
+        },
+        {
+          "id": "meldedGuardians",
+          "name": "Melded Guardians",
+          "range": 19,
+          "description": "Creatures dwell within the defensive structures, or the surrounding area. These might be magically animated constructs, or natural beasts, which have been encouraged to live there. When attackers reach them, the guardians emerge.",
+          "tags": ["ss.fortress.brutalDefenses.meldedGuardians"]
+        },
+        {
+          "id": "thunderHorn",
+          "name": "Thunder Horn",
+          "range": 20,
+          "description": "A massive horn takes pride of place in the fortress. When sounded, it bolsters the resolve of defenders, and batters attackers with gale-force winds.",
+          "tags": ["ss.fortress.brutalDefenses.thunderHorn"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.brutalDefenses.stalwartDefenders", "name": "Stalwart Defenders" },
+    { "id": "ss.fortress.brutalDefenses.shards", "name": "Shards" },
+    { "id": "ss.fortress.brutalDefenses.scythe", "name": "Scythe" },
+    { "id": "ss.fortress.brutalDefenses.quake", "name": "Quake" },
+    { "id": "ss.fortress.brutalDefenses.rollingPin", "name": "Rolling Pin" },
+    { "id": "ss.fortress.brutalDefenses.oiledSurface", "name": "Oiled Surface" },
+    { "id": "ss.fortress.brutalDefenses.gasSpouts", "name": "Gas Spouts" },
+    { "id": "ss.fortress.brutalDefenses.wallOfDarts", "name": "Wall of Darts" },
+    { "id": "ss.fortress.brutalDefenses.vertigo", "name": "Vertigo" },
+    { "id": "ss.fortress.brutalDefenses.mightyAdhesive", "name": "Mighty Adhesive" },
+    { "id": "ss.fortress.brutalDefenses.tarFields", "name": "Tar Fields" },
+    { "id": "ss.fortress.brutalDefenses.meldedGuardians", "name": "Melded Guardians" },
+    { "id": "ss.fortress.brutalDefenses.thunderHorn", "name": "Thunder Horn" }
+  ]
+}

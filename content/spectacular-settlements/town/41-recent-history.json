@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.recentHistory",
+      "name": "Recent History",
+      "description": "Extra Intrigue. What people talk about in the streets or in the tavern: events of the past year.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "defended",
+          "name": "Defended",
+          "range": 1,
+          "description": "There was a failed attack on the town by a local force.",
+          "tags": ["ss.town.recentHistory.defended"]
+        },
+        {
+          "id": "pickpockets",
+          "name": "Pickpockets",
+          "range": 2,
+          "description": "Invisible, sticky hands at work? Many reports have surfaced of pickpockets in the market, but none have been found.",
+          "tags": ["ss.town.recentHistory.pickpockets"]
+        },
+        {
+          "id": "noAdventurers",
+          "name": "No Adventurers",
+          "range": 3,
+          "description": "Get out! A tavern in town has instituted a no-adventurer policy, after sustaining one bar fight too many.",
+          "tags": ["ss.town.recentHistory.noAdventurers"]
+        },
+        {
+          "id": "asleep",
+          "name": "Asleep",
+          "range": 4,
+          "description": "Working hard, or hardly working? One of the guards manning the main gate was found asleep at his post.",
+          "tags": ["ss.town.recentHistory.asleep"]
+        },
+        {
+          "id": "spiders",
+          "name": "Spiders",
+          "range": 5,
+          "description": "One of the local children has been catching and breeding spiders. The spiders have grown very large, broken out, and have scattered all over town. Townspeople are finding them in homes, businesses... everywhere.",
+          "tags": ["ss.town.recentHistory.spiders"]
+        },
+        {
+          "id": "tunnel",
+          "name": "Tunnel",
+          "range": 6,
+          "description": "What’s this then? On the outskirts, someone has discovered a tunnel leading towards town. Even stranger, it’s incomplete; not even reaching halfway. Who has dug the tunnel? Why?",
+          "tags": ["ss.town.recentHistory.tunnel"]
+        },
+        {
+          "id": "obstruction",
+          "name": "Obstruction",
+          "range": 7,
+          "description": "If a tree falls on the road, and no one’s around to hear it, does it stop market day? News has reached that a massive tree, stone, or other big natural object, fell and is blocking the main route to town a few miles away.",
+          "tags": ["ss.town.recentHistory.obstruction"]
+        },
+        {
+          "id": "eventNight",
+          "name": "Event Night",
+          "range": 8,
+          "description": "To boost town morale, the local leader has proposed ‘a night on the town,’ a sanctioned date-night for all locals where sponsored food and entertainment vendors provide deep discounts to romantic couples who visit their establishments.",
+          "tags": ["ss.town.recentHistory.eventNight"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.recentHistory.defended",
+      "name": "Defended"
+    },
+    {
+      "id": "ss.town.recentHistory.pickpockets",
+      "name": "Pickpockets"
+    },
+    {
+      "id": "ss.town.recentHistory.noAdventurers",
+      "name": "No Adventurers"
+    },
+    {
+      "id": "ss.town.recentHistory.asleep",
+      "name": "Asleep"
+    },
+    {
+      "id": "ss.town.recentHistory.spiders",
+      "name": "Spiders"
+    },
+    {
+      "id": "ss.town.recentHistory.tunnel",
+      "name": "Tunnel"
+    },
+    {
+      "id": "ss.town.recentHistory.obstruction",
+      "name": "Obstruction"
+    },
+    {
+      "id": "ss.town.recentHistory.eventNight",
+      "name": "Event Night"
+    }
+  ]
+}

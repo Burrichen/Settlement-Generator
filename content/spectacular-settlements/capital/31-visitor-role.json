@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.visitorRole",
+      "name": "Visitor Role",
+      "description": "Rolled for each notable visitor: who or what the visitor is.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "escapedPrisoner",
+          "name": "Escaped Prisoner",
+          "range": 1,
+          "tags": ["ss.capital.visitorRole.escapedPrisoner"]
+        },
+        {
+          "id": "ambassador",
+          "name": "Ambassador",
+          "range": 2,
+          "tags": ["ss.capital.visitorRole.ambassador"]
+        },
+        {
+          "id": "banker",
+          "name": "Banker",
+          "range": 3,
+          "tags": ["ss.capital.visitorRole.banker"]
+        },
+        {
+          "id": "rulersChild",
+          "name": "Ruler’s Child",
+          "range": 4,
+          "tags": ["ss.capital.visitorRole.rulersChild"]
+        },
+        {
+          "id": "rulersSpouse",
+          "name": "Ruler’s Spouse",
+          "range": 5,
+          "tags": ["ss.capital.visitorRole.rulersSpouse"]
+        },
+        {
+          "id": "ruler",
+          "name": "Ruler",
+          "range": 6,
+          "tags": ["ss.capital.visitorRole.ruler"]
+        },
+        {
+          "id": "explorer",
+          "name": "Explorer",
+          "range": 7,
+          "tags": ["ss.capital.visitorRole.explorer"]
+        },
+        {
+          "id": "assassin",
+          "name": "Assassin",
+          "range": 8,
+          "tags": ["ss.capital.visitorRole.assassin"]
+        },
+        {
+          "id": "famedCraftsperson",
+          "name": "Famed Craftsperson",
+          "range": 9,
+          "tags": ["ss.capital.visitorRole.famedCraftsperson"]
+        },
+        {
+          "id": "priestOrPriestess",
+          "name": "Priest or Priestess",
+          "range": 10,
+          "tags": ["ss.capital.visitorRole.priestOrPriestess"]
+        },
+        {
+          "id": "adventurer",
+          "name": "Adventurer",
+          "range": 11,
+          "tags": ["ss.capital.visitorRole.adventurer"]
+        },
+        {
+          "id": "scribe",
+          "name": "Scribe",
+          "range": 12,
+          "tags": ["ss.capital.visitorRole.scribe"]
+        },
+        {
+          "id": "bardStoryteller",
+          "name": "Bard/Storyteller",
+          "range": 13,
+          "tags": ["ss.capital.visitorRole.bardStoryteller"]
+        },
+        {
+          "id": "militaryCommander",
+          "name": "Military Commander",
+          "range": 14,
+          "tags": ["ss.capital.visitorRole.militaryCommander"]
+        },
+        {
+          "id": "soldier",
+          "name": "Soldier",
+          "range": 15,
+          "tags": ["ss.capital.visitorRole.soldier"]
+        },
+        {
+          "id": "messenger",
+          "name": "Messenger",
+          "range": 16,
+          "tags": ["ss.capital.visitorRole.messenger"]
+        },
+        {
+          "id": "spy",
+          "name": "Spy",
+          "range": 17,
+          "tags": ["ss.capital.visitorRole.spy"]
+        },
+        {
+          "id": "sentientSmallMonster",
+          "name": "Sentient Small Monster",
+          "range": 18,
+          "tags": ["ss.capital.visitorRole.sentientSmallMonster"]
+        },
+        {
+          "id": "sentientLargeMonster",
+          "name": "Sentient Large Monster",
+          "range": 19,
+          "tags": ["ss.capital.visitorRole.sentientLargeMonster"]
+        },
+        {
+          "id": "otherworldlyBeing",
+          "name": "Otherworldly Being",
+          "range": 20,
+          "tags": ["ss.capital.visitorRole.otherworldlyBeing"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.visitorRole.escapedPrisoner",
+      "name": "Escaped Prisoner"
+    },
+    {
+      "id": "ss.capital.visitorRole.ambassador",
+      "name": "Ambassador"
+    },
+    {
+      "id": "ss.capital.visitorRole.banker",
+      "name": "Banker"
+    },
+    {
+      "id": "ss.capital.visitorRole.rulersChild",
+      "name": "Ruler’s Child"
+    },
+    {
+      "id": "ss.capital.visitorRole.rulersSpouse",
+      "name": "Ruler’s Spouse"
+    },
+    {
+      "id": "ss.capital.visitorRole.ruler",
+      "name": "Ruler"
+    },
+    {
+      "id": "ss.capital.visitorRole.explorer",
+      "name": "Explorer"
+    },
+    {
+      "id": "ss.capital.visitorRole.assassin",
+      "name": "Assassin"
+    },
+    {
+      "id": "ss.capital.visitorRole.famedCraftsperson",
+      "name": "Famed Craftsperson"
+    },
+    {
+      "id": "ss.capital.visitorRole.priestOrPriestess",
+      "name": "Priest or Priestess"
+    },
+    {
+      "id": "ss.capital.visitorRole.adventurer",
+      "name": "Adventurer"
+    },
+    {
+      "id": "ss.capital.visitorRole.scribe",
+      "name": "Scribe"
+    },
+    {
+      "id": "ss.capital.visitorRole.bardStoryteller",
+      "name": "Bard/Storyteller"
+    },
+    {
+      "id": "ss.capital.visitorRole.militaryCommander",
+      "name": "Military Commander"
+    },
+    {
+      "id": "ss.capital.visitorRole.soldier",
+      "name": "Soldier"
+    },
+    {
+      "id": "ss.capital.visitorRole.messenger",
+      "name": "Messenger"
+    },
+    {
+      "id": "ss.capital.visitorRole.spy",
+      "name": "Spy"
+    },
+    {
+      "id": "ss.capital.visitorRole.sentientSmallMonster",
+      "name": "Sentient Small Monster"
+    },
+    {
+      "id": "ss.capital.visitorRole.sentientLargeMonster",
+      "name": "Sentient Large Monster"
+    },
+    {
+      "id": "ss.capital.visitorRole.otherworldlyBeing",
+      "name": "Otherworldly Being"
+    }
+  ]
+}

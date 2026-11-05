@@ -76,15 +76,30 @@ set to Choose (the default) the profile is chosen each time. See
 The **Spectacular Settlements Generation** profile follows the builder
 chapters of _Spectacular Settlements_ (reference copy:
 [content/SPECTACULAR_SETTLEMENTS.md](content/SPECTACULAR_SETTLEMENTS.md))
-table by table, instead of the generic stages. Only the **Trading Posts**
-builder is imported so far, in `content/spectacular-settlements/trading-post/`
-(tables `table.ss.tradingPost.*`, tags `ss.tradingPost.*`).
+table by table, instead of the generic stages. Six builders are imported so
+far, each with its own tables (`content/spectacular-settlements/<type>/`,
+`table.ss.<type>.*`, tags `ss.<type>.*`): **Trading Posts**
+(`trading-post/`, `tradingPost`), **Villages** (`village/`), **Towns**
+(`town/`), **Cities** (`city/`), **Capitals** (`capital/`) and
+**Fortresses** (`fortress/`).
 
+- **Settlement Type** (`table.ss.settlementType`, chosen, not rolled: the
+  book has no table for it) comes after the generic stages (so their stage
+  numbers stay as they were), under this profile only. It picks the
+  chapter: Trading Post, Village, Town, City, Capital or Fortress
+  (`ss.settlementType.tradingPost`, `.village`, `.town`, `.city`,
+  `.capital`, `.fortress`). In Incremental generation the shared Name stage
+  comes before it.
 - Every generic table stage has `when: not world.spectacularSettlements`,
-  and every Trading Post stage `when: world.spectacularSettlements`, so each
-  profile only sees its own stages (the others are hidden). The Name stage
-  is shared; the built-in Roles, Authority Figures and Notable Locations
-  stages skip themselves because their source stages did not run.
+  and every builder's stage `when` its Settlement Type, so each profile and
+  type only sees its own stages (the others are hidden). The Name stage is
+  shared; the built-in Roles, Authority Figures and Notable Locations
+  stages skip themselves because their source stages did not run. A
+  settlement saved before Settlement Type existed has no type: reopening it
+  for editing asks for one.
+
+### Trading Posts
+
 - Stages, in the book's order: Step 1 (Origin, Specialty, Age, Condition,
   Visitor Traffic, Size, Environment), Step 2 (Resident Population,
   Demographics, Disposition, Law Enforcement, Leadership, Population Wealth,
@@ -108,7 +123,262 @@ trading-post/00-flows.json`): the default General Store / Inn (and a
   Specialization. Crime's "+N to urban encounter rolls" is recorded as a
   planned intent until Appendix B is imported.
 - The book prints Demographics' Normal Distribution as 10-14, overlapping
-  Only Two (6-10); it is read as 11-14.
+  Only Two (6-10). Normal Distribution keeps its printed 10-14; Only Two is
+  6-9.
+
+### Villages
+
+- Stages, in the book's order: Step 1 (Age, Hardships, Size, Condition,
+  Environment, Specialty, Resources, Recent History), Step 2 (Population
+  Density, Demographics, Disposition, Law Enforcement, Leadership,
+  Population Wealth, Crime), Step 3 (Places of Worship, Places of
+  Gathering, Other Locations) and Extra Intrigue
+  (Events, Political Rumors, Superstitions, Goings On, Opportunities, Harsh
+  Weather, Danger Level and, unless there is no danger, Danger Type).
+- Tag-effect modifiers as the book gives them: Age → Population Density and
+  Hardship Likelihood, Condition → Population Wealth, Population Density,
+  Law Enforcement and Population Wealth → Crime.
+- **Hardships** is a flow (`village/00-flows.json`). Hardship Likelihood
+  (modified by Age) gives the number of hardships: each result's value is
+  that number plus one, because result values must be positive, and the
+  repeat runs `value - 1` times. Each hardship rolls a Hardship Type and a
+  Hardship Outcome, then an `apply_modifier` step takes the outcome's 1-5
+  from every later roll of each attribute the type lists (Size, Condition,
+  Population Density, Disposition, Population Wealth). Identical modifiers
+  add up, as in the book's example.
+- **Places of Worship**, **Places of Gathering** and **Other Locations** are
+  flows with the book's counts by size, rolled on physical dice including
+  the d2 (a coin): worship 1 / 1d2 / 1d2 / 1d2+1 / 1d2+1, each place with
+  its own Size, Fervency of Local Following and Alignment of the Faith;
+  gathering 1d2-1 / 1 / 1d2 / 1d2 / 1d2+1; other locations
+  1d2-1 / 1d2 / 1d2+1 / 2d2 / 2d2+1. A count below zero is zero.
+- Other Locations: a Shipwright needs a Coastal or River environment,
+  otherwise it is rerolled. "Burned Down or Abandoned Business" rolls the
+  **Former Business** table (the same businesses, without their tags) to
+  say what it was; its 100 is always rerolled, which gives the book's
+  "roll once more" odds without a table that routes into itself.
+- Harsh Weather's region-only results are rerolled elsewhere: Thunderstorms
+  or Blizzards never in a Desert, Dust Storms only in a Desert, Hurricane
+  only when Coastal. Other conflicts with the environment are left to the
+  user, as the book says.
+- Not rolled: the optional Ice resource (described under Resources) and
+  the "Idyllic Villages" opt-out (choose No Hardship instead). Crime's "+N
+  to urban encounter rolls" is a planned intent until Appendix B is
+  imported.
+- The book prints Age's Mature as 10-14, overlapping Established (6-10).
+  Mature keeps its printed 10-14; Established is 6-9.
+
+### Towns
+
+- Stages, in the book's order: Step 1 (Origin, Priority, Specialty, Age,
+  Size, Condition, Environment, Prosperity, Market Square, Vendor Stall
+  Acquisition, Merchant Overflow, Fortification), Step 2 (Population
+  Density, Population Overflow, Farms & Resources, Visitor Traffic, Night
+  Activity, Demographics, Disposition, Leadership, Law Enforcement,
+  Population Wealth, Crime), Step 3 (Non-Commercial Locations, Commercial
+  Locations) and Extra Intrigue (Recent History, Noteworthy Official,
+  Official Competence, Market Day).
+- Tag-effect modifiers as the book gives them: Priority → Fortification,
+  Law Enforcement and Market Square; Age → Population Density; Size and
+  Population Density → Population Overflow; Condition and Prosperity →
+  Population Wealth; Prosperity → Visitor Traffic; Population Density and
+  Visitor Traffic → Night Activity; Fortification → Disposition; Merchant
+  Overflow and Leadership → Law Enforcement; Leadership, Law Enforcement
+  and Population Wealth → Crime; Population Wealth → Quality.
+- **Port** origin rolls its environment with it (Port Environment, d6:
+  1-3 Coastal, 4-6 River, giving the Environment table's own tags) and the
+  Environment stage is skipped.
+- Dice the book swaps are table variants chosen by condition: the
+  Production priority rolls Specialty on a d4; the Farming or Resource
+  Gathering specialty ("+1, reroll if 1-8") rolls Farms & Resources on its
+  d12 variant (Agriculture 1-2, Livestock 3-7, Resource Harvesting 8-12),
+  the same odds as rerolling a raw 1-8 on the d20 and adding 1.
+- The Government priority rerolls Leadership 91-100 (Underworld and
+  Commune are not eligible under it). A Shipwright needs a Coastal or River
+  environment, otherwise it is rerolled.
+- **Farms & Resources** is a flow: 1 / 2 / 2 / 3 / 3 rolls by size.
+- **Non-Commercial Locations** (a flow) first gives the free locations
+  earlier results promise: a Place of Government (Government priority), a
+  Place of Worship with +5 to its size roll (Religious), a Place of
+  Education (Education specialty), a Town Hall (Town Council) and one more
+  location for an Oligarchy ("choose one appropriate type": it is rolled,
+  change it to suit). Then 1 / 2 / 3 / 4 / 5 by size, each rolled on
+  Non-Commercial Location Type and then that type's table; every place of
+  worship has its own size, fervency and alignment.
+- **Commercial Locations** (a flow) gives the default General Store,
+  Smithy, Inn and Tavern, the free ones (the Hospitality specialty's inn
+  quality, a Magic priority's magic shop, an Industry specialty's mill,
+  textile production or foundry), then 4 / 6 / 8 / 10 / 12 by size (an
+  Economic priority counts the town one size larger, to Very Large; a
+  Merchant Monarch adds 2), each rolled Shop or Service and then on Shops or
+  Services. Hired help rolls its size.
+- Not rolled: Quality (optional, imported with Population Wealth's
+  modifiers), the optional armorer/weaponsmith split of extra smithies,
+  "Half 'n' Half", and the "deserted" and "no visitors" readings of results
+  below 1. Crime's "+N to urban encounter rolls" is a planned intent until
+  Appendix B is imported. The book's Market Day events have no names; each
+  has a short title, in the book's order.
+- Towns are not mapped: a town stands for hundreds to 2,000 structures,
+  more than the map engine can draw on one map (see [MAPS.md](MAPS.md)).
+
+### Cities
+
+- Stages, in the book's order: Step 1 (Origin, Priority, Age, Size, Outside
+  the City, Stewardship, General Condition, Environment, Fortification,
+  Market Square, Vendor Stall Acquisition, Merchant Overflow, Underground
+  Passages), Step 2 (Population Density, Demographics, Population Wealth,
+  Visitor Traffic, Disposition, Night Activity, Leadership, Law Enforcement,
+  General Crime, and Organized Crime when General Crime is Dangerous,
+  Frequent or Common or the Underworld leads), Step 3 (Districts) and Extra
+  Intrigue (Recent History, Noteworthy Official, Official's Competence,
+  Beneath the Surface, Awareness).
+- Tag-effect modifiers as the book gives them: Priority → Law Enforcement
+  (Control) and Population Wealth (Trade); Age → Population Density; Size →
+  Number of Districts; Stewardship → General Condition, Population Wealth
+  and Law Enforcement; General Condition → District Condition; Fortification
+  → Disposition; Population Density and Visitor Traffic → Night Activity;
+  Merchant Overflow and Leadership → Law Enforcement; Leadership, Law
+  Enforcement and Population Wealth → General Crime. Inside a district: an
+  Upper Class district → its District Condition; its condition level and
+  entry → its District Crime.
+- **Outside the City** is a flow: 5 / 4 / 3 / 2 / 1 rolls by size. A
+  Production priority's first roll ("a d10, rerolling 1-4") is the table's
+  d6 variant, the same odds, chosen by a tag held for that roll only.
+- **Districts** is a flow. Number of Districts (2-6, modified by Size) sets
+  how many; a priority or leadership that names a district gives it first,
+  taking one of them (Enlightenment: Scholar; Faith: Temple; Merchant
+  Monarch: Market; an Oligarchy the district that fits its group: merchants
+  Merchant, mages Arcane, priests Temple, another group Administration,
+  which you may change). The rest roll District Type; Docks need a Coastal
+  or River city.
+- Each district is an object (`object.ss.city.district`, `district-01` …)
+  with its own tags, so its results only shape its own rolls. The City
+  District flow rolls its District Condition (steps from the city's general
+  condition; Slums roll its d4 variant) and sets its Condition Level (the
+  general condition moved by those steps, stopping at the best or worst),
+  then District Entry, District Crime and its Crime Degree in the same way,
+  Housing (never None for Slums or Upper Class), District Notable
+  Locations, its included locations (by type; a magic shop rolls its
+  specialization, hired help its size, the Arcane and Temple districts their
+  hired help, the Industrial district its industrial location, the Temple
+  district its Temple or Great Temple), 1 / 2 / 3 / 4 / 5 additional
+  locations by city size on its type's table, and Location Notability for
+  the first min(notable, additional) of them.
+- An additional-location table's 1 and 20 ("roll again, a step down or up
+  in quality") roll its "Rolled Again" twin: the same table with its 1 and
+  20 rolled again, so no table routes into itself.
+- Not rolled: Population Capacity, Quality, the place of worship detail
+  tables and Guilds (the book offers them "if required"; a guild's "yes"
+  range grows with every member before it), and the Entertainment
+  priority's venue in each district, which the book has you choose. The
+  "deserted" and "forsaken" readings of results below 1 are not used.
+  Crime's "+N to urban encounter rolls" (the city's and each district's) is
+  a planned intent until Appendix B is imported. The book's Recent History
+  entries have no names; each has a short title, in the book's order.
+
+### Capitals
+
+- Stages, in the book's order: Step 1 (Origin, Age, Size, Environment,
+  Outside the Capital, Stewardship, General Condition, Fortification, Market
+  Square, Vendor Stall Acquisition, Merchant Overflow, Underground
+  Passages), Step 2: Government & High Society (Leadership, Leadership
+  Unity, Governing Priority, Priority Approach, Priority Success, Lifestyle,
+  Residence, Intent, Connections, Spy Network Size, Infiltration Depth,
+  Counterintelligence, Counterintelligence Watchfulness, Notable Visitors,
+  Military Force and its Standing or Disbanded, Recruitment Type, Size of
+  Force, Specialization and Military Facilities, Type of Nobility, Primary
+  Nobles, Relationship to the Leadership, Relationship with the People, Root
+  of Relationship with the People), Step 3: Community (Culture, Pursuit of
+  Culture, Population Density, Demographics, Population Wealth, Visitor
+  Traffic, Disposition, Night Activity, Law Enforcement, General Crime,
+  Organized Crime), Step 4 (Districts, Noble Residences) and Extra Intrigue
+  (Recent History, Noteworthy Official, Official's Competence, Beneath the
+  Surface, Awareness).
+- Skipped as the book says: Infiltration Depth without spies,
+  Counterintelligence Watchfulness without counterintelligence, the military
+  tables without a military force, Pursuit of Culture for a Non-Specific
+  culture, and Organized Crime as for Cities.
+- Tag-effect modifiers as the book gives them, as for Cities, plus:
+  Governing Priority (Control, Expansionist) → Military Force; Lifestyle →
+  Residence; Type of Nobility (Wealth/Possessions) → Population Wealth. The
+  book also lists a Control governing priority among Law Enforcement's
+  modifiers but gives it no amount, so it has none.
+- Cloak & Dagger: Spy Network Size rolls its variant (1-16 Modest), and
+  Counterintelligence's None is not eligible (rolled again).
+- **Root of Relationship with the People** is a flow: the root, then its
+  reading. Relationship with the People Awful to Bad reads it negatively,
+  Tepid to Incredible positively; Resources then gives -2 or +2 to Population
+  Wealth.
+- **Connections** and **Notable Visitors** are flows: the number (1-4),
+  then each connection's relation, or each visitor's role and reason.
+- **Districts** work as for Cities (`object.ss.capital.district`), with
+  the capital's District Entry (a fifth result, Gated & Guarded with Toll,
+  +4 to district crime, rerolled for Slums and Upper Class). The districts a
+  governing priority or leadership gives: Economic Market; Enlightenment
+  Scholar; Industry & Innovation Industrial; Religious Temple; Merchant
+  Monarch Merchant (a city's gives Market); Oligarchy as for Cities.
+- **Noble Residences** (a flow) rolls Noble Residence Locations once per
+  primary noble; a district number above the capital's district count is
+  not eligible, so it is rolled again.
+- Lifestyle, Residence and Intent are rolled once, for the leader; the book
+  leaves the number of leaders to you (roll again for each other one).
+- Not rolled: Population Capacity, Lesser Nobles, Quality, the place of
+  worship detail tables and Guilds, and the "deserted" and "forsaken"
+  readings, as for Cities. Recent History entries have short titles, in the
+  book's order.
+
+### Fortresses
+
+- **Fortress Type** (`table.ss.fortress.fortressType`, chosen, not
+  rolled) picks what to build, as the book's "decide what you want to make":
+  General Only, Keep, Castle or Stronghold. Each builds on the one before: a
+  Keep adds the Keep stages to the General ones, a Castle the Castle stages
+  too, and a Stronghold the Stronghold stages as well.
+- General, in the book's order: Location in Relation to Settlement, Age,
+  Condition, Environment, Expense, Primary Building Material (Unique
+  Materials then rolls Unique Building Material), Resource Origin, Reason
+  for Construction, Design Theme, Alternate Entries, Local Impact,
+  Residents, Resident Relations, Resident Hobbies, Resident Attitude,
+  Garrison Size, Garrison Equipment, Current Issue, History, Secrets,
+  Oddities and Special Feature (each feature then rolls its specifics
+  table).
+- Keep: Shape, Size (with its BSM), Exterior Wall Thickness, Number of
+  Floors, Raised Entrance (only with two or more above-ground floors: not
+  for One or Two), Entry Defenses, Rooms and Furnishings.
+- Castle: Geographic Advantages, Style, Size (its own BSM), Curtain Wall
+  Thickness and Height, Curtain Wall Towers, Curtain Wall Defenses,
+  Barbican, Gatehouse, Moat, Moat Width and Depth (not without a moat),
+  Barracks Location and Bailey Outbuildings.
+- Stronghold: Additional Thickness, Additional Height, Additional Curtain
+  Wall Towers, Style Amplification and Brutal Defenses.
+- Tag-effect modifiers as the book gives them: Age → Condition (+4 to -4)
+  and Residents (-5 for New and Recent); Condition → Furnishings (-5, -2);
+  Expense → Furnishings (-5 to +5); Barbican with a drawbridge → Moat (+2).
+- **Current Issue** is a flow: a Ruin or Bare Bones fortress first rolls
+  its structural damage (1d6: 1-3 Weather, 4-6 Neglect) and its severity,
+  then the Current Issue as normal; any issue but Peaceful rolls its
+  severity.
+- **Rooms** (a flow) sets the starting rooms (Bedroom, Kitchen, Dining and
+  Receiving, and Guard Bunks with a Large or Maximum garrison) and the free
+  Privy, then the number of rooms, BSM x floors (the cellar counting)
+  modified by Condition (-2 to +2, never below 0), recorded as Keep Room
+  Count. The starting rooms count toward it; Rooms is rolled for each room
+  left.
+- **Geographic Advantages** rolls a d4 within the environment: one variant
+  per environment, Coastal's being the base table.
+- **Curtain Wall Towers** (a flow) are castle BSM + 1d4 towers, each with
+  its shape, size and roof; a Stronghold's **Additional Curtain Wall
+  Towers** are 1d8 more, the same way. **Curtain Wall Defenses** are rolled
+  by Expense (Paltry 0, Modest 1, Moderate 2, Significant 3, Extravagant 4);
+  Magical Defenses roll the Magical Defenses table. **Bailey Outbuildings**
+  are castle BSM + 1, each rolling its size.
+- Style Amplification's Bristling Defenses rolls another Curtain Wall
+  Defense, and Magical Forms a Magical Defense. Its other changes (an extra
+  floor, thicker walls, and so on) are described, not applied to the
+  earlier rolls, as the book leaves them to you.
+- Not rolled: the optional Local Impact Change, and the book's optional
+  extras (a second gatehouse portcullis, murder holes, a concentric castle's
+  second set of wall rolls). Fortresses are not mapped (see MAPS.md).
 
 ## Region routing
 

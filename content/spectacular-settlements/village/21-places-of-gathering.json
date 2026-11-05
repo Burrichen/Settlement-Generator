@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.placesOfGathering",
+      "name": "Places of Gathering",
+      "description": "Places primarily social in nature, where the resident community can get together for events, or other occasions. Rolled once for each place of gathering.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "amphitheater",
+          "name": "Amphitheater",
+          "range": 1,
+          "description": "Outdoor space with a stage and tiered seating.",
+          "tags": ["ss.village.placesOfGathering.amphitheater"]
+        },
+        {
+          "id": "danceHall",
+          "name": "Dance Hall",
+          "range": 2,
+          "description": "Location for dances and festive events.",
+          "tags": ["ss.village.placesOfGathering.danceHall"]
+        },
+        {
+          "id": "gatheringHall",
+          "name": "Gathering Hall",
+          "range": 3,
+          "description": "General building used for community-organised activities.",
+          "tags": ["ss.village.placesOfGathering.gatheringHall"]
+        },
+        {
+          "id": "outdoorRecreation",
+          "name": "Outdoor Recreational Area",
+          "range": 4,
+          "description": "A tended space where locals might eat, take leisure time, or duel to the death...",
+          "tags": ["ss.village.placesOfGathering.outdoorRecreation"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.placesOfGathering.amphitheater", "name": "Amphitheater" },
+    { "id": "ss.village.placesOfGathering.danceHall", "name": "Dance Hall" },
+    { "id": "ss.village.placesOfGathering.gatheringHall", "name": "Gathering Hall" },
+    { "id": "ss.village.placesOfGathering.outdoorRecreation", "name": "Outdoor Recreational Area" }
+  ]
+}

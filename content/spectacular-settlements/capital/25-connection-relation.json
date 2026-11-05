@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.connectionRelation",
+      "name": "Connection Relation",
+      "description": "Rolled for each connection: how the capital's leadership views it.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "enemyHated",
+          "name": "Enemy - Hated",
+          "range": 1,
+          "description": "The relationship is bitter and, barring an amazing turn of events, unsalvageable. This hatred could have stemmed from a perceived (or actual) insult, an attack, or opposing interests.",
+          "tags": ["ss.capital.connectionRelation.enemyHated"]
+        },
+        {
+          "id": "enemyFriendly",
+          "name": "Enemy - Friendly",
+          "range": 2,
+          "description": "Relations are civil enough, but there is a fundamental and irreconcilable rivalry, or difference of opinion, that prevents any real alliance.",
+          "tags": ["ss.capital.connectionRelation.enemyFriendly"]
+        },
+        {
+          "id": "allyReservations",
+          "name": "Ally - With Reservations",
+          "range": 3,
+          "description": "The entity is considered a friend, but treated with care, possibly not fully trusted. They could be a friend yet to truly prove their loyalty, or one who is unpredictable or fickle.",
+          "tags": ["ss.capital.connectionRelation.allyReservations"]
+        },
+        {
+          "id": "allyTrusted",
+          "name": "Ally - Trusted",
+          "range": 4,
+          "description": "The relationship is solid and unlikely to be shaken. Trust is likely founded on concrete elements, such as mutual admiration and/or shared interest.",
+          "tags": ["ss.capital.connectionRelation.allyTrusted"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.connectionRelation.enemyHated",
+      "name": "Enemy - Hated"
+    },
+    {
+      "id": "ss.capital.connectionRelation.enemyFriendly",
+      "name": "Enemy - Friendly"
+    },
+    {
+      "id": "ss.capital.connectionRelation.allyReservations",
+      "name": "Ally - With Reservations"
+    },
+    {
+      "id": "ss.capital.connectionRelation.allyTrusted",
+      "name": "Ally - Trusted"
+    }
+  ]
+}

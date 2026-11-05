@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.marketLocationsAgain",
+      "name": "Market District Additional Location (Rolled Again)",
+      "description": "The location a \"roll again\" gives in a Market district: the same table, a 1 or 20 rolled again.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "rollAgainLow",
+          "name": "Roll Again",
+          "range": 1,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.capital.marketLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.capital.marketLocations.stepUp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": 2,
+          "description": "(Basic) Builds carts and wagons.",
+          "tags": ["ss.capital.marketLocations.wainwright"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 3,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.capital.marketLocations.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 4,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.capital.marketLocations.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 5,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.capital.marketLocations.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 6,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.capital.marketLocations.bankAndExchange"]
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": 7,
+          "description": "(Specialty) Makes and mends boots and shoes.",
+          "tags": ["ss.capital.marketLocations.cobbler"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.capital.marketLocations.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 9,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.capital.marketLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations & Fare",
+          "range": 10,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.capital.marketLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": 11,
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region.",
+          "tags": ["ss.capital.marketLocations.rareTradeGoods"]
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 12,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.capital.marketLocations.magicShop"],
+          "then_roll": ["table.ss.capital.magicShopSpecialization"]
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": 13,
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.capital.marketLocations.barber"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 14,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.capital.marketLocations.inn"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": 15,
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.capital.marketLocations.club"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 16,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.capital.marketLocations.soothsayer"]
+        },
+        {
+          "id": "stable",
+          "name": "Stable",
+          "range": 17,
+          "description": "Provides boarding accommodation for mounts, as well as selling carts, animals, and their tack.",
+          "tags": ["ss.capital.marketLocations.stable"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 18,
+          "description": "Provides food and drink.",
+          "tags": ["ss.capital.marketLocations.tavern"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 19,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.capital.marketLocations.hiredHelp"],
+          "then_roll": ["table.ss.capital.hiredHelpType"]
+        },
+        {
+          "id": "rollAgainHigh",
+          "name": "Roll Again",
+          "range": 20,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.capital.marketLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.capital.marketLocations.stepUp"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

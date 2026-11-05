@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.origin",
+      "name": "Origin",
+      "description": "What sparked the journey the city took to become what it is now.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "invadingOccupation",
+          "name": "Invading Occupation",
+          "range": 1,
+          "description": "The builders of the city were a foreign, occupying force, who initially set up a camp. As time went on, more and more permanent structures were built. Their foothold in the region remained solid, and the settlement grew.",
+          "tags": ["ss.city.origin.invadingOccupation"]
+        },
+        {
+          "id": "tribalHome",
+          "name": "Tribal Home",
+          "range": 2,
+          "description": "The city site was originally home to a group of natives in the region. The settlement built upon itself until it became the city it is now.",
+          "tags": ["ss.city.origin.tribalHome"]
+        },
+        {
+          "id": "tradingPost",
+          "name": "Natural Progression - Trading Post",
+          "range": 3,
+          "description": "A small trading post steadily attracted enough business to warrant expansion. It grew into a town, but demand and traffic did not stop.",
+          "tags": ["ss.city.origin.tradingPost"]
+        },
+        {
+          "id": "repurposedHistory",
+          "name": "Repurposed History",
+          "range": 4,
+          "description": "The city was founded and built on top of ancient ruins. Standing ruins might have been left as statues and tributes to the past but, more often, they have either been used (if still stable) or incorporated into new structures.",
+          "tags": ["ss.city.origin.repurposedHistory"]
+        },
+        {
+          "id": "village",
+          "name": "Natural Progression - Village",
+          "range": 5,
+          "description": "A handful of hovels, inhabited by simple folk, grew as more and more people came and made it their home too. More space was soon necessary, and the village grew into a town, then a city. Despite this expansion, evidence of its humble beginnings are likely still visible in many places.",
+          "tags": ["ss.city.origin.village"]
+        },
+        {
+          "id": "haven",
+          "name": "Haven",
+          "range": 6,
+          "description": "The location attracted a group seeking refuge from some crisis. They could have been persecuted by some great oppressor or, perhaps, they fled a natural disaster. Conversely, they could be a society of rebels or outlaws who desired an independent settlement of their own.",
+          "tags": ["ss.city.origin.haven"]
+        },
+        {
+          "id": "advantageousPosition",
+          "name": "Advantageous Position",
+          "range": 7,
+          "description": "The site was chosen to take advantage of desirable geographical features, like a strategic choke point, or an ideal high-ground posting. As the location proved itself, it grew.",
+          "tags": ["ss.city.origin.advantageousPosition"]
+        },
+        {
+          "id": "prison",
+          "name": "Prison",
+          "range": 8,
+          "description": "The site was originally a holding colony for criminals. Over time, events transpired allowing the place to become a legitimate city in its own right. Was this thanks to a successful revolt? Perhaps the entity that controlled the prison colony was conquered and the colony was left to its own devices? Maybe something made the colony’s kingdom change its mind and legitimize it?",
+          "tags": ["ss.city.origin.prison"]
+        },
+        {
+          "id": "agriculture",
+          "name": "Agriculture",
+          "range": 9,
+          "description": "A dense farming community attracted many people with knowledge and a strong work ethic. Production was high, at least for a while, and the area became more and more populous. Structures sprang up to house the new folks and account for the needs of its growing group of residents, until the desire for convenience, security, and comfort spurred the establishment of a proper city.",
+          "tags": ["ss.city.origin.agriculture"]
+        },
+        {
+          "id": "magical",
+          "name": "Magical",
+          "range": 10,
+          "description": "The city’s inception stemmed from something magical. It may have been the influence of magical beings, the presence of magical structures, or the convergence of magical energies at that specific place. It could also have been from the deliberate influence of a specific individual.",
+          "tags": ["ss.city.origin.magical"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.origin.invadingOccupation",
+      "name": "Invading Occupation"
+    },
+    {
+      "id": "ss.city.origin.tribalHome",
+      "name": "Tribal Home"
+    },
+    {
+      "id": "ss.city.origin.tradingPost",
+      "name": "Natural Progression - Trading Post"
+    },
+    {
+      "id": "ss.city.origin.repurposedHistory",
+      "name": "Repurposed History"
+    },
+    {
+      "id": "ss.city.origin.village",
+      "name": "Natural Progression - Village"
+    },
+    {
+      "id": "ss.city.origin.haven",
+      "name": "Haven"
+    },
+    {
+      "id": "ss.city.origin.advantageousPosition",
+      "name": "Advantageous Position"
+    },
+    {
+      "id": "ss.city.origin.prison",
+      "name": "Prison"
+    },
+    {
+      "id": "ss.city.origin.agriculture",
+      "name": "Agriculture"
+    },
+    {
+      "id": "ss.city.origin.magical",
+      "name": "Magical"
+    }
+  ]
+}

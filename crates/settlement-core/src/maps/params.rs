@@ -11,7 +11,7 @@ use serde::Deserialize;
 
 use crate::content::Condition;
 use crate::engine::Named;
-use crate::ids::{MapId, ResultId, TableId, TagId};
+use crate::ids::{MapId, ObjectTypeId, ResultId, TableId, TagId};
 use crate::locations::District;
 use crate::settlements::{Settlement, SettlementSnapshot};
 
@@ -39,29 +39,69 @@ pub struct MapDefaults {
     #[serde(default)]
     pub description: String,
     pub inputs: InputStages,
+    /// Object types whose objects are a settlement's districts, for content
+    /// that makes districts as flow objects (the Spectacular Settlements
+    /// City) rather than through the Notable Locations stage.
+    #[serde(default)]
+    pub district_objects: Vec<ObjectTypeId>,
     pub base: MapParameters,
     pub sizes: Vec<SizeDefaults>,
     pub rules: Vec<MapRule>,
 }
 
 /// The stage tables (as named in the sequence) each map input is read from.
+/// Each input lists one or more, because setting profiles record the same
+/// fact in their own tables (the Spectacular Settlements profile skips the
+/// generic Size stage and rolls `table.ss.tradingPost.size`). The first one
+/// the settlement recorded, in the order given, is used.
 #[derive(Debug, Deserialize)]
 pub struct InputStages {
-    pub size: TableId,
-    pub region: TableId,
-    pub environment: TableId,
-    pub connections: TableId,
-    pub origin: TableId,
-    pub purpose: TableId,
-    pub age: TableId,
+    #[serde(deserialize_with = "one_or_many")]
+    pub size: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub region: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub environment: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub connections: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub origin: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub purpose: Vec<TableId>,
+    #[serde(deserialize_with = "one_or_many")]
+    pub age: Vec<TableId>,
+}
+
+/// A stage table, or a list of them in order of preference.
+fn one_or_many<'de, D: serde::Deserializer<'de>>(d: D) -> Result<Vec<TableId>, D::Error> {
+    #[derive(Deserialize)]
+    #[serde(untagged)]
+    enum OneOrMany {
+        One(TableId),
+        Many(Vec<TableId>),
+    }
+    Ok(match OneOrMany::deserialize(d)? {
+        OneOrMany::One(table) => vec![table],
+        OneOrMany::Many(tables) => tables,
+    })
 }
 
 #[derive(Debug, Deserialize)]
 pub struct SizeDefaults {
     pub when: Condition,
+    /// How it is mapped. Unused when `disabled`.
+    #[serde(default = "single")]
     pub layout: MapLayout,
     #[serde(default)]
     pub set: MapParameterOverrides,
+    /// Why settlements of this size are not mapped, when they are not: the
+    /// message is shown in place of the maps, and generation is refused.
+    #[serde(default)]
+    pub disabled: Option<String>,
+}
+
+fn single() -> MapLayout {
+    MapLayout::Single
 }
 
 #[derive(Debug, Deserialize)]
@@ -105,11 +145,14 @@ pub fn inputs_from_settlement(settlement: &Settlement) -> Result<MapInputs, MapE
     let defaults = map_defaults()?;
     let snapshot = &settlement.snapshot;
     let stages = snapshot.display_stages();
-    let result_of = |table: &TableId| -> Option<Named<ResultId>> {
-        stages
-            .iter()
-            .find(|s| &s.stage_table == table && !s.skipped)
-            .and_then(|s| s.result.clone())
+    // The first of the input's tables that the settlement recorded.
+    let result_of = |tables: &[TableId]| -> Option<Named<ResultId>> {
+        tables.iter().find_map(|table| {
+            stages
+                .iter()
+                .find(|s| &s.stage_table == table && !s.skipped)
+                .and_then(|s| s.result.clone())
+        })
     };
     let size = result_of(&defaults.inputs.size).ok_or(MapError::NoSize)?;
     let mut tags: Vec<TagId> = Vec::new();
@@ -128,16 +171,44 @@ pub fn inputs_from_settlement(settlement: &Settlement) -> Result<MapInputs, MapE
         purpose: result_of(&defaults.inputs.purpose),
         age: result_of(&defaults.inputs.age),
         tags,
-        districts: districts(snapshot),
+        districts: districts(snapshot, &defaults.district_objects),
         population: None,
     })
 }
 
-fn districts(snapshot: &SettlementSnapshot) -> Vec<District> {
-    snapshot
+/// The settlement's districts: those the Notable Locations stage recorded,
+/// or else the district objects its flows made (e.g. "District 2 (Market)",
+/// with the stable object ID `district-02`), in the order they were made.
+fn districts(snapshot: &SettlementSnapshot, objects: &[ObjectTypeId]) -> Vec<District> {
+    let recorded: Vec<District> = snapshot
         .notable_locations()
         .map(|l| l.areas.iter().filter_map(|a| a.district.clone()).collect())
-        .unwrap_or_default()
+        .unwrap_or_default();
+    if !recorded.is_empty() || objects.is_empty() {
+        return recorded;
+    }
+    snapshot
+        .stages
+        .iter()
+        .filter(|s| !s.skipped)
+        .filter_map(|s| s.flow.as_ref())
+        .flat_map(|flow| flow.objects())
+        .filter(|o| objects.contains(&o.object_type.id))
+        .map(|o| {
+            let kind = o
+                .fields
+                .iter()
+                .find(|f| f.field == "type")
+                .and_then(|f| f.result.as_ref());
+            District {
+                id: o.id.clone(),
+                label: match kind {
+                    Some(kind) => format!("{} ({})", o.label, kind.name),
+                    None => o.label.clone(),
+                },
+            }
+        })
+        .collect()
 }
 
 /// How a settlement with these inputs is mapped.
@@ -150,11 +221,15 @@ fn size_defaults<'d>(
     inputs: &MapInputs,
 ) -> Result<&'d SizeDefaults, MapError> {
     let has = |t: &TagId| inputs.tags.contains(t);
-    defaults
+    let size = defaults
         .sizes
         .iter()
         .find(|s| s.when.evaluate(&has))
-        .ok_or_else(|| MapError::UnsupportedSize(inputs.size.name.clone()))
+        .ok_or_else(|| MapError::UnsupportedSize(inputs.size.name.clone()))?;
+    match &size.disabled {
+        Some(reason) => Err(MapError::Disabled(reason.clone())),
+        None => Ok(size),
+    }
 }
 
 /// The default parameters (before manual overrides) for these inputs.

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.generalCondition",
+      "name": "General Condition",
+      "description": "Modified by Stewardship. The baseline for every district's condition; modifies District Condition.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "squalid",
+          "name": "Squalid",
+          "range": 1,
+          "description": "The capital is in a deplorable state. Things are falling apart, filthy and, to anyone who doesn’t live there, seems positively unlivable. Most of the buildings, if not all, are likely a disgrace, or in terrible need of help. (-2 to district condition rolls)",
+          "tags": ["ss.capital.generalCondition.squalid"]
+        },
+        {
+          "id": "dilapidated",
+          "name": "Dilapidated",
+          "range": [2, 4],
+          "description": "Things are dirty and in a widespread state of disrepair, though some token effort may have been made at cleanliness. Streets are probably packed dirt or broken stone. They may be uneven, rutted or muddy. Structures have likely received similar low levels of care, though there could be some disparity. (-1 to district condition rolls)",
+          "tags": ["ss.capital.generalCondition.dilapidated"]
+        },
+        {
+          "id": "decent",
+          "name": "Decent",
+          "range": [5, 12],
+          "description": "The capital is passable. While not offensive to the senses of one that is well traveled, it could still be off-putting to those with lofty expectations. Structures may not be aesthetically pleasing, but are generally functional. (+0 to district condition rolls)",
+          "tags": ["ss.capital.generalCondition.decent"]
+        },
+        {
+          "id": "impressive",
+          "name": "Impressive",
+          "range": [13, 19],
+          "description": "The capital is well taken care of, and cleanliness is clearly a priority. Structures are maintained, though signs of wear may still be apparent. It feels lived-in, but of a respectable quality in every regard. (+1 to district condition rolls)",
+          "tags": ["ss.capital.generalCondition.impressive"]
+        },
+        {
+          "id": "magnificent",
+          "name": "Magnificent",
+          "range": 20,
+          "description": "The capital is incredible. Cleanliness, maintenance and structural integrity are all of the highest standard. Loving attention seems to have been lavished on as many aspects as is possible. (+2 to district condition rolls)",
+          "tags": ["ss.capital.generalCondition.magnificent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.generalCondition.squalid",
+      "name": "Squalid",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCondition",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.generalCondition.dilapidated",
+      "name": "Dilapidated",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.districtCondition",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.generalCondition.decent",
+      "name": "Decent"
+    },
+    {
+      "id": "ss.capital.generalCondition.impressive",
+      "name": "Impressive",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCondition",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.generalCondition.magnificent",
+      "name": "Magnificent",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCondition",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.visitorTraffic",
+      "name": "Visitor Traffic",
+      "description": "The typical number of non-residents in town, day to day. Modified by Prosperity; modifies Night Activity. Optionally, a result of 0 or less could mean no visitors at all.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "mostlyLocals",
+          "name": "Mostly Locals",
+          "range": [1, 3],
+          "description": "On any given day, there are typically a few from out-of-town, though not enough to impact congestion. (+0 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.mostlyLocals"]
+        },
+        {
+          "id": "groups",
+          "name": "Groups",
+          "range": [4, 9],
+          "description": "There are generally a fair amount of visitors. May slightly increase congestion. (+1 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.groups"]
+        },
+        {
+          "id": "crowds",
+          "name": "Crowds",
+          "range": [10, 14],
+          "description": "A noticeable amount of people come through town on a regular basis. Congestion is increased. (+2 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.crowds"]
+        },
+        {
+          "id": "droves",
+          "name": "Droves",
+          "range": [15, 17],
+          "description": "Large groups of people regularly frequent the town. Congestion is significantly increased. (+3 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.droves"]
+        },
+        {
+          "id": "masses",
+          "name": "Masses",
+          "range": [18, 19],
+          "description": "Huge groups of people always seem to be visiting. Congestion could cause difficulties, if the town is unable to cope with very large amounts of people. (+4 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.masses"]
+        },
+        {
+          "id": "multitudes",
+          "name": "Multitudes",
+          "range": 20,
+          "description": "Massive groups of people throng the streets, likely spilling out onto the roads outside town. Congestion is an ever-present reality, and a regular issue. (+5 to night activity roll)",
+          "tags": ["ss.town.visitorTraffic.multitudes"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.visitorTraffic.mostlyLocals",
+      "name": "Mostly Locals"
+    },
+    {
+      "id": "ss.town.visitorTraffic.groups",
+      "name": "Groups",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.town.visitorTraffic.crowds",
+      "name": "Crowds",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.visitorTraffic.droves",
+      "name": "Droves",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.visitorTraffic.masses",
+      "name": "Masses",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.town.visitorTraffic.multitudes",
+      "name": "Multitudes",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.nightActivity",
+          "amount": 5
+        }
+      ]
+    }
+  ]
+}

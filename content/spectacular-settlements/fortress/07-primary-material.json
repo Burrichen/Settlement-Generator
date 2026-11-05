@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.primaryMaterial",
+      "name": "Primary Building Material",
+      "description": "What the fortress is mostly built from.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "brick",
+          "name": "Brick",
+          "range": [1, 4],
+          "description": "Man-made blocks, comprised of mud, clay, or sand, mixed with a binding material such as straw, baked hard.",
+          "tags": ["ss.fortress.primaryMaterial.brick"]
+        },
+        {
+          "id": "timber",
+          "name": "Timber",
+          "range": [5, 8],
+          "description": "Hewn logs and planks, milled to fit together tightly.",
+          "tags": ["ss.fortress.primaryMaterial.timber"]
+        },
+        {
+          "id": "stone",
+          "name": "Stone",
+          "range": [9, 18],
+          "description": "Rough-cut or smoothed and shaped, typically built on and around a timber frame and mortared together.",
+          "tags": ["ss.fortress.primaryMaterial.stone"]
+        },
+        {
+          "id": "salvage",
+          "name": "Salvage",
+          "range": 19,
+          "description": "Found materials, such as repurposed stone from crumbled ruins, or timbers from wrecked ships.",
+          "tags": ["ss.fortress.primaryMaterial.salvage"]
+        },
+        {
+          "id": "unique",
+          "name": "Unique Materials",
+          "range": 20,
+          "description": "Roll on the unique building materials table. If your result conflicts with your environment or campaign setting, reroll. If none work, use ‘Salvage’.",
+          "tags": ["ss.fortress.primaryMaterial.unique"],
+          "then_roll": ["table.ss.fortress.uniqueMaterial"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.primaryMaterial.brick", "name": "Brick" },
+    { "id": "ss.fortress.primaryMaterial.timber", "name": "Timber" },
+    { "id": "ss.fortress.primaryMaterial.stone", "name": "Stone" },
+    { "id": "ss.fortress.primaryMaterial.salvage", "name": "Salvage" },
+    { "id": "ss.fortress.primaryMaterial.unique", "name": "Unique Materials" }
+  ]
+}

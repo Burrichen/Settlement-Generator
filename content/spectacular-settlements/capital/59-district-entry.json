@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.districtEntry",
+      "name": "District Entry",
+      "description": "Rolled for each district: how restricted traffic is in and out. Modifies District Crime.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "open",
+          "name": "Open",
+          "range": [1, 3],
+          "description": "Entrance to the district is unrestricted. (+0 to district crime roll)",
+          "tags": ["ss.capital.districtEntry.open"]
+        },
+        {
+          "id": "lightlyGuarded",
+          "name": "Lightly Guarded",
+          "range": [4, 6],
+          "description": "The district entrance has a token guard presence. (+1 to district crime roll)",
+          "tags": ["ss.capital.districtEntry.lightlyGuarded"]
+        },
+        {
+          "id": "guarded",
+          "name": "Guarded",
+          "range": [7, 9],
+          "description": "The district entrance has a strong guard presence. (+2 to district crime roll)",
+          "tags": ["ss.capital.districtEntry.guarded"]
+        },
+        {
+          "id": "gatedAndGuarded",
+          "name": "Gated & Guarded",
+          "range": [10, 11],
+          "description": "The district entrance is barred by a gate with guards. (+3 to district crime roll)",
+          "tags": ["ss.capital.districtEntry.gatedAndGuarded"]
+        },
+        {
+          "id": "gatedWithToll",
+          "name": "Gated & Guarded with Toll",
+          "range": 12,
+          "description": "The district entrance is barred by a guarded gate, and a fee is charged for entry or exit (or both), which may be based on personage, method of transport, or goods being transported. (+4 to district crime roll) (Rerolled for Slums and Upper Class districts.)",
+          "tags": ["ss.capital.districtEntry.gatedWithToll"],
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.capital.districtType.slums"
+                },
+                {
+                  "has_tag": "ss.capital.districtType.upperClass"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.districtEntry.open",
+      "name": "Open"
+    },
+    {
+      "id": "ss.capital.districtEntry.lightlyGuarded",
+      "name": "Lightly Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtEntry.guarded",
+      "name": "Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtEntry.gatedAndGuarded",
+      "name": "Gated & Guarded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtEntry.gatedWithToll",
+      "name": "Gated & Guarded with Toll",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCrime",
+          "amount": 4
+        }
+      ]
+    }
+  ]
+}

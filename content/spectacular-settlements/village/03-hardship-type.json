@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.hardshipType",
+      "name": "Hardship Type",
+      "description": "Rolled once per hardship. The hardship's outcome modifies the attributes each type lists.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "plague",
+          "name": "Plague",
+          "range": 1,
+          "description": "The community fell victim to disease. Modified attributes: population density.",
+          "tags": ["ss.village.hardshipType.plague"]
+        },
+        {
+          "id": "bandits",
+          "name": "Bandits on the Road",
+          "range": 2,
+          "description": "On the way to or from market, the village’s caravan was set upon by bandits. Modified attributes: population wealth.",
+          "tags": ["ss.village.hardshipType.bandits"]
+        },
+        {
+          "id": "raid",
+          "name": "Raid",
+          "range": 3,
+          "description": "The village was raided by marauders. Modified attributes: size, population wealth, population density.",
+          "tags": ["ss.village.hardshipType.raid"]
+        },
+        {
+          "id": "famine",
+          "name": "Famine / Food Shortage",
+          "range": 4,
+          "description": "If the village normally produces some kind of food, it did not produce. If they typically get their food from the market, they had difficulties doing so for a time. Modified attributes: population density.",
+          "tags": ["ss.village.hardshipType.famine"]
+        },
+        {
+          "id": "harshWeather",
+          "name": "Harsh Weather",
+          "range": 5,
+          "description": "The region was beset by nature’s wrath. Modified attributes: condition, size.",
+          "tags": ["ss.village.hardshipType.harshWeather"]
+        },
+        {
+          "id": "conflict",
+          "name": "Inter-Community Conflict/Violence",
+          "range": 6,
+          "description": "A conflict between members of the community broke out and split the village, with dire consequences. Modified attributes: population density, disposition.",
+          "tags": ["ss.village.hardshipType.conflict"]
+        },
+        {
+          "id": "lossOfLeader",
+          "name": "Loss of Community Leader",
+          "range": 7,
+          "description": "A key member of the community died or went missing. Modified attributes: disposition.",
+          "tags": ["ss.village.hardshipType.lossOfLeader"]
+        },
+        {
+          "id": "war",
+          "name": "Victim of War",
+          "range": 8,
+          "description": "The village was struck by the ravages of war (passing or foraging armies, collateral battle damage, disease from war-related issues such as camp hygiene or illness from dead bodies). Modified attributes: condition, size, population density.",
+          "tags": ["ss.village.hardshipType.war"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.hardshipType.plague",
+      "name": "Plague"
+    },
+    {
+      "id": "ss.village.hardshipType.bandits",
+      "name": "Bandits on the Road"
+    },
+    {
+      "id": "ss.village.hardshipType.raid",
+      "name": "Raid"
+    },
+    {
+      "id": "ss.village.hardshipType.famine",
+      "name": "Famine / Food Shortage"
+    },
+    {
+      "id": "ss.village.hardshipType.harshWeather",
+      "name": "Harsh Weather"
+    },
+    {
+      "id": "ss.village.hardshipType.conflict",
+      "name": "Inter-Community Conflict/Violence"
+    },
+    {
+      "id": "ss.village.hardshipType.lossOfLeader",
+      "name": "Loss of Community Leader"
+    },
+    {
+      "id": "ss.village.hardshipType.war",
+      "name": "Victim of War"
+    }
+  ]
+}

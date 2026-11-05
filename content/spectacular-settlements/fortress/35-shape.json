@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.shape",
+      "name": "Shape",
+      "description": "The keep's shape (roll, or choose).",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "box",
+          "name": "Box",
+          "range": [1, 3],
+          "description": "A square or rectangular keep maximizes internal space and is easier to construct. Furnishing, outfitting and decorating straight walls is considerably simpler.",
+          "tags": ["ss.fortress.shape.box"]
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "range": [4, 6],
+          "description": "A circular keep can offer defense against certain weather and attacks, as the curved surface (depending on its extremity) will deflect weak or glancing blows. However, the interior can be limited, especially in an overall small keep.",
+          "tags": ["ss.fortress.shape.round"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.shape.box", "name": "Box" },
+    { "id": "ss.fortress.shape.round", "name": "Round" }
+  ]
+}

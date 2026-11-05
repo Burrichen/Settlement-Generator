@@ -90,7 +90,7 @@ fn assert_clean(l: &ContentLayers) {
 fn without_overrides_the_effective_content_is_the_bundled_content() {
     let l = layers();
     let merged = l.merged();
-    assert_eq!(merged.content, v1());
+    assert_eq!(*merged.content, v1());
     assert!(merged.report.issues.is_empty(), "{}", merged.report);
     assert!(
         merged
@@ -475,7 +475,7 @@ fn resetting_individual_items() {
     l.reset_table(&t("t.side")).unwrap();
     l.reset_tag(&g("g.one")).unwrap();
     assert!(l.overrides().is_empty());
-    assert_eq!(l.merged().content, v1());
+    assert_eq!(*l.merged().content, v1());
 }
 
 #[test]
@@ -513,7 +513,7 @@ fn resetting_everything() {
         .unwrap();
     l.reset_all();
     assert!(l.overrides().is_empty());
-    assert_eq!(l.merged().content, v1());
+    assert_eq!(*l.merged().content, v1());
 }
 
 // ----- application updates ---------------------------------------------------
@@ -631,7 +631,7 @@ fn reset_after_an_update_uses_the_installed_defaults() {
     assert_eq!(merged.content.tag(&g("g.two")).unwrap().name, "Two v2");
 
     l.reset_all();
-    assert_eq!(l.merged().content, v2());
+    assert_eq!(*l.merged().content, v2());
 }
 
 #[test]

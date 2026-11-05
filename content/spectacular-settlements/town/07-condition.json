@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.condition",
+      "name": "Condition",
+      "description": "How well the town is maintained, and what it has gone through. Modifies Population Wealth.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "derelict",
+          "name": "Derelict",
+          "range": 1,
+          "description": "Buildings may be coming down, or in ruins. Refuse may line the streets, which, if they were ever maintained to begin with, are nigh unrecognizable now. Everything seems broken, filthy, or both. This place might benefit from complete destruction and a re-build. The smells are, likely, vile. (-6 to population wealth roll)",
+          "tags": ["ss.town.condition.derelict"]
+        },
+        {
+          "id": "lousy",
+          "name": "Lousy",
+          "range": [2, 4],
+          "description": "Things are in rough shape. Most structures seem unsound, or are just in poor condition. Windows, if there are any, may be broken or boarded up. Walls are stained, and streets are rutted or cracked. The smells are an affront to the senses. (-3 to population wealth roll)",
+          "tags": ["ss.town.condition.lousy"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [5, 12],
+          "description": "Structures seem sound enough though are, perhaps, not attractive. It is likely that most homes keep occupants dry. Roads are relatively clear, if not clean. The smells are not pleasant, but tolerable. (+0 to population wealth roll)",
+          "tags": ["ss.town.condition.moderate"]
+        },
+        {
+          "id": "robust",
+          "name": "Robust",
+          "range": [13, 19],
+          "description": "Buildings in the town appear solid. Beams protruding from structure walls look to be sturdy and hard-wearing. While possibly lacking in true refinement, the town bears a strength and sense of reliability. Roads are maintained, though not obsessed over, and are largely free of refuse and filth. The smells are those of smoke and sawdust, leather and sweat. (+3 to population wealth roll)",
+          "tags": ["ss.town.condition.robust"]
+        },
+        {
+          "id": "superb",
+          "name": "Superb",
+          "range": 20,
+          "description": "The town is exemplary in all aspects. The buildings are built with exquisite skill and flair, leaving no doubt as to their quality. The roads are immaculately kept, with little to no detritus anywhere. The smells are those of fresh air and flowers, grass and trees, or cool sea mist. (+6 to population wealth roll)",
+          "tags": ["ss.town.condition.superb"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.condition.derelict",
+      "name": "Derelict",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ss.town.condition.lousy",
+      "name": "Lousy",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.condition.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "ss.town.condition.robust",
+      "name": "Robust",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.condition.superb",
+      "name": "Superb",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 6
+        }
+      ]
+    }
+  ]
+}

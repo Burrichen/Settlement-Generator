@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.districtCrimeDegree",
+      "name": "District Crime Degree",
+      "description": "A district's own crime degree: the city's general crime moved by its District Crime steps, stopping at the best or worst. Urban encounters in the district use its modifier instead of the city's. Set, never rolled.",
+      "selection": "choose",
+      "results": [
+        {
+          "id": "dangerous",
+          "name": "Dangerous",
+          "description": "(+5 to urban encounter rolls in this district)",
+          "tags": ["ss.city.districtCrimeDegree.dangerous"]
+        },
+        {
+          "id": "frequent",
+          "name": "Frequent",
+          "description": "(+4 to urban encounter rolls in this district)",
+          "tags": ["ss.city.districtCrimeDegree.frequent"]
+        },
+        {
+          "id": "common",
+          "name": "Common",
+          "description": "(+3 to urban encounter rolls in this district)",
+          "tags": ["ss.city.districtCrimeDegree.common"]
+        },
+        {
+          "id": "uncommon",
+          "name": "Uncommon",
+          "description": "(+2 to urban encounter rolls in this district)",
+          "tags": ["ss.city.districtCrimeDegree.uncommon"]
+        },
+        {
+          "id": "infrequent",
+          "name": "Infrequent",
+          "description": "(+1 to urban encounter rolls in this district)",
+          "tags": ["ss.city.districtCrimeDegree.infrequent"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.districtCrimeDegree.dangerous",
+      "name": "Dangerous",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+5 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtCrimeDegree.frequent",
+      "name": "Frequent",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+4 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtCrimeDegree.common",
+      "name": "Common",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+3 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtCrimeDegree.uncommon",
+      "name": "Uncommon",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+2 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    },
+    {
+      "id": "ss.city.districtCrimeDegree.infrequent",
+      "name": "Infrequent",
+      "effects": [
+        {
+          "kind": "intent",
+          "concept": "urbanEncounters",
+          "change": "increase",
+          "status": "planned",
+          "note": "+1 to urban encounter rolls (Appendix B: Encounters), not imported yet."
+        }
+      ]
+    }
+  ]
+}

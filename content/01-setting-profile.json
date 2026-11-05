@@ -16,7 +16,7 @@
         {
           "id": "spectacularSettlements",
           "name": "Spectacular Settlements Generation",
-          "description": "Follows the builder chapters of Spectacular Settlements table by table, in place of the generic stages. Currently the Trading Posts builder.",
+          "description": "Follows the builder chapters of Spectacular Settlements table by table, in place of the generic stages. Currently the Trading Posts, Villages, Towns, Cities, Capitals and Fortresses builders, chosen at the Settlement Type stage.",
           "tags": ["world.spectacularSettlements"]
         }
       ]

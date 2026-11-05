@@ -54,7 +54,7 @@ fn content() -> ContentSet {
 /// Whether a stage belongs to the generic pipeline rather than the
 /// Spectacular Settlements profile (covered by `spectacular_settlements.rs`).
 fn generic(id: &str) -> bool {
-    !(id.starts_with("table.ss.") || id.starts_with("step.ssTradingPost"))
+    !(id.starts_with("table.ss.") || id.starts_with("step.ss"))
 }
 
 fn none() -> ScriptedFaces {
@@ -875,7 +875,7 @@ fn changed_defaults_never_silently_regenerate_a_saved_settlement() {
     let changed = layers.merged().content;
 
     let s = GenerationSession::from_snapshot(
-        Arc::new(changed),
+        changed,
         GenerationOptions::default(),
         GenerationMode::OneTable,
         &snapshot,
@@ -1162,7 +1162,7 @@ fn economy_is_stored_in_the_snapshot_and_later_table_changes_do_not_touch_it() {
 
     assert_eq!(economy(&snapshot), stored, "display uses the stored copy");
     let reopened = GenerationSession::from_snapshot(
-        Arc::new(changed),
+        changed,
         GenerationOptions::default(),
         GenerationMode::OneTable,
         &snapshot,

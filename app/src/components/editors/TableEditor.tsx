@@ -395,7 +395,7 @@ export function TableForm({
                 onBlur={() => void relayout(draft)}
               />
               <span className="field-help">
-                Standard dice: d4, d6, d8, d10, d12, d20, d100, or sums such as 2d6.
+                Standard dice: d2 (a coin), d4, d6, d8, d10, d12, d20, d100, or sums such as 2d6.
               </span>
             </label>
           </div>

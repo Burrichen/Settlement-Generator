@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.relationshipWithPeople",
+      "name": "Relationship with the People",
+      "description": "The emotional state between the noble class and the common folk. Awful to Bad make the root of the relationship negative; Tepid to Incredible positive.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "awful",
+          "name": "Awful",
+          "range": 1,
+          "description": "Hatred is almost universally shared. Relations are so poor that lethal brawls can break out at the slightest provocation. (Root of relationship to the people: negative)",
+          "tags": ["ss.capital.relationshipWithPeople.awful"]
+        },
+        {
+          "id": "veryBad",
+          "name": "Very Bad",
+          "range": [2, 3],
+          "description": "Tension is high, and bad feelings run deep. Dealings between nobles and commoners usually result in harsh words, though serious violence is uncommon. (Root of relationship to the people: negative)",
+          "tags": ["ss.capital.relationshipWithPeople.veryBad"]
+        },
+        {
+          "id": "bad",
+          "name": "Bad",
+          "range": [4, 8],
+          "description": "Dislike is pervasive. Dealings between nobles and commoners usually result in mutterings and barely-concealed curses, but open hostility is rare. (Root of relationship to the people: negative)",
+          "tags": ["ss.capital.relationshipWithPeople.bad"]
+        },
+        {
+          "id": "tepid",
+          "name": "Tepid",
+          "range": [9, 13],
+          "description": "Both classes feel ambivalent towards one another. Nobles and commoners generally keep out of each other’s way, and largely ignore each other when they come into contact. (Root of relationship to the people: positive)",
+          "tags": ["ss.capital.relationshipWithPeople.tepid"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [14, 17],
+          "description": "Relations are generally friendly. When a noble and commoner pass in the street, a nod or tip of the hat is typical. (Root of relationship to the people: positive)",
+          "tags": ["ss.capital.relationshipWithPeople.good"]
+        },
+        {
+          "id": "veryGood",
+          "name": "Very Good",
+          "range": [18, 19],
+          "description": "The relationship between the two classes is very positive. The two classes greet each other warmly, and deal with each other frequently. (Root of relationship to the people: positive)",
+          "tags": ["ss.capital.relationshipWithPeople.veryGood"]
+        },
+        {
+          "id": "incredible",
+          "name": "Incredible",
+          "range": 20,
+          "description": "The two classes don’t view each other as fundamentally different, but as parts of a single whole. The two classes share moments of levity, and friendships, business partnerships, and romantic relationships that span the divide are common. (Root of relationship to the people: positive)",
+          "tags": ["ss.capital.relationshipWithPeople.incredible"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.relationshipWithPeople.awful",
+      "name": "Awful"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.veryBad",
+      "name": "Very Bad"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.bad",
+      "name": "Bad"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.tepid",
+      "name": "Tepid"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.good",
+      "name": "Good"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.veryGood",
+      "name": "Very Good"
+    },
+    {
+      "id": "ss.capital.relationshipWithPeople.incredible",
+      "name": "Incredible"
+    }
+  ]
+}

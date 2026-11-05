@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureCreature",
+      "name": "Resident - Creature or Monster",
+      "description": "Special Feature specifics: Resident - Creature or Monster.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "beast",
+          "name": "Beast",
+          "range": 1,
+          "description": "A noteworthy, but non-sentient, beast.",
+          "tags": ["ss.fortress.featureCreature.beast"]
+        },
+        {
+          "id": "beastSentient",
+          "name": "Beast (Sentient)",
+          "range": 2,
+          "description": "An animal that can think and speak.",
+          "tags": ["ss.fortress.featureCreature.beastSentient"]
+        },
+        {
+          "id": "elemental",
+          "name": "Elemental",
+          "range": 3,
+          "description": "A being of a single, pure elemental energy.",
+          "tags": ["ss.fortress.featureCreature.elemental"]
+        },
+        {
+          "id": "fey",
+          "name": "Fey",
+          "range": 4,
+          "description": "A resident of the fey realm.",
+          "tags": ["ss.fortress.featureCreature.fey"]
+        },
+        {
+          "id": "savageHumanoid",
+          "name": "Savage Humanoid",
+          "range": 5,
+          "description": "A gnoll, orc, or other brutal marauder.",
+          "tags": ["ss.fortress.featureCreature.savageHumanoid"]
+        },
+        {
+          "id": "goblinoid",
+          "name": "Goblinoid",
+          "range": 6,
+          "description": "A goblin, hobgoblin, or bugbear.",
+          "tags": ["ss.fortress.featureCreature.goblinoid"]
+        },
+        {
+          "id": "giant",
+          "name": "Giant",
+          "range": 7,
+          "description": "An ogre, giant, or troll.",
+          "tags": ["ss.fortress.featureCreature.giant"]
+        },
+        {
+          "id": "kobold",
+          "name": "Kobold",
+          "range": 8,
+          "description": "A bipedal reptile with distant draconic ancestry.",
+          "tags": ["ss.fortress.featureCreature.kobold"]
+        },
+        {
+          "id": "monstrosity",
+          "name": "Monstrosity",
+          "range": 9,
+          "description": "A terrifying, unnatural creature.",
+          "tags": ["ss.fortress.featureCreature.monstrosity"]
+        },
+        {
+          "id": "undead",
+          "name": "Undead",
+          "range": 10,
+          "description": "A zombie, vampire, spirit, or other creature linked with undeath.",
+          "tags": ["ss.fortress.featureCreature.undead"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureCreature.beast", "name": "Beast" },
+    { "id": "ss.fortress.featureCreature.beastSentient", "name": "Beast (Sentient)" },
+    { "id": "ss.fortress.featureCreature.elemental", "name": "Elemental" },
+    { "id": "ss.fortress.featureCreature.fey", "name": "Fey" },
+    { "id": "ss.fortress.featureCreature.savageHumanoid", "name": "Savage Humanoid" },
+    { "id": "ss.fortress.featureCreature.goblinoid", "name": "Goblinoid" },
+    { "id": "ss.fortress.featureCreature.giant", "name": "Giant" },
+    { "id": "ss.fortress.featureCreature.kobold", "name": "Kobold" },
+    { "id": "ss.fortress.featureCreature.monstrosity", "name": "Monstrosity" },
+    { "id": "ss.fortress.featureCreature.undead", "name": "Undead" }
+  ]
+}

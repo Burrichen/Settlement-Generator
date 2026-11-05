@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.oligarchy",
+      "name": "Oligarchy",
+      "description": "Which few hold sway over an Oligarchy.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "merchants",
+          "name": "Merchants (Plutocracy)",
+          "range": 1,
+          "description": "Merchants hold sway, collectively, over the town.",
+          "tags": ["ss.town.oligarchy.merchants"]
+        },
+        {
+          "id": "mages",
+          "name": "Mages (Magocracy)",
+          "range": 2,
+          "description": "Mages hold sway, collectively, over the town.",
+          "tags": ["ss.town.oligarchy.mages"]
+        },
+        {
+          "id": "priests",
+          "name": "Priests (Theocracy)",
+          "range": 3,
+          "description": "Priests hold sway, collectively, over the town.",
+          "tags": ["ss.town.oligarchy.priests"]
+        },
+        {
+          "id": "other",
+          "name": "Other Small Group",
+          "range": 4,
+          "description": "Another small group holds sway, collectively, over the town.",
+          "tags": ["ss.town.oligarchy.other"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.oligarchy.merchants",
+      "name": "Merchants (Plutocracy)"
+    },
+    {
+      "id": "ss.town.oligarchy.mages",
+      "name": "Mages (Magocracy)"
+    },
+    {
+      "id": "ss.town.oligarchy.priests",
+      "name": "Priests (Theocracy)"
+    },
+    {
+      "id": "ss.town.oligarchy.other",
+      "name": "Other Small Group"
+    }
+  ]
+}

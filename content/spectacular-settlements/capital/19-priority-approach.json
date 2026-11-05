@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.priorityApproach",
+      "name": "Priority Approach",
+      "description": "How the leadership furthers its priority when dealing with entities outside the capital.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "peaceableStrong",
+          "name": "Peaceable (Strong)",
+          "range": 1,
+          "description": "An agreeable stance is taken, preferring to avoid conflict whenever possible, through negotiating and dealing for the best non-aggressive outcome.",
+          "tags": ["ss.capital.priorityApproach.peaceableStrong"]
+        },
+        {
+          "id": "peaceableModerate",
+          "name": "Peaceable (Moderate)",
+          "range": [2, 4],
+          "description": "An agreeable stance is taken unless heavily provoked, when an aggressive response is carefully deliberated. Deals and negotiations are preferred, but shows of force, or use of leverage, are not completely unheard of.",
+          "tags": ["ss.capital.priorityApproach.peaceableModerate"]
+        },
+        {
+          "id": "aggressiveModerate",
+          "name": "Aggressive (Moderate)",
+          "range": [5, 7],
+          "description": "A defensive stance is taken, though opportunity is provided for good faith. If that opportunity is squandered, dealings can become much more difficult. Shows of force are typically relied upon but peaceful or, at least, agreeable resolutions are usually considered.",
+          "tags": ["ss.capital.priorityApproach.aggressiveModerate"]
+        },
+        {
+          "id": "aggressiveStrong",
+          "name": "Aggressive (Strong)",
+          "range": 8,
+          "description": "A defensive stance is taken, assuming and preparing for conflict at all times. Negotiation is considered only if the offer is extremely appealing. More often than not, the preference is to use ultimatums or physical force.",
+          "tags": ["ss.capital.priorityApproach.aggressiveStrong"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.priorityApproach.peaceableStrong",
+      "name": "Peaceable (Strong)"
+    },
+    {
+      "id": "ss.capital.priorityApproach.peaceableModerate",
+      "name": "Peaceable (Moderate)"
+    },
+    {
+      "id": "ss.capital.priorityApproach.aggressiveModerate",
+      "name": "Aggressive (Moderate)"
+    },
+    {
+      "id": "ss.capital.priorityApproach.aggressiveStrong",
+      "name": "Aggressive (Strong)"
+    }
+  ]
+}

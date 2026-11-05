@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.fervency",
+      "name": "Fervency of Local Following",
+      "description": "Rolled for each place of worship: the degree of veneration visible to any outsider visiting the town.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "unseen",
+          "name": "Unseen",
+          "range": 1,
+          "description": "To those outside the following, it is not clear that the group exists.",
+          "tags": ["ss.town.fervency.unseen"]
+        },
+        {
+          "id": "quiet",
+          "name": "Quiet",
+          "range": [2, 5],
+          "description": "Adherents to the faith are inconspicuous, unless one knows what to look for (perhaps particular gestures, items of clothing, or phrases).",
+          "tags": ["ss.town.fervency.quiet"]
+        },
+        {
+          "id": "subtle",
+          "name": "Subtle",
+          "range": [6, 10],
+          "description": "Followers of the faith may be identifiable, but remain very reserved.",
+          "tags": ["ss.town.fervency.subtle"]
+        },
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [11, 16],
+          "description": "The pious are confident and unafraid to display their faith openly, but do not encroach upon the wider populus uncalled for.",
+          "tags": ["ss.town.fervency.moderate"]
+        },
+        {
+          "id": "fervent",
+          "name": "Fervent",
+          "range": [17, 19],
+          "description": "Followers are outspoken, with little or no fear of reproach. They may sing or speak to the masses.",
+          "tags": ["ss.town.fervency.fervent"]
+        },
+        {
+          "id": "zealous",
+          "name": "Zealous",
+          "range": 20,
+          "description": "Adherents are utterly and unthinkingly devout, forcing their doctrine upon their surroundings and peers, or taking actions that further their cause regardless of personal cost. Though typically seen as negative, this could also be a positive, such as a church of light rising up in an evil kingdom, helping those in need, even if it puts themselves in peril.",
+          "tags": ["ss.town.fervency.zealous"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.fervency.unseen",
+      "name": "Unseen"
+    },
+    {
+      "id": "ss.town.fervency.quiet",
+      "name": "Quiet"
+    },
+    {
+      "id": "ss.town.fervency.subtle",
+      "name": "Subtle"
+    },
+    {
+      "id": "ss.town.fervency.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "ss.town.fervency.fervent",
+      "name": "Fervent"
+    },
+    {
+      "id": "ss.town.fervency.zealous",
+      "name": "Zealous"
+    }
+  ]
+}

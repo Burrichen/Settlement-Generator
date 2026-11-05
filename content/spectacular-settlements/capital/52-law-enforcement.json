@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.lawEnforcement",
+      "name": "Law Enforcement",
+      "description": "Modified by Stewardship, a Banned merchant overflow and a Military Officer. (The book also lists a Control governing priority, but gives it no law enforcement modifier.) Modifies General Crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": 1,
+          "description": "If not openly opposed by the collective population, crime can easily run amok. This could manifest itself in subtle or obvious ways. (-5 to general crime roll)",
+          "tags": ["ss.capital.lawEnforcement.none"]
+        },
+        {
+          "id": "cityWatch",
+          "name": "City Watch",
+          "range": [2, 8],
+          "description": "Run by a single captain, the watch has sufficient strength to cover key points, as well establish a patrol once or twice a day. (-3 to general crime roll)",
+          "tags": ["ss.capital.lawEnforcement.cityWatch"]
+        },
+        {
+          "id": "robustWatch",
+          "name": "Robust City Watch",
+          "range": [9, 13],
+          "description": "Run by a captain and two sergeants, the watch are able to place extra support at key points, as well as establish three or four patrols a day. (-1 to general crime roll)",
+          "tags": ["ss.capital.lawEnforcement.robustWatch"]
+        },
+        {
+          "id": "extensiveWatch",
+          "name": "Extensive City Watch",
+          "range": [14, 20],
+          "description": "Run by a captain and several sergeants, all key points are thoroughly guarded. The city perimeter is patrolled constantly, and city patrols happen regularly. (+0 to general crime roll)",
+          "tags": ["ss.capital.lawEnforcement.extensiveWatch"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.lawEnforcement.none",
+      "name": "None",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lawEnforcement.cityWatch",
+      "name": "City Watch",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lawEnforcement.robustWatch",
+      "name": "Robust City Watch",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.generalCrime",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.lawEnforcement.extensiveWatch",
+      "name": "Extensive City Watch"
+    }
+  ]
+}

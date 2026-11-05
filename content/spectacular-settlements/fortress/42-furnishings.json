@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.furnishings",
+      "name": "Furnishings",
+      "description": "Modified by Expense and Condition. The quality of the keep's furnishings and amenities.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "poor",
+          "name": "Poor",
+          "range": [1, 2],
+          "description": "The contents of the keep are very simplistic, of inferior quality, or are in a state of disrepair.",
+          "tags": ["ss.fortress.furnishings.poor"]
+        },
+        {
+          "id": "basic",
+          "name": "Basic",
+          "range": [3, 6],
+          "description": "Most of the contents of the keep are very basic, of poor quality, or in poor condition, though some may be decent.",
+          "tags": ["ss.fortress.furnishings.basic"]
+        },
+        {
+          "id": "decent",
+          "name": "Decent",
+          "range": [7, 14],
+          "description": "The contents of the keep are of serviceable quality, or in good condition.",
+          "tags": ["ss.fortress.furnishings.decent"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [15, 19],
+          "description": "Most of the contents of the keep are of decent quality, or in good condition, and some may be excellent or in fine condition.",
+          "tags": ["ss.fortress.furnishings.good"]
+        },
+        {
+          "id": "fine",
+          "name": "Fine",
+          "range": 20,
+          "description": "The contents of the keep are all of superlative quality, or are in excellent condition.",
+          "tags": ["ss.fortress.furnishings.fine"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.furnishings.poor", "name": "Poor" },
+    { "id": "ss.fortress.furnishings.basic", "name": "Basic" },
+    { "id": "ss.fortress.furnishings.decent", "name": "Decent" },
+    { "id": "ss.fortress.furnishings.good", "name": "Good" },
+    { "id": "ss.fortress.furnishings.fine", "name": "Fine" }
+  ]
+}

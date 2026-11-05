@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.rootOfRelationship",
+      "name": "Root of Relationship with the People",
+      "description": "Where the relationship between the classes comes from; its positive or negative reading follows the Relationship with the People. Resources modifies Population Wealth (+2 positive, -2 negative).",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "hardship",
+          "name": "Hardship",
+          "range": [1, 2],
+          "description": "A difficult and trying hardship has happened or is currently happening. The nobility... Positive: ...are sharing in the hardship, or are actively working to ease the burden on the common folk. Negative: ...are not enduring the same hardship as the common folk, and/or are looking after their own interests ahead of supporting others in need.",
+          "tags": ["ss.capital.rootOfRelationship.hardship"]
+        },
+        {
+          "id": "resources",
+          "name": "Resources",
+          "range": [3, 4],
+          "description": "The common folk feel the nobles... Positive: ...take an appropriate share of resources, and give charitably when able. (+2 to population wealth roll) Negative: ...do not distribute resources fairly, prioritizing plenty for themselves over making sure there is enough for all. (-2 to population wealth roll)",
+          "tags": ["ss.capital.rootOfRelationship.resources"]
+        },
+        {
+          "id": "manipulation",
+          "name": "Manipulation",
+          "range": [5, 6],
+          "description": "An individual or group has orchestrated the sentiment between the two classes. The manipulator is looking out for... Positive: ...the capital’s interests. Negative: ...their own interests.",
+          "tags": ["ss.capital.rootOfRelationship.manipulation"]
+        },
+        {
+          "id": "opinionOfLeadership",
+          "name": "Opinion of Leadership",
+          "range": [7, 8],
+          "description": "When it comes to their opinion of the leadership, both sides... Positive: ...agree. Negative: ...disagree.",
+          "tags": ["ss.capital.rootOfRelationship.opinionOfLeadership"]
+        },
+        {
+          "id": "leadershipTreatment",
+          "name": "Leadership Treatment",
+          "range": [9, 10],
+          "description": "The leadership treats the people and the nobility... Positive: ...equally. Negative: ...differently.",
+          "tags": ["ss.capital.rootOfRelationship.leadershipTreatment"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.rootOfRelationship.hardship",
+      "name": "Hardship"
+    },
+    {
+      "id": "ss.capital.rootOfRelationship.resources",
+      "name": "Resources"
+    },
+    {
+      "id": "ss.capital.rootOfRelationship.manipulation",
+      "name": "Manipulation"
+    },
+    {
+      "id": "ss.capital.rootOfRelationship.opinionOfLeadership",
+      "name": "Opinion of Leadership"
+    },
+    {
+      "id": "ss.capital.rootOfRelationship.leadershipTreatment",
+      "name": "Leadership Treatment"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureBizarreLocation",
+      "name": "Bizarre Location",
+      "description": "Special Feature specifics: Bizarre Location.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "abyssOrChasm",
+          "name": "Abyss or Chasm",
+          "range": 1,
+          "description": "The fortress is built on a platform suspended directly over a deep hole or crevasse.",
+          "tags": ["ss.fortress.featureBizarreLocation.abyssOrChasm"]
+        },
+        {
+          "id": "sky",
+          "name": "Sky",
+          "range": 2,
+          "description": "The fortress is built in such a way as to allow it to float, or hover in mid-air, above ground level (you decide how high). It could be on something like a cloud, or a manufactured platform, suspended by magic or technology.",
+          "tags": ["ss.fortress.featureBizarreLocation.sky"]
+        },
+        {
+          "id": "activeVolcano",
+          "name": "Active Volcano",
+          "range": 3,
+          "description": "The fortress is built on, or even inside, an active volcano. Assume that the fortress is built from materials, and has the resources, that would allow it exist here.",
+          "tags": ["ss.fortress.featureBizarreLocation.activeVolcano"]
+        },
+        {
+          "id": "beneathTheSurface",
+          "name": "Beneath the Surface",
+          "range": 4,
+          "description": "The fortress is located under some kind of environment where one might not think a fortress could be, such as underwater, under sand, or even soil or mud. There may, or may not, be something keeping the surrounding material out of the immediate fortress (such as a bubble keeping water out of an underwater fortress).",
+          "tags": ["ss.fortress.featureBizarreLocation.beneathTheSurface"]
+        },
+        {
+          "id": "mobile",
+          "name": "Mobile",
+          "range": 5,
+          "description": "The fortress is built in such a way as to allow it to move. It could be on wheels, organic legs, the back of a massive beast, a manufactured platform, or magical landmass, to name a few options.",
+          "tags": ["ss.fortress.featureBizarreLocation.mobile"]
+        },
+        {
+          "id": "nestedEnvironment",
+          "name": "Nested Environment",
+          "range": 6,
+          "description": "The fortress is built within a separate environment that exists within the primary environment. This nested environment may be contained within a physical barrier, such as a dome or bubble. In any case, there are discernible borders between it and the primary environment.",
+          "tags": ["ss.fortress.featureBizarreLocation.nestedEnvironment"]
+        },
+        {
+          "id": "beastColony",
+          "name": "Beast Colony",
+          "range": 7,
+          "description": "The fortress is built in the midst of a colony of uncivilized creatures or animals.",
+          "tags": ["ss.fortress.featureBizarreLocation.beastColony"]
+        },
+        {
+          "id": "unnaturalObject",
+          "name": "Unnatural Object",
+          "range": 8,
+          "description": "The fortress is built upon, or around, a strange, foreign item, that has, perhaps, fallen from the heavens or from another plane of existence.",
+          "tags": ["ss.fortress.featureBizarreLocation.unnaturalObject"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureBizarreLocation.abyssOrChasm", "name": "Abyss or Chasm" },
+    { "id": "ss.fortress.featureBizarreLocation.sky", "name": "Sky" },
+    { "id": "ss.fortress.featureBizarreLocation.activeVolcano", "name": "Active Volcano" },
+    { "id": "ss.fortress.featureBizarreLocation.beneathTheSurface", "name": "Beneath the Surface" },
+    { "id": "ss.fortress.featureBizarreLocation.mobile", "name": "Mobile" },
+    { "id": "ss.fortress.featureBizarreLocation.nestedEnvironment", "name": "Nested Environment" },
+    { "id": "ss.fortress.featureBizarreLocation.beastColony", "name": "Beast Colony" },
+    { "id": "ss.fortress.featureBizarreLocation.unnaturalObject", "name": "Unnatural Object" }
+  ]
+}

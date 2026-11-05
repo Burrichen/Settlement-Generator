@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.specialty",
+      "name": "Specialty",
+      "description": "The main thing the town is known for. A town with the Production priority rolls a d4 instead of a d8.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "craft",
+          "name": "Craft",
+          "range": 1,
+          "description": "The town is known for being a place to find high-quality, hand-crafted goods.",
+          "tags": ["ss.town.specialty.craft"]
+        },
+        {
+          "id": "farming",
+          "name": "Farming or Resource Gathering",
+          "range": 2,
+          "description": "The town is known for the resource(s) it produces. Base this on what kind of environment and climate the town is in. If farming wouldn’t work as well, perhaps they mine or harvest lumber instead. (+1 to farms and resources roll. Reroll if 1-8.)",
+          "tags": ["ss.town.specialty.farming"]
+        },
+        {
+          "id": "industry",
+          "name": "Industry",
+          "range": 3,
+          "description": "This town is known for certain industrial processes such as milling, textiles, or smelting. (Free Location: Shop - [d6]: 1-2: Mill 3-4: Textile Production 5-6: Foundry/Smelting)",
+          "tags": ["ss.town.specialty.industry"]
+        },
+        {
+          "id": "uniqueShipping",
+          "name": "Unique Shipping Methods",
+          "range": 4,
+          "description": "These people know how to get things from one place to another by strange or innovative means.",
+          "tags": ["ss.town.specialty.uniqueShipping"]
+        },
+        {
+          "id": "connections",
+          "name": "Connections",
+          "range": 5,
+          "description": "This town is full of people who can find and obtain almost anything (or, perhaps, anyone).",
+          "tags": ["ss.town.specialty.connections"]
+        },
+        {
+          "id": "drink",
+          "name": "Drink",
+          "range": 6,
+          "description": "The town is known for having a wide variety of (or excellent quality) beverages available throughout.",
+          "tags": ["ss.town.specialty.drink"]
+        },
+        {
+          "id": "education",
+          "name": "Education",
+          "range": 7,
+          "description": "The town is known as the location of a widely-renowned educational institution. (Free Location: Non-Commercial - Place of Education)",
+          "tags": ["ss.town.specialty.education"]
+        },
+        {
+          "id": "hospitality",
+          "name": "Hospitality",
+          "range": 8,
+          "description": "The town is known as a welcoming, desirable place to stay. (The default inn is of [d6]: 1-3: good quality 4-6: fine quality)",
+          "tags": ["ss.town.specialty.hospitality"]
+        }
+      ],
+      "variants": [
+        {
+          "id": "production",
+          "name": "Production priority (d4)",
+          "when": {
+            "has_tag": "ss.town.priority.production"
+          },
+          "dice": "1d4",
+          "ranges": [
+            {
+              "result": "craft",
+              "range": 1
+            },
+            {
+              "result": "farming",
+              "range": 2
+            },
+            {
+              "result": "industry",
+              "range": 3
+            },
+            {
+              "result": "uniqueShipping",
+              "range": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.specialty.craft",
+      "name": "Craft"
+    },
+    {
+      "id": "ss.town.specialty.farming",
+      "name": "Farming or Resource Gathering"
+    },
+    {
+      "id": "ss.town.specialty.industry",
+      "name": "Industry"
+    },
+    {
+      "id": "ss.town.specialty.uniqueShipping",
+      "name": "Unique Shipping Methods"
+    },
+    {
+      "id": "ss.town.specialty.connections",
+      "name": "Connections"
+    },
+    {
+      "id": "ss.town.specialty.drink",
+      "name": "Drink"
+    },
+    {
+      "id": "ss.town.specialty.education",
+      "name": "Education"
+    },
+    {
+      "id": "ss.town.specialty.hospitality",
+      "name": "Hospitality"
+    }
+  ]
+}

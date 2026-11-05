@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.counterintelligence",
+      "name": "Counterintelligence",
+      "description": "How many operatives find and deal with spies within the capital.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 10],
+          "description": "The capital does not have counterintelligence operatives working within its borders. (Counterintelligence Watchfulness is skipped.) (Rerolled with the Cloak & Dagger priority.)",
+          "tags": ["ss.capital.counterintelligence.none"],
+          "eligibility": {
+            "not": {
+              "has_tag": "ss.capital.governingPriority.cloakAndDagger"
+            }
+          }
+        },
+        {
+          "id": "modest",
+          "name": "Modest",
+          "range": [11, 16],
+          "description": "The capital has up to a few operatives working within its borders.",
+          "tags": ["ss.capital.counterintelligence.modest"]
+        },
+        {
+          "id": "adequate",
+          "name": "Adequate",
+          "range": [17, 19],
+          "description": "The capital has up to a dozen operatives working within its borders.",
+          "tags": ["ss.capital.counterintelligence.adequate"]
+        },
+        {
+          "id": "ample",
+          "name": "Ample",
+          "range": 20,
+          "description": "The capital has over a dozen operatives working within its borders.",
+          "tags": ["ss.capital.counterintelligence.ample"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.counterintelligence.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.counterintelligence.modest",
+      "name": "Modest"
+    },
+    {
+      "id": "ss.capital.counterintelligence.adequate",
+      "name": "Adequate"
+    },
+    {
+      "id": "ss.capital.counterintelligence.ample",
+      "name": "Ample"
+    }
+  ]
+}

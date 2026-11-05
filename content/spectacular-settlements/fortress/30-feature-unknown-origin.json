@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureUnknownOrigin",
+      "name": "Unknown Origin",
+      "description": "Special Feature specifics: Unknown Origin. If an unknown origin conflicts with earlier rolls, the unknown origin takes precedence.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "extraplanar",
+          "name": "Extraplanar",
+          "range": 1,
+          "description": "The fortress popped into existence instantaneously.",
+          "tags": ["ss.fortress.featureUnknownOrigin.extraplanar"]
+        },
+        {
+          "id": "unseenHands",
+          "name": "Unseen Hands",
+          "range": 2,
+          "description": "The fortress was built without anyone ever seeing a builder. It seemed to grow, unobserved, each day until it was finished.",
+          "tags": ["ss.fortress.featureUnknownOrigin.unseenHands"]
+        },
+        {
+          "id": "stranger",
+          "name": "Stranger",
+          "range": 3,
+          "description": "Someone integral to the inception of the fortress was unknown to anyone else involved.",
+          "tags": ["ss.fortress.featureUnknownOrigin.stranger"]
+        },
+        {
+          "id": "noRecords",
+          "name": "No Records",
+          "range": 4,
+          "description": "The fortress was built by people who are no longer around, and no records give clues as to who they were.",
+          "tags": ["ss.fortress.featureUnknownOrigin.noRecords"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureUnknownOrigin.extraplanar", "name": "Extraplanar" },
+    { "id": "ss.fortress.featureUnknownOrigin.unseenHands", "name": "Unseen Hands" },
+    { "id": "ss.fortress.featureUnknownOrigin.stranger", "name": "Stranger" },
+    { "id": "ss.fortress.featureUnknownOrigin.noRecords", "name": "No Records" }
+  ]
+}

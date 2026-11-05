@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.dangerLevel",
+      "name": "Danger Level",
+      "description": "Extra Intrigue. What makes this place dangerous: crime, environmental hazards, or other things that could make life difficult. Relative to the campaign and the characters' level.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "No Danger or Hazards",
+          "range": [1, 2],
+          "description": "The village is a perfectly safe place to be (skip danger type table).",
+          "tags": ["ss.village.dangerLevel.none"]
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "range": [3, 6],
+          "description": "Danger or hazards are a rarity.",
+          "tags": ["ss.village.dangerLevel.low"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "Danger or hazards are not unheard of, but not everyone has experienced them.",
+          "tags": ["ss.village.dangerLevel.medium"]
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "range": [15, 18],
+          "description": "Danger or hazards are common.",
+          "tags": ["ss.village.dangerLevel.high"]
+        },
+        {
+          "id": "extreme",
+          "name": "Extreme",
+          "range": [19, 20],
+          "description": "Danger or hazards abound. It is never safe to go anywhere alone.",
+          "tags": ["ss.village.dangerLevel.extreme"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.dangerLevel.none",
+      "name": "No Danger or Hazards"
+    },
+    {
+      "id": "ss.village.dangerLevel.low",
+      "name": "Low"
+    },
+    {
+      "id": "ss.village.dangerLevel.medium",
+      "name": "Medium"
+    },
+    {
+      "id": "ss.village.dangerLevel.high",
+      "name": "High"
+    },
+    {
+      "id": "ss.village.dangerLevel.extreme",
+      "name": "Extreme"
+    }
+  ]
+}

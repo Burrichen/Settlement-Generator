@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.disposition",
+      "name": "Disposition",
+      "description": "Modified by Fortification. How the locals seem toward visitors (whether they truly are is up to you).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "hostile",
+          "name": "Hostile",
+          "range": [1, 2],
+          "description": "Locals seem very unfriendly toward visitors, and would likely make out-of-towners feel unwelcome. This could manifest as coldness, passive-aggressiveness, or even violence.",
+          "tags": ["ss.town.disposition.hostile"]
+        },
+        {
+          "id": "unfriendly",
+          "name": "Unfriendly",
+          "range": [3, 6],
+          "description": "Locals don’t care much for visitors, looking upon them with contempt, fear, or suspicion.",
+          "tags": ["ss.town.disposition.unfriendly"]
+        },
+        {
+          "id": "neutral",
+          "name": "Neutral",
+          "range": [7, 14],
+          "description": "Locals are standoffish, or perhaps hard on the outside, but can be friendly if you get to know them.",
+          "tags": ["ss.town.disposition.neutral"]
+        },
+        {
+          "id": "friendly",
+          "name": "Friendly",
+          "range": [15, 18],
+          "description": "Locals are generally friendly, welcoming, and slow to take offense.",
+          "tags": ["ss.town.disposition.friendly"]
+        },
+        {
+          "id": "open",
+          "name": "Open",
+          "range": [19, 20],
+          "description": "The locals actively enjoy visitors, and their culture incorporates this. Just about anyone is welcome.",
+          "tags": ["ss.town.disposition.open"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.disposition.hostile",
+      "name": "Hostile"
+    },
+    {
+      "id": "ss.town.disposition.unfriendly",
+      "name": "Unfriendly"
+    },
+    {
+      "id": "ss.town.disposition.neutral",
+      "name": "Neutral"
+    },
+    {
+      "id": "ss.town.disposition.friendly",
+      "name": "Friendly"
+    },
+    {
+      "id": "ss.town.disposition.open",
+      "name": "Open"
+    }
+  ]
+}

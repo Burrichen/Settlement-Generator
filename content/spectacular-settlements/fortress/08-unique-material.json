@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.uniqueMaterial",
+      "name": "Unique Building Material",
+      "description": "Unusual, rare or special building materials, for Unique Materials. Reroll a result that conflicts with the environment or setting.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "bone",
+          "name": "Bone",
+          "range": 1,
+          "description": "The fortress could be located in a place with plentiful (or, even, constantly replenishing) dead, or in some form of natural graveyard where bone is an abundant resource.",
+          "tags": ["ss.fortress.uniqueMaterial.bone"]
+        },
+        {
+          "id": "coral",
+          "name": "Coral",
+          "range": 2,
+          "description": "If the fortress is located somewhere tropical, coral could be a potential replacement for stone (especially if the fortress - or the settlement it is in - is underwater!).",
+          "tags": ["ss.fortress.uniqueMaterial.coral"]
+        },
+        {
+          "id": "crystal",
+          "name": "Crystal",
+          "range": 3,
+          "description": "Those mining deep in the earth (or on alien planes) might find crystal in great enough abundance that it could be used to build large structures.",
+          "tags": ["ss.fortress.uniqueMaterial.crystal"]
+        },
+        {
+          "id": "livingPlant",
+          "name": "Living Plant",
+          "range": 4,
+          "description": "Certain fantastic cultures are known to build their structures amongst, or even inside, living plants, such as great trees. Whether the plants are trained into shape by natural, or magical, means depends on the builders.",
+          "tags": ["ss.fortress.uniqueMaterial.livingPlant"]
+        },
+        {
+          "id": "ice",
+          "name": "Ice",
+          "range": 5,
+          "description": "Ice is an infinite resource in the frozen tundra; huge blocks could be cut and shaped to build a great fortress in such a location. While it might not be quite as tough as stone, repairs and replacements are far simpler.",
+          "tags": ["ss.fortress.uniqueMaterial.ice"]
+        },
+        {
+          "id": "magic",
+          "name": "Magic",
+          "range": 6,
+          "description": "How prevalent is magic in your world? The background of your builders will determine what kind of methods they would have had at their disposal. Magic could have been utilized either to generate the materials for the fortress, assemble it or, perhaps, keep it all held together.",
+          "tags": ["ss.fortress.uniqueMaterial.magic"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.uniqueMaterial.bone", "name": "Bone" },
+    { "id": "ss.fortress.uniqueMaterial.coral", "name": "Coral" },
+    { "id": "ss.fortress.uniqueMaterial.crystal", "name": "Crystal" },
+    { "id": "ss.fortress.uniqueMaterial.livingPlant", "name": "Living Plant" },
+    { "id": "ss.fortress.uniqueMaterial.ice", "name": "Ice" },
+    { "id": "ss.fortress.uniqueMaterial.magic", "name": "Magic" }
+  ]
+}

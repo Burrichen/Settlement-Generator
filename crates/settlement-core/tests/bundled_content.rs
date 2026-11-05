@@ -168,15 +168,19 @@ fn out_of_scope_tables_are_absent() {
         "Estate",
     ] {
         // Notable Locations are in scope; the old Location table is not.
+        // The Spectacular Settlements profile's tables keep the book's own
+        // names (a village's "Other Locations").
         assert!(
-            !c.tables
-                .iter()
-                .any(|t| t.name.contains(name) && !t.name.contains("Notable Location")),
+            !c.tables.iter().any(|t| t.name.contains(name)
+                && !t.name.contains("Notable Location")
+                && !t.id.as_str().starts_with("table.ss.")),
             "{name} must not be a table"
         );
+        // ... and its results (the Settlement Type's "Fortress" chapter).
         assert!(
             !c.tables
                 .iter()
+                .filter(|t| !t.id.as_str().starts_with("table.ss."))
                 .flat_map(|t| &t.results)
                 .any(|r| r.name == name),
             "{name} must not be a result"
@@ -1505,7 +1509,7 @@ fn every_stage_has_its_pipeline_name() {
     let names: Vec<_> = content()
         .pipeline()
         .into_iter()
-        .filter(|s| !s.id.as_str().starts_with("ssTradingPost-"))
+        .filter(|s| !s.id.as_str().starts_with("ss"))
         .map(|s| s.name.unwrap())
         .collect();
     assert_eq!(

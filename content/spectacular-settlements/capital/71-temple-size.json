@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.templeSize",
+      "name": "Temple District Temple",
+      "description": "The Temple district's included place of worship: 1-4 Temple, 5-6 Great Temple.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "temple",
+          "name": "Temple",
+          "range": [1, 4],
+          "description": "(Non-commercial) A grand building, replete with elements like high ceilings, plush furnishings, and other impressive ornamental and/or architectural features. It can hold nearly a thousand attendees.",
+          "tags": ["ss.capital.templeSize.temple"]
+        },
+        {
+          "id": "greatTemple",
+          "name": "Great Temple",
+          "range": [5, 6],
+          "description": "(Non-commercial) An awe-inspiring structure, devoted to that which it venerates. No expense was spared in its construction.",
+          "tags": ["ss.capital.templeSize.greatTemple"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.templeSize.temple",
+      "name": "Temple"
+    },
+    {
+      "id": "ss.capital.templeSize.greatTemple",
+      "name": "Great Temple"
+    }
+  ]
+}

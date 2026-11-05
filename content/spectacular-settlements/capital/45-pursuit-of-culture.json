@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.pursuitOfCulture",
+      "name": "Pursuit of Culture",
+      "description": "How much the capital's culture matters to its citizens.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "moderate",
+          "name": "Moderate",
+          "range": [1, 10],
+          "description": "Culture is viewed as passingly important. Most enjoy cultural activities, but they do not dominate to the detriment of other aspects of life.",
+          "tags": ["ss.capital.pursuitOfCulture.moderate"]
+        },
+        {
+          "id": "keenInterest",
+          "name": "Keen Interest",
+          "range": [11, 16],
+          "description": "Interest is deep and far-reaching, but not overwhelming. Many folks incorporate some aspect of cultural endeavor into their daily life.",
+          "tags": ["ss.capital.pursuitOfCulture.keenInterest"]
+        },
+        {
+          "id": "obsession",
+          "name": "Obsession",
+          "range": [17, 19],
+          "description": "Interest is pervasive, and talk of the culture seeps into regular conversation frequently. The pursuit of culture tends to dominate many aspects of daily life.",
+          "tags": ["ss.capital.pursuitOfCulture.obsession"]
+        },
+        {
+          "id": "rabidFanaticism",
+          "name": "Rabid Fanaticism",
+          "range": 20,
+          "description": "The pursuit of culture has overrun the capital and, even to visitors, is likely inescapable. Local speech is dominated by it, and events honoring it are ongoing. It seems to be represented, in some way, almost everywhere one looks.",
+          "tags": ["ss.capital.pursuitOfCulture.rabidFanaticism"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.pursuitOfCulture.moderate",
+      "name": "Moderate"
+    },
+    {
+      "id": "ss.capital.pursuitOfCulture.keenInterest",
+      "name": "Keen Interest"
+    },
+    {
+      "id": "ss.capital.pursuitOfCulture.obsession",
+      "name": "Obsession"
+    },
+    {
+      "id": "ss.capital.pursuitOfCulture.rabidFanaticism",
+      "name": "Rabid Fanaticism"
+    }
+  ]
+}

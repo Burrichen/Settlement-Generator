@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.environment",
+      "name": "Environment",
+      "description": "Skipped for a Port, whose environment is Coastal or River. However it is placed, the town gets plentiful water somehow.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "coastal",
+          "name": "Coastal",
+          "range": 1,
+          "description": "The town is near a large body of water, such as a lake or ocean.",
+          "tags": ["ss.town.environment.coastal"]
+        },
+        {
+          "id": "forest",
+          "name": "Forest",
+          "range": 2,
+          "description": "The town has been established in area cleared of the surrounding trees.",
+          "tags": ["ss.town.environment.forest"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": 3,
+          "description": "The town is found on a plateaux of a stony pass or soaring peak.",
+          "tags": ["ss.town.environment.mountains"]
+        },
+        {
+          "id": "plains",
+          "name": "Plains",
+          "range": 4,
+          "description": "The town is encircled by wide, open fields.",
+          "tags": ["ss.town.environment.plains"]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "range": 5,
+          "description": "The town is near or built around a steadily flowing stream, or other watercourse.",
+          "tags": ["ss.town.environment.river"]
+        },
+        {
+          "id": "swamp",
+          "name": "Swamp",
+          "range": 6,
+          "description": "The town is in, or near, a vast area of stagnant water.",
+          "tags": ["ss.town.environment.swamp"]
+        },
+        {
+          "id": "underground",
+          "name": "Underground",
+          "range": 7,
+          "description": "The town is within a vast network of caves.",
+          "tags": ["ss.town.environment.underground"]
+        },
+        {
+          "id": "valley",
+          "name": "Valley",
+          "range": 8,
+          "description": "The town is found within, or on the edge of, an area of recessed elevation in relation to the landscape around it.",
+          "tags": ["ss.town.environment.valley"]
+        },
+        {
+          "id": "tundra",
+          "name": "Tundra",
+          "range": 9,
+          "description": "The town is in a very cold environment.",
+          "tags": ["ss.town.environment.tundra"]
+        },
+        {
+          "id": "desert",
+          "name": "Desert",
+          "range": 10,
+          "description": "The town is in a dry and arid environment, likely flanked by vast sand dunes.",
+          "tags": ["ss.town.environment.desert"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.environment.coastal",
+      "name": "Coastal"
+    },
+    {
+      "id": "ss.town.environment.forest",
+      "name": "Forest"
+    },
+    {
+      "id": "ss.town.environment.mountains",
+      "name": "Mountains"
+    },
+    {
+      "id": "ss.town.environment.plains",
+      "name": "Plains"
+    },
+    {
+      "id": "ss.town.environment.river",
+      "name": "River"
+    },
+    {
+      "id": "ss.town.environment.swamp",
+      "name": "Swamp"
+    },
+    {
+      "id": "ss.town.environment.underground",
+      "name": "Underground"
+    },
+    {
+      "id": "ss.town.environment.valley",
+      "name": "Valley"
+    },
+    {
+      "id": "ss.town.environment.tundra",
+      "name": "Tundra"
+    },
+    {
+      "id": "ss.town.environment.desert",
+      "name": "Desert"
+    }
+  ]
+}

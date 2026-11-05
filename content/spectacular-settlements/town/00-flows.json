@@ -1,0 +1,761 @@
+{
+  "schema_version": 1,
+  "flows": [
+    {
+      "id": "flow.ss.town.farmsAndResources",
+      "name": "Town Farms & Resources",
+      "description": "Spectacular Settlements, Towns, Step 2: Farms & Resources rolls by size (Very Small 1, Small and Medium 2, Large and Very Large 3).",
+      "steps": [
+        {
+          "id": "count",
+          "kind": "branch",
+          "name": "Farms & resources rolls by size",
+          "cases": [
+            {
+              "name": "Very Small: 1 roll",
+              "when": {
+                "has_tag": "ss.town.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "rolls-1",
+                  "kind": "repeat",
+                  "name": "Farms & resources",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "farm-1",
+                      "kind": "roll",
+                      "table": "table.ss.town.farmsAndResources",
+                      "name": "Farms & Resources"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small or Medium: 2 rolls",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.town.size.small"
+                  },
+                  {
+                    "has_tag": "ss.town.size.medium"
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "rolls-2",
+                  "kind": "repeat",
+                  "name": "Farms & resources",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "farm-2",
+                      "kind": "roll",
+                      "table": "table.ss.town.farmsAndResources",
+                      "name": "Farms & Resources"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large or Very Large: 3 rolls",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.town.size.large"
+                  },
+                  {
+                    "has_tag": "ss.town.size.veryLarge"
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "rolls-3",
+                  "kind": "repeat",
+                  "name": "Farms & resources",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "farm-3",
+                      "kind": "roll",
+                      "table": "table.ss.town.farmsAndResources",
+                      "name": "Farms & Resources"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.town.nonCommercialLocations",
+      "name": "Town Non-Commercial Locations",
+      "description": "Spectacular Settlements, Towns, Step 3: the free locations earlier results gave (Government or Religious priority, Education specialty, Town Council or Oligarchy leadership), then 1 / 2 / 3 / 4 / 5 by size, each rolled on the Non-Commercial Location Type table. The Oligarchy's free location (\"choose one appropriate type\") is rolled; change it to suit the group.",
+      "steps": [
+        {
+          "id": "freeGovernment",
+          "kind": "roll",
+          "table": "table.ss.town.placesOfGovernment",
+          "name": "Free: Place of Government (Government priority)",
+          "when": {
+            "has_tag": "ss.town.priority.government"
+          }
+        },
+        {
+          "id": "freeWorship",
+          "kind": "branch",
+          "name": "Free: Place of Worship (Religious priority, +5 to its size)",
+          "cases": [
+            {
+              "name": "Religious priority",
+              "when": {
+                "has_tag": "ss.town.priority.religious"
+              },
+              "steps": [
+                {
+                  "id": "freeWorshipSize",
+                  "kind": "roll",
+                  "table": "table.ss.town.placeOfWorshipSize",
+                  "name": "Place of Worship Size",
+                  "modifiers": [
+                    {
+                      "modifier": {
+                        "plus": 5
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "freeWorshipFervency",
+                  "kind": "roll",
+                  "table": "table.ss.town.fervency",
+                  "name": "Fervency of Local Following"
+                },
+                {
+                  "id": "freeWorshipAlignment",
+                  "kind": "roll",
+                  "table": "table.ss.town.faithAlignment",
+                  "name": "Alignment of the Faith"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "freeEducation",
+          "kind": "roll",
+          "table": "table.ss.town.placesOfEducation",
+          "name": "Free: Place of Education (Education specialty)",
+          "when": {
+            "has_tag": "ss.town.specialty.education"
+          }
+        },
+        {
+          "id": "freeTownHall",
+          "kind": "set_result",
+          "table": "table.ss.town.placesOfGovernment",
+          "result": "townHall",
+          "name": "Free: Town Hall (Town Council)",
+          "when": {
+            "has_tag": "ss.town.leadership.townCouncil"
+          }
+        },
+        {
+          "id": "freeOligarchy",
+          "kind": "run_flow",
+          "flow": "flow.ss.town.nonCommercialLocation",
+          "name": "Free: Non-Commercial Location (Oligarchy)",
+          "when": {
+            "has_tag": "ss.town.leadership.oligarchy"
+          }
+        },
+        {
+          "id": "count",
+          "kind": "branch",
+          "name": "Non-commercial locations by size",
+          "cases": [
+            {
+              "name": "Very Small: 1",
+              "when": {
+                "has_tag": "ss.town.size.verySmall"
+              },
+              "steps": [
+                {
+                  "id": "locations-1",
+                  "kind": "repeat",
+                  "name": "Non-commercial locations",
+                  "count": {
+                    "times": 1
+                  },
+                  "steps": [
+                    {
+                      "id": "location-1",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.nonCommercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Small: 2",
+              "when": {
+                "has_tag": "ss.town.size.small"
+              },
+              "steps": [
+                {
+                  "id": "locations-2",
+                  "kind": "repeat",
+                  "name": "Non-commercial locations",
+                  "count": {
+                    "times": 2
+                  },
+                  "steps": [
+                    {
+                      "id": "location-2",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.nonCommercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Medium: 3",
+              "when": {
+                "has_tag": "ss.town.size.medium"
+              },
+              "steps": [
+                {
+                  "id": "locations-3",
+                  "kind": "repeat",
+                  "name": "Non-commercial locations",
+                  "count": {
+                    "times": 3
+                  },
+                  "steps": [
+                    {
+                      "id": "location-3",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.nonCommercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Large: 4",
+              "when": {
+                "has_tag": "ss.town.size.large"
+              },
+              "steps": [
+                {
+                  "id": "locations-4",
+                  "kind": "repeat",
+                  "name": "Non-commercial locations",
+                  "count": {
+                    "times": 4
+                  },
+                  "steps": [
+                    {
+                      "id": "location-4",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.nonCommercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Very Large: 5",
+              "when": {
+                "has_tag": "ss.town.size.veryLarge"
+              },
+              "steps": [
+                {
+                  "id": "locations-5",
+                  "kind": "repeat",
+                  "name": "Non-commercial locations",
+                  "count": {
+                    "times": 5
+                  },
+                  "steps": [
+                    {
+                      "id": "location-5",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.nonCommercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.town.nonCommercialLocation",
+      "name": "Town Non-Commercial Location",
+      "description": "One non-commercial location: its type, then that type's table (a place of worship rolls its size, fervency and alignment).",
+      "steps": [
+        {
+          "id": "type",
+          "kind": "roll",
+          "table": "table.ss.town.nonCommercialType",
+          "name": "Non-Commercial Location Type"
+        },
+        {
+          "id": "byType",
+          "kind": "branch",
+          "name": "By type",
+          "cases": [
+            {
+              "name": "Place of Education",
+              "when": {
+                "result_is": {
+                  "step": "type",
+                  "results": ["education"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "education",
+                  "kind": "roll",
+                  "table": "table.ss.town.placesOfEducation",
+                  "name": "Place of Education"
+                }
+              ]
+            },
+            {
+              "name": "Place of Gathering",
+              "when": {
+                "result_is": {
+                  "step": "type",
+                  "results": ["gathering"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "gathering",
+                  "kind": "roll",
+                  "table": "table.ss.town.placesOfGathering",
+                  "name": "Place of Gathering"
+                }
+              ]
+            },
+            {
+              "name": "Place of Government",
+              "when": {
+                "result_is": {
+                  "step": "type",
+                  "results": ["government"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "government",
+                  "kind": "roll",
+                  "table": "table.ss.town.placesOfGovernment",
+                  "name": "Place of Government"
+                }
+              ]
+            },
+            {
+              "name": "Place of Worship",
+              "when": {
+                "result_is": {
+                  "step": "type",
+                  "results": ["worship"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "worshipSize",
+                  "kind": "roll",
+                  "table": "table.ss.town.placeOfWorshipSize",
+                  "name": "Place of Worship Size"
+                },
+                {
+                  "id": "worshipFervency",
+                  "kind": "roll",
+                  "table": "table.ss.town.fervency",
+                  "name": "Fervency of Local Following"
+                },
+                {
+                  "id": "worshipAlignment",
+                  "kind": "roll",
+                  "table": "table.ss.town.faithAlignment",
+                  "name": "Alignment of the Faith"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.town.commercialLocations",
+      "name": "Town Commercial Locations",
+      "description": "Spectacular Settlements, Towns, Step 3: the default General Store, Smithy, Inn and Tavern, the free locations earlier results gave (Hospitality's inn quality, a Magic priority's magic shop, an Industry specialty's shop), then 4 / 6 / 8 / 10 / 12 by size (an Economic priority counts the town one size larger, to Very Large; a Merchant Monarch adds 2), each a shop or a service.",
+      "steps": [
+        {
+          "id": "defaultGeneralStore",
+          "kind": "set_result",
+          "table": "table.ss.town.shops",
+          "result": "generalStore",
+          "name": "Default: General Store"
+        },
+        {
+          "id": "defaultSmithy",
+          "kind": "set_result",
+          "table": "table.ss.town.shops",
+          "result": "smithy",
+          "name": "Default: Smithy"
+        },
+        {
+          "id": "defaultInn",
+          "kind": "set_result",
+          "table": "table.ss.town.services",
+          "result": "inn",
+          "name": "Default: Inn"
+        },
+        {
+          "id": "defaultTavern",
+          "kind": "set_result",
+          "table": "table.ss.town.services",
+          "result": "tavern",
+          "name": "Default: Tavern"
+        },
+        {
+          "id": "innQuality",
+          "kind": "roll",
+          "table": "table.ss.town.innQuality",
+          "name": "Default inn quality (Hospitality specialty)",
+          "when": {
+            "has_tag": "ss.town.specialty.hospitality"
+          }
+        },
+        {
+          "id": "freeMagicShop",
+          "kind": "roll",
+          "table": "table.ss.town.magicShop",
+          "name": "Free: Magic Shop (Magic priority)",
+          "when": {
+            "has_tag": "ss.town.priority.magic"
+          }
+        },
+        {
+          "id": "freeIndustryShop",
+          "kind": "roll",
+          "table": "table.ss.town.industryShop",
+          "name": "Free: Shop (Industry specialty)",
+          "when": {
+            "has_tag": "ss.town.specialty.industry"
+          }
+        },
+        {
+          "id": "count",
+          "kind": "branch",
+          "name": "Commercial locations by size",
+          "cases": [
+            {
+              "name": "4 (Very Small)",
+              "when": {
+                "all": [
+                  {
+                    "has_tag": "ss.town.size.verySmall"
+                  },
+                  {
+                    "not": {
+                      "has_tag": "ss.town.priority.economic"
+                    }
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "locations-4",
+                  "kind": "repeat",
+                  "name": "Commercial locations",
+                  "count": {
+                    "times": 4
+                  },
+                  "steps": [
+                    {
+                      "id": "location-4",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.commercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "6 (Small, or Very Small with an Economic priority)",
+              "when": {
+                "any": [
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.verySmall"
+                      },
+                      {
+                        "has_tag": "ss.town.priority.economic"
+                      }
+                    ]
+                  },
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.small"
+                      },
+                      {
+                        "not": {
+                          "has_tag": "ss.town.priority.economic"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "locations-6",
+                  "kind": "repeat",
+                  "name": "Commercial locations",
+                  "count": {
+                    "times": 6
+                  },
+                  "steps": [
+                    {
+                      "id": "location-6",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.commercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "8 (Medium, or Small with an Economic priority)",
+              "when": {
+                "any": [
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.small"
+                      },
+                      {
+                        "has_tag": "ss.town.priority.economic"
+                      }
+                    ]
+                  },
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.medium"
+                      },
+                      {
+                        "not": {
+                          "has_tag": "ss.town.priority.economic"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "locations-8",
+                  "kind": "repeat",
+                  "name": "Commercial locations",
+                  "count": {
+                    "times": 8
+                  },
+                  "steps": [
+                    {
+                      "id": "location-8",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.commercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "10 (Large, or Medium with an Economic priority)",
+              "when": {
+                "any": [
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.medium"
+                      },
+                      {
+                        "has_tag": "ss.town.priority.economic"
+                      }
+                    ]
+                  },
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.large"
+                      },
+                      {
+                        "not": {
+                          "has_tag": "ss.town.priority.economic"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "locations-10",
+                  "kind": "repeat",
+                  "name": "Commercial locations",
+                  "count": {
+                    "times": 10
+                  },
+                  "steps": [
+                    {
+                      "id": "location-10",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.commercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "12 (Very Large, or Large with an Economic priority)",
+              "when": {
+                "any": [
+                  {
+                    "has_tag": "ss.town.size.veryLarge"
+                  },
+                  {
+                    "all": [
+                      {
+                        "has_tag": "ss.town.size.large"
+                      },
+                      {
+                        "has_tag": "ss.town.priority.economic"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "steps": [
+                {
+                  "id": "locations-12",
+                  "kind": "repeat",
+                  "name": "Commercial locations",
+                  "count": {
+                    "times": 12
+                  },
+                  "steps": [
+                    {
+                      "id": "location-12",
+                      "kind": "run_flow",
+                      "flow": "flow.ss.town.commercialLocation",
+                      "name": "Location"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "merchantMonarch",
+          "kind": "repeat",
+          "name": "Merchant Monarch: +2 commercial locations",
+          "count": {
+            "times": 2
+          },
+          "steps": [
+            {
+              "id": "merchantLocation",
+              "kind": "run_flow",
+              "flow": "flow.ss.town.commercialLocation",
+              "name": "Location"
+            }
+          ],
+          "when": {
+            "has_tag": "ss.town.leadership.merchantMonarch"
+          }
+        }
+      ]
+    },
+    {
+      "id": "flow.ss.town.commercialLocation",
+      "name": "Town Commercial Location",
+      "description": "One commercial location: shop or service, then rolled on that table.",
+      "steps": [
+        {
+          "id": "kind",
+          "kind": "roll",
+          "table": "table.ss.town.shopOrService",
+          "name": "Shop or Service"
+        },
+        {
+          "id": "byKind",
+          "kind": "branch",
+          "name": "By kind",
+          "cases": [
+            {
+              "name": "Shop",
+              "when": {
+                "result_is": {
+                  "step": "kind",
+                  "results": ["shop"]
+                }
+              },
+              "steps": [
+                {
+                  "id": "shop",
+                  "kind": "roll",
+                  "table": "table.ss.town.shops",
+                  "name": "Shop"
+                }
+              ]
+            }
+          ],
+          "otherwise": [
+            {
+              "id": "service",
+              "kind": "roll",
+              "table": "table.ss.town.services",
+              "name": "Service"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

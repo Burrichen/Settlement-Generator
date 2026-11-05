@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.style",
+      "name": "Style",
+      "description": "The castle's overall layout.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "motteAndBailey",
+          "name": "Motte-and-Bailey",
+          "range": [1, 3],
+          "description": "The keep is built on an earthen mound, or hill, and surrounded by a high fence or wall. The wall extends down the hill to form a large, circular yard (the bailey), where other buildings are located.",
+          "tags": ["ss.fortress.style.motteAndBailey"]
+        },
+        {
+          "id": "shellKeep",
+          "name": "Shell Keep",
+          "range": [4, 6],
+          "description": "The keep is surrounded by a circular wall, with lightweight buildings built against the inside of the wall.",
+          "tags": ["ss.fortress.style.shellKeep"]
+        },
+        {
+          "id": "fortifiedKeep",
+          "name": "Fortified Keep",
+          "range": [7, 16],
+          "description": "The keep is positioned within (or connected to) a surrounding wall. Towers are typically placed along the wall.",
+          "tags": ["ss.fortress.style.fortifiedKeep"]
+        },
+        {
+          "id": "concentric",
+          "name": "Concentric",
+          "range": [17, 20],
+          "description": "Similar to a fortified keep, but with a second, additional wall surrounding everything. Additional outbuildings (typically of lesser strategic value) may be placed in this additional space. Its walls use the same rolls, or roll them twice (the inner wall the higher).",
+          "tags": ["ss.fortress.style.concentric"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.style.motteAndBailey", "name": "Motte-and-Bailey" },
+    { "id": "ss.fortress.style.shellKeep", "name": "Shell Keep" },
+    { "id": "ss.fortress.style.fortifiedKeep", "name": "Fortified Keep" },
+    { "id": "ss.fortress.style.concentric", "name": "Concentric" }
+  ]
+}

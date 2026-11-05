@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.standingOrDisbanded",
+      "name": "Standing or Disbanded",
+      "description": "The current state of the military force.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "disbanded",
+          "name": "Disbanded",
+          "range": [1, 3],
+          "description": "When the military is not on active campaign, it disbands. While disbanded, members may contribute to the city watch, work a trade, or undertake any number of other activities, but can be called upon to reform at a moment’s notice.",
+          "tags": ["ss.capital.standingOrDisbanded.disbanded"]
+        },
+        {
+          "id": "standing",
+          "name": "Standing",
+          "range": [4, 6],
+          "description": "The capital’s military is ever at the ready and active. Their training is ongoing, and they are kept well-supplied. They may double as a garrison for the capital or bolster city defenses.",
+          "tags": ["ss.capital.standingOrDisbanded.standing"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.standingOrDisbanded.disbanded",
+      "name": "Disbanded"
+    },
+    {
+      "id": "ss.capital.standingOrDisbanded.standing",
+      "name": "Standing"
+    }
+  ]
+}

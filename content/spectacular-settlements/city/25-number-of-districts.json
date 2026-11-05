@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.numberOfDistricts",
+      "name": "Number of Districts",
+      "description": "Modified by Size. Districts a priority or leadership gives take one of these.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "two",
+          "name": "2",
+          "range": [1, 2],
+          "value": 2,
+          "description": "Two districts.",
+          "tags": ["ss.city.numberOfDistricts.two"]
+        },
+        {
+          "id": "three",
+          "name": "3",
+          "range": [3, 10],
+          "value": 3,
+          "description": "Three districts.",
+          "tags": ["ss.city.numberOfDistricts.three"]
+        },
+        {
+          "id": "four",
+          "name": "4",
+          "range": [11, 15],
+          "value": 4,
+          "description": "Four districts.",
+          "tags": ["ss.city.numberOfDistricts.four"]
+        },
+        {
+          "id": "five",
+          "name": "5",
+          "range": [16, 19],
+          "value": 5,
+          "description": "Five districts.",
+          "tags": ["ss.city.numberOfDistricts.five"]
+        },
+        {
+          "id": "six",
+          "name": "6",
+          "range": 20,
+          "value": 6,
+          "description": "Six districts.",
+          "tags": ["ss.city.numberOfDistricts.six"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.numberOfDistricts.two",
+      "name": "2"
+    },
+    {
+      "id": "ss.city.numberOfDistricts.three",
+      "name": "3"
+    },
+    {
+      "id": "ss.city.numberOfDistricts.four",
+      "name": "4"
+    },
+    {
+      "id": "ss.city.numberOfDistricts.five",
+      "name": "5"
+    },
+    {
+      "id": "ss.city.numberOfDistricts.six",
+      "name": "6"
+    }
+  ]
+}

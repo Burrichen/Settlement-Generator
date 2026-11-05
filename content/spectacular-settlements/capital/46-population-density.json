@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.populationDensity",
+      "name": "Population Density",
+      "description": "Modified by Age. Modifies Night Activity. Optionally, 0 or less could mean a deserted capital (-5 to night activity).",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton",
+          "range": [1, 2],
+          "description": "The capital only has enough people to function at its most basic level. (-2 to night activity roll)",
+          "tags": ["ss.capital.populationDensity.skeleton"]
+        },
+        {
+          "id": "sparse",
+          "name": "Sparse",
+          "range": [3, 6],
+          "description": "Folk live in the capital, but it would never be called bustling. Walking down the street, you’ll typically only see a few people. (-1 to night activity roll)",
+          "tags": ["ss.capital.populationDensity.sparse"]
+        },
+        {
+          "id": "populous",
+          "name": "Populous",
+          "range": [7, 14],
+          "description": "A moderate amount of people live in the capital. Walking through the streets, you will see plenty of people, but never so many that it would feel cramped. (+0 to night activity roll)",
+          "tags": ["ss.capital.populationDensity.populous"]
+        },
+        {
+          "id": "dense",
+          "name": "Dense",
+          "range": [15, 18],
+          "description": "There is a large amount of people living in the capital. There are few, if any, vacant buildings. In high traffic areas, one generally has elbow room, but not much more. (+1 to night activity roll)",
+          "tags": ["ss.capital.populationDensity.dense"]
+        },
+        {
+          "id": "crowded",
+          "name": "Crowded",
+          "range": [19, 20],
+          "description": "The capital is filled with jostling throngs. Practically all structures are occupied. Some may even camp outside the walls. Moving about can be difficult, and bumping into other people is typical in higher traffic areas. (+2 to night activity roll)",
+          "tags": ["ss.capital.populationDensity.crowded"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.populationDensity.skeleton",
+      "name": "Skeleton",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.nightActivity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationDensity.sparse",
+      "name": "Sparse",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationDensity.populous",
+      "name": "Populous"
+    },
+    {
+      "id": "ss.capital.populationDensity.dense",
+      "name": "Dense",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.populationDensity.crowded",
+      "name": "Crowded",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.nightActivity",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 //! the terminal interface are both thin adapters over [`AppService`], so
 //! neither contains business logic of its own.
 
+use std::cell::RefCell;
 use std::path::PathBuf;
 use std::sync::Arc;
 
@@ -13,7 +14,7 @@ use crate::archive::{
     ARCHIVE_FORMAT, ARCHIVE_VERSION, ArchivedMaps, ArchivedSettlement, SettlementArchive,
 };
 use crate::backup::BackupKind;
-use crate::bundled::bundled_content;
+use crate::bundled::shared_bundled_content;
 use crate::content::{ContentSet, ContentStatus, FaceRange, Table, TableResult, Tag};
 use crate::db::Database;
 use crate::dice::{FaceSource, RandomFaces};
@@ -28,7 +29,7 @@ use crate::framework::{
     Flow, ObjectType, OutlineLine, Scale, SettingDef, SettingValue, SettingValues, SharedResult,
 };
 use crate::ids::{BuildingId, FlowId, MapId, NamingSchemeId, ResultId, SettingId, TableId, TagId};
-use crate::layers::{ContentLayers, EditError, Origin, new_user_id};
+use crate::layers::{ContentLayers, EditError, MergedContent, Origin, UserOverrides, new_user_id};
 use crate::maps::details::{self, DetailChoices};
 use crate::maps::directory::{
     self, AssignOptions, DistrictNames, LocationBook, LocationEdit, LocationEntry, LocationError,
@@ -461,11 +462,24 @@ fn pre_update(to_version: &str) -> BackupKind {
 
 pub struct AppService {
     db: Database,
+    /// The last merge of the bundled content with the user's overrides,
+    /// reused while the stored overrides are unchanged (see
+    /// [`Self::merged`]).
+    merged: RefCell<Option<CachedMerge>>,
+}
+
+/// A merged and validated content set, with the overrides it was made from.
+struct CachedMerge {
+    overrides: UserOverrides,
+    merged: Arc<MergedContent>,
 }
 
 impl AppService {
     pub fn new(db: Database) -> Self {
-        AppService { db }
+        AppService {
+            db,
+            merged: RefCell::new(None),
+        }
     }
 
     /// Opens the shared database in the user data directory.
@@ -606,21 +620,43 @@ impl AppService {
 
     /// Bundled defaults plus the user's stored customisations.
     pub fn layers(&self) -> ServiceResult<ContentLayers> {
-        let bundled = bundled_content().map_err(msg)?;
+        let bundled = shared_bundled_content()?;
         let overrides = self.db.load_overrides().map_err(msg)?;
         Ok(ContentLayers::new(bundled, overrides))
     }
 
+    /// The merged and validated effective content: `self.layers()?.merged()`,
+    /// but made only when the stored overrides differ from the last merge.
+    /// Merging and validating everything takes hundreds of milliseconds,
+    /// and it used to happen on almost every request. The overrides are read
+    /// from the database each time, so a change written by the other
+    /// interface (or any other path) is never missed.
+    pub fn merged(&self) -> ServiceResult<Arc<MergedContent>> {
+        let overrides = self.db.load_overrides().map_err(msg)?;
+        if let Some(cached) = &*self.merged.borrow() {
+            if cached.overrides == overrides {
+                return Ok(Arc::clone(&cached.merged));
+            }
+        }
+        let merged =
+            Arc::new(ContentLayers::new(shared_bundled_content()?, overrides.clone()).merged());
+        *self.merged.borrow_mut() = Some(CachedMerge {
+            overrides,
+            merged: Arc::clone(&merged),
+        });
+        Ok(merged)
+    }
+
     /// Effective content. Invalid content is reported, never used.
     pub fn content(&self) -> ServiceResult<Arc<ContentSet>> {
-        let merged = self.layers()?.merged();
+        let merged = self.merged()?;
         if merged.report.has_errors() {
             return Err(format!(
                 "The generator content is invalid:\n{}",
                 merged.report
             ));
         }
-        Ok(Arc::new(merged.content))
+        Ok(Arc::clone(&merged.content))
     }
 
     /// Applies a checked content edit and stores the result. Edits that would
@@ -636,15 +672,15 @@ impl AppService {
     }
 
     pub fn overview(&self) -> ServiceResult<ContentOverview> {
-        Ok(overview(&self.layers()?))
+        Ok(overview(&self.layers()?, &*self.merged()?))
     }
 
     pub fn table_detail(&self, id: &TableId) -> ServiceResult<TableDetail> {
-        table_detail(&self.layers()?, id)
+        table_detail(&self.layers()?, &*self.merged()?, id)
     }
 
     pub fn tag_detail(&self, id: &TagId) -> ServiceResult<TagDetail> {
-        tag_detail(&self.layers()?, id)
+        tag_detail(&self.layers()?, &*self.merged()?, id)
     }
 
     // ----- table editor support ----------------------------------------------
@@ -701,7 +737,7 @@ impl AppService {
     /// Everything in the current content that names result `result` of the
     /// draft `table`.
     pub fn result_usages(&self, table: &Table, result: &ResultId) -> ServiceResult<Vec<Usage>> {
-        let content = self.layers()?.merged().content;
+        let content = Arc::clone(&self.merged()?.content);
         Ok(table_editor::result_usages(&content, table, result))
     }
 
@@ -736,7 +772,7 @@ impl AppService {
             Ok((trial, ())) => DraftCheck {
                 coverage,
                 issues: editor::relevant_issues(
-                    &layers.merged().report,
+                    &self.merged()?.report,
                     &trial.merged().report,
                     Some(&id),
                     None,
@@ -759,7 +795,7 @@ impl AppService {
             Ok((trial, ())) => DraftCheck {
                 coverage: Vec::new(),
                 issues: editor::relevant_issues(
-                    &layers.merged().report,
+                    &self.merged()?.report,
                     &trial.merged().report,
                     None,
                     Some(&id),
@@ -779,13 +815,13 @@ impl AppService {
         let id = table.id.clone();
         let (layers, ()) = self.edit_content(|l| l.put_table(table))?;
         self.discard_table_draft(&id)?;
-        table_detail(&layers, &id)
+        table_detail(&layers, &*self.merged()?, &id)
     }
 
     pub fn save_tag(&mut self, tag: Tag) -> ServiceResult<TagDetail> {
         let id = tag.id.clone();
         let (layers, ()) = self.edit_content(|l| l.put_tag(tag))?;
-        tag_detail(&layers, &id)
+        tag_detail(&layers, &*self.merged()?, &id)
     }
 
     /// Deletes a table. Refused, naming what depends on it, while anything
@@ -801,7 +837,7 @@ impl AppService {
         }
         let (layers, ()) = self.edit_content(|l| l.delete_table(id))?;
         self.discard_table_draft(id)?;
-        Ok(overview(&layers))
+        Ok(overview(&layers, &*self.merged()?))
     }
 
     /// Deletes a tag. Refused, naming what depends on it, while anything
@@ -816,7 +852,7 @@ impl AppService {
             ));
         }
         let (layers, ()) = self.edit_content(|l| l.delete_tag(id))?;
-        Ok(overview(&layers))
+        Ok(overview(&layers, &*self.merged()?))
     }
 
     // ----- explanations -----------------------------------------------------------
@@ -843,7 +879,7 @@ impl AppService {
     ) -> ServiceResult<Explanation> {
         let content = match tag {
             Some(t) => self.content_with_tag(t)?,
-            None => self.layers()?.merged().content,
+            None => Arc::clone(&self.merged()?.content),
         };
         Ok(explain::explain_effect(&content, tag, effect))
     }
@@ -854,7 +890,7 @@ impl AppService {
         table: &TableId,
         modifier: crate::content::Modifier,
     ) -> ServiceResult<Explanation> {
-        let content = self.layers()?.merged().content;
+        let content = Arc::clone(&self.merged()?.content);
         Ok(explain::explain_modifier(&content, table, modifier))
     }
 
@@ -864,16 +900,16 @@ impl AppService {
         table: &TableId,
         modifiers: &[crate::content::Modifier],
     ) -> ServiceResult<Vec<String>> {
-        let content = self.layers()?.merged().content;
+        let content = Arc::clone(&self.merged()?.content);
         Ok(explain::roll_preview(&content, table, modifiers))
     }
 
     /// The effective content with `tag` (a draft) in place.
-    fn content_with_tag(&self, tag: &Tag) -> ServiceResult<ContentSet> {
+    fn content_with_tag(&self, tag: &Tag) -> ServiceResult<Arc<ContentSet>> {
         let layers = self.layers()?;
         Ok(match layers.preview(|l| l.put_tag(tag.clone())) {
             Ok((trial, ())) => trial.merged().content,
-            Err(_) => layers.merged().content,
+            Err(_) => Arc::clone(&self.merged()?.content),
         })
     }
 
@@ -882,7 +918,7 @@ impl AppService {
     /// A setting with everything that depends on it.
     pub fn setting_detail(&self, id: &SettingId) -> ServiceResult<SettingDetail> {
         let layers = self.layers()?;
-        setting_detail(&layers, id)
+        setting_detail(&layers, &*self.merged()?, id)
     }
 
     /// A new, unsaved custom setting of `kind`.
@@ -968,7 +1004,7 @@ impl AppService {
     pub fn save_setting(&mut self, setting: SettingDef) -> ServiceResult<SettingDetail> {
         let id = setting.id.clone();
         let (layers, ()) = self.edit_content(|l| l.put_item(setting))?;
-        setting_detail(&layers, &id)
+        setting_detail(&layers, &*self.merged()?, &id)
     }
 
     /// Deletes a setting (a default is marked deleted). Refused, naming what
@@ -987,12 +1023,12 @@ impl AppService {
 
     pub fn reset_table(&mut self, id: &TableId) -> ServiceResult<ContentOverview> {
         let (layers, ()) = self.edit_content(|l| l.reset_table(id))?;
-        Ok(overview(&layers))
+        Ok(overview(&layers, &*self.merged()?))
     }
 
     pub fn reset_tag(&mut self, id: &TagId) -> ServiceResult<ContentOverview> {
         let (layers, ()) = self.edit_content(|l| l.reset_tag(id))?;
-        Ok(overview(&layers))
+        Ok(overview(&layers, &*self.merged()?))
     }
 
     /// Checks a naming method's joining rule and spelling exceptions
@@ -1009,7 +1045,7 @@ impl AppService {
             match layers.preview(|l| l.put_naming_method(scheme, method, join, exceptions)) {
                 Ok((trial, ())) => DraftCheck {
                     coverage: Vec::new(),
-                    issues: naming_issues(&layers.merged().report, &trial.merged().report, scheme),
+                    issues: naming_issues(&self.merged()?.report, &trial.merged().report, scheme),
                     error: None,
                 },
                 Err(e) => DraftCheck {
@@ -1032,7 +1068,7 @@ impl AppService {
     ) -> ServiceResult<TableDetail> {
         let (layers, ()) =
             self.edit_content(|l| l.put_naming_method(scheme, method, join, exceptions))?;
-        method_table_detail(&layers, scheme)
+        method_table_detail(&layers, &*self.merged()?, scheme)
     }
 
     /// Restores a naming method's joining rule and exceptions to the
@@ -1043,7 +1079,7 @@ impl AppService {
         method: &ResultId,
     ) -> ServiceResult<TableDetail> {
         let (layers, ()) = self.edit_content(|l| l.reset_naming_method(scheme, method))?;
-        method_table_detail(&layers, scheme)
+        method_table_detail(&layers, &*self.merged()?, scheme)
     }
 
     /// Restores all generator content to the installed defaults.
@@ -1051,7 +1087,7 @@ impl AppService {
         let mut layers = self.layers()?;
         layers.reset_all();
         self.db.save_overrides(layers.overrides()).map_err(msg)?;
-        Ok(overview(&layers))
+        Ok(overview(&layers, &*self.merged()?))
     }
 
     // ----- framework items ------------------------------------------------------
@@ -1059,8 +1095,7 @@ impl AppService {
     /// Every shared result, scale, setting, object type and flow, with where
     /// it came from, plus deleted defaults.
     pub fn framework_items(&self) -> ServiceResult<Vec<FrameworkItemListing>> {
-        let layers = self.layers()?;
-        let merged = layers.merged();
+        let merged = self.merged()?;
         let mut out = Vec::new();
         list_items::<SharedResult>(&merged, |r| r.name.clone(), &mut out);
         list_items::<Scale>(&merged, |s| s.name.clone(), &mut out);
@@ -1072,7 +1107,7 @@ impl AppService {
 
     /// One framework item as JSON, as it is in the effective content.
     pub fn framework_item(&self, kind: ItemKind, id: &str) -> ServiceResult<serde_json::Value> {
-        let content = self.layers()?.merged().content;
+        let content = Arc::clone(&self.merged()?.content);
         let item = match kind {
             ItemKind::SharedResult => find_item::<SharedResult>(&content, id),
             ItemKind::Scale => find_item::<Scale>(&content, id),
@@ -1188,11 +1223,11 @@ impl AppService {
 
     /// The effective content with `flow` (a draft) in place, for naming its
     /// steps; the stored content if the draft cannot be put in.
-    fn content_with(&self, flow: &Flow) -> ServiceResult<crate::content::ContentSet> {
+    fn content_with(&self, flow: &Flow) -> ServiceResult<Arc<ContentSet>> {
         let layers = self.layers()?;
         Ok(match layers.preview(|l| l.put_item(flow.clone())) {
             Ok((trial, ())) => trial.merged().content,
-            Err(_) => layers.merged().content,
+            Err(_) => Arc::clone(&self.merged()?.content),
         })
     }
 
@@ -1235,7 +1270,7 @@ impl AppService {
                 }
             }
             Err(e) => {
-                let content = layers.merged().content;
+                let content = Arc::clone(&self.merged()?.content);
                 let describer = Describer::new(&content, Some(flow));
                 FlowCheck {
                     issues: Vec::new(),
@@ -1367,7 +1402,7 @@ impl AppService {
         name: &str,
     ) -> ServiceResult<crate::transfer::ContentPack> {
         let layers = self.layers()?;
-        let content = layers.merged().content;
+        let content = Arc::clone(&self.merged()?.content);
         crate::transfer::export(
             &content,
             Some(layers.bundled()),
@@ -1384,7 +1419,7 @@ impl AppService {
         scope: ExportScope,
     ) -> ServiceResult<crate::transfer::ContentPack> {
         let layers = self.layers()?;
-        let merged = layers.merged();
+        let merged = self.merged()?;
         match scope {
             ExportScope::Everything => {
                 Ok(crate::transfer::export_all(&merged.content, "All content"))
@@ -1567,7 +1602,8 @@ impl AppService {
     /// Starts a new settlement with the current settings and content.
     pub fn start_generation(&self) -> ServiceResult<ActiveGeneration> {
         let settings = self.settings()?;
-        let session = GenerationSession::new(
+        // `content()` only hands out validated content.
+        let session = GenerationSession::from_validated(
             self.content()?,
             settings.generation_options(),
             GenerationMode::from_settings(&settings),
@@ -1591,7 +1627,7 @@ impl AppService {
     pub fn start_edit(&self, id: &SettlementId) -> ServiceResult<ActiveGeneration> {
         let settings = self.settings()?;
         let saved = self.db.get_settlement(id).map_err(msg)?;
-        let session = GenerationSession::from_snapshot_with(
+        let session = GenerationSession::from_snapshot_validated(
             self.content()?,
             settings.generation_options(),
             self.content_setting_values()?,
@@ -2550,8 +2586,7 @@ fn maps_view(
     }
 }
 
-fn overview(layers: &ContentLayers) -> ContentOverview {
-    let merged = layers.merged();
+fn overview(layers: &ContentLayers, merged: &MergedContent) -> ContentOverview {
     let errors_at = |id: &TableId| {
         merged
             .report
@@ -2612,12 +2647,15 @@ fn overview(layers: &ContentLayers) -> ContentOverview {
     ContentOverview {
         tables,
         tags,
-        issues: merged.report.issues,
+        issues: merged.report.issues.clone(),
     }
 }
 
-fn table_detail(layers: &ContentLayers, id: &TableId) -> ServiceResult<TableDetail> {
-    let merged = layers.merged();
+fn table_detail(
+    layers: &ContentLayers,
+    merged: &MergedContent,
+    id: &TableId,
+) -> ServiceResult<TableDetail> {
     let table = merged
         .content
         .table(id)
@@ -2644,15 +2682,15 @@ fn table_detail(layers: &ContentLayers, id: &TableId) -> ServiceResult<TableDeta
 /// The method table of a naming scheme, as the table editor shows it.
 fn method_table_detail(
     layers: &ContentLayers,
+    merged: &MergedContent,
     scheme: &NamingSchemeId,
 ) -> ServiceResult<TableDetail> {
-    let table = layers
-        .merged()
+    let table = merged
         .content
         .naming_scheme(scheme)
         .map(|s| s.method_table.clone())
         .ok_or_else(|| format!("Naming scheme `{scheme}` is not part of the current content."))?;
-    table_detail(layers, &table)
+    table_detail(layers, merged, &table)
 }
 
 /// Issues of a naming scheme in `preview`, plus errors an edit would newly
@@ -2676,8 +2714,11 @@ fn naming_issues(
         .collect()
 }
 
-fn tag_detail(layers: &ContentLayers, id: &TagId) -> ServiceResult<TagDetail> {
-    let merged = layers.merged();
+fn tag_detail(
+    layers: &ContentLayers,
+    merged: &MergedContent,
+    id: &TagId,
+) -> ServiceResult<TagDetail> {
     let tag = merged
         .content
         .tag(id)
@@ -2725,11 +2766,14 @@ fn usable(trial: ContentLayers) -> ServiceResult<Arc<ContentSet>> {
     if merged.report.has_errors() {
         return Err("Fix the problems listed under Validation before testing.".into());
     }
-    Ok(Arc::new(merged.content))
+    Ok(merged.content)
 }
 
-fn setting_detail(layers: &ContentLayers, id: &SettingId) -> ServiceResult<SettingDetail> {
-    let merged = layers.merged();
+fn setting_detail(
+    layers: &ContentLayers,
+    merged: &MergedContent,
+    id: &SettingId,
+) -> ServiceResult<SettingDetail> {
     let setting = merged
         .content
         .setting(id)

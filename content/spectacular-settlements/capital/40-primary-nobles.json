@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.primaryNobles",
+      "name": "Primary Nobles",
+      "description": "How many influential nobles the capital has. Each later rolls the district they live in (Noble Residences). Optionally, roll again for lesser nobles.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "two",
+          "name": "2",
+          "range": 1,
+          "value": 2,
+          "description": "2 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.two"]
+        },
+        {
+          "id": "three",
+          "name": "3",
+          "range": [2, 3],
+          "value": 3,
+          "description": "3 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.three"]
+        },
+        {
+          "id": "four",
+          "name": "4",
+          "range": [4, 6],
+          "value": 4,
+          "description": "4 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.four"]
+        },
+        {
+          "id": "five",
+          "name": "5",
+          "range": [7, 10],
+          "value": 5,
+          "description": "5 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.five"]
+        },
+        {
+          "id": "six",
+          "name": "6",
+          "range": [11, 14],
+          "value": 6,
+          "description": "6 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.six"]
+        },
+        {
+          "id": "seven",
+          "name": "7",
+          "range": [15, 17],
+          "value": 7,
+          "description": "7 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.seven"]
+        },
+        {
+          "id": "eight",
+          "name": "8",
+          "range": [18, 19],
+          "value": 8,
+          "description": "8 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.eight"]
+        },
+        {
+          "id": "nine",
+          "name": "9",
+          "range": 20,
+          "value": 9,
+          "description": "9 primary nobles.",
+          "tags": ["ss.capital.primaryNobles.nine"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.primaryNobles.two",
+      "name": "2"
+    },
+    {
+      "id": "ss.capital.primaryNobles.three",
+      "name": "3"
+    },
+    {
+      "id": "ss.capital.primaryNobles.four",
+      "name": "4"
+    },
+    {
+      "id": "ss.capital.primaryNobles.five",
+      "name": "5"
+    },
+    {
+      "id": "ss.capital.primaryNobles.six",
+      "name": "6"
+    },
+    {
+      "id": "ss.capital.primaryNobles.seven",
+      "name": "7"
+    },
+    {
+      "id": "ss.capital.primaryNobles.eight",
+      "name": "8"
+    },
+    {
+      "id": "ss.capital.primaryNobles.nine",
+      "name": "9"
+    }
+  ]
+}

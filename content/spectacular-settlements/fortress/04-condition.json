@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.condition",
+      "name": "Condition",
+      "description": "Modified by Age. The state the fortress is in now (or how near completion, if still under construction). Modifies the keep's number of rooms and Furnishings.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "ruin",
+          "name": "Ruin or Bare Bones",
+          "range": [1, 2],
+          "description": "The majority of the structure is exposed to the elements, ruin and damages are no longer repairable; a rebuild would be the only option. If under construction, it is a long way from completion. Residence within the fortress would be incredibly uncomfortable, if even possible. (When building your keep, -2 to number of rooms) (-5 to furnishings roll)",
+          "tags": ["ss.fortress.condition.ruin"]
+        },
+        {
+          "id": "poor",
+          "name": "Poor or Incomplete",
+          "range": [3, 6],
+          "description": "The fortress is in disrepair, with loose stones or timbers, gaps, holes, rot, or other issues that might adversely affect the structure’s integrity. The exterior is not completely intact. If under construction, it may be nearing completion, or up to a few years from being finished. Residence within the fortress would prove inconvenient, at best. (When building your keep, -1 to number of rooms) (-2 to furnishings roll)",
+          "tags": ["ss.fortress.condition.poor"]
+        },
+        {
+          "id": "average",
+          "name": "Average",
+          "range": [7, 14],
+          "description": "The fortress is usable, sound, and habitable, though minor issues may be present, or a good clean may be needed. If under construction, the basics are complete and allow residents to, at least, live and function adequately. Further work or repairs should take no more than a year. (When building your keep, +0 to number of rooms)",
+          "tags": ["ss.fortress.condition.average"]
+        },
+        {
+          "id": "strong",
+          "name": "Strong",
+          "range": [15, 19],
+          "description": "The fortress is well-maintained and presents no obvious vulnerabilities. If the fortress is of a significant enough age, doors, timbers, fixings or other elements may have been added, updated, or replaced. It is likely kept relatively clean. If under construction, the fortress is very nearly complete, perhaps waiting on some superficial or decorative elements, and completion is likely within the month. The residents are able to live comfortably. (When building your keep, +1 to number of rooms)",
+          "tags": ["ss.fortress.condition.strong"]
+        },
+        {
+          "id": "impeccable",
+          "name": "Impeccable",
+          "range": 20,
+          "description": "The fortress could not be in better shape, presenting an imposing and immaculate image to observers. It is either brand-new or impressively well-maintained. Fixtures show minimal or no weathering, and interiors appear spotless. If recently under construction, everything is, for all intents and purposes, complete. Final inspections and touch-ups may be underway, but any remaining work could be easily completed within a week. Most laborers have left, and regular day-to-day life is fully underway. (When building your keep, +2 to number of rooms)",
+          "tags": ["ss.fortress.condition.impeccable"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.fortress.condition.ruin",
+      "name": "Ruin or Bare Bones",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.furnishings", "amount": 5 }]
+    },
+    {
+      "id": "ss.fortress.condition.poor",
+      "name": "Poor or Incomplete",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.furnishings", "amount": 2 }]
+    },
+    { "id": "ss.fortress.condition.average", "name": "Average" },
+    { "id": "ss.fortress.condition.strong", "name": "Strong" },
+    { "id": "ss.fortress.condition.impeccable", "name": "Impeccable" }
+  ]
+}

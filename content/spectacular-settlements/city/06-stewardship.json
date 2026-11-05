@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.stewardship",
+      "name": "Stewardship",
+      "description": "How well the city is managed: taxes, streets, utilities, offices. Modifies General Condition, Population Wealth and Law Enforcement.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "neglected",
+          "name": "Neglected",
+          "range": 1,
+          "description": "All of the fundamental elements of the city are being ignored, or are unable to be addressed. (-7 to general condition roll) (-13 to population wealth roll) (-9 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.neglected"]
+        },
+        {
+          "id": "minimal",
+          "name": "Minimal",
+          "range": [2, 4],
+          "description": "The fundamental elements of the city are being tended to, but at the bare minimum. This may be because of inexperienced leadership, misplaced priorities, lack of resources, or simple laziness, to name a few possible reasons. (-4 to general condition roll) (-6 to population wealth roll) (-5 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.minimal"]
+        },
+        {
+          "id": "passing",
+          "name": "Passing",
+          "range": [5, 10],
+          "description": "The city’s fundamental elements are taken care of to a serviceable degree, though an inequality of attention is noticeable, and some areas seem to take priority over others. It could be that resources are not plentiful enough to cover everything, but those in charge are doing the best they can. (-1 to general condition roll) (-3 to population wealth roll) (-2 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.passing"]
+        },
+        {
+          "id": "adequate",
+          "name": "Adequate",
+          "range": [11, 16],
+          "description": "The city’s fundamental elements are all taken care of relatively competently, but some room for improvement still exists. Lack of capital, or involvement in more pressing matters such as external conflicts or disaster management, are possible explanations. (+0 to general condition roll) (+0 to population wealth roll) (+0 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.adequate"]
+        },
+        {
+          "id": "managed",
+          "name": "Managed",
+          "range": [17, 19],
+          "description": "The city’s fundamental elements are all accounted for and well attended to. Whoever is responsible is doing an admirable job. (+1 to general condition roll) (+3 to population wealth roll) (+4 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.managed"]
+        },
+        {
+          "id": "disciplined",
+          "name": "Disciplined",
+          "range": 20,
+          "description": "The city’s fundamental elements are firmly in hand, providing what it needs to perform at peak functionality. There is little to no room for improvement. Whoever is managing things is doing so expertly. (+5 to general condition roll) (+6 to population wealth roll) (+8 to law enforcement roll)",
+          "tags": ["ss.city.stewardship.disciplined"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.stewardship.neglected",
+      "name": "Neglected",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCondition",
+          "amount": 7
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 13
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "ss.city.stewardship.minimal",
+      "name": "Minimal",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCondition",
+          "amount": 4
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 6
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "ss.city.stewardship.passing",
+      "name": "Passing",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.generalCondition",
+          "amount": 1
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 3
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.stewardship.adequate",
+      "name": "Adequate"
+    },
+    {
+      "id": "ss.city.stewardship.managed",
+      "name": "Managed",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.generalCondition",
+          "amount": 1
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 3
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.city.stewardship.disciplined",
+      "name": "Disciplined",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.generalCondition",
+          "amount": 5
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.city.populationWealth",
+          "amount": 6
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.city.lawEnforcement",
+          "amount": 8
+        }
+      ]
+    }
+  ]
+}

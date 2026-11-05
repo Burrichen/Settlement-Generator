@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.undergroundPassages",
+      "name": "Underground Passages",
+      "description": "Structures or passages through the underside of the city.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 8],
+          "description": "There are no significant passages underneath the city.",
+          "tags": ["ss.city.undergroundPassages.none"]
+        },
+        {
+          "id": "sewers",
+          "name": "Sewers",
+          "range": [9, 14],
+          "description": "A network of drains, pipes, and trenches lies beneath the city. Base the sewer’s condition upon that of the settlement, if they were built concurrently. They may pre-date the current city.",
+          "tags": ["ss.city.undergroundPassages.sewers"]
+        },
+        {
+          "id": "naturalCaves",
+          "name": "Natural Caves",
+          "range": [15, 17],
+          "description": "Below the city, natural cave systems can be found that may, or may not, have been discovered yet.",
+          "tags": ["ss.city.undergroundPassages.naturalCaves"]
+        },
+        {
+          "id": "tunnels",
+          "name": "Tunnels",
+          "range": [18, 19],
+          "description": "A series of tunnels exist beneath the city. This could be for maintenance, defensive, or clandestine purposes and may, or may not, have been purpose-built for the current settlement. They could potentially have been dug by enemy forces, either recently or long ago.",
+          "tags": ["ss.city.undergroundPassages.tunnels"]
+        },
+        {
+          "id": "forgottenCrypts",
+          "name": "Forgotten Crypts",
+          "range": 20,
+          "description": "Old burial chambers and tombs are housed deep beneath the city, likely unknown to the general populace.",
+          "tags": ["ss.city.undergroundPassages.forgottenCrypts"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.undergroundPassages.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.city.undergroundPassages.sewers",
+      "name": "Sewers"
+    },
+    {
+      "id": "ss.city.undergroundPassages.naturalCaves",
+      "name": "Natural Caves"
+    },
+    {
+      "id": "ss.city.undergroundPassages.tunnels",
+      "name": "Tunnels"
+    },
+    {
+      "id": "ss.city.undergroundPassages.forgottenCrypts",
+      "name": "Forgotten Crypts"
+    }
+  ]
+}

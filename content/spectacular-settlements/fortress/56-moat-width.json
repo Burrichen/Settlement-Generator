@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.moatWidth",
+      "name": "Moat Width",
+      "description": "How wide the moat is.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "fifteen",
+          "name": "15 ft.",
+          "range": [1, 10],
+          "tags": ["ss.fortress.moatWidth.fifteen"]
+        },
+        {
+          "id": "twenty",
+          "name": "20 ft.",
+          "range": [11, 14],
+          "tags": ["ss.fortress.moatWidth.twenty"]
+        },
+        {
+          "id": "twentyFive",
+          "name": "25 ft.",
+          "range": [15, 17],
+          "tags": ["ss.fortress.moatWidth.twentyFive"]
+        },
+        {
+          "id": "thirty",
+          "name": "30 ft.",
+          "range": [18, 19],
+          "tags": ["ss.fortress.moatWidth.thirty"]
+        },
+        {
+          "id": "thirtyFive",
+          "name": "35 ft.",
+          "range": 20,
+          "tags": ["ss.fortress.moatWidth.thirtyFive"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.moatWidth.fifteen", "name": "15 ft." },
+    { "id": "ss.fortress.moatWidth.twenty", "name": "20 ft." },
+    { "id": "ss.fortress.moatWidth.twentyFive", "name": "25 ft." },
+    { "id": "ss.fortress.moatWidth.thirty", "name": "30 ft." },
+    { "id": "ss.fortress.moatWidth.thirtyFive", "name": "35 ft." }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.magicalDefenses",
+      "name": "Magical Defenses",
+      "description": "Rolled for each Magical Defenses.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "blockingWards",
+          "name": "Blocking Wards",
+          "range": 1,
+          "description": "These wards prevent creatures, or objects, from entering or passing a certain point. They can fail if the ward sustains too much damage in a short span of time.",
+          "tags": ["ss.fortress.magicalDefenses.blockingWards"]
+        },
+        {
+          "id": "aggressiveWards",
+          "name": "Aggressive Wards",
+          "range": 2,
+          "description": "These wards are designed to unleash offensive attacks on unfortunate victims, such as bolts of fire or force.",
+          "tags": ["ss.fortress.magicalDefenses.aggressiveWards"]
+        },
+        {
+          "id": "unlivingSentinels",
+          "name": "Unliving Sentinels",
+          "range": 3,
+          "description": "The castle is guarded by spirits, shades, wraiths, or some other form of undead.",
+          "tags": ["ss.fortress.magicalDefenses.unlivingSentinels"]
+        },
+        {
+          "id": "alarmWards",
+          "name": "Alarm Wards",
+          "range": 4,
+          "description": "Zones of magic create a warning sound if someone outside of a predefined group enters the area.",
+          "tags": ["ss.fortress.magicalDefenses.alarmWards"]
+        },
+        {
+          "id": "relocationWards",
+          "name": "Relocation Wards",
+          "range": 5,
+          "description": "These wards teleport anyone in the area somewhere else. This may be somewhere benign, but far enough away that they will cause no further mischief, or somewhere harmful.",
+          "tags": ["ss.fortress.magicalDefenses.relocationWards"]
+        },
+        {
+          "id": "unnaturalElementalPresence",
+          "name": "Unnatural Elemental Presence",
+          "range": 6,
+          "description": "An element that does not naturally occur in the local area is present. Perhaps a castle in a non-volcanic region has a moat filled with lava, or one in a tropical region has areas of extreme cold.",
+          "tags": ["ss.fortress.magicalDefenses.unnaturalElementalPresence"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.magicalDefenses.blockingWards", "name": "Blocking Wards" },
+    { "id": "ss.fortress.magicalDefenses.aggressiveWards", "name": "Aggressive Wards" },
+    { "id": "ss.fortress.magicalDefenses.unlivingSentinels", "name": "Unliving Sentinels" },
+    { "id": "ss.fortress.magicalDefenses.alarmWards", "name": "Alarm Wards" },
+    { "id": "ss.fortress.magicalDefenses.relocationWards", "name": "Relocation Wards" },
+    {
+      "id": "ss.fortress.magicalDefenses.unnaturalElementalPresence",
+      "name": "Unnatural Elemental Presence"
+    }
+  ]
+}

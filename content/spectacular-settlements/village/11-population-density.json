@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.populationDensity",
+      "name": "Population Density",
+      "description": "Modified by Age and Hardship Type/Outcome. Modifies Crime.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton",
+          "range": [1, 2],
+          "description": "There are only enough people here for the village to function at its most basic level. (+2 to crime roll)",
+          "tags": ["ss.village.populationDensity.skeleton"]
+        },
+        {
+          "id": "sparse",
+          "name": "Sparse",
+          "range": [3, 6],
+          "description": "People are living here, but not many. They are able to handle all tasks that need doing but, perhaps, with some difficulty. (+1 to crime roll)",
+          "tags": ["ss.village.populationDensity.sparse"]
+        },
+        {
+          "id": "populous",
+          "name": "Populous",
+          "range": [7, 14],
+          "description": "There are enough people here for the village to manage all tasks without difficulty. (+0 to crime roll)",
+          "tags": ["ss.village.populationDensity.populous"]
+        },
+        {
+          "id": "dense",
+          "name": "Dense",
+          "range": [15, 18],
+          "description": "The village seems to have a large amount of people for its size. There are many hands available to help with any work that needs doing. (-1 to crime roll)",
+          "tags": ["ss.village.populationDensity.dense"]
+        },
+        {
+          "id": "congested",
+          "name": "Congested",
+          "range": [19, 20],
+          "description": "The village has as many people in it as it can hold, and camps may be cropping up on the outskirts. There are plenty of hands available to help with work but, unless the work is very large-scale (such as quarrying), there may be at least some idle people. (-2 to crime roll)",
+          "tags": ["ss.village.populationDensity.congested"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.village.populationDensity.skeleton",
+      "name": "Skeleton",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.crime", "amount": 2 }]
+    },
+    {
+      "id": "ss.village.populationDensity.sparse",
+      "name": "Sparse",
+      "effects": [{ "kind": "plus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    { "id": "ss.village.populationDensity.populous", "name": "Populous" },
+    {
+      "id": "ss.village.populationDensity.dense",
+      "name": "Dense",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 1 }]
+    },
+    {
+      "id": "ss.village.populationDensity.congested",
+      "name": "Congested",
+      "effects": [{ "kind": "minus", "table": "table.ss.village.crime", "amount": 2 }]
+    }
+  ]
+}

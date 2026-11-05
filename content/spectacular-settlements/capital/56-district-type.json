@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.districtType",
+      "name": "District Type",
+      "description": "Rolled for each district a priority or leadership did not give. Multiples are allowed.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "administration",
+          "name": "Administration",
+          "range": 1,
+          "description": "This district has a focus on government and civil matters.",
+          "tags": ["ss.capital.districtType.administration"]
+        },
+        {
+          "id": "arcane",
+          "name": "Arcane",
+          "range": 2,
+          "description": "This district has a focus on magical matters.",
+          "tags": ["ss.capital.districtType.arcane"]
+        },
+        {
+          "id": "botanical",
+          "name": "Botanical",
+          "range": 3,
+          "description": "This district has a focus on nature.",
+          "tags": ["ss.capital.districtType.botanical"]
+        },
+        {
+          "id": "craft",
+          "name": "Craft",
+          "range": 4,
+          "description": "This district has a focus on the creation of different goods.",
+          "tags": ["ss.capital.districtType.craft"]
+        },
+        {
+          "id": "docks",
+          "name": "Docks",
+          "range": 5,
+          "description": "This district has a focus on all naval and seafaring matters. (Rerolled unless the city is Coastal or River.)",
+          "tags": ["ss.capital.districtType.docks"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.environment.coastal"
+              },
+              {
+                "has_tag": "ss.capital.environment.river"
+              }
+            ]
+          }
+        },
+        {
+          "id": "industrial",
+          "name": "Industrial",
+          "range": 6,
+          "description": "This district has a focus on large-scale production facilities.",
+          "tags": ["ss.capital.districtType.industrial"]
+        },
+        {
+          "id": "market",
+          "name": "Market",
+          "range": 7,
+          "description": "This district has a focus on the sale of practical goods.",
+          "tags": ["ss.capital.districtType.market"]
+        },
+        {
+          "id": "merchant",
+          "name": "Merchant",
+          "range": 8,
+          "description": "This district has a focus on business and non-essential goods.",
+          "tags": ["ss.capital.districtType.merchant"]
+        },
+        {
+          "id": "scholar",
+          "name": "Scholar",
+          "range": 9,
+          "description": "This district has a focus on education and the pursuit of knowledge.",
+          "tags": ["ss.capital.districtType.scholar"]
+        },
+        {
+          "id": "slums",
+          "name": "Slums",
+          "range": 10,
+          "description": "This district is an area where those with lesser means might live. (Roll a d4 on district condition) (-1 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtType.slums"]
+        },
+        {
+          "id": "temple",
+          "name": "Temple",
+          "range": 11,
+          "description": "This district has a focus on religion and/or spiritual enlightenment.",
+          "tags": ["ss.capital.districtType.temple"]
+        },
+        {
+          "id": "upperClass",
+          "name": "Upper Class",
+          "range": 12,
+          "description": "This district is an area where those with greater means might live. (+3 to its district condition roll) (+3 to quality rolls for locations in this district)",
+          "tags": ["ss.capital.districtType.upperClass"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.districtType.administration",
+      "name": "Administration"
+    },
+    {
+      "id": "ss.capital.districtType.arcane",
+      "name": "Arcane"
+    },
+    {
+      "id": "ss.capital.districtType.botanical",
+      "name": "Botanical"
+    },
+    {
+      "id": "ss.capital.districtType.craft",
+      "name": "Craft"
+    },
+    {
+      "id": "ss.capital.districtType.docks",
+      "name": "Docks"
+    },
+    {
+      "id": "ss.capital.districtType.industrial",
+      "name": "Industrial"
+    },
+    {
+      "id": "ss.capital.districtType.market",
+      "name": "Market"
+    },
+    {
+      "id": "ss.capital.districtType.merchant",
+      "name": "Merchant"
+    },
+    {
+      "id": "ss.capital.districtType.scholar",
+      "name": "Scholar"
+    },
+    {
+      "id": "ss.capital.districtType.slums",
+      "name": "Slums",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.quality",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.districtType.temple",
+      "name": "Temple"
+    },
+    {
+      "id": "ss.capital.districtType.upperClass",
+      "name": "Upper Class",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.districtCondition",
+          "amount": 3
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.quality",
+          "amount": 3
+        }
+      ]
+    }
+  ]
+}

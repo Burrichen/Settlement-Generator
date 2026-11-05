@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.specialFeature",
+      "name": "Special Feature",
+      "description": "What makes the fortress worthy of notice; each then rolls its specifics.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "greatPerson",
+          "name": "Resident - Great Person",
+          "range": 1,
+          "description": "A person of significance, or renown, lives here.",
+          "tags": ["ss.fortress.specialFeature.greatPerson"],
+          "then_roll": ["table.ss.fortress.featureGreatPerson"]
+        },
+        {
+          "id": "creature",
+          "name": "Resident - Creature or Monster",
+          "range": 2,
+          "description": "A beast, monster, or uncivilised entity resides here. Depending on the other residents of the fortress, it may have chosen to make its home here, or is a captive.",
+          "tags": ["ss.fortress.specialFeature.creature"],
+          "then_roll": ["table.ss.fortress.featureCreature"]
+        },
+        {
+          "id": "magical",
+          "name": "Magical Properties",
+          "range": 3,
+          "description": "The structure and/or its surroundings have magical properties.",
+          "tags": ["ss.fortress.specialFeature.magical"],
+          "then_roll": ["table.ss.fortress.featureMagical"]
+        },
+        {
+          "id": "unknownOrigin",
+          "name": "Unknown Origin",
+          "range": 4,
+          "description": "No one knows where this structure came from, or how it was built.",
+          "tags": ["ss.fortress.specialFeature.unknownOrigin"],
+          "then_roll": ["table.ss.fortress.featureUnknownOrigin"]
+        },
+        {
+          "id": "intriguingPurpose",
+          "name": "Intriguing Purpose",
+          "range": 5,
+          "description": "The structure was built to do something unusual.",
+          "tags": ["ss.fortress.specialFeature.intriguingPurpose"],
+          "then_roll": ["table.ss.fortress.featureIntriguingPurpose"]
+        },
+        {
+          "id": "catastrophic",
+          "name": "Catastrophic Event",
+          "range": 6,
+          "description": "The structure was the site of a terrible or tragic incident.",
+          "tags": ["ss.fortress.specialFeature.catastrophic"],
+          "then_roll": ["table.ss.fortress.featureCatastrophic"]
+        },
+        {
+          "id": "miraculous",
+          "name": "Miraculous Event",
+          "range": 7,
+          "description": "The structure was the site of something miraculous or amazing.",
+          "tags": ["ss.fortress.specialFeature.miraculous"],
+          "then_roll": ["table.ss.fortress.featureMiraculous"]
+        },
+        {
+          "id": "bizarreLocation",
+          "name": "Bizarre Location",
+          "range": 8,
+          "description": "The structure is built in an atypical kind of location.",
+          "tags": ["ss.fortress.specialFeature.bizarreLocation"],
+          "then_roll": ["table.ss.fortress.featureBizarreLocation"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.specialFeature.greatPerson", "name": "Resident - Great Person" },
+    { "id": "ss.fortress.specialFeature.creature", "name": "Resident - Creature or Monster" },
+    { "id": "ss.fortress.specialFeature.magical", "name": "Magical Properties" },
+    { "id": "ss.fortress.specialFeature.unknownOrigin", "name": "Unknown Origin" },
+    { "id": "ss.fortress.specialFeature.intriguingPurpose", "name": "Intriguing Purpose" },
+    { "id": "ss.fortress.specialFeature.catastrophic", "name": "Catastrophic Event" },
+    { "id": "ss.fortress.specialFeature.miraculous", "name": "Miraculous Event" },
+    { "id": "ss.fortress.specialFeature.bizarreLocation", "name": "Bizarre Location" }
+  ]
+}

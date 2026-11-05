@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.sizeOfForce",
+      "name": "Size of Force",
+      "description": "How large the military is.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "insignificant",
+          "name": "Insignificant",
+          "range": [1, 4],
+          "description": "The force’s size is extremely small, likely requiring few commanding officers.",
+          "tags": ["ss.capital.sizeOfForce.insignificant"]
+        },
+        {
+          "id": "modest",
+          "name": "Modest",
+          "range": [5, 10],
+          "description": "The force’s size is respectable, but not what anyone would call large. Open warfare would likely be risky.",
+          "tags": ["ss.capital.sizeOfForce.modest"]
+        },
+        {
+          "id": "strong",
+          "name": "Strong",
+          "range": [11, 16],
+          "description": "The force’s size is large, and likely solid enough to consider going into battle.",
+          "tags": ["ss.capital.sizeOfForce.strong"]
+        },
+        {
+          "id": "grand",
+          "name": "Grand",
+          "range": [17, 19],
+          "description": "The force’s size is considerable. As massing these kinds of numbers is uncommon, it would likely have a numerical advantage in the field.",
+          "tags": ["ss.capital.sizeOfForce.grand"]
+        },
+        {
+          "id": "vast",
+          "name": "Vast",
+          "range": 20,
+          "description": "The force’s size is staggering and awe-inspiring. Opposing nations may be loathe to risk invasion or open conflict, for fear of being utterly overwhelmed.",
+          "tags": ["ss.capital.sizeOfForce.vast"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.sizeOfForce.insignificant",
+      "name": "Insignificant"
+    },
+    {
+      "id": "ss.capital.sizeOfForce.modest",
+      "name": "Modest"
+    },
+    {
+      "id": "ss.capital.sizeOfForce.strong",
+      "name": "Strong"
+    },
+    {
+      "id": "ss.capital.sizeOfForce.grand",
+      "name": "Grand"
+    },
+    {
+      "id": "ss.capital.sizeOfForce.vast",
+      "name": "Vast"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.rooms",
+      "name": "Rooms",
+      "description": "The keep's rooms: rolled for each room beyond its starting rooms (BSM x floors, the cellar counting, modified by Condition). Repeated rooms may be multiples, or larger or better versions.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "range": [1, 3],
+          "description": "Area designated for resting, containing a bed or beds. Can sleep up to two people.",
+          "tags": ["ss.fortress.rooms.bedroom"]
+        },
+        {
+          "id": "diningAndReceiving",
+          "name": "Dining and Receiving",
+          "range": [4, 5],
+          "description": "General area with tables, as well as benches and/or chairs.",
+          "tags": ["ss.fortress.rooms.diningAndReceiving"]
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "range": [6, 7],
+          "description": "Area for cooking and food preparation. (Additional rolls may be spent to generate a ‘Larder’.)",
+          "tags": ["ss.fortress.rooms.kitchen"]
+        },
+        {
+          "id": "chapel",
+          "name": "Chapel",
+          "range": 8,
+          "description": "Area designated for worship, meditation, or spiritual instruction.",
+          "tags": ["ss.fortress.rooms.chapel"]
+        },
+        {
+          "id": "guardBunks",
+          "name": "Guard Bunks",
+          "range": 9,
+          "description": "Quarters for guards and their equipment.",
+          "tags": ["ss.fortress.rooms.guardBunks"]
+        },
+        {
+          "id": "cell",
+          "name": "Cell",
+          "range": 10,
+          "description": "Holding area for prisoner(s).",
+          "tags": ["ss.fortress.rooms.cell"]
+        },
+        {
+          "id": "closet",
+          "name": "Closet",
+          "range": 11,
+          "description": "Storage for clothing.",
+          "tags": ["ss.fortress.rooms.closet"]
+        },
+        {
+          "id": "equipmentStorage",
+          "name": "Equipment Storage",
+          "range": 12,
+          "description": "Storage for household equipment, as well as defensive implements, if there are no barracks.",
+          "tags": ["ss.fortress.rooms.equipmentStorage"]
+        },
+        {
+          "id": "generalStorage",
+          "name": "General Storage",
+          "range": 13,
+          "description": "Storage for non-food, non-equipment supplies.",
+          "tags": ["ss.fortress.rooms.generalStorage"]
+        },
+        {
+          "id": "guestQuarters",
+          "name": "Guest Quarters",
+          "range": 14,
+          "description": "Area set aside for guest occupation.",
+          "tags": ["ss.fortress.rooms.guestQuarters"]
+        },
+        {
+          "id": "larder",
+          "name": "Larder",
+          "range": 15,
+          "description": "Food storage, typically placed in the cellar where it stays cool.",
+          "tags": ["ss.fortress.rooms.larder"]
+        },
+        {
+          "id": "library",
+          "name": "Library",
+          "range": 16,
+          "description": "Area for records, books, and/or study.",
+          "tags": ["ss.fortress.rooms.library"]
+        },
+        {
+          "id": "privy",
+          "name": "Privy",
+          "range": 17,
+          "description": "Indoor alternative to a separate outhouse.",
+          "tags": ["ss.fortress.rooms.privy"]
+        },
+        {
+          "id": "solar",
+          "name": "Solar",
+          "range": 18,
+          "description": "Living/recreational room for the main resident(s). Comes with a bed, can sleep up to 2 people.",
+          "tags": ["ss.fortress.rooms.solar"]
+        },
+        {
+          "id": "stables",
+          "name": "Stables",
+          "range": 19,
+          "description": "Houses mounts for residents and visitors. (Attached to the outer wall of the keep.)",
+          "tags": ["ss.fortress.rooms.stables"]
+        },
+        {
+          "id": "servantQuarters",
+          "name": "Servant Quarters",
+          "range": 20,
+          "description": "Area for a servant (or servants) to sleep and store their possessions. Exclusively servants' quarters: servants equal to the BSM; shared: BSM - 1 (at least 1).",
+          "tags": ["ss.fortress.rooms.servantQuarters"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.rooms.bedroom", "name": "Bedroom" },
+    { "id": "ss.fortress.rooms.diningAndReceiving", "name": "Dining and Receiving" },
+    { "id": "ss.fortress.rooms.kitchen", "name": "Kitchen" },
+    { "id": "ss.fortress.rooms.chapel", "name": "Chapel" },
+    { "id": "ss.fortress.rooms.guardBunks", "name": "Guard Bunks" },
+    { "id": "ss.fortress.rooms.cell", "name": "Cell" },
+    { "id": "ss.fortress.rooms.closet", "name": "Closet" },
+    { "id": "ss.fortress.rooms.equipmentStorage", "name": "Equipment Storage" },
+    { "id": "ss.fortress.rooms.generalStorage", "name": "General Storage" },
+    { "id": "ss.fortress.rooms.guestQuarters", "name": "Guest Quarters" },
+    { "id": "ss.fortress.rooms.larder", "name": "Larder" },
+    { "id": "ss.fortress.rooms.library", "name": "Library" },
+    { "id": "ss.fortress.rooms.privy", "name": "Privy" },
+    { "id": "ss.fortress.rooms.solar", "name": "Solar" },
+    { "id": "ss.fortress.rooms.stables", "name": "Stables" },
+    { "id": "ss.fortress.rooms.servantQuarters", "name": "Servant Quarters" }
+  ]
+}

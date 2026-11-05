@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.raisedEntrance",
+      "name": "Raised Entrance",
+      "description": "For a keep with two or more above-ground floors: whether its main entrance is on a higher floor.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "groundLevel",
+          "name": "Ground Level",
+          "range": [1, 8],
+          "description": "Entrance is on ground level.",
+          "tags": ["ss.fortress.raisedEntrance.groundLevel"]
+        },
+        {
+          "id": "raised",
+          "name": "Raised",
+          "range": [9, 20],
+          "description": "Stairs lead to an upper-floor entry, wrapping around the structure, if necessary.",
+          "tags": ["ss.fortress.raisedEntrance.raised"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.raisedEntrance.groundLevel", "name": "Ground Level" },
+    { "id": "ss.fortress.raisedEntrance.raised", "name": "Raised" }
+  ]
+}

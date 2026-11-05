@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.ruinIssue",
+      "name": "Ruin's Structural Damage",
+      "description": "A Ruin or Bare Bones fortress's issue, rolled before Current Issue: 1-3 Structural Damage [Weather], 4-6 Structural Damage [Neglect].",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "weather",
+          "name": "Structural Damage [Weather]",
+          "range": [1, 3],
+          "description": "An area of the fortress has been damaged by the elements.",
+          "tags": ["ss.fortress.ruinIssue.weather"]
+        },
+        {
+          "id": "neglect",
+          "name": "Structural Damage [Neglect]",
+          "range": [4, 6],
+          "description": "An area of the fortress has been overlooked for too long, and has now collapsed.",
+          "tags": ["ss.fortress.ruinIssue.neglect"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.ruinIssue.weather", "name": "Structural Damage [Weather]" },
+    { "id": "ss.fortress.ruinIssue.neglect", "name": "Structural Damage [Neglect]" }
+  ]
+}

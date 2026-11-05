@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.oddities",
+      "name": "Oddities",
+      "description": "Weird or inexplicable things about the fortress.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "haunted",
+          "name": "Haunted",
+          "range": 1,
+          "description": "A local spirit occupies the fortress - perhaps an ex-resident, or someone linked to the fortress grounds somehow.",
+          "tags": ["ss.fortress.oddities.haunted"]
+        },
+        {
+          "id": "mysteryDoor",
+          "name": "Mystery Door",
+          "range": 2,
+          "description": "A door is and, as far as anyone can remember, has always been, stuck shut. No matter what anyone does, they can’t get it unstuck. Stranger still, plans of the fortress show no room there.",
+          "tags": ["ss.fortress.oddities.mysteryDoor"]
+        },
+        {
+          "id": "breeze",
+          "name": "Breeze",
+          "range": 3,
+          "description": "Even in closed rooms with no external doors, there always seems to be a tiny breeze that makes cloaks swirl lightly around feet.",
+          "tags": ["ss.fortress.oddities.breeze"]
+        },
+        {
+          "id": "phantomSounds",
+          "name": "Phantom Sounds",
+          "range": 4,
+          "description": "While standing in specific areas of the fortress, indistinct snippets of conversation and activity can often be heard from nearby rooms yet, upon investigation, nothing is ever there.",
+          "tags": ["ss.fortress.oddities.phantomSounds"]
+        },
+        {
+          "id": "rumbles",
+          "name": "Rumbles",
+          "range": 5,
+          "description": "On rare occasions, soft reverberations can be felt from deep underground beneath the fortress.",
+          "tags": ["ss.fortress.oddities.rumbles"]
+        },
+        {
+          "id": "moodyRoom",
+          "name": "Moody Room",
+          "range": 6,
+          "description": "A particular chamber in the fortress tends to put those inside it into a particular mood, regardless of how they were feeling prior to entering.",
+          "tags": ["ss.fortress.oddities.moodyRoom"]
+        },
+        {
+          "id": "deadEnd",
+          "name": "Dead End",
+          "range": 7,
+          "description": "There is a hallway in the fortress that, oddly, leads to a dead end with no discernible purpose.",
+          "tags": ["ss.fortress.oddities.deadEnd"]
+        },
+        {
+          "id": "strangeVisitors",
+          "name": "Strange Visitors",
+          "range": 8,
+          "description": "On occasion, the fortress experiences visits from unusual beings or creatures. If anyone is aware of these visitors (they may stay hidden), no one knows where they come from.",
+          "tags": ["ss.fortress.oddities.strangeVisitors"]
+        },
+        {
+          "id": "creakyStep",
+          "name": "Creaky Step",
+          "range": 9,
+          "description": "A single step on a certain stairwell is the cause of much befuddlement. It’s common enough for old and well-used stairs to make some noise, but this one seems to creak regardless of maintenance, to say nothing of the fact the step is made of solid stone.",
+          "tags": ["ss.fortress.oddities.creakyStep"]
+        },
+        {
+          "id": "watchfulBeast",
+          "name": "Watchful Beast",
+          "range": 10,
+          "description": "A local small creature (squirrel, rabbit, weasel, or similar), has been seen sitting on windowsills (even those that are, seemingly, inaccessible) or in open doorways, (sometimes, even interior doorways) doing nothing but staring, making unblinking eye contact with any in the room who look at it, never looking away, never moving unless approached. Once approached, it vanishes without a trace, and reappears another day.",
+          "tags": ["ss.fortress.oddities.watchfulBeast"]
+        },
+        {
+          "id": "missingThings",
+          "name": "Missing Things",
+          "range": 11,
+          "description": "Small, miscellaneous items seem to go missing without notice. Simple absentmindedness surely can’t account for everything...",
+          "tags": ["ss.fortress.oddities.missingThings"]
+        },
+        {
+          "id": "inexplicableFurnishings",
+          "name": "Inexplicable Furnishings",
+          "range": 12,
+          "description": "One substantial item in the castle has been there since it was built, and no one knows who put it there or where it came from. Whatever it is, people feel vaguely uneasy in its presence, but can never bring themselves to get rid of it.",
+          "tags": ["ss.fortress.oddities.inexplicableFurnishings"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.oddities.haunted", "name": "Haunted" },
+    { "id": "ss.fortress.oddities.mysteryDoor", "name": "Mystery Door" },
+    { "id": "ss.fortress.oddities.breeze", "name": "Breeze" },
+    { "id": "ss.fortress.oddities.phantomSounds", "name": "Phantom Sounds" },
+    { "id": "ss.fortress.oddities.rumbles", "name": "Rumbles" },
+    { "id": "ss.fortress.oddities.moodyRoom", "name": "Moody Room" },
+    { "id": "ss.fortress.oddities.deadEnd", "name": "Dead End" },
+    { "id": "ss.fortress.oddities.strangeVisitors", "name": "Strange Visitors" },
+    { "id": "ss.fortress.oddities.creakyStep", "name": "Creaky Step" },
+    { "id": "ss.fortress.oddities.watchfulBeast", "name": "Watchful Beast" },
+    { "id": "ss.fortress.oddities.missingThings", "name": "Missing Things" },
+    { "id": "ss.fortress.oddities.inexplicableFurnishings", "name": "Inexplicable Furnishings" }
+  ]
+}

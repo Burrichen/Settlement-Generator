@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.visitorTraffic",
+      "name": "Visitor Traffic",
+      "description": "How many frequent the city on a temporary basis. Modifies Night Activity. Optionally, 0 or less could mean a forsaken city.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "mostlyLocals",
+          "name": "Mostly Locals",
+          "range": [1, 2],
+          "description": "On any given day, there are typically a few from outside the city, though not enough to impact congestion. (+0 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.mostlyLocals"]
+        },
+        {
+          "id": "groups",
+          "name": "Groups",
+          "range": [3, 6],
+          "description": "There are generally a fair amount of visitors to the city. May slightly increase congestion. (+1 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.groups"]
+        },
+        {
+          "id": "crowds",
+          "name": "Crowds",
+          "range": [7, 12],
+          "description": "A noticeable amount of people come through the city on a regular basis. Congestion is increased. (+2 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.crowds"]
+        },
+        {
+          "id": "droves",
+          "name": "Droves",
+          "range": [13, 17],
+          "description": "Large groups of people regularly frequent the city. Congestion is significantly increased. (+3 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.droves"]
+        },
+        {
+          "id": "masses",
+          "name": "Masses",
+          "range": [18, 19],
+          "description": "Huge groups of people always seem to be visiting. Congestion could cause difficulties if the city is unable to cope with very large amounts of people. (+4 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.masses"]
+        },
+        {
+          "id": "multitudes",
+          "name": "Multitudes",
+          "range": 20,
+          "description": "Massive groups of people throng the streets, likely spilling out onto the roads outside the city. Congestion is an ever-present reality and a regular issue. (+5 to night activity roll)",
+          "tags": ["ss.city.visitorTraffic.multitudes"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.visitorTraffic.mostlyLocals",
+      "name": "Mostly Locals"
+    },
+    {
+      "id": "ss.city.visitorTraffic.groups",
+      "name": "Groups",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.visitorTraffic.crowds",
+      "name": "Crowds",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.visitorTraffic.droves",
+      "name": "Droves",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.city.visitorTraffic.masses",
+      "name": "Masses",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.city.visitorTraffic.multitudes",
+      "name": "Multitudes",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.nightActivity",
+          "amount": 5
+        }
+      ]
+    }
+  ]
+}

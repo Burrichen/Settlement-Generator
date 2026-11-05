@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.typeOfNobility",
+      "name": "Type of Nobility",
+      "description": "How nobility (or the top tier of society) is determined in the capital.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "egalitarian",
+          "name": "Egalitarian",
+          "range": 1,
+          "description": "The nobility is comprised of self-made people. Theoretically, anyone could attain this degree of notability, as there are few (if any) rules that would prevent social climbing. Typically, those in this group have some agreed-upon metric they use to judge suitability, such as a challenging, but achievable, goal.",
+          "tags": ["ss.capital.typeOfNobility.egalitarian"]
+        },
+        {
+          "id": "blood",
+          "name": "Blood",
+          "range": 2,
+          "description": "Title and status are hereditary, passed down by birth or through marriage. Positions were likely originally awarded to the ancestors of current nobility by a powerful individual, perhaps to reward or purchase loyalty.",
+          "tags": ["ss.capital.typeOfNobility.blood"]
+        },
+        {
+          "id": "deeds",
+          "name": "Deeds",
+          "range": 3,
+          "description": "Status is granted in relation to deeds accomplished, or values displayed, typically reflective of those held to be most important by the society itself.",
+          "tags": ["ss.capital.typeOfNobility.deeds"]
+        },
+        {
+          "id": "wealth",
+          "name": "Wealth/Possessions",
+          "range": 4,
+          "description": "Those granted noble status within the upper echelons are the wealthiest citizens, either monetary, or those with the most property, goods, livestock etc, dependent on culture. (+2 to population wealth roll)",
+          "tags": ["ss.capital.typeOfNobility.wealth"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.typeOfNobility.egalitarian",
+      "name": "Egalitarian"
+    },
+    {
+      "id": "ss.capital.typeOfNobility.blood",
+      "name": "Blood"
+    },
+    {
+      "id": "ss.capital.typeOfNobility.deeds",
+      "name": "Deeds"
+    },
+    {
+      "id": "ss.capital.typeOfNobility.wealth",
+      "name": "Wealth/Possessions",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.populationWealth",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

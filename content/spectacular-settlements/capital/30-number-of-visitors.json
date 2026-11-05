@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.numberOfVisitors",
+      "name": "Number of Notable Visitors",
+      "description": "How many noteworthy people from a foreign location are visiting the capital at the moment.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "one",
+          "name": "One",
+          "range": 1,
+          "value": 1,
+          "description": "1 notable visitor.",
+          "tags": ["ss.capital.numberOfVisitors.one"]
+        },
+        {
+          "id": "two",
+          "name": "Two",
+          "range": 2,
+          "value": 2,
+          "description": "2 notable visitors.",
+          "tags": ["ss.capital.numberOfVisitors.two"]
+        },
+        {
+          "id": "three",
+          "name": "Three",
+          "range": 3,
+          "value": 3,
+          "description": "3 notable visitors.",
+          "tags": ["ss.capital.numberOfVisitors.three"]
+        },
+        {
+          "id": "four",
+          "name": "Four",
+          "range": 4,
+          "value": 4,
+          "description": "4 notable visitors.",
+          "tags": ["ss.capital.numberOfVisitors.four"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.numberOfVisitors.one",
+      "name": "One"
+    },
+    {
+      "id": "ss.capital.numberOfVisitors.two",
+      "name": "Two"
+    },
+    {
+      "id": "ss.capital.numberOfVisitors.three",
+      "name": "Three"
+    },
+    {
+      "id": "ss.capital.numberOfVisitors.four",
+      "name": "Four"
+    }
+  ]
+}

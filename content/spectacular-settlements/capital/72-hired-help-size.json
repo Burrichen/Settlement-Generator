@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.hiredHelpSize",
+      "name": "Hired Help Size",
+      "description": "Rolled for each example of hired help.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "individual",
+          "name": "Individual Person",
+          "range": [1, 6],
+          "description": "The hired help is a single person hiring out their services.",
+          "tags": ["ss.capital.hiredHelpSize.individual"]
+        },
+        {
+          "id": "team",
+          "name": "Team",
+          "range": [7, 10],
+          "description": "The hired help is a team of individuals who work together.",
+          "tags": ["ss.capital.hiredHelpSize.team"]
+        },
+        {
+          "id": "guild",
+          "name": "Guild",
+          "range": [11, 12],
+          "description": "An organized guild is hiring out their services. When hired, a portion of the guild’s members handle the job, not the entire guild (unless the job is very large).",
+          "tags": ["ss.capital.hiredHelpSize.guild"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.hiredHelpSize.individual",
+      "name": "Individual Person"
+    },
+    {
+      "id": "ss.capital.hiredHelpSize.team",
+      "name": "Team"
+    },
+    {
+      "id": "ss.capital.hiredHelpSize.guild",
+      "name": "Guild"
+    }
+  ]
+}

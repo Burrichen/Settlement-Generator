@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.slumsLocationsAgain",
+      "name": "Slums District Additional Location (Rolled Again)",
+      "description": "The location a \"roll again\" gives in a Slums district: the same table, a 1 or 20 rolled again.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "rollAgainLow",
+          "name": "Roll Again",
+          "range": 1,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.city.slumsLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.city.slumsLocations.stepUp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "baker",
+          "name": "Baker",
+          "range": 2,
+          "description": "(Basic) Bakes and sells fresh bread and, possibly, pastries.",
+          "tags": ["ss.city.slumsLocations.baker"]
+        },
+        {
+          "id": "butcher",
+          "name": "Butcher",
+          "range": 3,
+          "description": "(Basic) Processes and sells fresh and/or dried meat.",
+          "tags": ["ss.city.slumsLocations.butcher"]
+        },
+        {
+          "id": "generalStore",
+          "name": "General Store",
+          "range": 4,
+          "description": "(Basic) Sells basic supplies, groceries, and various odds and ends.",
+          "tags": ["ss.city.slumsLocations.generalStore"]
+        },
+        {
+          "id": "smithy",
+          "name": "Smithy",
+          "range": 5,
+          "description": "(Basic) Sells and crafts metal tools and equipment, including very basic weapons and armor.",
+          "tags": ["ss.city.slumsLocations.smithy"]
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": 6,
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc.",
+          "tags": ["ss.city.slumsLocations.thatcher"]
+        },
+        {
+          "id": "weaver",
+          "name": "Weaver",
+          "range": 7,
+          "description": "(Basic) Weaves raw fabric and baskets.",
+          "tags": ["ss.city.slumsLocations.weaver"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 8,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.city.slumsLocations.alchemist"]
+        },
+        {
+          "id": "foundrySmelting",
+          "name": "Foundry/Smelting",
+          "range": 9,
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.city.slumsLocations.foundrySmelting"]
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "range": 10,
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.city.slumsLocations.miller"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": 11,
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.city.slumsLocations.textileProduction"]
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": 12,
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.city.slumsLocations.barber"]
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": 13,
+          "description": "Provides spaces for bathing.",
+          "tags": ["ss.city.slumsLocations.bathhouse"]
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "range": 14,
+          "description": "Provides medical care.",
+          "tags": ["ss.city.slumsLocations.doctorApothecary"]
+        },
+        {
+          "id": "houseOfLeisure",
+          "name": "House of Leisure",
+          "range": 15,
+          "description": "Provides entertainment and/or relaxation (GM may decide what kind).",
+          "tags": ["ss.city.slumsLocations.houseOfLeisure"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 16,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.city.slumsLocations.inn"]
+        },
+        {
+          "id": "club",
+          "name": "Club",
+          "range": 17,
+          "description": "Provides entertainment via comedic, dramatic or musical performance.",
+          "tags": ["ss.city.slumsLocations.club"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 18,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.city.slumsLocations.soothsayer"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 19,
+          "description": "Provides food and drink.",
+          "tags": ["ss.city.slumsLocations.tavern"]
+        },
+        {
+          "id": "rollAgainHigh",
+          "name": "Roll Again",
+          "range": 20,
+          "description": "Rolled again.",
+          "eligibility": {
+            "not": {
+              "any": [
+                {
+                  "has_tag": "ss.city.slumsLocations.stepDown"
+                },
+                {
+                  "has_tag": "ss.city.slumsLocations.stepUp"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

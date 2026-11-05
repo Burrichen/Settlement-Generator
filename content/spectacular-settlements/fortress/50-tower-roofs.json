@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.towerRoofs",
+      "name": "Tower Roofs",
+      "description": "The towers' roofs.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "uncovered",
+          "name": "Uncovered",
+          "range": [1, 2],
+          "tags": ["ss.fortress.towerRoofs.uncovered"]
+        },
+        {
+          "id": "flat",
+          "name": "Flat Roof",
+          "range": [3, 4],
+          "tags": ["ss.fortress.towerRoofs.flat"]
+        },
+        {
+          "id": "shallow",
+          "name": "Shallow Slope Roof",
+          "range": [5, 7],
+          "tags": ["ss.fortress.towerRoofs.shallow"]
+        },
+        {
+          "id": "steep",
+          "name": "Steep Slope Roof",
+          "range": 8,
+          "tags": ["ss.fortress.towerRoofs.steep"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.towerRoofs.uncovered", "name": "Uncovered" },
+    { "id": "ss.fortress.towerRoofs.flat", "name": "Flat Roof" },
+    { "id": "ss.fortress.towerRoofs.shallow", "name": "Shallow Slope Roof" },
+    { "id": "ss.fortress.towerRoofs.steep", "name": "Steep Slope Roof" }
+  ]
+}

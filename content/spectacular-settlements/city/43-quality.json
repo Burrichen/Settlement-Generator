@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.quality",
+      "name": "Quality",
+      "description": "Optional, not rolled: any location's quality. Modified by District Condition, Slums (-1) and Upper Class (+3). Suggested poor/fine names: Barber: Dirt Knife/Coiffeur; Bathhouse: Tubs/Private Baths; Doctor/Apothecary: Sawbones/Physician; House of Leisure: Den/Hall of Leisure; Inn: Tents or Hostel/Lodge; Club: Stage/Theater; Soothsayer: Fortune Teller/Diviner; Stable: Stalls/Livery; Tavern: Pub/Taphouse.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "poor",
+          "name": "Poor",
+          "range": [1, 4],
+          "description": "The location is a substandard version of what is typically expected. Its offerings are likely limited, or of bad quality. The location itself may be in disrepair, dirty, or have any number of other issues present.",
+          "tags": ["ss.city.quality.poor"]
+        },
+        {
+          "id": "good",
+          "name": "Good",
+          "range": [5, 10],
+          "description": "The location is a standard version of what is typically expected. Its offerings are likely not terrible, but often not particularly remarkable either (though sometimes there may be exceptions). The location itself is likely in a serviceable state, though probably not flawless.",
+          "tags": ["ss.city.quality.good"]
+        },
+        {
+          "id": "fine",
+          "name": "Fine",
+          "range": [11, 12],
+          "description": "The location is an exceptional version of what is typically expected. Its offerings are likely extensive, or of surpassing quality. The location itself is likely remarkable in some way (or, possibly, many ways) such as being very clean or well-built.",
+          "tags": ["ss.city.quality.fine"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.quality.poor",
+      "name": "Poor"
+    },
+    {
+      "id": "ss.city.quality.good",
+      "name": "Good"
+    },
+    {
+      "id": "ss.city.quality.fine",
+      "name": "Fine"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.barbican",
+      "name": "Barbican",
+      "description": "A forward structure leading up to the main gate (in a concentric castle, the entry through the outer wall). Modifies Moat. A barbican or outer wall has its own gatehouse.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 5],
+          "description": "None.",
+          "tags": ["ss.fortress.barbican.none"]
+        },
+        {
+          "id": "walledApproach",
+          "name": "Walled Approach",
+          "range": [6, 11],
+          "description": "The gatehouse leads to a walled approach.",
+          "tags": ["ss.fortress.barbican.walledApproach"]
+        },
+        {
+          "id": "approachAndDrawbridge",
+          "name": "Walled Approach and Drawbridge",
+          "range": [12, 17],
+          "description": "The gatehouse leads to a walled approach, ending in a drawbridge. (+2 to moat roll)",
+          "tags": ["ss.fortress.barbican.approachAndDrawbridge"]
+        },
+        {
+          "id": "twoDrawbridges",
+          "name": "Two Drawbridges",
+          "range": [18, 20],
+          "description": "The gatehouse, preceded by a drawbridge, leads to a walled approach, ending in an additional drawbridge. (+2 to moat roll)",
+          "tags": ["ss.fortress.barbican.twoDrawbridges"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.barbican.none", "name": "None" },
+    { "id": "ss.fortress.barbican.walledApproach", "name": "Walled Approach" },
+    {
+      "id": "ss.fortress.barbican.approachAndDrawbridge",
+      "name": "Walled Approach and Drawbridge",
+      "effects": [{ "kind": "plus", "table": "table.ss.fortress.moat", "amount": 2 }]
+    },
+    {
+      "id": "ss.fortress.barbican.twoDrawbridges",
+      "name": "Two Drawbridges",
+      "effects": [{ "kind": "plus", "table": "table.ss.fortress.moat", "amount": 2 }]
+    }
+  ]
+}

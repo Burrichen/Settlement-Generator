@@ -207,6 +207,54 @@ irregularity and tree cover 0–1. Summary of the defaults:
 | Age, Origin         | Irregularity: New 0.25 … Ancient 0.75; Purpose-built 0.2; Organic Growth 0.7. Military Outpost walls a non-district map                            |
 | Purpose             | Agriculture adds fields                                                                                                                            |
 
+**Setting profiles.** Each input in `map-defaults.json` → `inputs` names one
+stage table or a list of them; the first the settlement recorded (not
+skipped) is used. The Spectacular Settlements profile skips the generic
+stages and rolls the tables of its Settlement Type, so Size, Environment
+and Age also list `table.ss.tradingPost.*`, `table.ss.village.*`,
+`table.ss.town.*`, `table.ss.city.*` and `table.ss.capital.*` (and Origin
+all but the Village's, which has none). Trading Posts and Villages are one
+map, Cities and Capitals one per district:
+
+| Source                    | Effect                                                                                                                                        |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Trading Post Size         | Buildings from the book's structure counts: Very Small 15, Small 30, Medium 50, Large 70, Very Large 90; a square from Medium                 |
+| Trading Post Traffic      | Roads leaving the map: Vacant 1, Groups and Crowds 2, Droves 3, Masses 4                                                                      |
+| Trading Post Age, Origin  | Irregularity: Recent 0.25 … Ancient 0.75; Accidental 0.7; Business Venture 0.25. Crossroads 4 roads; Military Outpost walls                   |
+| Village Size              | Buildings from the book's structure counts: Very Small 15, Small 24, Medium 45, Large 70, Very Large 95; fields; Large up a square            |
+| Village Age               | Irregularity: Recent 0.25, Established 0.4, Mature 0.5, Old 0.6, Ancient 0.75                                                                 |
+| City Size                 | One map per district (as generic Cities): Very Small 100, Small 120, Medium 140, Large 160, Very Large 180 buildings per district; a square   |
+| City Age                  | Irregularity as for Villages                                                                                                                  |
+| Capital Size              | One map per district (as generic Capitals): Very Small 120, Small 140, Medium 160, Large 180, Very Large 200 buildings per district; a square |
+| Capital Age               | Irregularity as for Villages                                                                                                                  |
+| Environment (either type) | Coastal a coast, River a river, Swamp marsh and a lake, Underground a cavern; ground and trees for the rest                                   |
+
+**Spectacular Settlements Cities and Capitals** are mapped district by
+district, like generic Cities and Capitals. Their districts are flow objects, not Notable Locations:
+`map-defaults.json` → `district_objects` names their types
+(`object.ss.city.district`, `object.ss.capital.district`), and each one, in the order it was made, is a
+map district with its stable object ID (`district-01`, so
+`map-district-01`) and its type in its label ("District 2 (Market)").
+
+**Spectacular Settlements Towns are not mapped.** A town stands for hundreds
+to 2,000 standing structures (Very Small "up to a few hundred", Very Large
+"up to 2000"), but the built-in engine draws at most 600 buildings on one
+map, and only Cities and Capitals are mapped district by district. Any town
+map would leave most of the town out, so none is drawn. Their Size entry in
+`map-defaults.json` is `disabled`, with the reason the Map tab and the
+terminal show in place of the maps; generating is refused with the same
+message. A `disabled` entry needs no `layout` or `set`. Towns can be mapped
+once the engine draws larger settlements, or towns in districts.
+
+**Spectacular Settlements Fortresses are not mapped.** The engine draws a
+settlement (streets, lots and buildings around a centre), but the book maps
+a fortress as a floor plan: the keep floor by floor and room by room, then
+its curtain walls, towers, gatehouse, moat and bailey outbuildings. A
+fortress has no settlement Size, so its Fortress Type
+(`table.ss.fortress.fortressType`) is listed as its size input, and the
+entry for `ss.settlementType.fortress` is `disabled` with that reason (the
+book's Mapping section explains how to draw one by hand).
+
 These are drawing choices, not settlement facts. Any of them can be
 overridden per settlement or per map. `MapInputs` keeps the facts
 themselves, so a later engine can use them differently.

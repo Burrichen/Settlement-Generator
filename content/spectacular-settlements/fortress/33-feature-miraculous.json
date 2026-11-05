@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.featureMiraculous",
+      "name": "Miraculous Event",
+      "description": "Special Feature specifics: Miraculous Event.",
+      "dice": "1d8",
+      "results": [
+        {
+          "id": "foundAnew",
+          "name": "Found Anew",
+          "range": 1,
+          "description": "Something (or someone) of incredible significance was rediscovered here.",
+          "tags": ["ss.fortress.featureMiraculous.foundAnew"]
+        },
+        {
+          "id": "salvation",
+          "name": "Salvation",
+          "range": 2,
+          "description": "Someone in dire peril was saved here.",
+          "tags": ["ss.fortress.featureMiraculous.salvation"]
+        },
+        {
+          "id": "oddsDefied",
+          "name": "Odds Defied",
+          "range": 3,
+          "description": "Victory was snatched from the jaws of defeat here, when all hope seemed lost.",
+          "tags": ["ss.fortress.featureMiraculous.oddsDefied"]
+        },
+        {
+          "id": "divineIntervention",
+          "name": "Divine Intervention",
+          "range": 4,
+          "description": "A god made their will known directly here.",
+          "tags": ["ss.fortress.featureMiraculous.divineIntervention"]
+        },
+        {
+          "id": "sacrifice",
+          "name": "Sacrifice",
+          "range": 5,
+          "description": "Someone gave up something very dear to them here, in service to a higher cause.",
+          "tags": ["ss.fortress.featureMiraculous.sacrifice"]
+        },
+        {
+          "id": "prophecyFulfilled",
+          "name": "Prophecy Fulfilled",
+          "range": 6,
+          "description": "Events previously foretold saw their culmination here.",
+          "tags": ["ss.fortress.featureMiraculous.prophecyFulfilled"]
+        },
+        {
+          "id": "deathRefused",
+          "name": "Death Refused",
+          "range": 7,
+          "description": "Someone, who should have died, managed to retain their grasp on life here.",
+          "tags": ["ss.fortress.featureMiraculous.deathRefused"]
+        },
+        {
+          "id": "questAccomplished",
+          "name": "Quest Accomplished",
+          "range": 8,
+          "description": "A great mission was concluded here.",
+          "tags": ["ss.fortress.featureMiraculous.questAccomplished"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.featureMiraculous.foundAnew", "name": "Found Anew" },
+    { "id": "ss.fortress.featureMiraculous.salvation", "name": "Salvation" },
+    { "id": "ss.fortress.featureMiraculous.oddsDefied", "name": "Odds Defied" },
+    { "id": "ss.fortress.featureMiraculous.divineIntervention", "name": "Divine Intervention" },
+    { "id": "ss.fortress.featureMiraculous.sacrifice", "name": "Sacrifice" },
+    { "id": "ss.fortress.featureMiraculous.prophecyFulfilled", "name": "Prophecy Fulfilled" },
+    { "id": "ss.fortress.featureMiraculous.deathRefused", "name": "Death Refused" },
+    { "id": "ss.fortress.featureMiraculous.questAccomplished", "name": "Quest Accomplished" }
+  ]
+}

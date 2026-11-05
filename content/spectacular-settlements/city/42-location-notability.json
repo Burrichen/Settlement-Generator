@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.locationNotability",
+      "name": "Location Notability",
+      "description": "Why a notable additional location is notable.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "generousSpirit",
+          "name": "Generous Spirit",
+          "range": 1,
+          "description": "The location owner is known in the community for their generosity (this could be financial, but could also be with their time, knowledge, or resources).",
+          "tags": ["ss.city.locationNotability.generousSpirit"]
+        },
+        {
+          "id": "topNotchMarketing",
+          "name": "Top-Notch Marketing",
+          "range": 2,
+          "description": "All around the city you can see signage, or hear people mentioning, the location.",
+          "tags": ["ss.city.locationNotability.topNotchMarketing"]
+        },
+        {
+          "id": "excellentOfferings",
+          "name": "Excellent Offerings",
+          "range": 3,
+          "description": "Whatever product or service the location offers, it’s good enough to draw notice.",
+          "tags": ["ss.city.locationNotability.excellentOfferings"]
+        },
+        {
+          "id": "vestedInterests",
+          "name": "Vested Interests",
+          "range": 4,
+          "description": "A third party (not the shopkeeper or an employee) has a stake in whether this location is successful, and has done something to ensure the populus know about it.",
+          "tags": ["ss.city.locationNotability.vestedInterests"]
+        },
+        {
+          "id": "uniqueOffering",
+          "name": "Unique Offering",
+          "range": 5,
+          "description": "This location has a product or service that no one else in the city has.",
+          "tags": ["ss.city.locationNotability.uniqueOffering"]
+        },
+        {
+          "id": "moreThanMeetsTheEye",
+          "name": "More-Than-Meets-the-Eye",
+          "range": 6,
+          "description": "This location may seem to be one thing, but the right people know what else is there.",
+          "tags": ["ss.city.locationNotability.moreThanMeetsTheEye"]
+        },
+        {
+          "id": "meetingPlace",
+          "name": "Meeting Place",
+          "range": 7,
+          "description": "The establishment is in a particular location which is a prime landmark for people to easily meet. This tends to generate business by proximity.",
+          "tags": ["ss.city.locationNotability.meetingPlace"]
+        },
+        {
+          "id": "entertainingService",
+          "name": "Entertaining Service",
+          "range": 8,
+          "description": "Something about the folk that work here is very entertaining. Perhaps they’re funny, or maybe they do demonstrations, or even have a bard who plays there regularly.",
+          "tags": ["ss.city.locationNotability.entertainingService"]
+        },
+        {
+          "id": "coercion",
+          "name": "Coercion",
+          "range": 9,
+          "description": "Customers, who might otherwise go somewhere else, are pressured into coming here instead. This could be the owner’s doing, but could also be the work of another interested party.",
+          "tags": ["ss.city.locationNotability.coercion"]
+        },
+        {
+          "id": "favoritism",
+          "name": "Favoritism",
+          "range": 10,
+          "description": "Certain people are given particularly good service here, and it incentivizes them to frequent this location.",
+          "tags": ["ss.city.locationNotability.favoritism"]
+        },
+        {
+          "id": "superstition",
+          "name": "Superstition",
+          "range": 11,
+          "description": "Those who frequent this location do so out of the belief that if they don’t, something will (or won’t) happen.",
+          "tags": ["ss.city.locationNotability.superstition"]
+        },
+        {
+          "id": "history",
+          "name": "History",
+          "range": 12,
+          "description": "This location is notable for its links to local history. Perhaps it belongs to a family with a particular reputation? Maybe it has ties to events from long ago?",
+          "tags": ["ss.city.locationNotability.history"]
+        },
+        {
+          "id": "rumors",
+          "name": "Rumors",
+          "range": 13,
+          "description": "Something intriguing has been heard about this place that, for some reason, has piqued visitor’s curiosity.",
+          "tags": ["ss.city.locationNotability.rumors"]
+        },
+        {
+          "id": "expansion",
+          "name": "Expansion",
+          "range": 14,
+          "description": "This place has grown recently.",
+          "tags": ["ss.city.locationNotability.expansion"]
+        },
+        {
+          "id": "importantPerson",
+          "name": "Important Person",
+          "range": 15,
+          "description": "Someone directly involved with this location (owner, employee, etc) is a major figure in the community.",
+          "tags": ["ss.city.locationNotability.importantPerson"]
+        },
+        {
+          "id": "nearbyCuriosity",
+          "name": "Nearby Curiosity",
+          "range": 16,
+          "description": "There is something in very close proximity that draws attention, thereby increasing foot traffic.",
+          "tags": ["ss.city.locationNotability.nearbyCuriosity"]
+        },
+        {
+          "id": "localLoyalty",
+          "name": "Local Loyalty",
+          "range": 17,
+          "description": "People who live nearby know this place and stick to it out of a deep-seated loyalty, even if there would seem to be better alternatives.",
+          "tags": ["ss.city.locationNotability.localLoyalty"]
+        },
+        {
+          "id": "exciting",
+          "name": "Exciting",
+          "range": 18,
+          "description": "There always seems to be something thrilling going on here, so those seeking to be free of boredom show up in droves.",
+          "tags": ["ss.city.locationNotability.exciting"]
+        },
+        {
+          "id": "organizationAffiliation",
+          "name": "Organization Affiliation",
+          "range": 19,
+          "description": "Association with certain people has generated traffic to this location.",
+          "tags": ["ss.city.locationNotability.organizationAffiliation"]
+        },
+        {
+          "id": "magic",
+          "name": "Magic",
+          "range": 20,
+          "description": "Some form of magic plays a role in what is drawing people here. It could be on purpose or accidental, innocent or malicious.",
+          "tags": ["ss.city.locationNotability.magic"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.locationNotability.generousSpirit",
+      "name": "Generous Spirit"
+    },
+    {
+      "id": "ss.city.locationNotability.topNotchMarketing",
+      "name": "Top-Notch Marketing"
+    },
+    {
+      "id": "ss.city.locationNotability.excellentOfferings",
+      "name": "Excellent Offerings"
+    },
+    {
+      "id": "ss.city.locationNotability.vestedInterests",
+      "name": "Vested Interests"
+    },
+    {
+      "id": "ss.city.locationNotability.uniqueOffering",
+      "name": "Unique Offering"
+    },
+    {
+      "id": "ss.city.locationNotability.moreThanMeetsTheEye",
+      "name": "More-Than-Meets-the-Eye"
+    },
+    {
+      "id": "ss.city.locationNotability.meetingPlace",
+      "name": "Meeting Place"
+    },
+    {
+      "id": "ss.city.locationNotability.entertainingService",
+      "name": "Entertaining Service"
+    },
+    {
+      "id": "ss.city.locationNotability.coercion",
+      "name": "Coercion"
+    },
+    {
+      "id": "ss.city.locationNotability.favoritism",
+      "name": "Favoritism"
+    },
+    {
+      "id": "ss.city.locationNotability.superstition",
+      "name": "Superstition"
+    },
+    {
+      "id": "ss.city.locationNotability.history",
+      "name": "History"
+    },
+    {
+      "id": "ss.city.locationNotability.rumors",
+      "name": "Rumors"
+    },
+    {
+      "id": "ss.city.locationNotability.expansion",
+      "name": "Expansion"
+    },
+    {
+      "id": "ss.city.locationNotability.importantPerson",
+      "name": "Important Person"
+    },
+    {
+      "id": "ss.city.locationNotability.nearbyCuriosity",
+      "name": "Nearby Curiosity"
+    },
+    {
+      "id": "ss.city.locationNotability.localLoyalty",
+      "name": "Local Loyalty"
+    },
+    {
+      "id": "ss.city.locationNotability.exciting",
+      "name": "Exciting"
+    },
+    {
+      "id": "ss.city.locationNotability.organizationAffiliation",
+      "name": "Organization Affiliation"
+    },
+    {
+      "id": "ss.city.locationNotability.magic",
+      "name": "Magic"
+    }
+  ]
+}

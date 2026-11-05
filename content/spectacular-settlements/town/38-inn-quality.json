@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.innQuality",
+      "name": "Default Inn Quality",
+      "description": "The Hospitality specialty's default inn: 1-3 good quality, 4-6 fine quality.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "good",
+          "name": "Good Quality",
+          "range": [1, 3],
+          "description": "The default inn is of good quality.",
+          "tags": ["ss.town.innQuality.good"]
+        },
+        {
+          "id": "fine",
+          "name": "Fine Quality",
+          "range": [4, 6],
+          "description": "The default inn is of fine quality.",
+          "tags": ["ss.town.innQuality.fine"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.innQuality.good",
+      "name": "Good Quality"
+    },
+    {
+      "id": "ss.town.innQuality.fine",
+      "name": "Fine Quality"
+    }
+  ]
+}

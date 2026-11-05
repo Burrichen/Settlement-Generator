@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.outsideTheCapital",
+      "name": "Outside the Capital",
+      "description": "The prominent locations outside the capital proper (Very Small 5, Small 4, Medium 3, Large 2, Very Large 1 rolls).",
+      "dice": "1d100",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 20],
+          "description": "If you have any remaining rolls to make on this table, proceed with them.",
+          "tags": ["ss.capital.outsideTheCapital.none"]
+        },
+        {
+          "id": "agriculture",
+          "name": "Farming [Agriculture]",
+          "range": [21, 30],
+          "description": "A group of farms, providing food grown for the capital, are found on the nearest hospitable land under its control.",
+          "tags": ["ss.capital.outsideTheCapital.agriculture"]
+        },
+        {
+          "id": "livestock",
+          "name": "Farming [Livestock]",
+          "range": [31, 40],
+          "description": "A group of farms, providing livestock for the capital, are found on the nearest hospitable land under its control.",
+          "tags": ["ss.capital.outsideTheCapital.livestock"]
+        },
+        {
+          "id": "resourceHarvesting",
+          "name": "Resource Harvesting",
+          "range": [41, 50],
+          "description": "Depending on the landscape and available resources (trees, minerals, ore, stone, etc.), a logging camp, mine, or quarry, belonging to the capital, has been built nearby to harvest them, which it then uses or sells.",
+          "tags": ["ss.capital.outsideTheCapital.resourceHarvesting"]
+        },
+        {
+          "id": "barrows",
+          "name": "Barrows",
+          "range": [51, 55],
+          "description": "An area devoted to burial sites.",
+          "tags": ["ss.capital.outsideTheCapital.barrows"]
+        },
+        {
+          "id": "caravanCommunity",
+          "name": "Caravan Community",
+          "range": [56, 59],
+          "description": "A nomadic group of people have taken to living on the surrounding land nearby. Does the capital’s leadership have an issue with this? What about its residents?",
+          "tags": ["ss.capital.outsideTheCapital.caravanCommunity"]
+        },
+        {
+          "id": "eventGrounds",
+          "name": "Event Grounds",
+          "range": [60, 64],
+          "description": "Tended grounds for games, duels, ceremonies, or other events.",
+          "tags": ["ss.capital.outsideTheCapital.eventGrounds"]
+        },
+        {
+          "id": "exploration",
+          "name": "Exploration",
+          "range": [65, 68],
+          "description": "Explorers have been investigating something at this site, a fair distance outside the capital. [d6]: 1-3: The exploration is still active. 4-6: It has been abandoned/completed.",
+          "tags": ["ss.capital.outsideTheCapital.exploration"],
+          "then_roll": ["table.ss.capital.explorationState"]
+        },
+        {
+          "id": "familyEstate",
+          "name": "Family Estate",
+          "range": [69, 73],
+          "description": "A wealthy family’s large estate is situated in the neighboring countryside.",
+          "tags": ["ss.capital.outsideTheCapital.familyEstate"]
+        },
+        {
+          "id": "makeshiftSettlement",
+          "name": "Makeshift Settlement",
+          "range": [74, 78],
+          "description": "A large mass of hovels, lean-tos, tents, and other improvised shelters have been built in the shadow of the capital’s walls. Why? Do the leaders and residents care?",
+          "tags": ["ss.capital.outsideTheCapital.makeshiftSettlement"]
+        },
+        {
+          "id": "medicalCamp",
+          "name": "Medical Camp",
+          "range": [79, 82],
+          "description": "A set of makeshift or, depending on the nature of what is being treated, permanent structures have been erected to tend to, or even quarantine, the sick or injured.",
+          "tags": ["ss.capital.outsideTheCapital.medicalCamp"]
+        },
+        {
+          "id": "prison",
+          "name": "Prison",
+          "range": [83, 87],
+          "description": "Some sort of structure out here has been designated for holding prisoners or captives (for whatever reason) either temporarily or, perhaps, much longer term.",
+          "tags": ["ss.capital.outsideTheCapital.prison"]
+        },
+        {
+          "id": "subterraneanWarrens",
+          "name": "Subterranean Warrens",
+          "range": [88, 91],
+          "description": "Something is under the capital (below even the sewer system, if the capital has one). These could be the ruins of another city, the crude dwelling place of simple beasts, or the residence of another active civilization. [d6]: 1-3: It is known to the capital. 4-6: It is not known about.",
+          "tags": ["ss.capital.outsideTheCapital.subterraneanWarrens"],
+          "then_roll": ["table.ss.capital.warrensKnown"]
+        },
+        {
+          "id": "tendedNature",
+          "name": "Tended Nature",
+          "range": [92, 95],
+          "description": "An area of nature outside the capital has been preserved and tended to. This may be a park, preserved forest, animal reserve, or something else. It may, or may not, be controlled by the capital.",
+          "tags": ["ss.capital.outsideTheCapital.tendedNature"]
+        },
+        {
+          "id": "trainingGrounds",
+          "name": "Training Grounds",
+          "range": [96, 99],
+          "description": "Land was set aside for the training of large groups of people. If the capital has its own military force, they may use this. It could also be under the leadership of a mercenary company.",
+          "tags": ["ss.capital.outsideTheCapital.trainingGrounds"]
+        },
+        {
+          "id": "unusable",
+          "name": "Unusable",
+          "range": 100,
+          "description": "This area cannot be used, for some reason. There may have been a disaster with lingering effects, or perhaps a past enemy has salted the ground. There may be foul beasts or monsters residing there, or some magical deterrent. One way or another, folks don’t come here anymore.",
+          "tags": ["ss.capital.outsideTheCapital.unusable"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.outsideTheCapital.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.agriculture",
+      "name": "Farming [Agriculture]"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.livestock",
+      "name": "Farming [Livestock]"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.resourceHarvesting",
+      "name": "Resource Harvesting"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.barrows",
+      "name": "Barrows"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.caravanCommunity",
+      "name": "Caravan Community"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.eventGrounds",
+      "name": "Event Grounds"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.exploration",
+      "name": "Exploration"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.familyEstate",
+      "name": "Family Estate"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.makeshiftSettlement",
+      "name": "Makeshift Settlement"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.medicalCamp",
+      "name": "Medical Camp"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.prison",
+      "name": "Prison"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.subterraneanWarrens",
+      "name": "Subterranean Warrens"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.tendedNature",
+      "name": "Tended Nature"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.trainingGrounds",
+      "name": "Training Grounds"
+    },
+    {
+      "id": "ss.capital.outsideTheCapital.unusable",
+      "name": "Unusable"
+    }
+  ]
+}

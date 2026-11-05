@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.craftLocations",
+      "name": "Craft District Additional Locations",
+      "description": "Rolled for each additional location of a Craft district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.capital.craftLocations.stepDown"],
+          "then_roll": ["table.ss.capital.craftLocationsAgain"]
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": 2,
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc.",
+          "tags": ["ss.capital.craftLocations.cooper"]
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": 3,
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs.",
+          "tags": ["ss.capital.craftLocations.carpenter"]
+        },
+        {
+          "id": "thatcher",
+          "name": "Thatcher",
+          "range": 4,
+          "description": "(Basic) Builds roofs using layers of dried straw, reeds, rushes, etc.",
+          "tags": ["ss.capital.craftLocations.thatcher"]
+        },
+        {
+          "id": "wainwright",
+          "name": "Wainwright",
+          "range": 5,
+          "description": "(Basic) Builds carts and wagons.",
+          "tags": ["ss.capital.craftLocations.wainwright"]
+        },
+        {
+          "id": "armorsmith",
+          "name": "Armorsmith",
+          "range": 6,
+          "description": "(Specialty) A smith of armor.",
+          "tags": ["ss.capital.craftLocations.armorsmith"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 7,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.capital.craftLocations.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 8,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.capital.craftLocations.bankAndExchange"]
+        },
+        {
+          "id": "cobbler",
+          "name": "Cobbler",
+          "range": 9,
+          "description": "(Specialty) Makes and mends boots and shoes.",
+          "tags": ["ss.capital.craftLocations.cobbler"]
+        },
+        {
+          "id": "foundrySmelting",
+          "name": "Foundry/Smelting",
+          "range": 10,
+          "description": "(Specialty) Ore processing and metal fabrication.",
+          "tags": ["ss.capital.craftLocations.foundrySmelting"]
+        },
+        {
+          "id": "miller",
+          "name": "Miller",
+          "range": 11,
+          "description": "(Specialty) Facilities for milling grain.",
+          "tags": ["ss.capital.craftLocations.miller"]
+        },
+        {
+          "id": "textileProduction",
+          "name": "Textile Production",
+          "range": 12,
+          "description": "(Specialty) Larger scale than a single weaver, offering a wider array of materials in larger quantities.",
+          "tags": ["ss.capital.craftLocations.textileProduction"]
+        },
+        {
+          "id": "shipwright",
+          "name": "Shipwright",
+          "range": 13,
+          "description": "(Specialty) Builds and launches boats and/or ships. Only near significant water (Coastal or River); otherwise rerolled.",
+          "tags": ["ss.capital.craftLocations.shipwright"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.environment.coastal"
+              },
+              {
+                "has_tag": "ss.capital.environment.river"
+              }
+            ]
+          }
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 14,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.capital.craftLocations.magicShop"],
+          "then_roll": ["table.ss.capital.magicShopSpecialization"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 15,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.capital.craftLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareTradeGoods",
+          "name": "Rare Trade Goods",
+          "range": 16,
+          "description": "(Exotic) Procures and sells items and materials, such as ores or textiles, that are rare to the region.",
+          "tags": ["ss.capital.craftLocations.rareTradeGoods"]
+        },
+        {
+          "id": "weaponsmith",
+          "name": "Weaponsmith",
+          "range": 17,
+          "description": "(Specialty) A smith of weapons.",
+          "tags": ["ss.capital.craftLocations.weaponsmith"]
+        },
+        {
+          "id": "tavern",
+          "name": "Tavern",
+          "range": 18,
+          "description": "Provides food and drink.",
+          "tags": ["ss.capital.craftLocations.tavern"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 19,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.capital.craftLocations.hiredHelp"],
+          "then_roll": ["table.ss.capital.hiredHelpType"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.capital.craftLocations.stepUp"],
+          "then_roll": ["table.ss.capital.craftLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.craftLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.capital.craftLocations.cooper",
+      "name": "Cooper"
+    },
+    {
+      "id": "ss.capital.craftLocations.carpenter",
+      "name": "Carpenter"
+    },
+    {
+      "id": "ss.capital.craftLocations.thatcher",
+      "name": "Thatcher"
+    },
+    {
+      "id": "ss.capital.craftLocations.wainwright",
+      "name": "Wainwright"
+    },
+    {
+      "id": "ss.capital.craftLocations.armorsmith",
+      "name": "Armorsmith"
+    },
+    {
+      "id": "ss.capital.craftLocations.artist",
+      "name": "Artist"
+    },
+    {
+      "id": "ss.capital.craftLocations.bankAndExchange",
+      "name": "Bank & Exchange"
+    },
+    {
+      "id": "ss.capital.craftLocations.cobbler",
+      "name": "Cobbler"
+    },
+    {
+      "id": "ss.capital.craftLocations.foundrySmelting",
+      "name": "Foundry/Smelting"
+    },
+    {
+      "id": "ss.capital.craftLocations.miller",
+      "name": "Miller"
+    },
+    {
+      "id": "ss.capital.craftLocations.textileProduction",
+      "name": "Textile Production"
+    },
+    {
+      "id": "ss.capital.craftLocations.shipwright",
+      "name": "Shipwright"
+    },
+    {
+      "id": "ss.capital.craftLocations.magicShop",
+      "name": "Magic Shop"
+    },
+    {
+      "id": "ss.capital.craftLocations.luxuryFurnishings",
+      "name": "Luxury Furnishings"
+    },
+    {
+      "id": "ss.capital.craftLocations.rareTradeGoods",
+      "name": "Rare Trade Goods"
+    },
+    {
+      "id": "ss.capital.craftLocations.weaponsmith",
+      "name": "Weaponsmith"
+    },
+    {
+      "id": "ss.capital.craftLocations.tavern",
+      "name": "Tavern"
+    },
+    {
+      "id": "ss.capital.craftLocations.hiredHelp",
+      "name": "Hired Help"
+    },
+    {
+      "id": "ss.capital.craftLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

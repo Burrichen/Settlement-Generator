@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.keepRoomCount",
+      "name": "Keep Room Count",
+      "description": "The keep's total rooms: BSM x floors (the cellar counting), modified by Condition. Set, never rolled; the starting rooms count toward it.",
+      "selection": "choose",
+      "results": [
+        { "id": "rooms0", "name": "0 rooms", "value": 1 },
+        { "id": "rooms1", "name": "1 room", "value": 2 },
+        { "id": "rooms2", "name": "2 rooms", "value": 3 },
+        { "id": "rooms3", "name": "3 rooms", "value": 4 },
+        { "id": "rooms4", "name": "4 rooms", "value": 5 },
+        { "id": "rooms5", "name": "5 rooms", "value": 6 },
+        { "id": "rooms6", "name": "6 rooms", "value": 7 },
+        { "id": "rooms7", "name": "7 rooms", "value": 8 },
+        { "id": "rooms8", "name": "8 rooms", "value": 9 },
+        { "id": "rooms9", "name": "9 rooms", "value": 10 },
+        { "id": "rooms10", "name": "10 rooms", "value": 11 },
+        { "id": "rooms11", "name": "11 rooms", "value": 12 },
+        { "id": "rooms12", "name": "12 rooms", "value": 13 },
+        { "id": "rooms13", "name": "13 rooms", "value": 14 },
+        { "id": "rooms14", "name": "14 rooms", "value": 15 },
+        { "id": "rooms15", "name": "15 rooms", "value": 16 },
+        { "id": "rooms16", "name": "16 rooms", "value": 17 },
+        { "id": "rooms17", "name": "17 rooms", "value": 18 },
+        { "id": "rooms18", "name": "18 rooms", "value": 19 },
+        { "id": "rooms19", "name": "19 rooms", "value": 20 },
+        { "id": "rooms20", "name": "20 rooms", "value": 21 },
+        { "id": "rooms21", "name": "21 rooms", "value": 22 },
+        { "id": "rooms22", "name": "22 rooms", "value": 23 },
+        { "id": "rooms23", "name": "23 rooms", "value": 24 },
+        { "id": "rooms24", "name": "24 rooms", "value": 25 },
+        { "id": "rooms25", "name": "25 rooms", "value": 26 },
+        { "id": "rooms26", "name": "26 rooms", "value": 27 }
+      ]
+    }
+  ]
+}

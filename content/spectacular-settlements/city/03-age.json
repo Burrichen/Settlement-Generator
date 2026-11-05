@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.age",
+      "name": "Age",
+      "description": "Modifies Population Density. Older cities may be more disorganized; younger ones may have been planned on a grid or a wheel and spokes.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "recent",
+          "name": "Recent",
+          "range": [1, 2],
+          "description": "The city’s final work was completed within the past 10 years. (-2 to population density roll)",
+          "tags": ["ss.city.age.recent"]
+        },
+        {
+          "id": "established",
+          "name": "Established",
+          "range": [3, 4],
+          "description": "The city has been around for at least 10, but up to 100, years. (-1 to population density roll)",
+          "tags": ["ss.city.age.established"]
+        },
+        {
+          "id": "mature",
+          "name": "Mature",
+          "range": [5, 6],
+          "description": "The city has been around at least 100, but up to 300, years. (+0 to population density roll)",
+          "tags": ["ss.city.age.mature"]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [7, 8],
+          "description": "The city has been around for 300 to 1000 years. (+1 to population density roll)",
+          "tags": ["ss.city.age.old"]
+        },
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "range": [9, 10],
+          "description": "The city is older than living, and possibly even recorded, memory. (+2 to population density roll)",
+          "tags": ["ss.city.age.ancient"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.age.recent",
+      "name": "Recent",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.populationDensity",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.city.age.established",
+      "name": "Established",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.city.populationDensity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.age.mature",
+      "name": "Mature"
+    },
+    {
+      "id": "ss.city.age.old",
+      "name": "Old",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.populationDensity",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.city.age.ancient",
+      "name": "Ancient",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.city.populationDensity",
+          "amount": 2
+        }
+      ]
+    }
+  ]
+}

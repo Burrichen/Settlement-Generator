@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.recentHistory",
+      "name": "Recent History",
+      "description": "Extra Intrigue. What has happened to, or in, the capital within the last year. The book's entries have no names; each has a short title, in the book's order.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "thiefOnDisplay",
+          "name": "Thief on Display",
+          "range": 1,
+          "description": "A known thief was found dead, and on display, in the market square. The murderer has not been found.",
+          "tags": ["ss.capital.recentHistory.thiefOnDisplay"]
+        },
+        {
+          "id": "silencedProtests",
+          "name": "Silenced Protests",
+          "range": 2,
+          "description": "Passionate protests against a leadership decision took place recently, but fell silent extremely quickly. Why?",
+          "tags": ["ss.capital.recentHistory.silencedProtests"]
+        },
+        {
+          "id": "oddFashion",
+          "name": "Odd Fashion",
+          "range": 3,
+          "description": "A particularly odd fashion trend has been adopted by the wealthiest citizens of the capital.",
+          "tags": ["ss.capital.recentHistory.oddFashion"]
+        },
+        {
+          "id": "deserters",
+          "name": "Deserters",
+          "range": 4,
+          "description": "A contingent of soldiers from a known enemy (if no known enemies, unknown) country have deserted their commanders and come to the capital, forswearing past allegiances and seeking citizenship. How have they been received? What are they doing now?",
+          "tags": ["ss.capital.recentHistory.deserters"]
+        },
+        {
+          "id": "questionedLegitimacy",
+          "name": "Questioned Legitimacy",
+          "range": 5,
+          "description": "Questions have been asked about the legitimacy of the leadership, as well as their fitness for the role. The detractors are gaining momentum, though no one has yet been able to prove the truth either way, or determine whether there are ulterior motives at play.",
+          "tags": ["ss.capital.recentHistory.questionedLegitimacy"]
+        },
+        {
+          "id": "refugees",
+          "name": "Refugees",
+          "range": 6,
+          "description": "Refugees have traveled a great distance to seek sanctuary in the capital. How has the capital received them? Are the nobility and common folk divided, or united, in their opinion of the situation?",
+          "tags": ["ss.capital.recentHistory.refugees"]
+        },
+        {
+          "id": "undergroundCompetition",
+          "name": "Underground Competition",
+          "range": 7,
+          "description": "Graffiti has been appearing across the capital, advertising some kind of underground competition. The competition is a legal gray area, but the promise of glory is an enticing prize for even some of the most upstanding citizens.",
+          "tags": ["ss.capital.recentHistory.undergroundCompetition"]
+        },
+        {
+          "id": "publicFeud",
+          "name": "Public Feud",
+          "range": 8,
+          "description": "A feud between two of the capital’s nobles, or major figures, came to blows very publicly, leaving each party dissatisfied and, possibly, looking to exact revenge.",
+          "tags": ["ss.capital.recentHistory.publicFeud"]
+        },
+        {
+          "id": "strippedOfTitle",
+          "name": "Stripped of Title",
+          "range": 9,
+          "description": "A well-known, well-liked nobleman was recently unexpectedly stripped of his rank and title. Were the leadership’s grievances justified, or is there more going on than meets the eye?",
+          "tags": ["ss.capital.recentHistory.strippedOfTitle"]
+        },
+        {
+          "id": "diseasedProduce",
+          "name": "Diseased Produce",
+          "range": 10,
+          "description": "A shipment of fresh produce arrived at market from a neighboring city. To all intents and purposes, the contents seemed perfectly fine initially but, as more and more people have fallen ill, it is now clear the crates were infected with a terrible disease.",
+          "tags": ["ss.capital.recentHistory.diseasedProduce"]
+        },
+        {
+          "id": "blockFire",
+          "name": "Block Fire",
+          "range": 11,
+          "description": "A block of buildings caught fire in the district with the lowest district condition, devastating multiple businesses and/or residences.",
+          "tags": ["ss.capital.recentHistory.blockFire"]
+        },
+        {
+          "id": "cellarTunnel",
+          "name": "Cellar Tunnel",
+          "range": 12,
+          "description": "The owner of a bank & exchange (if one is present, a shop if not) has discovered a tunnel entrance down in their cellar that they swear wasn’t there before. Where did it come from?",
+          "tags": ["ss.capital.recentHistory.cellarTunnel"]
+        },
+        {
+          "id": "barBrawl",
+          "name": "Bar Brawl",
+          "range": 13,
+          "description": "The highest quality tavern in the city experienced a particularly nasty bar brawl, and everyone is talking about it. What happened? How did it end?",
+          "tags": ["ss.capital.recentHistory.barBrawl"]
+        },
+        {
+          "id": "privateSecurity",
+          "name": "Private Security",
+          "range": 14,
+          "description": "The district with the most housing recently assembled its own private security force, acting independently from the watch. Why did they deem it necessary? How has local law enforcement and leadership responded?",
+          "tags": ["ss.capital.recentHistory.privateSecurity"]
+        },
+        {
+          "id": "buildingCollapse",
+          "name": "Building Collapse",
+          "range": 15,
+          "description": "A public building, in a key location, has collapsed, and an investigation is underway to determine the cause.",
+          "tags": ["ss.capital.recentHistory.buildingCollapse"]
+        },
+        {
+          "id": "smashyHour",
+          "name": "Smashy Hour",
+          "range": 16,
+          "description": "A local tavernkeep is starting something called ‘Smashy Hour’, a controlled and sanctioned weekly bar-brawl. The event is in partnership with a local furniture maker, who supplies old stock to be used as make-shift weapons. Guards are, so far, not getting involved, so long as the chaos stays contained. The only rule: don’t destroy the tavern.",
+          "tags": ["ss.capital.recentHistory.smashyHour"]
+        },
+        {
+          "id": "chickens",
+          "name": "Chickens",
+          "range": 17,
+          "description": "Someone within the city has been breeding chickens, and numbers are getting out of control. The streets are filled with poultry, and no one knows where they’re coming from, or who started breeding them.",
+          "tags": ["ss.capital.recentHistory.chickens"]
+        },
+        {
+          "id": "missingDelegates",
+          "name": "Missing Delegates",
+          "range": 18,
+          "description": "Leadership delegates were invited to an extremely important-sounding summit, hosted by a foreign power. This was months ago, and the delegates have not been heard from since they left the capital.",
+          "tags": ["ss.capital.recentHistory.missingDelegates"]
+        },
+        {
+          "id": "urbanFarming",
+          "name": "Urban Farming",
+          "range": 19,
+          "description": "Someone in the capital has developed new urban farming practises, which have been slowly catching on.",
+          "tags": ["ss.capital.recentHistory.urbanFarming"]
+        },
+        {
+          "id": "divineAppearance",
+          "name": "Divine Appearance",
+          "range": 20,
+          "description": "A deity has made a physical appearance in the city.",
+          "tags": ["ss.capital.recentHistory.divineAppearance"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.recentHistory.thiefOnDisplay",
+      "name": "Thief on Display"
+    },
+    {
+      "id": "ss.capital.recentHistory.silencedProtests",
+      "name": "Silenced Protests"
+    },
+    {
+      "id": "ss.capital.recentHistory.oddFashion",
+      "name": "Odd Fashion"
+    },
+    {
+      "id": "ss.capital.recentHistory.deserters",
+      "name": "Deserters"
+    },
+    {
+      "id": "ss.capital.recentHistory.questionedLegitimacy",
+      "name": "Questioned Legitimacy"
+    },
+    {
+      "id": "ss.capital.recentHistory.refugees",
+      "name": "Refugees"
+    },
+    {
+      "id": "ss.capital.recentHistory.undergroundCompetition",
+      "name": "Underground Competition"
+    },
+    {
+      "id": "ss.capital.recentHistory.publicFeud",
+      "name": "Public Feud"
+    },
+    {
+      "id": "ss.capital.recentHistory.strippedOfTitle",
+      "name": "Stripped of Title"
+    },
+    {
+      "id": "ss.capital.recentHistory.diseasedProduce",
+      "name": "Diseased Produce"
+    },
+    {
+      "id": "ss.capital.recentHistory.blockFire",
+      "name": "Block Fire"
+    },
+    {
+      "id": "ss.capital.recentHistory.cellarTunnel",
+      "name": "Cellar Tunnel"
+    },
+    {
+      "id": "ss.capital.recentHistory.barBrawl",
+      "name": "Bar Brawl"
+    },
+    {
+      "id": "ss.capital.recentHistory.privateSecurity",
+      "name": "Private Security"
+    },
+    {
+      "id": "ss.capital.recentHistory.buildingCollapse",
+      "name": "Building Collapse"
+    },
+    {
+      "id": "ss.capital.recentHistory.smashyHour",
+      "name": "Smashy Hour"
+    },
+    {
+      "id": "ss.capital.recentHistory.chickens",
+      "name": "Chickens"
+    },
+    {
+      "id": "ss.capital.recentHistory.missingDelegates",
+      "name": "Missing Delegates"
+    },
+    {
+      "id": "ss.capital.recentHistory.urbanFarming",
+      "name": "Urban Farming"
+    },
+    {
+      "id": "ss.capital.recentHistory.divineAppearance",
+      "name": "Divine Appearance"
+    }
+  ]
+}

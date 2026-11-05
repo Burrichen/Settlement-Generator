@@ -2,14 +2,43 @@
   "format_version": 1,
   "description": "Map layout defaults. These are drawing choices, not settlement facts: every value can be overridden manually for a settlement or a single map. See docs/MAPS.md.",
   "inputs": {
-    "size": "table.size",
+    "size": [
+      "table.size",
+      "table.ss.tradingPost.size",
+      "table.ss.village.size",
+      "table.ss.town.size",
+      "table.ss.city.size",
+      "table.ss.capital.size",
+      "table.ss.fortress.fortressType"
+    ],
     "region": "table.genericRegion",
-    "environment": "table.environment",
+    "environment": [
+      "table.environment",
+      "table.ss.tradingPost.environment",
+      "table.ss.village.environment",
+      "table.ss.town.environment",
+      "table.ss.city.environment",
+      "table.ss.capital.environment"
+    ],
     "connections": "table.connections",
-    "origin": "table.origin",
+    "origin": [
+      "table.origin",
+      "table.ss.tradingPost.origin",
+      "table.ss.town.origin",
+      "table.ss.city.origin",
+      "table.ss.capital.origin"
+    ],
     "purpose": "table.purpose",
-    "age": "table.age"
+    "age": [
+      "table.age",
+      "table.ss.tradingPost.age",
+      "table.ss.village.age",
+      "table.ss.town.age",
+      "table.ss.city.age",
+      "table.ss.capital.age"
+    ]
   },
+  "district_objects": ["object.ss.city.district", "object.ss.capital.district"],
   "base": {
     "building_count": 30,
     "radius_m": 110,
@@ -27,6 +56,122 @@
       "when": { "has_tag": "size.tradingPost" },
       "layout": "single",
       "set": { "building_count": 8, "radius_m": 55 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.size.verySmall" },
+      "layout": "single",
+      "set": { "building_count": 15, "radius_m": 80 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.size.small" },
+      "layout": "single",
+      "set": { "building_count": 30, "radius_m": 110 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.size.medium" },
+      "layout": "single",
+      "set": { "building_count": 50, "radius_m": 140, "square": true }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.size.large" },
+      "layout": "single",
+      "set": { "building_count": 70, "radius_m": 160, "square": true }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.size.veryLarge" },
+      "layout": "single",
+      "set": { "building_count": 90, "radius_m": 175, "square": true }
+    },
+    {
+      "when": { "has_tag": "ss.village.size.verySmall" },
+      "layout": "single",
+      "set": { "building_count": 15, "radius_m": 80, "fields": true }
+    },
+    {
+      "when": { "has_tag": "ss.village.size.small" },
+      "layout": "single",
+      "set": { "building_count": 24, "radius_m": 100, "fields": true }
+    },
+    {
+      "when": { "has_tag": "ss.village.size.medium" },
+      "layout": "single",
+      "set": { "building_count": 45, "radius_m": 135, "fields": true }
+    },
+    {
+      "when": { "has_tag": "ss.village.size.large" },
+      "layout": "single",
+      "set": { "building_count": 70, "radius_m": 160, "fields": true, "square": true }
+    },
+    {
+      "when": { "has_tag": "ss.village.size.veryLarge" },
+      "layout": "single",
+      "set": { "building_count": 95, "radius_m": 180, "fields": true, "square": true }
+    },
+    {
+      "when": { "has_tag": "ss.city.size.verySmall" },
+      "layout": "per_district",
+      "set": { "building_count": 100, "radius_m": 170, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.city.size.small" },
+      "layout": "per_district",
+      "set": { "building_count": 120, "radius_m": 185, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.city.size.medium" },
+      "layout": "per_district",
+      "set": { "building_count": 140, "radius_m": 195, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.city.size.large" },
+      "layout": "per_district",
+      "set": { "building_count": 160, "radius_m": 205, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.city.size.veryLarge" },
+      "layout": "per_district",
+      "set": { "building_count": 180, "radius_m": 215, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.size.verySmall" },
+      "layout": "per_district",
+      "set": { "building_count": 120, "radius_m": 185, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.size.small" },
+      "layout": "per_district",
+      "set": { "building_count": 140, "radius_m": 195, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.size.medium" },
+      "layout": "per_district",
+      "set": { "building_count": 160, "radius_m": 205, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.size.large" },
+      "layout": "per_district",
+      "set": { "building_count": 180, "radius_m": 215, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.size.veryLarge" },
+      "layout": "per_district",
+      "set": { "building_count": 200, "radius_m": 225, "square": true, "trees": 0.1 }
+    },
+    {
+      "when": {
+        "any": [
+          { "has_tag": "ss.town.size.verySmall" },
+          { "has_tag": "ss.town.size.small" },
+          { "has_tag": "ss.town.size.medium" },
+          { "has_tag": "ss.town.size.large" },
+          { "has_tag": "ss.town.size.veryLarge" }
+        ]
+      },
+      "disabled": "Town maps are turned off. A Spectacular Settlements town stands for hundreds to 2,000 standing structures, but the built-in map engine draws at most 600 buildings on one map, and only Cities and Capitals are mapped district by district. Any town map would leave out most of the town, so none is drawn."
+    },
+    {
+      "when": { "has_tag": "ss.settlementType.fortress" },
+      "disabled": "Fortress maps are turned off. The built-in map engine draws a settlement: streets, lots and buildings around a centre. The book maps a fortress as a floor plan instead (the keep floor by floor, room by room, then the curtain walls, towers, gatehouse, moat and bailey outbuildings), which that engine cannot draw, so none is drawn. The book’s Mapping section explains how to draw one by hand from the rolled sizes."
     },
     {
       "when": { "has_tag": "size.village" },
@@ -104,6 +249,176 @@
       "set": { "walls": true }
     },
 
-    { "when": { "has_tag": "purpose.agriculture" }, "set": { "fields": true } }
+    { "when": { "has_tag": "purpose.agriculture" }, "set": { "fields": true } },
+
+    { "when": { "has_tag": "ss.tradingPost.visitorTraffic.vacant" }, "set": { "approaches": 1 } },
+    { "when": { "has_tag": "ss.tradingPost.visitorTraffic.groups" }, "set": { "approaches": 2 } },
+    { "when": { "has_tag": "ss.tradingPost.visitorTraffic.crowds" }, "set": { "approaches": 2 } },
+    { "when": { "has_tag": "ss.tradingPost.visitorTraffic.droves" }, "set": { "approaches": 3 } },
+    { "when": { "has_tag": "ss.tradingPost.visitorTraffic.masses" }, "set": { "approaches": 4 } },
+
+    { "when": { "has_tag": "ss.tradingPost.environment.coastal" }, "set": { "water": "coast" } },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.forest" },
+      "set": { "ground": "woodland", "trees": 0.75 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.mountains" },
+      "set": { "ground": "rock", "trees": 0.15 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.plains" },
+      "set": { "ground": "grass", "trees": 0.1 }
+    },
+    { "when": { "has_tag": "ss.tradingPost.environment.river" }, "set": { "water": "river" } },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.swamp" },
+      "set": { "ground": "marsh", "water": "lake" }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.underground" },
+      "set": { "ground": "cavern", "water": "none", "trees": 0.0, "fields": false }
+    },
+    { "when": { "has_tag": "ss.tradingPost.environment.valley" }, "set": { "ground": "hills" } },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.tundra" },
+      "set": { "ground": "snow", "trees": 0.05 }
+    },
+    {
+      "when": { "has_tag": "ss.tradingPost.environment.desert" },
+      "set": { "ground": "sand", "trees": 0.0 }
+    },
+
+    { "when": { "has_tag": "ss.tradingPost.age.recent" }, "set": { "irregularity": 0.25 } },
+    { "when": { "has_tag": "ss.tradingPost.age.established" }, "set": { "irregularity": 0.45 } },
+    { "when": { "has_tag": "ss.tradingPost.age.mature" }, "set": { "irregularity": 0.55 } },
+    { "when": { "has_tag": "ss.tradingPost.age.old" }, "set": { "irregularity": 0.6 } },
+    { "when": { "has_tag": "ss.tradingPost.age.ancient" }, "set": { "irregularity": 0.75 } },
+    { "when": { "has_tag": "ss.tradingPost.age.unknown" }, "set": { "irregularity": 0.65 } },
+
+    { "when": { "has_tag": "ss.tradingPost.origin.accidental" }, "set": { "irregularity": 0.7 } },
+    {
+      "when": { "has_tag": "ss.tradingPost.origin.businessVenture" },
+      "set": { "irregularity": 0.25 }
+    },
+    { "when": { "has_tag": "ss.tradingPost.origin.crossroads" }, "set": { "approaches": 4 } },
+    {
+      "when": { "has_tag": "ss.tradingPost.origin.militaryOutpost" },
+      "set": { "walls": true, "irregularity": 0.2 }
+    },
+
+    { "when": { "has_tag": "ss.village.environment.coastal" }, "set": { "water": "coast" } },
+    {
+      "when": { "has_tag": "ss.village.environment.forest" },
+      "set": { "ground": "woodland", "trees": 0.75 }
+    },
+    {
+      "when": { "has_tag": "ss.village.environment.mountains" },
+      "set": { "ground": "rock", "trees": 0.15 }
+    },
+    {
+      "when": { "has_tag": "ss.village.environment.plains" },
+      "set": { "ground": "grass", "trees": 0.1 }
+    },
+    { "when": { "has_tag": "ss.village.environment.river" }, "set": { "water": "river" } },
+    {
+      "when": { "has_tag": "ss.village.environment.swamp" },
+      "set": { "ground": "marsh", "water": "lake" }
+    },
+    {
+      "when": { "has_tag": "ss.village.environment.underground" },
+      "set": { "ground": "cavern", "water": "none", "trees": 0.0, "fields": false }
+    },
+    { "when": { "has_tag": "ss.village.environment.valley" }, "set": { "ground": "hills" } },
+    {
+      "when": { "has_tag": "ss.village.environment.tundra" },
+      "set": { "ground": "snow", "trees": 0.05 }
+    },
+    {
+      "when": { "has_tag": "ss.village.environment.desert" },
+      "set": { "ground": "sand", "trees": 0.0 }
+    },
+
+    { "when": { "has_tag": "ss.village.age.recent" }, "set": { "irregularity": 0.25 } },
+    { "when": { "has_tag": "ss.village.age.established" }, "set": { "irregularity": 0.4 } },
+    { "when": { "has_tag": "ss.village.age.mature" }, "set": { "irregularity": 0.5 } },
+    { "when": { "has_tag": "ss.village.age.old" }, "set": { "irregularity": 0.6 } },
+    { "when": { "has_tag": "ss.village.age.ancient" }, "set": { "irregularity": 0.75 } },
+
+    { "when": { "has_tag": "ss.city.environment.coastal" }, "set": { "water": "coast" } },
+    {
+      "when": { "has_tag": "ss.city.environment.forest" },
+      "set": { "ground": "woodland", "trees": 0.5 }
+    },
+    {
+      "when": { "has_tag": "ss.city.environment.mountains" },
+      "set": { "ground": "rock", "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.city.environment.plains" },
+      "set": { "ground": "grass", "trees": 0.05 }
+    },
+    { "when": { "has_tag": "ss.city.environment.river" }, "set": { "water": "river" } },
+    {
+      "when": { "has_tag": "ss.city.environment.swamp" },
+      "set": { "ground": "marsh", "water": "lake" }
+    },
+    {
+      "when": { "has_tag": "ss.city.environment.underground" },
+      "set": { "ground": "cavern", "water": "none", "trees": 0.0, "fields": false }
+    },
+    { "when": { "has_tag": "ss.city.environment.valley" }, "set": { "ground": "hills" } },
+    {
+      "when": { "has_tag": "ss.city.environment.tundra" },
+      "set": { "ground": "snow", "trees": 0.05 }
+    },
+    {
+      "when": { "has_tag": "ss.city.environment.desert" },
+      "set": { "ground": "sand", "trees": 0.0 }
+    },
+
+    { "when": { "has_tag": "ss.city.age.recent" }, "set": { "irregularity": 0.25 } },
+    { "when": { "has_tag": "ss.city.age.established" }, "set": { "irregularity": 0.4 } },
+    { "when": { "has_tag": "ss.city.age.mature" }, "set": { "irregularity": 0.5 } },
+    { "when": { "has_tag": "ss.city.age.old" }, "set": { "irregularity": 0.6 } },
+    { "when": { "has_tag": "ss.city.age.ancient" }, "set": { "irregularity": 0.75 } },
+
+    { "when": { "has_tag": "ss.capital.environment.coastal" }, "set": { "water": "coast" } },
+    {
+      "when": { "has_tag": "ss.capital.environment.forest" },
+      "set": { "ground": "woodland", "trees": 0.5 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.environment.mountains" },
+      "set": { "ground": "rock", "trees": 0.1 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.environment.plains" },
+      "set": { "ground": "grass", "trees": 0.05 }
+    },
+    { "when": { "has_tag": "ss.capital.environment.river" }, "set": { "water": "river" } },
+    {
+      "when": { "has_tag": "ss.capital.environment.swamp" },
+      "set": { "ground": "marsh", "water": "lake" }
+    },
+    {
+      "when": { "has_tag": "ss.capital.environment.underground" },
+      "set": { "ground": "cavern", "water": "none", "trees": 0.0, "fields": false }
+    },
+    { "when": { "has_tag": "ss.capital.environment.valley" }, "set": { "ground": "hills" } },
+    {
+      "when": { "has_tag": "ss.capital.environment.tundra" },
+      "set": { "ground": "snow", "trees": 0.05 }
+    },
+    {
+      "when": { "has_tag": "ss.capital.environment.desert" },
+      "set": { "ground": "sand", "trees": 0.0 }
+    },
+
+    { "when": { "has_tag": "ss.capital.age.recent" }, "set": { "irregularity": 0.25 } },
+    { "when": { "has_tag": "ss.capital.age.established" }, "set": { "irregularity": 0.4 } },
+    { "when": { "has_tag": "ss.capital.age.mature" }, "set": { "irregularity": 0.5 } },
+    { "when": { "has_tag": "ss.capital.age.old" }, "set": { "irregularity": 0.6 } },
+    { "when": { "has_tag": "ss.capital.age.ancient" }, "set": { "irregularity": 0.75 } }
   ]
 }

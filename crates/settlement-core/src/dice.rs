@@ -24,6 +24,8 @@ pub const MAX_MODIFIER: i32 = 1000;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Die {
+    /// A coin, as Spectacular Settlements suggests: one side is 1, the other 2.
+    D2,
     D4,
     D6,
     D8,
@@ -35,7 +37,8 @@ pub enum Die {
 }
 
 impl Die {
-    pub const ALL: [Die; 7] = [
+    pub const ALL: [Die; 8] = [
+        Die::D2,
         Die::D4,
         Die::D6,
         Die::D8,
@@ -47,6 +50,7 @@ impl Die {
 
     pub fn sides(self) -> u32 {
         match self {
+            Die::D2 => 2,
             Die::D4 => 4,
             Die::D6 => 6,
             Die::D8 => 8,
@@ -93,7 +97,7 @@ pub enum DiceParseError {
     Empty,
     #[error("`{token}` is not a valid dice term or number")]
     InvalidToken { token: String },
-    #[error("d{sides} is not a supported die (use d4, d6, d8, d10, d12, d20 or d100)")]
+    #[error("d{sides} is not a supported die (use d2, d4, d6, d8, d10, d12, d20 or d100)")]
     UnsupportedDie { sides: u32 },
     #[error("dice count must be at least 1")]
     ZeroCount,

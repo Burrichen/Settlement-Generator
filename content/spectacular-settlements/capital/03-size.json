@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.size",
+      "name": "Size",
+      "description": "The physical space the capital occupies and the capacity of its structures, not how many people actually live there. Modifies Number of Districts; sets the Outside the Capital and additional location rolls.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "verySmall",
+          "name": "Very Small",
+          "range": [1, 2],
+          "description": "Structures in the capital are likely able to support up to 20,000 people. (-4 to number of districts roll)",
+          "tags": ["ss.capital.size.verySmall"]
+        },
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [3, 6],
+          "description": "Structures in the capital are able to support around 35,000 people. (-1 to number of districts roll)",
+          "tags": ["ss.capital.size.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "Structures in the capital are able to support around 50,000 people. (+0 to number of districts roll)",
+          "tags": ["ss.capital.size.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 18],
+          "description": "Structures in the capital are able to support around 100,000 people. (+2 to number of districts roll)",
+          "tags": ["ss.capital.size.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": [19, 20],
+          "description": "Structures in the capital are able to support over 150,000 people or more. (+6 to number of districts roll)",
+          "tags": ["ss.capital.size.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.size.verySmall",
+      "name": "Very Small",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.numberOfDistricts",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.size.small",
+      "name": "Small",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.capital.numberOfDistricts",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.size.medium",
+      "name": "Medium"
+    },
+    {
+      "id": "ss.capital.size.large",
+      "name": "Large",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.numberOfDistricts",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.capital.size.veryLarge",
+      "name": "Very Large",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.capital.numberOfDistricts",
+          "amount": 6
+        }
+      ]
+    }
+  ]
+}

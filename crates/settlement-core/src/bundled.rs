@@ -3,6 +3,8 @@
 //! given version. Each file is a partial [`ContentSet`]; they are merged in
 //! file-name order.
 
+use std::sync::{Arc, OnceLock};
+
 use thiserror::Error;
 
 use crate::content::ContentSet;
@@ -40,7 +42,19 @@ pub fn bundled_file_names() -> impl Iterator<Item = &'static str> {
     BUNDLED_FILES.iter().map(|(name, _)| *name)
 }
 
-/// The default content shipped with this application version.
+/// The bundled content, parsed once per process and shared. It is compiled
+/// into the binary, so it never changes while the program runs. Parsing it
+/// (tens of megabytes of JSON) on every request was a large part of the cost
+/// of opening screens, starting a generation and opening a building.
+pub fn shared_bundled_content() -> Result<Arc<ContentSet>, String> {
+    static SHARED: OnceLock<Result<Arc<ContentSet>, String>> = OnceLock::new();
+    SHARED
+        .get_or_init(|| bundled_content().map(Arc::new).map_err(|e| e.to_string()))
+        .clone()
+}
+
+/// The default content shipped with this application version, freshly
+/// parsed. Prefer [`shared_bundled_content`], which parses it only once.
 pub fn bundled_content() -> Result<ContentSet, BundledContentError> {
     let mut merged = ContentSet::default();
     let mut sequence_file: Option<&'static str> = None;

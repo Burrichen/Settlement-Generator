@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.entryDefenses",
+      "name": "Entry Defenses",
+      "description": "The keep's main entry. Portcullis: a heavy grate raised and lowered as needed. Drawbridge: raised and lowered; a gap before a raised entry, or a pit before a ground-level one.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "simpleDoor",
+          "name": "Simple Heavy Door",
+          "range": 1,
+          "description": "Simple heavy door.",
+          "tags": ["ss.fortress.entryDefenses.simpleDoor"]
+        },
+        {
+          "id": "reinforcedDoor",
+          "name": "Reinforced Heavy Door",
+          "range": [2, 10],
+          "description": "Reinforced heavy door.",
+          "tags": ["ss.fortress.entryDefenses.reinforcedDoor"]
+        },
+        {
+          "id": "portcullis",
+          "name": "Portcullis",
+          "range": [11, 14],
+          "description": "Portcullis.",
+          "tags": ["ss.fortress.entryDefenses.portcullis"]
+        },
+        {
+          "id": "drawbridge",
+          "name": "Drawbridge",
+          "range": [15, 18],
+          "description": "Drawbridge.",
+          "tags": ["ss.fortress.entryDefenses.drawbridge"]
+        },
+        {
+          "id": "portcullisAndDrawbridge",
+          "name": "Portcullis and Drawbridge",
+          "range": [19, 20],
+          "description": "Portcullis and drawbridge.",
+          "tags": ["ss.fortress.entryDefenses.portcullisAndDrawbridge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.entryDefenses.simpleDoor", "name": "Simple Heavy Door" },
+    { "id": "ss.fortress.entryDefenses.reinforcedDoor", "name": "Reinforced Heavy Door" },
+    { "id": "ss.fortress.entryDefenses.portcullis", "name": "Portcullis" },
+    { "id": "ss.fortress.entryDefenses.drawbridge", "name": "Drawbridge" },
+    {
+      "id": "ss.fortress.entryDefenses.portcullisAndDrawbridge",
+      "name": "Portcullis and Drawbridge"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.geographicAdvantages",
+      "name": "Geographic Advantages",
+      "description": "The natural advantage prominent where the castle is built (not man-made), rolled on a d4 within its environment (each environment is a variant; the base is Coastal). A Bizarre Location still uses the general environment (a Nested Environment, that one).",
+      "dice": "1d4",
+      "variants": [
+        {
+          "id": "forest",
+          "name": "Forest",
+          "when": { "has_tag": "ss.fortress.environment.forest" },
+          "ranges": [
+            { "result": "none", "range": 1 },
+            { "result": "hill", "range": 2 },
+            { "result": "cliff", "range": 3 },
+            { "result": "congested", "range": 4 }
+          ]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "when": { "has_tag": "ss.fortress.environment.mountains" },
+          "ranges": [
+            { "result": "narrow", "range": 1 },
+            { "result": "treacherous", "range": 2 },
+            { "result": "cliff", "range": 3 },
+            { "result": "carved", "range": 4 }
+          ]
+        },
+        {
+          "id": "plains",
+          "name": "Plains",
+          "when": { "has_tag": "ss.fortress.environment.plains" },
+          "ranges": [
+            { "result": "none", "range": [1, 2] },
+            { "result": "hill", "range": 3 },
+            { "result": "narrow", "range": 4 }
+          ]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "when": { "has_tag": "ss.fortress.environment.river" },
+          "ranges": [
+            { "result": "congested", "range": 1 },
+            { "result": "narrow", "range": 2 },
+            { "result": "treacherous", "range": 3 },
+            { "result": "water", "range": 4 }
+          ]
+        },
+        {
+          "id": "swamp",
+          "name": "Swamp",
+          "when": { "has_tag": "ss.fortress.environment.swamp" },
+          "ranges": [
+            { "result": "none", "range": [1, 2] },
+            { "result": "treacherous", "range": 3 },
+            { "result": "congested", "range": 4 }
+          ]
+        },
+        {
+          "id": "underground",
+          "name": "Underground",
+          "when": { "has_tag": "ss.fortress.environment.underground" },
+          "ranges": [
+            { "result": "none", "range": 1 },
+            { "result": "narrow", "range": 2 },
+            { "result": "congested", "range": 3 },
+            { "result": "carved", "range": 4 }
+          ]
+        },
+        {
+          "id": "valley",
+          "name": "Valley",
+          "when": { "has_tag": "ss.fortress.environment.valley" },
+          "ranges": [
+            { "result": "none", "range": [1, 2] },
+            { "result": "narrow", "range": 3 },
+            { "result": "cliff", "range": 4 }
+          ]
+        },
+        {
+          "id": "tundra",
+          "name": "Tundra",
+          "when": { "has_tag": "ss.fortress.environment.tundra" },
+          "ranges": [
+            { "result": "treacherous", "range": 1 },
+            { "result": "narrow", "range": 2 },
+            { "result": "cliff", "range": 3 },
+            { "result": "carved", "range": 4 }
+          ]
+        },
+        {
+          "id": "desert",
+          "name": "Desert",
+          "when": { "has_tag": "ss.fortress.environment.desert" },
+          "ranges": [
+            { "result": "narrow", "range": 1 },
+            { "result": "treacherous", "range": 2 },
+            { "result": "hill", "range": 3 },
+            { "result": "cliff", "range": 4 }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": 1,
+          "description": "There were no natural advantages that could be exploited.",
+          "tags": ["ss.fortress.geographicAdvantages.none"]
+        },
+        {
+          "id": "hill",
+          "name": "Hill",
+          "range": 2,
+          "description": "The fortress is built on a naturally occuring hill.",
+          "tags": ["ss.fortress.geographicAdvantages.hill"]
+        },
+        {
+          "id": "cliff",
+          "name": "Cliff",
+          "range": 3,
+          "description": "The castle has been built at the top of a tall cliff.",
+          "tags": ["ss.fortress.geographicAdvantages.cliff"]
+        },
+        {
+          "id": "water",
+          "name": "Surrounded by Natural Water",
+          "range": 4,
+          "description": "The water in the environment either partially, or completely, surrounds the site the castle is built on.",
+          "tags": ["ss.fortress.geographicAdvantages.water"]
+        },
+        {
+          "id": "carved",
+          "name": "Carved",
+          "description": "The fortress has been at least partially carved into its surrounding environment.",
+          "tags": ["ss.fortress.geographicAdvantages.carved"]
+        },
+        {
+          "id": "congested",
+          "name": "Congested Approach(es)",
+          "description": "Natural obstacles are spaced close together so as to make quick and direct movement difficult.",
+          "tags": ["ss.fortress.geographicAdvantages.congested"]
+        },
+        {
+          "id": "narrow",
+          "name": "Narrow Approach(es)",
+          "description": "The castle is built in a place that takes advantage of formations, such as tight canyons and ravines.",
+          "tags": ["ss.fortress.geographicAdvantages.narrow"]
+        },
+        {
+          "id": "treacherous",
+          "name": "Treacherous Approach(es)",
+          "description": "The ground and environment may be difficult, uncomfortable, painful, or even deadly to pass through, such as a murky bog, burning sands or loose rocks.",
+          "tags": ["ss.fortress.geographicAdvantages.treacherous"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.geographicAdvantages.none", "name": "None" },
+    { "id": "ss.fortress.geographicAdvantages.hill", "name": "Hill" },
+    { "id": "ss.fortress.geographicAdvantages.cliff", "name": "Cliff" },
+    { "id": "ss.fortress.geographicAdvantages.water", "name": "Surrounded by Natural Water" },
+    { "id": "ss.fortress.geographicAdvantages.carved", "name": "Carved" },
+    { "id": "ss.fortress.geographicAdvantages.congested", "name": "Congested Approach(es)" },
+    { "id": "ss.fortress.geographicAdvantages.narrow", "name": "Narrow Approach(es)" },
+    { "id": "ss.fortress.geographicAdvantages.treacherous", "name": "Treacherous Approach(es)" }
+  ]
+}

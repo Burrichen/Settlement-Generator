@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.outsideTheCity",
+      "name": "Outside the City",
+      "description": "The prominent locations outside the city proper (Very Small 5, Small 4, Medium 3, Large 2, Very Large 1 rolls). A Production priority's first roll is a d10 rerolling 1-4: its d6 variant, the same odds.",
+      "dice": "1d20",
+      "variants": [
+        {
+          "id": "productionFirstRoll",
+          "name": "Production priority, first roll (d10, reroll 1-4)",
+          "when": {
+            "has_tag": "ss.city.outsideTheCity.productionFirstRoll"
+          },
+          "dice": "1d6",
+          "ranges": [
+            {
+              "result": "agriculture",
+              "range": [1, 2]
+            },
+            {
+              "result": "livestock",
+              "range": [3, 4]
+            },
+            {
+              "result": "resourceHarvesting",
+              "range": [5, 6]
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 4],
+          "description": "If you have any remaining rolls to make on this table, proceed with them.",
+          "tags": ["ss.city.outsideTheCity.none"]
+        },
+        {
+          "id": "agriculture",
+          "name": "Farming [Agriculture]",
+          "range": [5, 6],
+          "description": "A group of farms, providing food for the city, are found on the nearest hospitable land under its control.",
+          "tags": ["ss.city.outsideTheCity.agriculture"]
+        },
+        {
+          "id": "livestock",
+          "name": "Farming [Livestock]",
+          "range": [7, 8],
+          "description": "A group of farms, providing livestock for the city, are found on the nearest hospitable land under its control.",
+          "tags": ["ss.city.outsideTheCity.livestock"]
+        },
+        {
+          "id": "resourceHarvesting",
+          "name": "Resource Harvesting",
+          "range": [9, 10],
+          "description": "Depending on the landscape and available resources (trees, minerals, ore, stone, etc.), a logging camp, mine, or quarry, belonging to the city, has been built nearby to harvest them, which it then uses or sells.",
+          "tags": ["ss.city.outsideTheCity.resourceHarvesting"]
+        },
+        {
+          "id": "barrows",
+          "name": "Barrows",
+          "range": [11, 12],
+          "description": "An area devoted to burial sites.",
+          "tags": ["ss.city.outsideTheCity.barrows"]
+        },
+        {
+          "id": "caravanCommunity",
+          "name": "Caravan Community",
+          "range": 13,
+          "description": "A nomadic group of people have taken to living on the surrounding land nearby. Does the city’s leadership have an issue with this? What about its residents?",
+          "tags": ["ss.city.outsideTheCity.caravanCommunity"]
+        },
+        {
+          "id": "eventGrounds",
+          "name": "Event Grounds",
+          "range": 14,
+          "description": "Tended grounds for games, duels, ceremonies, or other events.",
+          "tags": ["ss.city.outsideTheCity.eventGrounds"]
+        },
+        {
+          "id": "familyEstate",
+          "name": "Family Estate",
+          "range": 15,
+          "description": "A wealthy family’s large estate is situated in the neighboring countryside.",
+          "tags": ["ss.city.outsideTheCity.familyEstate"]
+        },
+        {
+          "id": "hermitsCottage",
+          "name": "Hermit’s Cottage",
+          "range": 16,
+          "description": "A hermit lives near the city limits, beneath the notice of most of the inhabitants. They keep to themselves, but who are they? What do they gain by their close proximity?",
+          "tags": ["ss.city.outsideTheCity.hermitsCottage"]
+        },
+        {
+          "id": "makeshiftSettlement",
+          "name": "Makeshift Settlement",
+          "range": [17, 18],
+          "description": "A large mass of hovels, lean-tos, tents, and other improvised shelters have been built in the shadow of the city’s walls. Why? Do the leaders and residents care?",
+          "tags": ["ss.city.outsideTheCity.makeshiftSettlement"]
+        },
+        {
+          "id": "medicalCamp",
+          "name": "Medical Camp",
+          "range": 19,
+          "description": "A set of makeshift or, depending on the nature of what is being treated, permanent structures have been erected to tend to, or even quarantine, the sick or injured.",
+          "tags": ["ss.city.outsideTheCity.medicalCamp"]
+        },
+        {
+          "id": "prison",
+          "name": "Prison",
+          "range": 20,
+          "description": "Some sort of structure out here has been designated for holding prisoners or captives (for whatever reason) either temporarily or, perhaps, much longer term.",
+          "tags": ["ss.city.outsideTheCity.prison"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.outsideTheCity.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.city.outsideTheCity.agriculture",
+      "name": "Farming [Agriculture]"
+    },
+    {
+      "id": "ss.city.outsideTheCity.livestock",
+      "name": "Farming [Livestock]"
+    },
+    {
+      "id": "ss.city.outsideTheCity.resourceHarvesting",
+      "name": "Resource Harvesting"
+    },
+    {
+      "id": "ss.city.outsideTheCity.barrows",
+      "name": "Barrows"
+    },
+    {
+      "id": "ss.city.outsideTheCity.caravanCommunity",
+      "name": "Caravan Community"
+    },
+    {
+      "id": "ss.city.outsideTheCity.eventGrounds",
+      "name": "Event Grounds"
+    },
+    {
+      "id": "ss.city.outsideTheCity.familyEstate",
+      "name": "Family Estate"
+    },
+    {
+      "id": "ss.city.outsideTheCity.hermitsCottage",
+      "name": "Hermit’s Cottage"
+    },
+    {
+      "id": "ss.city.outsideTheCity.makeshiftSettlement",
+      "name": "Makeshift Settlement"
+    },
+    {
+      "id": "ss.city.outsideTheCity.medicalCamp",
+      "name": "Medical Camp"
+    },
+    {
+      "id": "ss.city.outsideTheCity.prison",
+      "name": "Prison"
+    },
+    {
+      "id": "ss.city.outsideTheCity.productionFirstRoll",
+      "name": "Production priority's first Outside the City roll"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.prioritySuccess",
+      "name": "Priority Success",
+      "description": "How successful the leadership has been in pursuing its priority.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "failing",
+          "name": "Failing",
+          "range": 1,
+          "description": "The leadership has been unsuccessful in achieving anything meaningful in relation to their priority. Every success that furthers the priority is not the doing of the leadership, and likely came about in spite of the leadership’s actions.",
+          "tags": ["ss.capital.prioritySuccess.failing"]
+        },
+        {
+          "id": "mediocre",
+          "name": "Mediocre",
+          "range": [2, 4],
+          "description": "The leadership has made small steps in realizing its priority, achieving, perhaps, a single milestone.",
+          "tags": ["ss.capital.prioritySuccess.mediocre"]
+        },
+        {
+          "id": "successful",
+          "name": "Successful",
+          "range": [5, 14],
+          "description": "The leadership has been successful at pursuing its priority, achieving several of its overall goals.",
+          "tags": ["ss.capital.prioritySuccess.successful"]
+        },
+        {
+          "id": "verySuccessful",
+          "name": "Very Successful",
+          "range": [15, 19],
+          "description": "The leadership has made great strides at achieving its initial vision, and looks like their success will continue.",
+          "tags": ["ss.capital.prioritySuccess.verySuccessful"]
+        },
+        {
+          "id": "incrediblySuccessful",
+          "name": "Incredibly Successful",
+          "range": 20,
+          "description": "The leadership has gone above and beyond in pursuit of its priority, achieving more than it ever thought possible.",
+          "tags": ["ss.capital.prioritySuccess.incrediblySuccessful"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.prioritySuccess.failing",
+      "name": "Failing"
+    },
+    {
+      "id": "ss.capital.prioritySuccess.mediocre",
+      "name": "Mediocre"
+    },
+    {
+      "id": "ss.capital.prioritySuccess.successful",
+      "name": "Successful"
+    },
+    {
+      "id": "ss.capital.prioritySuccess.verySuccessful",
+      "name": "Very Successful"
+    },
+    {
+      "id": "ss.capital.prioritySuccess.incrediblySuccessful",
+      "name": "Incredibly Successful"
+    }
+  ]
+}

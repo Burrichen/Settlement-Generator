@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.outbuildingSize",
+      "name": "Outbuilding Size",
+      "description": "Rolled for each bailey outbuilding (castle BSM + 1). Purposes: Servant's Quarters (min. 3x5 squares; needed here if the keep has none), Kitchens (min. 3x5), Bake House, Chapel/Priest's Home, Stables (bottom floor or separate), Storage, Forge. Optionally pool the area and build freely.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [1, 6],
+          "description": "6x6 squares (36 squares).",
+          "tags": ["ss.fortress.outbuildingSize.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "8x8 squares (64 squares).",
+          "tags": ["ss.fortress.outbuildingSize.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 19],
+          "description": "10x10 squares (100 squares).",
+          "tags": ["ss.fortress.outbuildingSize.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": 20,
+          "description": "12x12 squares (144 squares).",
+          "tags": ["ss.fortress.outbuildingSize.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.outbuildingSize.small", "name": "Small" },
+    { "id": "ss.fortress.outbuildingSize.medium", "name": "Medium" },
+    { "id": "ss.fortress.outbuildingSize.large", "name": "Large" },
+    { "id": "ss.fortress.outbuildingSize.veryLarge", "name": "Very Large" }
+  ]
+}

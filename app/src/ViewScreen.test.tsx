@@ -210,6 +210,20 @@ describe("list", () => {
     expect(await screen.findByText("Ordon of Coldmere")).toBeTruthy();
   });
 
+  it("says why a settlement cannot be opened instead of loading forever", async () => {
+    const user = await openView();
+    api.get.mockRejectedValueOnce("stored settlement `c` is not valid");
+    await user.click(screen.getByText("Coldmere"));
+    expect((await screen.findByRole("alert")).textContent).toContain("is not valid");
+    // Not the previous settlement under the error.
+    expect(screen.queryByText("Ordon of Ashford")).toBeNull();
+    expect(screen.queryByText("Loading…")).toBeNull();
+    // Another settlement still opens, and the error goes.
+    await user.click(screen.getByText("Brightwater"));
+    expect(await screen.findByText("Ordon of Brightwater")).toBeTruthy();
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
   it("shows an empty state when nothing is saved", async () => {
     items = [];
     const user = userEvent.setup();

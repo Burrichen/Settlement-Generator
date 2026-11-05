@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.nightActivity",
+      "name": "Night Activity",
+      "description": "Modified by Population Density and Visitor Traffic. Even when most are open, some shopkeepers keep regular hours.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "dark",
+          "name": "Dark",
+          "range": 1,
+          "description": "By the time the sun goes down, the streets are nearly empty and the city closes up. All is quiet and peaceful. If the capital has a gate, it is closed and barred. Guards may, or may not, allow night travelers inside.",
+          "tags": ["ss.capital.nightActivity.dark"]
+        },
+        {
+          "id": "quiet",
+          "name": "Quiet",
+          "range": [2, 3],
+          "description": "Everything is closed except for inns and taverns, which remain open until around midnight. Late guests would have to wake an innkeeper to get a room. If the capital has a gate, it is closed and barred. Guards will usually let visitors in, but will discourage wandering.",
+          "tags": ["ss.capital.nightActivity.quiet"]
+        },
+        {
+          "id": "slow",
+          "name": "Slow",
+          "range": [4, 9],
+          "description": "Almost everything is closed except for taverns, which may be open until early morning, and inns, which stay open perpetually. If the capital has a gate, it is closed, but guards will generally be ready to open it, as needed.",
+          "tags": ["ss.capital.nightActivity.slow"]
+        },
+        {
+          "id": "active",
+          "name": "Active",
+          "range": [10, 14],
+          "description": "Inns and taverns remain open perpetually. Some shops and services may be open, catering to late travelers or night owls. A fair amount of establishments may still be closed. If the capital has a gate, it is kept open, but guarded, ready to be closed, if needed.",
+          "tags": ["ss.capital.nightActivity.active"]
+        },
+        {
+          "id": "lively",
+          "name": "Lively",
+          "range": [15, 18],
+          "description": "There is little difference between day and night traffic. There are always people on the streets, and it may seem like no one ever sleeps. Most shops and services remain open constantly. If the capital has a gate, it remains open and is only closed under the most dire of circumstances.",
+          "tags": ["ss.capital.nightActivity.lively"]
+        },
+        {
+          "id": "raucous",
+          "name": "Raucous",
+          "range": [19, 20],
+          "description": "When the day ends, the capital truly comes to life. Inns and taverns have customers coming and going at all hours. Parties, and other commotion, can often be heard. One might expect things to close down after dark but, in the capital, there are locations that only open in the evenings. There is likely a sort of ‘night market’ throughout the capital, with goods, services, or curiosities of all kinds available for those keep alternative hours (or scoff at the need for sleep).",
+          "tags": ["ss.capital.nightActivity.raucous"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.nightActivity.dark",
+      "name": "Dark"
+    },
+    {
+      "id": "ss.capital.nightActivity.quiet",
+      "name": "Quiet"
+    },
+    {
+      "id": "ss.capital.nightActivity.slow",
+      "name": "Slow"
+    },
+    {
+      "id": "ss.capital.nightActivity.active",
+      "name": "Active"
+    },
+    {
+      "id": "ss.capital.nightActivity.lively",
+      "name": "Lively"
+    },
+    {
+      "id": "ss.capital.nightActivity.raucous",
+      "name": "Raucous"
+    }
+  ]
+}

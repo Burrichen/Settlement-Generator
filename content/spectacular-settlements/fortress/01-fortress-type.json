@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.fortressType",
+      "name": "Fortress Type",
+      "description": "What to build: the General section only, a Keep, a Castle (a keep within curtain walls) or a Stronghold (an upgraded castle). Each builds on the one before.",
+      "selection": "choose",
+      "results": [
+        {
+          "id": "general",
+          "name": "General Only",
+          "description": "Only the General section: overall ideas for a fortress.",
+          "tags": ["ss.fortress.fortressType.general"]
+        },
+        {
+          "id": "keep",
+          "name": "Keep",
+          "description": "A single, fortified structure, like a tower or other large, heavy-duty building.",
+          "tags": ["ss.fortress.fortressType.keep"]
+        },
+        {
+          "id": "castle",
+          "name": "Castle",
+          "description": "A central keep, surrounded by a curtain wall; the yard inside (the bailey) holds smaller buildings.",
+          "tags": ["ss.fortress.fortressType.castle"]
+        },
+        {
+          "id": "stronghold",
+          "name": "Stronghold",
+          "description": "A super castle: a castle with expanded defenses, bigger and harder to conquer.",
+          "tags": ["ss.fortress.fortressType.stronghold"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.fortressType.general", "name": "General Only" },
+    { "id": "ss.fortress.fortressType.keep", "name": "Keep" },
+    { "id": "ss.fortress.fortressType.castle", "name": "Castle" },
+    { "id": "ss.fortress.fortressType.stronghold", "name": "Stronghold" }
+  ]
+}

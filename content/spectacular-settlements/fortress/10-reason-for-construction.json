@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.reasonForConstruction",
+      "name": "Reason for Construction",
+      "description": "Why the decision was made to build the fortress.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "anticipation",
+          "name": "Anticipation",
+          "range": 1,
+          "description": "Aggression from somewhere was expected.",
+          "tags": ["ss.fortress.reasonForConstruction.anticipation"]
+        },
+        {
+          "id": "mortalCommand",
+          "name": "Mortal Command",
+          "range": 2,
+          "description": "It was the dying wish of someone important to the builder.",
+          "tags": ["ss.fortress.reasonForConstruction.mortalCommand"]
+        },
+        {
+          "id": "immortalCommand",
+          "name": "Immortal Command",
+          "range": 3,
+          "description": "A god, or powerful otherworldly being, commanded it be built.",
+          "tags": ["ss.fortress.reasonForConstruction.immortalCommand"]
+        },
+        {
+          "id": "vanity",
+          "name": "Vanity",
+          "range": 4,
+          "description": "The fortress was commissioned as a demonstration of power, wealth, or self-importance.",
+          "tags": ["ss.fortress.reasonForConstruction.vanity"]
+        },
+        {
+          "id": "protection",
+          "name": "Protection",
+          "range": 5,
+          "description": "It was built to keep a particular thing, or place, safe or hidden.",
+          "tags": ["ss.fortress.reasonForConstruction.protection"]
+        },
+        {
+          "id": "panic",
+          "name": "Panic",
+          "range": 6,
+          "description": "The construction was motivated by fear of what would happen if they didn’t.",
+          "tags": ["ss.fortress.reasonForConstruction.panic"]
+        },
+        {
+          "id": "prophecy",
+          "name": "Prophecy",
+          "range": 7,
+          "description": "It was foretold that a fortress would be needed on this site.",
+          "tags": ["ss.fortress.reasonForConstruction.prophecy"]
+        },
+        {
+          "id": "decree",
+          "name": "Decree",
+          "range": 8,
+          "description": "A ruler, or governing group, ordered that it be built.",
+          "tags": ["ss.fortress.reasonForConstruction.decree"]
+        },
+        {
+          "id": "lifesWork",
+          "name": "Life’s Work",
+          "range": 9,
+          "description": "It was built as a labor of love by a dedicated craftsperson and their team.",
+          "tags": ["ss.fortress.reasonForConstruction.lifesWork"]
+        },
+        {
+          "id": "conversion",
+          "name": "Conversion",
+          "range": 10,
+          "description": "The building was formerly used for another purpose, but constant additions and changes made it what it is today.",
+          "tags": ["ss.fortress.reasonForConstruction.conversion"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.reasonForConstruction.anticipation", "name": "Anticipation" },
+    { "id": "ss.fortress.reasonForConstruction.mortalCommand", "name": "Mortal Command" },
+    { "id": "ss.fortress.reasonForConstruction.immortalCommand", "name": "Immortal Command" },
+    { "id": "ss.fortress.reasonForConstruction.vanity", "name": "Vanity" },
+    { "id": "ss.fortress.reasonForConstruction.protection", "name": "Protection" },
+    { "id": "ss.fortress.reasonForConstruction.panic", "name": "Panic" },
+    { "id": "ss.fortress.reasonForConstruction.prophecy", "name": "Prophecy" },
+    { "id": "ss.fortress.reasonForConstruction.decree", "name": "Decree" },
+    { "id": "ss.fortress.reasonForConstruction.lifesWork", "name": "Life’s Work" },
+    { "id": "ss.fortress.reasonForConstruction.conversion", "name": "Conversion" }
+  ]
+}

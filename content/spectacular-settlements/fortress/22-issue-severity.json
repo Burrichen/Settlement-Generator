@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.issueSeverity",
+      "name": "Issue Severity",
+      "description": "How bad an issue is.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "trivial",
+          "name": "Trivial",
+          "range": 1,
+          "description": "The issue does not pose much, if any, real concern.",
+          "tags": ["ss.fortress.issueSeverity.trivial"]
+        },
+        {
+          "id": "manageable",
+          "name": "Manageable",
+          "range": 2,
+          "description": "The issue requires attention, but is no cause for great alarm.",
+          "tags": ["ss.fortress.issueSeverity.manageable"]
+        },
+        {
+          "id": "tough",
+          "name": "Tough",
+          "range": 3,
+          "description": "The issue is causing notable hardship, or inconvenience, that is affecting those dealing with it.",
+          "tags": ["ss.fortress.issueSeverity.tough"]
+        },
+        {
+          "id": "serious",
+          "name": "Serious",
+          "range": 4,
+          "description": "The issue is a cause of real concern and requires attention soon, lest it worsen.",
+          "tags": ["ss.fortress.issueSeverity.serious"]
+        },
+        {
+          "id": "critical",
+          "name": "Critical",
+          "range": 5,
+          "description": "The issue is pressing and dangerous, posing a very real threat to all involved.",
+          "tags": ["ss.fortress.issueSeverity.critical"]
+        },
+        {
+          "id": "dire",
+          "name": "Dire",
+          "range": 6,
+          "description": "The issue is a major problem and needs addressing immediately. Failure to resolve the issue quickly enough will likely result in irreversible consequences, or potential loss of life.",
+          "tags": ["ss.fortress.issueSeverity.dire"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.issueSeverity.trivial", "name": "Trivial" },
+    { "id": "ss.fortress.issueSeverity.manageable", "name": "Manageable" },
+    { "id": "ss.fortress.issueSeverity.tough", "name": "Tough" },
+    { "id": "ss.fortress.issueSeverity.serious", "name": "Serious" },
+    { "id": "ss.fortress.issueSeverity.critical", "name": "Critical" },
+    { "id": "ss.fortress.issueSeverity.dire", "name": "Dire" }
+  ]
+}

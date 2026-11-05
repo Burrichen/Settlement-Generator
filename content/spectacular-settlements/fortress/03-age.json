@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.age",
+      "name": "Age",
+      "description": "How long the fortress has been standing. Modifies Condition and Residents.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "new",
+          "name": "New",
+          "range": 1,
+          "description": "The fortress was completed within the past 20 years. (+4 to condition roll) (-5 to residents roll)",
+          "tags": ["ss.fortress.age.new"]
+        },
+        {
+          "id": "recent",
+          "name": "Recent",
+          "range": [2, 3],
+          "description": "The fortress was completed between 20 and 100 years ago. (+2 to condition roll) (-5 to residents roll)",
+          "tags": ["ss.fortress.age.recent"]
+        },
+        {
+          "id": "old",
+          "name": "Old",
+          "range": [4, 8],
+          "description": "The fortress was completed between 100 and 200 years ago. (+0 to condition roll)",
+          "tags": ["ss.fortress.age.old"]
+        },
+        {
+          "id": "veryOld",
+          "name": "Very Old",
+          "range": [9, 17],
+          "description": "The fortress was completed between 200 and 500 years ago. (-2 to condition roll)",
+          "tags": ["ss.fortress.age.veryOld"]
+        },
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "range": [18, 20],
+          "description": "The fortress was completed more than 500 years ago. (-4 to condition roll)",
+          "tags": ["ss.fortress.age.ancient"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.fortress.age.new",
+      "name": "New",
+      "effects": [
+        { "kind": "plus", "table": "table.ss.fortress.condition", "amount": 4 },
+        { "kind": "minus", "table": "table.ss.fortress.residents", "amount": 5 }
+      ]
+    },
+    {
+      "id": "ss.fortress.age.recent",
+      "name": "Recent",
+      "effects": [
+        { "kind": "plus", "table": "table.ss.fortress.condition", "amount": 2 },
+        { "kind": "minus", "table": "table.ss.fortress.residents", "amount": 5 }
+      ]
+    },
+    { "id": "ss.fortress.age.old", "name": "Old" },
+    {
+      "id": "ss.fortress.age.veryOld",
+      "name": "Very Old",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.condition", "amount": 2 }]
+    },
+    {
+      "id": "ss.fortress.age.ancient",
+      "name": "Ancient",
+      "effects": [{ "kind": "minus", "table": "table.ss.fortress.condition", "amount": 4 }]
+    }
+  ]
+}

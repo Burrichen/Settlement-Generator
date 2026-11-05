@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.populationOverflow",
+      "name": "Population Overflow",
+      "description": "Modified by Size and Population Density. The share of the resident population living outside the town proper, in camps or small adjoining neighborhoods.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "underTen",
+          "name": "<10%",
+          "range": 1,
+          "description": "Less than a tenth of the town’s population is outside the town proper. This typically means that the only people who live outside the town are those that do so out of necessity, due to requirement of duties (such as owning a farm).",
+          "tags": ["ss.town.populationOverflow.underTen"]
+        },
+        {
+          "id": "ten",
+          "name": "10%",
+          "range": [2, 4],
+          "description": "A tenth of the town’s population is outside the town proper.",
+          "tags": ["ss.town.populationOverflow.ten"]
+        },
+        {
+          "id": "twenty",
+          "name": "20%",
+          "range": [5, 12],
+          "description": "A fifth of the town’s population is outside the town proper.",
+          "tags": ["ss.town.populationOverflow.twenty"]
+        },
+        {
+          "id": "thirty",
+          "name": "30%",
+          "range": [13, 17],
+          "description": "A third of the town’s population is outside the town proper.",
+          "tags": ["ss.town.populationOverflow.thirty"]
+        },
+        {
+          "id": "forty",
+          "name": "40%",
+          "range": [18, 19],
+          "description": "Just under half the town’s population is outside the town proper.",
+          "tags": ["ss.town.populationOverflow.forty"]
+        },
+        {
+          "id": "fifty",
+          "name": "50%",
+          "range": 20,
+          "description": "Around half the town’s population is outside the town proper.",
+          "tags": ["ss.town.populationOverflow.fifty"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.populationOverflow.underTen",
+      "name": "<10%"
+    },
+    {
+      "id": "ss.town.populationOverflow.ten",
+      "name": "10%"
+    },
+    {
+      "id": "ss.town.populationOverflow.twenty",
+      "name": "20%"
+    },
+    {
+      "id": "ss.town.populationOverflow.thirty",
+      "name": "30%"
+    },
+    {
+      "id": "ss.town.populationOverflow.forty",
+      "name": "40%"
+    },
+    {
+      "id": "ss.town.populationOverflow.fifty",
+      "name": "50%"
+    }
+  ]
+}

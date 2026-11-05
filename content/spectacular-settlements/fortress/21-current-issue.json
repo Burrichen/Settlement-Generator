@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.currentIssue",
+      "name": "Current Issue",
+      "description": "What might be causing problems for the fortress at the moment. Each issue (not Peaceful) rolls its severity.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "peaceful",
+          "name": "Peaceful",
+          "range": [1, 6],
+          "description": "Everything seems alright at the moment.",
+          "tags": ["ss.fortress.currentIssue.peaceful"]
+        },
+        {
+          "id": "entrywayMalfunction",
+          "name": "Entryway Malfunction",
+          "range": 7,
+          "description": "A door, gate, portcullis, or drawbridge is experiencing an issue.",
+          "tags": ["ss.fortress.currentIssue.entrywayMalfunction"]
+        },
+        {
+          "id": "hurtOnTheJob",
+          "name": "Hurt on the Job",
+          "range": 8,
+          "description": "A guard, or staff member, has been recently injured while performing their duties.",
+          "tags": ["ss.fortress.currentIssue.hurtOnTheJob"]
+        },
+        {
+          "id": "poachers",
+          "name": "Poachers",
+          "range": 9,
+          "description": "Evidence of poaching was discovered on the lands surrounding the fortress.",
+          "tags": ["ss.fortress.currentIssue.poachers"]
+        },
+        {
+          "id": "familyIllness",
+          "name": "Family Illness",
+          "range": 10,
+          "description": "A member of the ranking resident’s immediate family has gotten sick. If they are not in residence, then a close friend or associate.",
+          "tags": ["ss.fortress.currentIssue.familyIllness"]
+        },
+        {
+          "id": "workerIllness",
+          "name": "Worker Illness",
+          "range": 11,
+          "description": "A member of the household staff or guard has gotten sick.",
+          "tags": ["ss.fortress.currentIssue.workerIllness"]
+        },
+        {
+          "id": "spoiledFood",
+          "name": "Spoiled Food",
+          "range": 12,
+          "description": "Some (or all) of the fresh food items have gone bad.",
+          "tags": ["ss.fortress.currentIssue.spoiledFood"]
+        },
+        {
+          "id": "stolenGoods",
+          "name": "Stolen Goods",
+          "range": 13,
+          "description": "Some of the food and/or supplies have been swiped.",
+          "tags": ["ss.fortress.currentIssue.stolenGoods"]
+        },
+        {
+          "id": "structuralDamageWeather",
+          "name": "Structural Damage [Weather]",
+          "range": 14,
+          "description": "An area of the fortress has been damaged by the elements.",
+          "tags": ["ss.fortress.currentIssue.structuralDamageWeather"]
+        },
+        {
+          "id": "structuralDamageNeglect",
+          "name": "Structural Damage [Neglect]",
+          "range": 15,
+          "description": "An area of the fortress has been overlooked for too long, and has now collapsed.",
+          "tags": ["ss.fortress.currentIssue.structuralDamageNeglect"]
+        },
+        {
+          "id": "structuralDamageSomeonesMistake",
+          "name": "Structural Damage [Someone’s Mistake]",
+          "range": 16,
+          "description": "An area of the fortress has been compromised and someone is at fault (perhaps a repair, or element of construction, was attempted with unsuitable tools or materials).",
+          "tags": ["ss.fortress.currentIssue.structuralDamageSomeonesMistake"]
+        },
+        {
+          "id": "infestation",
+          "name": "Infestation",
+          "range": 17,
+          "description": "Pests have encroached on the fortress and become a nuisance.",
+          "tags": ["ss.fortress.currentIssue.infestation"]
+        },
+        {
+          "id": "magicalAnomaly",
+          "name": "Magical Anomaly",
+          "range": 18,
+          "description": "An area of magical disturbance is causing problems. Residents may, or may not, be aware of what caused the anomaly.",
+          "tags": ["ss.fortress.currentIssue.magicalAnomaly"]
+        },
+        {
+          "id": "creature",
+          "name": "Creature",
+          "range": 19,
+          "description": "A strange beast, or monster, has been roaming inside, or near to, the fortress’ boundary.",
+          "tags": ["ss.fortress.currentIssue.creature"]
+        },
+        {
+          "id": "unwantedAttention",
+          "name": "Unwanted Attention",
+          "range": 20,
+          "description": "Unfriendly outsiders have recently become interested in the fortress (or those inside it).",
+          "tags": ["ss.fortress.currentIssue.unwantedAttention"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.currentIssue.peaceful", "name": "Peaceful" },
+    { "id": "ss.fortress.currentIssue.entrywayMalfunction", "name": "Entryway Malfunction" },
+    { "id": "ss.fortress.currentIssue.hurtOnTheJob", "name": "Hurt on the Job" },
+    { "id": "ss.fortress.currentIssue.poachers", "name": "Poachers" },
+    { "id": "ss.fortress.currentIssue.familyIllness", "name": "Family Illness" },
+    { "id": "ss.fortress.currentIssue.workerIllness", "name": "Worker Illness" },
+    { "id": "ss.fortress.currentIssue.spoiledFood", "name": "Spoiled Food" },
+    { "id": "ss.fortress.currentIssue.stolenGoods", "name": "Stolen Goods" },
+    {
+      "id": "ss.fortress.currentIssue.structuralDamageWeather",
+      "name": "Structural Damage [Weather]"
+    },
+    {
+      "id": "ss.fortress.currentIssue.structuralDamageNeglect",
+      "name": "Structural Damage [Neglect]"
+    },
+    {
+      "id": "ss.fortress.currentIssue.structuralDamageSomeonesMistake",
+      "name": "Structural Damage [Someone’s Mistake]"
+    },
+    { "id": "ss.fortress.currentIssue.infestation", "name": "Infestation" },
+    { "id": "ss.fortress.currentIssue.magicalAnomaly", "name": "Magical Anomaly" },
+    { "id": "ss.fortress.currentIssue.creature", "name": "Creature" },
+    { "id": "ss.fortress.currentIssue.unwantedAttention", "name": "Unwanted Attention" }
+  ]
+}

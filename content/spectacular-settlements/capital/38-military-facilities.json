@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.militaryFacilities",
+      "name": "Military Facilities",
+      "description": "Where the capital houses and trains its forces. Facilities inside the capital may be large enough to count as their own district.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "temporaryOutside",
+          "name": "Temporary Shelters Outside the Capital",
+          "range": 1,
+          "description": "This encompasses tents for all troops, and few, quickly-built minimal structures. Training grounds have been established in the landscape around the encampment.",
+          "tags": ["ss.capital.militaryFacilities.temporaryOutside"]
+        },
+        {
+          "id": "simpleOutside",
+          "name": "Simple Structures Outside the Capital",
+          "range": 2,
+          "description": "This encompasses bunkhouses for troops, and quarters for officers. Training grounds have been established in the landscape around the encampment.",
+          "tags": ["ss.capital.militaryFacilities.simpleOutside"]
+        },
+        {
+          "id": "moderateOutside",
+          "name": "Moderate Structures Outside the Capital",
+          "range": 3,
+          "description": "This encompasses barracks for the troops, and separate structures for officers. Training grounds are equipped yards with light walls.",
+          "tags": ["ss.capital.militaryFacilities.moderateOutside"]
+        },
+        {
+          "id": "simpleInside",
+          "name": "Simple Structures Inside the Capital",
+          "range": 4,
+          "description": "This encompasses barracks facilities for the troops, and quarters for officers. Training grounds are equipped drilling yards within light walls.",
+          "tags": ["ss.capital.militaryFacilities.simpleInside"]
+        },
+        {
+          "id": "moderateInside",
+          "name": "Moderate Structures Inside the Capital",
+          "range": 5,
+          "description": "This encompasses well-equipped and outfitted barracks facilities, as well as quarters for officers. Training grounds are well-maintained, with separate, specialist facilities, all surrounded by moderate walls.",
+          "tags": ["ss.capital.militaryFacilities.moderateInside"]
+        },
+        {
+          "id": "robustInside",
+          "name": "Robust Structures Inside the Capital",
+          "range": 6,
+          "description": "This encompasses extremely well-equipped and outfitted barracks facilities, and quarters for officers. Training grounds are expansive and contain anything that could be required for high-level military training. All is protected by heavy walls.",
+          "tags": ["ss.capital.militaryFacilities.robustInside"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.militaryFacilities.temporaryOutside",
+      "name": "Temporary Shelters Outside the Capital"
+    },
+    {
+      "id": "ss.capital.militaryFacilities.simpleOutside",
+      "name": "Simple Structures Outside the Capital"
+    },
+    {
+      "id": "ss.capital.militaryFacilities.moderateOutside",
+      "name": "Moderate Structures Outside the Capital"
+    },
+    {
+      "id": "ss.capital.militaryFacilities.simpleInside",
+      "name": "Simple Structures Inside the Capital"
+    },
+    {
+      "id": "ss.capital.militaryFacilities.moderateInside",
+      "name": "Moderate Structures Inside the Capital"
+    },
+    {
+      "id": "ss.capital.militaryFacilities.robustInside",
+      "name": "Robust Structures Inside the Capital"
+    }
+  ]
+}

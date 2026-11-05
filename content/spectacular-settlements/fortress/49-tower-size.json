@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.towerSize",
+      "name": "Tower Size / Height",
+      "description": "The towers' size, and their height above the wall.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [1, 4],
+          "description": "Wall height +0 ft. Floor area 5x5 squares, or 7 across if round.",
+          "tags": ["ss.fortress.towerSize.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [5, 12],
+          "description": "Wall height +10 ft. Floor area 5x5 squares, or 7 across if round.",
+          "tags": ["ss.fortress.towerSize.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [13, 18],
+          "description": "Wall height +20 ft. Floor area 7x7 squares, or 9 across if round.",
+          "tags": ["ss.fortress.towerSize.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": [19, 20],
+          "description": "Wall height +30 ft. Floor area 7x7 squares, or 9 across if round.",
+          "tags": ["ss.fortress.towerSize.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.towerSize.small", "name": "Small" },
+    { "id": "ss.fortress.towerSize.medium", "name": "Medium" },
+    { "id": "ss.fortress.towerSize.large", "name": "Large" },
+    { "id": "ss.fortress.towerSize.veryLarge", "name": "Very Large" }
+  ]
+}

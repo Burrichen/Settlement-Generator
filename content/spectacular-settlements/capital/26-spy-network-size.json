@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.spyNetworkSize",
+      "name": "Spy Network Size",
+      "description": "How many spies the capital has in the field. With the Cloak & Dagger priority, 1-16 are Modest (its variant).",
+      "dice": "1d20",
+      "variants": [
+        {
+          "id": "cloakAndDagger",
+          "name": "Cloak & Dagger (1-16 Modest)",
+          "when": {
+            "has_tag": "ss.capital.governingPriority.cloakAndDagger"
+          },
+          "ranges": [
+            {
+              "result": "modest",
+              "range": [1, 16]
+            },
+            {
+              "result": "adequate",
+              "range": [17, 19]
+            },
+            {
+              "result": "ample",
+              "range": 20
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": [1, 10],
+          "description": "The capital is not engaged in any intelligence gathering operations. (Infiltration Depth is skipped.)",
+          "tags": ["ss.capital.spyNetworkSize.none"]
+        },
+        {
+          "id": "modest",
+          "name": "Modest",
+          "range": [11, 16],
+          "description": "The capital has up to a few spies working outside its borders.",
+          "tags": ["ss.capital.spyNetworkSize.modest"]
+        },
+        {
+          "id": "adequate",
+          "name": "Adequate",
+          "range": [17, 19],
+          "description": "The capital has up to a dozen spies working outside its borders.",
+          "tags": ["ss.capital.spyNetworkSize.adequate"]
+        },
+        {
+          "id": "ample",
+          "name": "Ample",
+          "range": 20,
+          "description": "The capital has over a dozen spies working outside its borders.",
+          "tags": ["ss.capital.spyNetworkSize.ample"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.spyNetworkSize.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.spyNetworkSize.modest",
+      "name": "Modest"
+    },
+    {
+      "id": "ss.capital.spyNetworkSize.adequate",
+      "name": "Adequate"
+    },
+    {
+      "id": "ss.capital.spyNetworkSize.ample",
+      "name": "Ample"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.curtainWallThickness",
+      "name": "Curtain Wall Thickness",
+      "description": "How thick the curtain walls are (stone / wood); a very thick wall may hold a hallway and stairs.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "first",
+          "name": "10 ft. / 5 ft.",
+          "range": [1, 6],
+          "description": "Stone 10 ft., wood 5 ft.",
+          "tags": ["ss.fortress.curtainWallThickness.first"]
+        },
+        {
+          "id": "second",
+          "name": "15 ft. / 10 ft.",
+          "range": [7, 14],
+          "description": "Stone 15 ft., wood 10 ft.",
+          "tags": ["ss.fortress.curtainWallThickness.second"]
+        },
+        {
+          "id": "third",
+          "name": "20 ft. / 15 ft.",
+          "range": [15, 19],
+          "description": "Stone 20 ft., wood 15 ft.",
+          "tags": ["ss.fortress.curtainWallThickness.third"]
+        },
+        {
+          "id": "fourth",
+          "name": "25 ft. / 20 ft.",
+          "range": 20,
+          "description": "Stone 25 ft., wood 20 ft.",
+          "tags": ["ss.fortress.curtainWallThickness.fourth"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.curtainWallThickness.first", "name": "10 ft. / 5 ft." },
+    { "id": "ss.fortress.curtainWallThickness.second", "name": "15 ft. / 10 ft." },
+    { "id": "ss.fortress.curtainWallThickness.third", "name": "20 ft. / 15 ft." },
+    { "id": "ss.fortress.curtainWallThickness.fourth", "name": "25 ft. / 20 ft." }
+  ]
+}

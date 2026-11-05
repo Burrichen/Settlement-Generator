@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.residentRelations",
+      "name": "Resident Relations",
+      "description": "How things are within the household.",
+      "dice": "1d12",
+      "results": [
+        {
+          "id": "irritated",
+          "name": "Irritated",
+          "range": 1,
+          "description": "A ranking resident (or owner of the fortress) is fed up with the antics of a member of the staff.",
+          "tags": ["ss.fortress.residentRelations.irritated"]
+        },
+        {
+          "id": "outsideTies",
+          "name": "Outside Ties",
+          "range": 2,
+          "description": "An important individual in the fortress is in a relationship with someone living outside the fortress.",
+          "tags": ["ss.fortress.residentRelations.outsideTies"]
+        },
+        {
+          "id": "struggle",
+          "name": "Struggle",
+          "range": 3,
+          "description": "Two staff members are at odds with one another.",
+          "tags": ["ss.fortress.residentRelations.struggle"]
+        },
+        {
+          "id": "clandestine",
+          "name": "Clandestine",
+          "range": 4,
+          "description": "Someone in the fortress is engaged in secret dealings with an external entity.",
+          "tags": ["ss.fortress.residentRelations.clandestine"]
+        },
+        {
+          "id": "expecting",
+          "name": "Expecting",
+          "range": 5,
+          "description": "The ranking, or most important, resident of the fortress is expecting a child soon. If they are unwed, take into account what this might mean.",
+          "tags": ["ss.fortress.residentRelations.expecting"]
+        },
+        {
+          "id": "newBlood",
+          "name": "New Blood",
+          "range": 6,
+          "description": "Someone new has been brought on, and there is more to them than it initially seemed.",
+          "tags": ["ss.fortress.residentRelations.newBlood"]
+        },
+        {
+          "id": "familySquabbling",
+          "name": "Family Squabbling",
+          "range": 7,
+          "description": "There has been arguing among the resident family of late, regarding a recurring issue. If the primary, or ranking, resident is not there with family, their arguments have been with family, or close relations, outside the fortress, either via correspondence or during a recent visit.",
+          "tags": ["ss.fortress.residentRelations.familySquabbling"]
+        },
+        {
+          "id": "secretLove",
+          "name": "Secret Love",
+          "range": 8,
+          "description": "A staff member has been receiving secret notes, messages, or gestures of a romantic nature.",
+          "tags": ["ss.fortress.residentRelations.secretLove"]
+        },
+        {
+          "id": "diplomaticTensions",
+          "name": "Diplomatic Tensions",
+          "range": 9,
+          "description": "Relations between the ranking resident and their liege (or superior, of some sort) have been strained lately. If they owe fealty to no one, the relationship is with someone close to them.",
+          "tags": ["ss.fortress.residentRelations.diplomaticTensions"]
+        },
+        {
+          "id": "diplomaticHarmony",
+          "name": "Diplomatic Harmony",
+          "range": 10,
+          "description": "Relations between the ranking resident and their liege (or superior, of some sort) have been going exceedingly well lately. If they owe fealty to no one, the relationship is with someone close to them.",
+          "tags": ["ss.fortress.residentRelations.diplomaticHarmony"]
+        },
+        {
+          "id": "problemGuard",
+          "name": "Problem Guard",
+          "range": 11,
+          "description": "A member of the guard is at odds with the resident(s).",
+          "tags": ["ss.fortress.residentRelations.problemGuard"]
+        },
+        {
+          "id": "favoredGuard",
+          "name": "Favored Guard",
+          "range": 12,
+          "description": "A member of the guard is being shown preferential treatment by the resident(s).",
+          "tags": ["ss.fortress.residentRelations.favoredGuard"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.residentRelations.irritated", "name": "Irritated" },
+    { "id": "ss.fortress.residentRelations.outsideTies", "name": "Outside Ties" },
+    { "id": "ss.fortress.residentRelations.struggle", "name": "Struggle" },
+    { "id": "ss.fortress.residentRelations.clandestine", "name": "Clandestine" },
+    { "id": "ss.fortress.residentRelations.expecting", "name": "Expecting" },
+    { "id": "ss.fortress.residentRelations.newBlood", "name": "New Blood" },
+    { "id": "ss.fortress.residentRelations.familySquabbling", "name": "Family Squabbling" },
+    { "id": "ss.fortress.residentRelations.secretLove", "name": "Secret Love" },
+    { "id": "ss.fortress.residentRelations.diplomaticTensions", "name": "Diplomatic Tensions" },
+    { "id": "ss.fortress.residentRelations.diplomaticHarmony", "name": "Diplomatic Harmony" },
+    { "id": "ss.fortress.residentRelations.problemGuard", "name": "Problem Guard" },
+    { "id": "ss.fortress.residentRelations.favoredGuard", "name": "Favored Guard" }
+  ]
+}

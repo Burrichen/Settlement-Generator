@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.districtNotableLocations",
+      "name": "District Notable Locations",
+      "description": "Rolled for each district: how many of its first additional locations are notable (each then rolls Location Notability).",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": 1,
+          "description": "There are no notable locations in the district.",
+          "tags": ["ss.capital.districtNotableLocations.none"]
+        },
+        {
+          "id": "one",
+          "name": "One",
+          "range": [2, 5],
+          "description": "The first additional location in the district is notable.",
+          "tags": ["ss.capital.districtNotableLocations.one"]
+        },
+        {
+          "id": "two",
+          "name": "Two",
+          "range": [6, 9],
+          "description": "Up to the first 2 additional locations in the district are notable.",
+          "tags": ["ss.capital.districtNotableLocations.two"]
+        },
+        {
+          "id": "three",
+          "name": "Three",
+          "range": 10,
+          "description": "Up to the first 3 additional locations in the district are notable.",
+          "tags": ["ss.capital.districtNotableLocations.three"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.districtNotableLocations.none",
+      "name": "None"
+    },
+    {
+      "id": "ss.capital.districtNotableLocations.one",
+      "name": "One"
+    },
+    {
+      "id": "ss.capital.districtNotableLocations.two",
+      "name": "Two"
+    },
+    {
+      "id": "ss.capital.districtNotableLocations.three",
+      "name": "Three"
+    }
+  ]
+}

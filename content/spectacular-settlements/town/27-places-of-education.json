@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.placesOfEducation",
+      "name": "Places of Education",
+      "description": "Places of learning, knowledge or a particular discipline. Many academies focus on one pursuit (the kinds of hired help can suggest one).",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "academy",
+          "name": "Academy/University",
+          "range": 1,
+          "description": "A conservatory devoted to the pursuit of higher knowledge, sometimes of a specific area of study.",
+          "tags": ["ss.town.placesOfEducation.academy"]
+        },
+        {
+          "id": "archives",
+          "name": "Archives/Library",
+          "range": 2,
+          "description": "A structure devoted to housing records and written information.",
+          "tags": ["ss.town.placesOfEducation.archives"]
+        },
+        {
+          "id": "forum",
+          "name": "Forum",
+          "range": 3,
+          "description": "A place designated for the use of intellectual debate and discussion.",
+          "tags": ["ss.town.placesOfEducation.forum"]
+        },
+        {
+          "id": "schoolhouse",
+          "name": "Schoolhouse",
+          "range": 4,
+          "description": "An institution focused on educating children.",
+          "tags": ["ss.town.placesOfEducation.schoolhouse"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.placesOfEducation.academy",
+      "name": "Academy/University"
+    },
+    {
+      "id": "ss.town.placesOfEducation.archives",
+      "name": "Archives/Library"
+    },
+    {
+      "id": "ss.town.placesOfEducation.forum",
+      "name": "Forum"
+    },
+    {
+      "id": "ss.town.placesOfEducation.schoolhouse",
+      "name": "Schoolhouse"
+    }
+  ]
+}

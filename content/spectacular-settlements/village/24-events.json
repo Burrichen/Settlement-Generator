@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.events",
+      "name": "Events",
+      "description": "Extra Intrigue. Rites of passage and celebrations currently taking place, imminent, or coming to a close.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "birth",
+          "name": "Birth or Birthday",
+          "range": 1,
+          "description": "Blessings are sought for individuals on the day of their birth.",
+          "tags": ["ss.village.events.birth"]
+        },
+        {
+          "id": "party",
+          "name": "Party",
+          "range": 2,
+          "description": "These are fun events that bring the community together for fellowship and camaraderie, and could be happening for a number of reasons.",
+          "tags": ["ss.village.events.party"]
+        },
+        {
+          "id": "funeral",
+          "name": "Funeral",
+          "range": 3,
+          "description": "A gathering to remember those from the community who passed away, either in mourning or in celebration of their life, with a party reflecting the things that meant most to the deceased.",
+          "tags": ["ss.village.events.funeral"]
+        },
+        {
+          "id": "harvest",
+          "name": "Harvest and Productivity",
+          "range": 4,
+          "description": "Villagers seek blessings for upcoming work, such as a harvest, or thanks are given for bountiful yields.",
+          "tags": ["ss.village.events.harvest"]
+        },
+        {
+          "id": "love",
+          "name": "Love",
+          "range": 5,
+          "description": "Festivities to encourage pairing, celebrating couples and family.",
+          "tags": ["ss.village.events.love"]
+        },
+        {
+          "id": "political",
+          "name": "Political",
+          "range": 6,
+          "description": "A celebration honoring events of national significance, such as remembering a great victory, or gaining independence.",
+          "tags": ["ss.village.events.political"]
+        },
+        {
+          "id": "religious",
+          "name": "Religious",
+          "range": 7,
+          "description": "Events relating to and honoring a venerated deity are often regular and steeped in tradition.",
+          "tags": ["ss.village.events.religious"]
+        },
+        {
+          "id": "wedding",
+          "name": "Wedding",
+          "range": 8,
+          "description": "Celebrating the formal joining of two families.",
+          "tags": ["ss.village.events.wedding"]
+        },
+        {
+          "id": "local",
+          "name": "Local",
+          "range": 9,
+          "description": "Celebration revolving around a major local event or the deeds of a local hero.",
+          "tags": ["ss.village.events.local"]
+        },
+        {
+          "id": "travelAndWelcome",
+          "name": "Travel & Welcome",
+          "range": 10,
+          "description": "Festivities welcome someone new to the community, or someone well on a journey.",
+          "tags": ["ss.village.events.travelAndWelcome"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.events.birth", "name": "Birth or Birthday" },
+    { "id": "ss.village.events.party", "name": "Party" },
+    { "id": "ss.village.events.funeral", "name": "Funeral" },
+    { "id": "ss.village.events.harvest", "name": "Harvest and Productivity" },
+    { "id": "ss.village.events.love", "name": "Love" },
+    { "id": "ss.village.events.political", "name": "Political" },
+    { "id": "ss.village.events.religious", "name": "Religious" },
+    { "id": "ss.village.events.wedding", "name": "Wedding" },
+    { "id": "ss.village.events.local", "name": "Local" },
+    { "id": "ss.village.events.travelAndWelcome", "name": "Travel & Welcome" }
+  ]
+}

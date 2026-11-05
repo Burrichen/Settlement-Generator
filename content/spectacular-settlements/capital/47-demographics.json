@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.demographics",
+      "name": "Demographics",
+      "description": "Who resides in the capital; keep its setting and environment in mind.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "onlyOne",
+          "name": "Only One",
+          "range": 1,
+          "description": "100% primary race.",
+          "tags": ["ss.capital.demographics.onlyOne"]
+        },
+        {
+          "id": "onlyTwo",
+          "name": "Only Two",
+          "range": [2, 4],
+          "description": "60% primary race, 40% secondary race.",
+          "tags": ["ss.capital.demographics.onlyTwo"]
+        },
+        {
+          "id": "normalDistribution",
+          "name": "Normal Distribution",
+          "range": [5, 12],
+          "description": "50% primary race, 25% secondary race, 15% tertiary race, 10% other.",
+          "tags": ["ss.capital.demographics.normalDistribution"]
+        },
+        {
+          "id": "wideDistribution",
+          "name": "Wide Distribution",
+          "range": [13, 17],
+          "description": "20% primary race. All others reasonably well represented.",
+          "tags": ["ss.capital.demographics.wideDistribution"]
+        },
+        {
+          "id": "highAndLow",
+          "name": "High and Low",
+          "range": [18, 19],
+          "description": "80% primary race, 20% secondary race.",
+          "tags": ["ss.capital.demographics.highAndLow"]
+        },
+        {
+          "id": "everChanging",
+          "name": "Ever-Changing",
+          "range": 20,
+          "description": "No discernible distribution. Racial representation lacks any sense of numerical dominance.",
+          "tags": ["ss.capital.demographics.everChanging"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.demographics.onlyOne",
+      "name": "Only One"
+    },
+    {
+      "id": "ss.capital.demographics.onlyTwo",
+      "name": "Only Two"
+    },
+    {
+      "id": "ss.capital.demographics.normalDistribution",
+      "name": "Normal Distribution"
+    },
+    {
+      "id": "ss.capital.demographics.wideDistribution",
+      "name": "Wide Distribution"
+    },
+    {
+      "id": "ss.capital.demographics.highAndLow",
+      "name": "High and Low"
+    },
+    {
+      "id": "ss.capital.demographics.everChanging",
+      "name": "Ever-Changing"
+    }
+  ]
+}

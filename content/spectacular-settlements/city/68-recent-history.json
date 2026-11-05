@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.recentHistory",
+      "name": "Recent History",
+      "description": "Extra Intrigue. What has happened in or to the city within the last year. The book's entries have no names; each has a short title, in the book's order.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "constructionCollapse",
+          "name": "Construction Collapse",
+          "range": 1,
+          "description": "Some element of city-sponsored construction collapsed, and several people have been killed.",
+          "tags": ["ss.city.recentHistory.constructionCollapse"]
+        },
+        {
+          "id": "marketHooligans",
+          "name": "Market Hooligans",
+          "range": 2,
+          "description": "A gang of hooligans have started making trouble around the market.",
+          "tags": ["ss.city.recentHistory.marketHooligans"]
+        },
+        {
+          "id": "tavernBurned",
+          "name": "Tavern Burned",
+          "range": 3,
+          "description": "Adventurers visiting the city started a bar brawl, and the tavern they were in was burned down.",
+          "tags": ["ss.city.recentHistory.tavernBurned"]
+        },
+        {
+          "id": "incredibleContraption",
+          "name": "Incredible Contraption",
+          "range": 4,
+          "description": "An inventor in the city came up with an incredible contraption that has dramatically impacted the lives of the city’s residents.",
+          "tags": ["ss.city.recentHistory.incredibleContraption"]
+        },
+        {
+          "id": "storms",
+          "name": "Storms",
+          "range": 5,
+          "description": "Ongoing heavy thunderstorms or blizzards are wracking the city.",
+          "tags": ["ss.city.recentHistory.storms"]
+        },
+        {
+          "id": "newCraze",
+          "name": "New Craze",
+          "range": 6,
+          "description": "A visitor to the city brought something with them that has started a new craze or fashion.",
+          "tags": ["ss.city.recentHistory.newCraze"]
+        },
+        {
+          "id": "visitingRepresentative",
+          "name": "Visiting Representative",
+          "range": 7,
+          "description": "The city received word recently that a representative from a neighboring kingdom will be visiting. They should be arriving any day.",
+          "tags": ["ss.city.recentHistory.visitingRepresentative"]
+        },
+        {
+          "id": "mysteryIllness",
+          "name": "Mystery Illness",
+          "range": 8,
+          "description": "Some form of illness has been sweeping through the city, and none are sure what it is, or how it started.",
+          "tags": ["ss.city.recentHistory.mysteryIllness"]
+        },
+        {
+          "id": "brokenGate",
+          "name": "Broken Gate",
+          "range": 9,
+          "description": "The city’s main gate has broken and needs extensive repairs. In the meantime, the gate is open and additional guards are needed to staff it at all times. If guards are not available, citizens may have been called.",
+          "tags": ["ss.city.recentHistory.brokenGate"]
+        },
+        {
+          "id": "callsForNewLeadership",
+          "name": "Calls for New Leadership",
+          "range": 10,
+          "description": "A group of citizens are calling for a new form of leadership. How do others in the city respond?",
+          "tags": ["ss.city.recentHistory.callsForNewLeadership"]
+        },
+        {
+          "id": "inedibleCuisine",
+          "name": "Inedible Cuisine",
+          "range": 11,
+          "description": "An item of local cuisine has suddenly been rendered inedible. Whatever is causing the problem seems to be persisting.",
+          "tags": ["ss.city.recentHistory.inedibleCuisine"]
+        },
+        {
+          "id": "mysteriousContest",
+          "name": "Mysterious Contest",
+          "range": 12,
+          "description": "An unusual, and intriguing, contest is being held by a major figure in the community. Tryouts began a week ago, but none that have participated have mentioned what it is, whether or not they succeeded, or what’s next.",
+          "tags": ["ss.city.recentHistory.mysteriousContest"]
+        },
+        {
+          "id": "fantasticYield",
+          "name": "Fantastic Yield",
+          "range": 13,
+          "description": "A particular resource, that is very important to the city, has had fantastic yield.",
+          "tags": ["ss.city.recentHistory.fantasticYield"]
+        },
+        {
+          "id": "inflation",
+          "name": "Inflation",
+          "range": 14,
+          "description": "Large amounts of adventurers frequenting the city, lately, has caused massive inflation.",
+          "tags": ["ss.city.recentHistory.inflation"]
+        },
+        {
+          "id": "suddenFame",
+          "name": "Sudden Fame",
+          "range": 15,
+          "description": "Someone within the city has recently gained incredible fame.",
+          "tags": ["ss.city.recentHistory.suddenFame"]
+        },
+        {
+          "id": "illegalGoods",
+          "name": "Illegal Goods",
+          "range": 16,
+          "description": "Illegal substances, or goods, have been making appearances around the city, but their origin remains undiscovered.",
+          "tags": ["ss.city.recentHistory.illegalGoods"]
+        },
+        {
+          "id": "taxesRaised",
+          "name": "Taxes Raised",
+          "range": 17,
+          "description": "Taxes have just been raised.",
+          "tags": ["ss.city.recentHistory.taxesRaised"]
+        },
+        {
+          "id": "taxesAbolished",
+          "name": "Taxes Abolished",
+          "range": 18,
+          "description": "Taxes have just been abolished.",
+          "tags": ["ss.city.recentHistory.taxesAbolished"]
+        },
+        {
+          "id": "neighborAttacked",
+          "name": "Neighbor Attacked",
+          "range": 19,
+          "description": "A neighboring kingdom has been attacked. The city leadership is deciding what, if anything, to do about it.",
+          "tags": ["ss.city.recentHistory.neighborAttacked"]
+        },
+        {
+          "id": "divineAppearance",
+          "name": "Divine Appearance",
+          "range": 20,
+          "description": "A deity has made a physical appearance in the city.",
+          "tags": ["ss.city.recentHistory.divineAppearance"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.recentHistory.constructionCollapse",
+      "name": "Construction Collapse"
+    },
+    {
+      "id": "ss.city.recentHistory.marketHooligans",
+      "name": "Market Hooligans"
+    },
+    {
+      "id": "ss.city.recentHistory.tavernBurned",
+      "name": "Tavern Burned"
+    },
+    {
+      "id": "ss.city.recentHistory.incredibleContraption",
+      "name": "Incredible Contraption"
+    },
+    {
+      "id": "ss.city.recentHistory.storms",
+      "name": "Storms"
+    },
+    {
+      "id": "ss.city.recentHistory.newCraze",
+      "name": "New Craze"
+    },
+    {
+      "id": "ss.city.recentHistory.visitingRepresentative",
+      "name": "Visiting Representative"
+    },
+    {
+      "id": "ss.city.recentHistory.mysteryIllness",
+      "name": "Mystery Illness"
+    },
+    {
+      "id": "ss.city.recentHistory.brokenGate",
+      "name": "Broken Gate"
+    },
+    {
+      "id": "ss.city.recentHistory.callsForNewLeadership",
+      "name": "Calls for New Leadership"
+    },
+    {
+      "id": "ss.city.recentHistory.inedibleCuisine",
+      "name": "Inedible Cuisine"
+    },
+    {
+      "id": "ss.city.recentHistory.mysteriousContest",
+      "name": "Mysterious Contest"
+    },
+    {
+      "id": "ss.city.recentHistory.fantasticYield",
+      "name": "Fantastic Yield"
+    },
+    {
+      "id": "ss.city.recentHistory.inflation",
+      "name": "Inflation"
+    },
+    {
+      "id": "ss.city.recentHistory.suddenFame",
+      "name": "Sudden Fame"
+    },
+    {
+      "id": "ss.city.recentHistory.illegalGoods",
+      "name": "Illegal Goods"
+    },
+    {
+      "id": "ss.city.recentHistory.taxesRaised",
+      "name": "Taxes Raised"
+    },
+    {
+      "id": "ss.city.recentHistory.taxesAbolished",
+      "name": "Taxes Abolished"
+    },
+    {
+      "id": "ss.city.recentHistory.neighborAttacked",
+      "name": "Neighbor Attacked"
+    },
+    {
+      "id": "ss.city.recentHistory.divineAppearance",
+      "name": "Divine Appearance"
+    }
+  ]
+}

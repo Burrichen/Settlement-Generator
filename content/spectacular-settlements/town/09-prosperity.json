@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.prosperity",
+      "name": "Prosperity",
+      "description": "The town's degree of success, tied to its commercial traffic. Modifies Visitor Traffic and Population Wealth.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "abysmalFailure",
+          "name": "Abysmal Failure",
+          "range": 1,
+          "description": "The town has had little to no business, or has been very unfortunate. (-8 to visitor traffic roll) (-13 to population wealth roll)",
+          "tags": ["ss.town.prosperity.abysmalFailure"]
+        },
+        {
+          "id": "failure",
+          "name": "Failure",
+          "range": [2, 4],
+          "description": "The town has struggled to generate meaningful wealth or notoriety. (-6 to visitor traffic roll) (-6 to population wealth roll)",
+          "tags": ["ss.town.prosperity.failure"]
+        },
+        {
+          "id": "mildlySuccessful",
+          "name": "Mildly Successful",
+          "range": [5, 10],
+          "description": "The town has attained a mild degree of success and visibility. (-1 to visitor traffic roll) (-3 to population wealth roll)",
+          "tags": ["ss.town.prosperity.mildlySuccessful"]
+        },
+        {
+          "id": "successful",
+          "name": "Successful",
+          "range": [11, 16],
+          "description": "The town is functional and generates a modest to good amount of coin. (+0 to visitor traffic roll) (+0 to population wealth roll)",
+          "tags": ["ss.town.prosperity.successful"]
+        },
+        {
+          "id": "verySuccessful",
+          "name": "Very Successful",
+          "range": [17, 19],
+          "description": "The town has achieved real financial success and attracts a large number of visitors. (+2 to visitor traffic roll) (+3 to population wealth roll)",
+          "tags": ["ss.town.prosperity.verySuccessful"]
+        },
+        {
+          "id": "incrediblySuccessful",
+          "name": "Incredibly Successful",
+          "range": 20,
+          "description": "The town attracts huge amounts of wealth for its citizens and visitors flock to be part of it. (+6 to visitor traffic roll) (+6 to population wealth roll)",
+          "tags": ["ss.town.prosperity.incrediblySuccessful"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.prosperity.abysmalFailure",
+      "name": "Abysmal Failure",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.visitorTraffic",
+          "amount": 8
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 13
+        }
+      ]
+    },
+    {
+      "id": "ss.town.prosperity.failure",
+      "name": "Failure",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.visitorTraffic",
+          "amount": 6
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ss.town.prosperity.mildlySuccessful",
+      "name": "Mildly Successful",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.visitorTraffic",
+          "amount": 1
+        },
+        {
+          "kind": "minus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.prosperity.successful",
+      "name": "Successful"
+    },
+    {
+      "id": "ss.town.prosperity.verySuccessful",
+      "name": "Very Successful",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.visitorTraffic",
+          "amount": 2
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "ss.town.prosperity.incrediblySuccessful",
+      "name": "Incredibly Successful",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.visitorTraffic",
+          "amount": 6
+        },
+        {
+          "kind": "plus",
+          "table": "table.ss.town.populationWealth",
+          "amount": 6
+        }
+      ]
+    }
+  ]
+}

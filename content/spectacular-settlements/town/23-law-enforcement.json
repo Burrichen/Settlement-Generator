@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.lawEnforcement",
+      "name": "Law Enforcement",
+      "description": "Modified by Priority, Merchant Overflow and Leadership. Modifies Crime. Town policing is always sanctioned by a higher legal authority.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "none",
+          "name": "None",
+          "range": 1,
+          "description": "This could be good or bad, depending on one’s point of view. Good if the folk here are trustworthy, but bad if a situation gets out of hand. (-8 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.none"]
+        },
+        {
+          "id": "sheriff",
+          "name": "Sheriff",
+          "range": [2, 4],
+          "description": "A sheriff, as well as a handful of deputies, is sanctioned by the town’s governing entity. (-4 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.sheriff"]
+        },
+        {
+          "id": "smallTownWatch",
+          "name": "Small Town Watch",
+          "range": [5, 9],
+          "description": "The watch is run by a nominated captain, and employs a small number of guards. Presence may be scattered, or lacking, at times. (-2 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.smallTownWatch"]
+        },
+        {
+          "id": "townWatch",
+          "name": "Town Watch",
+          "range": [10, 16],
+          "description": "The watch is run by an appointed captain, with one lieutenant, and enough guards, to adequately guard key points in the town with token patrols. (+0 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.townWatch"]
+        },
+        {
+          "id": "strongTownWatch",
+          "name": "Strong Town Watch",
+          "range": [17, 19],
+          "description": "The watch is run by a seasoned captain with two lieutenants, a few corporals, and an ample quantity of boots on the ground. Presence allows for extra patrols and well-rested guards. (+4 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.strongTownWatch"]
+        },
+        {
+          "id": "extensiveTownWatch",
+          "name": "Extensive Town Watch",
+          "range": 20,
+          "description": "The watch is overseen by a decorated captain with three lieutenants, several corporals and more than enough guards. Presence allows for the watch to maintain an ever-present appearance. A guard is never more than a shout away. (+8 to crime roll)",
+          "tags": ["ss.town.lawEnforcement.extensiveTownWatch"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.lawEnforcement.none",
+      "name": "None",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.crime",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "ss.town.lawEnforcement.sheriff",
+      "name": "Sheriff",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.crime",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.town.lawEnforcement.smallTownWatch",
+      "name": "Small Town Watch",
+      "effects": [
+        {
+          "kind": "minus",
+          "table": "table.ss.town.crime",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ss.town.lawEnforcement.townWatch",
+      "name": "Town Watch"
+    },
+    {
+      "id": "ss.town.lawEnforcement.strongTownWatch",
+      "name": "Strong Town Watch",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.crime",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ss.town.lawEnforcement.extensiveTownWatch",
+      "name": "Extensive Town Watch",
+      "effects": [
+        {
+          "kind": "plus",
+          "table": "table.ss.town.crime",
+          "amount": 8
+        }
+      ]
+    }
+  ]
+}

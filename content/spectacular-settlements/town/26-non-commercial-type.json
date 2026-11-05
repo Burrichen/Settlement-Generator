@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.town.nonCommercialType",
+      "name": "Non-Commercial Location Type",
+      "description": "Rolled for each non-commercial location the town has (Very Small 1 … Very Large 5), then on that type's table.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "education",
+          "name": "Place of Education",
+          "range": 1,
+          "description": "Then rolled on Places of Education.",
+          "tags": ["ss.town.nonCommercialType.education"]
+        },
+        {
+          "id": "gathering",
+          "name": "Place of Gathering",
+          "range": 2,
+          "description": "Then rolled on Places of Gathering.",
+          "tags": ["ss.town.nonCommercialType.gathering"]
+        },
+        {
+          "id": "government",
+          "name": "Place of Government",
+          "range": 3,
+          "description": "Then rolled on Places of Government.",
+          "tags": ["ss.town.nonCommercialType.government"]
+        },
+        {
+          "id": "worship",
+          "name": "Place of Worship",
+          "range": 4,
+          "description": "Then its size, the fervency of its following and the alignment of its faith are rolled.",
+          "tags": ["ss.town.nonCommercialType.worship"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.town.nonCommercialType.education",
+      "name": "Place of Education"
+    },
+    {
+      "id": "ss.town.nonCommercialType.gathering",
+      "name": "Place of Gathering"
+    },
+    {
+      "id": "ss.town.nonCommercialType.government",
+      "name": "Place of Government"
+    },
+    {
+      "id": "ss.town.nonCommercialType.worship",
+      "name": "Place of Worship"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.templeLocations",
+      "name": "Temple District Additional Locations",
+      "description": "Rolled for each additional location of a Temple district (Very Small 1 … Very Large 5 per district). 1 and 20: roll again, the next location a step down or up in quality.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "stepDown",
+          "name": "Roll Again (a step down in quality)",
+          "range": 1,
+          "description": "Roll again, but consider the next location to be a step down in quality.",
+          "tags": ["ss.city.templeLocations.stepDown"],
+          "then_roll": ["table.ss.city.templeLocationsAgain"]
+        },
+        {
+          "id": "cooper",
+          "name": "Cooper",
+          "range": 2,
+          "description": "(Basic) Crafts wooden vessels held together with metal hoops, including barrels, buckets, etc.",
+          "tags": ["ss.city.templeLocations.cooper"]
+        },
+        {
+          "id": "carpenter",
+          "name": "Carpenter",
+          "range": 3,
+          "description": "(Basic) Builds with or carves wood, as well as carrying out repairs.",
+          "tags": ["ss.city.templeLocations.carpenter"]
+        },
+        {
+          "id": "tailor",
+          "name": "Tailor",
+          "range": 4,
+          "description": "(Basic) Makes and sells clothing, including hats and cloaks. Also sells general items made from cloth, such as blankets, and carries out repairs and alterations of cloth goods.",
+          "tags": ["ss.city.templeLocations.tailor"]
+        },
+        {
+          "id": "alchemist",
+          "name": "Alchemist",
+          "range": 5,
+          "description": "(Specialty) Brews and sells potions, as well as mundane herbs and alchemical ingredients.",
+          "tags": ["ss.city.templeLocations.alchemist"]
+        },
+        {
+          "id": "artist",
+          "name": "Artist",
+          "range": 6,
+          "description": "(Specialty) Encompasses painter, sculptor or other visual art as appropriate.",
+          "tags": ["ss.city.templeLocations.artist"]
+        },
+        {
+          "id": "bankAndExchange",
+          "name": "Bank & Exchange",
+          "range": 7,
+          "description": "(Specialty) Encompasses auctions, banking, and the specific selling of gems or exchange of currency.",
+          "tags": ["ss.city.templeLocations.bankAndExchange"]
+        },
+        {
+          "id": "rareBotanicals",
+          "name": "Rare Botanicals",
+          "range": 8,
+          "description": "(Exotic) Cultivates and sells herbs rare to the region.",
+          "tags": ["ss.city.templeLocations.rareBotanicals"]
+        },
+        {
+          "id": "luxuryFurnishings",
+          "name": "Luxury Furnishings",
+          "range": 9,
+          "description": "(Exotic) Procures and sells all manner of home items for fine living, including furniture, art, and other high-quality goods.",
+          "tags": ["ss.city.templeLocations.luxuryFurnishings"]
+        },
+        {
+          "id": "rareLibationsAndFare",
+          "name": "Rare Libations & Fare",
+          "range": 10,
+          "description": "(Exotic) Sells (and, perhaps, makes or brews) drinks and/or food of surpassing quality or rarity to the region.",
+          "tags": ["ss.city.templeLocations.rareLibationsAndFare"]
+        },
+        {
+          "id": "magicShop",
+          "name": "Magic Shop",
+          "range": 11,
+          "description": "(Exotic) A magic shop; its specialization is rolled.",
+          "tags": ["ss.city.templeLocations.magicShop"],
+          "then_roll": ["table.ss.city.magicShopSpecialization"]
+        },
+        {
+          "id": "barber",
+          "name": "Barber",
+          "range": 12,
+          "description": "Provides grooming services, such as haircuts or shaves.",
+          "tags": ["ss.city.templeLocations.barber"]
+        },
+        {
+          "id": "bathhouse",
+          "name": "Bathhouse",
+          "range": 13,
+          "description": "Provides spaces for bathing.",
+          "tags": ["ss.city.templeLocations.bathhouse"]
+        },
+        {
+          "id": "doctorApothecary",
+          "name": "Doctor/Apothecary",
+          "range": 14,
+          "description": "Provides medical care.",
+          "tags": ["ss.city.templeLocations.doctorApothecary"]
+        },
+        {
+          "id": "inn",
+          "name": "Inn",
+          "range": 15,
+          "description": "Provides accommodation, as well as a place to have a bath and a decent meal.",
+          "tags": ["ss.city.templeLocations.inn"]
+        },
+        {
+          "id": "soothsayer",
+          "name": "Soothsayer",
+          "range": 16,
+          "description": "Provides magical prediction and prophecy - sayers of sooth!",
+          "tags": ["ss.city.templeLocations.soothsayer"]
+        },
+        {
+          "id": "hiredHelp",
+          "name": "Hired Help",
+          "range": 17,
+          "description": "Hired help; its kind is rolled (1d10), then its size.",
+          "tags": ["ss.city.templeLocations.hiredHelp"],
+          "then_roll": ["table.ss.city.templeHiredHelp"]
+        },
+        {
+          "id": "schoolhouse",
+          "name": "Schoolhouse",
+          "range": 18,
+          "description": "(Non-commercial) An institution focused on educating children.",
+          "tags": ["ss.city.templeLocations.schoolhouse"]
+        },
+        {
+          "id": "amphitheater",
+          "name": "Amphitheater",
+          "range": 19,
+          "description": "(Non-commercial) Outdoor space with a stage and tiered seating.",
+          "tags": ["ss.city.templeLocations.amphitheater"]
+        },
+        {
+          "id": "stepUp",
+          "name": "Roll Again (a step up in quality)",
+          "range": 20,
+          "description": "Roll again, but consider the next location to be a step up in quality.",
+          "tags": ["ss.city.templeLocations.stepUp"],
+          "then_roll": ["table.ss.city.templeLocationsAgain"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.templeLocations.stepDown",
+      "name": "Roll Again (a step down in quality)"
+    },
+    {
+      "id": "ss.city.templeLocations.cooper",
+      "name": "Cooper"
+    },
+    {
+      "id": "ss.city.templeLocations.carpenter",
+      "name": "Carpenter"
+    },
+    {
+      "id": "ss.city.templeLocations.tailor",
+      "name": "Tailor"
+    },
+    {
+      "id": "ss.city.templeLocations.alchemist",
+      "name": "Alchemist"
+    },
+    {
+      "id": "ss.city.templeLocations.artist",
+      "name": "Artist"
+    },
+    {
+      "id": "ss.city.templeLocations.bankAndExchange",
+      "name": "Bank & Exchange"
+    },
+    {
+      "id": "ss.city.templeLocations.rareBotanicals",
+      "name": "Rare Botanicals"
+    },
+    {
+      "id": "ss.city.templeLocations.luxuryFurnishings",
+      "name": "Luxury Furnishings"
+    },
+    {
+      "id": "ss.city.templeLocations.rareLibationsAndFare",
+      "name": "Rare Libations & Fare"
+    },
+    {
+      "id": "ss.city.templeLocations.magicShop",
+      "name": "Magic Shop"
+    },
+    {
+      "id": "ss.city.templeLocations.barber",
+      "name": "Barber"
+    },
+    {
+      "id": "ss.city.templeLocations.bathhouse",
+      "name": "Bathhouse"
+    },
+    {
+      "id": "ss.city.templeLocations.doctorApothecary",
+      "name": "Doctor/Apothecary"
+    },
+    {
+      "id": "ss.city.templeLocations.inn",
+      "name": "Inn"
+    },
+    {
+      "id": "ss.city.templeLocations.soothsayer",
+      "name": "Soothsayer"
+    },
+    {
+      "id": "ss.city.templeLocations.hiredHelp",
+      "name": "Hired Help"
+    },
+    {
+      "id": "ss.city.templeLocations.schoolhouse",
+      "name": "Schoolhouse"
+    },
+    {
+      "id": "ss.city.templeLocations.amphitheater",
+      "name": "Amphitheater"
+    },
+    {
+      "id": "ss.city.templeLocations.stepUp",
+      "name": "Roll Again (a step up in quality)"
+    }
+  ]
+}

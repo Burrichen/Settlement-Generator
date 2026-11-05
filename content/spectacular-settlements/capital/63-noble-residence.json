@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.capital.nobleResidence",
+      "name": "Noble Residence Locations",
+      "description": "Rolled for each primary noble: the district they (and their immediate family) live in, by its number. A number above the capital's districts is rolled again.",
+      "dice": "1d6",
+      "results": [
+        {
+          "id": "district1",
+          "name": "District 1",
+          "range": 1,
+          "description": "The noble lives in District 1.",
+          "tags": ["ss.capital.nobleResidence.district1"]
+        },
+        {
+          "id": "district2",
+          "name": "District 2",
+          "range": 2,
+          "description": "The noble lives in District 2.",
+          "tags": ["ss.capital.nobleResidence.district2"]
+        },
+        {
+          "id": "district3",
+          "name": "District 3",
+          "range": 3,
+          "description": "The noble lives in District 3.",
+          "tags": ["ss.capital.nobleResidence.district3"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.numberOfDistricts.three"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.four"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.five"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.six"
+              }
+            ]
+          }
+        },
+        {
+          "id": "district4",
+          "name": "District 4",
+          "range": 4,
+          "description": "The noble lives in District 4.",
+          "tags": ["ss.capital.nobleResidence.district4"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.numberOfDistricts.four"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.five"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.six"
+              }
+            ]
+          }
+        },
+        {
+          "id": "district5",
+          "name": "District 5",
+          "range": 5,
+          "description": "The noble lives in District 5.",
+          "tags": ["ss.capital.nobleResidence.district5"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.numberOfDistricts.five"
+              },
+              {
+                "has_tag": "ss.capital.numberOfDistricts.six"
+              }
+            ]
+          }
+        },
+        {
+          "id": "district6",
+          "name": "District 6",
+          "range": 6,
+          "description": "The noble lives in District 6.",
+          "tags": ["ss.capital.nobleResidence.district6"],
+          "eligibility": {
+            "any": [
+              {
+                "has_tag": "ss.capital.numberOfDistricts.six"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.capital.nobleResidence.district1",
+      "name": "District 1"
+    },
+    {
+      "id": "ss.capital.nobleResidence.district2",
+      "name": "District 2"
+    },
+    {
+      "id": "ss.capital.nobleResidence.district3",
+      "name": "District 3"
+    },
+    {
+      "id": "ss.capital.nobleResidence.district4",
+      "name": "District 4"
+    },
+    {
+      "id": "ss.capital.nobleResidence.district5",
+      "name": "District 5"
+    },
+    {
+      "id": "ss.capital.nobleResidence.district6",
+      "name": "District 6"
+    }
+  ]
+}

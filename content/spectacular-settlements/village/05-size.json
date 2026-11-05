@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.village.size",
+      "name": "Size",
+      "description": "Modified by Hardship Type/Outcome. The number of currently standing structures: the roll is the village's original size, the modifiers what its hardships left.",
+      "dice": "1d20",
+      "results": [
+        {
+          "id": "verySmall",
+          "name": "Very Small",
+          "range": [1, 2],
+          "description": "Up to a dozen standing structures. Perhaps a hamlet: just one or two families and little else other than dwellings.",
+          "tags": ["ss.village.size.verySmall"]
+        },
+        {
+          "id": "small",
+          "name": "Small",
+          "range": [3, 6],
+          "description": "Up to 30 standing structures.",
+          "tags": ["ss.village.size.small"]
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "range": [7, 14],
+          "description": "Up to 60 standing structures.",
+          "tags": ["ss.village.size.medium"]
+        },
+        {
+          "id": "large",
+          "name": "Large",
+          "range": [15, 18],
+          "description": "Up to 90 standing structures.",
+          "tags": ["ss.village.size.large"]
+        },
+        {
+          "id": "veryLarge",
+          "name": "Very Large",
+          "range": [19, 20],
+          "description": "Up to 120 standing structures.",
+          "tags": ["ss.village.size.veryLarge"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.village.size.verySmall", "name": "Very Small" },
+    { "id": "ss.village.size.small", "name": "Small" },
+    { "id": "ss.village.size.medium", "name": "Medium" },
+    { "id": "ss.village.size.large", "name": "Large" },
+    { "id": "ss.village.size.veryLarge", "name": "Very Large" }
+  ]
+}

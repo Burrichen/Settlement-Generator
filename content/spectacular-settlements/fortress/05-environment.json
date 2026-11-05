@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.fortress.environment",
+      "name": "Environment",
+      "description": "Where the fortress is built. In or near an established settlement, use that settlement's environment.",
+      "dice": "1d10",
+      "results": [
+        {
+          "id": "coastal",
+          "name": "Coastal",
+          "range": 1,
+          "description": "The fortress is near a large body of water, such as a lake or ocean.",
+          "tags": ["ss.fortress.environment.coastal"]
+        },
+        {
+          "id": "forest",
+          "name": "Forest",
+          "range": 2,
+          "description": "The fortress is nestled among the trees.",
+          "tags": ["ss.fortress.environment.forest"]
+        },
+        {
+          "id": "mountains",
+          "name": "Mountains",
+          "range": 3,
+          "description": "The fortress is found on stony passes or soaring peaks.",
+          "tags": ["ss.fortress.environment.mountains"]
+        },
+        {
+          "id": "plains",
+          "name": "Plains",
+          "range": 4,
+          "description": "The fortress is in the wide open fields.",
+          "tags": ["ss.fortress.environment.plains"]
+        },
+        {
+          "id": "river",
+          "name": "River",
+          "range": 5,
+          "description": "The fortress is near a steadily flowing stream, or other watercourse.",
+          "tags": ["ss.fortress.environment.river"]
+        },
+        {
+          "id": "swamp",
+          "name": "Swamp",
+          "range": 6,
+          "description": "The fortress is in, or near, a vast area of stagnant water.",
+          "tags": ["ss.fortress.environment.swamp"]
+        },
+        {
+          "id": "underground",
+          "name": "Underground",
+          "range": 7,
+          "description": "The fortress is within a large network of caves.",
+          "tags": ["ss.fortress.environment.underground"]
+        },
+        {
+          "id": "valley",
+          "name": "Valley",
+          "range": 8,
+          "description": "The fortress is found within, or on the edge of, an area of recessed elevation in relation to the landscape around it.",
+          "tags": ["ss.fortress.environment.valley"]
+        },
+        {
+          "id": "tundra",
+          "name": "Tundra",
+          "range": 9,
+          "description": "The fortress is in a very cold environment.",
+          "tags": ["ss.fortress.environment.tundra"]
+        },
+        {
+          "id": "desert",
+          "name": "Desert",
+          "range": 10,
+          "description": "The fortress is in a dry and arid environment, likely covered with vast sand dunes.",
+          "tags": ["ss.fortress.environment.desert"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    { "id": "ss.fortress.environment.coastal", "name": "Coastal" },
+    { "id": "ss.fortress.environment.forest", "name": "Forest" },
+    { "id": "ss.fortress.environment.mountains", "name": "Mountains" },
+    { "id": "ss.fortress.environment.plains", "name": "Plains" },
+    { "id": "ss.fortress.environment.river", "name": "River" },
+    { "id": "ss.fortress.environment.swamp", "name": "Swamp" },
+    { "id": "ss.fortress.environment.underground", "name": "Underground" },
+    { "id": "ss.fortress.environment.valley", "name": "Valley" },
+    { "id": "ss.fortress.environment.tundra", "name": "Tundra" },
+    { "id": "ss.fortress.environment.desert", "name": "Desert" }
+  ]
+}

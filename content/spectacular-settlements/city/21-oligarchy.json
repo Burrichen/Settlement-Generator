@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "tables": [
+    {
+      "id": "table.ss.city.oligarchy",
+      "name": "Oligarchy",
+      "description": "Which few hold sway over an Oligarchy, and the district that fits them best: Merchant, Arcane, Temple, or (another small group) Administration.",
+      "dice": "1d4",
+      "results": [
+        {
+          "id": "merchants",
+          "name": "Merchants (Plutocracy)",
+          "range": 1,
+          "description": "Merchants hold sway, collectively, over the city. Their district: Merchant.",
+          "tags": ["ss.city.oligarchy.merchants"]
+        },
+        {
+          "id": "mages",
+          "name": "Mages (Magocracy)",
+          "range": 2,
+          "description": "Mages hold sway, collectively, over the city. Their district: Arcane.",
+          "tags": ["ss.city.oligarchy.mages"]
+        },
+        {
+          "id": "priests",
+          "name": "Priests (Theocracy)",
+          "range": 3,
+          "description": "Priests hold sway, collectively, over the city. Their district: Temple.",
+          "tags": ["ss.city.oligarchy.priests"]
+        },
+        {
+          "id": "other",
+          "name": "Other Small Group",
+          "range": 4,
+          "description": "Another small group holds sway, collectively, over the city. Their district: Administration (choose another if it fits better).",
+          "tags": ["ss.city.oligarchy.other"]
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ss.city.oligarchy.merchants",
+      "name": "Merchants (Plutocracy)"
+    },
+    {
+      "id": "ss.city.oligarchy.mages",
+      "name": "Mages (Magocracy)"
+    },
+    {
+      "id": "ss.city.oligarchy.priests",
+      "name": "Priests (Theocracy)"
+    },
+    {
+      "id": "ss.city.oligarchy.other",
+      "name": "Other Small Group"
+    }
+  ]
+}
