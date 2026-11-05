@@ -177,11 +177,17 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
+/** A list entry's visible name (with any star), without its date line. */
+function listedName(option: HTMLElement): string {
+  const when = option.querySelector(".saved-when")?.textContent ?? "";
+  return (option.textContent ?? "").replace(when, "");
+}
+
 describe("list", () => {
   it("lists settlements with a star before favourites", async () => {
     await openView();
     const options = screen.getAllByRole("option");
-    expect(options.map((o) => o.textContent)).toEqual(["Ashford", "★Brightwater", "Coldmere"]);
+    expect(options.map(listedName)).toEqual(["Ashford", "★Brightwater", "Coldmere"]);
     expect(options[1].className).toContain("is-favourite");
     expect(options[0].getAttribute("aria-selected")).toBe("true");
   });
@@ -330,7 +336,7 @@ describe("edit", () => {
     await user.click(save);
     expect(api.editSave).toHaveBeenCalledWith("Ashford Revisited");
     expect(await screen.findByRole("toolbar", { name: "Settlement actions" })).toBeTruthy();
-    expect(screen.getAllByRole("option")[0].textContent).toBe("Ashford Revisited");
+    expect(listedName(screen.getAllByRole("option")[0])).toBe("Ashford Revisited");
   });
 
   it("cancels with the button or Escape, discarding the edit and staying on View", async () => {

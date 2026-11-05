@@ -576,6 +576,8 @@ modifiers and the God Mode flag.
 | `tag_view`                | boolean                         | `false`       |
 | `bare_minimum_buildings`  | boolean                         | `false`       |
 | `theme`                   | `modern_dark`, `old_timey_dark` | `modern_dark` |
+| `modern_dark_accent`      | an accent palette (below)       | `ember`       |
+| `old_timey_dark_accent`   | an accent palette (below)       | `brass`       |
 
 - The presentation is only meaningful for Manual. While the method is
   Automatic it is **disabled completely**:
@@ -583,6 +585,11 @@ modifiers and the God Mode flag.
   - the core refuses to change it (`set_generation_presentation` and
     `Database::save_settings` return `PresentationDisabled`);
   - generation ignores it (`active_presentation()` returns `None`).
+- Accent palettes are `ember`, `brass`, `amethyst`, `verdigris`, `lapis`,
+  `moss` and `glacier`. Each theme keeps its own choice (`Settings::accent()`
+  and `set_accent()` act on the active theme). Each interface owns the actual
+  colours; maps keep their own colours. Databases saved before accents read
+  each theme's own default.
 
   Its saved value is kept, and switching back to Manual restores it.
 

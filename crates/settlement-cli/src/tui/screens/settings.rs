@@ -28,6 +28,7 @@ pub enum Item {
     /// them), by position among those offered.
     Content(usize),
     Theme,
+    Accent,
     Tags,
     Tables,
     Flows,
@@ -139,6 +140,16 @@ impl SettingsScreen {
                     true,
                 ),
                 Item::Theme,
+            ),
+            // The active theme's palette; the other theme keeps its own.
+            Row::item(
+                Line::from(vec![
+                    Span::raw(format!("{:<26}", "Colour theme")),
+                    Span::styled("‹ ", s.dim()),
+                    Span::styled(set.accent().name(), s.heading()),
+                    Span::styled(" ›", s.dim()),
+                ]),
+                Item::Accent,
             ),
             Row::item(
                 toggle("Roll details (advanced)", set.roll_details, ctx),
@@ -306,6 +317,10 @@ impl SettingsScreen {
                     Theme::OldTimeyDark => Theme::ModernDark,
                 }
             }),
+            Item::Accent => {
+                let step = if forward { 1 } else { -1 };
+                self.apply(ctx, |s| s.set_accent(s.accent().cycle(step)))
+            }
             Item::Tags
             | Item::Tables
             | Item::Flows

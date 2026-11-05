@@ -30,9 +30,55 @@ button {
   color: inherit;
 }
 
+:root {
+  accent-color: var(--accent);
+  caret-color: var(--focus);
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 42%, transparent);
+  color: var(--text);
+}
+
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* Native dropdown lists follow the theme instead of the OS palette. */
+option,
+optgroup {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+/* The browser's "Choose File" button looks like the app's buttons. */
+input[type="file"] {
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  border-color: var(--text-faint);
+}
+
+a {
+  color: var(--accent-strong);
+  text-underline-offset: 2px;
 }
 
 ::placeholder {
@@ -110,7 +156,7 @@ button {
 .screen-header-inner {
   max-width: 880px;
   margin: 0 auto;
-  padding: 18px 32px 20px;
+  padding: 12px 32px 16px;
 }
 
 .back-button {
@@ -118,7 +164,7 @@ button {
   align-items: center;
   gap: 6px;
   padding: 4px 8px 4px 4px;
-  margin: 0 0 10px -4px;
+  margin: 0 0 4px -4px;
   background: none;
   border: 1px solid transparent;
   border-radius: var(--radius);
@@ -130,10 +176,11 @@ button {
 .back-button:hover {
   color: var(--text);
   border-color: var(--border);
+  background: var(--surface-raised);
 }
 
 .screen-title {
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .screen-title:focus {
@@ -141,7 +188,7 @@ button {
 }
 
 .screen-subtitle {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   color: var(--text-muted);
 }
 
@@ -150,7 +197,7 @@ button {
   width: 100%;
   max-width: 880px;
   margin: 0 auto;
-  padding: 28px 32px 48px;
+  padding: 24px 32px 40px;
 }
 
 .kbd-hint {
@@ -594,6 +641,10 @@ button {
   color: var(--text-muted);
 }
 
+.empty-state + .action-bar {
+  margin-top: 16px;
+}
+
 /* ----- small windows -------------------------------------------------- */
 
 @media (max-width: 720px) {
@@ -764,4 +815,95 @@ button {
 
 .data-error .button-row {
   margin-top: 22px;
+}
+
+/* ----- accent palette picker ------------------------------------------- */
+
+.setting-row.is-stacked {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.accent-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.accent-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.accent-option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.accent-option:hover {
+  color: var(--text);
+  border-color: var(--text-faint);
+}
+
+/* The chosen palette is outlined in its own colour. */
+.accent-option:has(input:checked) {
+  color: var(--text);
+  font-weight: 600;
+  border-color: var(--sw-accent);
+  background: var(--surface-raised);
+}
+
+.accent-option:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Base colour and focus colour, split on the diagonal. */
+.accent-swatch {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--sw-accent) 58%, var(--sw-focus) 58%);
+}
+
+.accent-ember {
+  --sw-accent: var(--ember-accent);
+  --sw-focus: var(--ember-focus);
+}
+.accent-brass {
+  --sw-accent: var(--brass-accent);
+  --sw-focus: var(--brass-focus);
+}
+.accent-amethyst {
+  --sw-accent: var(--amethyst-accent);
+  --sw-focus: var(--amethyst-focus);
+}
+.accent-verdigris {
+  --sw-accent: var(--verdigris-accent);
+  --sw-focus: var(--verdigris-focus);
+}
+.accent-lapis {
+  --sw-accent: var(--lapis-accent);
+  --sw-focus: var(--lapis-focus);
+}
+.accent-moss {
+  --sw-accent: var(--moss-accent);
+  --sw-focus: var(--moss-focus);
+}
+.accent-glacier {
+  --sw-accent: var(--glacier-accent);
+  --sw-focus: var(--glacier-focus);
 }

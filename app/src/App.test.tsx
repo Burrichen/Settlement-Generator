@@ -170,6 +170,26 @@ describe("settings", () => {
     expect(document.documentElement.dataset.theme).toBe("old-timey-dark");
   });
 
+  it("keeps a colour theme per theme and applies the active one", async () => {
+    const user = await openSettings();
+    // Each theme starts on its own accent.
+    expect(document.documentElement.dataset.accent).toBe("ember");
+    expect(screen.getByRole("radio", { name: "Ember" })).toHaveProperty("checked", true);
+
+    await user.click(screen.getByRole("radio", { name: "Lapis" }));
+    expect(stored.settings.modern_dark_accent).toBe("lapis");
+    expect(document.documentElement.dataset.accent).toBe("lapis");
+
+    await user.click(screen.getByLabelText("Old-Timey Dark"));
+    expect(document.documentElement.dataset.accent).toBe("brass");
+    await user.click(screen.getByRole("radio", { name: "Moss" }));
+    expect(stored.settings.old_timey_dark_accent).toBe("moss");
+    expect(stored.settings.modern_dark_accent).toBe("lapis");
+
+    await user.click(screen.getByLabelText("Modern Dark"));
+    expect(document.documentElement.dataset.accent).toBe("lapis");
+  });
+
   it("navigates to tags, tables and credits", async () => {
     const user = await openSettings();
     for (const [button, heading] of [

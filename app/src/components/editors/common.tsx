@@ -165,7 +165,7 @@ export function TagMultiSelect({
               <span title={id}>{tagName(id)}</span>
               <button
                 type="button"
-                className="icon-button"
+                className="icon-button icon-remove"
                 aria-label={`Remove ${tagName(id)}`}
                 onClick={() => onChange(value.filter((v) => v !== id))}
               >
@@ -450,7 +450,7 @@ function ConditionList({
           />
           <button
             type="button"
-            className="icon-button"
+            className="icon-button icon-remove"
             aria-label={`Remove ${label} ${i + 1}`}
             onClick={() => onChange(items.filter((_, j) => j !== i))}
           >

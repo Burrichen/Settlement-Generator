@@ -137,19 +137,34 @@ legend code {
 }
 
 .icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
   background: none;
   border: 1px solid transparent;
   border-radius: var(--radius);
-  color: var(--text-faint);
+  color: var(--text-muted);
   font-size: 16px;
   line-height: 1;
   padding: 3px 7px;
   cursor: pointer;
 }
 
-.icon-button:hover {
-  color: var(--danger);
+.icon-button:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-raised);
   border-color: var(--border-strong);
+}
+
+.icon-button.icon-remove:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.icon-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .link-button {
@@ -364,9 +379,13 @@ legend code {
   margin: 0 0 8px;
 }
 
+.effect-fields .select {
+  max-width: none;
+}
+
 .effect-fields {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 0 16px;
 }
 
@@ -618,6 +637,38 @@ legend code {
 .order-cell,
 .row-actions {
   white-space: nowrap;
+}
+
+/* Single-control cells line up with the text fields beside them. */
+.edit-grid td.order-cell,
+.edit-grid td.row-actions,
+.edit-grid td:has(> input[type="checkbox"]) {
+  vertical-align: middle;
+}
+
+.edit-grid td > input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.edit-grid .row-actions .link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 4px 0 0;
+  padding: 3px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.edit-grid .row-actions .link-button:hover,
+.edit-grid .row-actions .link-button[aria-expanded="true"] {
+  color: var(--text);
+  background: var(--surface-raised);
+  border-color: var(--border-strong);
 }
 
 .row-advanced {

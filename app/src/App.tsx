@@ -10,6 +10,7 @@ import {
   type UpdateOffer,
 } from "./api";
 import {
+  activeAccent,
   AppContext,
   themeAttribute,
   type AppState,
@@ -51,6 +52,12 @@ export function App() {
   useEffect(() => {
     document.documentElement.dataset.theme = themeAttribute(settings?.theme ?? "modern_dark");
   }, [settings?.theme]);
+
+  // The active theme's accent palette (its own until settings load).
+  const accent = settings ? activeAccent(settings) : "ember";
+  useEffect(() => {
+    document.documentElement.dataset.accent = accent;
+  }, [accent]);
 
   const back = useCallback(() => setStack((s) => (s.length > 1 ? s.slice(0, -1) : s)), []);
   const home = useCallback(() => setStack(["menu"]), []);

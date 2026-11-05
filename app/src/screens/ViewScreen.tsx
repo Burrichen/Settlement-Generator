@@ -264,7 +264,13 @@ export function ViewScreen() {
                         ★
                       </span>
                     )}
-                    <span className="saved-name">{item.name}</span>
+                    <span className="saved-text">
+                      <span className="saved-name">{item.name}</span>
+                      {/* The detail pane announces dates; the list stays name-only for screen readers. */}
+                      <span className="saved-when" aria-hidden="true">
+                        {formatWhen(item.updated_at)}
+                      </span>
+                    </span>
                   </li>
                 );
               })}

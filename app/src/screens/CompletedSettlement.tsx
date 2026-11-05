@@ -89,44 +89,46 @@ export function CompletedSettlement({
         </p>
       )}
 
-      {naming ? (
-        <NameForm
-          busy={saving}
-          serverError={saveError}
-          initialName={view.suggested_name}
-          onSave={save}
-          onCancel={() => setNaming(false)}
-        />
-      ) : confirmDelete ? (
-        <ConfirmBar
-          message="Delete this settlement? It has not been saved and cannot be recovered."
-          confirmLabel="Delete"
-          onConfirm={discard}
-          onCancel={() => setConfirmDelete(false)}
-        />
-      ) : (
-        <div className="action-bar">
-          <button type="button" className="btn" disabled={busy} onClick={onReroll}>
-            Re-roll
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary"
-            disabled={busy}
-            onClick={() => setNaming(true)}
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            className="btn btn-quiet-danger"
-            disabled={busy}
-            onClick={() => setConfirmDelete(true)}
-          >
-            Delete
-          </button>
-        </div>
-      )}
+      <div className="sticky-actions">
+        {naming ? (
+          <NameForm
+            busy={saving}
+            serverError={saveError}
+            initialName={view.suggested_name}
+            onSave={save}
+            onCancel={() => setNaming(false)}
+          />
+        ) : confirmDelete ? (
+          <ConfirmBar
+            message="Delete this settlement? It has not been saved and cannot be recovered."
+            confirmLabel="Delete"
+            onConfirm={discard}
+            onCancel={() => setConfirmDelete(false)}
+          />
+        ) : (
+          <div className="action-bar">
+            <button type="button" className="btn" disabled={busy} onClick={onReroll}>
+              Re-roll
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={busy}
+              onClick={() => setNaming(true)}
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              className="btn btn-quiet-danger"
+              disabled={busy}
+              onClick={() => setConfirmDelete(true)}
+            >
+              Delete
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

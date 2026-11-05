@@ -30,6 +30,9 @@ export interface RoadmapEntry {
 export type GenerationMethod = "automatic" | "manual";
 export type GenerationPresentation = "incremental" | "one_table";
 export type Theme = "modern_dark" | "old_timey_dark";
+/** A named set of accent colours; each theme keeps its own choice. */
+export type AccentPalette =
+  "ember" | "brass" | "amethyst" | "verdigris" | "lapis" | "moss" | "glacier";
 
 export interface Settings {
   generation_method: GenerationMethod;
@@ -42,6 +45,10 @@ export interface Settings {
   bare_minimum_buildings: boolean;
   /** Advanced: show how every generated value was reached. */
   roll_details?: boolean;
+  /** Accent colours while Modern Dark is active (Ember until chosen). */
+  modern_dark_accent?: AccentPalette;
+  /** Accent colours while Old-Timey Dark is active (Brass until chosen). */
+  old_timey_dark_accent?: AccentPalette;
 }
 
 export function getAppInfo(): Promise<AppInfo> {

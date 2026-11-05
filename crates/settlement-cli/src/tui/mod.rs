@@ -46,7 +46,7 @@ impl Ctx {
             Err(e) => (Settings::default(), Some(e)),
         };
         Ctx {
-            styles: Styles::for_theme(settings.theme),
+            styles: Styles::for_settings(&settings),
             settings,
             service,
             info: settlement_core::app_info(),
@@ -59,7 +59,7 @@ impl Ctx {
     /// Saves settings through the core and applies the theme.
     pub fn save_settings(&mut self, next: Settings) -> Result<(), String> {
         let stored = self.service.change_settings(&self.settings, &next)?;
-        self.styles = Styles::for_theme(stored.theme);
+        self.styles = Styles::for_settings(&stored);
         self.settings = stored;
         Ok(())
     }

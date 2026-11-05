@@ -1,5 +1,5 @@
 import { createContext, useContext, type MutableRefObject } from "react";
-import type { AppInfo, Settings } from "./api";
+import type { AccentPalette, AppInfo, Settings } from "./api";
 
 export type Screen =
   | "menu"
@@ -48,4 +48,29 @@ export function useApp(): AppState {
 /** Theme IDs map to `data-theme` values used by tokens.css. */
 export function themeAttribute(theme: Settings["theme"]): string {
   return theme.replace(/_/g, "-");
+}
+
+/** The accent palettes in the order Settings offers them. */
+export const ACCENT_PALETTES: { id: AccentPalette; name: string }[] = [
+  { id: "ember", name: "Ember" },
+  { id: "brass", name: "Brass" },
+  { id: "amethyst", name: "Amethyst" },
+  { id: "verdigris", name: "Verdigris" },
+  { id: "lapis", name: "Lapis" },
+  { id: "moss", name: "Moss" },
+  { id: "glacier", name: "Glacier" },
+];
+
+/** The settings field that holds a theme's accent choice. */
+export function accentKey(
+  theme: Settings["theme"],
+): "modern_dark_accent" | "old_timey_dark_accent" {
+  return theme === "modern_dark" ? "modern_dark_accent" : "old_timey_dark_accent";
+}
+
+/** The active theme's accent palette, or that theme's own until one is chosen. */
+export function activeAccent(settings: Settings): AccentPalette {
+  return (
+    settings[accentKey(settings.theme)] ?? (settings.theme === "modern_dark" ? "ember" : "brass")
+  );
 }

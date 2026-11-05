@@ -80,7 +80,7 @@ export function ApprovedNamesEditor({
               />
               <button
                 type="button"
-                className="icon-button"
+                className="icon-button icon-remove"
                 aria-label={`Remove approved name ${key}`}
                 onClick={() => set(key, "")}
               >
@@ -545,7 +545,7 @@ function ExceptionsEditor({
                     <td>
                       <button
                         type="button"
-                        className="icon-button"
+                        className="icon-button icon-remove"
                         aria-label={`Remove exception ${k + 1}`}
                         onClick={() => onChange(exceptions.filter((_, j) => j !== k))}
                       >

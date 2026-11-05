@@ -8,8 +8,9 @@ import {
   type GenerationPresentation,
   type Settings,
   type Theme,
+  type AccentPalette,
 } from "../api";
-import { useApp } from "../app-state";
+import { ACCENT_PALETTES, accentKey, activeAccent, useApp } from "../app-state";
 import { ScreenFrame } from "../components/ScreenFrame";
 
 /** Settings save immediately on every change. */
@@ -143,6 +144,11 @@ export function SettingsScreen() {
                   { value: "old_timey_dark", label: "Old-Timey Dark" },
                 ]}
                 onChange={(v) => change({ theme: v })}
+              />
+              <AccentRow
+                theme={settings.theme === "modern_dark" ? "Modern Dark" : "Old-Timey Dark"}
+                value={activeAccent(settings)}
+                onChange={(v) => change({ [accentKey(settings.theme)]: v })}
               />
             </div>
           </section>
@@ -330,6 +336,50 @@ function Row({ title, help, children }: { title: string; help?: string; children
         {help && <span className="setting-help">{help}</span>}
       </div>
       {children}
+    </div>
+  );
+}
+
+/** Accent palettes as swatches; the choice belongs to the active theme. */
+function AccentRow({
+  theme,
+  value,
+  onChange,
+}: {
+  theme: string;
+  value: AccentPalette;
+  onChange: (value: AccentPalette) => void;
+}) {
+  return (
+    <div className="setting-row is-stacked">
+      <div>
+        <span id="accent-label" className="setting-name">
+          Colour theme
+        </span>
+        <span id="accent-help" className="setting-help">
+          Accent colours for {theme}. Each theme remembers its own. Maps keep their colours.
+        </span>
+      </div>
+      <div
+        role="radiogroup"
+        className="accent-picker"
+        aria-labelledby="accent-label"
+        aria-describedby="accent-help"
+      >
+        {ACCENT_PALETTES.map((palette) => (
+          <label key={palette.id} className={`accent-option accent-${palette.id}`}>
+            <input
+              type="radio"
+              name="accent"
+              value={palette.id}
+              checked={value === palette.id}
+              onChange={() => onChange(palette.id)}
+            />
+            <span className="accent-swatch" aria-hidden="true" />
+            <span className="accent-name">{palette.name}</span>
+          </label>
+        ))}
+      </div>
     </div>
   );
 }

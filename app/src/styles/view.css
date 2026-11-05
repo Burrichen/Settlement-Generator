@@ -58,6 +58,21 @@
   outline-offset: -2px;
 }
 
+.saved-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.saved-when {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .saved-name {
   min-width: 0;
   overflow: hidden;
@@ -76,7 +91,34 @@
 }
 
 .saved-detail-header {
-  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 20px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.saved-detail-header > * {
+  grid-column: 1 / -1;
+}
+
+.saved-detail-header > .saved-title,
+.saved-detail-header > .saved-meta {
+  grid-column: 1;
+}
+
+/* Actions sit beside the title, so the sheet and map start higher. */
+.saved-detail-header > .action-bar {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+@media (max-width: 960px) {
+  .saved-detail-header > .action-bar {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-top: 12px;
+  }
 }
 
 .saved-title {
@@ -85,7 +127,7 @@
 }
 
 .saved-meta {
-  margin: 0 0 14px;
+  margin: 0;
   font-size: 13px;
   color: var(--text-muted);
 }
@@ -131,7 +173,16 @@
 }
 
 .saved-list-actions {
-  margin-bottom: 10px;
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.saved-list-actions .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 6px 10px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .saved-notice {
