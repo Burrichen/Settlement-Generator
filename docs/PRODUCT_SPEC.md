@@ -81,6 +81,7 @@ Requirements common to both:
 | v0.1.1     | Settlement name generation                     |
 | v0.1.5     | Authority, settlement state, Notable Locations |
 | v0.2.0     | Settlement maps, the generator framework       |
+| v0.2.5     | Spectacular Settlements, accent colour themes  |
 | Next MINOR | Improved name generation                       |
 | Next MAJOR | New tables                                     |
 
@@ -341,6 +342,11 @@ Still to be specified and built:
   - the no-code generator framework: flows, and editors for tables, flows,
     tags, settings and modifiers (see FRAMEWORK.md);
   - Notable Location subtypes and revamped name packs.
+- Released in v0.2.5:
+  - the Spectacular Settlements Generation profile, with Trading Post,
+    Village, Town, City, Capital and Fortress builders (see CONTENT.md), and
+    the Fantasy Profile setting;
+  - accent colour themes and a UI usability pass.
 - Windows release packaging: one per-user NSIS installer with the GUI
   (`settlement-generator.exe`) and the CLI (`settlement-generator-cli.exe`),
   built by `npm run release:build` (see RELEASING.md).
